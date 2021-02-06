@@ -1,0 +1,61 @@
+/* CSS Document */
+.button-success {
+    background: #28a745 !important;
+    border-color: #28a745 !important;
+    color: #fff !important;
+}
+
+.button-success.hover, .button-success:focus {
+    background: #218838 !important;
+    border-color: #1e7e34 !important;
+}
+
+#woocommerce_ebizcharge_cardtypes {
+    height: 100px !important;
+}
+
+.fieldset-padding {
+    padding-left: 40px !important;
+}
+
+#econnect-buttons {
+    padding-left: 235px;
+}
+
+#ebizcharge-stored-info {
+    padding: 10px 0 0 20px;
+    clear: both;
+}
+
+#cvv {
+    width: 50px;
+}
+
+#Add-new-method {
+    float: right;
+    margin-right: 5px;
+}
+
+.pull-left {
+    float: left;
+}
+
+.pull-right {
+    float: right;
+}
+
+.mr-5 {
+    margin-right: 5px;
+}
+
+.mb-5 {
+    margin-bottom: 5px;
+}
+
+.cancel-btn {
+    background-color: #2b2b2b;
+}
+
+.full-width {
+    width: 100%;
+}

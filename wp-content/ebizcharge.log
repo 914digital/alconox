@@ -1,0 +1,367 @@
+
+11-Mar-2020 09:43:43 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+11-Mar-2020 09:43:44 :: Error: SOAP-ERROR: Parsing WSDL: Couldn't load from 'https://soap.ebizcharge.net/eBizService.svc?singleWsdl' : failed to load external entity "https://soap.ebizcharge.net/eBizService.svc?singleWsdl"
+
+11-Mar-2020 09:44:59 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+11-Mar-2020 09:44:59 :: Error: SOAP-ERROR: Parsing WSDL: Couldn't load from 'https://soap.ebizcharge.net/eBizService.svc?singleWsdl' : failed to load external entity "https://soap.ebizcharge.net/eBizService.svc?singleWsdl"
+
+11-Mar-2020 09:46:12 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+11-Mar-2020 09:46:12 :: Error: SOAP-ERROR: Parsing WSDL: Couldn't load from 'https://soap.ebizcharge.net/eBizService.svc?singleWsdl' : failed to load external entity "https://soap.ebizcharge.net/eBizService.svc?singleWsdl"
+
+30-Mar-2020 06:59:39 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+30-Mar-2020 06:59:42 :: Bad MID(0). RefNum (3108807434) is "Error".
+02-Apr-2020 06:23:17 :: WC_Gateway_EBizCharge::TokenProcess  customerId: 12013
+02-Apr-2020 06:23:18 :: WC_Gateway_EBizCharge::TokenProcess customer not exist in the gateway, add customer.
+02-Apr-2020 06:23:46 :: WC_Gateway_EBizCharge::TokenProcess Econnect enabled. sync customer.
+02-Apr-2020 06:35:34 :: WC_Gateway_EBizCharge::TokenProcess  customerId: 12013
+02-Apr-2020 06:35:35 :: WC_Gateway_EBizCharge::SearchCustomer, customer found. WP customerId: 12013
+02-Apr-2020 06:35:35 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+02-Apr-2020 06:35:37 :: RefNum: 3108868255 Result: Approved
+02-Apr-2020 06:38:02 :: WC_Gateway_EBizCharge::TokenProcess  customerId: 11058
+02-Apr-2020 06:38:03 :: WC_Gateway_EBizCharge::TokenProcess customer not exist in the gateway, add customer.
+02-Apr-2020 06:38:05 :: WC_Gateway_EBizCharge::TokenProcess Econnect enabled. sync customer.
+02-Apr-2020 06:38:08 :: WC_Gateway_EBizCharge::TokenProcess CustNum updated: 11164777
+02-Apr-2020 06:38:09 :: RefNum: 3108868261 Result: Approved
+02-Apr-2020 07:44:08 :: Transaction using WC_Gateway_EBizCharge::NewPaymentProcess
+02-Apr-2020 07:44:08 :: WC_Gateway_EBizCharge::NewPaymentProcess save card info empty.
+02-Apr-2020 07:44:08 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+02-Apr-2020 07:44:23 :: RefNum: 3108869490 Result: Approved
+06-Apr-2020 07:17:35 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+06-Apr-2020 07:17:43 :: RefNum: 3108921417 Result: Approved
+06-Apr-2020 10:40:28 :: WC_Gateway_EBizCharge::TokenProcess  customerId: 12013
+06-Apr-2020 10:40:28 :: WC_Gateway_EBizCharge::SearchCustomer, customer found. WP customerId: 12013
+06-Apr-2020 10:40:28 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+06-Apr-2020 10:40:31 :: RefNum: 3108924701 Result: Approved
+06-Apr-2020 10:48:24 :: WC_Gateway_EBizCharge::TokenProcess  customerId: 12013
+06-Apr-2020 10:48:25 :: WC_Gateway_EBizCharge::SearchCustomer, customer found. WP customerId: 12013
+06-Apr-2020 10:48:25 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+06-Apr-2020 10:48:26 :: RefNum: 3108924751 Result: Approved
+06-Apr-2020 10:51:05 :: WC_Gateway_EBizCharge::TokenProcess  customerId: 12013
+06-Apr-2020 10:51:06 :: WC_Gateway_EBizCharge::SearchCustomer, customer found. WP customerId: 12013
+06-Apr-2020 10:51:06 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+06-Apr-2020 10:51:08 :: RefNum: 3108924879 Result: Approved
+06-Apr-2020 10:53:51 :: WC_Gateway_EBizCharge::TokenProcess  customerId: 12013
+06-Apr-2020 10:53:51 :: WC_Gateway_EBizCharge::SearchCustomer, customer found. WP customerId: 12013
+06-Apr-2020 10:53:51 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+06-Apr-2020 10:53:53 :: RefNum: 3108924897 Result: Approved
+06-Apr-2020 10:55:55 :: WC_Gateway_EBizCharge::TokenProcess  customerId: 12013
+06-Apr-2020 10:55:55 :: WC_Gateway_EBizCharge::SearchCustomer, customer found. WP customerId: 12013
+06-Apr-2020 10:55:55 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+06-Apr-2020 10:55:57 :: RefNum: 3108924907 Result: Approved
+07-Apr-2020 01:04:22 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+07-Apr-2020 01:04:23 :: RefNum: 3108934552 Result: Approved
+13-Apr-2020 01:16:58 :: Transaction using WC_Gateway_EBizCharge::NewPaymentProcess
+28-Apr-2020 07:54:19 :: WC_Gateway_EBizCharge::TokenProcess  customerId: 12013
+28-Apr-2020 07:54:19 :: WC_Gateway_EBizCharge::SearchCustomer, customer found. WP customerId: 12013
+28-Apr-2020 07:54:19 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+28-Apr-2020 07:54:20 :: RefNum: 3109347233 Result: Approved
+04-May-2020 07:06:30 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+04-May-2020 07:06:31 :: RefNum: 3109438256 Result: Approved
+04-May-2020 07:12:56 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+04-May-2020 07:12:56 :: RefNum: 3109438302 Result: Approved
+21-May-2020 07:46:46 :: Transaction using WC_Gateway_EBizCharge::NewPaymentProcess
+21-May-2020 07:46:47 :: WC_Gateway_EBizCharge::NewPaymentProcess save card info empty.
+21-May-2020 07:46:47 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+21-May-2020 07:46:48 :: RefNum: 3109793977 Result: Approved
+02-Jun-2020 02:50:54 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+02-Jun-2020 02:50:55 :: RefNum: 3109965771 Result: Approved
+30-Jun-2020 02:20:49 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+30-Jun-2020 02:20:50 :: RefNum: 3110429903 Result: Approved
+30-Jun-2020 02:20:56 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+30-Jun-2020 02:20:56 :: RefNum: 3110429905 Result: Approved
+30-Jun-2020 05:48:08 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+30-Jun-2020 05:48:09 :: RefNum: 3110432216 Result: Approved
+14-Jul-2020 05:19:15 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+14-Jul-2020 05:19:16 :: RefNum: 3110681018 Result: Approved
+27-Aug-2020 06:43:25 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+27-Aug-2020 06:43:26 :: RefNum: 3112736187 Result: Approved
+30-Sep-2020 01:08:32 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+30-Sep-2020 01:08:33 :: RefNum: 3113663094 Result: Approved
+07-Oct-2020 03:49:45 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+07-Oct-2020 03:49:46 :: RefNum: 3113898976 Result: Approved
+07-Oct-2020 03:59:12 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+07-Oct-2020 03:59:13 :: RefNum: 3113899027 Result: Approved
+09-Oct-2020 01:27:36 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+09-Oct-2020 01:27:37 :: RefNum: 3113995504 Result: Approved
+09-Oct-2020 01:41:22 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+09-Oct-2020 01:41:23 :: RefNum: 3113998537 Result: Approved
+09-Oct-2020 01:49:44 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+09-Oct-2020 01:49:45 :: RefNum: 3114000427 Result: Approved
+02-Nov-2020 09:48:17 :: Transaction using WC_Gateway_EBizCharge::NewPaymentProcess
+02-Nov-2020 09:48:18 :: WC_Gateway_EBizCharge::NewPaymentProcess save card info empty.
+02-Nov-2020 09:48:18 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+02-Nov-2020 09:48:19 :: Transaction Not Permitted (63)(15163). RefNum (2658370385) is "Declined".
+04-Nov-2020 09:16:28 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+04-Nov-2020 09:16:30 :: RefNum: 2659851751 Result: Approved
+05-Nov-2020 08:27:52 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+05-Nov-2020 08:27:54 :: RefNum: 2660580162 Result: Approved
+06-Nov-2020 05:52:42 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+06-Nov-2020 05:52:45 :: CVV2 Declined (C2)(15434). RefNum (2661296803) is "Declined".
+06-Nov-2020 06:30:46 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+06-Nov-2020 06:30:48 :: RefNum: 2661339045 Result: Approved
+06-Nov-2020 09:04:34 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+06-Nov-2020 09:04:35 :: RefNum: 2661513686 Result: Approved
+09-Nov-2020 01:35:44 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+09-Nov-2020 01:35:46 :: RefNum: 2662859550 Result: Approved
+10-Nov-2020 09:28:15 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+10-Nov-2020 09:28:17 :: RefNum: 2664099919 Result: Approved
+11-Nov-2020 12:19:55 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+11-Nov-2020 12:19:58 :: RefNum: 2664221737 Result: Approved
+11-Nov-2020 12:23:02 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+11-Nov-2020 12:23:04 :: RefNum: 2664223374 Result: Approved
+11-Nov-2020 12:26:22 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+11-Nov-2020 12:26:24 :: RefNum: 2664225017 Result: Approved
+11-Nov-2020 12:26:41 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+11-Nov-2020 12:26:42 :: RefNum: 2664225185 Result: Approved
+11-Nov-2020 12:26:53 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+11-Nov-2020 12:26:55 :: RefNum: 2664225274 Result: Approved
+11-Nov-2020 12:27:58 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+11-Nov-2020 12:28:00 :: RefNum: 2664225771 Result: Approved
+11-Nov-2020 12:30:04 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+11-Nov-2020 12:30:06 :: Transaction Declined (51)(15151). RefNum (2664226824) is "Declined".
+11-Nov-2020 12:30:16 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+11-Nov-2020 12:30:18 :: Transaction Declined (51)(15151). RefNum (2664226925) is "Declined".
+11-Nov-2020 12:33:49 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+11-Nov-2020 12:33:51 :: Transaction Declined (51)(15151). RefNum (2664228730) is "Declined".
+11-Nov-2020 12:34:11 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+11-Nov-2020 12:34:13 :: Transaction Declined (51)(15151). RefNum (2664228902) is "Declined".
+11-Nov-2020 04:20:38 :: Transaction using WC_Gateway_EBizCharge::NewPaymentProcess
+11-Nov-2020 04:20:39 :: WC_Gateway_EBizCharge::NewPaymentProcess save card info empty.
+11-Nov-2020 04:20:39 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+11-Nov-2020 04:20:40 :: RefNum: 2664520983 Result: Approved
+11-Nov-2020 04:26:00 :: RefNum: 2664525325 Result: Approved
+11-Nov-2020 04:29:53 :: Transaction using WC_Gateway_EBizCharge::NewPaymentProcess
+11-Nov-2020 04:29:53 :: WC_Gateway_EBizCharge::NewPaymentProcess save card info empty.
+11-Nov-2020 04:29:53 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+11-Nov-2020 04:29:55 :: RefNum: 2664528313 Result: Approved
+11-Nov-2020 04:34:28 :: RefNum: 2664532125 Result: Approved
+11-Nov-2020 04:37:36 :: RefNum: 2664534847 Result: Approved
+11-Nov-2020 04:37:56 :: RefNum: 2664535143 Result: Approved
+11-Nov-2020 04:38:17 :: RefNum: 2664535465 Result: Approved
+11-Nov-2020 04:38:39 :: RefNum: 2664535805 Result: Approved
+11-Nov-2020 04:39:17 :: RefNum: 2664536314 Result: Approved
+11-Nov-2020 06:47:33 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+11-Nov-2020 06:47:35 :: RefNum: 2664653723 Result: Approved
+11-Nov-2020 08:56:47 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+11-Nov-2020 08:56:50 :: RefNum: 2664769457 Result: Approved
+12-Nov-2020 01:44:27 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+12-Nov-2020 01:44:28 :: Transaction Declined (51)(15151). RefNum (2664940409) is "Declined".
+12-Nov-2020 10:19:15 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+12-Nov-2020 10:19:16 :: RefNum: 2665517769 Result: Approved
+12-Nov-2020 10:26:49 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+12-Nov-2020 10:26:50 :: RefNum: 2665523245 Result: Approved
+12-Nov-2020 10:37:24 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+12-Nov-2020 10:37:26 :: Transaction Declined (51)(15151). RefNum (2665530822) is "Declined".
+12-Nov-2020 10:38:13 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+12-Nov-2020 10:38:14 :: Transaction Declined (51)(15151). RefNum (2665531358) is "Declined".
+12-Nov-2020 10:45:11 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+12-Nov-2020 10:45:13 :: RefNum: 2665536131 Result: Approved
+13-Nov-2020 01:24:56 :: RefNum: 2665887221 Result: Approved
+13-Nov-2020 06:23:16 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+13-Nov-2020 06:23:18 :: Invalid Card Number (3)(13). RefNum (2666225960) is "Error".
+13-Nov-2020 06:23:57 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+13-Nov-2020 06:23:59 :: RefNum: 2666226741 Result: Approved
+13-Nov-2020 07:15:46 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+13-Nov-2020 07:15:47 :: RefNum: 2666290982 Result: Approved
+13-Nov-2020 08:06:10 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+13-Nov-2020 08:06:12 :: RefNum: 2666352438 Result: Approved
+14-Nov-2020 06:17:15 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+14-Nov-2020 06:17:16 :: Invalid Card Number (3)(13). RefNum (2666950669) is "Error".
+14-Nov-2020 06:17:35 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+14-Nov-2020 06:17:36 :: RefNum: 2666950829 Result: Approved
+16-Nov-2020 02:15:55 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+16-Nov-2020 02:15:57 :: Transaction Declined (51)(15151). RefNum (2667920174) is "Declined".
+16-Nov-2020 02:16:18 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+16-Nov-2020 02:16:19 :: Transaction Declined (51)(15151). RefNum (2667920552) is "Declined".
+16-Nov-2020 06:28:27 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+16-Nov-2020 06:28:28 :: RefNum: 2668199893 Result: Approved
+16-Nov-2020 09:43:10 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+16-Nov-2020 09:43:11 :: RefNum: 2668406990 Result: Approved
+17-Nov-2020 12:20:42 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+17-Nov-2020 12:20:43 :: RefNum: 2668519429 Result: Approved
+17-Nov-2020 12:29:06 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+17-Nov-2020 12:29:09 :: RefNum: 2668711006 Result: Approved
+17-Nov-2020 03:28:07 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+17-Nov-2020 03:28:08 :: RefNum: 2668817804 Result: Approved
+18-Nov-2020 03:41:43 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+18-Nov-2020 03:41:45 :: RefNum: 2669542548 Result: Approved
+18-Nov-2020 03:45:41 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+18-Nov-2020 03:45:42 :: RefNum: 2669545905 Result: Approved
+18-Nov-2020 05:42:49 :: RefNum: 2669649878 Result: Approved
+18-Nov-2020 07:12:40 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+18-Nov-2020 07:12:41 :: RefNum: 2669735418 Result: Approved
+18-Nov-2020 07:58:15 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+18-Nov-2020 07:58:16 :: RefNum: 2669777160 Result: Approved
+19-Nov-2020 12:11:38 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+19-Nov-2020 12:11:39 :: RefNum: 2670151479 Result: Approved
+19-Nov-2020 05:04:15 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+19-Nov-2020 05:04:16 :: Transaction Declined (51)(15151). RefNum (2670337639) is "Declined".
+20-Nov-2020 02:48:10 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+20-Nov-2020 02:48:11 :: RefNum: 2671054336 Result: Approved
+23-Nov-2020 09:59:03 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+23-Nov-2020 09:59:05 :: RefNum: 2672587495 Result: Approved
+24-Nov-2020 04:41:06 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+24-Nov-2020 04:41:08 :: Transaction Declined (51)(15151). RefNum (2673547205) is "Declined".
+24-Nov-2020 04:41:18 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+24-Nov-2020 04:41:19 :: Transaction Declined (51)(15151). RefNum (2673547391) is "Declined".
+24-Nov-2020 04:42:30 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+24-Nov-2020 04:42:31 :: RefNum: 2673548371 Result: Approved
+24-Nov-2020 05:56:46 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+24-Nov-2020 05:56:48 :: RefNum: 2673617323 Result: Approved
+24-Nov-2020 06:41:44 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+24-Nov-2020 06:41:45 :: RefNum: 2673661188 Result: Approved
+24-Nov-2020 09:01:17 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+24-Nov-2020 09:01:18 :: RefNum: 2673787056 Result: Approved
+25-Nov-2020 05:01:05 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+25-Nov-2020 05:01:07 :: RefNum: 2674353982 Result: Approved
+25-Nov-2020 08:27:31 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+25-Nov-2020 08:27:32 :: RefNum: 2674562552 Result: Approved
+30-Nov-2020 11:13:07 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+30-Nov-2020 11:13:09 :: RefNum: 2676742371 Result: Approved
+30-Nov-2020 02:53:35 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+30-Nov-2020 02:53:36 :: RefNum: 2676985935 Result: Approved
+01-Dec-2020 02:58:14 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+01-Dec-2020 02:58:16 :: RefNum: 2678161917 Result: Approved
+01-Dec-2020 05:49:28 :: RefNum: 2678396680 Result: Approved
+01-Dec-2020 08:19:20 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+01-Dec-2020 08:19:22 :: RefNum: 2678585637 Result: Approved
+01-Dec-2020 08:41:10 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+01-Dec-2020 08:41:12 :: RefNum: 2678618962 Result: Approved
+01-Dec-2020 10:00:58 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+01-Dec-2020 10:01:10 :: RefNum: 2678699792 Result: Approved
+02-Dec-2020 05:09:32 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+02-Dec-2020 05:09:33 :: RefNum: 2679202686 Result: Approved
+02-Dec-2020 07:13:27 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+02-Dec-2020 07:13:28 :: RefNum: 2679331965 Result: Approved
+02-Dec-2020 08:03:44 :: RefNum: 2679379806 Result: Approved
+02-Dec-2020 09:24:53 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+02-Dec-2020 09:24:54 :: RefNum: 2679449764 Result: Approved
+04-Dec-2020 04:43:34 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+04-Dec-2020 04:43:35 :: RefNum: 2680908261 Result: Approved
+04-Dec-2020 06:19:38 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+04-Dec-2020 06:19:39 :: RefNum: 2681018927 Result: Approved
+07-Dec-2020 12:15:21 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+07-Dec-2020 12:15:23 :: RefNum: 2682483989 Result: Approved
+07-Dec-2020 05:56:02 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+07-Dec-2020 05:56:03 :: RefNum: 2682757650 Result: Approved
+08-Dec-2020 03:27:41 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+08-Dec-2020 03:27:43 :: RefNum: 2683379442 Result: Approved
+08-Dec-2020 10:49:27 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+08-Dec-2020 10:49:29 :: RefNum: 2683784033 Result: Approved
+09-Dec-2020 06:46:33 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+09-Dec-2020 06:46:35 :: RefNum: 2684352898 Result: Approved
+09-Dec-2020 07:26:15 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+09-Dec-2020 07:26:19 :: RefNum: 2684391297 Result: Approved
+09-Dec-2020 09:27:36 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+09-Dec-2020 09:27:37 :: RefNum: 2684497367 Result: Approved
+11-Dec-2020 08:14:49 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+11-Dec-2020 08:14:51 :: RefNum: 2686075309 Result: Approved
+14-Dec-2020 04:51:17 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+14-Dec-2020 04:51:20 :: Transaction Not Permitted (63)(15163). RefNum (2687251683) is "Declined".
+14-Dec-2020 04:51:42 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+14-Dec-2020 04:51:43 :: Transaction Not Permitted (63)(15163). RefNum (2687251730) is "Declined".
+14-Dec-2020 04:52:01 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+14-Dec-2020 04:52:02 :: Transaction Not Permitted (63)(15163). RefNum (2687251765) is "Declined".
+14-Dec-2020 07:56:41 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+14-Dec-2020 07:56:42 :: RefNum: 2687733244 Result: Approved
+14-Dec-2020 09:00:28 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+14-Dec-2020 09:00:30 :: RefNum: 2687800852 Result: Approved
+14-Dec-2020 10:32:59 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+14-Dec-2020 10:33:00 :: RefNum: 2687878334 Result: Approved
+16-Dec-2020 04:02:53 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+16-Dec-2020 04:02:55 :: RefNum: 2689271205 Result: Approved
+16-Dec-2020 05:52:38 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+16-Dec-2020 05:52:40 :: RefNum: 2689370017 Result: Approved
+17-Dec-2020 03:43:59 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+17-Dec-2020 03:44:01 :: Transaction Declined (51)(15151). RefNum (2689964765) is "Declined".
+17-Dec-2020 03:45:11 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+17-Dec-2020 03:45:12 :: Transaction Declined (51)(15151). RefNum (2689965719) is "Declined".
+17-Dec-2020 03:46:41 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+17-Dec-2020 03:46:42 :: RefNum: 2689967003 Result: Approved
+21-Dec-2020 12:32:44 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+21-Dec-2020 12:32:46 :: RefNum: 2692130430 Result: Approved
+21-Dec-2020 04:57:29 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+21-Dec-2020 04:57:30 :: RefNum: 2692483614 Result: Approved
+21-Dec-2020 05:09:23 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+21-Dec-2020 05:09:25 :: RefNum: 2692494756 Result: Approved
+21-Dec-2020 10:21:37 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+21-Dec-2020 10:21:38 :: RefNum: 2692788881 Result: Approved
+22-Dec-2020 07:48:20 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+22-Dec-2020 07:48:22 :: RefNum: 2693362347 Result: Approved
+22-Dec-2020 08:50:03 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+22-Dec-2020 08:50:04 :: RefNum: 2693414384 Result: Approved
+23-Dec-2020 08:22:49 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+23-Dec-2020 08:22:51 :: RefNum: 2694095009 Result: Approved
+23-Dec-2020 10:43:48 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+23-Dec-2020 10:43:49 :: RefNum: 2694198313 Result: Approved
+28-Dec-2020 01:08:35 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+28-Dec-2020 01:08:36 :: RefNum: 2696107109 Result: Approved
+28-Dec-2020 05:49:07 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+28-Dec-2020 05:49:08 :: RefNum: 2696359289 Result: Approved
+28-Dec-2020 07:13:21 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+28-Dec-2020 07:13:22 :: RefNum: 2696446862 Result: Approved
+29-Dec-2020 12:33:19 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+29-Dec-2020 12:33:21 :: RefNum: 2696886331 Result: Approved
+04-Jan-2021 07:44:06 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+04-Jan-2021 07:44:07 :: RefNum: 2701304667 Result: Approved
+05-Jan-2021 12:49:52 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+05-Jan-2021 12:49:53 :: RefNum: 2701794955 Result: Approved
+06-Jan-2021 05:18:24 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+06-Jan-2021 05:18:27 :: RefNum: 2702769165 Result: Approved
+06-Jan-2021 06:48:24 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+06-Jan-2021 06:48:25 :: RefNum: 2702855900 Result: Approved
+06-Jan-2021 07:09:23 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+06-Jan-2021 07:09:24 :: Transaction Declined (51)(15151). RefNum (2702875324) is "Declined".
+06-Jan-2021 07:12:43 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+06-Jan-2021 07:12:44 :: RefNum: 2702878459 Result: Approved
+06-Jan-2021 09:10:35 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+06-Jan-2021 09:10:37 :: RefNum: 2702993599 Result: Approved
+07-Jan-2021 02:44:01 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+07-Jan-2021 02:44:03 :: RefNum: 2703392274 Result: Approved
+07-Jan-2021 04:07:46 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+07-Jan-2021 04:07:47 :: RefNum: 2703456363 Result: Approved
+07-Jan-2021 06:53:19 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+07-Jan-2021 06:53:20 :: RefNum: 2703607604 Result: Approved
+08-Jan-2021 02:39:22 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+08-Jan-2021 02:39:23 :: RefNum: 2704258266 Result: Approved
+08-Jan-2021 08:23:43 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+08-Jan-2021 08:23:44 :: RefNum: 2704626338 Result: Approved
+09-Jan-2021 09:44:14 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+09-Jan-2021 09:44:15 :: RefNum: 2705233962 Result: Approved
+11-Jan-2021 01:06:26 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+11-Jan-2021 01:06:27 :: RefNum: 2705730204 Result: Approved
+13-Jan-2021 05:34:30 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+13-Jan-2021 05:34:31 :: RefNum: 2707598508 Result: Approved
+14-Jan-2021 03:39:53 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+14-Jan-2021 03:39:54 :: RefNum: 2708249313 Result: Approved
+14-Jan-2021 05:17:35 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+14-Jan-2021 05:17:36 :: RefNum: 2708336819 Result: Approved
+14-Jan-2021 07:15:28 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+14-Jan-2021 07:15:29 :: RefNum: 2708450135 Result: Approved
+14-Jan-2021 08:06:30 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+14-Jan-2021 08:06:31 :: RefNum: 2708499600 Result: Approved
+15-Jan-2021 04:04:26 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+15-Jan-2021 04:04:29 :: RefNum: 2709268307 Result: Approved
+15-Jan-2021 07:26:44 :: RefNum: 2709530888 Result: Approved
+18-Jan-2021 10:15:22 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+18-Jan-2021 10:15:24 :: RefNum: 2710889144 Result: Approved
+18-Jan-2021 04:21:18 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+18-Jan-2021 04:21:19 :: RefNum: 2711075919 Result: Approved
+18-Jan-2021 04:21:20 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+18-Jan-2021 04:21:21 :: RefNum: 2711075939 Result: Approved
+18-Jan-2021 08:46:38 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+18-Jan-2021 08:46:39 :: Invalid Card Number (3)(13). RefNum (2711302917) is "Error".
+18-Jan-2021 08:47:14 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+18-Jan-2021 08:47:15 :: Invalid card number (14)(15114). RefNum (2711303408) is "Declined".
+18-Jan-2021 08:47:40 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+18-Jan-2021 08:47:41 :: Invalid card number (14)(15114). RefNum (2711303745) is "Declined".
+18-Jan-2021 08:48:13 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+18-Jan-2021 08:48:14 :: Invalid card number (14)(15114). RefNum (2711304198) is "Declined".
+18-Jan-2021 08:48:55 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+18-Jan-2021 08:48:56 :: Invalid card number (14)(15114). RefNum (2711304800) is "Declined".
+18-Jan-2021 08:54:23 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+18-Jan-2021 08:54:24 :: Invalid card number (14)(15114). RefNum (2711309307) is "Declined".
+01-Feb-2021 03:33:16 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+01-Feb-2021 03:33:18 :: RefNum: 2721024270 Result: Approved
+03-Feb-2021 01:55:56 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+03-Feb-2021 01:55:57 :: RefNum: 2722518318 Result: Approved

@@ -1,0 +1,286 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: WooCommerce UPS Merger\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-08-27 13:04-0300\n"
+"PO-Revision-Date: 2017-07-26 15:49-0300\n"
+"Last-Translator: Plugin Territory <pluginterritory@gmail.com>\n"
+"Language-Team: \n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;esc_html__;esc_html_e\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Generator: Poedit 2.3\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SearchPath-0: ..\n"
+
+#: ../classes/class-admin.php:25
+msgid "Either ground or air"
+msgstr ""
+
+#: ../classes/class-admin.php:26
+msgid "Air only"
+msgstr ""
+
+#: ../classes/class-admin.php:27 ../includes/merge-packages.php:316
+msgid "Ground only"
+msgstr ""
+
+#: ../classes/class-admin.php:49 ../classes/class-admin.php:82
+msgid "Shipment methods"
+msgstr ""
+
+#: ../classes/class-admin.php:53
+msgid "Choose allowed shipping methods for this product."
+msgstr ""
+
+#: ../classes/class-admin.php:69
+msgid "Same as parent"
+msgstr ""
+
+#: ../classes/class-admin.php:85
+msgid "Choose allowed shipping methods for this product variation."
+msgstr ""
+
+#: ../classes/class-merger.php:39 ../classes/class-merger.php:227
+msgid "UPS Merger"
+msgstr ""
+
+#: ../classes/class-merger.php:40
+msgid ""
+"The <i>UPS Merger</i> merges the rates of the same shipping methods "
+"presenting one value.<br /><strong>MUST BE THE LAST METHOD</strong> or rates "
+"won't be merged!!"
+msgstr ""
+
+#: ../classes/class-merger.php:142
+msgid "Plugin WooCommerce UPS Shipping must be installed and active."
+msgstr ""
+
+#: ../classes/class-merger.php:150
+#, php-format
+msgid "Shipping method <strong>%s</strong> must be enabled."
+msgstr ""
+
+#: ../classes/class-merger.php:155
+msgid "UPS User ID has not been set."
+msgstr ""
+
+#: ../classes/class-merger.php:160
+msgid "UPS Password has not been set."
+msgstr ""
+
+#: ../classes/class-merger.php:165
+msgid "UPS Access Key has not been set."
+msgstr ""
+
+#: ../classes/class-merger.php:170
+msgid "UPS Shipper Number has not been set."
+msgstr ""
+
+#: ../classes/class-merger.php:218
+msgid "Method & Origin Settings"
+msgstr ""
+
+#: ../classes/class-merger.php:224
+msgid "Method Title"
+msgstr ""
+
+#: ../classes/class-merger.php:226
+msgid "This controls the title which the user sees during checkout."
+msgstr ""
+
+#: ../classes/class-merger.php:244
+msgid "Enable/Disable"
+msgstr ""
+
+#: ../classes/class-merger.php:246
+msgid "Enable this shipping functionality"
+msgstr ""
+
+#: ../classes/class-merger.php:250
+msgid "Ground | Air Split Mode"
+msgstr ""
+
+#: ../classes/class-merger.php:251
+msgid "Enable ground | air split mode"
+msgstr ""
+
+#: ../classes/class-merger.php:254
+msgid "Enable split mode to create ground and air packages if needed."
+msgstr ""
+
+#: ../classes/class-merger.php:258
+msgid "Debug Mode"
+msgstr ""
+
+#: ../classes/class-merger.php:259
+msgid "Enable debug mode"
+msgstr ""
+
+#: ../classes/class-merger.php:262
+msgid "Enable debug mode to show debugging information on your cart/checkout."
+msgstr ""
+
+#: ../classes/class-merger.php:265
+msgid "API Settings"
+msgstr ""
+
+#: ../classes/class-merger.php:267
+msgid "Settings come from UPS Shipping plugin."
+msgstr ""
+
+#: ../classes/class-merger.php:304
+msgid "No UPS instances found, merge will not be done."
+msgstr ""
+
+#: ../classes/class-merger.php:361
+msgid "No shipping class"
+msgstr ""
+
+#: ../classes/class-merger.php:382
+msgid "Shipping classes are used to group products under this method."
+msgstr ""
+
+#: ../classes/class-merger.php:418
+msgid "Yes"
+msgstr ""
+
+#: ../classes/class-merger.php:421
+msgid "No"
+msgstr ""
+
+#: ../classes/class-merger.php:432
+msgid "Service"
+msgstr ""
+
+#: ../classes/class-merger.php:433
+msgid "Enabled"
+msgstr ""
+
+#: ../classes/class-merger.php:449
+msgid "UPS Merger methods"
+msgstr ""
+
+#: ../classes/class-merger.php:454
+msgid "Title"
+msgstr ""
+
+#: ../classes/class-merger.php:455
+msgid "Services"
+msgstr ""
+
+#: ../classes/class-merger.php:456
+msgid "Shipping Class"
+msgstr ""
+
+#: ../classes/class-merger.php:463
+msgid "<em>Services source: WooCommerce UPS Shipping plugin</em>."
+msgstr ""
+
+#: ../classes/class-merger.php:489
+msgid "UPS Settings"
+msgstr ""
+
+#: ../classes/class-merger.php:494
+msgid "API Setting"
+msgstr ""
+
+#: ../classes/class-merger.php:495
+msgid "Value"
+msgstr ""
+
+#: ../classes/class-merger.php:501
+msgid "<em>Source: WooCommerce UPS Shipping plugin</em>."
+msgstr ""
+
+#: ../classes/class-merger.php:507
+msgid "UPS User ID: "
+msgstr ""
+
+#: ../classes/class-merger.php:511
+msgid "UPS Password: "
+msgstr ""
+
+#: ../classes/class-merger.php:515
+msgid "UPS Access Key: "
+msgstr ""
+
+#: ../classes/class-merger.php:519
+msgid "UPS Account Number: "
+msgstr ""
+
+#: ../classes/class-merger.php:556
+msgid "UPS Merger : Not enabled `@calculate_shipping`."
+msgstr ""
+
+#: ../classes/class-merger.php:578
+msgid "UPS Merger : No rates found, nothing to be merged."
+msgstr ""
+
+#: ../classes/class-merger.php:606
+#, php-format
+msgid ""
+"UPS Merger : no services enabled, check UPS merge instance settings at %s."
+msgstr ""
+
+#: ../classes/class-merger.php:692
+msgid "UPS Merger: No enabled UPS rates found, nothing to be merged."
+msgstr ""
+
+#: ../classes/class-merger.php:722
+msgid "You need to provide an address to see shipping rates."
+msgstr ""
+
+#: ../includes/merge-packages.php:24
+msgid "UPS Merger : Not enabled `@woocommerce_shipping_packages`."
+msgstr ""
+
+#: ../includes/merge-packages.php:59
+msgid "UPS Merger: No shipping zone having our method, nothing done."
+msgstr ""
+
+#: ../includes/merge-packages.php:211
+msgid "UPS Merger : Split not enabled."
+msgstr ""
+
+#: ../includes/merge-packages.php:227
+msgid "UPS Merger : Split enabled."
+msgstr ""
+
+#: ../includes/merge-packages.php:319
+msgid "Air options"
+msgstr ""
+
+#: ../includes/split-packages.php:26
+msgid "UPS Merger: Not enabled `@woocommerce_cart_shipping_packages`."
+msgstr ""
+
+#: ../includes/split-packages.php:44
+msgid "UPS Merger: Split not enabled `@woocommerce_cart_shipping_packages`."
+msgstr ""
+
+#: ../includes/split-packages.php:85
+msgid ""
+"UPS Merger: No shipping zone having our method "
+"`@woocommerce_cart_shipping_packages`."
+msgstr ""
+
+#: ../includes/split-packages.php:118
+msgid "UPS Merger: split_packages cart shipping packages #"
+msgstr ""
+
+#: ../pt-wc-ups-merger.php:41
+msgid "Settings"
+msgstr ""
+
+#: ../pt-wc-ups-merger.php:62
+msgid ""
+"WooCommerce UPS Merger is in conflict with another plugin for PHP class "
+"`PT_UPS_Merger_Admin`. <br />\n"
+"\t\t\t\tPlease deactivate the other plugin."
+msgstr ""

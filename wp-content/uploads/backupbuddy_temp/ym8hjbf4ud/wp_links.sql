@@ -1,0 +1,14 @@
+CREATE TABLE `wp_links` (  `link_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,  `link_url` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL DEFAULT '',  `link_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL DEFAULT '',  `link_image` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL DEFAULT '',  `link_target` varchar(25) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL DEFAULT '',  `link_description` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL DEFAULT '',  `link_visible` varchar(20) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL DEFAULT 'Y',  `link_owner` bigint(20) unsigned NOT NULL DEFAULT '1',  `link_rating` int(11) NOT NULL DEFAULT '0',  `link_updated` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',  `link_rel` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL DEFAULT '',  `link_notes` mediumtext CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,  `link_rss` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL DEFAULT '',  PRIMARY KEY (`link_id`),  KEY `link_visible` (`link_visible`)) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40000 ALTER TABLE `wp_links` DISABLE KEYS */;
+SET FOREIGN_KEY_CHECKS = 0;
+SET UNIQUE_CHECKS = 0;
+INSERT INTO `wp_links` VALUES('1', 'http://codex.wordpress.org/', 'Documentation', '', '', '', 'Y', '1', '0', '0000-00-00 00:00:00', '', '', '');
+INSERT INTO `wp_links` VALUES('2', 'http://wordpress.org/development/', 'WordPress Blog', '', '', '', 'Y', '1', '0', '0000-00-00 00:00:00', '', '', 'http://wordpress.org/development/feed/');
+INSERT INTO `wp_links` VALUES('3', 'http://wordpress.org/extend/ideas/', 'Suggest Ideas', '', '', '', 'Y', '1', '0', '0000-00-00 00:00:00', '', '', '');
+INSERT INTO `wp_links` VALUES('4', 'http://wordpress.org/support/', 'Support Forum', '', '', '', 'Y', '1', '0', '0000-00-00 00:00:00', '', '', '');
+INSERT INTO `wp_links` VALUES('5', 'http://wordpress.org/extend/plugins/', 'Plugins', '', '', '', 'Y', '1', '0', '0000-00-00 00:00:00', '', '', '');
+INSERT INTO `wp_links` VALUES('6', 'http://wordpress.org/extend/themes/', 'Themes', '', '', '', 'Y', '1', '0', '0000-00-00 00:00:00', '', '', '');
+INSERT INTO `wp_links` VALUES('7', 'http://planet.wordpress.org/', 'WordPress Planet', '', '', '', 'Y', '1', '0', '0000-00-00 00:00:00', '', '', '');
+/*!40000 ALTER TABLE `wp_links` ENABLE KEYS */;
+SET FOREIGN_KEY_CHECKS = 1;
+SET UNIQUE_CHECKS = 1;

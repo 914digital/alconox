@@ -1,0 +1,1112 @@
+02-02-2021 @ 19:02:18 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/definitions/entityusecodes
+user-agent: WooCommerce-AvaTax/1.11.0 (WooCommerce/4.8.0; WordPress/5.6)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.29257s
+
+02-02-2021 @ 19:02:18 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Wed, 03 Feb 2021 00:02:18 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 1454
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0001529
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"@recordsetCount":18,"value":[{"code":"A","name":"FEDERAL GOV","description":"","validCountries":["US"]},{"code":"B","name":"STATE GOV","description":"","validCountries":["US"]},{"code":"C","name":"TRIBAL GOVERNMENT","description":"","validCountries":["*"]},{"code":"D","name":"FOREIGN DIPLOMAT","description":"","validCountries":["*"]},{"code":"E","name":"CHARITABLE/EXEMPT ORG","description":"","validCountries":["*"]},{"code":"F","name":"RELIGIOUS ORG","description":"","validCountries":["*"]},{"code":"G","name":"RESALE","description":"","validCountries":["*"]},{"code":"H","name":"AGRICULTURE","description":"","validCountries":["*"]},{"code":"I","name":"INDUSTRIAL PROD/MANUFACTURERS","description":"","validCountries":["*"]},{"code":"J","name":"DIRECT PAY","description":"","validCountries":["*"]},{"code":"K","name":"DIRECT MAIL","description":"","validCountries":["*"]},{"code":"L","name":"OTHER/CUSTOM","description":"","validCountries":["*"]},{"code":"M","name":"EDUCATIONAL ORG","description":"","validCountries":["*"]},{"code":"N","name":"LOCAL GOVERNMENT","description":"","validCountries":["US"]},{"code":"P","name":"COMMERCIAL AQUACULTURE","description":"","validCountries":["CA"]},{"code":"Q","name":"COMMERCIAL FISHERY","description":"","validCountries":["CA"]},{"code":"R","name":"NON-RESIDENT","description":"","validCountries":["CA"]},{"code":"TAXABLE","name":"NON-EXEMPT TAXABLE CUSTOMER","description":"","validCountries":["*"]}]}
+
+02-03-2021 @ 09:10:52 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/taxrates/byaddress?line1=&line2=&city=New+York&region=NY&country=US&postalCode=10010
+user-agent: WooCommerce-AvaTax/1.11.0 (WooCommerce/4.8.0; WordPress/5.6)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.29875s
+
+02-03-2021 @ 09:10:52 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Wed, 03 Feb 2021 14:10:52 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 199
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0161394
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"totalRate":0.088750,"rates":[{"rate":0.040000,"name":"NY STATE TAX","type":"State"},{"rate":0.003750,"name":"NY SPECIAL TAX","type":"Special"},{"rate":0.045000,"name":"NY CITY TAX","type":"City"}]}
+
+02-03-2021 @ 09:11:00 - Request
+Request
+method: POST
+uri: https://rest.avatax.com/api/v2/transactions/create
+user-agent: WooCommerce-AvaTax/1.11.0 (WooCommerce/4.8.0; WordPress/5.6)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body: {"code":"","companyCode":"ALC","customerCode":"Guest","currencyCode":"USD","date":"2021-02-03","lines":[{"number":"5d646e4afac70385e6052bd72723e1ff","itemCode":"1104","taxCode":"P0000000","description":"Alconox","quantity":12,"amount":4248},{"number":"ca67023068969c7df100d80920400183","itemCode":"1104-1","taxCode":"P0000000","description":"Alconox","quantity":11,"amount":519.20000000000005},{"number":"shipping_0","itemCode":"use-my-shipping-account","taxCode":"FR","description":"Use My Shipping Account","quantity":1}],"addresses":{"shipFrom":{"line1":"30 GLENN ST","line2":"","city":"WHITE PLAINS","region":"NY","country":"US","postalCode":"10603-3254"},"shipTo":{"line1":"175 5th Ave","line2":"","city":"New York","region":"NY","country":"US","postalCode":"10010"}},"type":"SalesOrder","commit":false}
+duration: 0.39328s
+
+02-03-2021 @ 09:11:00 - Response
+Response
+code: 201
+message: Created
+headers: Array
+(
+    [date] => Wed, 03 Feb 2021 14:11:00 GMT
+    [content-type] => application/json; charset=utf-8
+    [server] => Kestrel
+    [content-encoding] => br
+    [location] => /api/v2/companies/207925/transactions/0
+    [vary] => Accept-Encoding
+    [serverduration] => 00:00:00.0943710
+)
+body: {"id":0,"code":"05079424-f95e-4311-985e-e0dbf295a516","companyId":207925,"date":"2021-02-03","paymentDate":"2021-02-03","status":"Temporary","type":"SalesOrder","batchCode":"","currencyCode":"USD","exchangeRateCurrencyCode":"USD","customerUsageType":"","entityUseCode":"","customerVendorCode":"Guest","customerCode":"Guest","exemptNo":"","reconciled":false,"locationCode":"","reportingLocationCode":"","purchaseOrderNo":"","referenceCode":"","salespersonCode":"","totalAmount":4767.2,"totalExempt":0.0,"totalDiscount":0.0,"totalTax":423.09,"totalTaxable":4767.2,"totalTaxCalculated":423.09,"adjustmentReason":"NotAdjusted","locked":false,"version":1,"exchangeRateEffectiveDate":"2021-02-03","exchangeRate":1.0,"modifiedDate":"2021-02-03T14:11:00.3236691Z","modifiedUserId":231879,"taxDate":"2021-02-03T00:00:00Z","lines":[{"id":0,"transactionId":0,"lineNumber":"5d646e4afac70385e6052bd72723e1ff","customerUsageType":"","entityUseCode":"","description":"Alconox","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"itemCode":"1104","lineAmount":4248.0,"quantity":12.0,"ref1":"","ref2":"","reportingDate":"2021-02-03","tax":377.01,"taxableAmount":4248.0,"taxCalculated":377.01,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-02-03","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"36","jurisName":"NEW YORK","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.040000,"tax":169.92,"taxableAmount":4248.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxCalculated":169.92,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":4248.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":169.92,"reportingTaxCalculated":169.92,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"51000","jurisName":"NEW YORK CITY","stateAssignedNo":"NE 8081","jurisType":"CIT","jurisdictionType":"City","nonTaxableAmount":0.0,"rate":0.045000,"tax":191.16,"taxableAmount":4248.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY CITY TAX","taxAuthorityTypeId":45,"taxCalculated":191.16,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":4248.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":191.16,"reportingTaxCalculated":191.16,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"359071","jurisName":"METROPOLITAN COMMUTER TRANSPORTATION DISTRICT","stateAssignedNo":"NE 8081","jurisType":"STJ","jurisdictionType":"Special","nonTaxableAmount":0.0,"rate":0.003750,"tax":15.93,"taxableAmount":4248.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY SPECIAL TAX","taxAuthorityTypeId":45,"taxCalculated":15.93,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":4248.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":15.93,"reportingTaxCalculated":15.93,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":0,"transactionId":0,"lineNumber":"ca67023068969c7df100d80920400183","customerUsageType":"","entityUseCode":"","description":"Alconox","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"itemCode":"1104-1","lineAmount":519.20000000000005,"quantity":11.0,"ref1":"","ref2":"","reportingDate":"2021-02-03","tax":46.08,"taxableAmount":519.2,"taxCalculated":46.08,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-02-03","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"36","jurisName":"NEW YORK","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.040000,"tax":20.77,"taxableAmount":519.2,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxCalculated":20.77,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":519.2,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":20.77,"reportingTaxCalculated":20.77,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"51000","jurisName":"NEW YORK CITY","stateAssignedNo":"NE 8081","jurisType":"CIT","jurisdictionType":"City","nonTaxableAmount":0.0,"rate":0.045000,"tax":23.36,"taxableAmount":519.2,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY CITY TAX","taxAuthorityTypeId":45,"taxCalculated":23.36,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":519.2,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":23.36,"reportingTaxCalculated":23.36,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"359071","jurisName":"METROPOLITAN COMMUTER TRANSPORTATION DISTRICT","stateAssignedNo":"NE 8081","jurisType":"STJ","jurisdictionType":"Special","nonTaxableAmount":0.0,"rate":0.003750,"tax":1.95,"taxableAmount":519.2,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY SPECIAL TAX","taxAuthorityTypeId":45,"taxCalculated":1.95,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":519.2,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":1.95,"reportingTaxCalculated":1.95,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":0,"transactionId":0,"lineNumber":"shipping_0","customerUsageType":"","entityUseCode":"","description":"Use My Shipping Account","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":false,"itemCode":"use-my-shipping-account","lineAmount":0.0,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-02-03","tax":0.0,"taxableAmount":0.0,"taxCalculated":0.0,"taxCode":"FR","taxCodeId":7119,"taxDate":"2021-02-03","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"36","jurisName":"NEW YORK","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.040000,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"51000","jurisName":"NEW YORK CITY","stateAssignedNo":"NE 8081","jurisType":"CIT","jurisdictionType":"City","nonTaxableAmount":0.0,"rate":0.045000,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY CITY TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"359071","jurisName":"METROPOLITAN COMMUTER TRANSPORTATION DISTRICT","stateAssignedNo":"NE 8081","jurisType":"STJ","jurisdictionType":"Special","nonTaxableAmount":0.0,"rate":0.003750,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY SPECIAL TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0}],"addresses":[{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"175 5th Ave","line2":"","line3":"","city":"New York","region":"NY","postalCode":"10010","country":"US","taxRegionId":2088629,"latitude":"40.740942","longitude":"-73.989884"},{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"30 GLENN ST","line2":"","line3":"","city":"WHITE PLAINS","region":"NY","postalCode":"10603-3254","country":"US","taxRegionId":2090237,"latitude":"41.050608","longitude":"-73.771383"}],"summary":[{"country":"US","region":"NY","jurisType":"State","jurisCode":"36","jurisName":"NEW YORK","taxAuthorityType":45,"stateAssignedNo":"","taxType":"Sales","taxSubType":"S","taxName":"NY STATE TAX","rateType":"General","taxable":4767.2,"rate":0.040000,"tax":190.69,"taxCalculated":190.69,"nonTaxable":0.0,"exemption":0.0},{"country":"US","region":"NY","jurisType":"City","jurisCode":"51000","jurisName":"NEW YORK CITY","taxAuthorityType":45,"stateAssignedNo":"NE 8081","taxType":"Sales","taxSubType":"S","taxName":"NY CITY TAX","rateType":"General","taxable":4767.2,"rate":0.045000,"tax":214.52,"taxCalculated":214.52,"nonTaxable":0.0,"exemption":0.0},{"country":"US","region":"NY","jurisType":"Special","jurisCode":"359071","jurisName":"METROPOLITAN COMMUTER TRANSPORTATION DISTRICT","taxAuthorityType":45,"stateAssignedNo":"NE 8081","taxType":"Sales","taxSubType":"S","taxName":"NY SPECIAL TAX","rateType":"General","taxable":4767.2,"rate":0.003750,"tax":17.88,"taxCalculated":17.88,"nonTaxable":0.0,"exemption":0.0}]}
+
+02-03-2021 @ 09:23:05 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/taxrates/byaddress?line1=&line2=&city=New+York&region=NY&country=US&postalCode=10010
+user-agent: WooCommerce-AvaTax/1.11.0 (WooCommerce/4.8.0; WordPress/5.6)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.31651s
+
+02-03-2021 @ 09:23:05 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Wed, 03 Feb 2021 14:23:05 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 199
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0011987
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"totalRate":0.088750,"rates":[{"rate":0.040000,"name":"NY STATE TAX","type":"State"},{"rate":0.003750,"name":"NY SPECIAL TAX","type":"Special"},{"rate":0.045000,"name":"NY CITY TAX","type":"City"}]}
+
+02-03-2021 @ 09:23:13 - Request
+Request
+method: POST
+uri: https://rest.avatax.com/api/v2/transactions/create
+user-agent: WooCommerce-AvaTax/1.11.0 (WooCommerce/4.8.0; WordPress/5.6)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body: {"code":"","companyCode":"ALC","customerCode":"Guest","currencyCode":"USD","date":"2021-02-03","lines":[{"number":"5d646e4afac70385e6052bd72723e1ff","itemCode":"1104","taxCode":"P0000000","description":"Alconox","quantity":12,"amount":4248},{"number":"ca67023068969c7df100d80920400183","itemCode":"1104-1","taxCode":"P0000000","description":"Alconox","quantity":11,"amount":519.20000000000005},{"number":"shipping_0","itemCode":"use-my-shipping-account","taxCode":"FR","description":"Use My Shipping Account","quantity":1}],"addresses":{"shipFrom":{"line1":"30 GLENN ST","line2":"","city":"WHITE PLAINS","region":"NY","country":"US","postalCode":"10603-3254"},"shipTo":{"line1":"175 5th Ave","line2":"","city":"New York","region":"NY","country":"US","postalCode":"10010"}},"type":"SalesOrder","commit":false}
+duration: 0.3842s
+
+02-03-2021 @ 09:23:13 - Response
+Response
+code: 201
+message: Created
+headers: Array
+(
+    [date] => Wed, 03 Feb 2021 14:23:13 GMT
+    [content-type] => application/json; charset=utf-8
+    [server] => Kestrel
+    [content-encoding] => br
+    [location] => /api/v2/companies/207925/transactions/0
+    [vary] => Accept-Encoding
+    [serverduration] => 00:00:00.0646157
+)
+body: {"id":0,"code":"2626f62a-84f5-468a-a3fb-e53bbd57ea92","companyId":207925,"date":"2021-02-03","paymentDate":"2021-02-03","status":"Temporary","type":"SalesOrder","batchCode":"","currencyCode":"USD","exchangeRateCurrencyCode":"USD","customerUsageType":"","entityUseCode":"","customerVendorCode":"Guest","customerCode":"Guest","exemptNo":"","reconciled":false,"locationCode":"","reportingLocationCode":"","purchaseOrderNo":"","referenceCode":"","salespersonCode":"","totalAmount":4767.2,"totalExempt":0.0,"totalDiscount":0.0,"totalTax":423.09,"totalTaxable":4767.2,"totalTaxCalculated":423.09,"adjustmentReason":"NotAdjusted","locked":false,"version":1,"exchangeRateEffectiveDate":"2021-02-03","exchangeRate":1.0,"modifiedDate":"2021-02-03T14:23:13.4358949Z","modifiedUserId":231879,"taxDate":"2021-02-03T00:00:00Z","lines":[{"id":0,"transactionId":0,"lineNumber":"5d646e4afac70385e6052bd72723e1ff","customerUsageType":"","entityUseCode":"","description":"Alconox","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"itemCode":"1104","lineAmount":4248.0,"quantity":12.0,"ref1":"","ref2":"","reportingDate":"2021-02-03","tax":377.01,"taxableAmount":4248.0,"taxCalculated":377.01,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-02-03","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"36","jurisName":"NEW YORK","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.040000,"tax":169.92,"taxableAmount":4248.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxCalculated":169.92,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":4248.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":169.92,"reportingTaxCalculated":169.92,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"51000","jurisName":"NEW YORK CITY","stateAssignedNo":"NE 8081","jurisType":"CIT","jurisdictionType":"City","nonTaxableAmount":0.0,"rate":0.045000,"tax":191.16,"taxableAmount":4248.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY CITY TAX","taxAuthorityTypeId":45,"taxCalculated":191.16,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":4248.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":191.16,"reportingTaxCalculated":191.16,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"359071","jurisName":"METROPOLITAN COMMUTER TRANSPORTATION DISTRICT","stateAssignedNo":"NE 8081","jurisType":"STJ","jurisdictionType":"Special","nonTaxableAmount":0.0,"rate":0.003750,"tax":15.93,"taxableAmount":4248.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY SPECIAL TAX","taxAuthorityTypeId":45,"taxCalculated":15.93,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":4248.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":15.93,"reportingTaxCalculated":15.93,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":0,"transactionId":0,"lineNumber":"ca67023068969c7df100d80920400183","customerUsageType":"","entityUseCode":"","description":"Alconox","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"itemCode":"1104-1","lineAmount":519.20000000000005,"quantity":11.0,"ref1":"","ref2":"","reportingDate":"2021-02-03","tax":46.08,"taxableAmount":519.2,"taxCalculated":46.08,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-02-03","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"36","jurisName":"NEW YORK","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.040000,"tax":20.77,"taxableAmount":519.2,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxCalculated":20.77,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":519.2,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":20.77,"reportingTaxCalculated":20.77,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"51000","jurisName":"NEW YORK CITY","stateAssignedNo":"NE 8081","jurisType":"CIT","jurisdictionType":"City","nonTaxableAmount":0.0,"rate":0.045000,"tax":23.36,"taxableAmount":519.2,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY CITY TAX","taxAuthorityTypeId":45,"taxCalculated":23.36,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":519.2,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":23.36,"reportingTaxCalculated":23.36,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"359071","jurisName":"METROPOLITAN COMMUTER TRANSPORTATION DISTRICT","stateAssignedNo":"NE 8081","jurisType":"STJ","jurisdictionType":"Special","nonTaxableAmount":0.0,"rate":0.003750,"tax":1.95,"taxableAmount":519.2,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY SPECIAL TAX","taxAuthorityTypeId":45,"taxCalculated":1.95,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":519.2,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":1.95,"reportingTaxCalculated":1.95,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":0,"transactionId":0,"lineNumber":"shipping_0","customerUsageType":"","entityUseCode":"","description":"Use My Shipping Account","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":false,"itemCode":"use-my-shipping-account","lineAmount":0.0,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-02-03","tax":0.0,"taxableAmount":0.0,"taxCalculated":0.0,"taxCode":"FR","taxCodeId":7119,"taxDate":"2021-02-03","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"36","jurisName":"NEW YORK","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.040000,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"51000","jurisName":"NEW YORK CITY","stateAssignedNo":"NE 8081","jurisType":"CIT","jurisdictionType":"City","nonTaxableAmount":0.0,"rate":0.045000,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY CITY TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"359071","jurisName":"METROPOLITAN COMMUTER TRANSPORTATION DISTRICT","stateAssignedNo":"NE 8081","jurisType":"STJ","jurisdictionType":"Special","nonTaxableAmount":0.0,"rate":0.003750,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY SPECIAL TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0}],"addresses":[{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"175 5th Ave","line2":"","line3":"","city":"New York","region":"NY","postalCode":"10010","country":"US","taxRegionId":2088629,"latitude":"40.740942","longitude":"-73.989884"},{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"30 GLENN ST","line2":"","line3":"","city":"WHITE PLAINS","region":"NY","postalCode":"10603-3254","country":"US","taxRegionId":2090237,"latitude":"41.050608","longitude":"-73.771383"}],"summary":[{"country":"US","region":"NY","jurisType":"State","jurisCode":"36","jurisName":"NEW YORK","taxAuthorityType":45,"stateAssignedNo":"","taxType":"Sales","taxSubType":"S","taxName":"NY STATE TAX","rateType":"General","taxable":4767.2,"rate":0.040000,"tax":190.69,"taxCalculated":190.69,"nonTaxable":0.0,"exemption":0.0},{"country":"US","region":"NY","jurisType":"City","jurisCode":"51000","jurisName":"NEW YORK CITY","taxAuthorityType":45,"stateAssignedNo":"NE 8081","taxType":"Sales","taxSubType":"S","taxName":"NY CITY TAX","rateType":"General","taxable":4767.2,"rate":0.045000,"tax":214.52,"taxCalculated":214.52,"nonTaxable":0.0,"exemption":0.0},{"country":"US","region":"NY","jurisType":"Special","jurisCode":"359071","jurisName":"METROPOLITAN COMMUTER TRANSPORTATION DISTRICT","taxAuthorityType":45,"stateAssignedNo":"NE 8081","taxType":"Sales","taxSubType":"S","taxName":"NY SPECIAL TAX","rateType":"General","taxable":4767.2,"rate":0.003750,"tax":17.88,"taxCalculated":17.88,"nonTaxable":0.0,"exemption":0.0}]}
+
+02-03-2021 @ 09:23:57 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/taxrates/byaddress?line1=&line2=&city=New+York&region=NY&country=US&postalCode=10010
+user-agent: WooCommerce-AvaTax/1.11.0 (WooCommerce/4.8.0; WordPress/5.6)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.31745s
+
+02-03-2021 @ 09:23:57 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Wed, 03 Feb 2021 14:23:57 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 199
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0009760
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"totalRate":0.088750,"rates":[{"rate":0.040000,"name":"NY STATE TAX","type":"State"},{"rate":0.003750,"name":"NY SPECIAL TAX","type":"Special"},{"rate":0.045000,"name":"NY CITY TAX","type":"City"}]}
+
+02-03-2021 @ 09:24:03 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/utilities/ping
+user-agent: WooCommerce-AvaTax/1.11.0 (WooCommerce/4.8.0; WordPress/5.6)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.31256s
+
+02-03-2021 @ 09:24:03 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Wed, 03 Feb 2021 14:24:03 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 225
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0001471
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"version":"21.1.0","authenticated":true,"authenticationType":"AccountIdLicenseKey","authenticatedUserName":"anonymous@2000107471","authenticatedUserId":231879,"authenticatedAccountId":2000107471,"crmid":"0010b00002JHRLYAA5"}
+
+02-03-2021 @ 09:24:03 - Request
+Request
+method: POST
+uri: https://rest.avatax.com/api/v2/transactions/create
+user-agent: WooCommerce-AvaTax/1.11.0 (WooCommerce/4.8.0; WordPress/5.6)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body: {"code":"","companyCode":"ALC","customerCode":"Guest","currencyCode":"USD","date":"2021-02-03","lines":[{"number":"5d646e4afac70385e6052bd72723e1ff","itemCode":"1104","taxCode":"P0000000","description":"Alconox","quantity":1,"amount":354},{"number":"ca67023068969c7df100d80920400183","itemCode":"1104-1","taxCode":"P0000000","description":"Alconox","quantity":1,"amount":47.200000000000003},{"number":"shipping_0","itemCode":"use-my-shipping-account","taxCode":"FR","description":"Use My Shipping Account","quantity":1}],"addresses":{"shipFrom":{"line1":"30 GLENN ST","line2":"","city":"WHITE PLAINS","region":"NY","country":"US","postalCode":"10603-3254"},"shipTo":{"line1":"175 5th Ave","line2":"","city":"New York","region":"NY","country":"US","postalCode":"10010"}},"type":"SalesOrder","commit":false}
+duration: 0.3428s
+
+02-03-2021 @ 09:24:03 - Response
+Response
+code: 201
+message: Created
+headers: Array
+(
+    [date] => Wed, 03 Feb 2021 14:24:03 GMT
+    [content-type] => application/json; charset=utf-8
+    [server] => Kestrel
+    [content-encoding] => br
+    [location] => /api/v2/companies/207925/transactions/0
+    [vary] => Accept-Encoding
+    [serverduration] => 00:00:00.0561523
+)
+body: {"id":0,"code":"fdfd9299-d764-44f0-a9bd-4f0eceecab89","companyId":207925,"date":"2021-02-03","paymentDate":"2021-02-03","status":"Temporary","type":"SalesOrder","batchCode":"","currencyCode":"USD","exchangeRateCurrencyCode":"USD","customerUsageType":"","entityUseCode":"","customerVendorCode":"Guest","customerCode":"Guest","exemptNo":"","reconciled":false,"locationCode":"","reportingLocationCode":"","purchaseOrderNo":"","referenceCode":"","salespersonCode":"","totalAmount":401.2,"totalExempt":0.0,"totalDiscount":0.0,"totalTax":35.61,"totalTaxable":401.2,"totalTaxCalculated":35.61,"adjustmentReason":"NotAdjusted","locked":false,"version":1,"exchangeRateEffectiveDate":"2021-02-03","exchangeRate":1.0,"modifiedDate":"2021-02-03T14:24:03.1372353Z","modifiedUserId":231879,"taxDate":"2021-02-03T00:00:00Z","lines":[{"id":0,"transactionId":0,"lineNumber":"5d646e4afac70385e6052bd72723e1ff","customerUsageType":"","entityUseCode":"","description":"Alconox","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"itemCode":"1104","lineAmount":354.0,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-02-03","tax":31.42,"taxableAmount":354.0,"taxCalculated":31.42,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-02-03","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"36","jurisName":"NEW YORK","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.040000,"tax":14.16,"taxableAmount":354.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxCalculated":14.16,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":354.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":14.16,"reportingTaxCalculated":14.16,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"51000","jurisName":"NEW YORK CITY","stateAssignedNo":"NE 8081","jurisType":"CIT","jurisdictionType":"City","nonTaxableAmount":0.0,"rate":0.045000,"tax":15.93,"taxableAmount":354.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY CITY TAX","taxAuthorityTypeId":45,"taxCalculated":15.93,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":354.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":15.93,"reportingTaxCalculated":15.93,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"359071","jurisName":"METROPOLITAN COMMUTER TRANSPORTATION DISTRICT","stateAssignedNo":"NE 8081","jurisType":"STJ","jurisdictionType":"Special","nonTaxableAmount":0.0,"rate":0.003750,"tax":1.33,"taxableAmount":354.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY SPECIAL TAX","taxAuthorityTypeId":45,"taxCalculated":1.33,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":354.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":1.33,"reportingTaxCalculated":1.33,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":0,"transactionId":0,"lineNumber":"ca67023068969c7df100d80920400183","customerUsageType":"","entityUseCode":"","description":"Alconox","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"itemCode":"1104-1","lineAmount":47.200000000000003,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-02-03","tax":4.19,"taxableAmount":47.2,"taxCalculated":4.19,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-02-03","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"36","jurisName":"NEW YORK","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.040000,"tax":1.89,"taxableAmount":47.2,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxCalculated":1.89,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":47.2,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":1.89,"reportingTaxCalculated":1.89,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"51000","jurisName":"NEW YORK CITY","stateAssignedNo":"NE 8081","jurisType":"CIT","jurisdictionType":"City","nonTaxableAmount":0.0,"rate":0.045000,"tax":2.12,"taxableAmount":47.2,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY CITY TAX","taxAuthorityTypeId":45,"taxCalculated":2.12,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":47.2,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":2.12,"reportingTaxCalculated":2.12,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"359071","jurisName":"METROPOLITAN COMMUTER TRANSPORTATION DISTRICT","stateAssignedNo":"NE 8081","jurisType":"STJ","jurisdictionType":"Special","nonTaxableAmount":0.0,"rate":0.003750,"tax":0.18,"taxableAmount":47.2,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY SPECIAL TAX","taxAuthorityTypeId":45,"taxCalculated":0.18,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":47.2,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.18,"reportingTaxCalculated":0.18,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":0,"transactionId":0,"lineNumber":"shipping_0","customerUsageType":"","entityUseCode":"","description":"Use My Shipping Account","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":false,"itemCode":"use-my-shipping-account","lineAmount":0.0,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-02-03","tax":0.0,"taxableAmount":0.0,"taxCalculated":0.0,"taxCode":"FR","taxCodeId":7119,"taxDate":"2021-02-03","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"36","jurisName":"NEW YORK","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.040000,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"51000","jurisName":"NEW YORK CITY","stateAssignedNo":"NE 8081","jurisType":"CIT","jurisdictionType":"City","nonTaxableAmount":0.0,"rate":0.045000,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY CITY TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"359071","jurisName":"METROPOLITAN COMMUTER TRANSPORTATION DISTRICT","stateAssignedNo":"NE 8081","jurisType":"STJ","jurisdictionType":"Special","nonTaxableAmount":0.0,"rate":0.003750,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY SPECIAL TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0}],"addresses":[{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"175 5th Ave","line2":"","line3":"","city":"New York","region":"NY","postalCode":"10010","country":"US","taxRegionId":2088629,"latitude":"40.740942","longitude":"-73.989884"},{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"30 GLENN ST","line2":"","line3":"","city":"WHITE PLAINS","region":"NY","postalCode":"10603-3254","country":"US","taxRegionId":2090237,"latitude":"41.050608","longitude":"-73.771383"}],"summary":[{"country":"US","region":"NY","jurisType":"State","jurisCode":"36","jurisName":"NEW YORK","taxAuthorityType":45,"stateAssignedNo":"","taxType":"Sales","taxSubType":"S","taxName":"NY STATE TAX","rateType":"General","taxable":401.2,"rate":0.040000,"tax":16.05,"taxCalculated":16.05,"nonTaxable":0.0,"exemption":0.0},{"country":"US","region":"NY","jurisType":"City","jurisCode":"51000","jurisName":"NEW YORK CITY","taxAuthorityType":45,"stateAssignedNo":"NE 8081","taxType":"Sales","taxSubType":"S","taxName":"NY CITY TAX","rateType":"General","taxable":401.2,"rate":0.045000,"tax":18.05,"taxCalculated":18.05,"nonTaxable":0.0,"exemption":0.0},{"country":"US","region":"NY","jurisType":"Special","jurisCode":"359071","jurisName":"METROPOLITAN COMMUTER TRANSPORTATION DISTRICT","taxAuthorityType":45,"stateAssignedNo":"NE 8081","taxType":"Sales","taxSubType":"S","taxName":"NY SPECIAL TAX","rateType":"General","taxable":401.2,"rate":0.003750,"tax":1.51,"taxCalculated":1.51,"nonTaxable":0.0,"exemption":0.0}]}
+
+02-03-2021 @ 09:40:53 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/taxrates/byaddress?line1=&line2=&city=New+York&region=NY&country=US&postalCode=10010
+user-agent: WooCommerce-AvaTax/1.11.0 (WooCommerce/4.8.0; WordPress/5.6)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.3013s
+
+02-03-2021 @ 09:40:53 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Wed, 03 Feb 2021 14:40:53 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 199
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0010432
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"totalRate":0.088750,"rates":[{"rate":0.040000,"name":"NY STATE TAX","type":"State"},{"rate":0.003750,"name":"NY SPECIAL TAX","type":"Special"},{"rate":0.045000,"name":"NY CITY TAX","type":"City"}]}
+
+02-03-2021 @ 09:40:59 - Request
+Request
+method: POST
+uri: https://rest.avatax.com/api/v2/transactions/create
+user-agent: WooCommerce-AvaTax/1.11.0 (WooCommerce/4.8.0; WordPress/5.6)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body: {"code":"","companyCode":"ALC","customerCode":"Guest","currencyCode":"USD","date":"2021-02-03","lines":[{"number":"5d646e4afac70385e6052bd72723e1ff","itemCode":"1104","taxCode":"P0000000","description":"Alconox","quantity":1,"amount":354},{"number":"ca67023068969c7df100d80920400183","itemCode":"1104-1","taxCode":"P0000000","description":"Alconox","quantity":1,"amount":47.200000000000003},{"number":"shipping_0","itemCode":"use-my-shipping-account","taxCode":"FR","description":"Use My Shipping Account","quantity":1}],"addresses":{"shipFrom":{"line1":"30 GLENN ST","line2":"","city":"WHITE PLAINS","region":"NY","country":"US","postalCode":"10603-3254"},"shipTo":{"line1":"175 5th Ave","line2":"","city":"New York","region":"NY","country":"US","postalCode":"10010"}},"type":"SalesOrder","commit":false}
+duration: 0.35744s
+
+02-03-2021 @ 09:40:59 - Response
+Response
+code: 201
+message: Created
+headers: Array
+(
+    [date] => Wed, 03 Feb 2021 14:40:59 GMT
+    [content-type] => application/json; charset=utf-8
+    [server] => Kestrel
+    [content-encoding] => br
+    [location] => /api/v2/companies/207925/transactions/0
+    [vary] => Accept-Encoding
+    [serverduration] => 00:00:00.0550253
+)
+body: {"id":0,"code":"5d717ac3-259a-462a-8698-fc741d0b7307","companyId":207925,"date":"2021-02-03","paymentDate":"2021-02-03","status":"Temporary","type":"SalesOrder","batchCode":"","currencyCode":"USD","exchangeRateCurrencyCode":"USD","customerUsageType":"","entityUseCode":"","customerVendorCode":"Guest","customerCode":"Guest","exemptNo":"","reconciled":false,"locationCode":"","reportingLocationCode":"","purchaseOrderNo":"","referenceCode":"","salespersonCode":"","totalAmount":401.2,"totalExempt":0.0,"totalDiscount":0.0,"totalTax":35.61,"totalTaxable":401.2,"totalTaxCalculated":35.61,"adjustmentReason":"NotAdjusted","locked":false,"version":1,"exchangeRateEffectiveDate":"2021-02-03","exchangeRate":1.0,"modifiedDate":"2021-02-03T14:40:59.0556781Z","modifiedUserId":231879,"taxDate":"2021-02-03T00:00:00Z","lines":[{"id":0,"transactionId":0,"lineNumber":"5d646e4afac70385e6052bd72723e1ff","customerUsageType":"","entityUseCode":"","description":"Alconox","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"itemCode":"1104","lineAmount":354.0,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-02-03","tax":31.42,"taxableAmount":354.0,"taxCalculated":31.42,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-02-03","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"36","jurisName":"NEW YORK","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.040000,"tax":14.16,"taxableAmount":354.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxCalculated":14.16,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":354.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":14.16,"reportingTaxCalculated":14.16,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"51000","jurisName":"NEW YORK CITY","stateAssignedNo":"NE 8081","jurisType":"CIT","jurisdictionType":"City","nonTaxableAmount":0.0,"rate":0.045000,"tax":15.93,"taxableAmount":354.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY CITY TAX","taxAuthorityTypeId":45,"taxCalculated":15.93,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":354.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":15.93,"reportingTaxCalculated":15.93,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"359071","jurisName":"METROPOLITAN COMMUTER TRANSPORTATION DISTRICT","stateAssignedNo":"NE 8081","jurisType":"STJ","jurisdictionType":"Special","nonTaxableAmount":0.0,"rate":0.003750,"tax":1.33,"taxableAmount":354.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY SPECIAL TAX","taxAuthorityTypeId":45,"taxCalculated":1.33,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":354.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":1.33,"reportingTaxCalculated":1.33,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":0,"transactionId":0,"lineNumber":"ca67023068969c7df100d80920400183","customerUsageType":"","entityUseCode":"","description":"Alconox","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"itemCode":"1104-1","lineAmount":47.200000000000003,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-02-03","tax":4.19,"taxableAmount":47.2,"taxCalculated":4.19,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-02-03","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"36","jurisName":"NEW YORK","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.040000,"tax":1.89,"taxableAmount":47.2,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxCalculated":1.89,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":47.2,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":1.89,"reportingTaxCalculated":1.89,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"51000","jurisName":"NEW YORK CITY","stateAssignedNo":"NE 8081","jurisType":"CIT","jurisdictionType":"City","nonTaxableAmount":0.0,"rate":0.045000,"tax":2.12,"taxableAmount":47.2,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY CITY TAX","taxAuthorityTypeId":45,"taxCalculated":2.12,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":47.2,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":2.12,"reportingTaxCalculated":2.12,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"359071","jurisName":"METROPOLITAN COMMUTER TRANSPORTATION DISTRICT","stateAssignedNo":"NE 8081","jurisType":"STJ","jurisdictionType":"Special","nonTaxableAmount":0.0,"rate":0.003750,"tax":0.18,"taxableAmount":47.2,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY SPECIAL TAX","taxAuthorityTypeId":45,"taxCalculated":0.18,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":47.2,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.18,"reportingTaxCalculated":0.18,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":0,"transactionId":0,"lineNumber":"shipping_0","customerUsageType":"","entityUseCode":"","description":"Use My Shipping Account","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":false,"itemCode":"use-my-shipping-account","lineAmount":0.0,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-02-03","tax":0.0,"taxableAmount":0.0,"taxCalculated":0.0,"taxCode":"FR","taxCodeId":7119,"taxDate":"2021-02-03","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"36","jurisName":"NEW YORK","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.040000,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"51000","jurisName":"NEW YORK CITY","stateAssignedNo":"NE 8081","jurisType":"CIT","jurisdictionType":"City","nonTaxableAmount":0.0,"rate":0.045000,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY CITY TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"359071","jurisName":"METROPOLITAN COMMUTER TRANSPORTATION DISTRICT","stateAssignedNo":"NE 8081","jurisType":"STJ","jurisdictionType":"Special","nonTaxableAmount":0.0,"rate":0.003750,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY SPECIAL TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0}],"addresses":[{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"175 5th Ave","line2":"","line3":"","city":"New York","region":"NY","postalCode":"10010","country":"US","taxRegionId":2088629,"latitude":"40.740942","longitude":"-73.989884"},{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"30 GLENN ST","line2":"","line3":"","city":"WHITE PLAINS","region":"NY","postalCode":"10603-3254","country":"US","taxRegionId":2090237,"latitude":"41.050608","longitude":"-73.771383"}],"summary":[{"country":"US","region":"NY","jurisType":"State","jurisCode":"36","jurisName":"NEW YORK","taxAuthorityType":45,"stateAssignedNo":"","taxType":"Sales","taxSubType":"S","taxName":"NY STATE TAX","rateType":"General","taxable":401.2,"rate":0.040000,"tax":16.05,"taxCalculated":16.05,"nonTaxable":0.0,"exemption":0.0},{"country":"US","region":"NY","jurisType":"City","jurisCode":"51000","jurisName":"NEW YORK CITY","taxAuthorityType":45,"stateAssignedNo":"NE 8081","taxType":"Sales","taxSubType":"S","taxName":"NY CITY TAX","rateType":"General","taxable":401.2,"rate":0.045000,"tax":18.05,"taxCalculated":18.05,"nonTaxable":0.0,"exemption":0.0},{"country":"US","region":"NY","jurisType":"Special","jurisCode":"359071","jurisName":"METROPOLITAN COMMUTER TRANSPORTATION DISTRICT","taxAuthorityType":45,"stateAssignedNo":"NE 8081","taxType":"Sales","taxSubType":"S","taxName":"NY SPECIAL TAX","rateType":"General","taxable":401.2,"rate":0.003750,"tax":1.51,"taxCalculated":1.51,"nonTaxable":0.0,"exemption":0.0}]}
+
+02-03-2021 @ 09:48:32 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/utilities/ping
+user-agent: WooCommerce-AvaTax/1.11.0 (WooCommerce/4.8.0; WordPress/5.6)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.32676s
+
+02-03-2021 @ 09:48:32 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Wed, 03 Feb 2021 14:48:32 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 225
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0000879
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"version":"21.1.0","authenticated":true,"authenticationType":"AccountIdLicenseKey","authenticatedUserName":"anonymous@2000107471","authenticatedUserId":231879,"authenticatedAccountId":2000107471,"crmid":"0010b00002JHRLYAA5"}
+
+02-03-2021 @ 09:53:02 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/taxrates/byaddress?line1=&line2=&city=New+York&region=NY&country=US&postalCode=10010
+user-agent: WooCommerce-AvaTax/1.11.0 (WooCommerce/4.8.0; WordPress/5.6)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.31414s
+
+02-03-2021 @ 09:53:02 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Wed, 03 Feb 2021 14:53:02 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 199
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0010587
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"totalRate":0.088750,"rates":[{"rate":0.040000,"name":"NY STATE TAX","type":"State"},{"rate":0.003750,"name":"NY SPECIAL TAX","type":"Special"},{"rate":0.045000,"name":"NY CITY TAX","type":"City"}]}
+
+02-03-2021 @ 09:53:08 - Request
+Request
+method: POST
+uri: https://rest.avatax.com/api/v2/transactions/create
+user-agent: WooCommerce-AvaTax/1.11.0 (WooCommerce/4.8.0; WordPress/5.6)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body: {"code":"","companyCode":"ALC","customerCode":"Guest","currencyCode":"USD","date":"2021-02-03","lines":[{"number":"5d646e4afac70385e6052bd72723e1ff","itemCode":"1104","taxCode":"P0000000","description":"Alconox","quantity":1,"amount":354},{"number":"ca67023068969c7df100d80920400183","itemCode":"1104-1","taxCode":"P0000000","description":"Alconox","quantity":1,"amount":47.200000000000003},{"number":"shipping_0","itemCode":"use-my-shipping-account","taxCode":"FR","description":"Use My Shipping Account","quantity":1}],"addresses":{"shipFrom":{"line1":"30 GLENN ST","line2":"","city":"WHITE PLAINS","region":"NY","country":"US","postalCode":"10603-3254"},"shipTo":{"line1":"175 5th Ave","line2":"","city":"New York","region":"NY","country":"US","postalCode":"10010"}},"type":"SalesOrder","commit":false}
+duration: 0.40937s
+
+02-03-2021 @ 09:53:08 - Response
+Response
+code: 201
+message: Created
+headers: Array
+(
+    [date] => Wed, 03 Feb 2021 14:53:08 GMT
+    [content-type] => application/json; charset=utf-8
+    [server] => Kestrel
+    [content-encoding] => br
+    [location] => /api/v2/companies/207925/transactions/0
+    [vary] => Accept-Encoding
+    [serverduration] => 00:00:00.0628122
+)
+body: {"id":0,"code":"6b50a9d5-3d2d-4c10-aee9-279450102bc3","companyId":207925,"date":"2021-02-03","paymentDate":"2021-02-03","status":"Temporary","type":"SalesOrder","batchCode":"","currencyCode":"USD","exchangeRateCurrencyCode":"USD","customerUsageType":"","entityUseCode":"","customerVendorCode":"Guest","customerCode":"Guest","exemptNo":"","reconciled":false,"locationCode":"","reportingLocationCode":"","purchaseOrderNo":"","referenceCode":"","salespersonCode":"","totalAmount":401.2,"totalExempt":0.0,"totalDiscount":0.0,"totalTax":35.61,"totalTaxable":401.2,"totalTaxCalculated":35.61,"adjustmentReason":"NotAdjusted","locked":false,"version":1,"exchangeRateEffectiveDate":"2021-02-03","exchangeRate":1.0,"modifiedDate":"2021-02-03T14:53:08.2388987Z","modifiedUserId":231879,"taxDate":"2021-02-03T00:00:00Z","lines":[{"id":0,"transactionId":0,"lineNumber":"5d646e4afac70385e6052bd72723e1ff","customerUsageType":"","entityUseCode":"","description":"Alconox","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"itemCode":"1104","lineAmount":354.0,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-02-03","tax":31.42,"taxableAmount":354.0,"taxCalculated":31.42,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-02-03","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"36","jurisName":"NEW YORK","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.040000,"tax":14.16,"taxableAmount":354.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxCalculated":14.16,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":354.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":14.16,"reportingTaxCalculated":14.16,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"51000","jurisName":"NEW YORK CITY","stateAssignedNo":"NE 8081","jurisType":"CIT","jurisdictionType":"City","nonTaxableAmount":0.0,"rate":0.045000,"tax":15.93,"taxableAmount":354.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY CITY TAX","taxAuthorityTypeId":45,"taxCalculated":15.93,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":354.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":15.93,"reportingTaxCalculated":15.93,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"359071","jurisName":"METROPOLITAN COMMUTER TRANSPORTATION DISTRICT","stateAssignedNo":"NE 8081","jurisType":"STJ","jurisdictionType":"Special","nonTaxableAmount":0.0,"rate":0.003750,"tax":1.33,"taxableAmount":354.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY SPECIAL TAX","taxAuthorityTypeId":45,"taxCalculated":1.33,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":354.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":1.33,"reportingTaxCalculated":1.33,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":0,"transactionId":0,"lineNumber":"ca67023068969c7df100d80920400183","customerUsageType":"","entityUseCode":"","description":"Alconox","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"itemCode":"1104-1","lineAmount":47.200000000000003,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-02-03","tax":4.19,"taxableAmount":47.2,"taxCalculated":4.19,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-02-03","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"36","jurisName":"NEW YORK","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.040000,"tax":1.89,"taxableAmount":47.2,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxCalculated":1.89,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":47.2,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":1.89,"reportingTaxCalculated":1.89,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"51000","jurisName":"NEW YORK CITY","stateAssignedNo":"NE 8081","jurisType":"CIT","jurisdictionType":"City","nonTaxableAmount":0.0,"rate":0.045000,"tax":2.12,"taxableAmount":47.2,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY CITY TAX","taxAuthorityTypeId":45,"taxCalculated":2.12,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":47.2,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":2.12,"reportingTaxCalculated":2.12,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"359071","jurisName":"METROPOLITAN COMMUTER TRANSPORTATION DISTRICT","stateAssignedNo":"NE 8081","jurisType":"STJ","jurisdictionType":"Special","nonTaxableAmount":0.0,"rate":0.003750,"tax":0.18,"taxableAmount":47.2,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY SPECIAL TAX","taxAuthorityTypeId":45,"taxCalculated":0.18,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":47.2,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.18,"reportingTaxCalculated":0.18,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":0,"transactionId":0,"lineNumber":"shipping_0","customerUsageType":"","entityUseCode":"","description":"Use My Shipping Account","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":false,"itemCode":"use-my-shipping-account","lineAmount":0.0,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-02-03","tax":0.0,"taxableAmount":0.0,"taxCalculated":0.0,"taxCode":"FR","taxCodeId":7119,"taxDate":"2021-02-03","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"36","jurisName":"NEW YORK","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.040000,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"51000","jurisName":"NEW YORK CITY","stateAssignedNo":"NE 8081","jurisType":"CIT","jurisdictionType":"City","nonTaxableAmount":0.0,"rate":0.045000,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY CITY TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"359071","jurisName":"METROPOLITAN COMMUTER TRANSPORTATION DISTRICT","stateAssignedNo":"NE 8081","jurisType":"STJ","jurisdictionType":"Special","nonTaxableAmount":0.0,"rate":0.003750,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY SPECIAL TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0}],"addresses":[{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"175 5th Ave","line2":"","line3":"","city":"New York","region":"NY","postalCode":"10010","country":"US","taxRegionId":2088629,"latitude":"40.740942","longitude":"-73.989884"},{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"30 GLENN ST","line2":"","line3":"","city":"WHITE PLAINS","region":"NY","postalCode":"10603-3254","country":"US","taxRegionId":2090237,"latitude":"41.050608","longitude":"-73.771383"}],"summary":[{"country":"US","region":"NY","jurisType":"State","jurisCode":"36","jurisName":"NEW YORK","taxAuthorityType":45,"stateAssignedNo":"","taxType":"Sales","taxSubType":"S","taxName":"NY STATE TAX","rateType":"General","taxable":401.2,"rate":0.040000,"tax":16.05,"taxCalculated":16.05,"nonTaxable":0.0,"exemption":0.0},{"country":"US","region":"NY","jurisType":"City","jurisCode":"51000","jurisName":"NEW YORK CITY","taxAuthorityType":45,"stateAssignedNo":"NE 8081","taxType":"Sales","taxSubType":"S","taxName":"NY CITY TAX","rateType":"General","taxable":401.2,"rate":0.045000,"tax":18.05,"taxCalculated":18.05,"nonTaxable":0.0,"exemption":0.0},{"country":"US","region":"NY","jurisType":"Special","jurisCode":"359071","jurisName":"METROPOLITAN COMMUTER TRANSPORTATION DISTRICT","taxAuthorityType":45,"stateAssignedNo":"NE 8081","taxType":"Sales","taxSubType":"S","taxName":"NY SPECIAL TAX","rateType":"General","taxable":401.2,"rate":0.003750,"tax":1.51,"taxCalculated":1.51,"nonTaxable":0.0,"exemption":0.0}]}
+
+02-03-2021 @ 09:54:38 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/taxrates/byaddress?line1=&line2=&city=New+York&region=NY&country=US&postalCode=10010
+user-agent: WooCommerce-AvaTax/1.11.0 (WooCommerce/4.8.0; WordPress/5.6)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.31236s
+
+02-03-2021 @ 09:54:38 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Wed, 03 Feb 2021 14:54:38 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 199
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0014168
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"totalRate":0.088750,"rates":[{"rate":0.040000,"name":"NY STATE TAX","type":"State"},{"rate":0.003750,"name":"NY SPECIAL TAX","type":"Special"},{"rate":0.045000,"name":"NY CITY TAX","type":"City"}]}
+
+02-03-2021 @ 09:54:43 - Request
+Request
+method: POST
+uri: https://rest.avatax.com/api/v2/transactions/create
+user-agent: WooCommerce-AvaTax/1.11.0 (WooCommerce/4.8.0; WordPress/5.6)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body: {"code":"","companyCode":"ALC","customerCode":"Guest","currencyCode":"USD","date":"2021-02-03","lines":[{"number":"5d646e4afac70385e6052bd72723e1ff","itemCode":"1104","taxCode":"P0000000","description":"Alconox","quantity":1,"amount":354},{"number":"ca67023068969c7df100d80920400183","itemCode":"1104-1","taxCode":"P0000000","description":"Alconox","quantity":1,"amount":47.200000000000003},{"number":"shipping_0","itemCode":"use-my-shipping-account","taxCode":"FR","description":"Use My Shipping Account","quantity":1}],"addresses":{"shipFrom":{"line1":"30 GLENN ST","line2":"","city":"WHITE PLAINS","region":"NY","country":"US","postalCode":"10603-3254"},"shipTo":{"line1":"175 5th Ave","line2":"","city":"New York","region":"NY","country":"US","postalCode":"10010"}},"type":"SalesOrder","commit":false}
+duration: 0.39136s
+
+02-03-2021 @ 09:54:43 - Response
+Response
+code: 201
+message: Created
+headers: Array
+(
+    [date] => Wed, 03 Feb 2021 14:54:43 GMT
+    [content-type] => application/json; charset=utf-8
+    [server] => Kestrel
+    [content-encoding] => br
+    [location] => /api/v2/companies/207925/transactions/0
+    [vary] => Accept-Encoding
+    [serverduration] => 00:00:00.0800668
+)
+body: {"id":0,"code":"8c7063c2-2acc-473b-b656-7f62828e3332","companyId":207925,"date":"2021-02-03","paymentDate":"2021-02-03","status":"Temporary","type":"SalesOrder","batchCode":"","currencyCode":"USD","exchangeRateCurrencyCode":"USD","customerUsageType":"","entityUseCode":"","customerVendorCode":"Guest","customerCode":"Guest","exemptNo":"","reconciled":false,"locationCode":"","reportingLocationCode":"","purchaseOrderNo":"","referenceCode":"","salespersonCode":"","totalAmount":401.2,"totalExempt":0.0,"totalDiscount":0.0,"totalTax":35.61,"totalTaxable":401.2,"totalTaxCalculated":35.61,"adjustmentReason":"NotAdjusted","locked":false,"version":1,"exchangeRateEffectiveDate":"2021-02-03","exchangeRate":1.0,"modifiedDate":"2021-02-03T14:54:43.8427281Z","modifiedUserId":231879,"taxDate":"2021-02-03T00:00:00Z","lines":[{"id":0,"transactionId":0,"lineNumber":"5d646e4afac70385e6052bd72723e1ff","customerUsageType":"","entityUseCode":"","description":"Alconox","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"itemCode":"1104","lineAmount":354.0,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-02-03","tax":31.42,"taxableAmount":354.0,"taxCalculated":31.42,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-02-03","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"36","jurisName":"NEW YORK","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.040000,"tax":14.16,"taxableAmount":354.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxCalculated":14.16,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":354.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":14.16,"reportingTaxCalculated":14.16,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"51000","jurisName":"NEW YORK CITY","stateAssignedNo":"NE 8081","jurisType":"CIT","jurisdictionType":"City","nonTaxableAmount":0.0,"rate":0.045000,"tax":15.93,"taxableAmount":354.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY CITY TAX","taxAuthorityTypeId":45,"taxCalculated":15.93,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":354.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":15.93,"reportingTaxCalculated":15.93,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"359071","jurisName":"METROPOLITAN COMMUTER TRANSPORTATION DISTRICT","stateAssignedNo":"NE 8081","jurisType":"STJ","jurisdictionType":"Special","nonTaxableAmount":0.0,"rate":0.003750,"tax":1.33,"taxableAmount":354.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY SPECIAL TAX","taxAuthorityTypeId":45,"taxCalculated":1.33,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":354.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":1.33,"reportingTaxCalculated":1.33,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":0,"transactionId":0,"lineNumber":"ca67023068969c7df100d80920400183","customerUsageType":"","entityUseCode":"","description":"Alconox","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"itemCode":"1104-1","lineAmount":47.200000000000003,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-02-03","tax":4.19,"taxableAmount":47.2,"taxCalculated":4.19,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-02-03","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"36","jurisName":"NEW YORK","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.040000,"tax":1.89,"taxableAmount":47.2,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxCalculated":1.89,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":47.2,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":1.89,"reportingTaxCalculated":1.89,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"51000","jurisName":"NEW YORK CITY","stateAssignedNo":"NE 8081","jurisType":"CIT","jurisdictionType":"City","nonTaxableAmount":0.0,"rate":0.045000,"tax":2.12,"taxableAmount":47.2,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY CITY TAX","taxAuthorityTypeId":45,"taxCalculated":2.12,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":47.2,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":2.12,"reportingTaxCalculated":2.12,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"359071","jurisName":"METROPOLITAN COMMUTER TRANSPORTATION DISTRICT","stateAssignedNo":"NE 8081","jurisType":"STJ","jurisdictionType":"Special","nonTaxableAmount":0.0,"rate":0.003750,"tax":0.18,"taxableAmount":47.2,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY SPECIAL TAX","taxAuthorityTypeId":45,"taxCalculated":0.18,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":47.2,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.18,"reportingTaxCalculated":0.18,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":0,"transactionId":0,"lineNumber":"shipping_0","customerUsageType":"","entityUseCode":"","description":"Use My Shipping Account","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":false,"itemCode":"use-my-shipping-account","lineAmount":0.0,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-02-03","tax":0.0,"taxableAmount":0.0,"taxCalculated":0.0,"taxCode":"FR","taxCodeId":7119,"taxDate":"2021-02-03","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"36","jurisName":"NEW YORK","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.040000,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"51000","jurisName":"NEW YORK CITY","stateAssignedNo":"NE 8081","jurisType":"CIT","jurisdictionType":"City","nonTaxableAmount":0.0,"rate":0.045000,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY CITY TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"359071","jurisName":"METROPOLITAN COMMUTER TRANSPORTATION DISTRICT","stateAssignedNo":"NE 8081","jurisType":"STJ","jurisdictionType":"Special","nonTaxableAmount":0.0,"rate":0.003750,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY SPECIAL TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0}],"addresses":[{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"175 5th Ave","line2":"","line3":"","city":"New York","region":"NY","postalCode":"10010","country":"US","taxRegionId":2088629,"latitude":"40.740942","longitude":"-73.989884"},{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"30 GLENN ST","line2":"","line3":"","city":"WHITE PLAINS","region":"NY","postalCode":"10603-3254","country":"US","taxRegionId":2090237,"latitude":"41.050608","longitude":"-73.771383"}],"summary":[{"country":"US","region":"NY","jurisType":"State","jurisCode":"36","jurisName":"NEW YORK","taxAuthorityType":45,"stateAssignedNo":"","taxType":"Sales","taxSubType":"S","taxName":"NY STATE TAX","rateType":"General","taxable":401.2,"rate":0.040000,"tax":16.05,"taxCalculated":16.05,"nonTaxable":0.0,"exemption":0.0},{"country":"US","region":"NY","jurisType":"City","jurisCode":"51000","jurisName":"NEW YORK CITY","taxAuthorityType":45,"stateAssignedNo":"NE 8081","taxType":"Sales","taxSubType":"S","taxName":"NY CITY TAX","rateType":"General","taxable":401.2,"rate":0.045000,"tax":18.05,"taxCalculated":18.05,"nonTaxable":0.0,"exemption":0.0},{"country":"US","region":"NY","jurisType":"Special","jurisCode":"359071","jurisName":"METROPOLITAN COMMUTER TRANSPORTATION DISTRICT","taxAuthorityType":45,"stateAssignedNo":"NE 8081","taxType":"Sales","taxSubType":"S","taxName":"NY SPECIAL TAX","rateType":"General","taxable":401.2,"rate":0.003750,"tax":1.51,"taxCalculated":1.51,"nonTaxable":0.0,"exemption":0.0}]}
+
+02-03-2021 @ 09:58:10 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/taxrates/byaddress?line1=&line2=&city=New+York&region=NY&country=US&postalCode=10010
+user-agent: WooCommerce-AvaTax/1.11.0 (WooCommerce/4.8.0; WordPress/5.6)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.3581s
+
+02-03-2021 @ 09:58:10 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Wed, 03 Feb 2021 14:58:10 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 199
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0011127
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"totalRate":0.088750,"rates":[{"rate":0.040000,"name":"NY STATE TAX","type":"State"},{"rate":0.003750,"name":"NY SPECIAL TAX","type":"Special"},{"rate":0.045000,"name":"NY CITY TAX","type":"City"}]}
+
+02-03-2021 @ 09:58:15 - Request
+Request
+method: POST
+uri: https://rest.avatax.com/api/v2/transactions/create
+user-agent: WooCommerce-AvaTax/1.11.0 (WooCommerce/4.8.0; WordPress/5.6)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body: {"code":"","companyCode":"ALC","customerCode":"Guest","currencyCode":"USD","date":"2021-02-03","lines":[{"number":"5d646e4afac70385e6052bd72723e1ff","itemCode":"1104","taxCode":"P0000000","description":"Alconox","quantity":1,"amount":354},{"number":"ca67023068969c7df100d80920400183","itemCode":"1104-1","taxCode":"P0000000","description":"Alconox","quantity":1,"amount":47.200000000000003},{"number":"shipping_0","itemCode":"use-my-shipping-account","taxCode":"FR","description":"Use My Shipping Account","quantity":1}],"addresses":{"shipFrom":{"line1":"30 GLENN ST","line2":"","city":"WHITE PLAINS","region":"NY","country":"US","postalCode":"10603-3254"},"shipTo":{"line1":"175 5th Ave","line2":"","city":"New York","region":"NY","country":"US","postalCode":"10010"}},"type":"SalesOrder","commit":false}
+duration: 0.39708s
+
+02-03-2021 @ 09:58:15 - Response
+Response
+code: 201
+message: Created
+headers: Array
+(
+    [date] => Wed, 03 Feb 2021 14:58:15 GMT
+    [content-type] => application/json; charset=utf-8
+    [server] => Kestrel
+    [content-encoding] => br
+    [location] => /api/v2/companies/207925/transactions/0
+    [vary] => Accept-Encoding
+    [serverduration] => 00:00:00.0738606
+)
+body: {"id":0,"code":"1a3a2017-54b0-4231-9803-e72d33220beb","companyId":207925,"date":"2021-02-03","paymentDate":"2021-02-03","status":"Temporary","type":"SalesOrder","batchCode":"","currencyCode":"USD","exchangeRateCurrencyCode":"USD","customerUsageType":"","entityUseCode":"","customerVendorCode":"Guest","customerCode":"Guest","exemptNo":"","reconciled":false,"locationCode":"","reportingLocationCode":"","purchaseOrderNo":"","referenceCode":"","salespersonCode":"","totalAmount":401.2,"totalExempt":0.0,"totalDiscount":0.0,"totalTax":35.61,"totalTaxable":401.2,"totalTaxCalculated":35.61,"adjustmentReason":"NotAdjusted","locked":false,"version":1,"exchangeRateEffectiveDate":"2021-02-03","exchangeRate":1.0,"modifiedDate":"2021-02-03T14:58:15.7385555Z","modifiedUserId":231879,"taxDate":"2021-02-03T00:00:00Z","lines":[{"id":0,"transactionId":0,"lineNumber":"5d646e4afac70385e6052bd72723e1ff","customerUsageType":"","entityUseCode":"","description":"Alconox","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"itemCode":"1104","lineAmount":354.0,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-02-03","tax":31.42,"taxableAmount":354.0,"taxCalculated":31.42,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-02-03","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"36","jurisName":"NEW YORK","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.040000,"tax":14.16,"taxableAmount":354.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxCalculated":14.16,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":354.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":14.16,"reportingTaxCalculated":14.16,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"51000","jurisName":"NEW YORK CITY","stateAssignedNo":"NE 8081","jurisType":"CIT","jurisdictionType":"City","nonTaxableAmount":0.0,"rate":0.045000,"tax":15.93,"taxableAmount":354.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY CITY TAX","taxAuthorityTypeId":45,"taxCalculated":15.93,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":354.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":15.93,"reportingTaxCalculated":15.93,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"359071","jurisName":"METROPOLITAN COMMUTER TRANSPORTATION DISTRICT","stateAssignedNo":"NE 8081","jurisType":"STJ","jurisdictionType":"Special","nonTaxableAmount":0.0,"rate":0.003750,"tax":1.33,"taxableAmount":354.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY SPECIAL TAX","taxAuthorityTypeId":45,"taxCalculated":1.33,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":354.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":1.33,"reportingTaxCalculated":1.33,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":0,"transactionId":0,"lineNumber":"ca67023068969c7df100d80920400183","customerUsageType":"","entityUseCode":"","description":"Alconox","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"itemCode":"1104-1","lineAmount":47.200000000000003,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-02-03","tax":4.19,"taxableAmount":47.2,"taxCalculated":4.19,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-02-03","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"36","jurisName":"NEW YORK","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.040000,"tax":1.89,"taxableAmount":47.2,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxCalculated":1.89,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":47.2,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":1.89,"reportingTaxCalculated":1.89,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"51000","jurisName":"NEW YORK CITY","stateAssignedNo":"NE 8081","jurisType":"CIT","jurisdictionType":"City","nonTaxableAmount":0.0,"rate":0.045000,"tax":2.12,"taxableAmount":47.2,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY CITY TAX","taxAuthorityTypeId":45,"taxCalculated":2.12,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":47.2,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":2.12,"reportingTaxCalculated":2.12,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"359071","jurisName":"METROPOLITAN COMMUTER TRANSPORTATION DISTRICT","stateAssignedNo":"NE 8081","jurisType":"STJ","jurisdictionType":"Special","nonTaxableAmount":0.0,"rate":0.003750,"tax":0.18,"taxableAmount":47.2,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY SPECIAL TAX","taxAuthorityTypeId":45,"taxCalculated":0.18,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":47.2,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.18,"reportingTaxCalculated":0.18,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":0,"transactionId":0,"lineNumber":"shipping_0","customerUsageType":"","entityUseCode":"","description":"Use My Shipping Account","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":false,"itemCode":"use-my-shipping-account","lineAmount":0.0,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-02-03","tax":0.0,"taxableAmount":0.0,"taxCalculated":0.0,"taxCode":"FR","taxCodeId":7119,"taxDate":"2021-02-03","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"36","jurisName":"NEW YORK","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.040000,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"51000","jurisName":"NEW YORK CITY","stateAssignedNo":"NE 8081","jurisType":"CIT","jurisdictionType":"City","nonTaxableAmount":0.0,"rate":0.045000,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY CITY TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"359071","jurisName":"METROPOLITAN COMMUTER TRANSPORTATION DISTRICT","stateAssignedNo":"NE 8081","jurisType":"STJ","jurisdictionType":"Special","nonTaxableAmount":0.0,"rate":0.003750,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY SPECIAL TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0}],"addresses":[{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"175 5th Ave","line2":"","line3":"","city":"New York","region":"NY","postalCode":"10010","country":"US","taxRegionId":2088629,"latitude":"40.740942","longitude":"-73.989884"},{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"30 GLENN ST","line2":"","line3":"","city":"WHITE PLAINS","region":"NY","postalCode":"10603-3254","country":"US","taxRegionId":2090237,"latitude":"41.050608","longitude":"-73.771383"}],"summary":[{"country":"US","region":"NY","jurisType":"State","jurisCode":"36","jurisName":"NEW YORK","taxAuthorityType":45,"stateAssignedNo":"","taxType":"Sales","taxSubType":"S","taxName":"NY STATE TAX","rateType":"General","taxable":401.2,"rate":0.040000,"tax":16.05,"taxCalculated":16.05,"nonTaxable":0.0,"exemption":0.0},{"country":"US","region":"NY","jurisType":"City","jurisCode":"51000","jurisName":"NEW YORK CITY","taxAuthorityType":45,"stateAssignedNo":"NE 8081","taxType":"Sales","taxSubType":"S","taxName":"NY CITY TAX","rateType":"General","taxable":401.2,"rate":0.045000,"tax":18.05,"taxCalculated":18.05,"nonTaxable":0.0,"exemption":0.0},{"country":"US","region":"NY","jurisType":"Special","jurisCode":"359071","jurisName":"METROPOLITAN COMMUTER TRANSPORTATION DISTRICT","taxAuthorityType":45,"stateAssignedNo":"NE 8081","taxType":"Sales","taxSubType":"S","taxName":"NY SPECIAL TAX","rateType":"General","taxable":401.2,"rate":0.003750,"tax":1.51,"taxCalculated":1.51,"nonTaxable":0.0,"exemption":0.0}]}
+
+02-03-2021 @ 10:00:43 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/taxrates/byaddress?line1=&line2=&city=New+York&region=NY&country=US&postalCode=10010
+user-agent: WooCommerce-AvaTax/1.11.0 (WooCommerce/4.8.0; WordPress/5.6)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.3237s
+
+02-03-2021 @ 10:00:43 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Wed, 03 Feb 2021 15:00:43 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 199
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0008393
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"totalRate":0.088750,"rates":[{"rate":0.040000,"name":"NY STATE TAX","type":"State"},{"rate":0.003750,"name":"NY SPECIAL TAX","type":"Special"},{"rate":0.045000,"name":"NY CITY TAX","type":"City"}]}
+
+02-03-2021 @ 10:00:48 - Request
+Request
+method: POST
+uri: https://rest.avatax.com/api/v2/transactions/create
+user-agent: WooCommerce-AvaTax/1.11.0 (WooCommerce/4.8.0; WordPress/5.6)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body: {"code":"","companyCode":"ALC","customerCode":"Guest","currencyCode":"USD","date":"2021-02-03","lines":[{"number":"5d646e4afac70385e6052bd72723e1ff","itemCode":"1104","taxCode":"P0000000","description":"Alconox","quantity":1,"amount":354},{"number":"ca67023068969c7df100d80920400183","itemCode":"1104-1","taxCode":"P0000000","description":"Alconox","quantity":1,"amount":47.200000000000003},{"number":"shipping_0","itemCode":"use-my-shipping-account","taxCode":"FR","description":"Use My Shipping Account","quantity":1}],"addresses":{"shipFrom":{"line1":"30 GLENN ST","line2":"","city":"WHITE PLAINS","region":"NY","country":"US","postalCode":"10603-3254"},"shipTo":{"line1":"175 5th Ave","line2":"","city":"New York","region":"NY","country":"US","postalCode":"10010"}},"type":"SalesOrder","commit":false}
+duration: 0.40038s
+
+02-03-2021 @ 10:00:48 - Response
+Response
+code: 201
+message: Created
+headers: Array
+(
+    [date] => Wed, 03 Feb 2021 15:00:48 GMT
+    [content-type] => application/json; charset=utf-8
+    [server] => Kestrel
+    [content-encoding] => br
+    [location] => /api/v2/companies/207925/transactions/0
+    [vary] => Accept-Encoding
+    [serverduration] => 00:00:00.1051825
+)
+body: {"id":0,"code":"5c75ae92-b9fe-49e3-8999-75e13c4be463","companyId":207925,"date":"2021-02-03","paymentDate":"2021-02-03","status":"Temporary","type":"SalesOrder","batchCode":"","currencyCode":"USD","exchangeRateCurrencyCode":"USD","customerUsageType":"","entityUseCode":"","customerVendorCode":"Guest","customerCode":"Guest","exemptNo":"","reconciled":false,"locationCode":"","reportingLocationCode":"","purchaseOrderNo":"","referenceCode":"","salespersonCode":"","totalAmount":401.2,"totalExempt":0.0,"totalDiscount":0.0,"totalTax":35.61,"totalTaxable":401.2,"totalTaxCalculated":35.61,"adjustmentReason":"NotAdjusted","locked":false,"version":1,"exchangeRateEffectiveDate":"2021-02-03","exchangeRate":1.0,"modifiedDate":"2021-02-03T15:00:48.4358826Z","modifiedUserId":231879,"taxDate":"2021-02-03T00:00:00Z","lines":[{"id":0,"transactionId":0,"lineNumber":"5d646e4afac70385e6052bd72723e1ff","customerUsageType":"","entityUseCode":"","description":"Alconox","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"itemCode":"1104","lineAmount":354.0,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-02-03","tax":31.42,"taxableAmount":354.0,"taxCalculated":31.42,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-02-03","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"36","jurisName":"NEW YORK","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.040000,"tax":14.16,"taxableAmount":354.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxCalculated":14.16,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":354.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":14.16,"reportingTaxCalculated":14.16,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"51000","jurisName":"NEW YORK CITY","stateAssignedNo":"NE 8081","jurisType":"CIT","jurisdictionType":"City","nonTaxableAmount":0.0,"rate":0.045000,"tax":15.93,"taxableAmount":354.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY CITY TAX","taxAuthorityTypeId":45,"taxCalculated":15.93,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":354.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":15.93,"reportingTaxCalculated":15.93,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"359071","jurisName":"METROPOLITAN COMMUTER TRANSPORTATION DISTRICT","stateAssignedNo":"NE 8081","jurisType":"STJ","jurisdictionType":"Special","nonTaxableAmount":0.0,"rate":0.003750,"tax":1.33,"taxableAmount":354.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY SPECIAL TAX","taxAuthorityTypeId":45,"taxCalculated":1.33,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":354.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":1.33,"reportingTaxCalculated":1.33,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":0,"transactionId":0,"lineNumber":"ca67023068969c7df100d80920400183","customerUsageType":"","entityUseCode":"","description":"Alconox","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"itemCode":"1104-1","lineAmount":47.200000000000003,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-02-03","tax":4.19,"taxableAmount":47.2,"taxCalculated":4.19,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-02-03","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"36","jurisName":"NEW YORK","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.040000,"tax":1.89,"taxableAmount":47.2,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxCalculated":1.89,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":47.2,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":1.89,"reportingTaxCalculated":1.89,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"51000","jurisName":"NEW YORK CITY","stateAssignedNo":"NE 8081","jurisType":"CIT","jurisdictionType":"City","nonTaxableAmount":0.0,"rate":0.045000,"tax":2.12,"taxableAmount":47.2,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY CITY TAX","taxAuthorityTypeId":45,"taxCalculated":2.12,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":47.2,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":2.12,"reportingTaxCalculated":2.12,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"359071","jurisName":"METROPOLITAN COMMUTER TRANSPORTATION DISTRICT","stateAssignedNo":"NE 8081","jurisType":"STJ","jurisdictionType":"Special","nonTaxableAmount":0.0,"rate":0.003750,"tax":0.18,"taxableAmount":47.2,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY SPECIAL TAX","taxAuthorityTypeId":45,"taxCalculated":0.18,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":47.2,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.18,"reportingTaxCalculated":0.18,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":0,"transactionId":0,"lineNumber":"shipping_0","customerUsageType":"","entityUseCode":"","description":"Use My Shipping Account","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":false,"itemCode":"use-my-shipping-account","lineAmount":0.0,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-02-03","tax":0.0,"taxableAmount":0.0,"taxCalculated":0.0,"taxCode":"FR","taxCodeId":7119,"taxDate":"2021-02-03","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"36","jurisName":"NEW YORK","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.040000,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"51000","jurisName":"NEW YORK CITY","stateAssignedNo":"NE 8081","jurisType":"CIT","jurisdictionType":"City","nonTaxableAmount":0.0,"rate":0.045000,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY CITY TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"359071","jurisName":"METROPOLITAN COMMUTER TRANSPORTATION DISTRICT","stateAssignedNo":"NE 8081","jurisType":"STJ","jurisdictionType":"Special","nonTaxableAmount":0.0,"rate":0.003750,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY SPECIAL TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0}],"addresses":[{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"175 5th Ave","line2":"","line3":"","city":"New York","region":"NY","postalCode":"10010","country":"US","taxRegionId":2088629,"latitude":"40.740942","longitude":"-73.989884"},{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"30 GLENN ST","line2":"","line3":"","city":"WHITE PLAINS","region":"NY","postalCode":"10603-3254","country":"US","taxRegionId":2090237,"latitude":"41.050608","longitude":"-73.771383"}],"summary":[{"country":"US","region":"NY","jurisType":"State","jurisCode":"36","jurisName":"NEW YORK","taxAuthorityType":45,"stateAssignedNo":"","taxType":"Sales","taxSubType":"S","taxName":"NY STATE TAX","rateType":"General","taxable":401.2,"rate":0.040000,"tax":16.05,"taxCalculated":16.05,"nonTaxable":0.0,"exemption":0.0},{"country":"US","region":"NY","jurisType":"City","jurisCode":"51000","jurisName":"NEW YORK CITY","taxAuthorityType":45,"stateAssignedNo":"NE 8081","taxType":"Sales","taxSubType":"S","taxName":"NY CITY TAX","rateType":"General","taxable":401.2,"rate":0.045000,"tax":18.05,"taxCalculated":18.05,"nonTaxable":0.0,"exemption":0.0},{"country":"US","region":"NY","jurisType":"Special","jurisCode":"359071","jurisName":"METROPOLITAN COMMUTER TRANSPORTATION DISTRICT","taxAuthorityType":45,"stateAssignedNo":"NE 8081","taxType":"Sales","taxSubType":"S","taxName":"NY SPECIAL TAX","rateType":"General","taxable":401.2,"rate":0.003750,"tax":1.51,"taxCalculated":1.51,"nonTaxable":0.0,"exemption":0.0}]}
+
+02-03-2021 @ 10:49:27 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/taxrates/byaddress?line1=&line2=&city=New+York&region=NY&country=US&postalCode=10010
+user-agent: WooCommerce-AvaTax/1.11.0 (WooCommerce/4.8.0; WordPress/5.6)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.32433s
+
+02-03-2021 @ 10:49:27 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Wed, 03 Feb 2021 15:49:27 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 199
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0002253
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"totalRate":0.088750,"rates":[{"rate":0.040000,"name":"NY STATE TAX","type":"State"},{"rate":0.003750,"name":"NY SPECIAL TAX","type":"Special"},{"rate":0.045000,"name":"NY CITY TAX","type":"City"}]}
+
+02-03-2021 @ 10:49:28 - Request
+Request
+method: POST
+uri: https://rest.avatax.com/api/v2/transactions/create
+user-agent: WooCommerce-AvaTax/1.11.0 (WooCommerce/4.8.0; WordPress/5.6)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body: {"code":"","companyCode":"ALC","customerCode":"Guest","currencyCode":"USD","date":"2021-02-03","lines":[{"number":"ca67023068969c7df100d80920400183","itemCode":"1104-1","taxCode":"P0000000","description":"Alconox","quantity":1,"amount":47.200000000000003},{"number":"shipping_0","itemCode":"use-my-shipping-account","taxCode":"FR","description":"Use My Shipping Account","quantity":1}],"addresses":{"shipFrom":{"line1":"30 GLENN ST","line2":"","city":"WHITE PLAINS","region":"NY","country":"US","postalCode":"10603-3254"},"shipTo":{"line1":"200 Park Ave S","line2":"","city":"New York","region":"NY","country":"US","postalCode":"10010"}},"type":"SalesOrder","commit":false}
+duration: 0.3467s
+
+02-03-2021 @ 10:49:28 - Response
+Response
+code: 201
+message: Created
+headers: Array
+(
+    [date] => Wed, 03 Feb 2021 15:49:28 GMT
+    [content-type] => application/json; charset=utf-8
+    [server] => Kestrel
+    [content-encoding] => br
+    [location] => /api/v2/companies/207925/transactions/0
+    [vary] => Accept-Encoding
+    [serverduration] => 00:00:00.0607609
+)
+body: {"id":0,"code":"bfe4bf91-3d05-48d4-ab9d-c8cbb8f07b85","companyId":207925,"date":"2021-02-03","paymentDate":"2021-02-03","status":"Temporary","type":"SalesOrder","batchCode":"","currencyCode":"USD","exchangeRateCurrencyCode":"USD","customerUsageType":"","entityUseCode":"","customerVendorCode":"Guest","customerCode":"Guest","exemptNo":"","reconciled":false,"locationCode":"","reportingLocationCode":"","purchaseOrderNo":"","referenceCode":"","salespersonCode":"","totalAmount":47.2,"totalExempt":0.0,"totalDiscount":0.0,"totalTax":4.19,"totalTaxable":47.2,"totalTaxCalculated":4.19,"adjustmentReason":"NotAdjusted","locked":false,"version":1,"exchangeRateEffectiveDate":"2021-02-03","exchangeRate":1.0,"modifiedDate":"2021-02-03T15:49:28.1748623Z","modifiedUserId":231879,"taxDate":"2021-02-03T00:00:00Z","lines":[{"id":0,"transactionId":0,"lineNumber":"ca67023068969c7df100d80920400183","customerUsageType":"","entityUseCode":"","description":"Alconox","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"itemCode":"1104-1","lineAmount":47.200000000000003,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-02-03","tax":4.19,"taxableAmount":47.2,"taxCalculated":4.19,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-02-03","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"36","jurisName":"NEW YORK","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.040000,"tax":1.89,"taxableAmount":47.2,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxCalculated":1.89,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":47.2,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":1.89,"reportingTaxCalculated":1.89,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"51000","jurisName":"NEW YORK CITY","stateAssignedNo":"NE 8081","jurisType":"CIT","jurisdictionType":"City","nonTaxableAmount":0.0,"rate":0.045000,"tax":2.12,"taxableAmount":47.2,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY CITY TAX","taxAuthorityTypeId":45,"taxCalculated":2.12,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":47.2,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":2.12,"reportingTaxCalculated":2.12,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"359071","jurisName":"METROPOLITAN COMMUTER TRANSPORTATION DISTRICT","stateAssignedNo":"NE 8081","jurisType":"STJ","jurisdictionType":"Special","nonTaxableAmount":0.0,"rate":0.003750,"tax":0.18,"taxableAmount":47.2,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY SPECIAL TAX","taxAuthorityTypeId":45,"taxCalculated":0.18,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":47.2,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.18,"reportingTaxCalculated":0.18,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":0,"transactionId":0,"lineNumber":"shipping_0","customerUsageType":"","entityUseCode":"","description":"Use My Shipping Account","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":false,"itemCode":"use-my-shipping-account","lineAmount":0.0,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-02-03","tax":0.0,"taxableAmount":0.0,"taxCalculated":0.0,"taxCode":"FR","taxCodeId":7119,"taxDate":"2021-02-03","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"36","jurisName":"NEW YORK","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.040000,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"51000","jurisName":"NEW YORK CITY","stateAssignedNo":"NE 8081","jurisType":"CIT","jurisdictionType":"City","nonTaxableAmount":0.0,"rate":0.045000,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY CITY TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"359071","jurisName":"METROPOLITAN COMMUTER TRANSPORTATION DISTRICT","stateAssignedNo":"NE 8081","jurisType":"STJ","jurisdictionType":"Special","nonTaxableAmount":0.0,"rate":0.003750,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY SPECIAL TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0}],"addresses":[{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"200 Park Ave S","line2":"","line3":"","city":"New York","region":"NY","postalCode":"10010","country":"US","taxRegionId":2088629,"latitude":"40.736679","longitude":"-73.989108"},{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"30 GLENN ST","line2":"","line3":"","city":"WHITE PLAINS","region":"NY","postalCode":"10603-3254","country":"US","taxRegionId":2090237,"latitude":"41.050608","longitude":"-73.771383"}],"summary":[{"country":"US","region":"NY","jurisType":"State","jurisCode":"36","jurisName":"NEW YORK","taxAuthorityType":45,"stateAssignedNo":"","taxType":"Sales","taxSubType":"S","taxName":"NY STATE TAX","rateType":"General","taxable":47.2,"rate":0.040000,"tax":1.89,"taxCalculated":1.89,"nonTaxable":0.0,"exemption":0.0},{"country":"US","region":"NY","jurisType":"City","jurisCode":"51000","jurisName":"NEW YORK CITY","taxAuthorityType":45,"stateAssignedNo":"NE 8081","taxType":"Sales","taxSubType":"S","taxName":"NY CITY TAX","rateType":"General","taxable":47.2,"rate":0.045000,"tax":2.12,"taxCalculated":2.12,"nonTaxable":0.0,"exemption":0.0},{"country":"US","region":"NY","jurisType":"Special","jurisCode":"359071","jurisName":"METROPOLITAN COMMUTER TRANSPORTATION DISTRICT","taxAuthorityType":45,"stateAssignedNo":"NE 8081","taxType":"Sales","taxSubType":"S","taxName":"NY SPECIAL TAX","rateType":"General","taxable":47.2,"rate":0.003750,"tax":0.18,"taxCalculated":0.18,"nonTaxable":0.0,"exemption":0.0}]}
+
+02-03-2021 @ 13:32:08 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/utilities/ping
+user-agent: WooCommerce-AvaTax/1.11.0 (WooCommerce/4.8.0; WordPress/5.6)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.32199s
+
+02-03-2021 @ 13:32:08 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Wed, 03 Feb 2021 18:32:08 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 225
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0001414
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"version":"21.1.0","authenticated":true,"authenticationType":"AccountIdLicenseKey","authenticatedUserName":"anonymous@2000107471","authenticatedUserId":231879,"authenticatedAccountId":2000107471,"crmid":"0010b00002JHRLYAA5"}
+
+02-03-2021 @ 13:34:23 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/taxrates/byaddress?line1=&line2=&city=New+York&region=NY&country=US&postalCode=10010
+user-agent: WooCommerce-AvaTax/1.11.0 (WooCommerce/4.8.0; WordPress/5.6)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.34522s
+
+02-03-2021 @ 13:34:23 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Wed, 03 Feb 2021 18:34:23 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 199
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0157950
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"totalRate":0.088750,"rates":[{"rate":0.040000,"name":"NY STATE TAX","type":"State"},{"rate":0.003750,"name":"NY SPECIAL TAX","type":"Special"},{"rate":0.045000,"name":"NY CITY TAX","type":"City"}]}
+
+02-03-2021 @ 13:34:26 - Request
+Request
+method: POST
+uri: https://rest.avatax.com/api/v2/transactions/create
+user-agent: WooCommerce-AvaTax/1.11.0 (WooCommerce/4.8.0; WordPress/5.6)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body: {"code":"","companyCode":"ALC","customerCode":"Guest","currencyCode":"USD","date":"2021-02-03","lines":[{"number":"5d646e4afac70385e6052bd72723e1ff","itemCode":"1104","taxCode":"P0000000","description":"Alconox","quantity":1,"amount":354},{"number":"shipping_0","itemCode":"use-my-shipping-account","taxCode":"FR","description":"Use My Shipping Account","quantity":1}],"addresses":{"shipFrom":{"line1":"30 GLENN ST","line2":"","city":"WHITE PLAINS","region":"NY","country":"US","postalCode":"10603-3254"},"shipTo":{"line1":"175 5th Ave","line2":"","city":"New York","region":"NY","country":"US","postalCode":"10010"}},"type":"SalesOrder","commit":false}
+duration: 0.38813s
+
+02-03-2021 @ 13:34:26 - Response
+Response
+code: 201
+message: Created
+headers: Array
+(
+    [date] => Wed, 03 Feb 2021 18:34:26 GMT
+    [content-type] => application/json; charset=utf-8
+    [server] => Kestrel
+    [content-encoding] => br
+    [location] => /api/v2/companies/207925/transactions/0
+    [vary] => Accept-Encoding
+    [serverduration] => 00:00:00.0713186
+)
+body: {"id":0,"code":"03e91159-bd8d-4f06-ba30-e8b23a97cd44","companyId":207925,"date":"2021-02-03","paymentDate":"2021-02-03","status":"Temporary","type":"SalesOrder","batchCode":"","currencyCode":"USD","exchangeRateCurrencyCode":"USD","customerUsageType":"","entityUseCode":"","customerVendorCode":"Guest","customerCode":"Guest","exemptNo":"","reconciled":false,"locationCode":"","reportingLocationCode":"","purchaseOrderNo":"","referenceCode":"","salespersonCode":"","totalAmount":354.0,"totalExempt":0.0,"totalDiscount":0.0,"totalTax":31.42,"totalTaxable":354.0,"totalTaxCalculated":31.42,"adjustmentReason":"NotAdjusted","locked":false,"version":1,"exchangeRateEffectiveDate":"2021-02-03","exchangeRate":1.0,"modifiedDate":"2021-02-03T18:34:26.2505436Z","modifiedUserId":231879,"taxDate":"2021-02-03T00:00:00Z","lines":[{"id":0,"transactionId":0,"lineNumber":"5d646e4afac70385e6052bd72723e1ff","customerUsageType":"","entityUseCode":"","description":"Alconox","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"itemCode":"1104","lineAmount":354.0,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-02-03","tax":31.42,"taxableAmount":354.0,"taxCalculated":31.42,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-02-03","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"36","jurisName":"NEW YORK","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.040000,"tax":14.16,"taxableAmount":354.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxCalculated":14.16,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":354.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":14.16,"reportingTaxCalculated":14.16,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"51000","jurisName":"NEW YORK CITY","stateAssignedNo":"NE 8081","jurisType":"CIT","jurisdictionType":"City","nonTaxableAmount":0.0,"rate":0.045000,"tax":15.93,"taxableAmount":354.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY CITY TAX","taxAuthorityTypeId":45,"taxCalculated":15.93,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":354.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":15.93,"reportingTaxCalculated":15.93,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"359071","jurisName":"METROPOLITAN COMMUTER TRANSPORTATION DISTRICT","stateAssignedNo":"NE 8081","jurisType":"STJ","jurisdictionType":"Special","nonTaxableAmount":0.0,"rate":0.003750,"tax":1.33,"taxableAmount":354.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY SPECIAL TAX","taxAuthorityTypeId":45,"taxCalculated":1.33,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":354.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":1.33,"reportingTaxCalculated":1.33,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":0,"transactionId":0,"lineNumber":"shipping_0","customerUsageType":"","entityUseCode":"","description":"Use My Shipping Account","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":false,"itemCode":"use-my-shipping-account","lineAmount":0.0,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-02-03","tax":0.0,"taxableAmount":0.0,"taxCalculated":0.0,"taxCode":"FR","taxCodeId":7119,"taxDate":"2021-02-03","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"36","jurisName":"NEW YORK","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.040000,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"51000","jurisName":"NEW YORK CITY","stateAssignedNo":"NE 8081","jurisType":"CIT","jurisdictionType":"City","nonTaxableAmount":0.0,"rate":0.045000,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY CITY TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"359071","jurisName":"METROPOLITAN COMMUTER TRANSPORTATION DISTRICT","stateAssignedNo":"NE 8081","jurisType":"STJ","jurisdictionType":"Special","nonTaxableAmount":0.0,"rate":0.003750,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY SPECIAL TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0}],"addresses":[{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"175 5th Ave","line2":"","line3":"","city":"New York","region":"NY","postalCode":"10010","country":"US","taxRegionId":2088629,"latitude":"40.740942","longitude":"-73.989884"},{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"30 GLENN ST","line2":"","line3":"","city":"WHITE PLAINS","region":"NY","postalCode":"10603-3254","country":"US","taxRegionId":2090237,"latitude":"41.050608","longitude":"-73.771383"}],"summary":[{"country":"US","region":"NY","jurisType":"State","jurisCode":"36","jurisName":"NEW YORK","taxAuthorityType":45,"stateAssignedNo":"","taxType":"Sales","taxSubType":"S","taxName":"NY STATE TAX","rateType":"General","taxable":354.0,"rate":0.040000,"tax":14.16,"taxCalculated":14.16,"nonTaxable":0.0,"exemption":0.0},{"country":"US","region":"NY","jurisType":"City","jurisCode":"51000","jurisName":"NEW YORK CITY","taxAuthorityType":45,"stateAssignedNo":"NE 8081","taxType":"Sales","taxSubType":"S","taxName":"NY CITY TAX","rateType":"General","taxable":354.0,"rate":0.045000,"tax":15.93,"taxCalculated":15.93,"nonTaxable":0.0,"exemption":0.0},{"country":"US","region":"NY","jurisType":"Special","jurisCode":"359071","jurisName":"METROPOLITAN COMMUTER TRANSPORTATION DISTRICT","taxAuthorityType":45,"stateAssignedNo":"NE 8081","taxType":"Sales","taxSubType":"S","taxName":"NY SPECIAL TAX","rateType":"General","taxable":354.0,"rate":0.003750,"tax":1.33,"taxCalculated":1.33,"nonTaxable":0.0,"exemption":0.0}]}
+
+02-03-2021 @ 14:13:28 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/utilities/ping
+user-agent: WooCommerce-AvaTax/1.11.0 (WooCommerce/4.8.0; WordPress/5.6)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.31354s
+
+02-03-2021 @ 14:13:28 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Wed, 03 Feb 2021 19:13:28 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 225
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0001338
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"version":"21.1.0","authenticated":true,"authenticationType":"AccountIdLicenseKey","authenticatedUserName":"anonymous@2000107471","authenticatedUserId":231879,"authenticatedAccountId":2000107471,"crmid":"0010b00002JHRLYAA5"}
+
+02-03-2021 @ 14:18:56 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/utilities/ping
+user-agent: WooCommerce-AvaTax/1.11.0 (WooCommerce/4.8.0; WordPress/5.6)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.35172s
+
+02-03-2021 @ 14:18:56 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Wed, 03 Feb 2021 19:18:56 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 225
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0001035
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"version":"21.1.0","authenticated":true,"authenticationType":"AccountIdLicenseKey","authenticatedUserName":"anonymous@2000107471","authenticatedUserId":231879,"authenticatedAccountId":2000107471,"crmid":"0010b00002JHRLYAA5"}
+
+02-03-2021 @ 15:38:23 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/utilities/ping
+user-agent: WooCommerce-AvaTax/1.11.0 (WooCommerce/4.8.0; WordPress/5.6)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.32417s
+
+02-03-2021 @ 15:38:23 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Wed, 03 Feb 2021 20:38:23 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 225
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0001483
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"version":"21.1.0","authenticated":true,"authenticationType":"AccountIdLicenseKey","authenticatedUserName":"anonymous@2000107471","authenticatedUserId":231879,"authenticatedAccountId":2000107471,"crmid":"0010b00002JHRLYAA5"}
+
+02-03-2021 @ 15:55:05 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/utilities/ping
+user-agent: WooCommerce-AvaTax/1.11.0 (WooCommerce/4.8.0; WordPress/5.6)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.32852s
+
+02-03-2021 @ 15:55:05 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Wed, 03 Feb 2021 20:55:05 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 225
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0001421
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"version":"21.1.0","authenticated":true,"authenticationType":"AccountIdLicenseKey","authenticatedUserName":"anonymous@2000107471","authenticatedUserId":231879,"authenticatedAccountId":2000107471,"crmid":"0010b00002JHRLYAA5"}
+
+02-03-2021 @ 16:06:04 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/utilities/ping
+user-agent: WooCommerce-AvaTax/1.11.0 (WooCommerce/4.8.0; WordPress/5.6)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.29662s
+
+02-03-2021 @ 16:06:04 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Wed, 03 Feb 2021 21:06:04 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 225
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0001570
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"version":"21.1.0","authenticated":true,"authenticationType":"AccountIdLicenseKey","authenticatedUserName":"anonymous@2000107471","authenticatedUserId":231879,"authenticatedAccountId":2000107471,"crmid":"0010b00002JHRLYAA5"}
+
+02-03-2021 @ 16:23:31 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/utilities/ping
+user-agent: WooCommerce-AvaTax/1.11.0 (WooCommerce/4.8.0; WordPress/5.6)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.35647s
+
+02-03-2021 @ 16:23:31 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Wed, 03 Feb 2021 21:23:31 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 225
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0001322
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"version":"21.1.0","authenticated":true,"authenticationType":"AccountIdLicenseKey","authenticatedUserName":"anonymous@2000107471","authenticatedUserId":231879,"authenticatedAccountId":2000107471,"crmid":"0010b00002JHRLYAA5"}
+
+02-03-2021 @ 16:29:36 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/utilities/ping
+user-agent: WooCommerce-AvaTax/1.11.0 (WooCommerce/4.8.0; WordPress/5.6)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.30845s
+
+02-03-2021 @ 16:29:36 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Wed, 03 Feb 2021 21:29:36 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 225
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0001423
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"version":"21.1.0","authenticated":true,"authenticationType":"AccountIdLicenseKey","authenticatedUserName":"anonymous@2000107471","authenticatedUserId":231879,"authenticatedAccountId":2000107471,"crmid":"0010b00002JHRLYAA5"}
+
+02-03-2021 @ 16:36:22 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/utilities/ping
+user-agent: WooCommerce-AvaTax/1.11.0 (WooCommerce/4.8.0; WordPress/5.6)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.28719s
+
+02-03-2021 @ 16:36:22 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Wed, 03 Feb 2021 21:36:22 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 225
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0001325
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"version":"21.1.0","authenticated":true,"authenticationType":"AccountIdLicenseKey","authenticatedUserName":"anonymous@2000107471","authenticatedUserId":231879,"authenticatedAccountId":2000107471,"crmid":"0010b00002JHRLYAA5"}
+
+02-03-2021 @ 16:42:08 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/utilities/ping
+user-agent: WooCommerce-AvaTax/1.11.0 (WooCommerce/4.8.0; WordPress/5.6)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.29755s
+
+02-03-2021 @ 16:42:08 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Wed, 03 Feb 2021 21:42:08 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 225
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0001374
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"version":"21.1.0","authenticated":true,"authenticationType":"AccountIdLicenseKey","authenticatedUserName":"anonymous@2000107471","authenticatedUserId":231879,"authenticatedAccountId":2000107471,"crmid":"0010b00002JHRLYAA5"}
+
+02-03-2021 @ 16:57:17 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/utilities/ping
+user-agent: WooCommerce-AvaTax/1.11.0 (WooCommerce/4.8.0; WordPress/5.6)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.3063s
+
+02-03-2021 @ 16:57:17 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Wed, 03 Feb 2021 21:57:17 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 225
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0001205
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"version":"21.1.0","authenticated":true,"authenticationType":"AccountIdLicenseKey","authenticatedUserName":"anonymous@2000107471","authenticatedUserId":231879,"authenticatedAccountId":2000107471,"crmid":"0010b00002JHRLYAA5"}
+

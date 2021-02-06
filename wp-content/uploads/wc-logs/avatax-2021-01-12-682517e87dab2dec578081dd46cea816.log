@@ -1,0 +1,423 @@
+01-12-2021 @ 14:56:30 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/taxrates/byaddress?line1=&line2=&city=Paterson&region=NJ&country=US&postalCode=07
+user-agent: WooCommerce-AvaTax/1.11.0 (WooCommerce/4.8.0; WordPress/5.6)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.30519s
+
+01-12-2021 @ 14:56:30 - Response
+Response
+code: 400
+message: Bad Request
+headers: Array
+(
+    [date] => Tue, 12 Jan 2021 19:56:30 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 442
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0002103
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"error":{"code":"InvalidPostalCode","message":"The postal code is invalid: 07.","target":"IncorrectData","details":[{"code":"InvalidPostalCode","number":317,"message":"The postal code is invalid: 07.","description":"You have attempted to get the tax rates for an invalid postal code 07. Please provide a valid postal code.","faultCode":"Client","helpLink":"http://developer.avalara.com/avatax/errors/InvalidPostalCode","severity":"Error"}]}}
+
+01-12-2021 @ 14:56:30 - Error estimating tax rate. [317] The postal code is invalid: 07. You have attempted to get the tax rates for an invalid postal code 07. Please provide a valid postal code.
+01-12-2021 @ 14:56:33 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/taxrates/byaddress?line1=&line2=&city=Paterson&region=NJ&country=US&postalCode=07501
+user-agent: WooCommerce-AvaTax/1.11.0 (WooCommerce/4.8.0; WordPress/5.6)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.3021s
+
+01-12-2021 @ 14:56:33 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Tue, 12 Jan 2021 19:56:33 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 87
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0250678
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"totalRate":0.066250,"rates":[{"rate":0.066250,"name":"NJ STATE TAX","type":"State"}]}
+
+01-12-2021 @ 14:56:33 - Request
+Request
+method: POST
+uri: https://rest.avatax.com/api/v2/transactions/create
+user-agent: WooCommerce-AvaTax/1.11.0 (WooCommerce/4.8.0; WordPress/5.6)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body: {"code":"","companyCode":"ALC","customerCode":"Guest","currencyCode":"USD","date":"2021-01-12","lines":[{"number":"ca67023068969c7df100d80920400183","itemCode":"1104-1","taxCode":"P0000000","description":"Alconox","quantity":1,"amount":47.200000000000003},{"number":"shipping_0","itemCode":"use-my-shipping-account","taxCode":"FR","description":"Use My Shipping Account","quantity":1}],"addresses":{"shipFrom":{"line1":"30 GLENN ST","line2":"","city":"WHITE PLAINS","region":"NY","country":"US","postalCode":"10603-3254"},"shipTo":{"line1":"46 Lewis St","line2":"","city":"Paterson","region":"NJ","country":"US","postalCode":"07"}},"type":"SalesOrder","commit":false}
+duration: 0.30253s
+
+01-12-2021 @ 14:56:33 - Response
+Response
+code: 201
+message: Created
+headers: Array
+(
+    [date] => Tue, 12 Jan 2021 19:56:33 GMT
+    [content-type] => application/json; charset=utf-8
+    [server] => Kestrel
+    [content-encoding] => br
+    [location] => /api/v2/companies/207925/transactions/0
+    [vary] => Accept-Encoding
+    [serverduration] => 00:00:00.0354885
+)
+body: {"id":0,"code":"913df205-2220-48e5-bb30-5ff54dc69a20","companyId":207925,"date":"2021-01-12","paymentDate":"2021-01-12","status":"Temporary","type":"SalesOrder","batchCode":"","currencyCode":"USD","exchangeRateCurrencyCode":"USD","customerUsageType":"","entityUseCode":"","customerVendorCode":"Guest","customerCode":"Guest","exemptNo":"","reconciled":false,"locationCode":"","reportingLocationCode":"","purchaseOrderNo":"","referenceCode":"","salespersonCode":"","totalAmount":47.2,"totalExempt":0.0,"totalDiscount":0.0,"totalTax":3.13,"totalTaxable":47.2,"totalTaxCalculated":3.13,"adjustmentReason":"NotAdjusted","locked":false,"version":1,"exchangeRateEffectiveDate":"2021-01-12","exchangeRate":1.0,"modifiedDate":"2021-01-12T19:56:33.1466025Z","modifiedUserId":231879,"taxDate":"2021-01-12T00:00:00Z","lines":[{"id":0,"transactionId":0,"lineNumber":"ca67023068969c7df100d80920400183","customerUsageType":"","entityUseCode":"","description":"Alconox","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"itemCode":"1104-1","lineAmount":47.200000000000003,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-01-12","tax":3.13,"taxableAmount":47.2,"taxCalculated":3.13,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-01-12","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NJ","exemptAmount":0.0,"jurisCode":"34","jurisName":"NEW JERSEY","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.066250,"tax":3.13,"taxableAmount":47.2,"taxType":"Sales","taxSubTypeId":"S","taxName":"NJ STATE TAX","taxAuthorityTypeId":45,"taxCalculated":3.13,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":47.2,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":3.13,"reportingTaxCalculated":3.13,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":0,"transactionId":0,"lineNumber":"shipping_0","customerUsageType":"","entityUseCode":"","description":"Use My Shipping Account","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":false,"itemCode":"use-my-shipping-account","lineAmount":0.0,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-01-12","tax":0.0,"taxableAmount":0.0,"taxCalculated":0.0,"taxCode":"FR","taxCodeId":7119,"taxDate":"2021-01-12","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NJ","exemptAmount":0.0,"jurisCode":"34","jurisName":"NEW JERSEY","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.066250,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NJ STATE TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0}],"addresses":[{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"46 Lewis St","line2":"","line3":"","city":"Paterson","region":"NJ","postalCode":"07","country":"US","taxRegionId":4005987,"latitude":"40.909089","longitude":"-74.158772"},{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"30 GLENN ST","line2":"","line3":"","city":"WHITE PLAINS","region":"NY","postalCode":"10603-3254","country":"US","taxRegionId":2090237,"latitude":"41.050608","longitude":"-73.771383"}],"summary":[{"country":"US","region":"NJ","jurisType":"State","jurisCode":"34","jurisName":"NEW JERSEY","taxAuthorityType":45,"stateAssignedNo":"","taxType":"Sales","taxSubType":"S","taxName":"NJ STATE TAX","rateType":"General","taxable":47.2,"rate":0.066250,"tax":3.13,"taxCalculated":3.13,"nonTaxable":0.0,"exemption":0.0}]}
+
+01-12-2021 @ 14:56:35 - Request
+Request
+method: POST
+uri: https://rest.avatax.com/api/v2/transactions/create
+user-agent: WooCommerce-AvaTax/1.11.0 (WooCommerce/4.8.0; WordPress/5.6)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body: {"code":"","companyCode":"ALC","customerCode":"Guest","currencyCode":"USD","date":"2021-01-12","lines":[{"number":"ca67023068969c7df100d80920400183","itemCode":"1104-1","taxCode":"P0000000","description":"Alconox","quantity":1,"amount":47.200000000000003},{"number":"shipping_0","itemCode":"use-my-shipping-account","taxCode":"FR","description":"Use My Shipping Account","quantity":1}],"addresses":{"shipFrom":{"line1":"30 GLENN ST","line2":"","city":"WHITE PLAINS","region":"NY","country":"US","postalCode":"10603-3254"},"shipTo":{"line1":"46 Lewis St","line2":"","city":"Paterson","region":"NJ","country":"US","postalCode":"07501"}},"type":"SalesOrder","commit":false}
+duration: 0.3037s
+
+01-12-2021 @ 14:56:35 - Response
+Response
+code: 201
+message: Created
+headers: Array
+(
+    [date] => Tue, 12 Jan 2021 19:56:35 GMT
+    [content-type] => application/json; charset=utf-8
+    [server] => Kestrel
+    [content-encoding] => br
+    [location] => /api/v2/companies/207925/transactions/0
+    [vary] => Accept-Encoding
+    [serverduration] => 00:00:00.0335482
+)
+body: {"id":0,"code":"9b5be9e9-029d-4605-9e45-764d9ef337d9","companyId":207925,"date":"2021-01-12","paymentDate":"2021-01-12","status":"Temporary","type":"SalesOrder","batchCode":"","currencyCode":"USD","exchangeRateCurrencyCode":"USD","customerUsageType":"","entityUseCode":"","customerVendorCode":"Guest","customerCode":"Guest","exemptNo":"","reconciled":false,"locationCode":"","reportingLocationCode":"","purchaseOrderNo":"","referenceCode":"","salespersonCode":"","totalAmount":47.2,"totalExempt":0.0,"totalDiscount":0.0,"totalTax":3.13,"totalTaxable":47.2,"totalTaxCalculated":3.13,"adjustmentReason":"NotAdjusted","locked":false,"version":1,"exchangeRateEffectiveDate":"2021-01-12","exchangeRate":1.0,"modifiedDate":"2021-01-12T19:56:35.2426458Z","modifiedUserId":231879,"taxDate":"2021-01-12T00:00:00Z","lines":[{"id":0,"transactionId":0,"lineNumber":"ca67023068969c7df100d80920400183","customerUsageType":"","entityUseCode":"","description":"Alconox","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"itemCode":"1104-1","lineAmount":47.200000000000003,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-01-12","tax":3.13,"taxableAmount":47.2,"taxCalculated":3.13,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-01-12","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NJ","exemptAmount":0.0,"jurisCode":"34","jurisName":"NEW JERSEY","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.066250,"tax":3.13,"taxableAmount":47.2,"taxType":"Sales","taxSubTypeId":"S","taxName":"NJ STATE TAX","taxAuthorityTypeId":45,"taxCalculated":3.13,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":47.2,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":3.13,"reportingTaxCalculated":3.13,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":0,"transactionId":0,"lineNumber":"shipping_0","customerUsageType":"","entityUseCode":"","description":"Use My Shipping Account","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":false,"itemCode":"use-my-shipping-account","lineAmount":0.0,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-01-12","tax":0.0,"taxableAmount":0.0,"taxCalculated":0.0,"taxCode":"FR","taxCodeId":7119,"taxDate":"2021-01-12","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NJ","exemptAmount":0.0,"jurisCode":"34","jurisName":"NEW JERSEY","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.066250,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NJ STATE TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0}],"addresses":[{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"46 Lewis St","line2":"","line3":"","city":"Paterson","region":"NJ","postalCode":"07501","country":"US","taxRegionId":4005987,"latitude":"40.909089","longitude":"-74.158772"},{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"30 GLENN ST","line2":"","line3":"","city":"WHITE PLAINS","region":"NY","postalCode":"10603-3254","country":"US","taxRegionId":2090237,"latitude":"41.050608","longitude":"-73.771383"}],"summary":[{"country":"US","region":"NJ","jurisType":"State","jurisCode":"34","jurisName":"NEW JERSEY","taxAuthorityType":45,"stateAssignedNo":"","taxType":"Sales","taxSubType":"S","taxName":"NJ STATE TAX","rateType":"General","taxable":47.2,"rate":0.066250,"tax":3.13,"taxCalculated":3.13,"nonTaxable":0.0,"exemption":0.0}]}
+
+01-12-2021 @ 14:57:11 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/taxrates/byaddress?line1=&line2=&city=Paterson&region=NJ&country=US&postalCode=07501
+user-agent: WooCommerce-AvaTax/1.11.0 (WooCommerce/4.8.0; WordPress/5.6)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.28645s
+
+01-12-2021 @ 14:57:11 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Tue, 12 Jan 2021 19:57:11 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 87
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0009648
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"totalRate":0.066250,"rates":[{"rate":0.066250,"name":"NJ STATE TAX","type":"State"}]}
+
+01-12-2021 @ 14:57:12 - Request
+Request
+method: POST
+uri: https://rest.avatax.com/api/v2/transactions/create
+user-agent: WooCommerce-AvaTax/1.11.0 (WooCommerce/4.8.0; WordPress/5.6)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body: {"code":"","companyCode":"ALC","customerCode":"John@NewWorldIntl.com","currencyCode":"USD","date":"2021-01-12","lines":[{"number":"ca67023068969c7df100d80920400183","itemCode":"1104-1","taxCode":"P0000000","description":"Alconox","quantity":1,"amount":47.200000000000003},{"number":"shipping_0","itemCode":"use-my-shipping-account","taxCode":"FR","description":"Use My Shipping Account","quantity":1}],"addresses":{"shipFrom":{"line1":"30 GLENN ST","line2":"","city":"WHITE PLAINS","region":"NY","country":"US","postalCode":"10603-3254"},"shipTo":{"line1":"46 Lewis St","line2":"","city":"Paterson","region":"NJ","country":"US","postalCode":"07501"}},"type":"SalesOrder","commit":false}
+duration: 0.31065s
+
+01-12-2021 @ 14:57:12 - Response
+Response
+code: 201
+message: Created
+headers: Array
+(
+    [date] => Tue, 12 Jan 2021 19:57:12 GMT
+    [content-type] => application/json; charset=utf-8
+    [server] => Kestrel
+    [content-encoding] => br
+    [location] => /api/v2/companies/207925/transactions/0
+    [vary] => Accept-Encoding
+    [serverduration] => 00:00:00.0338324
+)
+body: {"id":0,"code":"768171b3-e96c-4c12-91eb-f461aa8e3da5","companyId":207925,"date":"2021-01-12","paymentDate":"2021-01-12","status":"Temporary","type":"SalesOrder","batchCode":"","currencyCode":"USD","exchangeRateCurrencyCode":"USD","customerUsageType":"","entityUseCode":"","customerVendorCode":"John@NewWorldIntl.com","customerCode":"John@NewWorldIntl.com","exemptNo":"","reconciled":false,"locationCode":"","reportingLocationCode":"","purchaseOrderNo":"","referenceCode":"","salespersonCode":"","totalAmount":47.2,"totalExempt":0.0,"totalDiscount":0.0,"totalTax":3.13,"totalTaxable":47.2,"totalTaxCalculated":3.13,"adjustmentReason":"NotAdjusted","locked":false,"version":1,"exchangeRateEffectiveDate":"2021-01-12","exchangeRate":1.0,"modifiedDate":"2021-01-12T19:57:12.2104239Z","modifiedUserId":231879,"taxDate":"2021-01-12T00:00:00Z","lines":[{"id":0,"transactionId":0,"lineNumber":"ca67023068969c7df100d80920400183","customerUsageType":"","entityUseCode":"","description":"Alconox","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"itemCode":"1104-1","lineAmount":47.200000000000003,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-01-12","tax":3.13,"taxableAmount":47.2,"taxCalculated":3.13,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-01-12","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NJ","exemptAmount":0.0,"jurisCode":"34","jurisName":"NEW JERSEY","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.066250,"tax":3.13,"taxableAmount":47.2,"taxType":"Sales","taxSubTypeId":"S","taxName":"NJ STATE TAX","taxAuthorityTypeId":45,"taxCalculated":3.13,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":47.2,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":3.13,"reportingTaxCalculated":3.13,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":0,"transactionId":0,"lineNumber":"shipping_0","customerUsageType":"","entityUseCode":"","description":"Use My Shipping Account","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":false,"itemCode":"use-my-shipping-account","lineAmount":0.0,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-01-12","tax":0.0,"taxableAmount":0.0,"taxCalculated":0.0,"taxCode":"FR","taxCodeId":7119,"taxDate":"2021-01-12","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NJ","exemptAmount":0.0,"jurisCode":"34","jurisName":"NEW JERSEY","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.066250,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NJ STATE TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0}],"addresses":[{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"46 Lewis St","line2":"","line3":"","city":"Paterson","region":"NJ","postalCode":"07501","country":"US","taxRegionId":4005987,"latitude":"40.909089","longitude":"-74.158772"},{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"30 GLENN ST","line2":"","line3":"","city":"WHITE PLAINS","region":"NY","postalCode":"10603-3254","country":"US","taxRegionId":2090237,"latitude":"41.050608","longitude":"-73.771383"}],"summary":[{"country":"US","region":"NJ","jurisType":"State","jurisCode":"34","jurisName":"NEW JERSEY","taxAuthorityType":45,"stateAssignedNo":"","taxType":"Sales","taxSubType":"S","taxName":"NJ STATE TAX","rateType":"General","taxable":47.2,"rate":0.066250,"tax":3.13,"taxCalculated":3.13,"nonTaxable":0.0,"exemption":0.0}]}
+
+01-12-2021 @ 14:59:59 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/taxrates/byaddress?line1=&line2=&city=Paterson&region=NJ&country=US&postalCode=07501
+user-agent: WooCommerce-AvaTax/1.11.0 (WooCommerce/4.8.0; WordPress/5.6)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.35873s
+
+01-12-2021 @ 14:59:59 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Tue, 12 Jan 2021 19:59:59 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 87
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0022165
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"totalRate":0.066250,"rates":[{"rate":0.066250,"name":"NJ STATE TAX","type":"State"}]}
+
+01-12-2021 @ 14:59:59 - Request
+Request
+method: POST
+uri: https://rest.avatax.com/api/v2/transactions/create
+user-agent: WooCommerce-AvaTax/1.11.0 (WooCommerce/4.8.0; WordPress/5.6)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body: {"code":"","companyCode":"ALC","customerCode":"John@NewWorldIntl.com","currencyCode":"USD","date":"2021-01-12","lines":[{"number":"ca67023068969c7df100d80920400183","itemCode":"1104-1","taxCode":"P0000000","description":"Alconox","quantity":1,"amount":47.200000000000003},{"number":"shipping_0","itemCode":"use-my-shipping-account","taxCode":"FR","description":"Use My Shipping Account","quantity":1}],"addresses":{"shipFrom":{"line1":"30 GLENN ST","line2":"","city":"WHITE PLAINS","region":"NY","country":"US","postalCode":"10603-3254"},"shipTo":{"line1":"46 Lewis St","line2":"","city":"Paterson","region":"NJ","country":"US","postalCode":"07501"}},"type":"SalesOrder","commit":false}
+duration: 0.33391s
+
+01-12-2021 @ 14:59:59 - Response
+Response
+code: 201
+message: Created
+headers: Array
+(
+    [date] => Tue, 12 Jan 2021 19:59:59 GMT
+    [content-type] => application/json; charset=utf-8
+    [server] => Kestrel
+    [content-encoding] => br
+    [location] => /api/v2/companies/207925/transactions/0
+    [vary] => Accept-Encoding
+    [serverduration] => 00:00:00.0387811
+)
+body: {"id":0,"code":"6253105d-c94c-4f8d-83d1-abe379f0f6a5","companyId":207925,"date":"2021-01-12","paymentDate":"2021-01-12","status":"Temporary","type":"SalesOrder","batchCode":"","currencyCode":"USD","exchangeRateCurrencyCode":"USD","customerUsageType":"","entityUseCode":"","customerVendorCode":"John@NewWorldIntl.com","customerCode":"John@NewWorldIntl.com","exemptNo":"","reconciled":false,"locationCode":"","reportingLocationCode":"","purchaseOrderNo":"","referenceCode":"","salespersonCode":"","totalAmount":47.2,"totalExempt":0.0,"totalDiscount":0.0,"totalTax":3.13,"totalTaxable":47.2,"totalTaxCalculated":3.13,"adjustmentReason":"NotAdjusted","locked":false,"version":1,"exchangeRateEffectiveDate":"2021-01-12","exchangeRate":1.0,"modifiedDate":"2021-01-12T19:59:59.4356042Z","modifiedUserId":231879,"taxDate":"2021-01-12T00:00:00Z","lines":[{"id":0,"transactionId":0,"lineNumber":"ca67023068969c7df100d80920400183","customerUsageType":"","entityUseCode":"","description":"Alconox","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"itemCode":"1104-1","lineAmount":47.200000000000003,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-01-12","tax":3.13,"taxableAmount":47.2,"taxCalculated":3.13,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-01-12","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NJ","exemptAmount":0.0,"jurisCode":"34","jurisName":"NEW JERSEY","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.066250,"tax":3.13,"taxableAmount":47.2,"taxType":"Sales","taxSubTypeId":"S","taxName":"NJ STATE TAX","taxAuthorityTypeId":45,"taxCalculated":3.13,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":47.2,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":3.13,"reportingTaxCalculated":3.13,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":0,"transactionId":0,"lineNumber":"shipping_0","customerUsageType":"","entityUseCode":"","description":"Use My Shipping Account","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":false,"itemCode":"use-my-shipping-account","lineAmount":0.0,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-01-12","tax":0.0,"taxableAmount":0.0,"taxCalculated":0.0,"taxCode":"FR","taxCodeId":7119,"taxDate":"2021-01-12","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NJ","exemptAmount":0.0,"jurisCode":"34","jurisName":"NEW JERSEY","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.066250,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NJ STATE TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0}],"addresses":[{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"46 Lewis St","line2":"","line3":"","city":"Paterson","region":"NJ","postalCode":"07501","country":"US","taxRegionId":4005987,"latitude":"40.909089","longitude":"-74.158772"},{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"30 GLENN ST","line2":"","line3":"","city":"WHITE PLAINS","region":"NY","postalCode":"10603-3254","country":"US","taxRegionId":2090237,"latitude":"41.050608","longitude":"-73.771383"}],"summary":[{"country":"US","region":"NJ","jurisType":"State","jurisCode":"34","jurisName":"NEW JERSEY","taxAuthorityType":45,"stateAssignedNo":"","taxType":"Sales","taxSubType":"S","taxName":"NJ STATE TAX","rateType":"General","taxable":47.2,"rate":0.066250,"tax":3.13,"taxCalculated":3.13,"nonTaxable":0.0,"exemption":0.0}]}
+
+01-12-2021 @ 15:00:03 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/taxrates/byaddress?line1=&line2=&city=Paterson&region=NJ&country=US&postalCode=07501
+user-agent: WooCommerce-AvaTax/1.11.0 (WooCommerce/4.8.0; WordPress/5.6)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.28505s
+
+01-12-2021 @ 15:00:03 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Tue, 12 Jan 2021 20:00:03 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 87
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0015380
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"totalRate":0.066250,"rates":[{"rate":0.066250,"name":"NJ STATE TAX","type":"State"}]}
+
+01-12-2021 @ 15:00:04 - Request
+Request
+method: POST
+uri: https://rest.avatax.com/api/v2/transactions/create
+user-agent: WooCommerce-AvaTax/1.11.0 (WooCommerce/4.8.0; WordPress/5.6)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body: {"code":"","companyCode":"ALC","customerCode":"John@NewWorldIntl.com","currencyCode":"USD","date":"2021-01-12","lines":[{"number":"ca67023068969c7df100d80920400183","itemCode":"1104-1","taxCode":"P0000000","description":"Alconox","quantity":1,"amount":47.200000000000003},{"number":"shipping_0","itemCode":"use-my-shipping-account","taxCode":"FR","description":"Use My Shipping Account","quantity":1}],"addresses":{"shipFrom":{"line1":"30 GLENN ST","line2":"","city":"WHITE PLAINS","region":"NY","country":"US","postalCode":"10603-3254"},"shipTo":{"line1":"46 Lewis St","line2":"","city":"Paterson","region":"NJ","country":"US","postalCode":"07501"}},"type":"SalesOrder","commit":false}
+duration: 0.33103s
+
+01-12-2021 @ 15:00:04 - Response
+Response
+code: 201
+message: Created
+headers: Array
+(
+    [date] => Tue, 12 Jan 2021 20:00:04 GMT
+    [content-type] => application/json; charset=utf-8
+    [server] => Kestrel
+    [content-encoding] => br
+    [location] => /api/v2/companies/207925/transactions/0
+    [vary] => Accept-Encoding
+    [serverduration] => 00:00:00.0357111
+)
+body: {"id":0,"code":"1f80e9cd-e941-4093-9129-a91ced14ba26","companyId":207925,"date":"2021-01-12","paymentDate":"2021-01-12","status":"Temporary","type":"SalesOrder","batchCode":"","currencyCode":"USD","exchangeRateCurrencyCode":"USD","customerUsageType":"","entityUseCode":"","customerVendorCode":"John@NewWorldIntl.com","customerCode":"John@NewWorldIntl.com","exemptNo":"","reconciled":false,"locationCode":"","reportingLocationCode":"","purchaseOrderNo":"","referenceCode":"","salespersonCode":"","totalAmount":47.2,"totalExempt":0.0,"totalDiscount":0.0,"totalTax":3.13,"totalTaxable":47.2,"totalTaxCalculated":3.13,"adjustmentReason":"NotAdjusted","locked":false,"version":1,"exchangeRateEffectiveDate":"2021-01-12","exchangeRate":1.0,"modifiedDate":"2021-01-12T20:00:04.245735Z","modifiedUserId":231879,"taxDate":"2021-01-12T00:00:00Z","lines":[{"id":0,"transactionId":0,"lineNumber":"ca67023068969c7df100d80920400183","customerUsageType":"","entityUseCode":"","description":"Alconox","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"itemCode":"1104-1","lineAmount":47.200000000000003,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-01-12","tax":3.13,"taxableAmount":47.2,"taxCalculated":3.13,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-01-12","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NJ","exemptAmount":0.0,"jurisCode":"34","jurisName":"NEW JERSEY","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.066250,"tax":3.13,"taxableAmount":47.2,"taxType":"Sales","taxSubTypeId":"S","taxName":"NJ STATE TAX","taxAuthorityTypeId":45,"taxCalculated":3.13,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":47.2,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":3.13,"reportingTaxCalculated":3.13,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":0,"transactionId":0,"lineNumber":"shipping_0","customerUsageType":"","entityUseCode":"","description":"Use My Shipping Account","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":false,"itemCode":"use-my-shipping-account","lineAmount":0.0,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-01-12","tax":0.0,"taxableAmount":0.0,"taxCalculated":0.0,"taxCode":"FR","taxCodeId":7119,"taxDate":"2021-01-12","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NJ","exemptAmount":0.0,"jurisCode":"34","jurisName":"NEW JERSEY","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.066250,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NJ STATE TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0}],"addresses":[{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"46 Lewis St","line2":"","line3":"","city":"Paterson","region":"NJ","postalCode":"07501","country":"US","taxRegionId":4005987,"latitude":"40.909089","longitude":"-74.158772"},{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"30 GLENN ST","line2":"","line3":"","city":"WHITE PLAINS","region":"NY","postalCode":"10603-3254","country":"US","taxRegionId":2090237,"latitude":"41.050608","longitude":"-73.771383"}],"summary":[{"country":"US","region":"NJ","jurisType":"State","jurisCode":"34","jurisName":"NEW JERSEY","taxAuthorityType":45,"stateAssignedNo":"","taxType":"Sales","taxSubType":"S","taxName":"NJ STATE TAX","rateType":"General","taxable":47.2,"rate":0.066250,"tax":3.13,"taxCalculated":3.13,"nonTaxable":0.0,"exemption":0.0}]}
+
+01-12-2021 @ 15:00:57 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/taxrates/byaddress?line1=&line2=&city=Paterson&region=NJ&country=US&postalCode=07501
+user-agent: WooCommerce-AvaTax/1.11.0 (WooCommerce/4.8.0; WordPress/5.6)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.31803s
+
+01-12-2021 @ 15:00:57 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Tue, 12 Jan 2021 20:00:57 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 87
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0013752
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"totalRate":0.066250,"rates":[{"rate":0.066250,"name":"NJ STATE TAX","type":"State"}]}
+
+01-12-2021 @ 15:00:58 - Request
+Request
+method: POST
+uri: https://rest.avatax.com/api/v2/transactions/create
+user-agent: WooCommerce-AvaTax/1.11.0 (WooCommerce/4.8.0; WordPress/5.6)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body: {"code":"","companyCode":"ALC","customerCode":"John@NewWorldIntl.com","currencyCode":"USD","date":"2021-01-12","lines":[{"number":"ca67023068969c7df100d80920400183","itemCode":"1104-1","taxCode":"P0000000","description":"Alconox","quantity":1,"amount":47.200000000000003},{"number":"shipping_0","itemCode":"use-my-shipping-account","taxCode":"FR","description":"Use My Shipping Account","quantity":1}],"addresses":{"shipFrom":{"line1":"30 GLENN ST","line2":"","city":"WHITE PLAINS","region":"NY","country":"US","postalCode":"10603-3254"},"shipTo":{"line1":"46 Lewis St","line2":"","city":"Paterson","region":"NJ","country":"US","postalCode":"07501"}},"type":"SalesOrder","commit":false}
+duration: 0.3196s
+
+01-12-2021 @ 15:00:58 - Response
+Response
+code: 201
+message: Created
+headers: Array
+(
+    [date] => Tue, 12 Jan 2021 20:00:58 GMT
+    [content-type] => application/json; charset=utf-8
+    [server] => Kestrel
+    [content-encoding] => br
+    [location] => /api/v2/companies/207925/transactions/0
+    [vary] => Accept-Encoding
+    [serverduration] => 00:00:00.0318814
+)
+body: {"id":0,"code":"44fe2e2a-e731-4f90-860d-fdd2892661c9","companyId":207925,"date":"2021-01-12","paymentDate":"2021-01-12","status":"Temporary","type":"SalesOrder","batchCode":"","currencyCode":"USD","exchangeRateCurrencyCode":"USD","customerUsageType":"","entityUseCode":"","customerVendorCode":"John@NewWorldIntl.com","customerCode":"John@NewWorldIntl.com","exemptNo":"","reconciled":false,"locationCode":"","reportingLocationCode":"","purchaseOrderNo":"","referenceCode":"","salespersonCode":"","totalAmount":47.2,"totalExempt":0.0,"totalDiscount":0.0,"totalTax":3.13,"totalTaxable":47.2,"totalTaxCalculated":3.13,"adjustmentReason":"NotAdjusted","locked":false,"version":1,"exchangeRateEffectiveDate":"2021-01-12","exchangeRate":1.0,"modifiedDate":"2021-01-12T20:00:58.0644592Z","modifiedUserId":231879,"taxDate":"2021-01-12T00:00:00Z","lines":[{"id":0,"transactionId":0,"lineNumber":"ca67023068969c7df100d80920400183","customerUsageType":"","entityUseCode":"","description":"Alconox","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"itemCode":"1104-1","lineAmount":47.200000000000003,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-01-12","tax":3.13,"taxableAmount":47.2,"taxCalculated":3.13,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-01-12","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NJ","exemptAmount":0.0,"jurisCode":"34","jurisName":"NEW JERSEY","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.066250,"tax":3.13,"taxableAmount":47.2,"taxType":"Sales","taxSubTypeId":"S","taxName":"NJ STATE TAX","taxAuthorityTypeId":45,"taxCalculated":3.13,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":47.2,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":3.13,"reportingTaxCalculated":3.13,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":0,"transactionId":0,"lineNumber":"shipping_0","customerUsageType":"","entityUseCode":"","description":"Use My Shipping Account","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":false,"itemCode":"use-my-shipping-account","lineAmount":0.0,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-01-12","tax":0.0,"taxableAmount":0.0,"taxCalculated":0.0,"taxCode":"FR","taxCodeId":7119,"taxDate":"2021-01-12","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NJ","exemptAmount":0.0,"jurisCode":"34","jurisName":"NEW JERSEY","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.066250,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NJ STATE TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0}],"addresses":[{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"46 Lewis St","line2":"","line3":"","city":"Paterson","region":"NJ","postalCode":"07501","country":"US","taxRegionId":4005987,"latitude":"40.909089","longitude":"-74.158772"},{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"30 GLENN ST","line2":"","line3":"","city":"WHITE PLAINS","region":"NY","postalCode":"10603-3254","country":"US","taxRegionId":2090237,"latitude":"41.050608","longitude":"-73.771383"}],"summary":[{"country":"US","region":"NJ","jurisType":"State","jurisCode":"34","jurisName":"NEW JERSEY","taxAuthorityType":45,"stateAssignedNo":"","taxType":"Sales","taxSubType":"S","taxName":"NJ STATE TAX","rateType":"General","taxable":47.2,"rate":0.066250,"tax":3.13,"taxCalculated":3.13,"nonTaxable":0.0,"exemption":0.0}]}
+
+01-12-2021 @ 15:01:02 - Request
+Request
+method: POST
+uri: https://rest.avatax.com/api/v2/transactions/create
+user-agent: WooCommerce-AvaTax/1.11.0 (WooCommerce/4.8.0; WordPress/5.6)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body: {"code":"wc_order_FprvQumfwCmTN","companyCode":"ALC","customerCode":"John@NewWorldIntl.com","currencyCode":"USD","date":"2021-01-12","lines":[{"number":570,"itemCode":"1104-1","taxCode":"P0000000","description":"Alconox","quantity":1,"amount":47.200000000000003},{"number":"shipping_571","itemCode":"use-my-shipping-account","taxCode":"FR","description":"Use My Shipping Account","quantity":1}],"addresses":{"shipFrom":{"line1":"30 GLENN ST","line2":"","city":"WHITE PLAINS","region":"NY","country":"US","postalCode":"10603-3254"},"shipTo":{"line1":"46 Lewis St","line2":"","city":"Paterson","region":"NJ","country":"US","postalCode":"07501"}},"type":"SalesInvoice","purchaseOrderNo":"20970","commit":true}
+duration: 1.01012s
+
+01-12-2021 @ 15:01:02 - Response
+Response
+code: 201
+message: Created
+headers: Array
+(
+    [date] => Tue, 12 Jan 2021 20:01:02 GMT
+    [content-type] => application/json; charset=utf-8
+    [server] => Kestrel
+    [content-encoding] => br
+    [location] => /api/v2/companies/207925/transactions/3001207372130
+    [vary] => Accept-Encoding
+    [serverduration] => 00:00:00.1409142
+)
+body: {"id":3001207372130,"code":"wc_order_FprvQumfwCmTN","companyId":207925,"date":"2021-01-12","status":"Committed","type":"SalesInvoice","batchCode":"","currencyCode":"USD","exchangeRateCurrencyCode":"USD","customerUsageType":"","entityUseCode":"","customerVendorCode":"John@NewWorldIntl.com","customerCode":"John@NewWorldIntl.com","exemptNo":"","reconciled":false,"locationCode":"","reportingLocationCode":"","purchaseOrderNo":"20970","referenceCode":"","salespersonCode":"","taxOverrideType":"None","taxOverrideAmount":0.0,"taxOverrideReason":"","totalAmount":47.2,"totalExempt":0.0,"totalDiscount":0.0,"totalTax":3.13,"totalTaxable":47.2,"totalTaxCalculated":3.13,"adjustmentReason":"NotAdjusted","adjustmentDescription":"","locked":false,"region":"NJ","country":"US","version":1,"softwareVersion":"20.12.2.0","originAddressId":4002280736506,"destinationAddressId":3002280736506,"exchangeRateEffectiveDate":"2021-01-12","exchangeRate":1.0,"description":"","email":"","businessIdentificationNo":"","modifiedDate":"2021-01-12T20:01:01.4468836Z","modifiedUserId":231879,"taxDate":"2021-01-12T00:00:00Z","lines":[{"id":1003685227059,"transactionId":3001207372130,"lineNumber":"570","boundaryOverrideId":0,"customerUsageType":"","entityUseCode":"","description":"Alconox","destinationAddressId":3002280736506,"originAddressId":4002280736506,"discountAmount":0.0,"discountTypeId":0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"isSSTP":false,"itemCode":"1104-1","lineAmount":47.2,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-01-12","revAccount":"","sourcing":"Destination","tax":3.1300,"taxableAmount":47.2,"taxCalculated":3.1300,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-01-12","taxEngine":"","taxOverrideType":"None","businessIdentificationNo":"","taxOverrideAmount":0.0,"taxOverrideReason":"","taxIncluded":false,"details":[{"id":7002637899495,"transactionLineId":1003685227059,"transactionId":3001207372130,"addressId":3002280736506,"country":"US","region":"NJ","countyFIPS":"","stateFIPS":"","exemptAmount":0.0000,"exemptReasonId":4,"inState":false,"jurisCode":"34","jurisName":"NEW JERSEY","jurisdictionId":34,"signatureCode":"BEJY","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0000,"nonTaxableRuleId":0,"nonTaxableType":"RateRule","rate":0.066250,"rateRuleId":1458047,"rateSourceId":3,"serCode":"","sourcing":"Destination","tax":3.1300,"taxableAmount":47.2000,"taxType":"Sales","taxSubTypeId":"S","taxTypeGroupId":"SalesAndUse","taxName":"NJ STATE TAX","taxAuthorityTypeId":45,"taxRegionId":4005987,"taxCalculated":3.1300,"taxOverride":0.0000,"rateType":"General","rateTypeCode":"G","taxableUnits":47.2000,"nonTaxableUnits":0.0000,"exemptUnits":0.0000,"unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":47.2,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":3.13,"reportingTaxCalculated":3.13,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"lineLocationTypes":[{"documentLineLocationTypeId":11002486000315,"documentLineId":1003685227059,"documentAddressId":4002280736506,"locationTypeCode":"ShipFrom"},{"documentLineLocationTypeId":2005184768576,"documentLineId":1003685227059,"documentAddressId":3002280736506,"locationTypeCode":"ShipTo"}],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":2003685227061,"transactionId":3001207372130,"lineNumber":"shipping_571","boundaryOverrideId":0,"customerUsageType":"","entityUseCode":"","description":"Use My Shipping Account","destinationAddressId":3002280736506,"originAddressId":4002280736506,"discountAmount":0.0,"discountTypeId":0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":false,"isSSTP":false,"itemCode":"use-my-shipping-account","lineAmount":0.0,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-01-12","revAccount":"","sourcing":"Destination","tax":0.0000,"taxableAmount":0.0,"taxCalculated":0.0000,"taxCode":"FR","taxCodeId":7119,"taxDate":"2021-01-12","taxEngine":"","taxOverrideType":"None","businessIdentificationNo":"","taxOverrideAmount":0.0,"taxOverrideReason":"","taxIncluded":false,"details":[{"id":8002637899498,"transactionLineId":2003685227061,"transactionId":3001207372130,"addressId":3002280736506,"country":"US","region":"NJ","countyFIPS":"","stateFIPS":"","exemptAmount":0.0000,"exemptReasonId":4,"inState":false,"jurisCode":"34","jurisName":"NEW JERSEY","jurisdictionId":34,"signatureCode":"BEJY","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0000,"nonTaxableRuleId":0,"nonTaxableType":"RateRule","rate":0.066250,"rateRuleId":1458047,"rateSourceId":3,"serCode":"","sourcing":"Destination","tax":0.0000,"taxableAmount":0.0000,"taxType":"Sales","taxSubTypeId":"S","taxTypeGroupId":"SalesAndUse","taxName":"NJ STATE TAX","taxAuthorityTypeId":45,"taxRegionId":4005987,"taxCalculated":0.0000,"taxOverride":0.0000,"rateType":"General","rateTypeCode":"G","taxableUnits":0.0000,"nonTaxableUnits":0.0000,"exemptUnits":0.0000,"unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"lineLocationTypes":[{"documentLineLocationTypeId":9002486000317,"documentLineId":2003685227061,"documentAddressId":4002280736506,"locationTypeCode":"ShipFrom"},{"documentLineLocationTypeId":1005184768583,"documentLineId":2003685227061,"documentAddressId":3002280736506,"locationTypeCode":"ShipTo"}],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0}],"addresses":[{"id":3002280736506,"transactionId":3001207372130,"boundaryLevel":"Address","line1":"46 LEWIS ST","line2":"","line3":"","city":"PATERSON","region":"NJ","postalCode":"07501-3607","country":"US","taxRegionId":4005987,"latitude":"40.909089","longitude":"-74.158772"},{"id":4002280736506,"transactionId":3001207372130,"boundaryLevel":"Address","line1":"30 GLENN ST","line2":"","line3":"","city":"WHITE PLAINS","region":"NY","postalCode":"10603-3254","country":"US","taxRegionId":2090237,"latitude":"41.050608","longitude":"-73.771383"}],"locationTypes":[{"documentLocationTypeId":1001992951979,"documentId":3001207372130,"documentAddressId":4002280736506,"locationTypeCode":"ShipFrom"},{"documentLocationTypeId":2001992951979,"documentId":3001207372130,"documentAddressId":3002280736506,"locationTypeCode":"ShipTo"}],"summary":[{"country":"US","region":"NJ","jurisType":"State","jurisCode":"34","jurisName":"NEW JERSEY","taxAuthorityType":45,"stateAssignedNo":"","taxType":"Sales","taxSubType":"S","taxName":"NJ STATE TAX","rateType":"General","taxable":47.20,"rate":0.066250,"tax":3.13,"taxCalculated":3.13,"nonTaxable":0.00,"exemption":0.00}]}
+

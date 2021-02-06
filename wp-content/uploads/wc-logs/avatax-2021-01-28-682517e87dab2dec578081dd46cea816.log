@@ -1,0 +1,130 @@
+01-28-2021 @ 10:04:09 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/taxrates/byaddress?line1=&line2=&city=Rahway&region=NJ&country=US&postalCode=07065
+user-agent: WooCommerce-AvaTax/1.11.0 (WooCommerce/4.8.0; WordPress/5.6)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.32255s
+
+01-28-2021 @ 10:04:09 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Thu, 28 Jan 2021 15:04:09 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 87
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0181502
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"totalRate":0.066250,"rates":[{"rate":0.066250,"name":"NJ STATE TAX","type":"State"}]}
+
+01-28-2021 @ 10:04:10 - Request
+Request
+method: POST
+uri: https://rest.avatax.com/api/v2/transactions/create
+user-agent: WooCommerce-AvaTax/1.11.0 (WooCommerce/4.8.0; WordPress/5.6)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body: {"code":"","companyCode":"ALC","customerCode":"ankit@healthlifeofusa.com","currencyCode":"USD","date":"2021-01-28","lines":[{"number":"45fa9c7f14c5ef611d5bee4bcc6473b0","itemCode":"1101","taxCode":"P0000000","description":"Alconox","quantity":1,"amount":793},{"number":"shipping_0","itemCode":"use-my-shipping-account","taxCode":"FR","description":"Use My Shipping Account","quantity":1}],"addresses":{"shipFrom":{"line1":"30 GLENN ST","line2":"","city":"WHITE PLAINS","region":"NY","country":"US","postalCode":"10603-3254"},"shipTo":{"line1":"1600 Hart Street","line2":"","city":"Rahway","region":"NJ","country":"US","postalCode":"07065"}},"type":"SalesOrder","commit":false}
+duration: 0.35209s
+
+01-28-2021 @ 10:04:10 - Response
+Response
+code: 201
+message: Created
+headers: Array
+(
+    [date] => Thu, 28 Jan 2021 15:04:10 GMT
+    [content-type] => application/json; charset=utf-8
+    [server] => Kestrel
+    [content-encoding] => br
+    [location] => /api/v2/companies/207925/transactions/0
+    [vary] => Accept-Encoding
+    [serverduration] => 00:00:00.0386610
+)
+body: {"id":0,"code":"f7bafa79-b4bf-4f77-9ae7-a28b6ecf0fe0","companyId":207925,"date":"2021-01-28","paymentDate":"2021-01-28","status":"Temporary","type":"SalesOrder","batchCode":"","currencyCode":"USD","exchangeRateCurrencyCode":"USD","customerUsageType":"","entityUseCode":"","customerVendorCode":"ankit@healthlifeofusa.com","customerCode":"ankit@healthlifeofusa.com","exemptNo":"","reconciled":false,"locationCode":"","reportingLocationCode":"","purchaseOrderNo":"","referenceCode":"","salespersonCode":"","totalAmount":793.0,"totalExempt":0.0,"totalDiscount":0.0,"totalTax":52.54,"totalTaxable":793.0,"totalTaxCalculated":52.54,"adjustmentReason":"NotAdjusted","locked":false,"version":1,"exchangeRateEffectiveDate":"2021-01-28","exchangeRate":1.0,"modifiedDate":"2021-01-28T15:04:10.2961288Z","modifiedUserId":231879,"taxDate":"2021-01-28T00:00:00Z","lines":[{"id":0,"transactionId":0,"lineNumber":"45fa9c7f14c5ef611d5bee4bcc6473b0","customerUsageType":"","entityUseCode":"","description":"Alconox","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"itemCode":"1101","lineAmount":793.0,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-01-28","tax":52.54,"taxableAmount":793.0,"taxCalculated":52.54,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-01-28","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NJ","exemptAmount":0.0,"jurisCode":"34","jurisName":"NEW JERSEY","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.066250,"tax":52.54,"taxableAmount":793.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NJ STATE TAX","taxAuthorityTypeId":45,"taxCalculated":52.54,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":793.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":52.54,"reportingTaxCalculated":52.54,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":0,"transactionId":0,"lineNumber":"shipping_0","customerUsageType":"","entityUseCode":"","description":"Use My Shipping Account","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":false,"itemCode":"use-my-shipping-account","lineAmount":0.0,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-01-28","tax":0.0,"taxableAmount":0.0,"taxCalculated":0.0,"taxCode":"FR","taxCodeId":7119,"taxDate":"2021-01-28","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NJ","exemptAmount":0.0,"jurisCode":"34","jurisName":"NEW JERSEY","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.066250,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NJ STATE TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0}],"addresses":[{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"1600 Hart Street","line2":"","line3":"","city":"Rahway","region":"NJ","postalCode":"07065","country":"US","taxRegionId":4005740,"latitude":"40.599908","longitude":"-74.260283"},{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"30 GLENN ST","line2":"","line3":"","city":"WHITE PLAINS","region":"NY","postalCode":"10603-3254","country":"US","taxRegionId":2090237,"latitude":"41.050608","longitude":"-73.771383"}],"summary":[{"country":"US","region":"NJ","jurisType":"State","jurisCode":"34","jurisName":"NEW JERSEY","taxAuthorityType":45,"stateAssignedNo":"","taxType":"Sales","taxSubType":"S","taxName":"NJ STATE TAX","rateType":"General","taxable":793.0,"rate":0.066250,"tax":52.54,"taxCalculated":52.54,"nonTaxable":0.0,"exemption":0.0}]}
+
+01-28-2021 @ 10:04:20 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/taxrates/byaddress?line1=&line2=&city=Rahway&region=NJ&country=US&postalCode=07065
+user-agent: WooCommerce-AvaTax/1.11.0 (WooCommerce/4.8.0; WordPress/5.6)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.35369s
+
+01-28-2021 @ 10:04:20 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Thu, 28 Jan 2021 15:04:20 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 87
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0014028
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"totalRate":0.066250,"rates":[{"rate":0.066250,"name":"NJ STATE TAX","type":"State"}]}
+
+01-28-2021 @ 10:04:20 - Request
+Request
+method: POST
+uri: https://rest.avatax.com/api/v2/transactions/create
+user-agent: WooCommerce-AvaTax/1.11.0 (WooCommerce/4.8.0; WordPress/5.6)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body: {"code":"","companyCode":"ALC","customerCode":"ankit@healthlifeofusa.com","currencyCode":"USD","date":"2021-01-28","lines":[{"number":"45fa9c7f14c5ef611d5bee4bcc6473b0","itemCode":"1101","taxCode":"P0000000","description":"Alconox","quantity":1,"amount":793},{"number":"shipping_0","itemCode":"pt-ups-merger:6:03","taxCode":"FR","description":"Ground (UPS)","quantity":1,"amount":77.349999999999994}],"addresses":{"shipFrom":{"line1":"30 GLENN ST","line2":"","city":"WHITE PLAINS","region":"NY","country":"US","postalCode":"10603-3254"},"shipTo":{"line1":"1600 Hart Street","line2":"","city":"Rahway","region":"NJ","country":"US","postalCode":"07065"}},"type":"SalesOrder","commit":false}
+duration: 0.37712s
+
+01-28-2021 @ 10:04:20 - Response
+Response
+code: 201
+message: Created
+headers: Array
+(
+    [date] => Thu, 28 Jan 2021 15:04:20 GMT
+    [content-type] => application/json; charset=utf-8
+    [server] => Kestrel
+    [content-encoding] => br
+    [location] => /api/v2/companies/207925/transactions/0
+    [vary] => Accept-Encoding
+    [serverduration] => 00:00:00.0344481
+)
+body: {"id":0,"code":"cc529944-7996-4427-8c2e-ab1a503cb7a1","companyId":207925,"date":"2021-01-28","paymentDate":"2021-01-28","status":"Temporary","type":"SalesOrder","batchCode":"","currencyCode":"USD","exchangeRateCurrencyCode":"USD","customerUsageType":"","entityUseCode":"","customerVendorCode":"ankit@healthlifeofusa.com","customerCode":"ankit@healthlifeofusa.com","exemptNo":"","reconciled":false,"locationCode":"","reportingLocationCode":"","purchaseOrderNo":"","referenceCode":"","salespersonCode":"","totalAmount":870.35,"totalExempt":77.35,"totalDiscount":0.0,"totalTax":52.54,"totalTaxable":793.0,"totalTaxCalculated":52.54,"adjustmentReason":"NotAdjusted","locked":false,"version":1,"exchangeRateEffectiveDate":"2021-01-28","exchangeRate":1.0,"modifiedDate":"2021-01-28T15:04:20.57513Z","modifiedUserId":231879,"taxDate":"2021-01-28T00:00:00Z","lines":[{"id":0,"transactionId":0,"lineNumber":"45fa9c7f14c5ef611d5bee4bcc6473b0","customerUsageType":"","entityUseCode":"","description":"Alconox","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"itemCode":"1101","lineAmount":793.0,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-01-28","tax":52.54,"taxableAmount":793.0,"taxCalculated":52.54,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-01-28","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NJ","exemptAmount":0.0,"jurisCode":"34","jurisName":"NEW JERSEY","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.066250,"tax":52.54,"taxableAmount":793.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NJ STATE TAX","taxAuthorityTypeId":45,"taxCalculated":52.54,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":793.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":52.54,"reportingTaxCalculated":52.54,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":0,"transactionId":0,"lineNumber":"shipping_0","customerUsageType":"","entityUseCode":"","description":"Ground (UPS)","discountAmount":0.0,"exemptAmount":77.35,"exemptCertId":0,"exemptNo":"","isItemTaxable":false,"itemCode":"pt-ups-merger:6:03","lineAmount":77.349999999999994,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-01-28","tax":0.0,"taxableAmount":0.0,"taxCalculated":0.0,"taxCode":"FR","taxCodeId":7119,"taxDate":"2021-01-28","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NJ","exemptAmount":0.0,"jurisCode":"34","jurisName":"NEW JERSEY","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":77.35,"rate":0.066250,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NJ STATE TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":77.35,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0}],"addresses":[{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"1600 Hart Street","line2":"","line3":"","city":"Rahway","region":"NJ","postalCode":"07065","country":"US","taxRegionId":4005740,"latitude":"40.599908","longitude":"-74.260283"},{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"30 GLENN ST","line2":"","line3":"","city":"WHITE PLAINS","region":"NY","postalCode":"10603-3254","country":"US","taxRegionId":2090237,"latitude":"41.050608","longitude":"-73.771383"}],"summary":[{"country":"US","region":"NJ","jurisType":"State","jurisCode":"34","jurisName":"NEW JERSEY","taxAuthorityType":45,"stateAssignedNo":"","taxType":"Sales","taxSubType":"S","taxName":"NJ STATE TAX","rateType":"General","taxable":793.0,"rate":0.066250,"tax":52.54,"taxCalculated":52.54,"nonTaxable":77.35,"exemption":0.0}]}
+

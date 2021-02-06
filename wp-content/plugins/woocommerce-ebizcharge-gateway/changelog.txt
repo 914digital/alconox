@@ -1,0 +1,93 @@
+Plugin Name: Woocommerce EBizCharge Gateway
+Plugin URI: https://www.ebizcharge.com/woocommerce-payment-integration
+Description: Accept all major credit cards directly on your WooCommerce site in a seamless and secure checkout environment with EBizCharge.
+Version: 3.9.2
+Author: EBizCharge
+Author URI: http://ebizcharge.com
+License: Apache 2
+A Product of: Century Business Solutions
+
+Here are latest commits for the Ebizcharge plugin updates.
+
+== Changelog ==
+-----------------------------------------------------------------------------
+Updated on 24-Feb-2020
+Added compatibility with woocommerce 3.9.2
+-----------------------------------------------------------------------------
+Updated on 14-Feb-2020
+Added Download 'Customers', 'Products', 'Orders'
+-----------------------------------------------------------------------------
+Updated on 03-Feb-2020
+Added compatibility with woocommerce 3.9.1
+-----------------------------------------------------------------------------
+Updated on 24-Jan 2020
+Added compatibility with woocommerce 3.9
+-----------------------------------------------------------------------------
+Updated on 05 November 2019
+Added compatibility with woocommerce 3.8
+-----------------------------------------------------------------------------
+Updated on 16 October 2019
+Added compatibility with woocommerce 3.7.1
+-----------------------------------------------------------------------------
+Updated on 23 August 2019
+Added compatibility with woocommerce 3.7
+-----------------------------------------------------------------------------
+Updated on 23 July 2019
+Added compatibility with woocommerce 3.6.5
+-----------------------------------------------------------------------------
+updated on 24 April 2019
+Added Econnect sync sales order feature
+-----------------------------------------------------------------------------
+updated on 25 January 2019
+- Implemented Econnect - option to sync customers, sync products and sync invoices
+- Enable / Disable Econnect sync options
+- If Econnect enabled, the new added customers and invoices automatically synced.
+----------------------------------------------------------------------------------
+Added payment refund functionality
+-----------------------------------------------------------------------------------
+Whats new in Version 3.5.1? Updated on 1.11.18
+
+1) Added compatibility with woocommerce 3.5.1
+2) Applied test cases.
+3) Enhanced soap parameters added.
+4) Corrected bulk capture orders.
+5) Build updated.
+
+--------------------------------------------------------------
+
+Whats new in Version 3.4.5? Updated on 10.10.18
+
+1) Added compatibility with woocommerce 3.4.5
+2) Added Product deccriptionin lineitems.
+3) Soap cachea parameters added.
+4) Build updated.
+
+---------------------------------------------------------------
+
+Whats new in Version 3.4.4? Updated on 3.8.18
+
+1) Added compatibility with woocommerce 3.4.4
+2) Tested all cases functionality
+
+----------------------------------------------------------------
+
+Whats new in Version 3.4.3? Updated on 6.7.18
+
+1) added admin side css for compatibility with woocommerce 3.4.3
+
+----------------------------------------------------------------
+
+Whats new in Version 3.4.1? Updated on 31.5.18
+
+1) added admin side css for compatibility with woocommerce 3.4.1
+
+----------------------------------------------------------------
+
+Whats new in Version 3.1.3? Updated on 30.5.18
+
+1) Made plugin compatible with PHP version 7.2.1, apche 2.4.27 and woocommerce 3.4.1
+2) Added search customer functionality before save card.
+3) added checks before add new card if customer not exist on ebiz merchant account it will add new.
+4) if customer not exist on ebiz added new and already existed cards data in DB will be cleared.
+5) admin can enable or disable card save functionality on single click for both My account page and cart page.
+6) some of the depricated functions are removed or replaced.

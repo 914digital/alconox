@@ -1,0 +1,227 @@
+01-06-2021 @ 12:16:15 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/taxrates/byaddress?line1=&line2=&city=Fort+Dix&region=NJ&country=US&postalCode=08640
+user-agent: WooCommerce-AvaTax/1.11.0 (WooCommerce/4.8.0; WordPress/5.6)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.37125s
+
+01-06-2021 @ 12:16:15 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Wed, 06 Jan 2021 17:16:15 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 87
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0242043
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"totalRate":0.066250,"rates":[{"rate":0.066250,"name":"NJ STATE TAX","type":"State"}]}
+
+01-06-2021 @ 12:16:17 - Request
+Request
+method: POST
+uri: https://rest.avatax.com/api/v2/transactions/create
+user-agent: WooCommerce-AvaTax/1.11.0 (WooCommerce/4.8.0; WordPress/5.6)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body: {"code":"","companyCode":"ALC","customerCode":"Guest","currencyCode":"USD","date":"2021-01-06","lines":[{"number":"0b151e35a17fd0c0eed955df332a3605","itemCode":"1150","taxCode":"P0000000","description":"Alconox","quantity":1,"amount":451},{"number":"shipping_0","itemCode":"use-my-shipping-account","taxCode":"FR","description":"Use My Shipping Account","quantity":1}],"addresses":{"shipFrom":{"line1":"30 GLENN ST","line2":"","city":"WHITE PLAINS","region":"NY","country":"US","postalCode":"10603-3254"},"shipTo":{"line1":"US Coast Guard AST NSSE","line2":"5614 Doughboy Loop","city":"Fort Dix","region":"NJ","country":"US","postalCode":"08640"}},"type":"SalesOrder","commit":false}
+duration: 0.34113s
+
+01-06-2021 @ 12:16:17 - Response
+Response
+code: 201
+message: Created
+headers: Array
+(
+    [date] => Wed, 06 Jan 2021 17:16:17 GMT
+    [content-type] => application/json; charset=utf-8
+    [server] => Kestrel
+    [content-encoding] => br
+    [location] => /api/v2/companies/207925/transactions/0
+    [vary] => Accept-Encoding
+    [serverduration] => 00:00:00.0643227
+)
+body: {"id":0,"code":"9c4b6963-17d6-4136-b1c7-a59f2d9b1fc1","companyId":207925,"date":"2021-01-06","paymentDate":"2021-01-06","status":"Temporary","type":"SalesOrder","batchCode":"","currencyCode":"USD","exchangeRateCurrencyCode":"USD","customerUsageType":"","entityUseCode":"","customerVendorCode":"Guest","customerCode":"Guest","exemptNo":"","reconciled":false,"locationCode":"","reportingLocationCode":"","purchaseOrderNo":"","referenceCode":"","salespersonCode":"","totalAmount":451.0,"totalExempt":0.0,"totalDiscount":0.0,"totalTax":29.88,"totalTaxable":451.0,"totalTaxCalculated":29.88,"adjustmentReason":"NotAdjusted","locked":false,"version":1,"exchangeRateEffectiveDate":"2021-01-06","exchangeRate":1.0,"modifiedDate":"2021-01-06T17:16:17.9011547Z","modifiedUserId":231879,"taxDate":"2021-01-06T00:00:00Z","lines":[{"id":0,"transactionId":0,"lineNumber":"0b151e35a17fd0c0eed955df332a3605","customerUsageType":"","entityUseCode":"","description":"Alconox","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"itemCode":"1150","lineAmount":451.0,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-01-06","tax":29.88,"taxableAmount":451.0,"taxCalculated":29.88,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-01-06","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NJ","exemptAmount":0.0,"jurisCode":"34","jurisName":"NEW JERSEY","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.066250,"tax":29.88,"taxableAmount":451.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NJ STATE TAX","taxAuthorityTypeId":45,"taxCalculated":29.88,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":451.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":29.88,"reportingTaxCalculated":29.88,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":0,"transactionId":0,"lineNumber":"shipping_0","customerUsageType":"","entityUseCode":"","description":"Use My Shipping Account","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":false,"itemCode":"use-my-shipping-account","lineAmount":0.0,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-01-06","tax":0.0,"taxableAmount":0.0,"taxCalculated":0.0,"taxCode":"FR","taxCodeId":7119,"taxDate":"2021-01-06","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NJ","exemptAmount":0.0,"jurisCode":"34","jurisName":"NEW JERSEY","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.066250,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NJ STATE TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0}],"addresses":[{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"US Coast Guard AST NSSE","line2":"5614 Doughboy Loop","line3":"","city":"Fort Dix","region":"NJ","postalCode":"08640","country":"US","taxRegionId":4005658,"latitude":"40.008307","longitude":"-74.625953"},{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"30 GLENN ST","line2":"","line3":"","city":"WHITE PLAINS","region":"NY","postalCode":"10603-3254","country":"US","taxRegionId":2090237,"latitude":"41.050608","longitude":"-73.771383"}],"summary":[{"country":"US","region":"NJ","jurisType":"State","jurisCode":"34","jurisName":"NEW JERSEY","taxAuthorityType":45,"stateAssignedNo":"","taxType":"Sales","taxSubType":"S","taxName":"NJ STATE TAX","rateType":"General","taxable":451.0,"rate":0.066250,"tax":29.88,"taxCalculated":29.88,"nonTaxable":0.0,"exemption":0.0}]}
+
+01-06-2021 @ 12:16:23 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/taxrates/byaddress?line1=&line2=&city=Fort+Dix&region=NJ&country=US&postalCode=08640
+user-agent: WooCommerce-AvaTax/1.11.0 (WooCommerce/4.8.0; WordPress/5.6)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.29469s
+
+01-06-2021 @ 12:16:23 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Wed, 06 Jan 2021 17:16:23 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 87
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0014934
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"totalRate":0.066250,"rates":[{"rate":0.066250,"name":"NJ STATE TAX","type":"State"}]}
+
+01-06-2021 @ 12:16:24 - Request
+Request
+method: POST
+uri: https://rest.avatax.com/api/v2/transactions/create
+user-agent: WooCommerce-AvaTax/1.11.0 (WooCommerce/4.8.0; WordPress/5.6)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body: {"code":"","companyCode":"ALC","customerCode":"Eliot.W.Cary@USCG.Mil","currencyCode":"USD","date":"2021-01-06","lines":[{"number":"0b151e35a17fd0c0eed955df332a3605","itemCode":"1150","taxCode":"P0000000","description":"Alconox","quantity":1,"amount":451},{"number":"shipping_0","itemCode":"use-my-shipping-account","taxCode":"FR","description":"Use My Shipping Account","quantity":1}],"addresses":{"shipFrom":{"line1":"30 GLENN ST","line2":"","city":"WHITE PLAINS","region":"NY","country":"US","postalCode":"10603-3254"},"shipTo":{"line1":"US Coast Guard AST NSSE","line2":"5614 Doughboy Loop","city":"Fort Dix","region":"NJ","country":"US","postalCode":"08640"}},"type":"SalesOrder","commit":false}
+duration: 0.33652s
+
+01-06-2021 @ 12:16:24 - Response
+Response
+code: 201
+message: Created
+headers: Array
+(
+    [date] => Wed, 06 Jan 2021 17:16:24 GMT
+    [content-type] => application/json; charset=utf-8
+    [server] => Kestrel
+    [content-encoding] => br
+    [location] => /api/v2/companies/207925/transactions/0
+    [vary] => Accept-Encoding
+    [serverduration] => 00:00:00.0404250
+)
+body: {"id":0,"code":"e2333a02-b5af-4674-82b2-438d6ffa6550","companyId":207925,"date":"2021-01-06","paymentDate":"2021-01-06","status":"Temporary","type":"SalesOrder","batchCode":"","currencyCode":"USD","exchangeRateCurrencyCode":"USD","customerUsageType":"","entityUseCode":"","customerVendorCode":"Eliot.W.Cary@USCG.Mil","customerCode":"Eliot.W.Cary@USCG.Mil","exemptNo":"","reconciled":false,"locationCode":"","reportingLocationCode":"","purchaseOrderNo":"","referenceCode":"","salespersonCode":"","totalAmount":451.0,"totalExempt":0.0,"totalDiscount":0.0,"totalTax":29.88,"totalTaxable":451.0,"totalTaxCalculated":29.88,"adjustmentReason":"NotAdjusted","locked":false,"version":1,"exchangeRateEffectiveDate":"2021-01-06","exchangeRate":1.0,"modifiedDate":"2021-01-06T17:16:24.0341359Z","modifiedUserId":231879,"taxDate":"2021-01-06T00:00:00Z","lines":[{"id":0,"transactionId":0,"lineNumber":"0b151e35a17fd0c0eed955df332a3605","customerUsageType":"","entityUseCode":"","description":"Alconox","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"itemCode":"1150","lineAmount":451.0,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-01-06","tax":29.88,"taxableAmount":451.0,"taxCalculated":29.88,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-01-06","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NJ","exemptAmount":0.0,"jurisCode":"34","jurisName":"NEW JERSEY","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.066250,"tax":29.88,"taxableAmount":451.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NJ STATE TAX","taxAuthorityTypeId":45,"taxCalculated":29.88,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":451.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":29.88,"reportingTaxCalculated":29.88,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":0,"transactionId":0,"lineNumber":"shipping_0","customerUsageType":"","entityUseCode":"","description":"Use My Shipping Account","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":false,"itemCode":"use-my-shipping-account","lineAmount":0.0,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-01-06","tax":0.0,"taxableAmount":0.0,"taxCalculated":0.0,"taxCode":"FR","taxCodeId":7119,"taxDate":"2021-01-06","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NJ","exemptAmount":0.0,"jurisCode":"34","jurisName":"NEW JERSEY","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.066250,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NJ STATE TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0}],"addresses":[{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"US Coast Guard AST NSSE","line2":"5614 Doughboy Loop","line3":"","city":"Fort Dix","region":"NJ","postalCode":"08640","country":"US","taxRegionId":4005658,"latitude":"40.008307","longitude":"-74.625953"},{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"30 GLENN ST","line2":"","line3":"","city":"WHITE PLAINS","region":"NY","postalCode":"10603-3254","country":"US","taxRegionId":2090237,"latitude":"41.050608","longitude":"-73.771383"}],"summary":[{"country":"US","region":"NJ","jurisType":"State","jurisCode":"34","jurisName":"NEW JERSEY","taxAuthorityType":45,"stateAssignedNo":"","taxType":"Sales","taxSubType":"S","taxName":"NJ STATE TAX","rateType":"General","taxable":451.0,"rate":0.066250,"tax":29.88,"taxCalculated":29.88,"nonTaxable":0.0,"exemption":0.0}]}
+
+01-06-2021 @ 12:18:20 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/taxrates/byaddress?line1=&line2=&city=Fort+Dix&region=NJ&country=US&postalCode=08640
+user-agent: WooCommerce-AvaTax/1.11.0 (WooCommerce/4.8.0; WordPress/5.6)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.34936s
+
+01-06-2021 @ 12:18:20 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Wed, 06 Jan 2021 17:18:20 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 87
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0008838
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"totalRate":0.066250,"rates":[{"rate":0.066250,"name":"NJ STATE TAX","type":"State"}]}
+
+01-06-2021 @ 12:18:21 - Request
+Request
+method: POST
+uri: https://rest.avatax.com/api/v2/transactions/create
+user-agent: WooCommerce-AvaTax/1.11.0 (WooCommerce/4.8.0; WordPress/5.6)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body: {"code":"","companyCode":"ALC","customerCode":"Eliot.W.Cary@USCG.Mil","currencyCode":"USD","date":"2021-01-06","lines":[{"number":"0b151e35a17fd0c0eed955df332a3605","itemCode":"1150","taxCode":"P0000000","description":"Alconox","quantity":1,"amount":451},{"number":"shipping_0","itemCode":"use-my-shipping-account","taxCode":"FR","description":"Use My Shipping Account","quantity":1}],"addresses":{"shipFrom":{"line1":"30 GLENN ST","line2":"","city":"WHITE PLAINS","region":"NY","country":"US","postalCode":"10603-3254"},"shipTo":{"line1":"US Coast Guard AST NSSE","line2":"5614 Doughboy Loop","city":"Fort Dix","region":"NJ","country":"US","postalCode":"08640"}},"type":"SalesOrder","commit":false}
+duration: 0.34751s
+
+01-06-2021 @ 12:18:21 - Response
+Response
+code: 201
+message: Created
+headers: Array
+(
+    [date] => Wed, 06 Jan 2021 17:18:21 GMT
+    [content-type] => application/json; charset=utf-8
+    [server] => Kestrel
+    [content-encoding] => br
+    [location] => /api/v2/companies/207925/transactions/0
+    [vary] => Accept-Encoding
+    [serverduration] => 00:00:00.0408251
+)
+body: {"id":0,"code":"0e5b73b6-7dec-4d7a-b935-907fdb4bd2e9","companyId":207925,"date":"2021-01-06","paymentDate":"2021-01-06","status":"Temporary","type":"SalesOrder","batchCode":"","currencyCode":"USD","exchangeRateCurrencyCode":"USD","customerUsageType":"","entityUseCode":"","customerVendorCode":"Eliot.W.Cary@USCG.Mil","customerCode":"Eliot.W.Cary@USCG.Mil","exemptNo":"","reconciled":false,"locationCode":"","reportingLocationCode":"","purchaseOrderNo":"","referenceCode":"","salespersonCode":"","totalAmount":451.0,"totalExempt":0.0,"totalDiscount":0.0,"totalTax":29.88,"totalTaxable":451.0,"totalTaxCalculated":29.88,"adjustmentReason":"NotAdjusted","locked":false,"version":1,"exchangeRateEffectiveDate":"2021-01-06","exchangeRate":1.0,"modifiedDate":"2021-01-06T17:18:21.2097867Z","modifiedUserId":231879,"taxDate":"2021-01-06T00:00:00Z","lines":[{"id":0,"transactionId":0,"lineNumber":"0b151e35a17fd0c0eed955df332a3605","customerUsageType":"","entityUseCode":"","description":"Alconox","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"itemCode":"1150","lineAmount":451.0,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-01-06","tax":29.88,"taxableAmount":451.0,"taxCalculated":29.88,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-01-06","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NJ","exemptAmount":0.0,"jurisCode":"34","jurisName":"NEW JERSEY","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.066250,"tax":29.88,"taxableAmount":451.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NJ STATE TAX","taxAuthorityTypeId":45,"taxCalculated":29.88,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":451.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":29.88,"reportingTaxCalculated":29.88,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":0,"transactionId":0,"lineNumber":"shipping_0","customerUsageType":"","entityUseCode":"","description":"Use My Shipping Account","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":false,"itemCode":"use-my-shipping-account","lineAmount":0.0,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-01-06","tax":0.0,"taxableAmount":0.0,"taxCalculated":0.0,"taxCode":"FR","taxCodeId":7119,"taxDate":"2021-01-06","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NJ","exemptAmount":0.0,"jurisCode":"34","jurisName":"NEW JERSEY","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.066250,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NJ STATE TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0}],"addresses":[{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"US Coast Guard AST NSSE","line2":"5614 Doughboy Loop","line3":"","city":"Fort Dix","region":"NJ","postalCode":"08640","country":"US","taxRegionId":4005658,"latitude":"40.008307","longitude":"-74.625953"},{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"30 GLENN ST","line2":"","line3":"","city":"WHITE PLAINS","region":"NY","postalCode":"10603-3254","country":"US","taxRegionId":2090237,"latitude":"41.050608","longitude":"-73.771383"}],"summary":[{"country":"US","region":"NJ","jurisType":"State","jurisCode":"34","jurisName":"NEW JERSEY","taxAuthorityType":45,"stateAssignedNo":"","taxType":"Sales","taxSubType":"S","taxName":"NJ STATE TAX","rateType":"General","taxable":451.0,"rate":0.066250,"tax":29.88,"taxCalculated":29.88,"nonTaxable":0.0,"exemption":0.0}]}
+
+01-06-2021 @ 12:18:27 - Request
+Request
+method: POST
+uri: https://rest.avatax.com/api/v2/transactions/create
+user-agent: WooCommerce-AvaTax/1.11.0 (WooCommerce/4.8.0; WordPress/5.6)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body: {"code":"wc_order_2TOmdnJa8Res1","companyCode":"ALC","customerCode":"Eliot.W.Cary@USCG.Mil","currencyCode":"USD","date":"2021-01-06","lines":[{"number":534,"itemCode":"1150","taxCode":"P0000000","description":"Alconox","quantity":1,"amount":451},{"number":"shipping_535","itemCode":"use-my-shipping-account","taxCode":"FR","description":"Use My Shipping Account","quantity":1}],"addresses":{"shipFrom":{"line1":"30 GLENN ST","line2":"","city":"WHITE PLAINS","region":"NY","country":"US","postalCode":"10603-3254"},"shipTo":{"line1":"US Coast Guard AST NSSE","line2":"5614 Doughboy Loop","city":"Fort Dix","region":"NJ","country":"US","postalCode":"08640"}},"type":"SalesInvoice","purchaseOrderNo":"20933","commit":true}
+duration: 0.34895s
+
+01-06-2021 @ 12:18:27 - Response
+Response
+code: 201
+message: Created
+headers: Array
+(
+    [date] => Wed, 06 Jan 2021 17:18:27 GMT
+    [content-type] => application/json; charset=utf-8
+    [server] => Kestrel
+    [content-encoding] => br
+    [location] => /api/v2/companies/207925/transactions/3001183273648
+    [vary] => Accept-Encoding
+    [serverduration] => 00:00:00.0577747
+)
+body: {"id":3001183273648,"code":"wc_order_2TOmdnJa8Res1","companyId":207925,"date":"2021-01-06","status":"Committed","type":"SalesInvoice","batchCode":"","currencyCode":"USD","exchangeRateCurrencyCode":"USD","customerUsageType":"","entityUseCode":"","customerVendorCode":"Eliot.W.Cary@USCG.Mil","customerCode":"Eliot.W.Cary@USCG.Mil","exemptNo":"","reconciled":false,"locationCode":"","reportingLocationCode":"","purchaseOrderNo":"20933","referenceCode":"","salespersonCode":"","taxOverrideType":"None","taxOverrideAmount":0.0,"taxOverrideReason":"","totalAmount":451.0,"totalExempt":0.0,"totalDiscount":0.0,"totalTax":29.88,"totalTaxable":451.0,"totalTaxCalculated":29.88,"adjustmentReason":"NotAdjusted","adjustmentDescription":"","locked":false,"region":"NJ","country":"US","version":1,"softwareVersion":"20.12.2.0","originAddressId":3002247499106,"destinationAddressId":1002247499107,"exchangeRateEffectiveDate":"2021-01-06","exchangeRate":1.0,"description":"","email":"","businessIdentificationNo":"","modifiedDate":"2021-01-06T17:18:27.9537071Z","modifiedUserId":231879,"taxDate":"2021-01-06T00:00:00Z","lines":[{"id":2003613539256,"transactionId":3001183273648,"lineNumber":"534","boundaryOverrideId":0,"customerUsageType":"","entityUseCode":"","description":"Alconox","destinationAddressId":1002247499107,"originAddressId":3002247499106,"discountAmount":0.0,"discountTypeId":0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"isSSTP":false,"itemCode":"1150","lineAmount":451.0,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-01-06","revAccount":"","sourcing":"Destination","tax":29.8800,"taxableAmount":451.0,"taxCalculated":29.8800,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-01-06","taxEngine":"","taxOverrideType":"None","businessIdentificationNo":"","taxOverrideAmount":0.0,"taxOverrideReason":"","taxIncluded":false,"details":[{"id":1003660854224,"transactionLineId":2003613539256,"transactionId":3001183273648,"addressId":1002247499107,"country":"US","region":"NJ","countyFIPS":"","stateFIPS":"","exemptAmount":0.0000,"exemptReasonId":4,"inState":false,"jurisCode":"34","jurisName":"NEW JERSEY","jurisdictionId":34,"signatureCode":"BEJY","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0000,"nonTaxableRuleId":0,"nonTaxableType":"RateRule","rate":0.066250,"rateRuleId":1456929,"rateSourceId":3,"serCode":"","sourcing":"Destination","tax":29.8800,"taxableAmount":451.0000,"taxType":"Sales","taxSubTypeId":"S","taxTypeGroupId":"SalesAndUse","taxName":"NJ STATE TAX","taxAuthorityTypeId":45,"taxRegionId":4005658,"taxCalculated":29.8800,"taxOverride":0.0000,"rateType":"General","rateTypeCode":"G","taxableUnits":451.0000,"nonTaxableUnits":0.0000,"exemptUnits":0.0000,"unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":451.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":29.88,"reportingTaxCalculated":29.88,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"lineLocationTypes":[{"documentLineLocationTypeId":6003413387343,"documentLineId":2003613539256,"documentAddressId":3002247499106,"locationTypeCode":"ShipFrom"},{"documentLineLocationTypeId":8002434690720,"documentLineId":2003613539256,"documentAddressId":1002247499107,"locationTypeCode":"ShipTo"}],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":3003613539255,"transactionId":3001183273648,"lineNumber":"shipping_535","boundaryOverrideId":0,"customerUsageType":"","entityUseCode":"","description":"Use My Shipping Account","destinationAddressId":1002247499107,"originAddressId":3002247499106,"discountAmount":0.0,"discountTypeId":0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":false,"isSSTP":false,"itemCode":"use-my-shipping-account","lineAmount":0.0,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-01-06","revAccount":"","sourcing":"Destination","tax":0.0000,"taxableAmount":0.0,"taxCalculated":0.0000,"taxCode":"FR","taxCodeId":7119,"taxDate":"2021-01-06","taxEngine":"","taxOverrideType":"None","businessIdentificationNo":"","taxOverrideAmount":0.0,"taxOverrideReason":"","taxIncluded":false,"details":[{"id":4003660854223,"transactionLineId":3003613539255,"transactionId":3001183273648,"addressId":1002247499107,"country":"US","region":"NJ","countyFIPS":"","stateFIPS":"","exemptAmount":0.0000,"exemptReasonId":4,"inState":false,"jurisCode":"34","jurisName":"NEW JERSEY","jurisdictionId":34,"signatureCode":"BEJY","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0000,"nonTaxableRuleId":0,"nonTaxableType":"RateRule","rate":0.066250,"rateRuleId":1456929,"rateSourceId":3,"serCode":"","sourcing":"Destination","tax":0.0000,"taxableAmount":0.0000,"taxType":"Sales","taxSubTypeId":"S","taxTypeGroupId":"SalesAndUse","taxName":"NJ STATE TAX","taxAuthorityTypeId":45,"taxRegionId":4005658,"taxCalculated":0.0000,"taxOverride":0.0000,"rateType":"General","rateTypeCode":"G","taxableUnits":0.0000,"nonTaxableUnits":0.0000,"exemptUnits":0.0000,"unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"lineLocationTypes":[{"documentLineLocationTypeId":9002434690719,"documentLineId":3003613539255,"documentAddressId":3002247499106,"locationTypeCode":"ShipFrom"},{"documentLineLocationTypeId":10002434690719,"documentLineId":3003613539255,"documentAddressId":1002247499107,"locationTypeCode":"ShipTo"}],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0}],"addresses":[{"id":1002247499107,"transactionId":3001183273648,"boundaryLevel":"Address","line1":"US COAST GUARD AST NSSE","line2":"5614 DOUGHBOY LOOP","line3":"","city":"FORT DIX","region":"NJ","postalCode":"08640-5429","country":"US","taxRegionId":4005658,"latitude":"40.008307","longitude":"-74.625953"},{"id":3002247499106,"transactionId":3001183273648,"boundaryLevel":"Address","line1":"30 GLENN ST","line2":"","line3":"","city":"WHITE PLAINS","region":"NY","postalCode":"10603-3254","country":"US","taxRegionId":2090237,"latitude":"41.050608","longitude":"-73.771383"}],"locationTypes":[{"documentLocationTypeId":2001961773044,"documentId":3001183273648,"documentAddressId":3002247499106,"locationTypeCode":"ShipFrom"},{"documentLocationTypeId":3001961773044,"documentId":3001183273648,"documentAddressId":1002247499107,"locationTypeCode":"ShipTo"}],"summary":[{"country":"US","region":"NJ","jurisType":"State","jurisCode":"34","jurisName":"NEW JERSEY","taxAuthorityType":45,"stateAssignedNo":"","taxType":"Sales","taxSubType":"S","taxName":"NJ STATE TAX","rateType":"General","taxable":451.00,"rate":0.066250,"tax":29.88,"taxCalculated":29.88,"nonTaxable":0.00,"exemption":0.00}]}
+
