@@ -1,0 +1,33 @@
+02-17-2021 @ 10:26:43 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/utilities/ping
+user-agent: WooCommerce-AvaTax/1.11.0 (WooCommerce/4.8.0; WordPress/5.6.1)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 3.53943s
+
+02-17-2021 @ 10:26:43 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Wed, 17 Feb 2021 15:26:43 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 225
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0000909
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"version":"21.1.1","authenticated":true,"authenticationType":"AccountIdLicenseKey","authenticatedUserName":"anonymous@2000107471","authenticatedUserId":231879,"authenticatedAccountId":2000107471,"crmid":"0010b00002JHRLYAA5"}
+

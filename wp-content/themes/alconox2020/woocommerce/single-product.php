@@ -71,9 +71,11 @@
 							</li>
 							<?php } else { ?>
 							<?php } ?>
+							<?php if(!has_term(179, 'product_cat')) { ?>
 							<li class="nav-item">
 								<a class="nav-link prod-tab" id="prod-tab-cat" data-toggle="tab" href="#tab-cat" role="tab" aria-selected="true">Catalog Numbers</a>
 							</li>
+							<?php } ?>
 							
 						</ul>
 						<div class="tab-content" id="myTabContent">
@@ -170,77 +172,79 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
+				<div class="related-art" style="display:<?php the_field('tech_notes_on'); ?>">
+					<h2>Related Articles</h2>
+					<ul>
+						<?php if( have_rows('tech_notes') ): ?>
+						<?php while ( have_rows('tech_notes') ) : the_row(); ?>
+							<li><a target="_blank" href="<?php the_sub_field('technote_link'); ?>"><?php the_sub_field('technote_header'); ?></a></li>
+						<?php endwhile;
+							else :
+						// no rows found
+						endif; ?>
+					</ul>
+				</div>
 			
-			<h2>Related Articles</h2>
-				<ul>
-					<?php if( have_rows('tech_notes') ): ?>
-					<?php while ( have_rows('tech_notes') ) : the_row(); ?>
-						<li><a target="_blank" href="<?php the_sub_field('technote_link'); ?>"><?php the_sub_field('technote_header'); ?></a></li>
-					<?php endwhile;
-						else :
-					// no rows found
-					endif; ?>
-				</ul>
-			
-			
+				<div class="related-vid" style="display:<?php the_field('related_videos_on'); ?>">
+					<h2>Related Videos</h2>
+					<div class="row">
+					<?php if( have_rows('related_videos') ): ?>
+						<?php while ( have_rows('related_videos') ) : the_row(); ?>
+						<?php $post_object = get_sub_field('related_video_post');
 
-			
-				
-				<h2>Related Videos</h2>
-				<div class="row">
-				<?php if( have_rows('related_videos') ): ?>
-					<?php while ( have_rows('related_videos') ) : the_row(); ?>
-					<?php $post_object = get_sub_field('related_video_post');
+							if( $post_object ): 
 
-						if( $post_object ): 
-
-							// override $post
-							$post = $post_object;
-							setup_postdata( $post ); 
-							?>
-							<div class="col-md-4 mb-3">
-								<a href="<?php the_permalink(); ?>">
-									<?php echo the_post_thumbnail(); ?>
-									<h3><?php the_title(); ?></h3>
-								</a>
-							</div>
-							<?php wp_reset_postdata(); // IMPORTANT - reset the $post object so the rest of the page works correctly ?>
-						<?php endif; ?>
-												
-					<?php endwhile;
-						else :
-					// no rows found
-					endif; ?>
+								// override $post
+								$post = $post_object;
+								setup_postdata( $post ); 
+								?>
+								<div class="col-md-4 mb-3">
+									<a href="<?php the_permalink(); ?>">
+										<?php echo the_post_thumbnail(); ?>
+										<h3><?php the_title(); ?></h3>
+									</a>
+								</div>
+								<?php wp_reset_postdata(); // IMPORTANT - reset the $post object so the rest of the page works correctly ?>
+							<?php endif; ?>
+													
+						<?php endwhile;
+							else :
+						// no rows found
+						endif; ?>
+					</div>
 				</div>
 				
+				<div class="related-prod" style="display:<?php the_field('related_products_on'); ?>">
+					<h2>Related Products</h2>
+					<div class="row">
+					<?php if( have_rows('related_products') ): ?>
+						<?php while ( have_rows('related_products') ) : the_row(); ?>
+						<?php $post_object = get_sub_field('product');
 
-			<h2>Related Products</h2>
-				<div class="row">
-				<?php if( have_rows('related_products') ): ?>
-					<?php while ( have_rows('related_products') ) : the_row(); ?>
-					<?php $post_object = get_sub_field('product');
+							if( $post_object ): 
 
-						if( $post_object ): 
-
-							// override $post
-							$post = $post_object;
-							setup_postdata( $post ); 
-							?>
-							<div class="col-md-4 mb-3">
-								<a href="<?php the_permalink(); ?>">
-									<?php echo the_post_thumbnail(); ?>
-									<h3><?php the_title(); ?></h3>
-								</a>
-							</div>
-							<?php wp_reset_postdata(); // IMPORTANT - reset the $post object so the rest of the page works correctly ?>
-						<?php endif; ?>
-												
-					<?php endwhile;
-						else :
-					// no rows found
-					endif; ?>
-			
+								// override $post
+								$post = $post_object;
+								setup_postdata( $post ); 
+								?>
+								<div class="col-md-4 mb-3">
+									<a href="<?php the_permalink(); ?>">
+										<?php echo the_post_thumbnail(); ?>
+										<h3><?php the_title(); ?></h3>
+									</a>
+								</div>
+								<?php wp_reset_postdata(); // IMPORTANT - reset the $post object so the rest of the page works correctly ?>
+							<?php endif; ?>
+													
+						<?php endwhile;
+							else :
+						// no rows found
+						endif; ?>
+				
+					</div>
+				
 				</div>
+			
 		</div>
 	</div>
 </div>

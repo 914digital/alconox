@@ -365,3 +365,71 @@
 01-Feb-2021 03:33:18 :: RefNum: 2721024270 Result: Approved
 03-Feb-2021 01:55:56 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
 03-Feb-2021 01:55:57 :: RefNum: 2722518318 Result: Approved
+05-Feb-2021 07:58:49 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+05-Feb-2021 07:59:15 :: RefNum: 2724823808 Result: Approved
+05-Feb-2021 11:17:37 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+05-Feb-2021 11:17:37 :: Error: Error: 20000: Source has been blocked
+05-Feb-2021 11:18:22 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+05-Feb-2021 11:18:22 :: Error: Error: 20000: Source has been blocked
+08-Feb-2021 04:49:36 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+08-Feb-2021 04:49:37 :: Error: Error: 20000: Source has been blocked
+08-Feb-2021 04:50:05 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+08-Feb-2021 04:50:06 :: Error: Error: 20000: Source has been blocked
+08-Feb-2021 04:50:27 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+08-Feb-2021 04:50:28 :: Error: Error: 20000: Source has been blocked
+08-Feb-2021 07:17:04 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+08-Feb-2021 07:17:05 :: Error: Error: 20000: Source has been blocked
+08-Feb-2021 07:17:16 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+08-Feb-2021 07:17:17 :: Error: Error: 20000: Source has been blocked
+08-Feb-2021 07:17:46 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+08-Feb-2021 07:17:47 :: Error: Error: 20000: Source has been blocked
+08-Feb-2021 07:22:16 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+08-Feb-2021 07:22:16 :: Error: Error: 20000: Source has been blocked
+08-Feb-2021 07:24:11 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+08-Feb-2021 07:24:11 :: Error: Error: 20000: Source has been blocked
+09-Feb-2021 03:58:46 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+09-Feb-2021 03:58:47 :: Error: Error: 20000: Source has been blocked
+09-Feb-2021 08:16:21 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+09-Feb-2021 08:16:22 :: Error: Error: 20000: Source has been blocked
+09-Feb-2021 08:25:58 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+09-Feb-2021 08:25:58 :: Error: Error: 20000: Source has been blocked
+09-Feb-2021 08:26:58 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+09-Feb-2021 08:26:59 :: Error: Error: 20000: Source has been blocked
+11-Feb-2021 03:20:08 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+11-Feb-2021 03:20:09 :: Error: Error: 20000: Source has been blocked
+11-Feb-2021 03:22:09 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+11-Feb-2021 03:22:10 :: Error: Error: 20000: Source has been blocked
+11-Feb-2021 03:22:37 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+11-Feb-2021 03:22:37 :: Error: Error: 20000: Source has been blocked
+11-Feb-2021 03:29:11 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+11-Feb-2021 03:29:11 :: Error: Error: 20000: Source has been blocked
+11-Feb-2021 06:33:17 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+11-Feb-2021 06:33:18 :: Error: Error: 20000: Source has been blocked
+11-Feb-2021 09:18:43 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+11-Feb-2021 09:18:43 :: Error: Error: 20000: Source has been blocked
+11-Feb-2021 09:19:23 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+11-Feb-2021 09:19:23 :: Error: Error: 20000: Source has been blocked
+11-Feb-2021 09:20:16 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+11-Feb-2021 09:20:16 :: Error: Error: 20000: Source has been blocked
+11-Feb-2021 09:21:25 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+11-Feb-2021 09:21:25 :: Error: Error: 20000: Source has been blocked
+11-Feb-2021 10:55:04 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+11-Feb-2021 10:55:05 :: RefNum: 2729043632 Result: Approved
+12-Feb-2021 07:12:21 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+12-Feb-2021 07:12:22 :: RefNum: 2729202908 Result: Approved
+12-Feb-2021 04:05:20 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+12-Feb-2021 04:05:22 :: RefNum: 2729537739 Result: Approved
+12-Feb-2021 09:29:23 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+12-Feb-2021 09:29:24 :: RefNum: 2729898580 Result: Approved
+13-Feb-2021 01:28:58 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+13-Feb-2021 01:28:59 :: RefNum: 2730065171 Result: Approved
+15-Feb-2021 02:10:10 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+15-Feb-2021 02:10:12 :: RefNum: 2731294943 Result: Approved
+15-Feb-2021 05:22:40 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+15-Feb-2021 05:22:42 :: RefNum: 2731449838 Result: Approved
+15-Feb-2021 06:54:59 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+15-Feb-2021 06:55:00 :: RefNum: 2731525027 Result: Approved
+15-Feb-2021 11:11:39 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+15-Feb-2021 11:11:40 :: RefNum: 2731719205 Result: Approved
+16-Feb-2021 01:15:32 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+16-Feb-2021 01:15:33 :: RefNum: 2731958830 Result: Approved

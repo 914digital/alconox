@@ -1361,6 +1361,11 @@ button:active,
 	width:390px;
 }
 
+.woocommerce div.product form.cart .variations label {
+    font-weight: 700;
+    margin-right: 20px;
+}
+
 #billing_phone {
 	width: 200%;
 	display: block;
