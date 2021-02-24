@@ -3,7 +3,7 @@ Contributors: woocommerce, automattic, claudiosanches, bor0, royho, laurendaviss
 Tags: woocommerce, google analytics
 Requires at least: 3.9
 Tested up to: 5.6
-Stable tag: 1.5.0
+Stable tag: 1.5.1
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -59,6 +59,9 @@ Exact wording depends on the national data privacy laws and should be adjusted.
 1. Google Analytics Integration Settings.
 
 == Changelog ==
+
+= 1.5.1 - 2021-02-03 =
+* Tweak - WC 5.0 compatibility.
 
 = 1.5.0 - 2020-12-17 =
 * Add - Option to use Global Site Tag and the gtag.js library (for Universal Analytics or Google Analytics 4).

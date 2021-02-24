@@ -29,7 +29,10 @@ defined('ABSPATH') or die("You can't access this file directly.");
     "highlight": <?php echo $style['highlight']; ?>,
     "highlightWholewords": <?php echo $style['highlightwholewords']; ?>,
     "singleHighlight": <?php echo $style['single_highlight']; ?>,
-    "scrollToResults": <?php echo $style['scroll_to_results']; ?>,
+    "scrollToResults": {
+        "enabled": <?php echo $style['scroll_to_results']; ?>,
+        "offset": <?php echo intval($style['scroll_to_results_offset']); ?>
+    },
     "autocomplete": {
         "enabled": <?php echo $style['autocomplete'] == 1 || $style['autocomplete'] == 2 ? 1 : 0; ?>,
         "googleOnly": <?php echo $style['autocomplete_source'] == 'google' ? 1 : 0; ?>,

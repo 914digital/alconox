@@ -19,7 +19,7 @@ class DiscountRules extends Base
     function __construct()
     {
         parent::__construct();
-        $this->title = __('Discount Rules', WDR_TEXT_DOMAIN);
+        $this->title = __('Discount Rules', 'woo-discount-rules');
     }
 
     /**

@@ -39,13 +39,13 @@ class Base
     function filtersTypes()
     {
         $this->filter_types['all_products'] = array(
-            'label' => __('All Products', WDR_TEXT_DOMAIN),
-            'group' => __('Product', WDR_TEXT_DOMAIN),
+            'label' => __('All Products', 'woo-discount-rules'),
+            'group' => __('Product', 'woo-discount-rules'),
             'template' => WDR_PLUGIN_PATH . 'App/Views/Admin/Rules/Filters/AllProducts.php',
         );
         $this->filter_types['products'] = array(
-            'label' => __('Products', WDR_TEXT_DOMAIN),
-            'group' => __('Product', WDR_TEXT_DOMAIN),
+            'label' => __('Products', 'woo-discount-rules'),
+            'group' => __('Product', 'woo-discount-rules'),
             'template' => WDR_PLUGIN_PATH . 'App/Views/Admin/Rules/Filters/Products.php',
         );
 
@@ -191,20 +191,20 @@ class Base
     {
         $this->discount_types['wdr_simple_discount'] = array(
             'class' => '',
-            'label' => __('Product Adjustment', WDR_TEXT_DOMAIN),
-            'group' => __('Simple Discount', WDR_TEXT_DOMAIN),
+            'label' => __('Product Adjustment', 'woo-discount-rules'),
+            'group' => __('Simple Discount', 'woo-discount-rules'),
             'template' => WDR_PLUGIN_PATH . 'App/Views/Admin/Rules/Discounts/simple.php',
         );
         $this->discount_types['wdr_cart_discount'] = array(
             'class' => '',
-            'label' => __('Cart Adjustment', WDR_TEXT_DOMAIN),
-            'group' => __('Simple Discount', WDR_TEXT_DOMAIN),
+            'label' => __('Cart Adjustment', 'woo-discount-rules'),
+            'group' => __('Simple Discount', 'woo-discount-rules'),
             'template' => WDR_PLUGIN_PATH . 'App/Views/Admin/Rules/Discounts/Cart.php',
         );
         $this->discount_types['wdr_bulk_discount'] = array(
             'class' => '',
-            'label' => __('Bulk Discount', WDR_TEXT_DOMAIN),
-            'group' => __('Bulk Discount', WDR_TEXT_DOMAIN),
+            'label' => __('Bulk Discount', 'woo-discount-rules'),
+            'group' => __('Bulk Discount', 'woo-discount-rules'),
             'template' => WDR_PLUGIN_PATH . 'App/Views/Admin/Rules/Discounts/Bulk.php',
         );
 

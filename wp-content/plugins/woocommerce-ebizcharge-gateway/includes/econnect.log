@@ -17288,3 +17288,648 @@ Array
 
 )
 
+Add sales order params: 
+Array
+(
+    [securityToken] => Array
+        (
+            [SecurityId] => 10ff2a5f-34ea-4cb3-9ce1-5c6ec36909df
+            [UserId] => alconoxwoo
+            [Password] => 15Asd36
+        )
+
+    [salesOrder] => Array
+        (
+            [SalesOrderNumber] => 21122
+            [CustomerId] => 0
+            [Date] => 2021-02-22 10:34:48
+            [Currency] => USD
+            [Amount] => 59.47
+            [DueDate] => 2021-02-22 10:34:48
+            [DateUploaded] => 2021-02-22 10:34:48
+            [AmountDue] => 0
+            [PoNum] => 21122
+            [TotalTaxAmount] => 0
+            [Description] => Christopher Griggs  400 N 42nd St.  Philadelphia PA 19104 US cpgriggs@gmail.com 7633604011
+            [NotifyCustomer] => false
+            [billingAddress] => Array
+                (
+                    [FirstName] => Christopher
+                    [LastName] => Griggs
+                    [CompanyName] => 
+                    [Address1] => 400 N 42nd St.
+                    [Address2] => 
+                    [City] => Philadelphia
+                    [State] => PA
+                    [ZipCode] => 19104
+                    [Country] => US
+                )
+
+            [shippingAddress] => Array
+                (
+                    [FirstName] => Christopher
+                    [LastName] => Griggs
+                    [CompanyName] => 
+                    [Address1] => 400 N 42nd St.
+                    [Address2] => 
+                    [City] => Philadelphia
+                    [State] => PA
+                    [ZipCode] => 19104
+                    [Country] => US
+                )
+
+            [Memo] => No
+            [ShipDate] => 2021-02-22 10:34:48
+            [ShipVia] => NA
+            [IsToBeEmailed] => false
+            [IsToBePrinted] => false
+            [UniqueId] => 21122
+            [Software] => woocommerce
+            [Items] => Array
+                (
+                    [0] => Array
+                        (
+                            [ItemId] => 20801
+                            [Name] => Ledizolv - 16 oz (0.47L)
+                            [Description] => Ledizolv - 16 oz (0.47L)
+                            [UnitPrice] => 21.80
+                            [Qty] => 2
+                            [Taxable] => 
+                            [TaxRate] => 0
+                            [TotalLineAmount] => 43.6
+                            [TotalLineTax] => 0
+                            [ItemLineNumber] => 1
+                            [GrossPrice] => 0
+                            [WarrantyDiscount] => 0
+                            [SalesDiscount] => 0
+                        )
+
+                )
+
+        )
+
+)
+
+Added sales order response: 
+stdClass Object
+(
+    [AddSalesOrderResult] => stdClass Object
+        (
+            [SalesOrderInternalId] => 
+            [Status] => Error
+            [StatusCode] => 0
+            [Error] => Adding Record error.  CustomerId not found
+            [ErrorCode] => 3
+        )
+
+)
+
+Sales order info saved. Order ID:21122
+Array
+(
+    [0] => Array
+        (
+            [type] => notice
+            [message] => Sync Orders process has been completed. 1 record(s) processed.
+        )
+
+    [1] => Array
+        (
+            [type] => error
+            [message] => Errors have occurred during the Sales order sync process, please review the logs. First error occurred is: Adding Record error.  CustomerId not found
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [type] => notice
+            [message] => Sync Invoices process has been completed. 0 record(s) processed.
+        )
+
+    [1] => Array
+        (
+            [type] => success
+            [message] => Completed the Invoice sync process with no errors.
+        )
+
+)
+
+Add sales order params: 
+Array
+(
+    [securityToken] => Array
+        (
+            [SecurityId] => 10ff2a5f-34ea-4cb3-9ce1-5c6ec36909df
+            [UserId] => alconoxwoo
+            [Password] => 15Asd36
+        )
+
+    [salesOrder] => Array
+        (
+            [SalesOrderNumber] => 21123
+            [CustomerId] => 0
+            [Date] => 2021-02-22 11:13:40
+            [Currency] => USD
+            [Amount] => 117.33
+            [DueDate] => 2021-02-22 11:13:40
+            [DateUploaded] => 2021-02-22 11:13:40
+            [AmountDue] => 0
+            [PoNum] => 21123
+            [TotalTaxAmount] => 0
+            [Description] => Guillaume Laurent Auburn University 380 Duncan Drive  Auburn AL 36849 US glaurent@auburn.edu 3348448712
+            [NotifyCustomer] => false
+            [billingAddress] => Array
+                (
+                    [FirstName] => Guillaume
+                    [LastName] => Laurent
+                    [CompanyName] => Auburn University
+                    [Address1] => 380 Duncan Drive
+                    [Address2] => 
+                    [City] => Auburn
+                    [State] => AL
+                    [ZipCode] => 36849
+                    [Country] => US
+                )
+
+            [shippingAddress] => Array
+                (
+                    [FirstName] => Guillaume
+                    [LastName] => Laurent
+                    [CompanyName] => Auburn University
+                    [Address1] => 380 Duncan Drive
+                    [Address2] => 
+                    [City] => Auburn
+                    [State] => AL
+                    [ZipCode] => 36849
+                    [Country] => US
+                )
+
+            [Memo] => No
+            [ShipDate] => 2021-02-22 11:13:40
+            [ShipVia] => NA
+            [IsToBeEmailed] => false
+            [IsToBePrinted] => false
+            [UniqueId] => 21123
+            [Software] => woocommerce
+            [Items] => Array
+                (
+                    [0] => Array
+                        (
+                            [ItemId] => 17439
+                            [Name] => Alconox - Dispenser Box of 50×1/2 oz packs (50x15g)
+                            [Description] => Alconox - Dispenser Box of 50×1/2 oz packs (50x15g)
+                            [UnitPrice] => 105.10
+                            [Qty] => 1
+                            [Taxable] => 
+                            [TaxRate] => 0
+                            [TotalLineAmount] => 105.1
+                            [TotalLineTax] => 0
+                            [ItemLineNumber] => 1
+                            [GrossPrice] => 0
+                            [WarrantyDiscount] => 0
+                            [SalesDiscount] => 0
+                        )
+
+                )
+
+        )
+
+)
+
+Added sales order response: 
+stdClass Object
+(
+    [AddSalesOrderResult] => stdClass Object
+        (
+            [SalesOrderInternalId] => 
+            [Status] => Error
+            [StatusCode] => 0
+            [Error] => Adding Record error.  CustomerId not found
+            [ErrorCode] => 3
+        )
+
+)
+
+Sales order info saved. Order ID:21123
+Array
+(
+    [0] => Array
+        (
+            [type] => notice
+            [message] => Sync Orders process has been completed. 1 record(s) processed.
+        )
+
+    [1] => Array
+        (
+            [type] => error
+            [message] => Errors have occurred during the Sales order sync process, please review the logs. First error occurred is: Adding Record error.  CustomerId not found
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [type] => notice
+            [message] => Sync Invoices process has been completed. 0 record(s) processed.
+        )
+
+    [1] => Array
+        (
+            [type] => success
+            [message] => Completed the Invoice sync process with no errors.
+        )
+
+)
+
+Add sales order params: 
+Array
+(
+    [securityToken] => Array
+        (
+            [SecurityId] => 10ff2a5f-34ea-4cb3-9ce1-5c6ec36909df
+            [UserId] => alconoxwoo
+            [Password] => 15Asd36
+        )
+
+    [salesOrder] => Array
+        (
+            [SalesOrderNumber] => 21126
+            [CustomerId] => 0
+            [Date] => 2021-02-22 15:45:15
+            [Currency] => USD
+            [Amount] => 300.24
+            [DueDate] => 2021-02-22 15:45:15
+            [DateUploaded] => 2021-02-22 15:45:15
+            [AmountDue] => 0
+            [PoNum] => 21126
+            [TotalTaxAmount] => 0
+            [Description] => Sixarp Praxis Sixarp LLC Praxis 7650 Caterpillar Ct SW Suite D Grand Rapids MI 49548 US hvandentoorn@praxispackaging.com 6168278525
+            [NotifyCustomer] => false
+            [billingAddress] => Array
+                (
+                    [FirstName] => Sixarp
+                    [LastName] => Praxis
+                    [CompanyName] => Sixarp LLC Praxis
+                    [Address1] => 7650 Caterpillar Ct SW
+                    [Address2] => Suite D
+                    [City] => Grand Rapids
+                    [State] => MI
+                    [ZipCode] => 49548
+                    [Country] => US
+                )
+
+            [shippingAddress] => Array
+                (
+                    [FirstName] => Silvia
+                    [LastName] => Rivera Garcia
+                    [CompanyName] => Sixarp LLC Praxis
+                    [Address1] => 7650 Caterpillar Ct SW
+                    [Address2] => Suite D
+                    [City] => Grand Rapids
+                    [State] => MI
+                    [ZipCode] => 49548
+                    [Country] => US
+                )
+
+            [Memo] => No
+            [ShipDate] => 2021-02-22 15:45:15
+            [ShipVia] => NA
+            [IsToBeEmailed] => false
+            [IsToBePrinted] => false
+            [UniqueId] => 21126
+            [Software] => woocommerce
+            [Items] => Array
+                (
+                    [0] => Array
+                        (
+                            [ItemId] => 17893
+                            [Name] => Citranox - Case of 12×1 Quart (12×0.95L)
+                            [Description] => Citranox - Case of 12×1 Quart (12×0.95L)
+                            [UnitPrice] => 235
+                            [Qty] => 1
+                            [Taxable] => 
+                            [TaxRate] => 0
+                            [TotalLineAmount] => 235
+                            [TotalLineTax] => 0
+                            [ItemLineNumber] => 1
+                            [GrossPrice] => 0
+                            [WarrantyDiscount] => 0
+                            [SalesDiscount] => 0
+                        )
+
+                )
+
+        )
+
+)
+
+Added sales order response: 
+stdClass Object
+(
+    [AddSalesOrderResult] => stdClass Object
+        (
+            [SalesOrderInternalId] => 
+            [Status] => Error
+            [StatusCode] => 0
+            [Error] => Adding Record error.  CustomerId not found
+            [ErrorCode] => 3
+        )
+
+)
+
+Sales order info saved. Order ID:21126
+Array
+(
+    [0] => Array
+        (
+            [type] => notice
+            [message] => Sync Orders process has been completed. 1 record(s) processed.
+        )
+
+    [1] => Array
+        (
+            [type] => error
+            [message] => Errors have occurred during the Sales order sync process, please review the logs. First error occurred is: Adding Record error.  CustomerId not found
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [type] => notice
+            [message] => Sync Invoices process has been completed. 0 record(s) processed.
+        )
+
+    [1] => Array
+        (
+            [type] => success
+            [message] => Completed the Invoice sync process with no errors.
+        )
+
+)
+
+Add sales order params: 
+Array
+(
+    [securityToken] => Array
+        (
+            [SecurityId] => 10ff2a5f-34ea-4cb3-9ce1-5c6ec36909df
+            [UserId] => alconoxwoo
+            [Password] => 15Asd36
+        )
+
+    [salesOrder] => Array
+        (
+            [SalesOrderNumber] => 21129
+            [CustomerId] => 0
+            [Date] => 2021-02-23 14:01:59
+            [Currency] => USD
+            [Amount] => 57.94
+            [DueDate] => 2021-02-23 14:01:59
+            [DateUploaded] => 2021-02-23 14:01:59
+            [AmountDue] => 0
+            [PoNum] => 21129
+            [TotalTaxAmount] => 1.93
+            [Description] => Joseph Blaire  193 Java Street Apt 3R Brooklyn NY 11222 US Jblaire25@gmail.com 6468844926
+            [NotifyCustomer] => false
+            [billingAddress] => Array
+                (
+                    [FirstName] => Joseph
+                    [LastName] => Blaire
+                    [CompanyName] => 
+                    [Address1] => 193 Java Street
+                    [Address2] => Apt 3R
+                    [City] => Brooklyn
+                    [State] => NY
+                    [ZipCode] => 11222
+                    [Country] => US
+                )
+
+            [shippingAddress] => Array
+                (
+                    [FirstName] => Joseph
+                    [LastName] => Blaire
+                    [CompanyName] => 
+                    [Address1] => 193 Java Street
+                    [Address2] => Apt 3R
+                    [City] => Brooklyn
+                    [State] => NY
+                    [ZipCode] => 11222
+                    [Country] => US
+                )
+
+            [Memo] => No
+            [ShipDate] => 2021-02-23 14:01:59
+            [ShipVia] => NA
+            [IsToBeEmailed] => false
+            [IsToBePrinted] => false
+            [UniqueId] => 21129
+            [Software] => woocommerce
+            [Items] => Array
+                (
+                    [0] => Array
+                        (
+                            [ItemId] => 20801
+                            [Name] => Ledizolv - 16 oz (0.47L)
+                            [Description] => Ledizolv - 16 oz (0.47L)
+                            [UnitPrice] => 21.80
+                            [Qty] => 1
+                            [Taxable] => 1
+                            [TaxRate] => 0
+                            [TotalLineAmount] => 21.8
+                            [TotalLineTax] => 1.93
+                            [ItemLineNumber] => 1
+                            [GrossPrice] => 0
+                            [WarrantyDiscount] => 0
+                            [SalesDiscount] => 0
+                        )
+
+                )
+
+        )
+
+)
+
+Added sales order response: 
+stdClass Object
+(
+    [AddSalesOrderResult] => stdClass Object
+        (
+            [SalesOrderInternalId] => 
+            [Status] => Error
+            [StatusCode] => 0
+            [Error] => Adding Record error.  CustomerId not found
+            [ErrorCode] => 3
+        )
+
+)
+
+Sales order info saved. Order ID:21129
+Array
+(
+    [0] => Array
+        (
+            [type] => notice
+            [message] => Sync Orders process has been completed. 1 record(s) processed.
+        )
+
+    [1] => Array
+        (
+            [type] => error
+            [message] => Errors have occurred during the Sales order sync process, please review the logs. First error occurred is: Adding Record error.  CustomerId not found
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [type] => notice
+            [message] => Sync Invoices process has been completed. 0 record(s) processed.
+        )
+
+    [1] => Array
+        (
+            [type] => success
+            [message] => Completed the Invoice sync process with no errors.
+        )
+
+)
+
+Add sales order params: 
+Array
+(
+    [securityToken] => Array
+        (
+            [SecurityId] => 10ff2a5f-34ea-4cb3-9ce1-5c6ec36909df
+            [UserId] => alconoxwoo
+            [Password] => 15Asd36
+        )
+
+    [salesOrder] => Array
+        (
+            [SalesOrderNumber] => 21132
+            [CustomerId] => 0
+            [Date] => 2021-02-23 17:00:48
+            [Currency] => USD
+            [Amount] => 59.96
+            [DueDate] => 2021-02-23 17:00:48
+            [DateUploaded] => 2021-02-23 17:00:48
+            [AmountDue] => 0
+            [PoNum] => 21132
+            [TotalTaxAmount] => 0
+            [Description] => John Jiang Harley-Davidson 11800 W. Capitol Drive  Wauwatosa WI 53222 US John.Jiang@harley-davidson.com 414-465-7638
+            [NotifyCustomer] => false
+            [billingAddress] => Array
+                (
+                    [FirstName] => John
+                    [LastName] => Jiang
+                    [CompanyName] => Harley-Davidson
+                    [Address1] => 11800 W. Capitol Drive
+                    [Address2] => 
+                    [City] => Wauwatosa
+                    [State] => WI
+                    [ZipCode] => 53222
+                    [Country] => US
+                )
+
+            [shippingAddress] => Array
+                (
+                    [FirstName] => John
+                    [LastName] => Jiang
+                    [CompanyName] => Harley-Davidson
+                    [Address1] => 11800 W. Capitol Drive
+                    [Address2] => 
+                    [City] => Wauwatosa
+                    [State] => WI
+                    [ZipCode] => 53222
+                    [Country] => US
+                )
+
+            [Memo] => No
+            [ShipDate] => 2021-02-23 17:00:48
+            [ShipVia] => NA
+            [IsToBeEmailed] => false
+            [IsToBePrinted] => false
+            [UniqueId] => 21132
+            [Software] => woocommerce
+            [Items] => Array
+                (
+                    [0] => Array
+                        (
+                            [ItemId] => 17439
+                            [Name] => Alconox - 4 lb box (1.8Kg)
+                            [Description] => Alconox - 4 lb box (1.8Kg)
+                            [UnitPrice] => 47.20
+                            [Qty] => 1
+                            [Taxable] => 
+                            [TaxRate] => 0
+                            [TotalLineAmount] => 47.2
+                            [TotalLineTax] => 0
+                            [ItemLineNumber] => 1
+                            [GrossPrice] => 0
+                            [WarrantyDiscount] => 0
+                            [SalesDiscount] => 0
+                        )
+
+                )
+
+        )
+
+)
+
+Added sales order response: 
+stdClass Object
+(
+    [AddSalesOrderResult] => stdClass Object
+        (
+            [SalesOrderInternalId] => 
+            [Status] => Error
+            [StatusCode] => 0
+            [Error] => Adding Record error.  CustomerId not found
+            [ErrorCode] => 3
+        )
+
+)
+
+Sales order info saved. Order ID:21132
+Array
+(
+    [0] => Array
+        (
+            [type] => notice
+            [message] => Sync Orders process has been completed. 1 record(s) processed.
+        )
+
+    [1] => Array
+        (
+            [type] => error
+            [message] => Errors have occurred during the Sales order sync process, please review the logs. First error occurred is: Adding Record error.  CustomerId not found
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [type] => notice
+            [message] => Sync Invoices process has been completed. 0 record(s) processed.
+        )
+
+    [1] => Array
+        (
+            [type] => success
+            [message] => Completed the Invoice sync process with no errors.
+        )
+
+)
+

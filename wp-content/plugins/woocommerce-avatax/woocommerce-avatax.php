@@ -5,23 +5,23 @@
  * Description: Seamless integration with Avalara's tax calculation and management services.
  * Author: SkyVerge
  * Author URI: http://www.woocommerce.com/
- * Version: 1.11.0
+ * Version: 1.11.2
  * Text Domain: woocommerce-avatax
  * Domain Path: /i18n/languages/
  *
- * Copyright: (c) 2016-2020, SkyVerge, Inc. (info@skyverge.com)
+ * Copyright: (c) 2016-2021, SkyVerge, Inc. (info@skyverge.com)
  *
  * License: GNU General Public License v3.0
  * License URI: http://www.gnu.org/licenses/gpl-3.0.html
  *
  * @package   AvaTax
  * @author    SkyVerge
- * @copyright Copyright (c) 2016-2020, SkyVerge, Inc.
+ * @copyright Copyright (c) 2016-2021, SkyVerge, Inc.
  * @license   http://www.gnu.org/licenses/gpl-3.0.html GNU General Public License v3.0
  *
  * Woo: 1389326:57077a4b28ba71cacf692bcf4a1a7f60
  * WC requires at least: 3.5
- * WC tested up to: 4.7.1
+ * WC tested up to: 4.9.2
  */
 
 defined( 'ABSPATH' ) or exit;

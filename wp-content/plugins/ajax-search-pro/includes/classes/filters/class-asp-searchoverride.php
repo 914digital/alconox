@@ -238,7 +238,7 @@ if (!class_exists("WD_ASP_SearchOverride_Filter")) {
          * @param WP_Query() $wp_query The instance of WP_Query() for this query
          * @return array|bool
          */
-        public function checkSearchOverride($check_only = true, $wp_query) {
+        public function checkSearchOverride($check_only, $wp_query) {
             // Check the search query
             if ( !$this->isSearch($wp_query) ) {
                 return false;
@@ -335,9 +335,12 @@ if (!class_exists("WD_ASP_SearchOverride_Filter")) {
          * @param $post
          * @return mixed
          */
-        public function fixUrls($url, $post ) {
-            if (isset($post->asp_guid))
+        public function fixUrls( $url, $post ) {
+            if ( isset($post->asp_data, $post->asp_data->link) ) {
+                return $post->asp_data->link;
+            } else if ( isset($post->asp_guid) ) {
                 return $post->asp_guid;
+            }
             return $url;
         }
 

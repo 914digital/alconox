@@ -14,7 +14,7 @@ class Help extends Base
     public function __construct()
     {
         parent::__construct();
-        $this->title = __('Read Documentation', WDR_TEXT_DOMAIN);
+        $this->title = __('Read Documentation', 'woo-discount-rules');
     }
 
     /**

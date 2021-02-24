@@ -49,7 +49,7 @@ if(!class_exists('FlycartWooDiscountRulesExistingPROUpdater')){
                 }
                 if ( ! $upgrader->result || is_wp_error( $upgrader->result ) ) {
                     echo "<input type='hidden' id='wdr_pro_install_status' value='0'/>";
-                    echo "<div class='awdr_pro_install_message'>".__('Please download the Pro 2.0 pack from My Downloads page in our site, install and activate it. <a href="https://docs.flycart.org/en/collections/2195266?utm_source=woo-discount-rules-v2&utm_campaign=doc&utm_medium=text-click&utm_content=documentation" target="_blank">Here is a guide and video tutorial</a>', WDR_TEXT_DOMAIN)."</div>";
+                    echo "<div class='awdr_pro_install_message'>".__('Please download the Pro 2.0 pack from My Downloads page in our site, install and activate it. <a href="https://docs.flycart.org/en/collections/2195266?utm_source=woo-discount-rules-v2&utm_campaign=doc&utm_medium=text-click&utm_content=documentation" target="_blank">Here is a guide and video tutorial</a>', 'woo-discount-rules')."</div>";
                 } else {
                     echo "<input type='hidden' id='wdr_pro_install_status' value='1'/>";
                     echo "<div class='awdr_pro_install_message'>".__('Redirecting to v2 please wait..')."</div";
@@ -140,12 +140,12 @@ if(!class_exists('FlycartWooDiscountRulesExistingPROUpdater')){
          * */
         public static function messageForLicenceKey($status, $licence_key){
             if(empty($licence_key)){
-                return '<p class="wdr-licence-invalid-text">'.esc_html__('Please enter a valid license key', WDR_TEXT_DOMAIN).'</p>';
+                return '<p class="wdr-licence-invalid-text">'.esc_html__('Please enter a valid license key', 'woo-discount-rules').'</p>';
             } else {
                 if($status){
-                    return '<p class="wdr-licence-valid-text">'.esc_html__('License key check : Passed.', WDR_TEXT_DOMAIN).'</p>';
+                    return '<p class="wdr-licence-valid-text">'.esc_html__('License key check : Passed.', 'woo-discount-rules').'</p>';
                 } else {
-                    return '<p class="wdr-licence-invalid-text">'.esc_html__('License key seems to be Invalid. Please enter a valid license key', WDR_TEXT_DOMAIN).'</p>';
+                    return '<p class="wdr-licence-invalid-text">'.esc_html__('License key seems to be Invalid. Please enter a valid license key', 'woo-discount-rules').'</p>';
                 }
             }
         }
@@ -310,11 +310,11 @@ if(!class_exists('FlycartWooDiscountRulesExistingPROUpdater')){
             if ( !empty($licence_key) ) {
                 $verifiedLicense = self::getLicenceKeyVerifiedStatus();
                 if(!$verifiedLicense){
-                    $message['message'] = sprintf(__('License key for the %s seems invalid. %s, you can get it from %s', WDR_TEXT_DOMAIN), self::$plugin_name, $enter_valid_anchor_tag, $flycart_anchor_tag);
+                    $message['message'] = sprintf(__('License key for the %s seems invalid. %s, you can get it from %s', 'woo-discount-rules'), self::$plugin_name, $enter_valid_anchor_tag, $flycart_anchor_tag);
                     $message['has_message'] = true;
                 }
             } else {
-                $message['message'] = sprintf(__('License key for the %s is not entered. %s, you can get it from %s', WDR_TEXT_DOMAIN), self::$plugin_name, $enter_valid_anchor_tag, $flycart_anchor_tag);
+                $message['message'] = sprintf(__('License key for the %s is not entered. %s, you can get it from %s', 'woo-discount-rules'), self::$plugin_name, $enter_valid_anchor_tag, $flycart_anchor_tag);
                 $message['has_message'] = true;
             }
 
@@ -372,7 +372,11 @@ if(!class_exists('FlycartWooDiscountRulesExistingPROUpdater')){
                 if(!empty($response)){
                     $returned_object = maybe_unserialize(wp_remote_retrieve_body($response));
                     if(!empty($returned_object)){
-                        if(empty($pluginInfo)){$pluginInfo = new \stdClass();}
+                        if(empty($pluginInfo)){
+                            if(class_exists('\Puc_v4p9_Plugin_Info')){
+                                $pluginInfo = new \Puc_v4p9_Plugin_Info();
+                            }
+                        }
                         if(!empty($returned_object->name)) $pluginInfo->name = $returned_object->name;
                         if(!empty($returned_object->sections)) $pluginInfo->sections = $returned_object->sections;
                         if(!empty($returned_object->author)) $pluginInfo->author = $returned_object->author;

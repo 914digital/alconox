@@ -61,7 +61,7 @@ if ( !class_exists('aspFilter') ) {
                 $this->values[] = $new;
             } else {
                 $position = intval($position);
-                array_splice( $original, $position, 0, $new );
+                array_splice( $this->values, $position, 0, $new );
             }
             return $new;
         }

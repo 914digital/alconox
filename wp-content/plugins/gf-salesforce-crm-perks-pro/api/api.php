@@ -138,7 +138,7 @@ if(!isset($info['instance_url']) || empty($info['instance_url'])){
   if(isset($body['disable_rules'])){
   $head['Sforce-Auto-Assign']='false'; 
   unset($body['disable_rules']);   
-  } 
+  }
   $body=json_encode($body);
 
   }
@@ -272,6 +272,9 @@ $sales_response=$this->post_sales_arr('/services/data/'.$this->api_version.'/sob
      $id=$field_info['Id'];
      unset($field_info['Id']);
    $field_info['Id']=$id;   
+  }
+   if(in_array($object,array("Lead",'Contact'))){
+  $field_info['vx_camp_id']=array('name'=>'vx_camp_id',"type"=>'string','label'=>'Campaign Id','custom'=>true);
   }
   $field_info['vx_list_files']=array('name'=>'vx_list_files',"type"=>'files','label'=>'Files - Related List','custom'=>true);
   $field_info['vx_list_files2']=array('name'=>'vx_list_files2',"type"=>'files','label'=>'Files 2 - Related List','custom'=>true);
@@ -476,10 +479,13 @@ $post=implode('&',$body);
   
   // Use test/www subdomain based on whether this is a test or live
   $sub =$test ? 'test' : 'webto' ;
-  
+  $url='https://'.$sub.'.salesforce.com/';
+  $org_url=$this->post('org_url',$info);
+  if(!empty($org_url)){
+      $url=trailingslashit($org_url);
+  }
   // Use (test|www) subdomain and WebTo(Lead|Case) based on setting
-  $url =  sprintf('https://%s.salesforce.com/servlet/servlet.WebTo%s?encoding=UTF-8', $sub, $object);
- 
+  $url =$url.sprintf('servlet/servlet.WebTo%s?encoding=UTF-8', $object);
   // POST the data to Salesforce
   $result = wp_remote_post($url, $args);
 
@@ -592,6 +598,12 @@ if(!empty($meta['owner'])){
     $fields['disable_rules']=1;
 }  
 }
+$camp_id='';
+if(isset($fields['vx_camp_id'])){
+$camp_id=$fields['vx_camp_id'];
+unset($fields['vx_camp_id']);   
+}
+
   if($debug){ ob_start();}
   //check primary key
   $search=array(); $search2=array();
@@ -641,6 +653,7 @@ if(!empty($meta['owner'])){
       }   
   //object found, update old object or add to feed
   $id=$sales_response[0]['Id'];  //count($sales_response)-1
+  $extra["response"]=$search_response;
   }}
   
   if(isset($sales_response[0]['errorCode'])){
@@ -722,9 +735,7 @@ $entry_exists=true;
   $action="Deleted";
   $sales_response=$this->post_sales_arr('/services/data/'.$this->api_version.'/sobjects/'.$object."/".$id,"DELETE");
     if(empty($sales_response)){ $status="5"; } 
-  }
-  else{    
-      
+}else{     
   $action="Updated";
   //update old object
    if(empty($meta['update'])){
@@ -781,13 +792,15 @@ if($sent && !empty($id)){
         }
     }
 }
-
-  //associate lead and campaign
-  if($this->post('add_to_camp',$meta) == "1" && $id !="" && in_array($object,array("Lead","Contact"))){
-   $camp_id=$this->post('campaign',$meta);   
+if($this->post('add_to_camp',$meta) == "1"){
+    $camp_id=$this->post('campaign',$meta);   
     if($this->post('camp_type',$meta) != ""){
     $camp_id=$this->post('campaign_id',$meta);    
-    }
+    }   
+}
+  //associate lead and campaign
+  if( !empty($camp_id) && $id !="" && in_array($object,array("Lead","Contact"))){
+
   $camp_post=array($object."Id"=>$id,"CampaignId"=>$camp_id,"Status"=>$this->post('member_status',$meta));  
   $extra['camp_post']=$camp_post;
   $camp_post=json_encode($camp_post);
@@ -952,9 +965,16 @@ if(!empty($items['extra'])){
          if(empty($post['Status'])){
        $post['Status']='Draft';  
      }
+$disable=false;
+     if(isset($post['disable_rules'])){
+         $disable=true;
+  unset($post['disable_rules']);   
+  }
       $post_json=array("order"=>array($post));   
-
-       $sales_response=$this->post_sales_arr($path,'POST',json_encode($post_json));
+ if($disable){
+  $post_json['disable_rules']='1';   
+ }
+       $sales_response=$this->post_sales_arr($path,'POST',$post_json);
 
        if(isset($sales_response['records'][0]) && is_array($sales_response['records'][0]) && isset($sales_response['records'][0]['Id'])){
            $sales_response=array("id"=>$sales_response['records'][0]['Id']);
@@ -1020,7 +1040,7 @@ public function get_items($meta){
        }  
        }    
      }
-  //  die('-------------');  
+  //var_dump($sales_response,$q); die();  die('-------------');  
         if(!empty($price_book_id)){
          //add as order item
        $order_item=array('quantity'=>$item['qty'],'PricebookEntryId'=>$price_book_id,'UnitPrice'=>$item['cost_woo']); //,'Product2Id'=>$product_id
@@ -1036,11 +1056,11 @@ public function get_items($meta){
   return array('items'=>$order_items,'price_book'=>$price_book,'extra'=>$extra);   
 }
 public function get_wc_items($meta){
+
       $_order=self::$_order;
     //  $fees=$_order->get_shipping_total();
     //  $fees=$_order-> get_total_discount();
     //  $fees=$_order-> get_total_tax();
-
      $items=$_order->get_items(); 
      $products=array();  $order_items=array(); 
 if(is_array($items) && count($items)>0 ){
@@ -1068,11 +1088,13 @@ if(method_exists($item,'get_product')){
    if(empty($p_id)){
        $p_id=$var_id;
    }else{
-           $product_simple=new WC_Product($p_id);
+           $product_simple=wc_get_product($p_id);
+           if($product_simple){
          $parent_sku=$product_simple->get_sku(); 
          if($parent_sku == $sku){
              $sku.='-'.$var_id;
          }
+           }
    }
    $name=$item->get_name();
  //  $p_id=$product->get_id();
@@ -1082,7 +1104,12 @@ if(method_exists($item,'get_product')){
    $p_id=$var_id= !empty($item['variation_id']) ? $item['variation_id'] : $item['product_id'];
         $line_desc=array();
         if(!isset($products[$p_id])){
+            try{
         $product=new WC_Product($p_id);
+            }catch(Exception $e){
+                echo $e->getMessage();
+            }
+            die();
         }else{
          $product=$products[$p_id];   
         }
@@ -1092,6 +1119,7 @@ if(method_exists($item,'get_product')){
         $sku=$product->get_sku(); 
         if(empty($sku) && !empty($item['product_id'])){ 
             //if variable product is empty , get simple product sku
+            
             $product_simple=new WC_Product($item['product_id']);
             $sku=$product_simple->get_sku(); 
         }
@@ -1109,7 +1137,6 @@ if(method_exists($item,'get_product')){
      $order_items[$item_id]=$temp;     
       }
 } 
-     
    return $order_items;       
 }
   /**
@@ -1130,15 +1157,17 @@ foreach($fixed as $field_key=>$field_val){
   continue;   
  }
    if(in_array($type, array("datetime",'date') ) ){
-      $offset=get_option('gmt_offset');
-     $offset=$offset*3600; 
+     
      $date_val=strtotime(str_replace(array("/"),"-",$field_val));
-     if(strpos($field_val,'+') === false){ // convert to utc if no timezone(+) does not exist with time string
-     $date_val-= $offset;   
-     }
+   
      if( $type == "date"  ){
   $field_val=date('Y-m-d',$date_val); 
-  }else{  
+  }else{ 
+    $offset=get_option('gmt_offset');
+     $offset=$offset*3600; 
+     if(strpos($field_val,'+') === false){ // convert to utc if no timezone(+) does not exist with time string
+     $date_val-= $offset;   
+     }  
   $field_val=date('c',$date_val); 
   }
   }else if($type == "boolean"){

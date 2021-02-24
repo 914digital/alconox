@@ -119,6 +119,7 @@ if (!class_exists('ASP_Search')) {
         }
 
         public function prepare_keywords($s) {
+
             if ( $s !== false )
                 $keyword = $s;
             else
@@ -134,14 +135,26 @@ if (!class_exists('ASP_Search')) {
              * Avoid double escape, explode the $keyword instead of $this->s
              * Regex to match individual words and phrases between double quotes
              **/
-			if ( preg_match_all( '/".*?("|$)|((?<=[\t ",+])|^)[^\t ",+]+/', $keyword, $matches ) ) {
+			if (
+			    preg_match_all( '/«.*?»/', $keyword, $m ) > 0 &&  // Only if there is at lease one complete «text» match
+                preg_match_all( '/«.*?(»|$)|((?<=[\t «,+])|^)[^\t »,+]+/', $keyword, $matches )
+            ) {
 				$this->_s = $this->parse_search_terms(  $matches[0] );
-			} else {
+			} else if (
+                preg_match_all( '/".*?("|$)|((?<=[\t ",+])|^)[^\t ",+]+/', $keyword, $matches )
+            ) {
+                $this->_s = $this->parse_search_terms(  $matches[0] );
+            } else {
 				$this->_s = $this->parse_search_terms( explode(" ", $keyword) );
 			}
-			if ( preg_match_all( '/".*?("|$)|((?<=[\t ",+])|^)[^\t ",+]+/', $keyword_rev, $matches ) ) {
+			if (
+                preg_match_all( '/«.*?»/', $keyword_rev, $m ) > 0 &&  // Only if there is at lease one complete «text» match
+                preg_match_all( '/«.*?(»|$)|((?<=[\t «,+])|^)[^\t »,+]+/', $keyword_rev, $matches )
+            ) {
 				$this->_sr = $this->parse_search_terms(  array_reverse($matches[0]) );
-			} else {
+			} else if ( preg_match_all( '/".*?("|$)|((?<=[\t ",+])|^)[^\t ",+]+/', $keyword_rev, $matches ) ) {
+                $this->_sr = $this->parse_search_terms(  array_reverse($matches[0]) );
+            } else {
 				$this->_sr = $this->parse_search_terms( array_reverse( explode(" ", $keyword_rev ) ) );
 			}
 
@@ -169,10 +182,13 @@ if (!class_exists('ASP_Search')) {
 
             foreach ( $terms as $term ) {
                 // keep before/after spaces when term is for exact match
-                if ( preg_match( '/^".+"$/', $term ) )
-                    $term = trim( $term, "\"'" );
-                else
-                    $term = trim( $term, "\"' " );
+                if ( preg_match( '/^".+"$/', $term ) ) {
+                    $term = trim($term, "\"'");
+                } else if ( preg_match( '/^«.+»$/', $term ) ) { // same for russian quotes
+                    $term = trim($term, "«»'");
+                } else {
+                    $term = trim($term, "\"' ");
+                }
 
                 if ( $term != '' )
                     $checked[] = $term;
@@ -336,7 +352,13 @@ if (!class_exists('ASP_Search')) {
             $haystack = wd_substr_at_word(ASP_mb::strtolower($haystack), $str_length_limit);
             $needle = ASP_mb::strtolower($needle);
 
-            if ( $needle == "" ) return $str;
+            if ( $needle == "" ) {
+                if ( ASP_mb::strlen($str) > $maxlength) {
+                    return wd_substr_at_word($str, $maxlength) . "...";
+                } else {
+                    return $str;
+                }
+            }
 
             /**
              * This is an interesting issue. Turns out mb_substr($hay, $start, 1) is very ineffective.

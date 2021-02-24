@@ -8,7 +8,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 class RuleAmountWithCartDiscount extends RuleAmount {
 
     public function get_subtitle() {
-        return __( 'Amount shown in default store currency', WDR_TEXT_DOMAIN );
+        return __( 'Amount shown in default store currency', 'woo-discount-rules' );
     }
 
 	protected function prepare_params( $params ) {

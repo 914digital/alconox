@@ -30,32 +30,32 @@ class ProOptions
         if($is_pro === false){
             $filter_types['product_category'] = array(
                 'active' => false,
-                'label' => __('Category - PRO -', WDR_TEXT_DOMAIN),
-                'group' => __('Product', WDR_TEXT_DOMAIN),
+                'label' => __('Category - PRO -', 'woo-discount-rules'),
+                'group' => __('Product', 'woo-discount-rules'),
                 'template' => '',
             );
             $filter_types['product_attributes'] = array(
                 'active' => false,
-                'label' => __('Attributes - PRO -', WDR_TEXT_DOMAIN),
-                'group' => __('Product', WDR_TEXT_DOMAIN),
+                'label' => __('Attributes - PRO -', 'woo-discount-rules'),
+                'group' => __('Product', 'woo-discount-rules'),
                 'template' => '',
             );
             $filter_types['product_tags'] = array(
                 'active' => false,
-                'label' => __('Tags - PRO -', WDR_TEXT_DOMAIN),
-                'group' => __('Product', WDR_TEXT_DOMAIN),
+                'label' => __('Tags - PRO -', 'woo-discount-rules'),
+                'group' => __('Product', 'woo-discount-rules'),
                 'template' => '',
             );
             $filter_types['product_sku'] = array(
                 'active' => false,
-                'label' => __('SKUs - PRO -', WDR_TEXT_DOMAIN),
-                'group' => __('Product', WDR_TEXT_DOMAIN),
+                'label' => __('SKUs - PRO -', 'woo-discount-rules'),
+                'group' => __('Product', 'woo-discount-rules'),
                 'template' => '',
             );
             $filter_types['product_on_sale'] = array(
                 'active' => false,
-                'label' => __('On sale products - PRO -', WDR_TEXT_DOMAIN),
-                'group' => __('Product', WDR_TEXT_DOMAIN),
+                'label' => __('On sale products - PRO -', 'woo-discount-rules'),
+                'group' => __('Product', 'woo-discount-rules'),
                 'template' => '',
             );
 
@@ -76,224 +76,224 @@ class ProOptions
             $available_conditions['cart_coupon'] = array(
                 'object' => '\Wdr\App\Conditions\Base',
                 'enable' => false,
-                'label' => __('Coupons - PRO -', WDR_TEXT_DOMAIN),
-                'group' => __('Cart', WDR_TEXT_DOMAIN),
+                'label' => __('Coupons - PRO -', 'woo-discount-rules'),
+                'group' => __('Cart', 'woo-discount-rules'),
                 'template' => '',
                 'extra_params' => array(),
             );
             $available_conditions['cart_item_product_attributes'] = array(
                 'object' => '\Wdr\App\Conditions\Base',
                 'enable' => false,
-                'label' => __('Attributes - PRO -', WDR_TEXT_DOMAIN),
-                'group' => __('Cart Items', WDR_TEXT_DOMAIN),
+                'label' => __('Attributes - PRO -', 'woo-discount-rules'),
+                'group' => __('Cart Items', 'woo-discount-rules'),
                 'template' => '',
                 'extra_params' => array(),
             );
             $available_conditions['cart_item_product_category'] = array(
                 'object' => '\Wdr\App\Conditions\Base',
                 'enable' => false,
-                'label' => __('Category - PRO -', WDR_TEXT_DOMAIN),
-                'group' => __('Cart Items', WDR_TEXT_DOMAIN),
+                'label' => __('Category - PRO -', 'woo-discount-rules'),
+                'group' => __('Cart Items', 'woo-discount-rules'),
                 'template' => '',
                 'extra_params' => array(),
             );
             $available_conditions['cart_item_product_combination'] = array(
                 'object' => '\Wdr\App\Conditions\Base',
                 'enable' => false,
-                'label' => __('Product combination - PRO -', WDR_TEXT_DOMAIN),
-                'group' => __('Cart Items', WDR_TEXT_DOMAIN),
+                'label' => __('Product combination - PRO -', 'woo-discount-rules'),
+                'group' => __('Cart Items', 'woo-discount-rules'),
                 'template' => '',
                 'extra_params' => array(),
             );
             $available_conditions['cart_item_products'] = array(
                 'object' => '\Wdr\App\Conditions\Base',
                 'enable' => false,
-                'label' => __('Products - PRO -', WDR_TEXT_DOMAIN),
-                'group' => __('Cart Items', WDR_TEXT_DOMAIN),
+                'label' => __('Products - PRO -', 'woo-discount-rules'),
+                'group' => __('Cart Items', 'woo-discount-rules'),
                 'template' => '',
                 'extra_params' => array(),
             );
             $available_conditions['cart_item_product_sku'] = array(
                 'object' => '\Wdr\App\Conditions\Base',
                 'enable' => false,
-                'label' => __('SKU - PRO -', WDR_TEXT_DOMAIN),
-                'group' => __('Cart Items', WDR_TEXT_DOMAIN),
+                'label' => __('SKU - PRO -', 'woo-discount-rules'),
+                'group' => __('Cart Items', 'woo-discount-rules'),
                 'template' => '',
                 'extra_params' => array(),
             );
             $available_conditions['cart_item_product_tags'] = array(
                 'object' => '\Wdr\App\Conditions\Base',
                 'enable' => false,
-                'label' => __('Tags - PRO -', WDR_TEXT_DOMAIN),
-                'group' => __('Cart Items', WDR_TEXT_DOMAIN),
+                'label' => __('Tags - PRO -', 'woo-discount-rules'),
+                'group' => __('Cart Items', 'woo-discount-rules'),
                 'template' => '',
                 'extra_params' => array(),
             );
             $available_conditions['cart_items_quantity'] = array(
                 'object' => '\Wdr\App\Conditions\Base',
                 'enable' => false,
-                'label' => __('Cart items quantity - PRO -', WDR_TEXT_DOMAIN),
-                'group' => __('Cart', WDR_TEXT_DOMAIN),
+                'label' => __('Cart items quantity - PRO -', 'woo-discount-rules'),
+                'group' => __('Cart', 'woo-discount-rules'),
                 'template' => '',
                 'extra_params' => array(),
             );
             $available_conditions['cart_items_weight'] = array(
                 'object' => '\Wdr\App\Conditions\Base',
                 'enable' => false,
-                'label' => __('Total weight - PRO -', WDR_TEXT_DOMAIN),
-                'group' => __('Cart', WDR_TEXT_DOMAIN),
+                'label' => __('Total weight - PRO -', 'woo-discount-rules'),
+                'group' => __('Cart', 'woo-discount-rules'),
                 'template' => '',
                 'extra_params' => array(),
             );
             $available_conditions['cart_payment_method'] = array(
                 'object' => '\Wdr\App\Conditions\Base',
                 'enable' => false,
-                'label' => __('Payment Method - PRO -', WDR_TEXT_DOMAIN),
-                'group' => __('Cart', WDR_TEXT_DOMAIN),
+                'label' => __('Payment Method - PRO -', 'woo-discount-rules'),
+                'group' => __('Cart', 'woo-discount-rules'),
                 'template' => '',
                 'extra_params' => array(),
             );
             $available_conditions['order_date'] = array(
                 'object' => '\Wdr\App\Conditions\Base',
                 'enable' => false,
-                'label' => __('Date - PRO -', WDR_TEXT_DOMAIN),
-                'group' => __('Date & Time', WDR_TEXT_DOMAIN),
+                'label' => __('Date - PRO -', 'woo-discount-rules'),
+                'group' => __('Date & Time', 'woo-discount-rules'),
                 'template' => '',
                 'extra_params' => array(),
             );
             $available_conditions['order_date_and_time'] = array(
                 'object' => '\Wdr\App\Conditions\Base',
                 'enable' => false,
-                'label' => __('Date and Time - PRO -', WDR_TEXT_DOMAIN),
-                'group' => __('Date & Time', WDR_TEXT_DOMAIN),
+                'label' => __('Date and Time - PRO -', 'woo-discount-rules'),
+                'group' => __('Date & Time', 'woo-discount-rules'),
                 'template' => '',
                 'extra_params' => array(),
             );
             $available_conditions['order_days'] = array(
                 'object' => '\Wdr\App\Conditions\Base',
                 'enable' => false,
-                'label' => __('Days - PRO -', WDR_TEXT_DOMAIN),
-                'group' => __('Date & Time', WDR_TEXT_DOMAIN),
+                'label' => __('Days - PRO -', 'woo-discount-rules'),
+                'group' => __('Date & Time', 'woo-discount-rules'),
                 'template' => '',
                 'extra_params' => array(),
             );
             $available_conditions['order_time'] = array(
                 'object' => '\Wdr\App\Conditions\Base',
                 'enable' => false,
-                'label' => __('Time - PRO -', WDR_TEXT_DOMAIN),
-                'group' => __('Date & Time', WDR_TEXT_DOMAIN),
+                'label' => __('Time - PRO -', 'woo-discount-rules'),
+                'group' => __('Date & Time', 'woo-discount-rules'),
                 'template' => '',
                 'extra_params' => array(),
             );
             $available_conditions['purchase_first_order'] = array(
                 'object' => '\Wdr\App\Conditions\Base',
                 'enable' => false,
-                'label' => __('First order - PRO -', WDR_TEXT_DOMAIN),
-                'group' => __('Purchase History', WDR_TEXT_DOMAIN),
+                'label' => __('First order - PRO -', 'woo-discount-rules'),
+                'group' => __('Purchase History', 'woo-discount-rules'),
                 'template' => '',
                 'extra_params' => array(),
             );
             $available_conditions['purchase_last_order'] = array(
                 'object' => '\Wdr\App\Conditions\Base',
                 'enable' => false,
-                'label' => __('Last order - PRO -', WDR_TEXT_DOMAIN),
-                'group' => __('Purchase History', WDR_TEXT_DOMAIN),
+                'label' => __('Last order - PRO -', 'woo-discount-rules'),
+                'group' => __('Purchase History', 'woo-discount-rules'),
                 'template' => '',
                 'extra_params' => array(),
             );
             $available_conditions['purchase_last_order_amount'] = array(
                 'object' => '\Wdr\App\Conditions\Base',
                 'enable' => false,
-                'label' => __('Last order amount - PRO -', WDR_TEXT_DOMAIN),
-                'group' => __('Purchase History', WDR_TEXT_DOMAIN),
+                'label' => __('Last order amount - PRO -', 'woo-discount-rules'),
+                'group' => __('Purchase History', 'woo-discount-rules'),
                 'template' => '',
                 'extra_params' => array(),
             );
             $available_conditions['purchase_previous_orders'] = array(
                 'object' => '\Wdr\App\Conditions\Base',
                 'enable' => false,
-                'label' => __('Number of orders made - PRO -', WDR_TEXT_DOMAIN),
-                'group' => __('Purchase History', WDR_TEXT_DOMAIN),
+                'label' => __('Number of orders made - PRO -', 'woo-discount-rules'),
+                'group' => __('Purchase History', 'woo-discount-rules'),
                 'template' => '',
                 'extra_params' => array(),
             );
             $available_conditions['purchase_previous_orders_for_specific_product'] = array(
                 'object' => '\Wdr\App\Conditions\Base',
                 'enable' => false,
-                'label' => __('Number of orders made with following products - PRO -', WDR_TEXT_DOMAIN),
-                'group' => __('Purchase History', WDR_TEXT_DOMAIN),
+                'label' => __('Number of orders made with following products - PRO -', 'woo-discount-rules'),
+                'group' => __('Purchase History', 'woo-discount-rules'),
                 'template' => '',
                 'extra_params' => array(),
             );
             $available_conditions['purchase_spent'] = array(
                 'object' => '\Wdr\App\Conditions\Base',
                 'enable' => false,
-                'label' => __('Spent - PRO -', WDR_TEXT_DOMAIN),
-                'group' => __('Purchase History', WDR_TEXT_DOMAIN),
+                'label' => __('Spent - PRO -', 'woo-discount-rules'),
+                'group' => __('Purchase History', 'woo-discount-rules'),
                 'template' => '',
                 'extra_params' => array(),
             );
             $available_conditions['shipping_city'] = array(
                 'object' => '\Wdr\App\Conditions\Base',
                 'enable' => false,
-                'label' => __('City - PRO -', WDR_TEXT_DOMAIN),
-                'group' => __('Shipping', WDR_TEXT_DOMAIN),
+                'label' => __('City - PRO -', 'woo-discount-rules'),
+                'group' => __('Shipping', 'woo-discount-rules'),
                 'template' => '',
                 'extra_params' => array(),
             );
             $available_conditions['shipping_country'] = array(
                 'object' => '\Wdr\App\Conditions\Base',
                 'enable' => false,
-                'label' => __('Country - PRO -', WDR_TEXT_DOMAIN),
-                'group' => __('Shipping', WDR_TEXT_DOMAIN),
+                'label' => __('Country - PRO -', 'woo-discount-rules'),
+                'group' => __('Shipping', 'woo-discount-rules'),
                 'template' => '',
                 'extra_params' => array(),
             );
             $available_conditions['shipping_state'] = array(
                 'object' => '\Wdr\App\Conditions\Base',
                 'enable' => false,
-                'label' => __('State - PRO -', WDR_TEXT_DOMAIN),
-                'group' => __('Shipping', WDR_TEXT_DOMAIN),
+                'label' => __('State - PRO -', 'woo-discount-rules'),
+                'group' => __('Shipping', 'woo-discount-rules'),
                 'template' => '',
                 'extra_params' => array(),
             );
             $available_conditions['shipping_zipcode'] = array(
                 'object' => '\Wdr\App\Conditions\Base',
                 'enable' => false,
-                'label' => __('Zipcode - PRO -', WDR_TEXT_DOMAIN),
-                'group' => __('Shipping', WDR_TEXT_DOMAIN),
+                'label' => __('Zipcode - PRO -', 'woo-discount-rules'),
+                'group' => __('Shipping', 'woo-discount-rules'),
                 'template' => '',
                 'extra_params' => array(),
             );
             $available_conditions['user_email'] = array(
                 'object' => '\Wdr\App\Conditions\Base',
                 'enable' => false,
-                'label' => __('Email - PRO -', WDR_TEXT_DOMAIN),
-                'group' => __('Customer', WDR_TEXT_DOMAIN),
+                'label' => __('Email - PRO -', 'woo-discount-rules'),
+                'group' => __('Customer', 'woo-discount-rules'),
                 'template' => '',
                 'extra_params' => array(),
             );
             $available_conditions['user_list'] = array(
                 'object' => '\Wdr\App\Conditions\Base',
                 'enable' => false,
-                'label' => __('User - PRO -', WDR_TEXT_DOMAIN),
-                'group' => __('Customer', WDR_TEXT_DOMAIN),
+                'label' => __('User - PRO -', 'woo-discount-rules'),
+                'group' => __('Customer', 'woo-discount-rules'),
                 'template' => '',
                 'extra_params' => array(),
             );
             $available_conditions['user_logged_in'] = array(
                 'object' => '\Wdr\App\Conditions\Base',
                 'enable' => false,
-                'label' => __('Is logged in - PRO -', WDR_TEXT_DOMAIN),
-                'group' => __('Customer', WDR_TEXT_DOMAIN),
+                'label' => __('Is logged in - PRO -', 'woo-discount-rules'),
+                'group' => __('Customer', 'woo-discount-rules'),
                 'template' => '',
                 'extra_params' => array(),
             );
             $available_conditions['user_role'] = array(
                 'object' => '\Wdr\App\Conditions\Base',
                 'enable' => false,
-                'label' => __('User role - PRO -', WDR_TEXT_DOMAIN),
-                'group' => __('Customer', WDR_TEXT_DOMAIN),
+                'label' => __('User role - PRO -', 'woo-discount-rules'),
+                'group' => __('Customer', 'woo-discount-rules'),
                 'template' => '',
                 'extra_params' => array(),
             );
@@ -314,28 +314,28 @@ class ProOptions
             $adjustment_type['wdr_buy_x_get_x_discount'] = array(
                 'class' => '',
                 'enable' => false,
-                'label' => __('Buy X get X - PRO -', WDR_TEXT_DOMAIN),
-                'group' => __('Bogo Discount', WDR_TEXT_DOMAIN),
+                'label' => __('Buy X get X - PRO -', 'woo-discount-rules'),
+                'group' => __('Bogo Discount', 'woo-discount-rules'),
                 'template' => '',
             );
             $adjustment_type['wdr_buy_x_get_y_discount'] = array(
                 'class' => '',
                 'enable' => false,
-                'label' => __('Buy X get Y - PRO -', WDR_TEXT_DOMAIN),
-                'group' => __('Bogo Discount', WDR_TEXT_DOMAIN),
+                'label' => __('Buy X get Y - PRO -', 'woo-discount-rules'),
+                'group' => __('Bogo Discount', 'woo-discount-rules'),
                 'template' => '',
             );
             $adjustment_type['wdr_free_shipping'] = array(
                 'class' => '',
                 'enable' => false,
-                'label' => __('Free Shipping - PRO -', WDR_TEXT_DOMAIN),
-                'group' => __('Simple Discount', WDR_TEXT_DOMAIN),
+                'label' => __('Free Shipping - PRO -', 'woo-discount-rules'),
+                'group' => __('Simple Discount', 'woo-discount-rules'),
             );
             $adjustment_type['wdr_set_discount'] = array(
                 'class' => '',
                 'enable' => false,
-                'label' => __('Bundle (Set) Discount - PRO -', WDR_TEXT_DOMAIN),
-                'group' => __('Bulk Discount', WDR_TEXT_DOMAIN),
+                'label' => __('Bundle (Set) Discount - PRO -', 'woo-discount-rules'),
+                'group' => __('Bulk Discount', 'woo-discount-rules'),
             );
         }
 

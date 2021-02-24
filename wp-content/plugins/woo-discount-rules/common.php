@@ -6,7 +6,7 @@ add_action('wp_ajax_awdr_auto_install_pro_plugin', function (){
         FlycartWooDiscountRulesExistingPROUpdater::installProPlugin();
         exit;
     } else {
-        die(__('Authentication required', WDR_TEXT_DOMAIN));
+        die(__('Authentication required', 'woo-discount-rules'));
     }
 });
 add_action('wp_ajax_awdr_switch_version', function (){
@@ -14,7 +14,7 @@ add_action('wp_ajax_awdr_switch_version', function (){
     $page = isset($_REQUEST['page'])? $_REQUEST['page']: '';
     $wdr_nonce = isset($_REQUEST['wdr_nonce'])? $_REQUEST['wdr_nonce']: '';
     $return['status'] = false;
-    $return['message'] = esc_html__('Invalid request', WDR_TEXT_DOMAIN);
+    $return['message'] = esc_html__('Invalid request', 'woo-discount-rules');
     if($version == "v1"){
         \Wdr\App\Helpers\Helper::validateRequest('wdr_ajax_switch_version', $wdr_nonce);
     } else {
@@ -25,11 +25,11 @@ add_action('wp_ajax_awdr_switch_version', function (){
             $url = admin_url('admin.php?page=' . $page . '&awdr_switch_plugin_to=' . $version);
             $do_switch = true;
             if (!isAWDREnvironmentCompatible()) {
-                $return['message'] = __('Discount Rules 2.0 requires minimum PHP version of ', WDR_TEXT_DOMAIN) . ' ' . WDR_REQUIRED_PHP_VERSION;
+                $return['message'] = __('Discount Rules 2.0 requires minimum PHP version of ', 'woo-discount-rules') . ' ' . WDR_REQUIRED_PHP_VERSION;
                 wp_send_json_success($return);
             }
             if (!isAWDRWooCompatible()) {
-                $return['message'] = __('Discount Rules 2.0 requires at least Woocommerce', WDR_TEXT_DOMAIN) . ' ' . WDR_WC_REQUIRED_VERSION;
+                $return['message'] = __('Discount Rules 2.0 requires at least Woocommerce', 'woo-discount-rules') . ' ' . WDR_WC_REQUIRED_VERSION;
                 wp_send_json_success($return);
             }
             if (defined('WDR_BACKWARD_COMPATIBLE')) {
@@ -59,14 +59,14 @@ add_action('wp_ajax_awdr_switch_version', function (){
                 }
                 if($has_auto_update){
                     $return['type'] = 'auto_install';
-                    $message = __('<p>Since 2.0, you need BOTH Core and Pro (2.0) packages installed and activated.</p>', WDR_TEXT_DOMAIN);
-                    $message .= __('<p><b>Why we made this change?</b></p>', WDR_TEXT_DOMAIN);
-                    $message .= __('<p>This arrangement is to avoid the confusion in the installation and upgrade process. Many users first install the core free version. Then purchase the PRO version and try to install it over the free version. Since both free and pro packages have same names, wordpress asks them to uninstall free and then install pro. As you can see, this is quite confusing for the end users.</p>', WDR_TEXT_DOMAIN);
-                    $message .= __('<p>As a result, starting from 2.0, we now have two packs: 1. Core 2. PRO.</p>', WDR_TEXT_DOMAIN);
-                    $message .= '<p><button type="button" class="awdr_auto_install_pro_plugin btn btn-info">'.__('Download and Install', WDR_TEXT_DOMAIN).'</button></p>';
+                    $message = __('<p>Since 2.0, you need BOTH Core and Pro (2.0) packages installed and activated.</p>', 'woo-discount-rules');
+                    $message .= __('<p><b>Why we made this change?</b></p>', 'woo-discount-rules');
+                    $message .= __('<p>This arrangement is to avoid the confusion in the installation and upgrade process. Many users first install the core free version. Then purchase the PRO version and try to install it over the free version. Since both free and pro packages have same names, wordpress asks them to uninstall free and then install pro. As you can see, this is quite confusing for the end users.</p>', 'woo-discount-rules');
+                    $message .= __('<p>As a result, starting from 2.0, we now have two packs: 1. Core 2. PRO.</p>', 'woo-discount-rules');
+                    $message .= '<p><button type="button" class="awdr_auto_install_pro_plugin btn btn-info">'.__('Download and Install', 'woo-discount-rules').'</button></p>';
                     $return['message'] = $message;
                 } else {
-                    $return['message'] = __('Since 2.0, you need BOTH Core and Pro (2.0) packages installed and activated.  Please download the Pro 2.0 pack from My Downloads page in our site, install and activate it. <a href="https://docs.flycart.org/en/articles/4006520-switching-to-2-0-from-v1-x-versions?utm_source=woo-discount-rules-v2&utm_campaign=doc&utm_medium=text-click&utm_content=switch_to_v2" target="_blank">Here is a guide and video tutorial</a>', WDR_TEXT_DOMAIN);
+                    $return['message'] = __('Since 2.0, you need BOTH Core and Pro (2.0) packages installed and activated.  Please download the Pro 2.0 pack from My Downloads page in our site, install and activate it. <a href="https://docs.flycart.org/en/articles/4006520-switching-to-2-0-from-v1-x-versions?utm_source=woo-discount-rules-v2&utm_campaign=doc&utm_medium=text-click&utm_content=switch_to_v2" target="_blank">Here is a guide and video tutorial</a>', 'woo-discount-rules');
                     $return['type'] = 'manual_install';
                 }
             }
@@ -89,12 +89,12 @@ add_action('advanced_woo_discount_rules_on_settings_head', function () {
     global $awdr_load_version;
     $version = ($awdr_load_version == "v1") ? "v2" : "v1";
     $url = admin_url('admin.php?page=' . $page . '&awdr_switch_plugin_to=' . $version);
-    $message = __('Switch to Discount Rules V2  which comes with a better UI and advanced rules. (You can switch back any time. Your settings and rules in V1 are  kept as is)', WDR_TEXT_DOMAIN);
-    $button_text = __("Switch to v2", WDR_TEXT_DOMAIN);
+    $message = __('Switch to Discount Rules V2  which comes with a better UI and advanced rules. (You can switch back any time. Your settings and rules in V1 are  kept as is)', 'woo-discount-rules');
+    $button_text = __("Switch to v2", 'woo-discount-rules');
     if($version == "v1"){
         $has_switch = \Wdr\App\Helpers\Migration::hasSwitchBackOption();
-        $message = __('Would you like to switch to older Woo Discount Rules?', WDR_TEXT_DOMAIN);
-        $button_text = __("Click here to Switch back", WDR_TEXT_DOMAIN);
+        $message = __('Would you like to switch to older Woo Discount Rules?', 'woo-discount-rules');
+        $button_text = __("Click here to Switch back", 'woo-discount-rules');
     }
     if($has_switch){
         if($version == "v1"){
@@ -109,7 +109,7 @@ add_action('advanced_woo_discount_rules_on_settings_head', function () {
                     <div class="modal-box">
                         <div class="modal-header">
                             <div class="close-modal"><span class="wdr-close-modal-box">&#10006;</span></div>
-                            <h1 class="wdr-modal-header-title">'.__("Install 2.0 Pro package", WDR_TEXT_DOMAIN).'</h1>
+                            <h1 class="wdr-modal-header-title">'.__("Install 2.0 Pro package", 'woo-discount-rules').'</h1>
                         </div>
                         <div class="modal-body">
                             <div class=\'wdr_pro_install_message\'></div>
@@ -136,7 +136,7 @@ add_action('advanced_woo_discount_rules_content_next_to_tabs', function () {
         $nounce = FlycartWooDiscountRulesGeneralHelper::createNonce('wdr_ajax_switch_version');
     }
     if($has_switch){
-        $button_text = __("Switch back to Discount Rules 1.x", WDR_TEXT_DOMAIN);
+        $button_text = __("Switch back to Discount Rules 1.x", 'woo-discount-rules');
         echo '<button class="btn btn-info awdr-switch-version-button awdr-switch-version-button-on-tab" data-version="' . $version . '" data-page="'.$page.'" data-nonce="'.$nounce.'">' . $button_text . '</button>';
     }
 });
@@ -223,13 +223,13 @@ if(!function_exists('isAWDRWpCompatible')){
 if(!function_exists('awdr_check_compatible')){
     function awdr_check_compatible(){
         if (!isAWDREnvironmentCompatible()) {
-            exit(__('This plugin can not be activated because it requires minimum PHP version of ', WDR_TEXT_DOMAIN) . ' ' . WDR_REQUIRED_PHP_VERSION);
+            exit(__('This plugin can not be activated because it requires minimum PHP version of ', 'woo-discount-rules') . ' ' . WDR_REQUIRED_PHP_VERSION);
         }
         if (!isAWDRWooActive()) {
-            exit(__('Woocommerce must installed and activated in-order to use Advanced woo discount rules!', WDR_TEXT_DOMAIN));
+            exit(__('Woocommerce must installed and activated in-order to use Advanced woo discount rules!', 'woo-discount-rules'));
         }
         if (!isAWDRWooCompatible()) {
-            exit(__(' Advanced woo discount rules requires at least Woocommerce', WDR_TEXT_DOMAIN) . ' ' . WDR_WC_REQUIRED_VERSION);
+            exit(__(' Advanced woo discount rules requires at least Woocommerce', 'woo-discount-rules') . ' ' . WDR_WC_REQUIRED_VERSION);
         }
     }
 }

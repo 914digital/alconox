@@ -55,6 +55,14 @@ if (!class_exists("WD_ASP_OtherActions_Action")) {
             WD_ASP_PLL_Strings::register();
         }
 
+        /**
+         * Triggers when asp_scheduled_activation_events is triggered (during activation only)
+         */
+        public function scheduledActivationEvents() {
+            $index = new asp_indexTable();
+            $index->scheduled();
+        }
+
         // ------------------------------------------------------------
         //   ---------------- SINGLETON SPECIFIC --------------------
         // ------------------------------------------------------------

@@ -71,7 +71,7 @@ if (!empty($ranges) && !empty($woocommerce)) {
                                 echo 'display:none';
                             }else{
                                 echo((!$base::$config->getConfig('table_title_column', 0)) ? 'display:none' : '');
-                            } ?>"><span><?php _e($tbl_title_text, WDR_TEXT_DOMAIN) ?></span>
+                            } ?>"><span><?php _e($tbl_title_text, 'woo-discount-rules') ?></span>
                             </th><?php
                         } elseif ($column == "tbl_discount") {
                             ?>
@@ -80,7 +80,7 @@ if (!empty($ranges) && !empty($woocommerce)) {
                                 echo 'display:none';
                             }else{
                                 echo((!$base::$config->getConfig('table_discount_column', 0)) ? 'display:none' : '');
-                            } ?>"><span><?php _e($tbl_discount_text, WDR_TEXT_DOMAIN) ?></span>
+                            } ?>"><span><?php _e($tbl_discount_text, 'woo-discount-rules') ?></span>
                             </th><?php
                         } else {
                             ?>
@@ -89,7 +89,7 @@ if (!empty($ranges) && !empty($woocommerce)) {
                                 echo 'display:none';
                             }else{
                                 echo((!$base::$config->getConfig('table_range_column', 0)) ? 'display:none' : '');
-                            }?>"><span><?php _e($tbl_range_text, WDR_TEXT_DOMAIN) ?></span></th><?php
+                            }?>"><span><?php _e($tbl_range_text, 'woo-discount-rules') ?></span></th><?php
                         }
                     }?>
                 </tr>
@@ -110,12 +110,12 @@ if (!empty($ranges) && !empty($woocommerce)) {
                          */
 
                         if (isset($range['discount_method']) && $range['discount_method'] == 'cart') {
-                            $cart_discount_text = __(' (in cart)', WDR_TEXT_DOMAIN);
+                            $cart_discount_text = __(' (in cart)', 'woo-discount-rules');
                         }
                         $discount_type = isset($range['discount_type']) ? $range['discount_type'] : 'flat';
                         if ($discount_type == "flat") {
                             $discount_value = $woocommerce->formatPrice($discount_type_value);
-                            $discount_value .= __(' flat', WDR_TEXT_DOMAIN);
+                            $discount_value .= __(' flat', 'woo-discount-rules');
                             $discount_value .= !empty($cart_discount_text) ? $cart_discount_text : '';
                         } elseif ($discount_type == "percentage") {
                             $discount_value = isset($range['discount_value']) ? $range['discount_value'] : 0;

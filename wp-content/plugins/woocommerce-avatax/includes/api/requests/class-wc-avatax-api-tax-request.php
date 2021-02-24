@@ -17,7 +17,7 @@
  * needs please refer to http://docs.woocommerce.com/document/woocommerce-avatax/
  *
  * @author    SkyVerge
- * @copyright Copyright (c) 2016-2020, SkyVerge, Inc.
+ * @copyright Copyright (c) 2016-2021, SkyVerge, Inc.
  * @license   http://www.gnu.org/licenses/gpl-3.0.html GNU General Public License v3.0
  */
 
@@ -274,7 +274,7 @@ class WC_AvaTax_API_Tax_Request extends \WC_AvaTax_API_Request {
 		$args = array(
 			'code'         => $order->get_order_key( 'edit' ),
 			'order_number' => $order->get_order_number(),
-			'customerCode' => $order->get_billing_email( 'edit' ),
+			'customerCode' => ! empty( $order->get_billing_email( 'edit' ) ) ? $order->get_billing_email( 'edit' ) : 'Guest',
 			'currencyCode' => $order->get_currency(),
 			'lines'        => $this->prepare_order_lines( $order, $origin_address, $destination_address ),
 			'date'         => ( $date_created = $order->get_date_created( 'edit' ) ) ? $date_created->date( 'Y-m-d' ) : '',
@@ -513,7 +513,7 @@ class WC_AvaTax_API_Tax_Request extends \WC_AvaTax_API_Request {
 		$args = array(
 			'code'         => $order->get_order_key( 'edit' ) . '-' . $refund->get_id(),
 			'order_number' => $order->get_order_number(),
-			'customerCode' => $order->get_billing_email( 'edit' ),
+			'customerCode' => ! empty( $order->get_billing_email( 'edit' ) ) ? $order->get_billing_email( 'edit' ) : 'Guest',
 			'currencyCode' => $order->get_currency(),
 			'lines'        => $this->prepare_refund_lines( $refund, $origin_address, $destination_address ),
 			'origin'       => $origin_address,

@@ -105,7 +105,7 @@ class ProductAddOnsByWooCommerce extends Base
             <div class="awdr-compatible-field">
                 <label>
                     <input type="checkbox" name="wdrc[<?php echo $this->key; ?>]" id="<?php echo $this->key; ?>" value="1" <?php if ($value == 1) { ?> checked <?php } ?>>
-                    <?php esc_html_e('Show discount price in product pages for WooCommerce Product Add Ons.', WDR_TEXT_DOMAIN); ?>
+                    <?php esc_html_e('Show discount price in product pages for WooCommerce Product Add Ons.', 'woo-discount-rules'); ?>
                 </label>
             </div>
             <?php

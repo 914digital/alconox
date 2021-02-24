@@ -934,17 +934,6 @@ class WC_Shipping_UPS extends WC_Shipping_Method {
 			$this->dim_unit    = in_array( $country, $in_countries ) ? 'IN' : 'CM';
 		}
 
-
-		if ( 12043 == get_current_user_id() ) {
-
-			$logger = wc_get_logger();
-
-			/*$logger->info( sprintf( 'package %s', print_r( $package['destination'], 1 ) ), 
-							array( 'source' => 'aaa-ups-shipping' ) );/**/
-
-		}
-
-
 		$package_requests = $this->get_package_requests( $package );
 		if ( $package_requests ) {
 
@@ -960,40 +949,7 @@ class WC_Shipping_UPS extends WC_Shipping_Method {
 				$cached_response        = get_transient( $transient );
 				$ups_responses[ $code ] = false;
 
-				if ( 12043 == get_current_user_id() || false === $cached_response ) {
-
-					if ( 12043 == get_current_user_id() ) {
-
-						$log = false;
-
-						$my_send_request = apply_filters(
-								'woocommerce_shipping_ups_request',
-								$send_request,
-								$package_requests,
-								$package
-							);
-
-
-						if ( (strpos( $my_send_request, '<ShipperNumber>A0687V</ShipperNumber>' ) &&  'White Plains' == $package['name'] ) || ( strpos( $my_send_request, '<ShipperNumber>067789</ShipperNumber>' ) &&  'Jersey City' == $package['name']) ) {
-
-							$log = true;
-
-						}
-
-						if ( $log ) {
-
-							/*$logger->info( 
-								sprintf( 'URL %s package name %s', $this->endpoint, $package['name'] ), 
-								array( 'source' => 'aaa-ups-shipping' ) );*/
-
-							$logger->info( "==== CODE " . $code . ' = ' . $this->services[ $code ] . ' = ' .  $package['name'] . " REQUEST ====\n" . 
-								sprintf( '%s', print_r( str_replace( array( "\t", '<?xml version="1.0" ?>' ), '', $my_send_request ), 1 ))  . " \n====\n", 
-								array( 'source' => 'aaa-ups-shipping' ) );
-
-							/**/
-						}
-					}
-
+				if ( false === $cached_response ) {
 					$response = wp_remote_post( $this->endpoint,
 						array(
 							'timeout'   => 70,
@@ -1006,13 +962,6 @@ class WC_Shipping_UPS extends WC_Shipping_Method {
 							),
 						)
 					);
-
-					/**/if ( 12043 == get_current_user_id() && $log ) {
-						$logger->info( "==== CODE " . $code . ' = ' . $this->services[ $code ] . ' = ' . $package['name'] . " RESPONSE ====\n" .
-							sprintf( '%s', print_r( str_replace( array( "\t", '<?xml version="1.0"?>' ), '', $response['body']), 1 ))  . "\n ====\n", 
-							array( 'source' => 'aaa-ups-shipping' ) );
-					}/**/
-
 
 					if ( is_wp_error( $response ) ) {
 						$this->debug( __( 'Cannot retrieve rate: ', 'woocommerce-shipping-ups' ) . $response->get_error_message(), 'error' );

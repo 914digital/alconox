@@ -285,21 +285,35 @@ var crm_fields=<?php echo json_encode($json_fields); ?>;
   </div>
 
   <div class="vx_group">
+
   <div class="vx_row">
   <div class="vx_col1">
   <label for="crm_manual_export">
-  <?php esc_html_e('Disable Automatic Export', 'gravity-forms-salesforce-crm'); ?>
+  <?php esc_html_e('Send Entry to Salesforce', 'gravity-forms-salesforce-crm'); ?>
   <?php gform_tooltip("vx_manual_export") ?>
   </label>
   </div>
   <div class="vx_col2">
   <fieldset>
   <legend class="screen-reader-text"><span>
-  <?php _e('Disable Automatic Export', 'gravity-forms-salesforce-crm'); ?>
+  <?php _e('Send Entry', 'gravity-forms-salesforce-crm'); ?>
   </span></legend>
   <label for="crm_manual_export">
-  <input name="meta[manual_export]" id="crm_manual_export" type="checkbox" value="1" <?php echo isset($meta['manual_export'] ) ? 'checked="checked"' : ''; ?>>
-  <?php _e( 'Manually send the entries to Salesforce.', 'gravity-forms-salesforce-crm'); ?> </label>
+  <select name="meta[manual_export]" >
+  <?php
+  $events_arr=array(''=>__( 'When anyone submits form.', 'gravity-forms-salesforce-crm'),'1'=>__( 'Manually send the entries to salesforce.', 'gravity-forms-salesforce-crm'));
+  if(self::$is_pr){
+      $events_arr['2']=__( 'When payment is complete.', 'gravity-forms-salesforce-crm');
+  }
+  foreach($events_arr as $k=>$v){
+  $sel="";
+  if($this->post('manual_export',$meta) == $k)
+  $sel='selected="selected"';
+                   echo "<option value='".$k."' $sel >".$v."</option>";
+               } 
+              ?>
+  </select>
+ </label>
   </fieldset>
   </div>
   <div style="clear: both;"></div>

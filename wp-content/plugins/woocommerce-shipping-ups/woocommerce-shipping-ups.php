@@ -3,14 +3,14 @@
  * Plugin Name: WooCommerce UPS Shipping
  * Plugin URI: https://woocommerce.com/products/ups-shipping-method/
  * Description: WooCommerce UPS Shipping allows a store to obtain shipping rates for your orders dynamically via the UPS Shipping API.
- * Version: 3.2.30
+ * Version: 3.2.31
  * WC requires at least: 2.6
  * WC tested up to: 4.4
  * Tested up to: 5.5
  * Author: WooCommerce
  * Author URI: https://woocommerce.com
  *
- * Copyright: © 2020 WooCommerce
+ * Copyright: © 2021 WooCommerce
  * License: GNU General Public License v3.0
  * License URI: http://www.gnu.org/licenses/gpl-3.0.html
  *
@@ -23,7 +23,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'WC_SHIPPING_UPS_VERSION', '3.2.30' ); // WRCS: DEFINED_VERSION.
+define( 'WC_SHIPPING_UPS_VERSION', '3.2.31' ); // WRCS: DEFINED_VERSION.
 
 /**
  * Plugin activation check

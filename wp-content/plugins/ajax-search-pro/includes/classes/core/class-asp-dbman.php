@@ -61,23 +61,25 @@ if (!class_exists("WD_ASP_DBMan")) {
               `name` text NOT NULL,
               `data` mediumtext NOT NULL,
               PRIMARY KEY (`id`)
-            ) DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=1 ;
+            ) DEFAULT CHARSET=utf8mb4 COLLATE utf8mb4_unicode_ci AUTO_INCREMENT=1 ;
           ";
             dbDelta($query);
             $wpdb->query($query);
             $return[] = $query;
 
             // 4.6.1+ change the data row to medium text
-            $query = "ALTER TABLE `$table_name` MODIFY `data` mediumtext";
-            dbDelta($query);
-            $wpdb->query($query);
-            $return[] = $query;
+            if ( ASP_Helpers::previousVersion('4.6.1') ) {
+                $query = "ALTER TABLE `$table_name` MODIFY `data` mediumtext";
+                $wpdb->query($query);
+                $return[] = $query;
+            }
 
             // 4.18.3+ change charsets to utfmb4 and collate
-            $query = "ALTER TABLE `$table_name` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;";
-            dbDelta($query);
-            $wpdb->query($query);
-            $return[] = $query;
+            if ( ASP_Helpers::previousVersion('4.18.3') ) {
+                $query = "ALTER TABLE `$table_name` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;";
+                $wpdb->query($query);
+                $return[] = $query;
+            }
 
             $table_name = $this->table("stats");
             $query = "
@@ -88,16 +90,19 @@ if (!class_exists("WD_ASP_DBMan")) {
               `num` int(11) NOT NULL,
               `last_date` int(11) NOT NULL,
               PRIMARY KEY (`id`)
-            ) DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=1 ;
+            ) DEFAULT CHARSET=utf8mb4 COLLATE utf8mb4_unicode_ci AUTO_INCREMENT=1 ;
           ";
             dbDelta($query);
             $wpdb->query($query);
             $return[] = $query;
+
             // 4.18.3+ change charsets to utfmb4 and collate
-            $query = "ALTER TABLE `$table_name` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;";
-            dbDelta($query);
-            $wpdb->query($query);
-            $return[] = $query;
+            if ( ASP_Helpers::previousVersion('4.18.3') ) {
+                $query = "ALTER TABLE `$table_name` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;";
+                dbDelta($query);
+                $wpdb->query($query);
+                $return[] = $query;
+            }
 
             // ------------- SYNONYMS DB ---------------------------
             require_once(ASP_CLASSES_PATH . 'etc/synonyms.class.php');
@@ -113,7 +118,7 @@ if (!class_exists("WD_ASP_DBMan")) {
               `blog_id` int(11) NOT NULL,
               `priority` int(11) NOT NULL,
               PRIMARY KEY (`post_id`, `blog_id`)
-            ) DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=1 ;
+            ) DEFAULT CHARSET=utf8mb4 COLLATE utf8mb4_unicode_ci AUTO_INCREMENT=1 ;
           ";
             dbDelta($query);
             $wpdb->query($query);
@@ -127,10 +132,12 @@ if (!class_exists("WD_ASP_DBMan")) {
                 $return[] = $query;
             }
             // 4.18.3+ change charsets to utfmb4 and collate
-            $query = "ALTER TABLE `$table_name` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;";
-            dbDelta($query);
-            $wpdb->query($query);
-            $return[] = $query;
+            if ( ASP_Helpers::previousVersion('4.18.3') ) {
+                $query = "ALTER TABLE `$table_name` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;";
+                dbDelta($query);
+                $wpdb->query($query);
+                $return[] = $query;
+            }
 
             // ------------- Index TABLE DB ------------------------
             $indexObj = new asp_indexTable();

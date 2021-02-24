@@ -75,23 +75,33 @@ class GF_Pending_Activations_List extends WP_List_Table {
 
 	}
 
-	function column_default( $item, $column_name ) {
+	/**
+	 * Display row actions for default column.
+	 *
+	 * @since Unknown
+	 *
+	 * @param array  $item        The table row item.
+	 * @param string $column_name Slug of the column.
+	 *
+	 * @return string
+	 */
+	public function column_default( $item, $column_name ) {
 
 		$value = rgar( $item, $column_name );
 
-		if( $column_name == 'user_login' ) {
+		if ( $column_name == 'user_login' ) {
 			$value .= '
-	            <div class="row-actions">
-	                <span class="inline hide-if-no-js">
-	                    <a title="' . __( 'Activate this sign up', 'gravityformsuserregistration' ) . '" href="javascript: if(confirm(\'' . __( 'Activate this sign up? ', 'gravityformsuserregistration' ) . __( "\'Cancel\' to stop, \'OK\' to activate.", 'gravityformsuserregistration' ) . '\')) { singleItemAction(\'activate\',\'' . $item['activation_key'] . '\'); } ">' . __( 'Activate', 'gravityformsuserregistration') . '</a> |
-	                </span>
-	                <span class="inline hide-if-no-js">
-	                    <a title="' . __( 'View the entry associated with this sign up', 'gravityformsuserregistration' ) . '" href="' . admin_url("admin.php?page=gf_entries&view=entry&id={$item['form_id']}&lid={$item['lead_id']}") . '">' . __( 'View Entry', 'gravityformsuserregistration' ) . '</a> |
-	                </span>
-	                <span class="inline hide-if-no-js">
-	                    <a title="' . __( 'Delete this sign up?', 'gravityformsuserregistration' ) . '" href="javascript: if(confirm(\'' . __( 'Delete this sign up? ', 'gravityformsuserregistration' ) . __( "\'Cancel\' to stop, \'OK\' to delete.", 'gravityformsuserregistration' ) . '\')) { singleItemAction(\'delete\',\'' . $item['activation_key'] . '\'); } ">' . __( 'Delete', 'gravityformsuserregistration' ) . '</a>
-	                </span>
-	            </div>';
+			<div class="row-actions">
+				<span class="inline hide-if-no-js">
+					<a title="' . esc_attr__( 'Activate this sign up', 'gravityformsuserregistration' ) . '" href="javascript: if(confirm(\'' . esc_attr__( 'Activate this sign up? ', 'gravityformsuserregistration' ) . esc_attr__( "\'Cancel\' to stop, \'OK\' to activate.", 'gravityformsuserregistration' ) . '\')) { singleItemAction(\'activate\',\'' . esc_attr( $item['activation_key'] ) . '\'); }">' . esc_html__( 'Activate', 'gravityformsuserregistration' ) . '</a> |
+				</span>
+				<span class="inline hide-if-no-js">
+					<a title="' . esc_attr__( 'View the entry associated with this sign up', 'gravityformsuserregistration' ) . '" href="' . admin_url( "admin.php?page=gf_entries&view=entry&id={$item['form_id']}&lid={$item['lead_id']}" ) . '">' . esc_html__( 'View Entry', 'gravityformsuserregistration' ) . '</a> |
+				</span>
+				<span class="inline hide-if-no-js">
+					<a title="' . esc_attr__( 'Delete this sign up?', 'gravityformsuserregistration' ) . '" href="javascript: if(confirm(\'' . esc_attr__( 'Delete this sign up? ', 'gravityformsuserregistration' ) . esc_attr__( "\'Cancel\' to stop, \'OK\' to delete.", 'gravityformsuserregistration' ) . '\')) { singleItemAction(\'delete\',\'' . esc_attr( $item['activation_key'] ) . '\'); }">' . esc_html__( 'Delete', 'gravityformsuserregistration' ) . '</a>
+				</span>
+			</div>';
 		}
 
 		return $value;

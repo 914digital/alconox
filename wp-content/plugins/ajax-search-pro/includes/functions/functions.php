@@ -1341,10 +1341,10 @@ if ( !function_exists("asp_results_to_wp_obj") ) {
                 case "pagepost":
                     $res = get_post($r->id);
                     $res->asp_guid = get_permalink($r->id);
-					$r->link = $res->asp_guid;
-					$r->url = $res->asp_guid;
+                    $r->asp_guid = $res->asp_guid;
                     $res->asp_id = $r->id;  // Save the ID in case needed for some reason
                     $res->blogid = $r->blogid;
+
                     /**
                      * On multisite the page and other post type links are filtered in such a way
                      * that the post type object is reset with get_post(), deleting the ->asp_guid
@@ -1364,6 +1364,13 @@ if ( !function_exists("asp_results_to_wp_obj") ) {
                                 $res->ID = -10;
                         }
                     }
+
+                    // Attachments
+                    if ( $r->content_type == 'attachment' ) {
+                        // Force post post type, so the post_type_link hook activates
+                        $res->post_type = 'post';
+                    }
+
                     break;
                 case "blog":
                     $res = new ASP_Post();
@@ -1549,6 +1556,65 @@ if ( !function_exists("asp_acf_get_field_choices") ) {
         return $results;
     }
 }
+
+if ( !function_exists("asp_acf_get_field_type") ) {
+    function asp_acf_get_field_type($field_name) {
+        $type = false;
+        if ( trim($field_name) == '' )
+            return $type;
+
+        if ( isset($GLOBALS['acf_register_field_group']) ) {
+            foreach ($GLOBALS['acf_register_field_group'] as $acf) {
+                foreach ($acf['fields'] as $field) {
+                    if (substr($field['key'], 0, 6) == 'field_') {
+                        if ($field['name'] == $field_name && isset($field['type'])) {
+                            $type = $field['type'];
+                        }
+                    }
+
+                }
+            }
+        }
+
+        /*
+         * Method 2: This should be tried first, as Method 3 seems to miss some of the fields (reported via support)
+         * Reference: https://wp-dreams.com/forums/topic/get_value-filter-not-updating
+         */
+        if ( $type === false ) {
+            $fkey = asp_acf_get_field_key($field_name);
+            if ( !empty($fkey) ) {
+                $field = get_field_object($fkey);
+                if ( !empty($field['type']) ) {
+                    $type = $field['type'];
+                }
+            }
+        }
+
+        // Method 3: Let us try going through the ACF registered post types
+        if ( $type === false ) {
+            $acf_posts = get_posts( array('post_type' => 'acf', 'posts_per_page' => -1, 'post_status' => 'all') );
+            if ( !is_wp_error($acf_posts) ) {
+                foreach ($acf_posts as $acf) {
+                    $meta = get_post_meta($acf->ID);
+                    foreach ($meta as $key => $field) {
+                        if (substr($key, 0, 6) == 'field_') {
+                            $field = unserialize($field[0]);
+                            if ($field['name'] == $field_name && isset($field['type'])) {
+                                $type = $field['type'];
+                                break 2;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        if ( isset($field, $field['type'], $field['multiple']) && $type == 'select' && $field['multiple'] == 1 ) {
+            $type = 'multiselect';
+        }
+        return $type;
+    }
+}
+
 if ( !function_exists("asp_acf_get_field_key") ) {
 	function asp_acf_get_field_key( $field_name ) {
 		global $wpdb;
@@ -1702,6 +1768,7 @@ if ( !function_exists("asp_parse_custom_field_filters") ) {
             if ( isset($bfield->asp_f_text_value) ) {
                 $add = array();
                 $default = $bfield->asp_f_text_value;
+                $default = asp_icl_t('[CF Filter Value] (' .$id. ') ' . $default, $default);
                 $label = str_replace('**', '', $bfield->asp_f_title);
                 $label = asp_icl_t('[CF Filter] (' .$id. ') ' . $label, $label);
 
@@ -1721,6 +1788,7 @@ if ( !function_exists("asp_parse_custom_field_filters") ) {
             if ( isset($bfield->asp_f_hidden_value) ) {
                 $add = array();
                 $default = $bfield->asp_f_hidden_value;
+                $default = asp_icl_t('[CF Filter Value] (' .$id. ') ' . $default, $default);
 
                 if ( isset($o['_fo'], $o['_fo']['aspf'][$unique_field_name]) ) {
                     $add['value'] = $o['_fo']['aspf'][$unique_field_name];
@@ -1801,6 +1869,7 @@ if ( !function_exists("asp_parse_custom_field_filters") ) {
                             }
 
                             $add['value'] = apply_filters("asp_cf_radio_values", $add['value'], $bfield);
+                            $add['value'] = asp_icl_t('[CF Filter Value] (' .$id. ') ' . $add['value'], $add['value']);
                             $add = array_merge($add, array(
                                 "label" => $label,
                                 "default" => $default,
@@ -1919,6 +1988,7 @@ if ( !function_exists("asp_parse_custom_field_filters") ) {
 
                         // Backwards filter compatibility
                         $vals = apply_filters("asp_cf_dropdown_values", array($add['value'], $label), $bfield);
+                        $vals[0] = asp_icl_t('[CF Filter Value] (' .$id. ') ' . $vals[0], $vals[0]);
 
                         $add = array_merge($add, array(
                             "label" => $vals[1],
@@ -2000,6 +2070,7 @@ if ( !function_exists("asp_parse_custom_field_filters") ) {
                         $select_all = $kk == 0 & $add['value'] == '';
 
                         $vals = apply_filters("asp_cf_checkbox_values", array($add['value'], $label), $bfield);
+                        $vals[0] = asp_icl_t('[CF Filter Value] (' .$id. ') ' . $vals[0], $vals[0]);
 
                         $add = array_merge($add, array(
                             "label" => $vals[1],

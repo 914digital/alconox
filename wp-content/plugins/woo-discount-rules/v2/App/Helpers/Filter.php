@@ -88,7 +88,7 @@ class Filter
                         }
                         $processing_result = $this->compareWithProducts($values, $method, $product_id, $product);
                     } elseif ('product_category' === $type) {
-                        //$product = Woocommerce::getParentProduct($product);
+                        $product = Woocommerce::getParentProduct($product);
                         $processing_result = $this->compareWithCategories($product, $values, $method);
                     } elseif ('product_tags' === $type) {
                         $product = Woocommerce::getParentProduct($product);

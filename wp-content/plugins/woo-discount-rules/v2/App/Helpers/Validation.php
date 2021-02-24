@@ -143,12 +143,12 @@ class Validation
     static function validateRules($post_values)
     {
         $input_validator = new Validator($post_values);
-        Validator::addRule('basicTags', array(__CLASS__, 'validateBasicHtmlTags'), __('Invalid characters', WDR_TEXT_DOMAIN));
-        Validator::addRule('checkPlainInputText', array(__CLASS__, 'validatePlainInputText'), __('Accepts only letters a-z, numbers 0-9 and spaces with special characters', WDR_TEXT_DOMAIN));
-        Validator::addRule('float', array(__CLASS__, 'validateFloat'), __('Accepts only numbers 0-9 and one dot', WDR_TEXT_DOMAIN));
-        Validator::addRule('checked', array(__CLASS__, 'validateChecked'), __('Accepts only 0 or 1', WDR_TEXT_DOMAIN));
-        Validator::addRule('color', array(__CLASS__, 'validateColor'), __('Accepts only hex color code', WDR_TEXT_DOMAIN));
-        Validator::addRule('conditionValues', array(__CLASS__, 'validateConditionFields'), __('Invalid characters', WDR_TEXT_DOMAIN));
+        Validator::addRule('basicTags', array(__CLASS__, 'validateBasicHtmlTags'), __('Invalid characters', 'woo-discount-rules'));
+        Validator::addRule('checkPlainInputText', array(__CLASS__, 'validatePlainInputText'), __('Accepts only letters a-z, numbers 0-9 and spaces with special characters', 'woo-discount-rules'));
+        Validator::addRule('float', array(__CLASS__, 'validateFloat'), __('Accepts only numbers 0-9 and one dot', 'woo-discount-rules'));
+        Validator::addRule('checked', array(__CLASS__, 'validateChecked'), __('Accepts only 0 or 1', 'woo-discount-rules'));
+        Validator::addRule('color', array(__CLASS__, 'validateColor'), __('Accepts only hex color code', 'woo-discount-rules'));
+        Validator::addRule('conditionValues', array(__CLASS__, 'validateConditionFields'), __('Invalid characters', 'woo-discount-rules'));
         //may contain
         $input_validator->rule('checkPlainInputText',
             array(
@@ -314,10 +314,10 @@ class Validation
     static function validateSettingsTabFields($post_values)
     {
         $settings_fields_validator = new Validator($post_values);
-        Validator::addRule('basicTags', array(__CLASS__, 'validateBasicHtmlTags'), __('Invalid characters', WDR_TEXT_DOMAIN));
-        Validator::addRule('radioButtonAndSelectBox', array(__CLASS__, 'validateRadioButtonAndSelectBox'), __('Accept only yes, on, 1, true', WDR_TEXT_DOMAIN));
-        Validator::addRule('plainInputText', array(__CLASS__, 'validatePlainInputText'), __('Should not contain any tags', WDR_TEXT_DOMAIN));
-        Validator::addRule('selectedArrayValues', array(__CLASS__, 'validateSelectedArrayValues'), __('Should not contain any tags and special characters', WDR_TEXT_DOMAIN));
+        Validator::addRule('basicTags', array(__CLASS__, 'validateBasicHtmlTags'), __('Invalid characters', 'woo-discount-rules'));
+        Validator::addRule('radioButtonAndSelectBox', array(__CLASS__, 'validateRadioButtonAndSelectBox'), __('Accept only yes, on, 1, true', 'woo-discount-rules'));
+        Validator::addRule('plainInputText', array(__CLASS__, 'validatePlainInputText'), __('Should not contain any tags', 'woo-discount-rules'));
+        Validator::addRule('selectedArrayValues', array(__CLASS__, 'validateSelectedArrayValues'), __('Should not contain any tags and special characters', 'woo-discount-rules'));
         //allow br, strong, span,div, p tags only
         $settings_fields_validator->rule('basicTags',
             array(
@@ -440,7 +440,7 @@ class Validation
     static function validateReportTabFields($post_values)
     {
         $report_fields_validator = new Validator($post_values);
-        Validator::addRule('reportFields', array(__CLASS__, 'validateReportFields'), __('Validation error', WDR_TEXT_DOMAIN));
+        Validator::addRule('reportFields', array(__CLASS__, 'validateReportFields'), __('Validation error', 'woo-discount-rules'));
         //Validation condition values
         $report_fields_validator->rule('reportFields',
             array(
@@ -466,7 +466,7 @@ class Validation
     static function validateStateCountryCondition($post_values)
     {
         $state_country_validator = new Validator($post_values);
-        Validator::addRule('conditionValues', array(__CLASS__, 'validateConditionFields'), __('Invalid characters', WDR_TEXT_DOMAIN));
+        Validator::addRule('conditionValues', array(__CLASS__, 'validateConditionFields'), __('Invalid characters', 'woo-discount-rules'));
         //Validation condition values
         $state_country_validator->rule('conditionValues',
             array(

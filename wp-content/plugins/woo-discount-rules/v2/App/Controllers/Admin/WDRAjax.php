@@ -52,10 +52,10 @@ class WDRAjax extends Base
             if (method_exists($this, $method_name)) {
                 $result = $this->$method_name();
             }else{
-                $result = __('Authentication required', WDR_TEXT_DOMAIN);
+                $result = __('Authentication required', 'woo-discount-rules');
             }
         } else {
-            $result = __('Authentication required', WDR_TEXT_DOMAIN);
+            $result = __('Authentication required', 'woo-discount-rules');
         }
         wp_send_json_success($result);
     }

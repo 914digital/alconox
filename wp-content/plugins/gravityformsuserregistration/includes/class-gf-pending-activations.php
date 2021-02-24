@@ -29,7 +29,11 @@ class GF_Pending_Activations {
 	public function init() {
 
 		add_action( 'gform_form_settings_menu', array( $this, 'add_form_settings_menu' ), 10, 2 );
-		add_action( 'admin_menu',               array( $this, 'register_submenu_page_under_users' ) );
+		add_action( 'admin_menu', array( $this, 'register_submenu_page_under_users' ) );
+
+		if ( self::is_pending_activations_page() ) {
+			add_action( 'admin_notices', array( $this, 'display_pending_activation_page_notices' ) );
+		}
 
 		if ( gf_user_registration()->is_gravityforms_supported( '2.0' ) ) {
 			add_filter( 'gform_entry_detail_meta_boxes', array( $this, 'register_meta_box' ), 10, 2 );
@@ -93,7 +97,7 @@ class GF_Pending_Activations {
 				'name'         => $this->_slug,
 				'label'        => __( $this->_title, 'gravityformsuserregistration' ),
 				'icon'         => file_get_contents( gf_user_registration()->get_base_path() . '/images/pending-menu-icon.svg' ),
-				'capabilities' => 'gravityforms_user_registration',
+				'capabilities' => array( 'promote_users', 'gravityforms_user_registration', 'gform_full_access' ),
 			);
 		}
 
@@ -108,10 +112,7 @@ class GF_Pending_Activations {
 
 		GFFormSettings::page_header( __( $this->_title, 'gravityformsuserregistration' ) );
 
-		if ( rgpost( 'is_submit' ) ) {
-			self::handle_submission();
-			GFCommon::display_admin_message();
-		}
+		$this->maybe_handle_submission();
 
 		// Prepare panel class.
 		$panel_class = gf_user_registration()->is_gravityforms_supported( '2.5-dev-1' ) ? 'gform-settings-panel' : 'gform_panel gform_panel_form_settings';
@@ -131,14 +132,31 @@ class GF_Pending_Activations {
 		return rgempty( 'id', $_GET ) ? false : GFFormsModel::get_form_meta( rgget( 'id' ) );
 	}
 
+	/**
+	 * Determine whether the current page is the pending activations page.
+	 *
+	 * @since 4.7
+	 *
+	 * @return bool
+	 */
+	public static function is_pending_activations_page() {
+		global $pagenow;
+
+		return $pagenow === 'users.php' && sanitize_text_field( rgget( 'page' ) === 'gf-pending-activations' );
+	}
+
 	/*
 	 * Displays Pending Activations list.
 	 *
 	 * @since Unknown
 	 */
 	public static function get_page_content() {
+		global $pagenow;
 
-		if ( ! gf_user_registration()->is_gravityforms_supported( '2.5-dev-1' ) ) {
+		if (
+			! gf_user_registration()->is_gravityforms_supported( '2.5-dev-1' )
+			|| self::is_pending_activations_page()
+		) {
 			return self::get_legacy_page_content();
 		}
 
@@ -171,7 +189,7 @@ class GF_Pending_Activations {
 				<input type="hidden" id="single_action" name="single_action" value="" />
 				<input type="hidden" id="item" name="item" value="" />
 
-				<?php wp_nonce_field('action', 'action_nonce'); ?>
+				<?php wp_nonce_field( 'action', 'action_nonce' ); ?>
 
 			</form>
 		</div>
@@ -211,14 +229,7 @@ class GF_Pending_Activations {
 		<div class="wrap">
 
 			<?php
-
 			printf( '<%1$s>%2$s</%1$s>', $is_global ? 'h2' : 'h3', __( 'Pending Activations', 'gravityformsuserregistration' ) );
-
-			if ( rgpost( 'is_submit' ) ) {
-				self::handle_submission();
-				GFCommon::display_admin_message();
-			}
-
 			?>
 
 			<form id="list_form" method="post" action="">
@@ -233,7 +244,7 @@ class GF_Pending_Activations {
 				<input type="hidden" id="single_action" name="single_action" value="" />
 				<input type="hidden" id="item" name="item" value="" />
 
-				<?php wp_nonce_field('action', 'action_nonce'); ?>
+				<?php wp_nonce_field( 'action', 'action_nonce' ); ?>
 
 			</form>
 
@@ -252,6 +263,25 @@ class GF_Pending_Activations {
 		<?php
 	}
 
+	/**
+	 * Get pending activations or total pending activations.
+	 *
+	 * @since unknown
+	 *
+	 * @param int   $form_id The Form ID
+	 * @param array $args    {
+	 *     Query args for returned results. Supported:
+	 *
+	 *     @type string order     ASC or DESC.
+	 *     @type string orderby   Column to sort by.
+	 *     @type int    page      Page number of results.
+	 *     @type int    per_page  Number of results to return per page.
+	 *     @type bool   get_total If total rows should be returned.
+	 *     @type bool   lead_id   Filter results by lead ID.
+	 * }
+	 *
+	 * @return mixed
+	 */
 	public static function get_pending_activations( $form_id, $args = array() ) {
 		global $wpdb;
 
@@ -259,14 +289,19 @@ class GF_Pending_Activations {
 			$form_id = '';
 		}
 
-		extract( wp_parse_args( $args, array(
-			'order'     => 'DESC',
-			'order_by'  => 'registered',
-			'page'      => 1,
-			'per_page'  => 10,
-			'get_total' => false,
-			'lead_id'   => false
-		) ) );
+		extract(
+			wp_parse_args(
+				$args,
+				array(
+					'order'     => 'DESC',
+					'order_by'  => 'registered',
+					'page'      => 1,
+					'per_page'  => 10,
+					'get_total' => false,
+					'lead_id'   => false,
+				)
+			)
+		);
 
 		if ( ! is_multisite() ) {
 			require_once( gf_user_registration()->get_base_path() . '/includes/signups.php' );
@@ -280,10 +315,10 @@ class GF_Pending_Activations {
 		}
 
 		if ( $lead_id ) {
-			$where[] = $wpdb->prepare( "l.id = %d", $lead_id );
+			$where[] = $wpdb->prepare( 'l.id = %d', $lead_id );
 		}
 
-		$where[] = "s.active = 0";
+		$where[] = 's.active = 0';
 		$where   = 'WHERE ' . implode( ' AND ', $where );
 
 		$order        = "ORDER BY {$order_by} {$order}";
@@ -292,7 +327,7 @@ class GF_Pending_Activations {
 		$method       = $get_total ? 'get_var' : 'get_results';
 
 		if ( $form_id ) {
-			$entry_table = self::get_entry_table_name();
+			$entry_table      = self::get_entry_table_name();
 			$entry_meta_table = self::get_entry_meta_table_name();
 
 			$entry_id_column = version_compare( self::get_gravityforms_db_version(), '2.3-dev-1', '<' ) ? 'lead_id' : 'entry_id';
@@ -301,34 +336,73 @@ class GF_Pending_Activations {
 
 			$collate = ! empty( $wpdb->collate ) ? " COLLATE {$wpdb->collate}" : '';
 
+			$activation_key_col = 's.activation_key';
+			$meta_value_col     = 'lm.meta_value';
+
+			// Convert Charset only if necessary.
+			$activation_key_charset = self::get_column_charset( 'activation_key', $wpdb->signups );
+			$meta_value_charset     = self::get_column_charset( 'meta_value', $entry_meta_table );
+
+			// Check if activation_key needs to be converted.
+			if ( $activation_key_charset !== $charset_db ) {
+				$activation_key_col = "CONVERT( s.activation_key USING {$charset_db} )";
+			}
+
+			// Check if meta_value needs to be converted.
+			if ( $meta_value_charset !== $charset_db ) {
+				$meta_value_col = "CONVERT( lm.meta_value USING {$charset_db} )";
+			}
+
 			$select = $get_total ? 'SELECT count(s.activation_key)' : 'SELECT s.*';
 			$sql    = "
                 $select FROM {$entry_meta_table} lm
-                INNER JOIN {$wpdb->signups} s ON CONVERT(s.activation_key USING {$charset_db}) = CONVERT(lm.meta_value USING {$charset_db}) {$collate} AND lm.meta_key = 'activation_key'
+                INNER JOIN {$wpdb->signups} s ON {$activation_key_col} = {$meta_value_col} {$collate} AND lm.meta_key = 'activation_key'
                 INNER JOIN {$entry_table} l ON l.id = lm.{$entry_id_column}
                 $where
                 $order
                 $limit_offset";
 
 			$results = $wpdb->$method( $sql );
-
 		} else {
-
 			$select  = $get_total ? 'SELECT count(s.activation_key)' : 'SELECT s.*';
-			$results = $wpdb->$method( "
-                $select FROM $wpdb->signups s
+			$results = $wpdb->$method(
+				"$select FROM $wpdb->signups s
                 $where
                 $order
                 $limit_offset"
 			);
-
 		}
 
 		return $results;
 	}
 
-	public static function handle_submission() {
+	/**
+	 * Get the character encoding for a column in a table.
+	 *
+	 * @since 4.6.2
+	 *
+	 * @param string $column_name Desired column to get charset.
+	 * @param string $table_name  Desired table in which column is present.
+	 * @param string $db_name     Desired database in which table is present.
+	 *
+	 * @return string|null
+	 */
+	public static function get_column_charset( $column_name, $table_name, $db_name = DB_NAME ) {
+		global $wpdb;
+		return $wpdb->get_var(
+			$wpdb->prepare(
+				'SELECT character_set_name FROM information_schema.`COLUMNS` WHERE table_schema = %s AND table_name = %s AND column_name = %s',
+				$db_name,
+				$table_name,
+				$column_name
+			)
+		);
+	}
 
+	/**
+	 * Handle User activation form submission.
+	 */
+	public static function handle_submission() {
 		if ( ! wp_verify_nonce( rgpost( 'action_nonce' ), 'action' ) && ! check_admin_referer( 'action_nonce', 'action_nonce' ) ) {
 			die( 'You have failed...' );
 		}
@@ -336,32 +410,55 @@ class GF_Pending_Activations {
 		require_once( gf_user_registration()->get_base_path() . '/includes/signups.php' );
 		GFUserSignups::prep_signups_functionality();
 
-		$action = rgpost('single_action');
-		$action = !$action ? rgpost('action') != -1 ? rgpost('action') : rgpost('action2') : $action;
+		$action = rgpost( 'single_action' );
+		$action = ! $action ? rgpost( 'action' ) != -1 ? rgpost( 'action' ) : rgpost( 'action2' ) : $action;
 
-		$items      = rgpost('item') ? array(rgpost('item')) : rgpost('items');
+		$items      = rgpost( 'item' ) ? array( rgpost( 'item' ) ) : rgpost( 'items' );
 		$item_count = count( $items );
-		$messages   = $errors = array();
+		$messages   = array();
+		$errors     = array();
 
 		foreach ( $items as $key ) {
-
 			switch ( $action ) {
+
 				case 'delete':
 					$success = GFUserSignups::delete_signup( $key );
+
+					if ( self::is_pending_activations_page() ) {
+						break;
+					}
+
 					if ( $success ) {
-						gf_user_registration()->add_message_once( _n( 'Item deleted.', 'Items deleted.', count( $items ), 'gravityformsuserregistration' ) );
+						gf_user_registration()->add_message_once(
+							_n(
+								'User registration deleted.',
+								'User registrations deleted.',
+								count( $items ),
+								'gravityformsuserregistration'
+							)
+						);
 					} else {
-						gf_user_registration()->add_error_message_once( _n( 'There was an issue deleting this item.', 'There was an issue deleting one or more selected items.', count( $items ), 'gravityformsuserregistration' ) );
+						gf_user_registration()->add_error_message_once(
+							_n(
+								'There was an issue deleting this user registration.',
+								'There was an issue deleting one or more selected user registrations.',
+								count( $items ),
+								'gravityformsuserregistration'
+							)
+						);
 					}
 					break;
 
 				case 'activate':
-
 					$userdata = GFUserSignups::activate_signup( $key );
 
+					if ( self::is_pending_activations_page() ) {
+						break;
+					}
+
 					if ( is_wp_error( $userdata ) ) {
-						$error = _n( 'There was an issue activating this item', 'There was an issue activating one or more selected items', count( $items ), 'gravityformsuserregistration' );
-						$error .= ": " . $userdata->get_error_message();
+						$error  = _n( 'There was an issue activating this item', 'There was an issue activating one or more selected items', count( $items ), 'gravityformsuserregistration' );
+						$error .= ': ' . $userdata->get_error_message();
 						gf_user_registration()->add_error_message_once( $error );
 					} else {
 						$message = _n( 'User activated.', 'Users activated.', count( $items ), 'gravityformsuserregistration' );
@@ -370,9 +467,73 @@ class GF_Pending_Activations {
 
 					break;
 			}
+		}
+	}
 
+	/**
+	 * Display the "User(s) activated." WordPress admin notice on the pending activations screen.
+	 *
+	 * @since 4.7
+	 */
+	public function display_pending_activation_page_notices() {
+		$items  = $this->get_activation_request_items();
+		$action = $this->get_pending_activation_action();
+
+		if ( empty( $items ) || empty( $action ) ) {
+			return;
 		}
 
+		if ( 'delete' === $action ) {
+			printf(
+				'<div class="notice notice-success is-dismissible"><p>%s</p></div>',
+				esc_html( _n( 'User registration deleted.', 'User registrations deleted.', count( $items ), 'gravityformsuserregistration' ) )
+			);
+			return;
+		}
+
+		printf(
+			'<div class="notice notice-success is-dismissible"><p>%s</p></div>',
+			esc_html( _n( 'User activated.', 'Users activated.', count( $items ), 'gravityformsuserregistration' ) )
+		);
+	}
+
+	/**
+	 * Get the action of the $_POST request - either activate, delete, or none.
+	 *
+	 * @since 4.7
+	 *
+	 * @return string
+	 */
+	private function get_pending_activation_action() {
+		$action = array_values(
+			array_filter(
+				array( rgpost( 'single_action' ), rgpost( 'action' ) ),
+				function( $action ) {
+					return in_array( $action, array( 'activate', 'delete' ), true );
+				}
+			)
+		);
+
+		return count( $action ) === 1 ? $action[0] : '';
+	}
+
+	/**
+	 * Get the items from the activation request.
+	 *
+	 * @since 4.7
+	 *
+	 * @return array
+	 */
+	private function get_activation_request_items() {
+		$items = rgpost( 'item' );
+
+		if ( ! empty( $items ) ) {
+			return array( $items );
+		}
+
+		$items = rgpost( 'items' );
+
+		return is_array( $items ) ? $items : array();
 	}
 
 	public function register_submenu_page_under_users() {
@@ -380,13 +541,31 @@ class GF_Pending_Activations {
 			'users.php',
 			__( 'Pending Activations', 'gravityformsuserregistration' ),
 			__( 'Pending Activations', 'gravityformsuserregistration' ),
-			'gravityforms_user_registration',
+			GFCommon::current_user_can_which( array( 'promote_users', 'gravityforms_user_registration', 'gform_full_access' ) ),
 			'gf-pending-activations',
 			array( $this, 'pending_activations_page' )
 		);
 	}
 
+	/**
+	 * Maybe handle the form submission and display admin messages.
+	 *
+	 * @since 4.6.4
+	 */
+	public function maybe_handle_submission() {
+		if ( rgpost( 'is_submit' ) ) {
+			self::handle_submission();
+			GFCommon::display_admin_message();
+		}
+	}
+
+	/**
+	 * Display the Pending Activations page (found under the Users Admin Menu).
+	 *
+	 * @since Unknown
+	 */
 	public function pending_activations_page() {
+		$this->maybe_handle_submission();
 		self::get_page_content();
 	}
 

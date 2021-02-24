@@ -4,7 +4,7 @@ Donate link: https://flycart.org/
 Tags: woocommerce, coupons, discounts, dynamic pricing, Buy One Get One Free, pricing deals, bulk discount, discount
 Requires at least: 4.4.1
 Tested up to: 5.5
-Stable tag: 2.3.3
+Stable tag: 2.3.4
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -336,6 +336,23 @@ Note : Enable recursive checkbox if the discounts should be applied in sequentia
 * Dutch Translation - [@mvdburg1971](https://profiles.wordpress.org/mvdburg1971) - Michael van der Burg
 
 == Changelog ==
+
+= 2.3.4 - 01/02/21 =
+* Feature - Quantity based promotion message.
+* Improvement - Accept additional tags in sale badge.
+* Improvement - Translation improvements.
+* Improvement - Variable product suffix on strikeout.
+* Improvement - Event: advanced_woo_discount_rules_coupon_discount_type_percentage
+* Improvement - Event: advanced_woo_discount_rules_apply_coupon_for_products_based_on_filters
+* Improvement - Event: advanced_woo_discount_rules_cart_item_key_for_buy_x_get_y_limited_discounts
+* Improvement - Event: advanced_woo_discount_rules_select_coupon_from_woocommerce
+* Improvement - Email tld condition improvement.
+* Fix - Coupon not applied when use settings (disable coupons discount rules will work).
+* Fix - Fatal error for child products when category based rule is set.
+* Fix - Buy X get Y auto add not added while variant is added in cart.
+* Fix - BOGO Cheapest strikeout issue.
+* Fix - Last order purchase condition issue
+* Fix - Fatal error on view plugin details in plugin page
 
 = 2.3.3 - 16/12/20 =
 * Fix - Attribute doesn't loads for few language.

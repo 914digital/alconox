@@ -731,7 +731,7 @@ class Woocommerce
                     }, 10, 3);
                 }
                 $fee = apply_filters('advanced_discount_rules_discount_fee_amount', $fee, $name, $cart);
-                $name = __($name, WDR_TEXT_DOMAIN);
+                $name = __($name, 'woo-discount-rules');
                 return $cart->add_fee($name, $fee);
             }
         }
@@ -937,13 +937,13 @@ class Woocommerce
     static function getWeekDaysList()
     {
         return array(
-            'sunday' => __('Sunday', WDR_TEXT_DOMAIN),
-            'monday' => __('Monday', WDR_TEXT_DOMAIN),
-            'tuesday' => __('Tuesday', WDR_TEXT_DOMAIN),
-            'wednesday' => __('Wednesday', WDR_TEXT_DOMAIN),
-            'thursday' => __('Thursday', WDR_TEXT_DOMAIN),
-            'friday' => __('Friday', WDR_TEXT_DOMAIN),
-            'saturday' => __('Saturday', WDR_TEXT_DOMAIN),
+            'sunday' => __('Sunday', 'woo-discount-rules'),
+            'monday' => __('Monday', 'woo-discount-rules'),
+            'tuesday' => __('Tuesday', 'woo-discount-rules'),
+            'wednesday' => __('Wednesday', 'woo-discount-rules'),
+            'thursday' => __('Thursday', 'woo-discount-rules'),
+            'friday' => __('Friday', 'woo-discount-rules'),
+            'saturday' => __('Saturday', 'woo-discount-rules'),
         );
     }
 
@@ -954,33 +954,33 @@ class Woocommerce
     static function getBannerPositionList()
     {
         $banner_hooks = array(
-            'woocommerce_before_main_content' => __('Woocommerce before main content(Archive / Shop / Cat Pages / single product)', WDR_TEXT_DOMAIN),
-            'woocommerce_archive_description' => __('Woocommerce archive description(Archive / Shop / Cat Pages)', WDR_TEXT_DOMAIN),
-            'woocommerce_before_shop_loop' => __('Woocommerce before shop loop(Archive / Shop / Cat Pages)', WDR_TEXT_DOMAIN),
-            'woocommerce_after_shop_loop' => __('Woocommerce after shop loop(Archive / Shop / Cat Pages)', WDR_TEXT_DOMAIN),
-            'woocommerce_after_main_content' => __('Woocommerce after main content(Archive / Shop / Cat Pages / single product)', WDR_TEXT_DOMAIN),
-            'woocommerce_before_single_product' => __('Woocommerce before single product', WDR_TEXT_DOMAIN),
-            'woocommerce_before_single_product_summary' => __('Woocommerce before single product summary', WDR_TEXT_DOMAIN),
-            'woocommerce_after_single_product_summary' => __('Woocommerce after single product summary', WDR_TEXT_DOMAIN),
-            'woocommerce_after_single_product' => __('Woocommerce after single product', WDR_TEXT_DOMAIN),
-            'woocommerce_before_cart' => __('Woocommerce before cart', WDR_TEXT_DOMAIN),
-            'woocommerce_before_cart_table' => __('Woocommerce before cart table', WDR_TEXT_DOMAIN),
-            'woocommerce_before_cart_contents' => __('Woocommerce before cart contents', WDR_TEXT_DOMAIN),
-            'woocommerce_cart_contents' => __('Woocommerce cart contents', WDR_TEXT_DOMAIN),
-            'woocommerce_after_cart_contents' => __('Woocommerce after cart contents', WDR_TEXT_DOMAIN),
-            'woocommerce_after_cart_table' => __('Woocommerce after cart table', WDR_TEXT_DOMAIN),
-            'woocommerce_after_cart' => __('Woocommerce after cart', WDR_TEXT_DOMAIN),
-            'woocommerce_before_checkout_form' => __('Woocommerce before checkout form', WDR_TEXT_DOMAIN),
-            //'woocommerce_checkout_before_customer_details' => __('Woocommerce checkout before customer details', WDR_TEXT_DOMAIN),
-            'woocommerce_before_checkout_billing_form' => __('Woocommerce before checkout billing form', WDR_TEXT_DOMAIN),
-            'woocommerce_after_checkout_billing_form' => __('Woocommerce after checkout billing form', WDR_TEXT_DOMAIN),
-            'woocommerce_before_checkout_shipping_form' => __('Woocommerce before checkout shipping form', WDR_TEXT_DOMAIN),
-            'woocommerce_after_checkout_shipping_form' => __('Woocommerce after checkout shipping form', WDR_TEXT_DOMAIN),
-            'woocommerce_before_order_notes' => __('Woocommerce before order notes', WDR_TEXT_DOMAIN),
-            'woocommerce_after_order_notes' => __('Woocommerce after order notes', WDR_TEXT_DOMAIN),
-            //'woocommerce_checkout_after_customer_details' => __('Woocommerce checkout after customer details', WDR_TEXT_DOMAIN),
-            //'woocommerce_checkout_before_order_review' => __('Woocommerce checkout before order review', WDR_TEXT_DOMAIN),
-            //'woocommerce_checkout_after_order_review' => __('Woocommerce checkout after order review', WDR_TEXT_DOMAIN),
+            'woocommerce_before_main_content' => __('Woocommerce before main content(Archive / Shop / Cat Pages / single product)', 'woo-discount-rules'),
+            'woocommerce_archive_description' => __('Woocommerce archive description(Archive / Shop / Cat Pages)', 'woo-discount-rules'),
+            'woocommerce_before_shop_loop' => __('Woocommerce before shop loop(Archive / Shop / Cat Pages)', 'woo-discount-rules'),
+            'woocommerce_after_shop_loop' => __('Woocommerce after shop loop(Archive / Shop / Cat Pages)', 'woo-discount-rules'),
+            'woocommerce_after_main_content' => __('Woocommerce after main content(Archive / Shop / Cat Pages / single product)', 'woo-discount-rules'),
+            'woocommerce_before_single_product' => __('Woocommerce before single product', 'woo-discount-rules'),
+            'woocommerce_before_single_product_summary' => __('Woocommerce before single product summary', 'woo-discount-rules'),
+            'woocommerce_after_single_product_summary' => __('Woocommerce after single product summary', 'woo-discount-rules'),
+            'woocommerce_after_single_product' => __('Woocommerce after single product', 'woo-discount-rules'),
+            'woocommerce_before_cart' => __('Woocommerce before cart', 'woo-discount-rules'),
+            'woocommerce_before_cart_table' => __('Woocommerce before cart table', 'woo-discount-rules'),
+            'woocommerce_before_cart_contents' => __('Woocommerce before cart contents', 'woo-discount-rules'),
+            'woocommerce_cart_contents' => __('Woocommerce cart contents', 'woo-discount-rules'),
+            'woocommerce_after_cart_contents' => __('Woocommerce after cart contents', 'woo-discount-rules'),
+            'woocommerce_after_cart_table' => __('Woocommerce after cart table', 'woo-discount-rules'),
+            'woocommerce_after_cart' => __('Woocommerce after cart', 'woo-discount-rules'),
+            'woocommerce_before_checkout_form' => __('Woocommerce before checkout form', 'woo-discount-rules'),
+            //'woocommerce_checkout_before_customer_details' => __('Woocommerce checkout before customer details', 'woo-discount-rules'),
+            'woocommerce_before_checkout_billing_form' => __('Woocommerce before checkout billing form', 'woo-discount-rules'),
+            'woocommerce_after_checkout_billing_form' => __('Woocommerce after checkout billing form', 'woo-discount-rules'),
+            'woocommerce_before_checkout_shipping_form' => __('Woocommerce before checkout shipping form', 'woo-discount-rules'),
+            'woocommerce_after_checkout_shipping_form' => __('Woocommerce after checkout shipping form', 'woo-discount-rules'),
+            'woocommerce_before_order_notes' => __('Woocommerce before order notes', 'woo-discount-rules'),
+            'woocommerce_after_order_notes' => __('Woocommerce after order notes', 'woo-discount-rules'),
+            //'woocommerce_checkout_after_customer_details' => __('Woocommerce checkout after customer details', 'woo-discount-rules'),
+            //'woocommerce_checkout_before_order_review' => __('Woocommerce checkout before order review', 'woo-discount-rules'),
+            //'woocommerce_checkout_after_order_review' => __('Woocommerce checkout after order review', 'woo-discount-rules'),
         );
 
         return apply_filters('advanced_woo_discount_rules_get_banner_position_events', $banner_hooks);

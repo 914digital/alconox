@@ -62,6 +62,9 @@ class Configuration
         'force_override_on_sale_badge' => '',
         'on_sale_badge_html' => '<span class="onsale">Sale!</span>',
         'licence_key' => '',
+        'show_subtotal_promotion' => 0,
+        'show_cart_quantity_promotion' => 0,
+        'show_promo_text' => '',
     );
 
     /**

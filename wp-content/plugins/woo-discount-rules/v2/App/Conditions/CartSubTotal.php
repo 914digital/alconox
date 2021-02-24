@@ -2,6 +2,7 @@
 
 namespace Wdr\App\Conditions;
 
+use Wdr\App\Controllers\Configuration;
 use Wdr\App\Controllers\DiscountCalculator;
 use Wdr\App\Helpers\Helper;
 use Wdr\App\Helpers\Woocommerce;
@@ -14,8 +15,8 @@ class CartSubTotal extends Base
     {
         parent::__construct();
         $this->name = 'cart_subtotal';
-        $this->label = __('Subtotal', WDR_TEXT_DOMAIN);
-        $this->group = __('Cart', WDR_TEXT_DOMAIN);
+        $this->label = __('Subtotal', 'woo-discount-rules');
+        $this->group = __('Cart', 'woo-discount-rules');
         $this->template = WDR_PLUGIN_PATH . 'App/Views/Admin/Rules/Conditions/Cart/Subtotal.php';
     }
 
@@ -48,7 +49,10 @@ class CartSubTotal extends Base
             $value = self::$woocommerce_helper->getConvertedFixedPrice($options->value, 'subtotal_condition');
             $status = $this->doComparisionOperation($operator, $cart_sub_total, $value);
             if(!$status){
-                $this->processPromotion($operator, $options, $cart_sub_total, $value);
+                $config = new Configuration();
+                if($config->getConfig('show_subtotal_promotion', '') == 1){
+                    $this->processPromotion($operator, $options, $cart_sub_total, $value);
+                }
             }
             return $status;
         }
@@ -66,7 +70,7 @@ class CartSubTotal extends Base
                 if($options->subtotal_promotion_from <= $cart_sub_total){
                     $difference_amount = $min_value - $cart_sub_total;
                     if($difference_amount > 0){
-                        $message = __($options->subtotal_promotion_message, WDR_TEXT_DOMAIN);
+                        $message = __($options->subtotal_promotion_message, 'woo-discount-rules');
                         $difference_amount = Woocommerce::formatPrice($difference_amount);
                         $message = str_replace('{{difference_amount}}', $difference_amount, $message);
                         Helper::setPromotionMessage($message, $this->rule->rule->id);

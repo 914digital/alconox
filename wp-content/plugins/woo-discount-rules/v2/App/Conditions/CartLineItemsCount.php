@@ -12,8 +12,8 @@ class CartLineItemsCount extends Base
     {
         parent::__construct();
         $this->name = 'cart_line_items_count';
-        $this->label = __('Line Item Count', WDR_TEXT_DOMAIN);
-        $this->group = __('Cart', WDR_TEXT_DOMAIN);
+        $this->label = __('Line Item Count', 'woo-discount-rules');
+        $this->group = __('Cart', 'woo-discount-rules');
         $this->template = WDR_PLUGIN_PATH . 'App/Views/Admin/Rules/Conditions/Cart/LineItemCount.php';
     }
 

@@ -1,5 +1,8 @@
 *** UPS Shipping ***
 
+2021-02-09 - version 3.2.31
+* Fix - Error when libxml_disable_entity_loader() is disabled by host
+
 2020-12-10 - version 3.2.30
 * Tweak - PHP 8 compatibility.
 

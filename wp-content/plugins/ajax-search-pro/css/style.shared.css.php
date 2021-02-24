@@ -692,6 +692,7 @@ p[id*=asp-try-<?php echo $id; ?>] a:last-child:after {
   margin: 0;
   padding: 0;
   line-height: inherit;
+  display: block;
   <?php echo ASP_Helpers::font($style['titlefont']); ?>
 }
 
@@ -1053,6 +1054,8 @@ else
       cursor: pointer;
       vertical-align: middle;
       outline: none;
+      width: auto;
+      box-sizing: border-box;
       background: <?php echo $style['fe_sb_bg']; ?>;
       padding: <?php echo $style['fe_sb_padding']; ?>;
       margin: <?php echo $style['fe_sb_margin']; ?>;
@@ -1086,6 +1089,8 @@ else
       cursor: pointer;
       vertical-align: middle;
       outline: none;
+      width: auto;
+      box-sizing: border-box;
       background: <?php echo $style['fe_rb_bg']; ?>;
       padding: <?php echo $style['fe_rb_padding']; ?>;
       margin: <?php echo $style['fe_rb_margin']; ?>;

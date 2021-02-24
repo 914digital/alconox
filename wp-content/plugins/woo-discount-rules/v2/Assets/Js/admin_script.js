@@ -121,16 +121,24 @@ jQuery(document).ready(function ($) {
         $('.subtotal_operator').trigger('change');
     });
 
+    function wdrShowHidePromotionSection(tis){
+        let promotion_operator = tis.val();
+        let current_promo_index = tis.parents('.wdr-conditions-container').attr("data-index");
+        if (promotion_operator == 'greater_than_or_equal' || promotion_operator == 'greater_than') {
+            $('.promo_show_hide_' + current_promo_index).show();
+        } else {
+            $('.promo_show_hide_' + current_promo_index).hide();
+        }
+    }
+
     $(document).on('change', '.subtotal_operator', function () {
-        // alert($(this).val());
-        if (wdr_data.enable_subtotal_promo_text == '1') {
-            let subtotal_operator = $(this).val();
-            let current_promo_index = $(this).parents('.wdr-conditions-container').attr("data-index");
-            if (subtotal_operator == 'greater_than_or_equal' || subtotal_operator == 'greater_than') {
-                $('.promo_show_hide_' + current_promo_index).show();
-            } else {
-                $('.promo_show_hide_' + current_promo_index).hide();
-            }
+        if (wdr_data.enable_subtotal_promo_text == '1' ) {
+            wdrShowHidePromotionSection($(this));
+        }
+    });
+    $(document).on('change', '.wdr_quantity_operator', function () {
+        if ( wdr_data.enable_cart_quantity_promo_text == '1') {
+            wdrShowHidePromotionSection($(this));
         }
     });
 
@@ -141,9 +149,13 @@ jQuery(document).ready(function ($) {
                 parentsRow: ".wdr-conditions-container",
                 thisObject: this,
             });
-            if (wdr_data.enable_subtotal_promo_text == '1') {
+            if (wdr_data.enable_subtotal_promo_text == '1' || wdr_data.enable_cart_quantity_promo_text == '1') {
                 let condition_type = $(this).parent('.wdr-btn-remove').siblings('.wdr-condition-type').find('.wdr-product-condition-type').val();
                 if (condition_type == 'cart_subtotal') {
+                    let promo_index = $(this).parents('.wdr-conditions-container').attr("data-index");
+                    $('.promo_show_hide_' + promo_index).remove();
+                }
+                if (condition_type == 'cart_items_quantity') {
                     let promo_index = $(this).parents('.wdr-conditions-container').attr("data-index");
                     $('.promo_show_hide_' + promo_index).remove();
                 }
@@ -165,14 +177,18 @@ jQuery(document).ready(function ($) {
             ruleAppendTo: $(this).parents('.wdr-conditions-container'),
             newIndex: last_index
         });
+
+        var promo_index = $(this).parents('.wdr-conditions-container').attr("data-index");
+        //if Class Exists then checking the first object that is returned from JQuery
+        if($('.promo_show_hide_' + promo_index)[0] != 'undefined'){
+            $('.promo_show_hide_' + promo_index).remove();
+        }
+
         if (current_block == 'order_time') {
             $('.wdr_time_picker').datetimepicker({
                 datepicker: false,
                 format: 'H:i'
             });
-        } else if (current_block != 'cart_subtotal') {
-            let promo_index = $(this).parents('.wdr-conditions-container').attr("data-index");
-            $('.promo_show_hide_' + promo_index).remove();
         } else if (current_block == 'cart_subtotal') {
             if (wdr_data.enable_subtotal_promo_text == '1') {
                 wdr_buildrule.wdr_clone_field({
@@ -184,6 +200,17 @@ jQuery(document).ready(function ($) {
                 });
             }
             $('.subtotal_operator').trigger('change');
+        }else if (current_block == 'cart_items_quantity') {
+            if (wdr_data.enable_cart_quantity_promo_text == '1') {
+                wdr_buildrule.wdr_clone_field({
+                    addConditionType: 'empty-promo',
+                    addFilterMethod: '.wdr-cart-quantity-promo-messeage-main',
+                    addRemoveIcon: '.wdr-icon-remove',
+                    ruleAppendTo: ".wdr-condition-group-items",
+                    newIndex: last_index
+                });
+            }
+            $('.wdr_quantity_operator').trigger('change');
         }
 
         //$('.wdr-condition-date').datetimepicker();

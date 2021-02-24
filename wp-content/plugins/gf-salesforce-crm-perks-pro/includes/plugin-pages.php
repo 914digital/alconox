@@ -358,6 +358,7 @@ $this->push($entry,$form,'add_note');
   if($is_section === true){
     return;
 } 
+
   $offset=$this->time_offset();
   wp_enqueue_script( 'jquery-ui-sortable');
   if(isset($_POST["action"]) && $_POST["action"] == "delete"){
@@ -1052,7 +1053,8 @@ return $arr;
 
   if($is_section === true){
     return;
-}  
+} 
+
   $msgs=array(); $lic_key=false;
   $message=$force_check= false;
   $offset=$this->time_offset();
@@ -1094,6 +1096,7 @@ $this->screen_msg($uninstall_msg);
   $crm_post=$this->post('crm');
  $data=array_merge($data,$crm_post);
  $data['custom_app']=$this->post('custom_app',$crm_post);
+
 
  
   $this->update_info(array('data'=> $data),$id);
@@ -1365,7 +1368,6 @@ include_once(self::$path . "templates/feed-account.php");
       }
   $form = RGFormsModel::get_form_meta($form_id);
   $fields = array();
-  
   //Adding default fields
   array_push($form['fields'],array("id" => "date_created" , "label" => __("Entry Date", 'gravity-forms-salesforce-crm')));
   array_push($form['fields'],array("id" => "ip" , "label" => __("User IP", 'gravity-forms-salesforce-crm')));
@@ -1373,7 +1375,7 @@ include_once(self::$path . "templates/feed-account.php");
   array_push($form['fields'],array("id" => "form_title" , "label" => __("Form Title", 'gravity-forms-salesforce-crm')));
   array_push($form['fields'],array("id" => "status" , "label" => __('Entry Status', 'gravity-forms-infusionsoft-crm')));
 
-  $skip_inputs=array('checkbox','select','time','date'); 
+  $skip_inputs=array('checkbox','select','time','date','radio'); 
   if(is_array($form['fields'])){
   foreach($form['fields'] as $field){
   if(isset($field["inputs"]) && is_array($field["inputs"]) && !in_array($field['type'] ,$skip_inputs) ){
@@ -1400,6 +1402,7 @@ include_once(self::$path . "templates/feed-account.php");
   $fields[]=array('entry_url',__('Entry URL','gravity-forms-salesforce-crm'));
   $fields[]=array('payment_status',__('Payment Status','gravity-forms-salesforce-crm'));
   $fields[]=array('payment_method',__('Payment Method','gravity-forms-salesforce-crm'));
+  $fields[]=array('transaction_id',__('Transaction Id','gravity-forms-salesforce-crm'));
   $this->fields=array('gf'=>array("title"=>__('Gravity Forms Fields','gravity-forms-salesforce-crm'),"fields"=>$fields));
  
    if(self::$is_pr){

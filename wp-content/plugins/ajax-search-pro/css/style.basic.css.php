@@ -1695,13 +1695,8 @@ div.ajaxsearchpro.searchsettings .noUi-origin {
 }
 div.ajaxsearchpro.searchsettings .noUi-target {
     border-radius: 4px;
-    box-shadow: 0 0 4px -1px #000;
-    -webkit-box-shadow: 0 0 4px -1px #000;
-    -moz-box-shadow: 0 0 2px -1px #000;
+    box-shadow: 0 0 4px -1px rgba(0,0,0,0.45);
     background: white;
-}
-div.ajaxsearchpro.asp_firefox.searchsettings .noUi-target {
-    box-shadow: 0 0 2px -1px #000;
 }
 div.ajaxsearchpro.searchsettings .noUi-target.noUi-connect {
     box-shadow: inset 0 0 3px rgba(51,51,51,0.45), 0 3px 6px -5px #BBB;
@@ -1718,15 +1713,11 @@ div.ajaxsearchpro.searchsettings .noUi-handle {
     border-radius: 3px;
     background: #FFF;
     cursor: default;
-    box-shadow: 0 0 4px -1px #000;
-    -webkit-box-shadow: 0 0 4px -1px #000;
-    -moz-box-shadow: 0 0 2px -1px #000;
-}
-div.ajaxsearchpro.asp_firefox.searchsettings .noUi-handle {
-    box-shadow: 0 0 2px -1px #000;
+    box-shadow: 0 0 4px -1px rgba(0,0,0,0.45);
+    cursor: pointer;
 }
 div.ajaxsearchpro.searchsettings .noUi-active {
-    box-shadow: 0 0 7px -2px #000;
+    box-shadow: 0 0 7px -2px rgba(0,0,0,0.45);
 }
 
 div.ajaxsearchpro.searchsettings .noUi-handle:before,

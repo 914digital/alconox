@@ -4,11 +4,15 @@
     $params[$o->getName()] = $o->getData();
     ?>
 </div>
-<div class="item">
+<div class="item item-flex-nogrow item-flex-wrap">
     <?php
-    $o = new wpdreamsYesNo("scroll_to_results", __('Scroll the browser window to the result list, after the search is finished?', 'ajax-search-pro'), $sd['scroll_to_results']);
-    $params[$o->getName()] = $o->getData();
+    $o = new wpdreamsYesNo("scroll_to_results", __('Scroll the browser window to the result list, when the search starts?', 'ajax-search-pro'), $sd['scroll_to_results']);
+
+    $o = new wpdreamsTextSmall("scroll_to_results_offset", __('scroll offset (px)', 'ajax-search-pro'), $sd['scroll_to_results_offset']);
     ?>
+    <div class="descMsg item-flex-grow item-flex-100">
+        <?php echo __('A negative offset will move the window upwards, a positive downwards. Default: 0', 'ajax-search-pro'); ?>
+    </div>
 </div>
 <div class="item">
     <?php

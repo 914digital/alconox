@@ -83,7 +83,8 @@ class Router
         add_filter('advanced_woo_discount_rules_get_order_total_you_saved_text', array(self::$manage_discount, 'displayTotalSavingsInOrderAfterOrderTotal'), 10,2);
 
         $show_subtotal_promotion = $manage_discount_class::$config->getConfig('show_subtotal_promotion', '');
-        if($show_subtotal_promotion == 1){
+        $show_cart_quantity_promotion = $manage_discount_class::$config->getConfig('show_cart_quantity_promotion', '');
+        if($show_subtotal_promotion == 1 || $show_cart_quantity_promotion == 1){
             $show_promo_message = $manage_discount_class::$config->getConfig('show_promo_text', '');
             if(!empty($show_promo_message) && is_array($show_promo_message)){
                 if(in_array('shop_page', $show_promo_message)){
@@ -101,7 +102,6 @@ class Router
                 }
             }
         }
-
         /**
          *  All hooks needed for front End
          */

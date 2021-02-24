@@ -1230,7 +1230,7 @@ class Rule
                 $value = isset($adjustment->value) ? $adjustment->value : 0;
                 if (in_array($type, array('flat', 'percentage'))) {
                     if (!empty($value)) {
-                        $label = isset($adjustment->label) ? $adjustment->label : __('discount', WDR_TEXT_DOMAIN);
+                        $label = isset($adjustment->label) ? $adjustment->label : __('discount', 'woo-discount-rules');
                         $discounts[] = array(
                             'free_shipping' => 0,
                             'discount' => $value,
@@ -1241,7 +1241,7 @@ class Rule
                     }
                 } elseif($type == 'flat_in_subtotal'){
                     if (!empty($value)) {
-                        $label = isset($adjustment->label) ? $adjustment->label : __('discount', WDR_TEXT_DOMAIN);
+                        $label = isset($adjustment->label) ? $adjustment->label : __('discount', 'woo-discount-rules');
                         $discounts[] = array(
                             'free_shipping' => 0,
                             'discount' => $value,
@@ -1301,7 +1301,7 @@ class Rule
         }
         $current_user = get_current_user_id();
         $rule_id = intval($this->getFromArray($post, 'edit_rule', NULL));
-        $title = $this->getFromArray($post, 'title', esc_html__('Untitled Rule', WDR_TEXT_DOMAIN));
+        $title = $this->getFromArray($post, 'title', esc_html__('Untitled Rule', 'woo-discount-rules'));
         $title = self::validateHtmlBeforeSave($title);
         $enabled = $this->getFromArray($post, 'enabled', '0');
         $exclusive = $this->getFromArray($post, 'exclusive', '0');
@@ -1401,7 +1401,7 @@ class Rule
             $date_to = intval($date_to);
         }
         $current_time = current_time('mysql', true);
-        $rule_title = (empty($title)) ? esc_html__('Untitled Rule', WDR_TEXT_DOMAIN) : $title;
+        $rule_title = (empty($title)) ? esc_html__('Untitled Rule', 'woo-discount-rules') : $title;
         $arg = array(
             'title' => sanitize_text_field($rule_title),
             'enabled' => intval($enabled),
@@ -1459,6 +1459,14 @@ class Rule
                 'span' => array('class' => array()),
                 'div' => array('class' => array()),
                 'p' => array('class' => array()),
+                'table' => array('class' => array(), 'border' => array(), 'cellpadding' => array(), 'cellspacing' => array()),
+                'tr' => array('class' => array()),
+                'td' => array('class' => array()),
+                'th' => array('class' => array()),
+                'h4' => array('class' => array()),
+                'h3' => array('class' => array()),
+                'h1' => array('class' => array()),
+                'h2' => array('class' => array()),
             );
             return wp_kses($html, $allowed_html);
         }

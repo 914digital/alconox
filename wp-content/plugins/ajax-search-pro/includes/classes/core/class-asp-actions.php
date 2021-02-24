@@ -138,6 +138,12 @@ if ( !class_exists("WD_ASP_Actions") ) {
                 "handler" => array("OtherActions", "pll_register_string_translations"),
                 "priority" => 9999,
                 "args" => 0
+            ),
+            array(
+                "action" => "asp_scheduled_activation_events",
+                "handler" => array("OtherActions", "scheduledActivationEvents"),
+                "priority" => 9999,
+                "args" => 0
             )
         );
 

@@ -146,6 +146,14 @@ class DBTable
         return apply_filters('advanced_woo_discount_rules_is_front_end_request_for_fetching_rules', $is_front_end_request);
     }
 
+    public function getRulesCount(){
+        global $wpdb;
+        $wpdb->hide_errors();
+
+        $rules_table_name = $wpdb->prefix . self::RULES_TABLE_NAME;
+        return $wpdb->get_var("SELECT COUNT(*) as total  FROM {$rules_table_name};");
+    }
+
     /**
      * get all available rules
      * @param null $rule_id

@@ -433,3 +433,184 @@
 15-Feb-2021 11:11:40 :: RefNum: 2731719205 Result: Approved
 16-Feb-2021 01:15:32 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
 16-Feb-2021 01:15:33 :: RefNum: 2731958830 Result: Approved
+22-Feb-2021 03:34:53 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+22-Feb-2021 03:34:55 :: RefNum: 2736110290 Result: Approved
+22-Feb-2021 04:13:42 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+22-Feb-2021 04:13:43 :: RefNum: 2736150929 Result: Approved
+22-Feb-2021 05:22:11 :: RefNum: 2736225296 Result: Approved
+22-Feb-2021 08:45:19 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+22-Feb-2021 08:45:21 :: RefNum: 2736438635 Result: Approved
+23-Feb-2021 05:57:02 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+23-Feb-2021 05:57:04 :: Transaction Declined (51)(15151). RefNum (2737069101) is "Declined".
+23-Feb-2021 06:00:52 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+23-Feb-2021 06:00:53 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+23-Feb-2021 06:00:53 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+23-Feb-2021 06:00:53 :: Transaction Declined (51)(15151). RefNum (2737072977) is "Declined".
+23-Feb-2021 06:00:54 :: Transaction Declined (51)(15151). RefNum (2737072992) is "Declined".
+23-Feb-2021 06:00:54 :: Transaction Declined (51)(15151). RefNum (2737072995) is "Declined".
+23-Feb-2021 06:00:59 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+23-Feb-2021 06:01:00 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+23-Feb-2021 06:01:00 :: You have tried too many card numbers, please contact merchant.(10106). RefNum (2737073106) is "Error".
+23-Feb-2021 06:01:00 :: You have tried too many card numbers, please contact merchant.(10106). RefNum (2737073110) is "Error".
+23-Feb-2021 06:01:03 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+23-Feb-2021 06:01:03 :: You have tried too many card numbers, please contact merchant.(10106). RefNum (2737073163) is "Error".
+23-Feb-2021 06:01:06 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+23-Feb-2021 06:01:06 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+23-Feb-2021 06:01:07 :: You have tried too many card numbers, please contact merchant.(10106). RefNum (2737073204) is "Error".
+23-Feb-2021 06:01:07 :: You have tried too many card numbers, please contact merchant.(10106). RefNum (2737073205) is "Error".
+23-Feb-2021 06:01:10 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+23-Feb-2021 06:01:10 :: You have tried too many card numbers, please contact merchant.(10106). RefNum (2737073256) is "Error".
+23-Feb-2021 06:01:13 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+23-Feb-2021 06:01:13 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+23-Feb-2021 06:01:14 :: You have tried too many card numbers, please contact merchant.(10106). RefNum (2737073308) is "Error".
+23-Feb-2021 06:01:14 :: You have tried too many card numbers, please contact merchant.(10106). RefNum (2737073310) is "Error".
+23-Feb-2021 06:01:17 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+23-Feb-2021 06:01:18 :: You have tried too many card numbers, please contact merchant.(10106). RefNum (2737073382) is "Error".
+23-Feb-2021 06:01:21 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+23-Feb-2021 06:01:21 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+23-Feb-2021 06:01:22 :: You have tried too many card numbers, please contact merchant.(10106). RefNum (2737073445) is "Error".
+23-Feb-2021 06:01:22 :: You have tried too many card numbers, please contact merchant.(10106). RefNum (2737073449) is "Error".
+23-Feb-2021 06:01:23 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+23-Feb-2021 06:01:24 :: You have tried too many card numbers, please contact merchant.(10106). RefNum (2737073478) is "Error".
+23-Feb-2021 06:01:28 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+23-Feb-2021 06:01:28 :: You have tried too many card numbers, please contact merchant.(10106). RefNum (2737073570) is "Error".
+23-Feb-2021 06:01:28 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+23-Feb-2021 06:01:29 :: You have tried too many card numbers, please contact merchant.(10106). RefNum (2737073579) is "Error".
+23-Feb-2021 06:01:30 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+23-Feb-2021 06:01:31 :: You have tried too many card numbers, please contact merchant.(10106). RefNum (2737073600) is "Error".
+23-Feb-2021 06:01:34 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+23-Feb-2021 06:01:34 :: You have tried too many card numbers, please contact merchant.(10106). RefNum (2737073668) is "Error".
+23-Feb-2021 06:01:34 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+23-Feb-2021 06:01:35 :: You have tried too many card numbers, please contact merchant.(10106). RefNum (2737073680) is "Error".
+23-Feb-2021 06:01:37 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+23-Feb-2021 06:01:37 :: You have tried too many card numbers, please contact merchant.(10106). RefNum (2737073715) is "Error".
+23-Feb-2021 06:01:42 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+23-Feb-2021 06:01:43 :: You have tried too many card numbers, please contact merchant.(10106). RefNum (2737073795) is "Error".
+23-Feb-2021 06:01:43 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+23-Feb-2021 06:01:44 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+23-Feb-2021 06:01:44 :: You have tried too many card numbers, please contact merchant.(10106). RefNum (2737073813) is "Error".
+23-Feb-2021 06:01:44 :: You have tried too many card numbers, please contact merchant.(10106). RefNum (2737073821) is "Error".
+23-Feb-2021 06:01:49 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+23-Feb-2021 06:01:50 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+23-Feb-2021 06:01:50 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+23-Feb-2021 06:01:50 :: You have tried too many card numbers, please contact merchant.(10106). RefNum (2737073920) is "Error".
+23-Feb-2021 06:01:50 :: You have tried too many card numbers, please contact merchant.(10106). RefNum (2737073926) is "Error".
+23-Feb-2021 06:01:51 :: You have tried too many card numbers, please contact merchant.(10106). RefNum (2737073932) is "Error".
+23-Feb-2021 06:01:56 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+23-Feb-2021 06:01:56 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+23-Feb-2021 06:01:57 :: You have tried too many card numbers, please contact merchant.(10106). RefNum (2737074026) is "Error".
+23-Feb-2021 06:01:57 :: You have tried too many card numbers, please contact merchant.(10106). RefNum (2737074025) is "Error".
+23-Feb-2021 06:01:59 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+23-Feb-2021 06:01:59 :: You have tried too many card numbers, please contact merchant.(10106). RefNum (2737074065) is "Error".
+23-Feb-2021 06:02:00 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+23-Feb-2021 06:02:00 :: You have tried too many card numbers, please contact merchant.(10106). RefNum (2737074082) is "Error".
+23-Feb-2021 06:02:03 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+23-Feb-2021 06:02:04 :: You have tried too many card numbers, please contact merchant.(10106). RefNum (2737074144) is "Error".
+23-Feb-2021 06:02:04 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+23-Feb-2021 06:02:05 :: You have tried too many card numbers, please contact merchant.(10106). RefNum (2737074162) is "Error".
+23-Feb-2021 06:02:06 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+23-Feb-2021 06:02:07 :: You have tried too many card numbers, please contact merchant.(10106). RefNum (2737074196) is "Error".
+23-Feb-2021 06:02:09 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+23-Feb-2021 06:02:10 :: You have tried too many card numbers, please contact merchant.(10106). RefNum (2737074257) is "Error".
+23-Feb-2021 06:02:11 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+23-Feb-2021 06:02:12 :: You have tried too many card numbers, please contact merchant.(10106). RefNum (2737074299) is "Error".
+23-Feb-2021 06:02:13 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+23-Feb-2021 06:02:14 :: You have tried too many card numbers, please contact merchant.(10106). RefNum (2737074342) is "Error".
+23-Feb-2021 06:02:17 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+23-Feb-2021 06:02:17 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+23-Feb-2021 06:02:18 :: You have tried too many card numbers, please contact merchant.(10106). RefNum (2737074405) is "Error".
+23-Feb-2021 06:02:18 :: You have tried too many card numbers, please contact merchant.(10106). RefNum (2737074408) is "Error".
+23-Feb-2021 06:02:22 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+23-Feb-2021 06:02:23 :: You have tried too many card numbers, please contact merchant.(10106). RefNum (2737074483) is "Error".
+23-Feb-2021 06:02:24 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+23-Feb-2021 06:02:24 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+23-Feb-2021 06:02:24 :: You have tried too many card numbers, please contact merchant.(10106). RefNum (2737074507) is "Error".
+23-Feb-2021 06:02:24 :: You have tried too many card numbers, please contact merchant.(10106). RefNum (2737074508) is "Error".
+23-Feb-2021 06:02:28 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+23-Feb-2021 06:02:29 :: You have tried too many card numbers, please contact merchant.(10106). RefNum (2737074590) is "Error".
+23-Feb-2021 06:02:31 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+23-Feb-2021 06:02:31 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+23-Feb-2021 06:02:32 :: You have tried too many card numbers, please contact merchant.(10106). RefNum (2737074638) is "Error".
+23-Feb-2021 06:02:32 :: You have tried too many card numbers, please contact merchant.(10106). RefNum (2737074645) is "Error".
+23-Feb-2021 06:02:36 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+23-Feb-2021 06:02:36 :: You have tried too many card numbers, please contact merchant.(10106). RefNum (2737074713) is "Error".
+23-Feb-2021 06:02:39 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+23-Feb-2021 06:02:39 :: You have tried too many card numbers, please contact merchant.(10106). RefNum (2737074762) is "Error".
+23-Feb-2021 06:02:40 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+23-Feb-2021 06:02:40 :: You have tried too many card numbers, please contact merchant.(10106). RefNum (2737074781) is "Error".
+23-Feb-2021 06:02:43 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+23-Feb-2021 06:02:43 :: You have tried too many card numbers, please contact merchant.(10106). RefNum (2737074830) is "Error".
+23-Feb-2021 06:02:45 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+23-Feb-2021 06:02:46 :: You have tried too many card numbers, please contact merchant.(10106). RefNum (2737074868) is "Error".
+23-Feb-2021 06:02:46 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+23-Feb-2021 06:02:46 :: You have tried too many card numbers, please contact merchant.(10106). RefNum (2737074883) is "Error".
+23-Feb-2021 06:02:49 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+23-Feb-2021 06:02:49 :: You have tried too many card numbers, please contact merchant.(10106). RefNum (2737074919) is "Error".
+23-Feb-2021 06:02:51 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+23-Feb-2021 06:02:52 :: You have tried too many card numbers, please contact merchant.(10106). RefNum (2737074962) is "Error".
+23-Feb-2021 06:02:52 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+23-Feb-2021 06:02:53 :: You have tried too many card numbers, please contact merchant.(10106). RefNum (2737074980) is "Error".
+23-Feb-2021 06:02:57 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+23-Feb-2021 06:02:57 :: You have tried too many card numbers, please contact merchant.(10106). RefNum (2737075061) is "Error".
+23-Feb-2021 06:02:58 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+23-Feb-2021 06:02:58 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+23-Feb-2021 06:02:59 :: You have tried too many card numbers, please contact merchant.(10106). RefNum (2737075083) is "Error".
+23-Feb-2021 06:02:59 :: You have tried too many card numbers, please contact merchant.(10106). RefNum (2737075093) is "Error".
+23-Feb-2021 06:03:04 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+23-Feb-2021 06:03:04 :: You have tried too many card numbers, please contact merchant.(10106). RefNum (2737075171) is "Error".
+23-Feb-2021 06:03:04 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+23-Feb-2021 06:03:05 :: You have tried too many card numbers, please contact merchant.(10106). RefNum (2737075182) is "Error".
+23-Feb-2021 06:03:05 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+23-Feb-2021 06:03:06 :: You have tried too many card numbers, please contact merchant.(10106). RefNum (2737075195) is "Error".
+23-Feb-2021 06:03:11 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+23-Feb-2021 06:03:12 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+23-Feb-2021 06:03:12 :: You have tried too many card numbers, please contact merchant.(10106). RefNum (2737075310) is "Error".
+23-Feb-2021 06:03:12 :: You have tried too many card numbers, please contact merchant.(10106). RefNum (2737075313) is "Error".
+23-Feb-2021 06:03:14 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+23-Feb-2021 06:03:14 :: You have tried too many card numbers, please contact merchant.(10106). RefNum (2737075339) is "Error".
+23-Feb-2021 06:03:18 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+23-Feb-2021 06:03:19 :: You have tried too many card numbers, please contact merchant.(10106). RefNum (2737075417) is "Error".
+23-Feb-2021 06:03:19 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+23-Feb-2021 06:03:20 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+23-Feb-2021 06:03:20 :: You have tried too many card numbers, please contact merchant.(10106). RefNum (2737075434) is "Error".
+23-Feb-2021 06:03:20 :: You have tried too many card numbers, please contact merchant.(10106). RefNum (2737075441) is "Error".
+23-Feb-2021 06:03:25 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+23-Feb-2021 06:03:25 :: You have tried too many card numbers, please contact merchant.(10106). RefNum (2737075511) is "Error".
+23-Feb-2021 06:03:25 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+23-Feb-2021 06:03:26 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+23-Feb-2021 06:03:26 :: You have tried too many card numbers, please contact merchant.(10106). RefNum (2737075526) is "Error".
+23-Feb-2021 06:03:26 :: You have tried too many card numbers, please contact merchant.(10106). RefNum (2737075535) is "Error".
+23-Feb-2021 06:03:32 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+23-Feb-2021 06:03:32 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+23-Feb-2021 06:03:32 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+23-Feb-2021 06:03:33 :: You have tried too many card numbers, please contact merchant.(10106). RefNum (2737075637) is "Error".
+23-Feb-2021 06:03:33 :: You have tried too many card numbers, please contact merchant.(10106). RefNum (2737075643) is "Error".
+23-Feb-2021 06:03:33 :: You have tried too many card numbers, please contact merchant.(10106). RefNum (2737075647) is "Error".
+23-Feb-2021 06:03:36 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+23-Feb-2021 06:03:37 :: You have tried too many card numbers, please contact merchant.(10106). RefNum (2737075713) is "Error".
+23-Feb-2021 06:03:38 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+23-Feb-2021 06:03:39 :: You have tried too many card numbers, please contact merchant.(10106). RefNum (2737075749) is "Error".
+23-Feb-2021 06:03:40 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+23-Feb-2021 06:03:40 :: You have tried too many card numbers, please contact merchant.(10106). RefNum (2737075774) is "Error".
+23-Feb-2021 06:03:43 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+23-Feb-2021 06:03:44 :: You have tried too many card numbers, please contact merchant.(10106). RefNum (2737075829) is "Error".
+23-Feb-2021 06:03:46 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+23-Feb-2021 06:03:46 :: You have tried too many card numbers, please contact merchant.(10106). RefNum (2737075862) is "Error".
+23-Feb-2021 07:02:03 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+23-Feb-2021 07:02:04 :: CVV2 Declined (C2)(15434). RefNum (2737134165) is "Declined".
+23-Feb-2021 07:02:34 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+23-Feb-2021 07:02:35 :: CVV2 Declined (C2)(15434). RefNum (2737134790) is "Declined".
+23-Feb-2021 07:02:44 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+23-Feb-2021 07:02:45 :: CVV2 Declined (C2)(15434). RefNum (2737134963) is "Declined".
+23-Feb-2021 07:03:00 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+23-Feb-2021 07:03:00 :: You have tried this card too many times, please contact merchant.(10160). RefNum (2737135256) is "Error".
+23-Feb-2021 07:04:18 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+23-Feb-2021 07:04:18 :: You have tried this card too many times, please contact merchant.(10160). RefNum (2737136626) is "Error".
+23-Feb-2021 07:10:47 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+23-Feb-2021 07:10:48 :: You have tried this card too many times, please contact merchant.(10160). RefNum (2737143348) is "Error".
+23-Feb-2021 07:26:34 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+23-Feb-2021 07:26:34 :: You have tried this card too many times, please contact merchant.(10160). RefNum (2737159349) is "Error".
+23-Feb-2021 07:57:44 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+23-Feb-2021 07:57:46 :: RefNum: 2737189546 Result: Approved
+23-Feb-2021 10:00:52 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+23-Feb-2021 10:00:53 :: RefNum: 2737299714 Result: Approved

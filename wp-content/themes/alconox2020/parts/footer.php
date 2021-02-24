@@ -78,7 +78,7 @@
 
 <div class="help-tab">
     <div class="ht-close float-right">X</div>
-    <i class="fas fa-question-circle"></i> <p style="margin-top:25px;font-size:20px;">Not finding what you need?</p> <p>For further assistance please fill out the form at <a href="/ask-alconox?utm_source=site&utm_medium=popup&utm_campaign=not-finding-what-you-need">Ask Alconox</a> or email us at <a href="mailto:cleaning@alconox.com" onClick="ga(‘send’, ‘event’, ‘ Not Finding What You Need Popup’, ‘Click’, 'Email Link');">cleaning@alconox.com</a>.</p>   
+    <i class="fas fa-question-circle"></i> <p style="margin-top:25px;font-size:20px;">Not finding what you need?</p> <p>For further assistance please fill out the form at <a href="/ask-alconox?utm_source=site&utm_medium=popup&utm_campaign=not-finding-what-you-need">Ask Alconox</a> or email us at <a href="mailto:cleaning@alconox.com?subject=Ask Alconox (Futher Assistance)" onClick="ga(‘send’, ‘event’, ‘ Not Finding What You Need Popup’, ‘Click’, 'Email Link');">cleaning@alconox.com</a>.</p>   
 </div>
 
 <div class="cookie-policy" id="cookiePolicy" style="display:none;">
@@ -211,17 +211,11 @@ $(window).load(function(){
 
 <!-- Help Tab Pop Out -->
 <script>
-    var num = 500;
-    $(window).bind('scroll', function() {
-    if($(window).scrollTop() > num) {
-
+   
+   setTimeout(function(){
         $('.help-tab').addClass('show-tab animated slideInRight ');
 
-    } else {
-
-        $('.help-tab').removeClass('show-tab animated slideInRight ');
-    }
-});
+}, 45000);
 
 $('.ht-close').click(function(e) {
   $('.help-tab').fadeOut(); 

@@ -993,11 +993,22 @@ jQuery(function($){
         }
     }).trigger('change');
 
-    $('select[name=resultsposition]').on('change', function(){
-        if ( $(this).val() == 'hover' ) {
-            $("select[name='results_snap_to']").closest('.wpdreamsCustomSelect').removeClass('disabled');
+    $('input[name=scroll_to_results]').on('change', function(){
+        if ( $(this).val() == 1 ) {
+            $("input[name='scroll_to_results_offset']").closest('.wpdreamsTextSmall').removeClass('disabled');
         } else {
-            $("select[name='results_snap_to']").closest('.wpdreamsCustomSelect').addClass('disabled');
+            $("input[name='scroll_to_results_offset']").closest('.wpdreamsTextSmall').addClass('disabled');
+        }
+    }).trigger('change');
+    // ----------------------------------------------------------------------------------
+
+    // ---------------------------- Compact Box Layout ----------------------------------
+    $('input[name=box_compact_layout]').on('change', function(){
+        if ( $(this).val() == 0 ) {
+            $(this).closest('fieldset').find('>.item').addClass('disabled');
+            $(this).closest('.item').removeClass('disabled');
+        } else {
+            $(this).closest('fieldset').find('>.item').removeClass('disabled');
         }
     }).trigger('change');
     // ----------------------------------------------------------------------------------

@@ -4,7 +4,7 @@ Donate link: https://wp.tekapo.com/is-my-plugin-useful/
 Tags: template, toolbar
 Requires at least: 3.5
 Tested up to: 5.6
-Stable tag: 0.4.2
+Stable tag: 0.4.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -40,6 +40,18 @@ You can find your profile page is in your WordPress admin -> Users -> Profile.
 = I don't see the current template file name in the toolbar. =
 Do you logged in as "Administrator"? Other role users like "Editor" can't see the file name.
 
+= I'dont think this plugin is working properly.
+
+Please try below:
+
+* Activate one of the default themes.
+
+Now the plugin work properly? Then it means there may be a compatibility issue between your theme and this plugin, so let me know your theme’s name and where I can get it.
+
+* Try to stop all plugins other than this plugin.
+
+Now the plugin work properly? Then it means there may be a compatibility issue between one of those other plugins and this plugin, so let me know those plugins names and where I can get them.
+
 == Screenshots ==
 
 1. Shows the current template file.
@@ -49,6 +61,9 @@ Do you logged in as "Administrator"? Other role users like "Editor" can't see th
 None so far.
 
 == Changelog ==
+
+= 0.4.3 =
+* Fix the JavaScript error reported by @flexer. Special thanks to @dmchale for the fix!
 
 = 0.4.2 =
 * Fix showing included files at bottom when the logged in user's roles other than admin.

@@ -17,7 +17,7 @@
  * needs please refer to http://docs.woocommerce.com/document/woocommerce-avatax/
  *
  * @author    SkyVerge
- * @copyright Copyright (c) 2016-2020, SkyVerge, Inc.
+ * @copyright Copyright (c) 2016-2021, SkyVerge, Inc.
  * @license   http://www.gnu.org/licenses/gpl-3.0.html GNU General Public License v3.0
  */
 
@@ -517,9 +517,10 @@ class WC_AvaTax_Order_Handler {
 				$taxes = [ 'total' => [], 'subtotal' => [] ];
 			}
 
-			foreach ( $line['rates'] as $rate ) {
-				$taxes['total'][ $rate->get_code() ]    = $rate->get_total();
-				$taxes['subtotal'][ $rate->get_code() ] = $rate->get_total();
+			foreach ( $line['rates'] as $code => $rate ) {
+				// use $code from rates array keys instead of value from $rate->get_code() to handle possible iterations of rates with the same name
+				$taxes['total'][ $code ]    = $rate->get_total();
+				$taxes['subtotal'][ $code ] = $rate->get_total();
 			}
 
 			wc_update_order_item_meta( $item_id, '_line_tax_data', $taxes );

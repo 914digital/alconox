@@ -39,7 +39,7 @@ if (!defined('ABSPATH')) {
                             ?>
                              <?php if ($key == 'products') {
                                 echo 'selected';
-                            } ?>><?php _e($value['label'], WDR_TEXT_DOMAIN); ?></option><?php
+                            } ?>><?php _e($value['label'], 'woo-discount-rules'); ?></option><?php
                         } ?>
                         </optgroup><?php
                     }
@@ -78,13 +78,13 @@ if (!defined('ABSPATH')) {
                             ?>
                              <?php if ($key == 'products') {
                                 echo 'selected';
-                            } ?>><?php _e($value['label'], WDR_TEXT_DOMAIN); ?></option><?php
+                            } ?>><?php _e($value['label'], 'woo-discount-rules'); ?></option><?php
                         } ?>
                         </optgroup><?php
                     }
                 } ?>
             </select>
-            <span class="wdr_desc_text awdr-clear-both"><?php _e('Condition Type', WDR_TEXT_DOMAIN); ?></span>
+            <span class="wdr_desc_text awdr-clear-both"><?php _e('Condition Type', 'woo-discount-rules'); ?></span>
         </div>
     </div>
     <?php $wdr_product_conditions_templates = $base->getConditionsTemplatesContent();
@@ -94,5 +94,6 @@ if (!defined('ABSPATH')) {
         }
     }
     $render_saved_condition = false;
-    include'SubtotalPromotion.php';?>
+    include'SubtotalPromotion.php';
+    include'QuantityPromotion.php'; ?>
 </div>

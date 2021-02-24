@@ -3,7 +3,7 @@ Author: skyverge, woocommerce
 Tags: woocommerce
 Requires PHP: 7.0
 Requires at least: 5.2
-Tested up to: 5.5.3
+Tested up to: 5.6
 
 See http://docs.woocommerce.com/document/woocommerce-avatax/ for full documentation.
 

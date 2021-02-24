@@ -590,7 +590,7 @@ wp_localize_script('asp-backend-synonyms', 'ASP_SYN_MSG', array(
 wp_enqueue_script('asp-backend-index-table', plugin_dir_url(__FILE__) . 'settings/assets/index_table.js', array(
     'jquery', 'wpdreams-tabs'
 ), $media_query, true);
-wp_localize_script('asp-backend-index-table', 'ASP_IT', array(
+ASP_Helpers::addInlineScript('asp-backend-index-table', 'ASP_IT', array(
     "current_blog_id" => array(get_current_blog_id()),
     "first_index" => $index_obj->isEmpty() && !isset($_COOKIE['_asp_first_index']) ? 1 : 0
 ));

@@ -90,7 +90,7 @@ if (!class_exists('ASP_Query')) {
                 /*
                 array(
                     'key'     => 'age',         // meta key
-                    'value'   => array( 3, 4 ), // mixed|array
+                    'value'   => array( 3, 4 ), // int|float|string|array|timestamp|datetime
                      // @param string|array compare
                      // Numeric Operators
                      //      '<' -> less than
@@ -102,7 +102,6 @@ if (!class_exists('ASP_Query')) {
                      //      'LIKE'
                      //      'NOT LIKE'
                      //      'IN'
-                     //
                     'operator' => 'BETWEEN',
                     'allow_missing' => false   // allow match if this custom field is unset
                 )
@@ -1347,6 +1346,8 @@ if (!class_exists('ASP_Query')) {
                 }
                 $groups = $new_groups;
             }
+
+            $groups = apply_filters('asp_result_groups', $groups, $this->args['_id'], $this->args);
 
             if ( count($groups) > 0)
                 return array("grouped" => 1, "groups" => $groups);

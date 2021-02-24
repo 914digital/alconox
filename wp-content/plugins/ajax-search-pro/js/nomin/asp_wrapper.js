@@ -175,13 +175,16 @@ window.ASP.initialize = function(id) {
             data = JSON.parse(data);
             scope.each(_this.highlight.data, function(i, o){
                 if ( o.id == data.id ) {
-                    var selector = o.selector != '' && scope(o.selector).length > 0 ? o.selector : 'body';
+                    var selector = o.selector != '' && scope(o.selector).length > 0 ? o.selector : 'article';
+                    selector = scope(selector).length > 0 ? selector : 'body';
                     scope(selector).highlight(data.phrase, { element: 'span', className: 'asp_single_highlighted_' + data.id, wordsOnly: o.whole, excludeParents : '.asp_w, .asp-try' });
                     if ( o.scroll && scope('.asp_single_highlighted_' + data.id).length > 0 ) {
                         var stop = scope('.asp_single_highlighted_' + data.id).offset().top - 120;
                         if (scope("#wpadminbar").length > 0)
                             stop -= scope("#wpadminbar").height();
+                        stop = stop + o.scroll_offset;
                         stop = stop < 0 ? 0 : stop;
+                        console.log('scroll: ', stop);
                         scope('html').animate({
                             "scrollTop": stop
                         }, {
@@ -283,7 +286,7 @@ window.ASP.ready = function() {
     iv = setInterval(function(){
         ivc++;
         if ( _this.css_loaded == 1 || ivc > 80 ) {
-            scope(document).ready(function () {
+            scope(function(){
                 _this.initialize();
                 setTimeout(function(){
                     _this.fixClones();
@@ -291,7 +294,7 @@ window.ASP.ready = function() {
             });
 
             // Redundancy for safety
-            scope(window).on('load', function () {
+            scope(document).on('load', function () {
                 // It should be initialized at this point, but you never know..
                 if (!_this.initialized) {
                     _this.initialize();
@@ -307,7 +310,7 @@ window.ASP.ready = function() {
 
     // DOM tree modification detection to re-initialize automatically if enabled
     if (typeof(ASP.detect_ajax) != "undefined" && ASP.detect_ajax == 1) {
-        scope("body").bind("DOMSubtreeModified", function() {
+        scope("body").on("DOMSubtreeModified", function() {
             clearTimeout(t);
             t = setTimeout(function(){
                 _this.initialize();

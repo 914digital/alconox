@@ -20,7 +20,7 @@ class GeneralSettings extends Base
     public function __construct()
     {
         parent::__construct();
-        $this->title = __('Settings', WDR_TEXT_DOMAIN);
+        $this->title = __('Settings', 'woo-discount-rules');
     }
 
     /**

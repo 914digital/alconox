@@ -1,3 +1,14 @@
+### 4.7 | 2021-01-28
+- Fixed user permissions so users with the promote_users capability can now view the Pending Activations screen.
+- Fixed an issue where script tags were being output above document head element.
+- Fixed styling issues on the Pending Activations screen in Gravity Forms 2.5.
+- Fixed an issue where both success and error message where displayed when activating a user from the Pending Activations screen.
+- Fixed a typo in the tooltip for the Password setting on the feed configuration page.
+- Fixed an issue where MySQL throws an error on Entry Detail and Pending Activations screens.
+- Fixed an issue where the login form does not display non-standard authentication errors.
+- Fixed a fatal error which occurs on form population if the Consent field is mapped on the Update feed and the entry which last updated or created the user has been deleted.
+
+
 ### 4.6 | 2020-09-30
 - Added translations for Japanese.
 - Added support for Gravity Forms 2.5.
@@ -481,7 +492,7 @@
 
             return $message;
         }
-       
+
 
 
 ### 1.0.beta5.1

@@ -152,7 +152,6 @@ class GF_User_Registration extends GFFeedAddOn {
 		add_filter( 'gform_entry_ids_automatic_deletion', array( $this, 'filter_gform_entry_ids_automatic_deletion' ) );
 
 		// add support for UR related merge tags
-		add_action( 'gform_admin_pre_render', array( $this, 'add_merge_tags' ) );
 		add_filter( 'gform_replace_merge_tags', array( $this, 'replace_merge_tags' ), 10, 7 );
 
 		$this->define_gf_new_user_notification();
@@ -181,7 +180,7 @@ class GF_User_Registration extends GFFeedAddOn {
 				'enqueue' => array(
 					array( $this, 'can_enqueue_widget_editor_script' ),
 					array( 'admin_page' => array( 'customizer' ) ),
-				)
+				),
 			),
 			array(
 				'handle'  => 'gform_user_registration_feed_settings',
@@ -193,7 +192,20 @@ class GF_User_Registration extends GFFeedAddOn {
 						'admin_page' => array( 'form_settings' ),
 						'tab'        => $this->_slug,
 					),
-				)
+				),
+			),
+			array(
+				'handle'  => 'gform_user_registration_merge_tags',
+				'src'     => $this->get_base_url() . "/js/gfuserregistration_merge_tags{$min}.js",
+				'version' => $this->_version,
+				'deps'    => array( 'jquery' ),
+				'enqueue' => array(
+					array( 'admin_page' => array( 'form_settings' ) ),
+				),
+				'strings' => array(
+					'user_activation_url' => esc_html__( 'User Activation URL', 'gravityformsuserregistration' ),
+					'set_password_url'    => esc_html__( 'Set Password URL', 'gravityformsuserregistration' ),
+				),
 			),
 		);
 
@@ -489,16 +501,7 @@ class GF_User_Registration extends GFFeedAddOn {
 			}
 		}
 
-		/**
-		 * Filters the ID of the user being registered
-		 *
-		 * @param int   $form            ['id']      The ID of the form being submitted
-		 * @param int   $current_user_id The ID of the current user
-		 * @param array $feed            The Entry object
-		 * @param array $form            The Form object
-		 * @param array $entry           The Entry object
-		 */
-		$user_id = gf_apply_filters( 'gform_user_registration_update_user_id', $form['id'], get_current_user_id(), $entry, $form, $feed );
+		$user_id = $this->get_update_user_id( $form, $feed, $entry );
 
 		// Additional processing of multisite installs
 		if ( is_multisite() ) {
@@ -1065,7 +1068,7 @@ class GF_User_Registration extends GFFeedAddOn {
 			return $form;
 		} else {
 
-			$user_id = gf_apply_filters( 'gform_user_registration_update_user_id', $form['id'], get_current_user_id(), false, $form, $feed );
+			$user_id = gf_user_registration()->get_update_user_id( $form, $feed );
 
 			// add action to hide form and display error message if no user id supplied
 			if ( empty( $user_id ) ) {
@@ -1295,7 +1298,7 @@ class GF_User_Registration extends GFFeedAddOn {
 		}
 
 		$meta    = rgar( $feed, 'meta' );
-		$user_id = gf_apply_filters( 'gform_user_registration_update_user_id', $form['id'], $entry['created_by'], $entry, $form, $feed );
+		$user_id = $this->get_update_user_id( $form, $feed, $entry );
 
 		// update user meta before display name due to dependency
 		$this->add_user_meta( $user_id, $feed, $form, $entry, array() );
@@ -1345,7 +1348,7 @@ class GF_User_Registration extends GFFeedAddOn {
 			return;
 		}
 
-		$user_id = gf_apply_filters( 'gform_user_registration_update_user_id', $form['id'], get_current_user_id(), false, $form, $feed );
+		$user_id = $this->get_update_user_id( $form, $feed );
 		if ( empty( $user_id ) ) {
 			return;
 		}
@@ -2101,9 +2104,9 @@ class GF_User_Registration extends GFFeedAddOn {
 
 			/* Display links. */
 			if ( ! empty( $args['logged_in_links'] ) && is_array( $args['logged_in_links'] ) ) {
-				
+
 				foreach ( $args['logged_in_links'] as $link ) {
-					
+
 					$link['url']  = str_replace( '{logout_url}', esc_attr( $logout_url ), $link['url'] );
 					$link['url']  = GFCommon::replace_variables( $link['url'], array(), array(), false, false, false, 'text' );
 					$html        .= '<a href="' . esc_attr( $link['url'] ) . '" title="' . esc_attr( $link['text'] ) . '">' . esc_html( $link['text'] ) . '</a><br />';
@@ -2357,19 +2360,11 @@ class GF_User_Registration extends GFFeedAddOn {
 
 			if ( is_wp_error( $sign_on ) ) {
 
-				if ( rgar( $sign_on->errors, 'invalid_email' ) ) {
-					$form['fields'][0]->failed_validation = true;
-					$form['fields'][0]->validation_message = $sign_on->errors['invalid_email'][0];
-				}
+				foreach ( $sign_on->get_error_codes() as $code ) {
+					$field_key = $code === 'incorrect_password' ? 1 : 0;
 
-				if ( rgar( $sign_on->errors, 'invalid_username' ) ) {
-					$form['fields'][0]->failed_validation = true;
-					$form['fields'][0]->validation_message = $sign_on->errors['invalid_username'][0];
-				}
-
-				if ( rgar( $sign_on->errors, 'incorrect_password' ) ) {
-					$form['fields'][1]->failed_validation = true;
-					$form['fields'][1]->validation_message = $sign_on->errors['incorrect_password'][0];
+					$form['fields'][ $field_key ]->failed_validation  = true;
+					$form['fields'][ $field_key ]->validation_message = $sign_on->get_error_message( $code );
 				}
 
 			} else {
@@ -2410,7 +2405,7 @@ class GF_User_Registration extends GFFeedAddOn {
 		}
 
 		// If user is not authorized, exit.
-		if ( ! GFCommon::current_user_can_any( 'gravityforms_user_registration' ) ) {
+		if ( ! GFCommon::current_user_can_any( array( 'promote_users', 'gravityforms_user_registration' ) ) ) {
 			wp_send_json_error( array( 'message' => wp_strip_all_tags( __( 'Access denied.', 'gravityformsuserregistration' ) ) ) );
 		}
 
@@ -2739,7 +2734,7 @@ class GF_User_Registration extends GFFeedAddOn {
 						'input_types'          => array( 'password' ),
 						'append_choices'       => $this->get_extra_password_choices()
 					),
-					'tooltip'  => sprintf( '<h6>%s</h6> %s', esc_html__( 'Password', 'gravityformsuserregistration' ), esc_html__( 'Select the form field that should be used for the user\'s password or select "Set Password via Email Link" to have a URL emailed to the the user where they can set their password.', 'gravityformsuserregistration' ) ),
+					'tooltip'  => sprintf( '<h6>%s</h6> %s', esc_html__( 'Password', 'gravityformsuserregistration' ), esc_html__( 'Select the form field that should be used for the user\'s password or select "Set Password via Email Link" to have a URL emailed to the user where they can set their password.', 'gravityformsuserregistration' ) ),
 				),
 				array(
 					'name'     => 'role',
@@ -4219,7 +4214,7 @@ class GF_User_Registration extends GFFeedAddOn {
 
 				/**
 				 * Allows the expiration period for the pending activation to be overridden.
-				 * 
+				 *
 				 * @since 4.5
 				 *
 				 * @param int $expiration_time Expiration time in seconds. Defaults to 172800 (2 days).
@@ -4350,6 +4345,8 @@ class GF_User_Registration extends GFFeedAddOn {
 	/**
 	 * Include UR related merge tags in the merge tag drop downs in the form settings area.
 	 *
+	 * @deprecated 4.7 No replacement.
+	 *
 	 * @param array $form The current form object.
 	 *
 	 * @since 3.4.4 Added support for {set_password_url}
@@ -4358,26 +4355,7 @@ class GF_User_Registration extends GFFeedAddOn {
 	 * @return array
 	 */
 	public function add_merge_tags( $form ) {
-		if ( $this->is_form_settings() && headers_sent() ) {
-			?>
-			<script type="text/javascript">
-				if (window.gform)
-					gform.addFilter('gform_merge_tags', 'gf_user_registration_merge_tags');
-				function gf_user_registration_merge_tags(mergeTags, elementId, hideAllFields, excludeFieldTypes, isPrepop, option) {
-					mergeTags['other'].tags.push({
-						tag: '{activation_url}',
-						label: '<?php esc_html_e( 'User Activation URL', 'gravityformsuserregistration' ) ?>'
-					}, {
-						tag: '{set_password_url}',
-						label: '<?php esc_html_e( 'Set Password URL', 'gravityformsuserregistration' ) ?>'
-					});
-
-					return mergeTags;
-				}
-			</script>
-			<?php
-		}
-
+		_deprecated_function( __METHOD__, '4.7' );
 		return $form;
 	}
 
@@ -4767,48 +4745,107 @@ class GF_User_Registration extends GFFeedAddOn {
 	 *
 	 * @since 4.0.2
 	 *
-	 * @param string $input The markup. Defaults to an empty string.
-	 * @param GF_Field $field The Field Object.
-	 * @param int $lead_id The entry ID.
-	 * @param string $value The field value.
-	 * @param int $form_id The form ID.
+	 * @param string   $input   The markup. Defaults to an empty string.
+	 * @param GF_Field $field   The Field Object.
+	 * @param mixed    $value   The field value.
+	 * @param int      $lead_id The entry ID.
+	 * @param int      $form_id The form ID.
 	 *
 	 * @return string
 	 */
 	public function maybe_update_field_input( $input, $field, $value, $lead_id, $form_id ) {
+		if ( ! $this->is_updateable_consent_field( $field, $value ) ) {
+			return $input;
+		}
+
 		$feed = $this->get_update_feed( $form_id );
 		if ( ! $feed ) {
 			return $input;
 		}
 
-		if ( $field->get_input_type() === 'consent' ) {
-			$is_entry_detail = $field->is_entry_detail();
-			$is_form_editor  = $field->is_form_editor();
-			$is_admin        = $is_form_editor || $is_entry_detail;
-
-			if ( ! $is_admin ) {
-				if ( $value["{$field->id}.1"] === esc_html__( 'Checked', 'gravityforms' ) ) {
-					$form    = GFAPI::get_form( $form_id );
-					$user_id = gf_apply_filters( 'gform_user_registration_update_user_id', $form_id, get_current_user_id(), false, $form, $feed );
-					if ( ! empty( $user_id ) ) {
-						$entry_id = get_user_meta( $user_id, '_gform-update-entry-id', true );
-						if ( ! $entry_id ) {
-							$entry_id = get_user_meta( $user_id, '_gform-entry-id', true );
-						}
-						$entry = GFAPI::get_entry( $entry_id );
-						// Get consent inputs values from entry meta, since it's not stored in the user meta.
-						$value["{$field->id}.1"] = '1';
-						$value["{$field->id}.2"] = $entry["{$field->id}.2"];
-						$value["{$field->id}.3"] = $entry["{$field->id}.3"];
-
-						$form  = GFAPI::get_form( $form_id );
-						$input = $field->get_field_input( $form, $value, $entry );
-					}
-				}
-			}
+		$form    = GFAPI::get_form( $form_id );
+		$user_id = $this->get_update_user_id( $form, $feed );
+		if ( ! $user_id ) {
+			return $input;
 		}
 
-		return $input;
+		$entry = $this->get_entry_by_user_id( $user_id );
+		if ( is_wp_error( $entry ) ) {
+			return $input;
+		}
+
+		// Get consent inputs values from entry meta, since it's not stored in the user meta.
+		$value["{$field->id}.1"] = '1';
+		$value["{$field->id}.2"] = rgar( $entry, "{$field->id}.2" );
+		$value["{$field->id}.3"] = rgar( $entry, "{$field->id}.3" );
+
+		return $field->get_field_input( $form, $value, $entry );
+	}
+
+	/**
+	 * Determines if this is a consent field which may require additional processing.
+	 *
+	 * @since 4.7
+	 *
+	 * @param GF_Field $field The field being prepared for display.
+	 * @param mixed    $value The field value.
+	 *
+	 * @return bool
+	 */
+	private function is_updateable_consent_field( $field, $value ) {
+		if ( $field->get_input_type() !== 'consent' || $field->is_entry_detail() || $field->is_form_editor() ) {
+			return false;
+		}
+
+		return ! isset( $_POST["input_{$field->id}_1"] ) && rgar( $value, "{$field->id}.1" ) === esc_html__( 'Checked', 'gravityforms' );
+	}
+
+	/**
+	 * Returns the ID of the user to be processed by the update type feed.
+	 *
+	 * @since 4.7
+	 *
+	 * @param array $form  The form currently being processed.
+	 * @param array $feed  The feed currently being processed.
+	 * @param array $entry An empty array or the entry currently being processed.
+	 *
+	 * @return int
+	 */
+	public function get_update_user_id( $form, $feed, $entry = array() ) {
+		$user_id = (int) rgar( $entry, 'created_by' );
+		if ( ! $user_id ) {
+			$user_id = get_current_user_id();
+		}
+
+		/**
+		 * Allows the ID of the user to be updated to be overridden.
+		 *
+		 * @since 3.0
+		 *
+		 * @param int   $user_id The ID of the user to be updated.
+		 * @param array $entry   An empty array or the entry currently being processed.
+		 * @param array $form    The form currently being processed.
+		 * @param array $feed    The feed currently being processed.
+		 */
+		return (int) gf_apply_filters( array( 'gform_user_registration_update_user_id', (int) rgar( $form, 'id' ) ), $user_id, $entry, $form, $feed );
+	}
+
+	/**
+	 * Returns the entry which updated or created the specified user.
+	 *
+	 * @since 4.7
+	 *
+	 * @param int $user_id The ID of the user updated or created by the entry to be retrieved.
+	 *
+	 * @return array|WP_Error
+	 */
+	public function get_entry_by_user_id( $user_id ) {
+		$entry_id = get_user_meta( $user_id, '_gform-update-entry-id', true );
+		if ( ! $entry_id ) {
+			$entry_id = get_user_meta( $user_id, '_gform-entry-id', true );
+		}
+
+		return GFAPI::get_entry( $entry_id );
 	}
 
 	/**

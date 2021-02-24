@@ -286,12 +286,6 @@ if($atts['no_script'] == 0):
       {{if phone}}
       <div class="phone"><span class="glyphicon icon-phone-outline"></span><b><?php echo __( 'Phone','asl_locator') ?>: </b><a href="tel:{{:phone}}">{{:phone}}</a></div>
       {{/if}}
-      {{if open_hours}}
-      <div class="p-hours"><span class="glyphicon icon-clock-1"></span> {{:open_hours}}</div>
-      {{/if}}
-      {{if days_str}}
-      <div class="p-time"><span class="glyphicon icon-calendar-outlilne"></span> {{:days_str}}</div>
-      {{/if}}
       {{if show_categories && c_names}}
       <div class="categories"><span class="glyphicon icon-tag"></span>{{:c_names}}</div>
       {{/if}}

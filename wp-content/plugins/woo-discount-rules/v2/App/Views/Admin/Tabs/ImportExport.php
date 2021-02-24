@@ -10,13 +10,13 @@ $is_pro_activated = isset($is_pro_activated) ? $is_pro_activated : false;
 <div class="wdr_settings ui-page-theme-a awdr-container">
     <div class="wdr_settings_container" style="border-bottom: 1px solid black; padding-bottom: 10px;">
         <div>
-            <h3><?php _e('Export tool', WDR_TEXT_DOMAIN); ?></h3>
+            <h3><?php _e('Export tool', 'woo-discount-rules'); ?></h3>
             <div>
                 <p>
                 <form method="post">
                     <input type="hidden" name="security" value="<?php echo wp_create_nonce('awdr_export_rules') ?>">
                     <button type="submit" id="wdr-export" name="wdr-export" class="button button-primary">
-                        <?php _e('Export', WDR_TEXT_DOMAIN); ?>
+                        <?php _e('Export', 'woo-discount-rules'); ?>
                     </button>
                 </form>
                 </p>
@@ -26,7 +26,7 @@ $is_pro_activated = isset($is_pro_activated) ? $is_pro_activated : false;
     <?php if ($is_pro_activated) { ?>
         <div class="wdr_settings_container">
         <div>
-            <h3><?php _e('Import Tool', WDR_TEXT_DOMAIN); ?></h3>
+            <h3><?php _e('Import Tool', 'woo-discount-rules'); ?></h3>
             <div><?php
                 $message = '';
                 if (isset($_POST['wdr-import']) && isset($_FILES["awdr_import_rule"]) && isset($_POST['security'])) {
@@ -96,7 +96,7 @@ $is_pro_activated = isset($is_pro_activated) ? $is_pro_activated : false;
                                         'enabled' => $enabled,
                                         'deleted' => $deleted,
                                         'exclusive' => $exclusive,
-                                        'title' => (empty($title)) ? esc_html__('Untitled Rule', WDR_TEXT_DOMAIN) : $title,
+                                        'title' => (empty($title)) ? esc_html__('Untitled Rule', 'woo-discount-rules') : $title,
                                         'priority' => $priority,
                                         'apply_to' => $apply_to,
                                         'filters' => $filters,
@@ -127,10 +127,10 @@ $is_pro_activated = isset($is_pro_activated) ? $is_pro_activated : false;
                                     $rule_id = DBTable::saveRule($column_format, $arg);
                                     if (!empty($rule_id)) {
                                         $type = "success";
-                                        $message = __('<b style="color: green;">Rules Imported successfully</b>', WDR_TEXT_DOMAIN);
+                                        $message = __('<b style="color: green;">Rules Imported successfully</b>', 'woo-discount-rules');
                                     } else {
                                         $type = "error";
-                                        $message = __('<b style="color: red;">Problem in Importing CSV Data</b>', WDR_TEXT_DOMAIN);
+                                        $message = __('<b style="color: red;">Problem in Importing CSV Data</b>', 'woo-discount-rules');
                                         break;
                                     }
                                 }
@@ -143,7 +143,7 @@ $is_pro_activated = isset($is_pro_activated) ? $is_pro_activated : false;
                     <input type="file" name="awdr_import_rule" id="awdr-file-uploader" accept=".csv"><br>
                     <span id="awdr-upload-response"><?php echo $message; ?></span></br>
                     <button type="submit" id="wdr-import" name="wdr-import" class="button button-primary">
-                        <?php _e('Import', WDR_TEXT_DOMAIN); ?>
+                        <?php _e('Import', 'woo-discount-rules'); ?>
                     </button>
                 </form>
             </div>
@@ -152,8 +152,8 @@ $is_pro_activated = isset($is_pro_activated) ? $is_pro_activated : false;
     } else { ?>
         <div class="wdr_settings_container">
         <div>
-            <h3><?php _e('Import Tool', WDR_TEXT_DOMAIN); ?></h3>
-            <p><?php _e('Unlock this feature by <a href="https://www.flycart.org/products/wordpress/woocommerce-discount-rules" target="_blank">Upgrading to Pro</a>', WDR_TEXT_DOMAIN); ?> </p>
+            <h3><?php _e('Import Tool', 'woo-discount-rules'); ?></h3>
+            <p><?php _e('Unlock this feature by <a href="https://www.flycart.org/products/wordpress/woocommerce-discount-rules" target="_blank">Upgrading to Pro</a>', 'woo-discount-rules'); ?> </p>
         </div>
         </div><?php
     }

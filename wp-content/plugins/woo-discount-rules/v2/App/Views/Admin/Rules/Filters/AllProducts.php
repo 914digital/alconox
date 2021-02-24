@@ -7,8 +7,8 @@ if (!defined('ABSPATH')) {
     <!--<div class="all_products_group">
        <div class="wdr-product_filter_method">
             <select name="filters[{i}][method]" style="cursor: none;" disabled>
-                <option value="in_list" selected><?php /*_e('In List', WDR_TEXT_DOMAIN); */ ?></option>
-                <option value="not_in_list"><?php /*_e('Not In List', WDR_TEXT_DOMAIN); */ ?></option>
+                <option value="in_list" selected><?php /*_e('In List', 'woo-discount-rules'); */ ?></option>
+                <option value="not_in_list"><?php /*_e('Not In List', 'woo-discount-rules'); */ ?></option>
             </select>
         </div>
         <div class="wdr-product-selector">

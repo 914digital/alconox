@@ -30,7 +30,7 @@
             ?>
             <span class="awdr_rebuild_on_sale_rule_page_con<?php echo $additional_class_for_rebuild; ?>">
                 <button type="button" class="btn btn-danger"
-                        id="awdr_rebuild_on_sale_list_on_rule_page" data-awdr_nonce="<?php echo \Wdr\App\Helpers\Helper::create_nonce('wdr_ajax_rule_build_index'); ?>"><?php esc_html_e('Rebuild index', WDR_TEXT_DOMAIN); ?></button>
+                        id="awdr_rebuild_on_sale_list_on_rule_page" data-awdr_nonce="<?php echo \Wdr\App\Helpers\Helper::create_nonce('wdr_ajax_rule_build_index'); ?>"><?php esc_html_e('Rebuild index', 'woo-discount-rules'); ?></button>
             </span>
             <?php
         }

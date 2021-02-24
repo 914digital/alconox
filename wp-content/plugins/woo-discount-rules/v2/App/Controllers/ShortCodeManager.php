@@ -560,7 +560,7 @@ class ShortCodeManager extends ManageDiscount
             $awdr_banner_editer = $this->getCleanHtml($awdr_banner_editer);
             echo "<div class='awdr_banner_content'>".$awdr_banner_editer."</div>";
         }else{
-            echo "<div class='awdr_banner_content'>"._e('No Banner Content', WDR_TEXT_DOMAIN);".</div>";
+            echo "<div class='awdr_banner_content'>"._e('No Banner Content', 'woo-discount-rules');".</div>";
         }*/
     }
 }

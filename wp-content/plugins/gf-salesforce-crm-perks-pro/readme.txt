@@ -2,9 +2,9 @@
 Contributors: crmperks, sbazzi, asif876
 Tags: salesforce, gravity forms salesforce, gravity forms salesforce add on, gravity forms salesforce crm, gravity forms salesforce integration, salesforce wordpress gravity forms
 Requires at least: 4.7
-Tested up to: 5.4
-Stable tag: 1.1.6
-Version: 1.1.6
+Tested up to: 5.6
+Stable tag: 1.2.0
+Version: 1.2.0
 Requires PHP: 5.3
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -13,7 +13,7 @@ Gravity Forms Salesforce Add-on sends Gravity forms entries to salesforce CRM.
 
 == Description ==
 
-Gravity Forms salesforce Add-on sends form submissions from Gravity Forms to Salesforce CRM when anyone submits a form on your site. Learn more at [crmperks.com](https://www.crmperks.com/plugins/gravity-forms-plugins/gravity-forms-salesforce-plugin/?utm_source=wordpress&utm_medium=directory&utm_campaign=salesforce_readme)
+Gravity Forms salesforce Add-on sends form submissions from Gravity Forms to Salesforce CRM when anyone submits a form on your site. Learn more at [crmperks.com](https://www.crmperks.com/plugins/gravity-forms-plugins/gravity-forms-salesforce-plugin/?utm_source=wordpress&utm_medium=directory&utm_campaign=salesforce_readme). We also offer other connector for Pardot [Gravity Forms Pardot Integration](https://www.crmperks.com/plugins/gravity-forms-plugins/gravity-forms-pardot-plugin/?utm_source=wordpress&utm_medium=directory&utm_campaign=salesforce_readme).
 
 
 == Gravity Forms salesforce Add-on Setup ==
@@ -82,6 +82,10 @@ We have Premium Extensions for 20+ CRMs.[View All CRM Extensions](https://www.cr
 == Need Salesforce Plugin for Woocommerce ? ==
 
 We have Salesforce add-on for Woocommerce. [Woocommerce Salesforce Integration](https://wordpress.org/plugins/woo-salesforce-plugin-crm-perks/)
+
+== Gravity Forms Pardot Integration ==
+
+We have a separate plugin for Pardot. [Gravity Forms Pardot Integration](https://www.crmperks.com/plugins/gravity-forms-plugins/gravity-forms-pardot-plugin/)
 
 == Screenshots ==
 
@@ -174,6 +178,22 @@ Following features are not available in free version.
 Yes, as you connect your normal salesforce account similarly, you can connect your sandbox account. fields mapping is same for both normal and sandbox accounts.
 
 == Changelog ==
+
+= 1.2.1 =
+* fixed "optin filter" issue with feed ID.
+
+= 1.2.0 =
+* fixed missing logs issue.
+
+= 1.1.9 =
+* fixed date format issue.
+* fixed "partial entry" issue.
+
+= 1.1.8 =
+* added campaign ID field.
+
+= 1.1.7 =
+* fixed permission error with settings page.
 
 = 1.1.6 =
 * fixed us date format issue with web2lead.

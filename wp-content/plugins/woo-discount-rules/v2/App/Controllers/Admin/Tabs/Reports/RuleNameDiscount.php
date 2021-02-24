@@ -21,7 +21,7 @@ class RuleNameDiscount extends Base {
     }
 
     public function get_subtitle() {
-        return __( 'Amount shown in default store currency', WDR_TEXT_DOMAIN );
+        return __( 'Amount shown in default store currency', 'woo-discount-rules' );
     }
 
     public function get_type() {
@@ -36,7 +36,7 @@ class RuleNameDiscount extends Base {
         $rule_amount_stats = $this->load_raw_data( $params,  $rule_id);
 
         $rules   = array_unique( array_column( $rule_amount_stats, 'title' ) );
-        $columns = array_merge( array( __( 'Date', WDR_TEXT_DOMAIN ) ), $rules );
+        $columns = array_merge( array( __( 'Date', 'woo-discount-rules' ) ), $rules );
 
         $rows  = array();
         $dates = $this->get_dates( $params['from'], $params['to'] );

@@ -17,7 +17,8 @@ if ( !class_exists('aspCfFilter') ) {
              * .. instead of field_name => 'value1, value2 etc..'
              */
             "logic_and_separate_custom_fields" => false,
-            "operator" => '='
+            "operator" => '=',
+            "acf_type" => false
         );
 
         protected $default = array(
@@ -78,6 +79,9 @@ if ( !class_exists('aspCfFilter') ) {
                 $this->data = array_merge($this->data, $this->special_args[$this->display_mode], $data);
             } else {
                 $this->data = array_merge($this->data, $data);
+            }
+            if ( function_exists('get_field') ) {
+                $this->data['acf_type'] = asp_acf_get_field_type($this->data['field']);
             }
         }
 

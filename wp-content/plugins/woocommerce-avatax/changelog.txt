@@ -1,5 +1,11 @@
 *** WooCommerce AvaTax Changelog ***
 
+2021.01.26 - version 1.11.2
+ * Fix - Fix tax calculation for manual orders without a billing email
+
+2021.01.19 - version 1.11.1
+ * Fix - When saving order tax data, account for possible tax rates with duplicate names
+
 2020.12.08 - version 1.11.0
  * Fix - When different tax rates with duplicate names exist, ensure that their grouped total is correct in cart and checkout pages
  * Misc - Add compatibility for WooCommerce 4.7

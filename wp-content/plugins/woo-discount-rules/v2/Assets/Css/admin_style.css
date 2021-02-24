@@ -1430,4 +1430,7 @@ div.wdr {
 .wdr_settings_desc_text.text-warning{
     color: #f0ad4e;
 }
+.awdr_promotion_message_display_pages .select2-search__field{
+    width: 225% !important;
+}
 

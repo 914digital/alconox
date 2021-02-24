@@ -123,10 +123,15 @@
         $params[$o->getName()] = $o->getData();
         ?>
     </div>
-    <div class="item"><?php
+    <div class="item item-flex-nogrow item-flex-wrap">
+        <?php
         $o = new wpdreamsYesNo("single_highlight_scroll", __('Scroll to the first keyword match if possible?', 'ajax-search-pro'), $sd['single_highlight_scroll']);
-        $params[$o->getName()] = $o->getData();
+
+        $o = new wpdreamsTextSmall("single_highlight_offset", __('scroll offset (px)', 'ajax-search-pro'), $sd['single_highlight_offset']);
         ?>
+        <div class="descMsg item-flex-grow item-flex-100">
+            <?php echo __('A negative offset will move the window upwards, a positive downwards. Default: 0', 'ajax-search-pro'); ?>
+        </div>
     </div>
     <div class="item"><?php
         $o = new wpdreamsText("single_highlight_selector", __('Result page content jQuery element selector', 'ajax-search-pro'), $sd['single_highlight_selector']);

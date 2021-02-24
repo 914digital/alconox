@@ -36,36 +36,27 @@ class WD_ASP_Init {
         WD_ASP_DBMan::getInstance()->create();
 
         // @TODO 4.10.5
-        /*wd_asp()->instant->db_create();
-        wd_asp()->instant->db_update();*/
 
         $this->create_chmod(true);
 
-        $stored_ver = get_option('asp_version', 0);
         // Was the plugin previously installed, and updated?
-        if ($stored_ver != 0 && $stored_ver != ASP_CURR_VER) {
+        if ( ASP_Helpers::previousVersion(ASP_CURR_VER_STRING, '<') ) {
             update_option("asp_recently_updated", 1);
         }
 
-        /**
-         * Store the version number after everything is done. This is going to help distinguishing
-         * stored asp_version from the ASP_CURR_VER variable. These two are different in cases:
-         *  - Uninstalling, installing new versions
-         *  - Uploading and overwriting old version with a new one
-         */
-        update_option('asp_version', ASP_CURR_VER);
-
         set_transient('asp_just_activated', 1);
+
+        // Add functions to asp_scheduled_activation_events to schedule background process events to the activation hook
+        wp_schedule_single_event( time() + 15, 'asp_scheduled_activation_events' );
     }
 
     /**
      *  Checks if the user correctly updated the plugin and fixes if not
      */
     public function safety_check() {
-        $curr_stored_ver = get_option('asp_version', 0);
 
         // Run the re-activation actions if this is actually a newer version
-        if ($curr_stored_ver != ASP_CURR_VER) {
+        if ( ASP_Helpers::previousVersion(ASP_CURR_VER_STRING, '<', true) ) {
             $this->activate();
             // Run a backwards compatibility check
             $this->backwards_compatibility_fixes();
@@ -73,11 +64,10 @@ class WD_ASP_Init {
             // Take a note on the recent update
             update_option("asp_recently_updated", 1);
         } else {
-            // Still, check the folders, they might have been deleted by accident
-            $this->create_chmod();
-
             // Was the plugin just activated, without version change?
             if ( get_transient('asp_just_activated') !== false ) {
+                // Check the folders, they might have been deleted by accident
+                $this->create_chmod();
                 // Run a backwards compatibility check
                 $this->backwards_compatibility_fixes();
                 asp_generate_the_css();
@@ -419,6 +409,7 @@ class WD_ASP_Init {
                         'id' => $s['id'],
                         'selector' => $s['data']['single_highlight_selector'],
                         'scroll' => $s['data']['single_highlight_scroll'] == 1,
+                        'scroll_offset' => intval($s['data']['single_highlight_offset']),
                         'whole' => $s['data']['single_highlightwholewords'] == 1,
                     );
                 }
@@ -534,7 +525,7 @@ class WD_ASP_Init {
         }
 
         // The new variable is ASP
-        wp_localize_script('wd-asp-ajaxsearchpro', 'ASP', array(
+        ASP_Helpers::addInlineScript('wd-asp-ajaxsearchpro', 'ASP', array(
             'ajaxurl' => $ajax_url,
             'backend_ajaxurl' => admin_url('admin-ajax.php'),
             'js_scope' => $scope,
@@ -660,6 +651,7 @@ class WD_ASP_Init {
     public function pluginReset( $triggerActivate = true ) {
         $options = array(
             'asp_version',
+            '_asp_version',
             'asp_glob_d',
             'asp_performance_def',
             'asp_performance',
@@ -685,8 +677,10 @@ class WD_ASP_Init {
             '_asp_priority_groups',
             '_asp_it_pool_sizes'
         );
-        foreach ($options as $o)
+        foreach ($options as $o) {
             delete_option($o);
+            delete_site_option($o);
+        }
 
         wp_clear_scheduled_hook('asp_cron_it_extend');
 

@@ -186,7 +186,7 @@ class DiscountCalculator extends Base
             'discount_value' => $discount_value,
             'discount_price' => $discount_price,
             'discounted_price' => $discounted_price,
-            'rule_title' => __($rule_title, WDR_TEXT_DOMAIN)
+            'rule_title' => __($rule_title, 'woo-discount-rules')
         );
     }
 
@@ -535,6 +535,11 @@ class DiscountCalculator extends Base
                     $product_price = self::$woocommerce_helper->getProductRegularPrice($product);
                 } else {
                     $product_price = self::$woocommerce_helper->getProductPrice($product);
+                    if($product_price <= 0){
+                        if(isset($product->awdr_product_original_price) && !empty($product->awdr_product_original_price)){
+                            $product_price = $product->awdr_product_original_price;
+                        }
+                    }
                 }
             } else {
                 $product_price = $custom_price;

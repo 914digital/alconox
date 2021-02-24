@@ -132,7 +132,7 @@ class ManageDiscount extends Base
             $on_sale_badge_html = self::$config->getConfig('on_sale_badge_html', '<span class="onsale">Sale!</span>');
             $translate = __('<span class="onsale">Sale!</span>', 'woo-discount-rules');
             $on_sale_badge_html = Helper::getCleanHtml($on_sale_badge_html);
-            $html = __($on_sale_badge_html, WDR_TEXT_DOMAIN);
+            $html = __($on_sale_badge_html, 'woo-discount-rules');
             $html = apply_filters('advanced_woo_discount_rules_on_sale_badge_html', $html, $post, $_product);
         }
 
@@ -462,18 +462,18 @@ class ManageDiscount extends Base
             if(!empty($max_price)){
                 $max_price = $calculator->mayHaveTax($product, $max_price);
             }
-            $price_range_suffix = self::$woocommerce_helper->getProductPriceSuffix($product);
+            $min_original_price_range_suffix = self::$woocommerce_helper->getProductPriceSuffix($product, $min_original_price);
             if ($min_original_price == $max_original_price) {
-                $price_html = self::$woocommerce_helper->formatPrice($min_original_price) . $price_range_suffix;
+                $price_html = self::$woocommerce_helper->formatPrice($min_original_price) . $min_original_price_range_suffix;
             } elseif ($min_original_price < $max_original_price) {
-                $price_html = self::$woocommerce_helper->formatPriceRange($min_original_price, $max_original_price, true) . $price_range_suffix;
+                $price_html = self::$woocommerce_helper->formatPriceRange($min_original_price, $max_original_price, true) . $min_original_price_range_suffix;
             }
-
+            $min_price_range_suffix = self::$woocommerce_helper->getProductPriceSuffix($product, $min_price);
             if ($min_price == $max_price) {
-                $price_html_discounted = self::$woocommerce_helper->formatPrice($min_price) . $price_range_suffix;
+                $price_html_discounted = self::$woocommerce_helper->formatPrice($min_price) . $min_price_range_suffix;
                 return $this->getStrikeoutPrice($price_html, $price_html_discounted, false, true);
             } elseif ($min_price < $max_price) {
-                $price_html_discounted = self::$woocommerce_helper->formatPriceRange($min_price, $max_price, false) . $price_range_suffix;
+                $price_html_discounted = self::$woocommerce_helper->formatPriceRange($min_price, $max_price, false) . $min_price_range_suffix;
                 return $this->getStrikeoutPrice($price_html, $price_html_discounted, false, true);
             }
         }
@@ -694,7 +694,7 @@ class ManageDiscount extends Base
 
             //Combine all discounts and add as single discounts
             if (!empty($total_combined_discounts) && !empty($combine_all_discounts)) {
-                $label = self::$config->getConfig('discount_label_for_combined_discounts', __('Cart discount', WDR_TEXT_DOMAIN));
+                $label = self::$config->getConfig('discount_label_for_combined_discounts', __('Cart discount', 'woo-discount-rules'));
                 $label = Helper::getCleanHtml($label);
                 if ($discount_apply_type == 'fee') {
                     $total_combined_discounts = -1 * $total_combined_discounts;
@@ -873,7 +873,7 @@ class ManageDiscount extends Base
                     if ($discount_value > 0) {
                         if (empty($combine_all_discounts)) {
                             $discount_value = $discount_value;
-                            $label = __($label, WDR_TEXT_DOMAIN);
+                            $label = __($label, 'woo-discount-rules');
                             self::setCartCouponValues($label, $discount_value, $cart_item_keys);
                             $this->applyFakeCouponsForCartRules($label);
                         }else{
@@ -889,7 +889,7 @@ class ManageDiscount extends Base
                     if(empty($combine_all_discounts)){
                         $discount_value = $discount['value'];
                         $label = $discount['label'];
-                        $label = __($label, WDR_TEXT_DOMAIN);
+                        $label = __($label, 'woo-discount-rules');
                         self::setCartCouponValues($label, $discount_value, $discount['cart_item_keys']);
                         $this->applyFakeCouponsForCartRules($label);
                     }else{
@@ -901,12 +901,12 @@ class ManageDiscount extends Base
 
             //Combine all discounts and add as single discounts
             if (!empty($total_combined_discounts) && !empty($combine_all_discounts)) {
-                $label = self::$config->getConfig('discount_label_for_combined_discounts', __('Cart discount', WDR_TEXT_DOMAIN));
+                $label = self::$config->getConfig('discount_label_for_combined_discounts', __('Cart discount', 'woo-discount-rules'));
                 $label = Helper::getCleanHtml($label);
                 if(empty($label)){
-                    $label = __('Cart discount', WDR_TEXT_DOMAIN);
+                    $label = __('Cart discount', 'woo-discount-rules');
                 }
-                $label = __($label, WDR_TEXT_DOMAIN);
+                $label = __($label, 'woo-discount-rules');
                 self::setCartCouponValues($label, $total_combined_discounts, $combined_discounts_cart_items);
                 $this->applyFakeCouponsForCartRules($label);
             }
@@ -999,8 +999,10 @@ class ManageDiscount extends Base
                         $coupon_code = $coupon_data;
                         $amount = self::$apply_as_coupon_values[$coupon_code]['value'];
                         $cart_item_keys = self::$apply_as_coupon_values[$coupon_code]['cart_item_keys'];
-                        $product_ids = self::getProductIdsFromCartKey($cart_item_keys);
-                        $discount_in_percentage = self::getPercentageFromCartKey($product_ids, $amount);
+                        if(apply_filters('advanced_woo_discount_rules_apply_coupon_for_products_based_on_filters', true, $coupon_code)){
+                            $product_ids = self::getProductIdsFromCartKey($cart_item_keys);
+                            $discount_in_percentage = self::getPercentageFromCartKey($product_ids, $amount);
+                        }
                     } else {
                         return $response;
                     }
@@ -1024,7 +1026,7 @@ class ManageDiscount extends Base
                     if(empty($product_ids)){
                         $discount_type = 'fixed_cart';
                     } else {
-                        $discount_type = 'percent';
+                        $discount_type = apply_filters('advanced_woo_discount_rules_coupon_discount_type_percentage', 'percent');
                         $amount = $discount_in_percentage;
                     }
 
@@ -1121,7 +1123,12 @@ class ManageDiscount extends Base
     function removeAppliedMessageOfThirdPartyCoupon($msg, $msg_code, $coupon){
         if(!empty($coupon)){
             $disable_coupon_when_rule_applied = self::$config->getConfig('disable_coupon_when_rule_applied', 'run_both');//run_both, disable_coupon, disable_rules
-            if($disable_coupon_when_rule_applied == 'disable_coupon'){
+            /**
+             * Added fix for coupon not applied in checkout page( when disable coupon discount rules will work)
+             * added check for condition isset(self::$calculated_cart_item_discount) && !empty(self::$calculated_cart_item_discount)
+             * @since 2.3.4
+             */
+            if($disable_coupon_when_rule_applied == 'disable_coupon' && isset(self::$calculated_cart_item_discount) && !empty(self::$calculated_cart_item_discount)){
                 $used_coupons = DiscountCalculator::getUsedCoupons();
                 $applied_coupons = Woocommerce::getAppliedCoupons();
 
@@ -1146,7 +1153,7 @@ class ManageDiscount extends Base
      * @param $coupon_code string
      * */
     function removeAppliedCoupon($coupon_code){
-        $msg = sprintf(__('Sorry, it is not possible to apply coupon <b>"%s"</b> as you already have a discount applied in cart.', WDR_TEXT_DOMAIN), $coupon_code);
+        $msg = sprintf(__('Sorry, it is not possible to apply coupon <b>"%s"</b> as you already have a discount applied in cart.', 'woo-discount-rules'), $coupon_code);
 
         $msg = apply_filters('advanced_woo_discount_rules_notice_on_remove_coupon_while_having_a_discount', $msg, $coupon_code);
 
@@ -1222,6 +1229,7 @@ class ManageDiscount extends Base
                             $do_apply_price_rules = apply_filters('advanced_woo_discount_rules_do_apply_price_discount', true, $price, $cart_item, $cart_object, self::$calculated_cart_item_discount[$key]);
                             if($do_apply_price_rules){
                                 self::$woocommerce_helper->setCartProductPrice($product_obj, $price);
+                                $product_obj->awdr_product_original_price = $initial_price;
                             }
 
                         }
@@ -1577,12 +1585,13 @@ class ManageDiscount extends Base
     {
         $message = self::$config->getConfig('applied_rule_message', __('Discount <strong>{{title}}</strong> has been applied to your cart.', 'woo-discount-rules'));
         $message = Helper::getCleanHtml($message);
-        $message = __($message, WDR_TEXT_DOMAIN);
+        $message = __($message, 'woo-discount-rules');
         $calc = self::$calculator;
         $applied_rules = $calc::$applied_rules;
         if (!empty($applied_rules)) {
             foreach ($applied_rules as $rule) {
                 $title = $rule->getTitle();
+                $title = __($title, 'woo-discount-rules');
                 $message_to_display = str_replace('{{title}}', $title, $message);
                 $message_to_display = apply_filters('advanced_woo_discount_rules_message_to_display_when_rules_applied', $message_to_display, $rule);
                 self::$woocommerce_helper->printNotice($message_to_display, 'success');
@@ -1701,7 +1710,7 @@ class ManageDiscount extends Base
     {
         if (!empty($discount)) {
             $text = self::$config->getConfig('you_saved_text', __("You saved {{total_discount}}", 'woo-discount-rules'));
-            $text = __($text, WDR_TEXT_DOMAIN);
+            $text = __($text, 'woo-discount-rules');
             $text = Helper::getCleanHtml($text);
             $message = str_replace('{{total_discount}}', $discount, $text);
             return '<div class="awdr-you-saved-text" style="color: green">' . $message . '</div>';
@@ -2381,8 +2390,8 @@ class ManageDiscount extends Base
      * */
     public function displayPromotionMessages(){
         $messages = Helper::getPromotionMessages();
-        if(!empty($messages) && is_array($messages)){
-            foreach ($messages as $message){
+        if(!empty($messages) && is_array($messages)) {
+            foreach ($messages as $message) {
                 wc_print_notice($message, "notice");
             }
         }
@@ -2407,6 +2416,7 @@ class ManageDiscount extends Base
         echo "jQuery('#awdr_checkout_subtotal_promotion_messages').html(jQuery('#awdr_checkout_subtotal_promotion_messages_data').html());jQuery('#awdr_checkout_subtotal_promotion_messages_data').remove()";
         echo "</script>";
     }
+
 
     /**
      * Export Data via CSV

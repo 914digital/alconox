@@ -1,6 +1,9 @@
 (function(jQuery, $, window){
 /**
+ * This is a forked version, for usage check please: https://github.com/WPDreams/isInViewport/blob/master/readme.md
+ *
  * @author  Mudit Ameta
+ * @see https://github.com/WPDreams/isInViewport/blob/master/readme.md
  * @license https://github.com/zeusdeux/isInViewport/blob/master/license.md MIT
  */
 ;(function (window) {
@@ -130,10 +133,6 @@
         // bitwise operators deserve some love too you know
         settings.tolerance = ~~Math.round(parseFloat(settings.tolerance));
 
-        if (settings.tolerance < 0) {
-            settings.tolerance = $viewportHeight + settings.tolerance; // viewport height - tol
-        }
-
         // the element is NOT in viewport iff it is completely out of
         // viewport laterally or if it is completely out of the tolerance
         // region. Therefore, if it is partially in view then it is considered
@@ -147,7 +146,7 @@
         }
 
         // if the element is bound to some tolerance
-        isVisibleFlag = settings.tolerance ? top <= settings.tolerance && bottom >= settings.tolerance : bottom > 0 && top <= $viewportHeight;
+        isVisibleFlag = settings.tolerance ? top >= settings.tolerance && bottom < ( $viewportHeight - settings.tolerance ) : bottom > 0 && top <= $viewportHeight;
 
         return isVisibleFlag
     }

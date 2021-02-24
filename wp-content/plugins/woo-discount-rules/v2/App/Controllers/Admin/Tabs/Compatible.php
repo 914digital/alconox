@@ -20,7 +20,7 @@ class Compatible extends Base
     public function __construct()
     {
         parent::__construct();
-        $this->title = __('Compatibility', WDR_TEXT_DOMAIN);
+        $this->title = __('Compatibility', 'woo-discount-rules');
     }
 
     /**

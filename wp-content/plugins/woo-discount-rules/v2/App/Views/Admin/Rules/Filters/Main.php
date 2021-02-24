@@ -22,7 +22,7 @@ if (!defined('ABSPATH')) {
                                     if (isset($product_filters) && !empty($product_filters)) {
                                         foreach ($product_filters as $wdr_filter_key => $wdr_filter_value) {
                                             ?>
-                                            <optgroup label="<?php _e($wdr_filter_key, WDR_TEXT_DOMAIN); ?>" ><?php
+                                            <optgroup label="<?php _e($wdr_filter_key, 'woo-discount-rules'); ?>" ><?php
                                             foreach ($wdr_filter_value as $key => $value) {
                                                 ?>
                                                 <option
@@ -37,7 +37,7 @@ if (!defined('ABSPATH')) {
                                                     <?php
                                                 }
                                                 ?>
-                                                <?php echo ($filter->type == $key) ? 'selected' : ''; ?>><?php _e($value['label'], WDR_TEXT_DOMAIN); ?></option><?php
+                                                <?php echo ($filter->type == $key) ? 'selected' : ''; ?>><?php _e($value['label'], 'woo-discount-rules'); ?></option><?php
                                             } ?>
                                             </optgroup><?php
                                         }
@@ -51,8 +51,8 @@ if (!defined('ABSPATH')) {
                                         <div class="wdr-product_filter_method">
                                             <select name="filters[<?php echo $filter_row_count; ?>][method]">
                                                 <option value="in_list"
-                                                    <?php echo (isset($filter->method) && $filter->method == 'in_list') ? 'selected' : ''; ?>><?php _e('In List', WDR_TEXT_DOMAIN); ?></option>
-                                                <option value="not_in_list" <?php echo (isset($filter->method) && $filter->method == 'not_in_list') ? 'selected' : ''; ?>><?php _e('Not In List', WDR_TEXT_DOMAIN); ?></option>
+                                                    <?php echo (isset($filter->method) && $filter->method == 'in_list') ? 'selected' : ''; ?>><?php _e('In List', 'woo-discount-rules'); ?></option>
+                                                <option value="not_in_list" <?php echo (isset($filter->method) && $filter->method == 'not_in_list') ? 'selected' : ''; ?>><?php _e('Not In List', 'woo-discount-rules'); ?></option>
                                             </select>
                                         </div>
                                         <div class="awdr-product-selector">
@@ -79,7 +79,7 @@ if (!defined('ABSPATH')) {
                                                     class="edit-filters awdr_validation"
                                                     data-list="<?php echo $filter->type; ?>"
                                                     data-field="autocomplete"
-                                                    data-placeholder="<?php _e('Select ' . $placeholder, WDR_TEXT_DOMAIN); ?>"
+                                                    data-placeholder="<?php _e('Select ' . $placeholder, 'woo-discount-rules'); ?>"
                                                     name="filters[<?php echo $filter_row_count; ?>][value][]">
                                                 <?php echo $selected_options; ?>
                                             </select>
@@ -95,29 +95,29 @@ if (!defined('ABSPATH')) {
                             </div><?php
                             switch($filter->type) {
                                 case "products": ?>
-                                    <div class="wdr_filter_desc_text"><span><?php _e('Choose products that get the discount using "In List". If you want to exclude a few products, choose "Not In List" and select the products you wanted to exclude from discount. (You can add multiple filters)', WDR_TEXT_DOMAIN); ?></span></div>
+                                    <div class="wdr_filter_desc_text"><span><?php _e('Choose products that get the discount using "In List". If you want to exclude a few products, choose "Not In List" and select the products you wanted to exclude from discount. (You can add multiple filters)', 'woo-discount-rules'); ?></span></div>
                                     <?php break;
                                 case "product_category": ?>
-                                    <div class="wdr_filter_desc_text"><span><?php _e('Choose categories that get the discount using "In List". If you want to exclude a few categories, choose "Not In List" and select the categories you wanted to exclude from discount. (You can add multiple filters of same type)', WDR_TEXT_DOMAIN); ?></span></div>
+                                    <div class="wdr_filter_desc_text"><span><?php _e('Choose categories that get the discount using "In List". If you want to exclude a few categories, choose "Not In List" and select the categories you wanted to exclude from discount. (You can add multiple filters of same type)', 'woo-discount-rules'); ?></span></div>
                                     <?php break;
                                 case "product_attributes": ?>
-                                   <div class="wdr_filter_desc_text"><span><?php _e('Choose attributes that get the discount using "In List". If you want to exclude a few attributes, choose "Not In List" and select the attributes you wanted to exclude from discount. (You can add multiple filters of same type)', WDR_TEXT_DOMAIN); ?></span></div>
+                                   <div class="wdr_filter_desc_text"><span><?php _e('Choose attributes that get the discount using "In List". If you want to exclude a few attributes, choose "Not In List" and select the attributes you wanted to exclude from discount. (You can add multiple filters of same type)', 'woo-discount-rules'); ?></span></div>
                                     <?php break;
                                 case "product_tags": ?>
-                                    <div class="wdr_filter_desc_text"><span><?php _e('Choose tags that get the discount using "In List". If you want to exclude a few tags, choose "Not In List" and select the tags you wanted to exclude from discount. (You can add multiple filters of same type)', WDR_TEXT_DOMAIN); ?></span></div>
+                                    <div class="wdr_filter_desc_text"><span><?php _e('Choose tags that get the discount using "In List". If you want to exclude a few tags, choose "Not In List" and select the tags you wanted to exclude from discount. (You can add multiple filters of same type)', 'woo-discount-rules'); ?></span></div>
                                     <?php break;
                                 case "product_sku": ?>
-                                    <div class="wdr_filter_desc_text"><span><?php _e('Choose SKUs that get the discount using "In List". If you want to exclude a few SKUs, choose "Not In List" and select the SKUs you wanted to exclude from discount. (You can add multiple filters of same type)', WDR_TEXT_DOMAIN); ?></span></div>
+                                    <div class="wdr_filter_desc_text"><span><?php _e('Choose SKUs that get the discount using "In List". If you want to exclude a few SKUs, choose "Not In List" and select the SKUs you wanted to exclude from discount. (You can add multiple filters of same type)', 'woo-discount-rules'); ?></span></div>
                                     <?php break;
                                 case "product_on_sale": ?>
-                                    <div class="wdr_filter_desc_text"><span><?php _e('Choose whether you want to include (or exclude) products on sale (those having a sale price) for the discount ', WDR_TEXT_DOMAIN); ?></span></div>
+                                    <div class="wdr_filter_desc_text"><span><?php _e('Choose whether you want to include (or exclude) products on sale (those having a sale price) for the discount ', 'woo-discount-rules'); ?></span></div>
                                     <?php break;
                                 case "all_products": ?>
-                                    <div class="wdr_filter_desc_text"><span><?php _e('Discount applies to all eligible products in the store', WDR_TEXT_DOMAIN); ?></span></div>
+                                    <div class="wdr_filter_desc_text"><span><?php _e('Discount applies to all eligible products in the store', 'woo-discount-rules'); ?></span></div>
                                     <?php break;
                                 default:
                                  ?>
-                                     <div class="wdr_filter_desc_text"><span><?php _e('Discount applies to custom taxonomy', WDR_TEXT_DOMAIN); ?></span></div>
+                                     <div class="wdr_filter_desc_text"><span><?php _e('Discount applies to custom taxonomy', 'woo-discount-rules'); ?></span></div>
                                  <?php break;
                             }
                             ?>
@@ -132,7 +132,7 @@ if (!defined('ABSPATH')) {
                                 if (isset($product_filters) && !empty($product_filters)) {
                                     foreach ($product_filters as $wdr_filter_key => $wdr_filter_value) {
                                         ?>
-                                        <optgroup label="<?php _e($wdr_filter_key, WDR_TEXT_DOMAIN); ?>"><?php
+                                        <optgroup label="<?php _e($wdr_filter_key, 'woo-discount-rules'); ?>"><?php
                                         foreach ($wdr_filter_value as $key => $value) {
                                             ?>
                                             <option
@@ -147,7 +147,7 @@ if (!defined('ABSPATH')) {
                                                 <?php
                                             }
                                             ?>
-                                            ><?php _e($value['label'], WDR_TEXT_DOMAIN); ?></option><?php
+                                            ><?php _e($value['label'], 'woo-discount-rules'); ?></option><?php
                                         } ?>
                                         </optgroup><?php
                                     }
@@ -159,7 +159,7 @@ if (!defined('ABSPATH')) {
                         </div>
                         <div class="wdr_filter_desc_text">
                             <span>
-                                <?php _e('Discount applies to all eligible products in the store', WDR_TEXT_DOMAIN); ?>
+                                <?php _e('Discount applies to all eligible products in the store', 'woo-discount-rules'); ?>
                             </span>
                         </div>
                     </div>
@@ -170,7 +170,7 @@ if (!defined('ABSPATH')) {
         </div>
         <div class="wdr-add-condition add-condition-and-filters">
             <button type="button"
-                    class="button add-product-filter"><?php _e('Add filter', WDR_TEXT_DOMAIN); ?></button>
+                    class="button add-product-filter"><?php _e('Add filter', 'woo-discount-rules'); ?></button>
         </div>
     </div>
 </div>

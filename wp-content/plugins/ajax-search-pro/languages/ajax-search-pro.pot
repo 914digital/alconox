@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Blank WordPress "
 "Pot v1.0.0\n"
-"POT-Creation-Date: 2020-12-11 "
-"14:39+0100\n"
+"POT-Creation-Date: 2021-01-23 "
+"14:08+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Your Name "
 "<you@example.com>\n"
@@ -7148,19 +7148,32 @@ msgid ""
 "result pages?"
 msgstr ""
 
-#: backend/tabs/instance/layout/highlight_loadmore.php:127
+#: backend/tabs/instance/layout/highlight_loadmore.php:128
 msgid ""
 "Scroll to the first keyword match "
 "if possible?"
 msgstr ""
 
-#: backend/tabs/instance/layout/highlight_loadmore.php:132
+#: backend/tabs/instance/layout/highlight_loadmore.php:130
+#: backend/tabs/instance/layout/results_behaviour.php:11
+msgid "scroll offset (px)"
+msgstr ""
+
+#: backend/tabs/instance/layout/highlight_loadmore.php:133
+#: backend/tabs/instance/layout/results_behaviour.php:14
+msgid ""
+"A negative offset will move the "
+"window upwards, a positive "
+"downwards. Default: 0"
+msgstr ""
+
+#: backend/tabs/instance/layout/highlight_loadmore.php:137
 msgid ""
 "Result page content jQuery element "
 "selector"
 msgstr ""
 
-#: backend/tabs/instance/layout/highlight_loadmore.php:136
+#: backend/tabs/instance/layout/highlight_loadmore.php:141
 msgid ""
 "Optional, but very useful - it "
 "tells which element contains "
@@ -7178,43 +7191,42 @@ msgstr ""
 #: backend/tabs/instance/layout/results_behaviour.php:9
 msgid ""
 "Scroll the browser window to the "
-"result list, after the search is "
-"finished?"
+"result list, when the search starts?"
 msgstr ""
 
-#: backend/tabs/instance/layout/results_behaviour.php:15
+#: backend/tabs/instance/layout/results_behaviour.php:19
 msgid ""
 "Make the whole result area "
 "clickable?"
 msgstr ""
 
-#: backend/tabs/instance/layout/results_behaviour.php:21
+#: backend/tabs/instance/layout/results_behaviour.php:25
 msgid ""
 "Close results when the search "
 "looses focus?"
 msgstr ""
 
-#: backend/tabs/instance/layout/results_behaviour.php:25
+#: backend/tabs/instance/layout/results_behaviour.php:29
 msgid ""
 "Closes the results list when "
 "clicking outside the search "
 "elements."
 msgstr ""
 
-#: backend/tabs/instance/layout/results_behaviour.php:30
+#: backend/tabs/instance/layout/results_behaviour.php:34
 msgid "No results text"
 msgstr ""
 
-#: backend/tabs/instance/layout/results_behaviour.php:34
+#: backend/tabs/instance/layout/results_behaviour.php:38
 msgid ""
 "Supports HTML and variable {phrase}"
 msgstr ""
 
-#: backend/tabs/instance/layout/results_behaviour.php:39
+#: backend/tabs/instance/layout/results_behaviour.php:43
 msgid "Did you mean text"
 msgstr ""
 
-#: backend/tabs/instance/layout/results_behaviour.php:43
+#: backend/tabs/instance/layout/results_behaviour.php:47
 msgid "Supports HTML"
 msgstr ""
 
@@ -8999,23 +9011,23 @@ msgstr ""
 msgid "Image negate failed."
 msgstr ""
 
-#: includes/classes/core/class-asp-manager.php:136
+#: includes/classes/core/class-asp-manager.php:137
 msgid "Every 2 Minutes"
 msgstr ""
 
-#: includes/classes/core/class-asp-manager.php:140
+#: includes/classes/core/class-asp-manager.php:141
 msgid "Every 3 Minutes"
 msgstr ""
 
-#: includes/classes/core/class-asp-manager.php:144
+#: includes/classes/core/class-asp-manager.php:145
 msgid "Every 5 Minutes"
 msgstr ""
 
-#: includes/classes/core/class-asp-manager.php:148
+#: includes/classes/core/class-asp-manager.php:149
 msgid "Every 15 Minutes"
 msgstr ""
 
-#: includes/classes/core/class-asp-manager.php:152
+#: includes/classes/core/class-asp-manager.php:153
 msgid "Every 30 Minutes"
 msgstr ""
 

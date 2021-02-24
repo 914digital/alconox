@@ -397,7 +397,7 @@ if ( !class_exists("wd_frontFilters") ) {
                     'data' => $module->getData(array(), true)
                 );
             }
-            wp_localize_script('wd-ff-main-module', 'WD_FrontFilters', array(
+            ASP_Helpers::addInlineScript('wd-ff-main-module', 'WD_FrontFilters', array(
                 'modulesDefault' => $modules_default
             ));
         }

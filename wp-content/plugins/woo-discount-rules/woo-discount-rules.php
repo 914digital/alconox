@@ -3,15 +3,15 @@
  * Plugin name: Woo Discount Rules
  * Plugin URI: http://www.flycart.org
  * Description: Simple to complex discount rules for your WooCommerce store. Core package.
- * Author: Flycart Technologies LLP
+ * Author: Flycart
  * Author URI: https://www.flycart.org
- * Version: 2.3.3
+ * Version: 2.3.4
  * Slug: woo-discount-rules
  * Text Domain: woo-discount-rules
  * Domain Path: /i18n/languages/
  * Requires at least: 4.6.1
  * WC requires at least: 3.0
- * WC tested up to: 4.8
+ * WC tested up to: 4.9
  */
 if (!defined('ABSPATH')) {
     exit;
@@ -21,7 +21,7 @@ if (!defined('ABSPATH')) {
  * Current version of our app
  */
 if (!defined('WDR_VERSION')) {
-    define('WDR_VERSION', '2.3.3');
+    define('WDR_VERSION', '2.3.4');
 }
 
 global $awdr_load_version;
@@ -136,10 +136,25 @@ if ($awdr_load_version == "v2") {
     if (!function_exists('awdr_create_required_tables')) {
         function awdr_create_required_tables()
         {
-            $database = new \Wdr\App\Models\DBTable();
-            $database->createDBTables();
-            $database->updateDBTables();
-            \Wdr\App\Helpers\Migration::checkForMigration();
+            $awdr_current_version = get_option('advanced_woo_discount_rules_current_version', null);
+            if($awdr_current_version === null || empty($awdr_current_version) || version_compare(WDR_VERSION, $awdr_current_version, '>')){
+                $database = new \Wdr\App\Models\DBTable();
+                $database->createDBTables();
+                $database->updateDBTables();
+                \Wdr\App\Helpers\Migration::checkForMigration();
+                awdr_add_sample_rules();
+                update_option('advanced_woo_discount_rules_current_version', WDR_VERSION);
+            }
+        }
+    }
+
+    /**
+     * Add sample rules
+     */
+    if (!function_exists('awdr_add_sample_rules')) {
+        function awdr_add_sample_rules()
+        {
+            \Wdr\App\Helpers\Migration::checkAndCreateSampleRules();
         }
     }
     /**

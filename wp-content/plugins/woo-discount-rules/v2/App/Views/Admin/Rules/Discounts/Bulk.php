@@ -13,63 +13,63 @@ $is_pro = \Wdr\App\Helpers\Helper::hasPro();
                     <input type="number"
                            name="bulk_adjustments[ranges][<?php echo $bulk_index; ?>][from]"
                            class="bulk_discount_min awdr_value_selector awdr_next_value"
-                           placeholder="<?php _e('min', WDR_TEXT_DOMAIN); ?>"
+                           placeholder="<?php _e('min', 'woo-discount-rules'); ?>"
                            min="0"
                            step="any"
                            value="<?php if (isset($range_value->from) && !empty($range_value->from)) {
                                echo $range_value->from;
                            } ?>">
-                    <span class="wdr_desc_text"><?php _e('Minimum Quantity ', WDR_TEXT_DOMAIN); ?></span>
+                    <span class="wdr_desc_text"><?php _e('Minimum Quantity ', 'woo-discount-rules'); ?></span>
                 </div>
                 <div class="bulk-max">
                     <input type="number"
                            name="bulk_adjustments[ranges][<?php echo $bulk_index; ?>][to]"
                            class="bulk_discount_max awdr_value_selector awdr_auto_add_value"
-                           placeholder="<?php _e('max', WDR_TEXT_DOMAIN); ?>"
+                           placeholder="<?php _e('max', 'woo-discount-rules'); ?>"
                            min="0"
                            step="any"
                            value="<?php if (isset($range_value->to) && !empty($range_value->to)) {
                                echo $range_value->to;
                            } ?>">
-                    <span class="wdr_desc_text"><?php _e('Maximum Quantity ', WDR_TEXT_DOMAIN); ?></span>
+                    <span class="wdr_desc_text"><?php _e('Maximum Quantity ', 'woo-discount-rules'); ?></span>
                 </div>
                 <div class="bulk_gen_disc_type wdr-select-filed-hight">
                     <select name="bulk_adjustments[ranges][<?php echo $bulk_index; ?>][type]"
                             class="bulk-discount-type bulk_discount_select">
                         <option value="percentage" <?php if (isset($range_value->type) && $range_value->type == 'percentage') {
                             echo 'selected';
-                        } ?>><?php _e('Percentage discount', WDR_TEXT_DOMAIN) ?></option>
+                        } ?>><?php _e('Percentage discount', 'woo-discount-rules') ?></option>
                         <option value="flat" <?php if (isset($range_value->type) && $range_value->type == 'flat') {
                             echo 'selected';
-                        } ?>><?php _e('Fixed discount', WDR_TEXT_DOMAIN) ?></option>
+                        } ?>><?php _e('Fixed discount', 'woo-discount-rules') ?></option>
                         <?php if($is_pro){ ?>
                             <option value="fixed_price" <?php if (isset($range_value->type) && $range_value->type == 'fixed_price') {
                                 echo 'selected';
-                            } ?>><?php _e('Fixed price for item', WDR_TEXT_DOMAIN) ?></option>
+                            } ?>><?php _e('Fixed price for item', 'woo-discount-rules') ?></option>
                         <?php } else { ?>
-                            <option disabled><?php _e('Fixed price for item - PRO -', WDR_TEXT_DOMAIN) ?></option>
+                            <option disabled><?php _e('Fixed price for item - PRO -', 'woo-discount-rules') ?></option>
                         <?php } ?>
                     </select>
-                    <span class="wdr_desc_text"><?php _e('Discount Type', WDR_TEXT_DOMAIN); ?></span>
+                    <span class="wdr_desc_text"><?php _e('Discount Type', 'woo-discount-rules'); ?></span>
                 </div>
                 <div class="bulk_amount">
                     <input type="number"
                            name="bulk_adjustments[ranges][<?php echo $bulk_index; ?>][value]"
                            class="bulk_discount_value bulk_value_selector awdr_value_selector"
-                           placeholder="<?php _e('Discount', WDR_TEXT_DOMAIN); ?>"
+                           placeholder="<?php _e('Discount', 'woo-discount-rules'); ?>"
                            min="0"
                            step="any"
                            value="<?php echo (isset($range_value->value) && !empty($range_value->value)) ? $range_value->value : 0;?>">
-                    <span class="wdr_desc_text"><?php _e('Discount Value', WDR_TEXT_DOMAIN); ?></span>
+                    <span class="wdr_desc_text"><?php _e('Discount Value', 'woo-discount-rules'); ?></span>
                 </div>
                 <div class="bulk_amount">
                     <input type="text" name="bulk_adjustments[ranges][<?php echo $bulk_index; ?>][label]"
                            class="bulk_value_selector awdr_value_selector"
-                           placeholder="<?php _e('Label', WDR_TEXT_DOMAIN); ?>" min="0"
+                           placeholder="<?php _e('Label', 'woo-discount-rules'); ?>" min="0"
                            value="<?php if (isset($range_value->label) && !empty($range_value->label)) {
                                echo $range_value->label;
                            } ?>">
-                    <span class="wdr_desc_text"><?php _e('Title column For Bulk Table', WDR_TEXT_DOMAIN); ?></span>
+                    <span class="wdr_desc_text"><?php _e('Title column For Bulk Table', 'woo-discount-rules'); ?></span>
                 </div>
                 <div class="wdr-btn-remove">
                     <span class="dashicons dashicons-no-alt wdr_discount_remove" data-rmdiv="bulk_range_group"></span>

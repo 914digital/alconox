@@ -601,6 +601,7 @@ function asp_do_init_options() {
 
         'results_click_blank' => 0,
         'scroll_to_results' => 0,
+        'scroll_to_results_offset' => 0,
         'resultareaclickable' => 1,
         'close_on_document_click' => 1,
         'show_close_icon' => 1,
@@ -629,6 +630,7 @@ function asp_do_init_options() {
         'single_highlightcolor' => "#d9312b",
         'single_highlightbgcolor' => "#eee",
         'single_highlight_scroll' => 0,
+        'single_highlight_offset' => 0,
         'single_highlight_selector' => "#content",
 
         /* Layout Options / Compact Search Layout */
@@ -798,7 +800,7 @@ function asp_do_init_options() {
         'boxshadow' => 'box-shadow:0px 0px 0px 0px #000000 ;',
 
         'boxmargin' => '0px',
-        'inputbackground' => '0-60-rgb(225, 99, 92)-rgb(225, 99, 92)',
+        'inputbackground' => '0-60-rgba(0, 0, 0, 0)-rgba(0, 0, 0, 0)',
         'inputborder' => 'border:0px solid rgb(104, 174, 199);border-radius:0px 0px 0px 0px;',
         'inputshadow' => 'box-shadow:0px 0px 0px 0px rgb(181, 181, 181) inset;',
         'inputfont' => 'font-weight:normal;font-family:Open Sans;color:rgb(255, 255, 255);font-size:12px;line-height:15px;text-shadow:0px 0px 0px rgba(255, 255, 255, 0);',

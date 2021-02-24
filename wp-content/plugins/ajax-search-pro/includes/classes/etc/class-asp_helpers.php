@@ -90,6 +90,61 @@ if (!class_exists("ASP_Helpers")) {
     class ASP_Helpers {
 
         /**
+         * Version comparator for previous plugin versions, based on PHP version_check
+         *
+         * @param string $ver version to check against
+         * @param string $operator opertator, same as in version_check()
+         * @param false $check_updated if true, returns if the version was just updated from an older one
+         * @return bool|int
+         */
+        public static function previousVersion($ver = '', $operator = '<=', $check_updated = false ) {
+            $updated = false;
+
+            $version = get_site_option('_asp_version', array(
+               'current' => ASP_CURR_VER_STRING,
+               'previous' => ASP_CURR_VER_STRING, // version, when this feature was implemented
+               'new' => true
+            ));
+            // The option does not exist yet
+            if ( isset($version['new']) ) {
+                $version = array(
+                    'current' => ASP_CURR_VER_STRING,
+                    'previous' => get_option('asp_version', 0) == 0 ? ASP_CURR_VER_STRING : '4.20.2'
+                );
+                update_site_option('_asp_version', $version);
+                delete_option('asp_version');
+            }
+            // It has been an update - this executes only once per each version activation
+            if ( $version['current'] != ASP_CURR_VER_STRING ) {
+                $version = array(
+                    'current' => ASP_CURR_VER_STRING,
+                    'previous' => $version['current']
+                );
+                update_site_option('_asp_version', $version);
+                $updated = true;
+            }
+
+            if ( $check_updated ) {
+                return $updated;
+            } else {
+                return version_compare($version['previous'], $ver, $operator);
+            }
+        }
+
+        public static function addInlineScript($handle, $object_name, $data, $position = 'before') {
+            // Taken from WP_Srcripts -> localize
+            foreach ( (array) $data as $key => $value ) {
+                if ( ! is_scalar( $value ) ) {
+                    continue;
+                }
+                $data[ $key ] = html_entity_decode( (string) $value, ENT_QUOTES, 'UTF-8' );
+            }
+            $script = "var $object_name = " . wp_json_encode( $data ) . ';';
+
+            wp_add_inline_script($handle, $script, $position);
+        }
+
+        /**
          * Prepares the headers for the ajax request
          *
          * @param string $content_type
@@ -484,7 +539,7 @@ if (!class_exists("ASP_Helpers")) {
                     $mykey_values = get_field($field, $r->id, true);
                     if ( !is_null($mykey_values) && $mykey_values != '' && $mykey_values !== false ) {
                         if ( is_array($mykey_values) ) {
-                            if ( count($mykey_values) > 0 ) {
+                            if ( count($mykey_values) > 0 && isset($mykey_values[0]) ) {
                                 // Field display mode as Array (both label and value)
                                 if ( isset($mykey_values[0]['label']) ) {
                                     $labels = array();
@@ -505,7 +560,7 @@ if (!class_exists("ASP_Helpers")) {
                     }
                 } else {
                     $mykey_values = get_post_custom_values($field, $r->id);
-                    if (isset($mykey_values[0])) {
+                    if ( isset($mykey_values[0]) ) {
                         $ret = wd_array_to_string( maybe_unserialize( $mykey_values[0] ) );
                     }
                 }
@@ -1891,6 +1946,23 @@ if (!class_exists("ASP_Helpers")) {
 						}
 					}
 
+					// Data type for JSON serialized objects - like ACF storage
+                    if (
+                        $filter->data['acf_type'] !== false &&
+                        in_array($filter->data['acf_type'], array('multiselect', 'checkbox')) &&
+                        in_array($operator, array('ELIKE', 'NOT ELIKE', 'IN'))
+                    ) {
+                        $operator = str_replace('ELIKE', 'LIKE', $operator);
+                        if ( is_array($posted) ) {
+                            foreach ( $posted as $pk => &$pv ) {
+                                $pv = ':"' . $pv . '";';
+                            }
+                            unset($pv);
+                        } else {
+                            $posted = ':"' . $posted . '";';
+                        }
+                    }
+
                     $arr = array(
                         'key'     => $filter->data['field'],
                         'value'   => $posted,
@@ -1899,7 +1971,6 @@ if (!class_exists("ASP_Helpers")) {
                     );
                     if ( !empty($filter->data['logic']) )
                         $arr['logic'] = strtolower( trim($filter->data['logic']) ) == 'and' ? 'AND' : 'OR';
-
                     $meta_fields[] = $arr;
                 }
             }

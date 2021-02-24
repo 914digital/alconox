@@ -48,7 +48,7 @@ class WholesalePricesByRymeraWebCo extends Base
             <div class="awdr-compatible-field">
                 <label>
                     <input type="checkbox" name="wdrc[<?php echo $this->key; ?>]" id="<?php echo $this->key; ?>" value="1" <?php if ($value == 1) { ?> checked <?php } ?>>
-                    <?php esc_html_e('Add compatible for WooCommerce Wholesale Prices', WDR_TEXT_DOMAIN); ?>
+                    <?php esc_html_e('Add compatible for WooCommerce Wholesale Prices', 'woo-discount-rules'); ?>
                 </label>
             </div>
             <?php

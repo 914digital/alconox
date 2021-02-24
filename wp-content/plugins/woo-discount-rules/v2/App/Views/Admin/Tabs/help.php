@@ -9,7 +9,7 @@ if (!defined('ABSPATH')) {
             <div class="row form-group">
                 <div class="col-md-12">
                     <br>
-                    <h4><?php _e('Documentation', WDR_TEXT_DOMAIN);?></h4>
+                    <h4><?php _e('Documentation', 'woo-discount-rules');?></h4>
                     <hr>
                 </div>
             </div>
@@ -17,8 +17,8 @@ if (!defined('ABSPATH')) {
                 <div class="col-md-12">
                     <div class="wdr_read_documentation_con"><a class="wdr_read_documentation"
                                                                href="https://docs.flycart.org/woocommerce-discount-rules/introduction/getting-started?utm_source=woo-discount-rules&amp;utm_campaign=doc&amp;utm_medium=text-click&amp;getting_started"
-                                                               target="_blank"><?php _e('Getting started', WDR_TEXT_DOMAIN);?></a>
-                        <p class=""><?php _e('Welcome onboard', WDR_TEXT_DOMAIN);?></p></div>
+                                                               target="_blank"><?php _e('Getting started', 'woo-discount-rules');?></a>
+                        <p class=""><?php _e('Welcome onboard', 'woo-discount-rules');?></p></div>
                 </div>
                 <div class="col-md-12">
                     <div class="wdr_read_documentation_con"><a class="wdr_read_documentation"

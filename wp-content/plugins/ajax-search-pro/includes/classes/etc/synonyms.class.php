@@ -101,6 +101,7 @@ if ( ! class_exists( 'ASP_Synonyms' ) ) {
         public function add($keyword, $synonyms, $language = '') {
             $synonyms_arr = $this->processSynonyms($synonyms);
             $keyword = $this->processKeyword($keyword);
+            $language = $this->processKeyword($language);
 
             if ( count($synonyms_arr) < 1 || $keyword == '' )
                 return 0;
@@ -129,6 +130,7 @@ if ( ! class_exists( 'ASP_Synonyms' ) ) {
         public function update($keyword, $synonyms, $language = '', $overwrite_existing = true) {
             $synonyms_arr = $this->processSynonyms($synonyms);
             $keyword = $this->processKeyword($keyword);
+            $language = $this->processKeyword($language);
 
             if ( count($synonyms_arr) < 1 || $keyword == '' )
                 return 0;
@@ -362,9 +364,9 @@ if ( ! class_exists( 'ASP_Synonyms' ) ) {
                     foreach ( $contents as $syn ) {
                         $value    = $wpdb->prepare(
                             "(%s, %s, %s)",
-                            $syn['keyword'],
-                            $syn['synonyms'],
-                            $syn['lang']
+                            $this->processKeyword($syn['keyword']),
+                            $this->processKeyword($syn['synonyms']),    // this is a single string now
+                            $this->processKeyword($syn['lang'])
                         );
                         $values[] = $value;
 

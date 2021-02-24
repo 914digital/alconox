@@ -111,6 +111,7 @@ if (!class_exists("WD_ASP_Manager")) {
         private function preLoad() {
             require_once(ASP_PATH . "/backend/settings/default_options.php");
             require_once(ASP_FUNCTIONS_PATH . "functions.php");
+            require_once(ASP_CLASSES_PATH . "etc/class-asp_helpers.php");
             require_once(ASP_CLASSES_PATH . "etc/class.asp-mb.php");
 
             require_once(ASP_CLASSES_PATH . "etc/indextable.class.php");
@@ -248,7 +249,6 @@ if (!class_exists("WD_ASP_Manager")) {
             require_once(ASP_CLASSES_PATH . "frontend/frontend.inc.php");
             require_once(ASP_CLASSES_PATH . "etc/aspdebug.class.php");
             require_once(ASP_CLASSES_PATH . "etc/statistics.class.php");
-            require_once(ASP_CLASSES_PATH . "etc/class-asp_helpers.php");
 
             require_once(ASP_CLASSES_PATH . "etc/performance.class.php");
             require_once(ASP_CLASSES_PATH . "etc/class-priorities.php");

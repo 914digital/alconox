@@ -1,10 +1,10 @@
 <?php
 /**
-* Plugin Name: Gravity Forms Salesforce Pro
+* Plugin Name: Gravity Forms Salesforce
 * Description: Integrates Gravity Forms with Salesforce allowing form submissions to be automatically sent to your Salesforce account 
-* Version: 1.1.6
+* Version: 1.2.0
 * Requires at least: 4.7
-* Tested up to: 5.4
+* Tested up to: 5.6
 * Author URI: https://www.crmperks.com
 * Plugin URI: https://www.crmperks.com/plugins/gravity-forms-plugins/gravity-forms-salesforce-plugin/
 * Author: CRM Perks.
@@ -25,7 +25,7 @@ class vxg_salesforce {
   public  $crm_name = 'salesforce';
   public  $id = 'vxg_salesforce';
   public  $domain = 'vxg-sales';
-  public  $version = "1.1.6";
+  public  $version = "1.2.0";
   public  $update_id = '30001';
   public  $min_gravityforms_version = '1.3.9';
   public $type = 'vxg_salesforce_pro';
@@ -109,7 +109,12 @@ require_once(self::$path . "includes/plugin-pages.php");
   add_action("gform_entry_created", array($this, 'gf_entry_created'), 40, 2);
   //added via GF API
   add_action("gform_post_add_entry", array($this, 'gf_entry_created'), 40, 2);
+  add_action("gform_post_payment_status", array($this, 'gf_entry_paid'), 10, 2);
+  
     add_filter("gform_confirmation", array($this, 'confirmation_error'));
+
+        add_filter("gform_custom_merge_tags", array($this, 'add_tags'),10,4);
+    add_filter( 'gform_replace_merge_tags', array($this,'replace_tags'), 10, 7 );
  
 
       if(is_admin()){
@@ -119,15 +124,10 @@ add_action('init', array($this,'init'));
   
   self::$db_version=get_option($this->type."_version");
   if(self::$db_version != $this->version && current_user_can( 'manage_options' )){
-  $data=$this->get_data_object();
-  $data->update_table();
+$this->install_plugin();
   update_option($this->type."_version", $this->version);
-  //add post permissions
-  require_once(self::$path . "includes/install.php"); 
-  $install=new vxg_install_salesforce();
-  $install->create_roles();   
-    $log_str="Installing ".self::$title."  version=".$this->version;
-  $this->log_msg($log_str);
+//    $log_str="Installing ".self::$title."  version=".$this->version;
+//  $this->log_msg($log_str);
   }
 
   } 
@@ -148,6 +148,14 @@ if($start_instance){
 self::$plugin->instance();
 }
 } }
+  public function install_plugin(){
+        $data=$this->get_data_object();
+  $data->update_table();
+  //add post permissions
+  require_once(self::$path . "includes/install.php"); 
+  $install=new vxg_install_salesforce();
+  $install->create_roles();  
+  }
   public function install_gf_notice(){
         $message=self::$gf_status_msg;
   if(!empty($message)){
@@ -209,7 +217,35 @@ self::$plugin->instance();
   echo $message ;
   echo '</p></div>';
   } 
-
+public function add_tags( $merge_tags, $form_id, $fields, $element_id ) {
+      $data_db=$this->get_data_object(); 
+  $feeds=$data_db->get_feed_by_form($form_id,true);
+  foreach($feeds as $v){
+    $merge_tags[] = array('label' => substr($v['name'],0,20).' Salesforce Link', 'tag' => '{salesforcelink_'.$v['id'].'}');
+    $merge_tags[] = array('label' => substr($v['name'],0,20).' Salesforce ID', 'tag' => '{salesforceid_'.$v['id'].'}');
+  }
+    return $merge_tags;
+}
+public function replace_tags( $text, $form, $entry, $url_encode, $esc_html, $nl2br, $format ) {
+ 
+   
+    if(!empty($form['id']) && strpos( $text, '{salesforce' ) !== false ){    
+      $data_db=$this->get_data_object(); 
+  $feeds=$data_db->get_feed_by_form($form['id'],true);
+$tags=array();
+  foreach($feeds as $v){
+      $id=$v['id'];
+      if( !empty(self::$feeds_res[$id]) ){
+ $link= !empty(self::$feeds_res[$id]['link']) ? self::$feeds_res[$id]['link'] : '#'.self::$feeds_res[$id]['id'];         
+   $tags['{salesforcelink_'.$v['id'].'}']=$link;   
+   $tags['{salesforceid_'.$v['id'].'}']=self::$feeds_res[$id]['id'];   
+      }
+  }
+ 
+ $text = str_replace( array_keys($tags), array_values($tags), $text );
+    }   
+     return $text;
+}
 
 
 /**
@@ -516,18 +552,21 @@ return $result;
   }
    if($field->type == 'date' && !empty($value) ){
   
-    $formats=array('mdy'=>'m/d/Y','dmy'=>'d/m/Y','dmy_dash'=>'d-m-Y','dmy_dot'=>'d.m.Y','ymd_slash'=>'Y/m/d','ymd_dash'=>'Y-m-d','ymd_dot'=>'Y.m.d');
-    if($field->dateFormat == 'mdy' && $this->is_api){ //do not convert with web2lead
-      $field->dateFormat='dmy'; 
+    $formats=array('mdy'=>'m/d/Y','dmy'=>'d/M/Y','dmy_dash'=>'d-m-Y','dmy_dot'=>'d.m.Y','ymd_slash'=>'Y/m/d','ymd_dash'=>'Y-m-d','ymd_dot'=>'Y.m.d');
+    $date_formate=$field->dateFormat;
+    if($date_formate == 'mdy' && $this->is_api){ //do not convert with web2lead
+      $date_formate='dmy'; 
         $temp_date=explode('/',$value); 
         if(count($temp_date)>2){
       $value=$temp_date[1].'-'.$temp_date[0].'-'.$temp_date[2]; 
-        
-        }
+       
+        }   
     }
-    if( !empty($field->dateFormat) && isset($formats[$field->dateFormat])){
-   $value=date($formats[$field->dateFormat],strtotime($value));     
-    }   
+ 
+    if( !empty($date_formate) && isset($formats[$date_formate])){
+   $value=date($formats[$date_formate],strtotime($value));     
+    }
+   
    }else if($field->type == 'list' && is_array($value)){
        $v_temp=array();
        foreach($value as $v){
@@ -598,6 +637,7 @@ return $result;
   $field=$filter['field'];
   $fval=$filter['value'];
   $val=$this->verify_field_val($entry,$form,$field);
+  
   switch($filter['op']){
   case"is": $check=$fval == $val;     break;
   case"is_not": $check=$fval != $val;     break;
@@ -607,8 +647,8 @@ return $result;
   case"not_in": $check=strpos($fval,$val) ===false;     break;
   case"starts": $check=strpos($val,$fval) === 0;     break;
   case"not_starts": $check=strpos($val,$fval) !== 0;     break;
-  case"ends": $check=(strpos($val,$fval)+strlen($fval)) == strlen($val);  break;
-  case"not_ends": $check=(strpos($val,$fval)+strlen($fval)) != strlen($val);  break;
+  case"ends": $check=(strrpos($val,$fval)+strlen($fval)) == strlen($val);   break;
+  case"not_ends": $check=(strrpos($val,$fval)+strlen($fval)) != strlen($val);  break;
   case"less": $check=(float)$val<(float)$fval; break;
   case"greater": $check=(float)$val>(float)$fval;  break;
   case"less_date": $check=strtotime($val,$time) < strtotime($fval,$time);  break;
@@ -637,7 +677,7 @@ return $result;
     $this->filter_condition[]=$and_c;
   } // end or loop
   }
- // var_dump($final); die();
+//  var_dump($final); die();
   return $final === null ? true : $final;
   }
   
@@ -832,6 +872,7 @@ if(!current_user_can($this->id."_send_to_crm")){return; }
   */
   public function activate(){ 
 $this->plugin_api(true);
+$this->install_plugin();
 do_action('plugin_status_'.$this->type,'activate');  
   }
     /**
@@ -1225,13 +1266,27 @@ public function do_actions(){
   * @param mixed $form
   */
   public function gf_entry_created($entry, $form){
-      if(isset($entry['status']) && $entry['status'] == 'active'){
+      
+      if(isset($entry['status']) && $entry['status'] == 'active' && empty($entry['partial_entry_percent'])){
         $entry_id=$this->post('id',$entry);
         if($this->do_actions()){
      do_action('vx_addons_save_entry',$entry_id,$entry,'gf',$form);   
         }
       $this->push($entry,$form,'submit',false);     
       }
+  }
+   public function gf_entry_paid($feed,$entry){
+    // if($entry['payment_status'] == 'Paid'){
+        $entry_id=$this->post('id',$entry);
+        $form=array('id'=>$feed['form_id'],'title'=>'form id '.$feed['form_id']);
+        if(!empty($feed['meta']['feedName'])){
+            $form['title']=$feed['meta']['feedName'];
+        }
+        if($this->do_actions()){
+     do_action('vx_addons_save_entry',$entry_id,$entry,'gf',$form);   
+        }
+      $this->push($entry,$form,'paid',false);
+   //  }     
   }
 
   /**
@@ -1407,7 +1462,14 @@ $object_link=$feed_log['crm_id'];
 
  } 
 // var_dump(self::$note,$object,$feed['note_object'],$feed['object'],$feed['crm_id'],$feed['event'],$temp,$force_send); 
- //continue; 
+ //not submitted by admin
+  if(!$is_admin && $event == 'submit' && $this->post('manual_export',$data) == "1"){ //if manual export is yes
+  continue;   
+  } 
+    if(!$is_admin && $this->post('manual_export',$data) == '2' && $event != 'paid' ){ // only process paid event, if set in feed
+  continue;   
+  } 
+  
 if(!$force_send && isset($data['map']) && is_array($data['map']) && count($data['map'])>0){
 
          if($api_type =="web"){
@@ -1444,6 +1506,7 @@ $skip_feed=false;
        } 
 }else{
 $value=$this->verify_field_val($entry,$form,$field,$k,$custom);
+  if($value == ''){ $value=false;  }
 $gf_field= RGFormsModel::get_field($form, $field);
 if(!empty($gf_field) && in_array($gf_field->type,array('checkbox')) && !empty($gf_field->choices) && count($gf_field->choices)< 2 ){
 if(!empty($value)){ $value='1'; }  //single checkbox or acceptance field , salesforce web2lead accepts only 1 for checkbox field
@@ -1541,10 +1604,7 @@ if(!empty($data['note_val'])){
 }
  
 $no_filter=true;    
-  //not submitted by admin
-  if(!$is_admin && $event == 'submit' && $this->post('manual_export',$data) == "1"){ //if manual export is yes
-  continue;   
-  }         
+         
     if(isset($_REQUEST['bulk_action']) && $_REQUEST['bulk_action'] =="send_to_crm_bulk_force" && !empty($log_id)){
   $force_send=true;
   }
@@ -1557,7 +1617,7 @@ $temp=apply_filters($this->id.'_post_data', $temp ,$entry);
 
 //var_dump($no_filter); die();
  
-
+ $feed_id=$this->post('id',$feed);
   if($no_filter){ //get $res if no filter , other wise use filtered $res
   $api=$this->get_api($info);
   $feed_arr=$feed;
@@ -1565,12 +1625,16 @@ $temp=apply_filters($this->id.'_post_data', $temp ,$entry);
       $feed_arr=array_merge($meta,$data,$feed);
   }
   $res=$api->push_object($feed['object'],$temp,$feed_arr);
-  if($object == 'Contact' && !empty($res['id'])){
+$res = apply_filters($this->id . '_response', $res, $entry, $object);
+
+  if(!empty($res['id'])){
+    $entry['_vx_feed-'.$feed_id]= $res['id']; 
+      if($object == 'Contact'){
    $entry['sf_contact_id']=$res['id'];    
-  }
+  } }
   }
 
-  $feed_id=$this->post('id',$feed);
+ 
   self::$feeds_res[$feed_id]=$res;
   $status=$res['status'];  $error=""; 
   $id=$this->post('id',$res);
@@ -1623,7 +1687,7 @@ $this->send_error_email($info_data,$entry,$form);
   } 
   //insert log
   $arr=array("object"=>$feed["object"],"form_id"=>$form_id,"status"=>$status,"entry_id"=>$entry_id,"crm_id"=>$id,"meta"=>$error,"time"=>date('Y-m-d H:i:s'),"data"=>$temp,"response"=>$this->post('response',$res),"extra"=>$this->post('extra',$res),"feed_id"=>$this->post('id',$feed),"link"=>$this->post('link',$res),'parent_id'=>$parent_id,'event'=>$event);
-    
+
   $settings=get_option($this->type.'_settings',array());
   if($this->post('disable_log',$settings) !="yes"){ 
    $insert_id=$data_db->insert_log($arr,$log_id); 

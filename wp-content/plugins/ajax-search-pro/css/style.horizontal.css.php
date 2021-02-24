@@ -96,14 +96,6 @@ defined('ABSPATH') or die("You can't access this file directly.");
 }
 
 <?php if ($use_compatibility == true): ?>
-    <?php echo $asp_res_ids1; ?>.horizontal .results .item .asp_content h3 a,
-    <?php echo $asp_res_ids2; ?>.horizontal .results .item .asp_content h3 a,
-<?php endif; ?>
-<?php echo $asp_res_ids; ?>.horizontal .results .item .asp_content h3 a {
-    text-align: center;
-}
-
-<?php if ($use_compatibility == true): ?>
     <?php echo $asp_res_ids1; ?>.horizontal .asp_simplebar-scrollbar::before,
     <?php echo $asp_res_ids2; ?>.horizontal .asp_simplebar-scrollbar::before,
 <?php endif; ?>

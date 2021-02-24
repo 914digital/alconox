@@ -113,13 +113,6 @@
             $this.isAutoP = false;
             $this.settingsChanged = false;
 
-            if ( typeof($.browser) != 'undefined' &&
-                typeof($.browser.mozilla) != 'undefined' &&
-                typeof($.browser.version) != 'undefined' &&
-                parseInt($.browser.version) > 13
-            )
-                $this.n.searchsettings.addClass('asp_firefox');
-
             $this.n.showmore = $('.showmore', $this.n.resultsDiv);
             $this.n.items = $('.item', $this.n.resultsDiv).length > 0 ? $('.item', $this.n.resultsDiv) : $('.photostack-flip', $this.n.resultsDiv);
             $this.n.results = $('.results', $this.n.resultsDiv);
@@ -272,8 +265,8 @@
             };
 
             // Extend the easing functions
-            $.easing.aspEaseOutQuad = function (x, t, b, c, d) {
-                return -c *(t/=d)*(t-2) + b;
+            $.easing.aspEaseOutQuad = function (x) {
+                return 1 - ( 1 - x ) * ( 1 - x );
             }
 
             if ( $this.o.compact.overlay == 1 && $("#asp_absolute_overlay").length <= 0 )
@@ -414,7 +407,7 @@
 
                     // Fix the container position to a px value, even if it is set to % value initially, for better compatibility
                     $this.n.container.css({
-                        top: $this.n.container.offset().top - $(document).scrollTop()
+                        top: ( $this.n.container.offset().top - $(document).scrollTop() ) + 'px'
                     });
                     clearInterval(iv);
 
@@ -830,7 +823,7 @@
 
             });
 
-            $('div.asp_option label', $this.n.searchsettings).click(function(e){
+            $('div.asp_option label', $this.n.searchsettings).on('click', function(e){
                 e.preventDefault(); // Let the previous handler handle the events, disable this
             });
 
@@ -904,8 +897,8 @@
         initInputEvents: function() {
             var $this = this;
             // Some kind of crazy rev-slider fix
-            $this.n.text.click(function(e){
-                $(this).focus();
+            $this.n.text.on('click', function(e){
+                $(this).trigger('focus');
                 $this.gaEvent('focus');
             });
             $this.n.text.on('focus input', function(e){;
@@ -919,7 +912,7 @@
                 }
             });
             // Handle the submit/mobile search button event
-            $($this.n.text.closest('form')).submit(function (e, args) {
+            $($this.n.text.closest('form')).on('submit', function (e, args) {
                 e.preventDefault();
                 // Mobile keyboard search icon and search button
                 if ( isMobile() ) {
@@ -969,9 +962,9 @@
 
             if ( isMobile() && $this.o.mobile.force_sett_hover == 1 ) {
                 if ( $this.o.mobile.force_sett_state == "open" )
-                    $this.n.prosettings.click();
+                    $this.n.prosettings.trigger('click');
             } else if ($this.o.settingsVisible == 1) {
-                $this.n.prosettings.click();
+                $this.n.prosettings.trigger('click');
             }
 
             // Category level automatic checking and hiding
@@ -988,7 +981,7 @@
             var $this = this;
 
             $this.n.resultsDiv.css({
-                opacity: 0
+                opacity: "0"
             });
             $(document).on($this.clickTouchend, function (e) {
                 var keycode =  e.keyCode || e.which;
@@ -1037,20 +1030,20 @@
                     // Params: e, direction, distance, duration, fingerCount, fingerData
                     swipeLeft: function () {
                         if ( $this.visiblePagination() )
-                            $("a.asp_next", $this.n.resultsDiv).click();
+                            $("a.asp_next", $this.n.resultsDiv).trigger('click');
                     },
                     // Params: e, direction, distance, duration, fingerCount, fingerData
                     swipeRight: function () {
                         if ( $this.visiblePagination() )
-                            $("a.asp_prev", $this.n.resultsDiv).click();
+                            $("a.asp_prev", $this.n.resultsDiv).trigger('click');
                     }
                 });
-                $this.n.resultsDiv.bind("click", function (e) {
+                $this.n.resultsDiv.on("click", function (e) {
                     e.stopImmediatePropagation();
                 });
             } else {
                 // Only cancel on touch, if the swipe is not enabled
-                $this.n.resultsDiv.bind($this.clickTouchend, function (e) {
+                $this.n.resultsDiv.on($this.clickTouchend, function (e) {
                     e.stopImmediatePropagation();
                 });
             }
@@ -1070,20 +1063,20 @@
                 });
             }
 
-            $this.n.proclose.bind($this.clickTouchend, function (e) {
+            $this.n.proclose.on($this.clickTouchend, function (e) {
                 //if ($this.resultsOpened == false) return;
                 e.preventDefault();
                 e.stopImmediatePropagation();
                 $this.n.text.val("");
                 $this.n.textAutocomplete.val("");
                 $this.hideResults();
-                $this.n.text.focus();
+                $this.n.text.trigger('focus');
 
                 $this.n.proloading.css('display', 'none');
                 $this.hideLoader();
                 $this.searchAbort();
             });
-            $($this.elem).bind($this.clickTouchend, function (e) {
+            $($this.elem).on($this.clickTouchend, function (e) {
                 e.stopImmediatePropagation();
             });
 
@@ -1133,7 +1126,7 @@
                 if ( $this.o.compact.enabled ) {
                     var state = $this.n.container.attr('asp-compact')  || 'closed';
                     if ( state == 'closed' )
-                        $this.n.promagnifier.click();
+                        $this.n.promagnifier.trigger('click');
                 }
                 document.activeElement.blur();
                 $this.n.textAutocomplete.val('');
@@ -1175,7 +1168,7 @@
                 }
             );
 
-            $(document).keydown(function (e) {
+            $(document).on('keydown', function (e) {
                 var keycode =  e.keyCode || e.which;
                 if (
                     $('.item', $this.n.resultsDiv).length > 0 && $this.n.resultsDiv.css('display') != 'none' &&
@@ -1183,7 +1176,7 @@
                 ) {
                     if ( keycode == 40 || keycode == 38 ) {
                         if (keycode == 40) {
-                            $this.n.text.blur();
+                            $this.n.text.trigger('blur');
                             if ($('.item.hovered', $this.n.resultsDiv).length == 0) {
                                 $('.item', $this.n.resultsDiv).first().addClass('hovered');
                             } else {
@@ -1191,7 +1184,7 @@
                             }
                         }
                         if (keycode == 38) {
-                            $this.n.text.blur();
+                            $this.n.text.trigger('blur');
                             if ($('.item.hovered', $this.n.resultsDiv).length == 0) {
                                 $('.item', $this.n.resultsDiv).last().addClass('hovered');
                             } else {
@@ -1503,7 +1496,7 @@
 
             var scrollTopx = 0;
 
-            $this.n.promagnifier.click(function(){
+            $this.n.promagnifier.on('click', function(){
                 var compact = $this.n.container.attr('asp-compact')  || 'closed';
 
                 scrollTopx = $(window).scrollTop();
@@ -1512,7 +1505,7 @@
 
                 if (compact == 'closed') {
                     $this.openCompact();
-                    $this.n.text.focus();
+                    $this.n.text.trigger('focus');
                 } else {
                     if ($this.o.compact.closeOnMagnifier != 1) return;
                     $this.closeCompact();
@@ -1533,21 +1526,13 @@
 
             if ($this.o.compact.enabled == 1 && $this.o.compact.position != 'static') {
                 $this.n.trythis.css({
-                    top: $this.n.container.position().top + $this.n.container.outerHeight(true),
-                    left: $this.n.container.offset().left
+                    top: ( $this.n.container.position().top + $this.n.container.outerHeight(true) ) + 'px',
+                    left: $this.n.container.offset().left + 'px'
                 });
-
-                // In case of a mobile device, the top needs to be adjusted as well
-                // because the mobile browser shows the top-bar which might cause
-                // shifting upwards
-                /*if ( isMobile() )
-                    $this.n.container.css({
-                        top: $this.n.container.position().top
-                    });*/
             }
 
             $this.n.container.css({
-                "width": $this.n.container.width()
+                "width": $this.n.container.width() + 'px'
             });
 
             $this.n.probox.css({width: "auto"});
@@ -1568,6 +1553,8 @@
                 } else {
                     width = $this.o.compact.width;
                 }
+
+                width = apply_filters('asp_compact_width', width, $this.o.id, $this.o.iid);
 
                 $this.n.container.css({
                     "max-width": width,
@@ -1597,7 +1584,7 @@
                 $this.n.trythis.css({
                     display: 'block'
                 });
-                $this.n.text.focus();
+                $this.n.text.trigger('focus');
                 $this.scrolling();
             }, 500);
         },
@@ -1648,7 +1635,7 @@
                 ($this.o.autocomplete.enabled == 1 && !isMobile()) ||
                 ($this.o.autocomplete.mobile == 1 && isMobile())
             ) {
-                $this.n.text.keyup(function (e) {
+                $this.n.text.on('keyup', function (e) {
                     $this.keycode =  e.keyCode || e.which;
                     $this.ktype = e.type;
 
@@ -1691,7 +1678,7 @@
                 var etype = e.type;
                 var timeout = 1;
                 if ( $this.n.text.is(':focus') && isMobile() ) {
-                    $this.n.text.blur();
+                    $this.n.text.trigger('blur');
                     timeout = 300;
                 }
                 setTimeout( function() {
@@ -1735,7 +1722,7 @@
                 var _this = this;
                 var timeout = 1;
                 if ( $this.n.text.is(':focus') && isMobile() ) {
-                    $this.n.text.blur();
+                    $this.n.text.trigger('blur');
                     timeout = 300;
                 }
                 setTimeout( function() {
@@ -1952,7 +1939,7 @@
                 // Trigger change event. $ scope is used ON PURPOSE
                 // ..otherwise scoped version would not trigger!
                 if ( (typeof(nochage) == "undefined" || nochange == null) && newValue != prevValue )
-                    $(obj).change();
+                    $(obj).trigger('change');
             }
 
             _$(".asp_datepicker", $this.n.searchsettings).each(function(){
@@ -2059,7 +2046,7 @@
                 // Trigger change event. $ scope is used ON PURPOSE
                 // ..otherwise scoped version would not trigger!
                 if ( (typeof nochange == "undefined" || nochange == null) && newValue != prevValue )
-                    $(obj).change();
+                    $(obj).trigger('change');
             }
 
             _$(".asp_datepicker_field", $this.n.searchsettings).each(function(){
@@ -2268,9 +2255,9 @@
             });
 
             if ( !valid ) {
-                $this.n.searchsettings.find('button.asp_s_btn').attr('disabled', 'disabled');
+                $this.n.searchsettings.find('button.asp_s_btn').prop('disabled', true);
             } {
-                $this.n.searchsettings.find('button.asp_s_btn').removeAttr('disabled');
+                $this.n.searchsettings.find('button.asp_s_btn').prop('disabled', false);
             }
 
             return valid;
@@ -2493,6 +2480,8 @@
                 options: $('form', $this.n.searchsettings).serialize()
             };
 
+            data = apply_filters('asp_search_data', data, $this.o.id, $this.o.iid);
+
             $this.hideArrowBox();
             if ( !$this.isAutoP && !$this.reportSettingsValidity() ) {
                 if ( !supressInvalidMsg ) {
@@ -2576,6 +2565,7 @@
                         return false;
                     } else {
                         html_response = html_response[1];
+                        html_response = apply_filters('asp_search_html', html_response, $this.o.id, $this.o.iid);
                     }
                     data_response = JSON.parse(data_response[1]);
                     $this.n.c.trigger("asp_search_end", [$this.o.id, $this.o.iid, $this.n.text.val(), data_response]);
@@ -2946,19 +2936,32 @@
 
         scrollToResults: function( ) {
             var $this = this;
-            if (this.o.scrollToResults!=1 || this.$elem.parent().hasClass("asp_preview_data") || this.o.compact.enabled == 1) return;
+            var tolerance = Math.floor( $(window).height() * 0.1 );
+
+            if (
+                !$this.resultsOpened ||
+                $this.o.scrollToResults.enabled !=1 ||
+                this.$elem.parent().hasClass("asp_preview_data") ||
+                this.o.compact.enabled == 1 ||
+                $this.n.resultsDiv.is(':in-viewport(' + tolerance + ')')
+            ) return;
+
             if ($this.o.resultsposition == "hover")
                 var stop = $this.n.probox.offset().top - 20;
             else
                 var stop = $this.n.resultsDiv.offset().top - 20;
+            stop = stop + $this.o.scrollToResults.offset;
+
             if ($("#wpadminbar").length > 0)
                 stop -= $("#wpadminbar").height();
             stop = stop < 0 ? 0 : stop;
-            $('body, html').animate({
-                "scrollTop": stop
-            }, {
-                duration: 500
-            });
+            if ( !$('body, html').is(':animated') ) {
+                $('body, html').animate({
+                    "scrollTop": stop
+                }, {
+                    duration: 320
+                });
+            }
         },
 
         showVerticalResults: function () {
@@ -3302,7 +3305,7 @@
                     if ( force_refresh )
                         $('nav.asp_navigation ul li.asp_active', $this.n.resultsDiv).trigger('click_trigger');
                     else
-                        $('nav.asp_navigation ul li.asp_active', $this.n.resultsDiv).click();
+                        $('nav.asp_navigation ul li.asp_active', $this.n.resultsDiv).trigger('click');
 
                 } else {
                     // No pagination, but the pagination is enabled
@@ -3435,26 +3438,26 @@
                 i++;
             });
 
-            figures.click(function (e) {
+            figures.on('click', function (e) {
                 if ($(this).hasClass("photostack-current")) return;
                 e.preventDefault();
                 var idx = $(this).attr('idx');
-                $('.photostack>nav span:nth-child(' + idx + ')', $this.n.resultsDiv).click();
+                $('.photostack>nav span:nth-child(' + idx + ')', $this.n.resultsDiv).trigger('click');
             });
 
-            figures.bind('mousewheel', function (event, delta) {
+            figures.on('mousewheel', function (event, delta) {
                 event.preventDefault();
                 if (delta >= 1) {
                     if ($('.photostack>nav span.current', $this.n.resultsDiv).next().length > 0) {
-                        $('.photostack>nav span.current', $this.n.resultsDiv).next().click();
+                        $('.photostack>nav span.current', $this.n.resultsDiv).next().trigger('click');
                     } else {
-                        $('.photostack>nav span:nth-child(1)', $this.n.resultsDiv).click();
+                        $('.photostack>nav span:nth-child(1)', $this.n.resultsDiv).trigger('click');
                     }
                 } else {
                     if ($('.photostack>nav span.current', $this.n.resultsDiv).prev().length > 0) {
-                        $('.photostack>nav span.current', $this.n.resultsDiv).prev().click();
+                        $('.photostack>nav span.current', $this.n.resultsDiv).prev().trigger('click');
                     } else {
-                        $('.photostack>nav span:nth-last-child(1)', $this.n.resultsDiv).click();
+                        $('.photostack>nav span:nth-last-child(1)', $this.n.resultsDiv).trigger('click');
                     }
                 }
             });
@@ -3466,16 +3469,16 @@
                     preventDefaultEvents: !detectIOS(),
                     swipeLeft: function(e, direction, distance, duration, fingerCount, fingerData) {
                         if ($('.photostack>nav span.current', $this.n.resultsDiv).next().length > 0) {
-                            $('.photostack>nav span.current', $this.n.resultsDiv).next().click();
+                            $('.photostack>nav span.current', $this.n.resultsDiv).next().trigger('click');
                         } else {
-                            $('.photostack>nav span:nth-child(1)', $this.n.resultsDiv).click();
+                            $('.photostack>nav span:nth-child(1)', $this.n.resultsDiv).trigger('click');
                         }
                     },
                     swipeRight:function(e, direction, distance, duration, fingerCount, fingerData) {
                         if ($('.photostack>nav span.current', $this.n.resultsDiv).prev().length > 0) {
-                            $('.photostack>nav span.current', $this.n.resultsDiv).prev().click();
+                            $('.photostack>nav span.current', $this.n.resultsDiv).prev().trigger('click');
                         } else {
-                            $('.photostack>nav span:nth-last-child(1)', $this.n.resultsDiv).click();
+                            $('.photostack>nav span:nth-last-child(1)', $this.n.resultsDiv).trigger('click');
                         }
                     }
                 });
@@ -3550,7 +3553,7 @@
                     "visibility": "visible",
                     "display": "block",
                     "opacity": 1,
-                    "animation-duration": $this.animOptions.settings.dur
+                    "animation-duration": $this.animOptions.settings.dur + 'ms'
                 },
                 "hideClass": "",
                 "hideCSS": {
@@ -3558,7 +3561,7 @@
                     "opacity": 0,
                     "display": "none"
                 },
-                "duration": $this.animOptions.settings.dur
+                "duration": $this.animOptions.settings.dur + 'ms'
             };
 
             if ($this.animOptions.settings.anim == "fade") {
@@ -3593,7 +3596,7 @@
                     "visibility": "visible",
                     "display": "block",
                     "opacity": 1,
-                    "animation-duration": $this.animOptions.results.dur
+                    "animation-duration": $this.animOptions.results.dur + 'ms'
                 },
                 "hideClass": "",
                 "hideCSS": {
@@ -3601,7 +3604,7 @@
                     "opacity": 0,
                     "display": "none"
                 },
-                "duration": $this.animOptions.results.dur
+                "duration": $this.animOptions.results.dur + 'ms'
             };
 
             var rpos = $this.n.resultsDiv.css('position');
@@ -3946,6 +3949,8 @@
                         data = data.replace(/%26asp_force_reset_pagination%3D1/gmi, '');
                         data = data.replace(/&#038;asp_force_reset_pagination=1/gmi, '');
 
+                        data = apply_filters('asp_live_load_html', data, $this.o.id, $this.o.iid);
+
                         $el.replaceWith($(data).find(selector).first());
                         // get the element again, as it no longer exists
                         $el = $(selector).first();
@@ -3969,7 +3974,7 @@
 
                         // WooCommerce ordering fix
                         $(selector).first().find(".woocommerce-ordering").on("change","select.orderby", function(){
-                            $(this).closest("form").submit();
+                            $(this).closest("form").trigger('submit');
                         });
 
                         ASP.fixClones();
@@ -4118,9 +4123,7 @@
             final = final.replace('http://', 'http:///');
             final = final.replace(/\/\//g, '/');
 
-            if ( typeof wp != 'undefined' && typeof wp.hooks != 'undefined' ) {
-                final = wp.hooks.applyFilters('asp_redirect_url', final, $this.o.id, $this.o.iid);
-            }
+            final = apply_filters('asp_redirect_url', final, $this.o.id, $this.o.iid);
 
             return final;
         },
@@ -4480,7 +4483,7 @@
         }
         if ( typeof (target) != 'undefined' && target == 'new')
             form.attr('target', '_blank');
-        form.appendTo('body').submit();
+        form.appendTo('body').trigger('submit');
     }
 
     function open_in_new_tab(url) {
@@ -4595,15 +4598,10 @@
         return str;
     }
 
-    // Object.create support test, and fallback for browsers without it
-    if (typeof Object.create !== 'function') {
-        Object.create = function (o) {
-            function F() {
-            }
-
-            F.prototype = o;
-            return new F();
-        };
+    function apply_filters() {
+        if ( typeof wp != 'undefined' && typeof wp.hooks != 'undefined' && typeof wp.hooks.applyFilters != 'undefined' ) {
+            return wp.hooks.applyFilters.apply(null, arguments);
+        }
     }
 
     /* Mobile detection - Touch desktop device safe! */
@@ -4711,7 +4709,16 @@
         }
     }
 
+    // Object.create support test, and fallback for browsers without it
+    if (typeof Object.create !== 'function') {
+        Object.create = function (o) {
+            function F() {
+            }
 
+            F.prototype = o;
+            return new F();
+        };
+    }
     // Create a plugin based on a defined object
     $.plugin = function (name, object) {
         $.fn[name] = function (options) {

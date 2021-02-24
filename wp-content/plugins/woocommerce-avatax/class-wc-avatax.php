@@ -17,7 +17,7 @@
  * needs please refer to http://docs.woocommerce.com/document/woocommerce-avatax/
  *
  * @author    SkyVerge
- * @copyright Copyright (c) 2016-2020, SkyVerge, Inc.
+ * @copyright Copyright (c) 2016-2021, SkyVerge, Inc.
  * @license   http://www.gnu.org/licenses/gpl-3.0.html GNU General Public License v3.0
  */
 
@@ -34,7 +34,7 @@ class WC_AvaTax extends Framework\SV_WC_Plugin {
 
 
 	/** plugin version number */
-	const VERSION = '1.11.0';
+	const VERSION = '1.11.2';
 
 	/** plugin id */
 	const PLUGIN_ID = 'avatax';

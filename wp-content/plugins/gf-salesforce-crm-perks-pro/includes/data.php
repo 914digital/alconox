@@ -218,23 +218,23 @@ class vxg_salesforce_data extends vxg_salesforce{
   if($this->post('status')!=""){
   $status=$this->post('status');
   if($status == "all"){$status="0";}
-  $search.=' and status ="'.esc_sql($status).'"';   
+  $search.=' and status ='.esc_sql($status);   
   }
   if($this->post('search')!=""){
   $search_s=esc_sql($this->post('search'));
-  $search.=' and (object like "'.$search_s.'" or crm_id="'.$search_s.'" or entry_id="'.$search_s.'")';   
+  $search.=' and (object like "'.$search_s.'" or crm_id="'.$search_s.'" or entry_id='.$search_s.')';   
   }
   if(isset($_GET['log_id']) && !empty($_GET['log_id'])){
   $log_id=esc_sql($this->post('log_id'));
-  $search.=' and id="'.$log_id.'"';   
+  $search.=' and id='.$log_id.'';   
   }
   if($this->post('id')!=""){
-  $form_id=esc_sql($this->post('id'));
-  $search.=' and form_id="'.$form_id.'"';   
+  $form_id=(int)esc_sql($this->post('id'));
+  $search.=' and form_id='.$form_id.'';   
   }
   if($this->post('entry_id')!=""){
   $entry_id=esc_sql($this->post('entry_id'));
-  $search.=' and entry_id="'.$entry_id.'"';   
+  $search.=' and entry_id='.$entry_id.'';   
   }
   if($search!=""){
   $sql_end.=" where ".substr($search,4);
@@ -246,7 +246,7 @@ class vxg_salesforce_data extends vxg_salesforce{
   }
   }else{
   $sql_end.=" order by s.id desc";   
-  }
+  } 
   return $sql_end;
   }
   /**
@@ -254,7 +254,7 @@ class vxg_salesforce_data extends vxg_salesforce{
   * 
   * @param mixed $arr
   */
-  public  function insert_log($arr,$log_id=""){ 
+public  function insert_log($arr,$log_id=""){ 
     global $wpdb;
   if(!is_array($arr) || count($arr) == 0)
   return;
@@ -262,7 +262,21 @@ class vxg_salesforce_data extends vxg_salesforce{
   $table_name = $table_name = $this->get_crm_table_name('log');
   $sql_arr=array();
   foreach($arr as $k=>$v){
-   $sql_arr[$k]=is_array($v) ? json_encode($v) : $v;   
+      
+      $v=is_array($v) ? json_encode($v) : $v;
+      
+      if(in_array($k,array('status','entry_id','feed_id'))){
+       $v=floatval($v);   
+      } 
+     
+      if(empty($v) && in_array($k,array('crm_id'))){
+       $v='';   
+      }
+        if($k == 'meta' && strlen($v) > 250){
+      $v=substr($v,0,250);    
+      }
+   $sql_arr[$k]= $v; 
+    
   }
   $log_id=(int)$log_id;
   $res=false;
@@ -477,7 +491,7 @@ return $log;
 public function get_new_account() {
 global $wpdb;
  $table= $this->get_crm_table_name('accounts');
-$results = $wpdb->get_results( 'SELECT * FROM '.$table.' where status="9" limit 1',ARRAY_A );
+$results = $wpdb->get_results( 'SELECT * FROM '.$table.' where status=9 limit 1',ARRAY_A );
 $id=0; 
 if(count($results) == 0){
     $wpdb->insert($table,array("status"=>"9"));
@@ -504,9 +518,9 @@ return $res;
 * @param mixed $id
 */
 public function get_account($id) {
-global $wpdb;
+global $wpdb; $id=(int)$id;
  $table= $this->get_crm_table_name('accounts');
-$res=$wpdb->get_row( 'SELECT * FROM '.$table.' where id="'.$id.'" limit 1',ARRAY_A );
+$res=$wpdb->get_row( 'SELECT * FROM '.$table.' where id='.$id.' limit 1',ARRAY_A );
 return $res;
 }
 /**
@@ -529,9 +543,9 @@ global $wpdb;
  $table= $this->get_crm_table_name('accounts');
  $sql='SELECT * FROM '.$table.' where';
  if($verified){
- $sql.=' status ="1"';
+ $sql.=' status =1';
  }else{
-     $sql.=' status !="9"';
+     $sql.=' status !=9';
  }
  $sql.=' limit 100';
 

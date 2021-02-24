@@ -25,7 +25,7 @@ if ( !class_exists('asp_Gutenberg') ) {
                         self::$media_query,
                         true
                     );
-                    wp_localize_script('wd-asp-gutenberg', 'ASP_GUTENBERG', array(
+                    ASP_Helpers::addInlineScript('wd-asp-gutenberg', 'ASP_GUTENBERG', array(
                         'ids' => $ids,
                         'instances' => $instances
                     ));

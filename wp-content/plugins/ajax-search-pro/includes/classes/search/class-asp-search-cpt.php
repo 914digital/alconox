@@ -146,7 +146,7 @@ if ( ! class_exists( 'ASP_Search_CPT' ) ) {
             }
             /*---------------------------------------------------------------*/
 
-            /*------------------------- Statuses ----------------------------*/
+            /*------------------------- Paswword ----------------------------*/
             $post_password_query = '';
             if ( !$args['has_password'] ) {
                 $post_password_query = " AND ( $wpdb->posts.post_password = '' )";
@@ -1612,6 +1612,8 @@ if ( ! class_exists( 'ASP_Search_CPT' ) ) {
 
             aspDebug::start( '--searchContent-posptrocess' );
 
+            global $sitepress;
+
             /* Images, title, desc */
             foreach ( $pageposts as $k => &$r ) {
 
@@ -1628,8 +1630,14 @@ if ( ! class_exists( 'ASP_Search_CPT' ) ) {
                     $r->link = get_permalink( $r->id );
                 }
                 // Filter it though WPML
-                if ( $args['_wpml_lang'] != '')
-                    $r->link = apply_filters( 'wpml_permalink', $r->link, $args['_wpml_lang'], true );
+                if ( $args['_wpml_lang'] != '') {
+                    $r->link = apply_filters('wpml_permalink', $r->link, $args['_wpml_lang'], true);
+                } else if ( is_object($sitepress) && method_exists($sitepress, 'get_default_language') ) {
+                    $l = apply_filters( 'wpml_post_language_details', null,  $r->id );
+                    if ( is_array($l) && isset($l['language_code']) ) {
+                        $r->link = apply_filters('wpml_permalink', $r->link, $l['language_code']);
+                    }
+                }
 
                 // If no image and defined, remove the result here, to perevent JS confusions
                 if ( empty($r->image) && $sd['resultstype'] == "isotopic" && $sd['i_ifnoimage'] == 'removeres' ) {

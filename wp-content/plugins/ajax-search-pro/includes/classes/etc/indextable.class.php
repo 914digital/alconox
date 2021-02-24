@@ -112,6 +112,7 @@ if ( ! class_exists( 'asp_indexTable' ) ) {
 
 		/**
 		 * Generates the index table if it does not exist
+         * Only called on activation!!
 		 */
 		function createIndexTable() {
 			global $wpdb;
@@ -131,26 +132,24 @@ if ( ! class_exists( 'asp_indexTable' ) ) {
 			$table_name = $this->asp_index_table;
 			$query      = "
 				CREATE TABLE IF NOT EXISTS " . $table_name . " (
-					doc bigint(20) NOT NULL DEFAULT '0',
+					doc bigint(20) UNSIGNED NOT NULL DEFAULT '0',
 					term varchar(150) NOT NULL DEFAULT '0',
 					term_reverse varchar(150) NOT NULL DEFAULT '0',
-					blogid mediumint(9) NOT NULL DEFAULT '0',
-					content mediumint(9) NOT NULL DEFAULT '0',
-					title mediumint(9) NOT NULL DEFAULT '0',
-					comment mediumint(9) NOT NULL DEFAULT '0',
-					tag mediumint(9) NOT NULL DEFAULT '0',
-					link mediumint(9) NOT NULL DEFAULT '0',
-					author mediumint(9) NOT NULL DEFAULT '0',
-					category mediumint(9) NOT NULL DEFAULT '0',
-					excerpt mediumint(9) NOT NULL DEFAULT '0',
-					taxonomy mediumint(9) NOT NULL DEFAULT '0',
-					customfield mediumint(9) NOT NULL DEFAULT '0',
+					blogid mediumint(9) UNSIGNED NOT NULL DEFAULT '0',
+					content smallint(9) UNSIGNED NOT NULL DEFAULT '0',
+					title tinyint(3) UNSIGNED NOT NULL DEFAULT '0',
+					comment tinyint(3) UNSIGNED NOT NULL DEFAULT '0',
+					tag tinyint(3) UNSIGNED NOT NULL DEFAULT '0',
+					link tinyint(3) UNSIGNED NOT NULL DEFAULT '0',
+					author tinyint(3) UNSIGNED NOT NULL DEFAULT '0',
+					excerpt tinyint(3) UNSIGNED NOT NULL DEFAULT '0',
+					customfield smallint(9) UNSIGNED NOT NULL DEFAULT '0',
 					post_type varchar(50) NOT NULL DEFAULT 'post',
-					item bigint(20) NOT NULL DEFAULT '0',
 					lang varchar(20) NOT NULL DEFAULT '0',
 			    UNIQUE KEY doctermitem (doc, term, blogid)) $charset_collate";
 
 			dbDelta( $query );
+
 			$return[] = $query;
 			$query            = "SHOW INDEX FROM $table_name";
 			$indices          = $wpdb->get_results( $query );
@@ -176,6 +175,40 @@ if ( ! class_exists( 'asp_indexTable' ) ) {
 
 			return $return;
 		}
+
+        /**
+         * These should be scheduled for background processes during activation hook, heavy operations
+         */
+        public function scheduled() {
+            global $wpdb;
+            require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
+            $table_name = $this->asp_index_table;
+
+            // 4.20.3
+            if ( ASP_Helpers::previousVersion('4.20.2') ) {
+                if ($wpdb->get_var( "SHOW COLUMNS FROM `$table_name` LIKE 'taxonomy';" ) ) {
+                    $query = "ALTER TABLE `$table_name` 
+                    DROP COLUMN `taxonomy`,
+                    DROP COLUMN `category`,
+                    DROP COLUMN `item`";
+                    $wpdb->query($query);
+
+                    $query = "ALTER TABLE `$table_name` 
+                    MODIFY COLUMN `content` smallint(9) UNSIGNED,
+                    MODIFY COLUMN `title` tinyint(3) UNSIGNED,
+                    MODIFY COLUMN `comment` tinyint(3) UNSIGNED,
+                    MODIFY COLUMN `tag` tinyint(3) UNSIGNED,
+                    MODIFY COLUMN `link` tinyint(3) UNSIGNED,
+                    MODIFY COLUMN `author` tinyint(3) UNSIGNED,
+                    MODIFY COLUMN `excerpt` tinyint(3) UNSIGNED,
+                    MODIFY COLUMN `customfield` smallint(9) UNSIGNED";
+                    $wpdb->query( $query );
+
+                    $query = "OPTIMIZE TABLE `$table_name`";
+                    $wpdb->query( $query );
+                }
+            }
+        }
 
         /**
          * Runs a table optimize query on the index table
@@ -521,7 +554,7 @@ if ( ! class_exists( 'asp_indexTable' ) ) {
 			$content = apply_filters( 'asp_post_content_before_tokenize_clear', $the_post->post_content, $the_post );
 
 			if ( $args['extract_shortcodes'] ) {
-				$content = $this->executeShortcodes( $content );
+				$content = $this->executeShortcodes( $content, $the_post );
 			}
 
 			if ( $args['extract_iframes'] == 1 )
@@ -566,7 +599,7 @@ if ( ! class_exists( 'asp_indexTable' ) ) {
 			$filtered_excerpt = apply_filters( 'asp_post_excerpt_before_tokenize', $the_post->post_excerpt, $the_post );
 
             if ( $args['extract_shortcodes'] ) {
-                $filtered_excerpt = $this->executeShortcodes( $filtered_excerpt );
+                $filtered_excerpt = $this->executeShortcodes( $filtered_excerpt, $the_post );
             }
 
 			$excerpt_keywords = $this->tokenize( $filtered_excerpt );
@@ -904,10 +937,8 @@ if ( ! class_exists( 'asp_indexTable' ) ) {
 					"tag"         => 0,
 					"link"        => 0,
 					"author"      => 0,
-					"category"    => 0,
 					"excerpt"     => 0,
 					"customfield" => 0,
-					"taxonomy"    => 0,
 					'_keyword'    => $keyword,
                     '_no_reverse' => $no_reverse
 				);
@@ -942,17 +973,18 @@ if ( ! class_exists( 'asp_indexTable' ) ) {
 
                 if ( isset($d['_no_reverse']) && $d['_no_reverse'] === true ) {
                     $value    = $wpdb->prepare(
-                        "(%d, %s, %s, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %s, %d, %s)",
+                        "(%d, %s, %s, %d, %d, %d, %d, %d, %d, %d, %d, %d, %s, %s)",
                         $the_post->ID, $term, '', $args['blog_id'], $d['content'], $d['title'], $d['comment'], $d['tag'],
-                        $d['link'], $d['author'], $d['category'], $d['excerpt'], $d['taxonomy'], $d['customfield'],
-                        $the_post->post_type, 0, $lang
+                        $d['link'], $d['author'], $d['excerpt'], $d['customfield'],
+                        $the_post->post_type, $lang
                     );
                 } else {
                     $value    = $wpdb->prepare(
-                        "(%d, %s, REVERSE(%s), %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %s, %d, %s)",
-                        $the_post->ID, $term, $term, $args['blog_id'], $d['content'], $d['title'], $d['comment'], $d['tag'],
-                        $d['link'], $d['author'], $d['category'], $d['excerpt'], $d['taxonomy'], $d['customfield'],
-                        $the_post->post_type, 0, $lang
+                        "(%d, %s, REVERSE(%s), %d, %d, %d, %d, %d, %d, %d, %d, %d, %s, %s)",
+                        $the_post->ID, $term, $term,
+                        $args['blog_id'], $d['content'], $d['title'], $d['comment'], $d['tag'],
+                        $d['link'], $d['author'], $d['excerpt'], $d['customfield'],
+                        $the_post->post_type, $lang
                     );
                 }
 
@@ -963,7 +995,7 @@ if ( ! class_exists( 'asp_indexTable' ) ) {
                     $values = implode( ', ', $values );
                     $query  = "INSERT IGNORE INTO $asp_index_table
                     (`doc`, `term`, `term_reverse`, `blogid`, `content`, `title`, `comment`, `tag`, `link`, `author`,
-                     `category`, `excerpt`, `taxonomy`, `customfield`, `post_type`, `item`, `lang`)
+                     `excerpt`, `customfield`, `post_type`, `lang`)
                     VALUES $values";
                     $wpdb->query( $query );
                     $values = array();
@@ -975,7 +1007,7 @@ if ( ! class_exists( 'asp_indexTable' ) ) {
 				$values = implode( ', ', $values );
 				$query  = "INSERT IGNORE INTO $asp_index_table
 				(`doc`, `term`, `term_reverse`, `blogid`, `content`, `title`, `comment`, `tag`, `link`, `author`,
-				 `category`, `excerpt`, `taxonomy`, `customfield`, `post_type`, `item`, `lang`)
+				 `excerpt`, `customfield`, `post_type`, `lang`)
 				VALUES $values";
 				$wpdb->query( $query );
 
@@ -1122,7 +1154,7 @@ if ( ! class_exists( 'asp_indexTable' ) ) {
 
             // Get additional words if available
 			$additional_words = array();
-            $pattern = array('"', "'", "`", '’', '‘', '”', '“', "+", '.', ',', '-', '_', "=", "%", '(', ')', '{', '}', '*', '[', ']', '|');
+            $pattern = array('"', "'", "`", '’', '‘', '”', '“', '«', '»', "+", '.', ',', '-', '_', "=", "%", '(', ')', '{', '}', '*', '[', ']', '|');
 			foreach ($words as $wk => $ww) {
 
                 // ex.: 123-45-678 to 123, 45, 678
@@ -1267,12 +1299,13 @@ if ( ! class_exists( 'asp_indexTable' ) ) {
          * Executes the shortcodes within the given string
          *
          * @param string $content
+         * @param WP_Post $post
          * @return string
          */
-        private function executeShortcodes($content) {
+        private function executeShortcodes($content, $post) {
             $args = $this->args;
 
-            $content = apply_filters( 'asp_it_before_shortcode_removal', $content );
+            $content = apply_filters( 'asp_index_before_shortcode_execution', $content, $post );
 
             // WP Table Reloaded support
             if ( defined( 'WP_TABLE_RELOADED_ABSPATH' ) ) {
@@ -1360,7 +1393,7 @@ if ( ! class_exists( 'asp_indexTable' ) ) {
                 unset( $wpt_reloaded );
             }
 
-            return apply_filters( 'asp_it_after_shortcode_removal', $content );
+            return apply_filters( 'asp_index_after_shortcode_execution', $content, $post );
         }
 
 		/**

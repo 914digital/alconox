@@ -2,7 +2,7 @@
 /* Prevent direct access */
 defined('ABSPATH') or die("You can't access this file directly.");
 
-if (!class_exists('ASP_Search_INDEX')) {
+if ( !class_exists('ASP_Search_INDEX') ) {
 	/**
 	 * Index table search class
 	 *
@@ -37,7 +37,7 @@ if (!class_exists('ASP_Search_INDEX')) {
 			global $wpdb;
 			global $q_config;
 
-            aspDebug::start('-ASP-ISEARCH-');
+			aspDebug::start('-ASP-ISEARCH-');
 
 			$current_blog_id = get_current_blog_id();
 			$args = &$this->args;
@@ -51,7 +51,7 @@ if (!class_exists('ASP_Search_INDEX')) {
 				else
 					$limit = $args['posts_limit_override'];
 			}
-			if ($limit  <= 0)
+			if ( $limit <= 0 )
 				return array();
 
 			$aspdb = wd_asp()->tables;
@@ -67,7 +67,7 @@ if (!class_exists('ASP_Search_INDEX')) {
 			$post_types = "(1)";
 			$term_query = "(1)";
 
-			$kw_logic             = $args['keyword_logic'];
+			$kw_logic = $args['keyword_logic'];
 			$q_config['language'] = $args['_qtranslate_lang'];
 
 			$s = $this->s; // full keyword
@@ -76,20 +76,20 @@ if (!class_exists('ASP_Search_INDEX')) {
 			$sr = $this->sr; // full reversed keyword
 			$_sr = $this->_sr; // array of reversed keywords
 
-            $group_priority_select = $this->build_pgp_query( 'asp_index.doc' );
-            $group_priority_select = $group_priority_select . " AS group_priority,";
+			$group_priority_select = $this->build_pgp_query('asp_index.doc');
+			$group_priority_select = $group_priority_select . " AS group_priority,";
 
 			/**
 			 * Determine if the priorities table should be used or not.
 			 */
 			$priority_select = WD_ASP_Priorities::count() > 0 ? "
-	        IFNULL((
-            	SELECT
-	            aspp.priority
-	            FROM $aspdb->priorities as aspp
-	            WHERE aspp.post_id = asp_index.doc AND aspp.blog_id = " . get_current_blog_id() . "
-            ), 100)
-	        " : 100;
+			IFNULL((
+				SELECT
+				aspp.priority
+				FROM $aspdb->priorities as aspp
+				WHERE aspp.post_id = asp_index.doc AND aspp.blog_id = " . get_current_blog_id() . "
+			), 100)
+			" : 100;
 
 
 			/*------------------------- Statuses ----------------------------*/
@@ -98,7 +98,7 @@ if (!class_exists('ASP_Search_INDEX')) {
 
 			/*----------------------- Gather Types --------------------------*/
 			/*
-             * @TODO: Cross-check with selected custom post types on the index table options panel, as if they match,
+			 * @TODO: Cross-check with selected custom post types on the index table options panel, as if they match,
 			 * this query is not needed at all!
 			*/
 			$page_q = "";
@@ -107,46 +107,46 @@ if (!class_exists('ASP_Search_INDEX')) {
 							EXISTS (
 								SELECT ID FROM $wpdb->posts xxp WHERE
 								 xxp.ID = asp_index.doc AND
-								 xxp.post_parent NOT IN (".str_replace('|', ',', $args['_exclude_page_parent_child']).") AND
-								 xxp.ID NOT IN (".str_replace('|', ',', $args['_exclude_page_parent_child']).")
+								 xxp.post_parent NOT IN (" . str_replace('|', ',', $args['_exclude_page_parent_child']) . ") AND
+								 xxp.ID NOT IN (" . str_replace('|', ',', $args['_exclude_page_parent_child']) . ")
 							)
 						)
 					)";
 
 			// If no post types selected, well then return
-			if ( count( $args['post_type'] ) < 1 && $page_q == "" ) {
+			if ( count($args['post_type']) < 1 && $page_q == "" ) {
 				return '';
 			} else {
-				$words      = implode( "','", $args['post_type'] );
+				$words = implode("','", $args['post_type']);
 				$post_types = "(asp_index.post_type IN ('$words') $page_q)";
 			}
 			/*---------------------------------------------------------------*/
 
-            $post_fields_query = '';
-            $exc_fields = array_diff(array('title', 'content', 'excerpt'), $args['post_fields']);
-            if ( count($exc_fields) >0 ) {
-                $post_fields_arr = array();
-                foreach ($args['post_fields'] as $pfield) {
-                    if ( !in_array($pfield, array('title', 'content', 'excerpt')) )
-                        continue;
-                    $post_fields_arr[] = "asp_index.$pfield > 0";
-                }
-                if ( count($post_fields_arr) > 0 ) {
-                    $post_fields_query = 'AND ('.implode(' OR ', $post_fields_arr).')';
-                }
-            }
+			$post_fields_query = '';
+			$exc_fields = array_diff(array('title', 'content', 'excerpt'), $args['post_fields']);
+			if ( count($exc_fields) > 0 ) {
+				$post_fields_arr = array();
+				foreach ($args['post_fields'] as $pfield) {
+					if ( !in_array($pfield, array('title', 'content', 'excerpt')) )
+						continue;
+					$post_fields_arr[] = "asp_index.$pfield > 0";
+				}
+				if ( count($post_fields_arr) > 0 ) {
+					$post_fields_query = 'AND (' . implode(' OR ', $post_fields_arr) . ')';
+				}
+			}
 
 			// ------------------------ Categories/tags/taxonomies ----------------------
-			$term_query = $this->build_term_query( "asp_index.doc", "asp_index.post_type"  );
+			$term_query = $this->build_term_query("asp_index.doc", "asp_index.post_type");
 			// ---------------------------------------------------------------------
 
 
 			/*------------- Custom Fields with Custom selectors -------------*/
-            if ( count($args['post_type']) == 1 && in_array('attachment', $args['post_type']) && $args['attachments_cf_filters'] == 0 ) {
-                $cf_select = '(1)';
-            } else {
-                $cf_select = $this->build_cff_query( "asp_index.doc" );
-            }
+			if ( count($args['post_type']) == 1 && in_array('attachment', $args['post_type']) && $args['attachments_cf_filters'] == 0 ) {
+				$cf_select = '(1)';
+			} else {
+				$cf_select = $this->build_cff_query("asp_index.doc");
+			}
 			/*---------------------------------------------------------------*/
 
 			/*------------------------ Include id's -------------------------*/
@@ -164,7 +164,7 @@ if (!class_exists('ASP_Search_INDEX')) {
 				$exclude_posts = "";
 			}
 			if ( !empty($args['post_not_in2']) )
-				$exclude_posts .= "AND (asp_index.doc NOT IN (".implode(",", $args['post_not_in2'])."))";
+				$exclude_posts .= "AND (asp_index.doc NOT IN (" . implode(",", $args['post_not_in2']) . "))";
 			/*---------------------------------------------------------------*/
 
 			/*------------------------ Term JOIN -------------------------*/
@@ -187,7 +187,7 @@ if (!class_exists('ASP_Search_INDEX')) {
 				 * Imported or some custom post types might have missing translations for the site default language.
 				 * If the user currently searches on the default language, empty translation string is allowed.
 				 */
-				if ($site_lang_selected)
+				if ( $site_lang_selected )
 					$wpml_query .= " OR asp_index.lang = ''";
 				$wpml_query = " AND (" . $wpml_query . ")";
 			}
@@ -202,20 +202,20 @@ if (!class_exists('ASP_Search_INDEX')) {
 
 			/*----------------------- Date filtering ------------------------*/
 			$date_query = "";
-			$date_query_parts = $this->get_date_query_parts( "ddpp" );
+			$date_query_parts = $this->get_date_query_parts("ddpp");
 
 			if ( count($date_query_parts) > 0 )
 				$date_query = " AND EXISTS( SELECT 1 FROM $wpdb->posts as ddpp WHERE " . implode(" AND ", $date_query_parts) . " AND ddpp.ID = asp_index.doc) ";
 			/*---------------------------------------------------------------*/
 
 			/*---------------------- Blog switching? ------------------------*/
-            $blog_query = '';
+			$blog_query = '';
 			if ( is_multisite() ) {
-                if (isset($args['_switch_on_preprocess']))
-                    $blog_query = "AND asp_index.blogid IN (" . implode(',', $args['_selected_blogs']) . ")";
-                else
-                    $blog_query = "AND asp_index.blogid = " . $current_blog_id;
-            }
+				if ( isset($args['_switch_on_preprocess']) )
+					$blog_query = "AND asp_index.blogid IN (" . implode(',', $args['_selected_blogs']) . ")";
+				else
+					$blog_query = "AND asp_index.blogid = " . $current_blog_id;
+			}
 			/*---------------------------------------------------------------*/
 
 			/*---------------------- Relevance Values -----------------------*/
@@ -231,14 +231,14 @@ if (!class_exists('ASP_Search_INDEX')) {
 			/*------------------- Post type based ordering ------------------*/
 			$p_type_priority = "";
 			if ( isset($sd['use_post_type_order']) && $sd['use_post_type_order'] == 1 ) {
-				foreach ( $sd['post_type_order'] as $pk => $p_order ) {
+				foreach ($sd['post_type_order'] as $pk => $p_order) {
 					$p_type_priority .= "
-                    WHEN '$p_order' THEN $pk ";
+					WHEN '$p_order' THEN $pk ";
 				}
-				if ( $p_type_priority != "")
+				if ( $p_type_priority != "" )
 					$p_type_priority = "
-                        CASE asp_index.post_type
-                    " . " " .$p_type_priority . "
+						CASE asp_index.post_type
+					" . " " . $p_type_priority . "
 						  ELSE 999
 						END ";
 				else
@@ -251,32 +251,32 @@ if (!class_exists('ASP_Search_INDEX')) {
 			/*---------------- Primary custom field ordering ----------------*/
 			$custom_field_selectp = "1 ";
 			if (
-					strpos($args['post_primary_order'], 'customfp') !== false &&
-					$args['_post_primary_order_metakey'] !== false
+				strpos($args['post_primary_order'], 'customfp') !== false &&
+				$args['_post_primary_order_metakey'] !== false
 			) {
 				$custom_field_selectp = "(SELECT IF(meta_value IS NULL, 0, meta_value)
-                FROM $wpdb->postmeta
-                WHERE
-                    $wpdb->postmeta.meta_key='".esc_sql($args['_post_primary_order_metakey'])."' AND
-                    $wpdb->postmeta.post_id=asp_index.doc
-                LIMIT 1
-                ) ";
+				FROM $wpdb->postmeta
+				WHERE
+					$wpdb->postmeta.meta_key='" . esc_sql($args['_post_primary_order_metakey']) . "' AND
+					$wpdb->postmeta.post_id=asp_index.doc
+				LIMIT 1
+				) ";
 			}
 			/*---------------------------------------------------------------*/
 
 			/*--------------- Secondary custom field ordering ---------------*/
 			$custom_field_selects = "1 ";
 			if (
-					strpos($args['post_secondary_order'], 'customfs') !== false &&
-					$args['_post_secondary_order_metakey'] !== false
+				strpos($args['post_secondary_order'], 'customfs') !== false &&
+				$args['_post_secondary_order_metakey'] !== false
 			) {
 				$custom_field_selects = "(SELECT IF(meta_value IS NULL, 0, meta_value)
-                FROM $wpdb->postmeta
-                WHERE
-                    $wpdb->postmeta.meta_key='".esc_sql($args['_post_secondary_order_metakey'])."' AND
-                    $wpdb->postmeta.post_id=asp_index.doc
-                LIMIT 1
-                ) ";
+				FROM $wpdb->postmeta
+				WHERE
+					$wpdb->postmeta.meta_key='" . esc_sql($args['_post_secondary_order_metakey']) . "' AND
+					$wpdb->postmeta.post_id=asp_index.doc
+				LIMIT 1
+				) ";
 			}
 			/*---------------------------------------------------------------*/
 
@@ -287,7 +287,7 @@ if (!class_exists('ASP_Search_INDEX')) {
 					SELECT 1 FROM $wpdb->posts
 					WHERE
 						$wpdb->posts.ID = asp_index.doc AND
-						$wpdb->posts.post_parent IN (".implode(',', $args['post_parent']).")
+						$wpdb->posts.post_parent IN (" . implode(',', $args['post_parent']) . ")
 				) ";
 			}
 			/*---------------------------------------------------------------*/
@@ -299,7 +299,7 @@ if (!class_exists('ASP_Search_INDEX')) {
 					SELECT 1 FROM $wpdb->posts
 					WHERE
 						$wpdb->posts.ID = asp_index.doc AND
-						$wpdb->posts.post_parent IN (".implode(',', $args['post_parent_exclude']).")
+						$wpdb->posts.post_parent IN (" . implode(',', $args['post_parent_exclude']) . ")
 				) ";
 			}
 			/*---------------------------------------------------------------*/
@@ -310,12 +310,12 @@ if (!class_exists('ASP_Search_INDEX')) {
 			$user_query = "";
 			if ( isset($args['post_user_filter']['include']) ) {
 				if ( !in_array(-1, $args['post_user_filter']['include']) )
-					$user_query = "AND pj.post_author IN (".implode(", ", $args['post_user_filter']['include']).")
-                    ";
+					$user_query = "AND pj.post_author IN (" . implode(", ", $args['post_user_filter']['include']) . ")
+					";
 			}
 			if ( isset($args['post_user_filter']['exclude']) ) {
 				if ( !in_array(-1, $args['post_user_filter']['exclude']) )
-					$user_query = "AND pj.post_author NOT IN (".implode(", ", $args['post_user_filter']['exclude']).") ";
+					$user_query = "AND pj.post_author NOT IN (" . implode(", ", $args['post_user_filter']['exclude']) . ") ";
 				else
 					return array();
 			}
@@ -348,72 +348,72 @@ if (!class_exists('ASP_Search_INDEX')) {
 			$this->ordering['primary_field'] = $_primary_field[0];
 
 			$this->query = "
-    		SELECT
-    			{args_fields}
-    		    $add_select
-                asp_index.doc as id,
-                asp_index.blogid as blogid,
-                'pagepost' as content_type,
-                $priority_select AS priority,
-                $p_type_priority AS p_type_priority,
-                $user_select AS post_author,
-                $custom_field_selectp as customfp,
-                $custom_field_selects as customfs,
-                '' as date,
-                0 as menu_order,
-                '' as title,
-                asp_index.post_type AS post_type,
-                $group_priority_select
-                (
-                     asp_index.title * $rel_val_title * {rmod} +
-                     asp_index.content * $rel_val_content * {rmod}  +
-                     asp_index.excerpt * $rel_val_excerpt * {rmod}  +
-                     asp_index.comment * $rel_val_terms * {rmod}  +
-                     asp_index.link * $rel_val_permalinks * {rmod} +
-                     asp_index.tag * $rel_val_terms * {rmod}  +
-                     asp_index.customfield * $rel_val_cf * {rmod}  +
-                     asp_index.author * $rel_val_author * {rmod}
-                ) AS relevance
+			SELECT
+				{args_fields}
+				$add_select
+				asp_index.doc as id,
+				asp_index.blogid as blogid,
+				'pagepost' as content_type,
+				$priority_select AS priority,
+				$p_type_priority AS p_type_priority,
+				$user_select AS post_author,
+				$custom_field_selectp as customfp,
+				$custom_field_selects as customfs,
+				'' as date,
+				0 as menu_order,
+				'' as title,
+				asp_index.post_type AS post_type,
+				$group_priority_select
+				(
+					 asp_index.title * $rel_val_title * {rmod} +
+					 asp_index.content * $rel_val_content * {rmod}  +
+					 asp_index.excerpt * $rel_val_excerpt * {rmod}  +
+					 asp_index.comment * $rel_val_terms * {rmod}  +
+					 asp_index.link * $rel_val_permalinks * {rmod} +
+					 asp_index.tag * $rel_val_terms * {rmod}  +
+					 asp_index.customfield * $rel_val_cf * {rmod}  +
+					 asp_index.author * $rel_val_author * {rmod}
+				) AS relevance
 			FROM
 				$aspdb->index as asp_index
 				$user_join
 				$add_join
 				{args_join}
-            WHERE
-                    ({like_query})
-                AND $post_types
-                $blog_query
+			WHERE
+					({like_query})
+				AND $post_types
+				$blog_query
 				$wpml_query
 				$polylang_query
-                $term_query
-                $user_query
-                AND $cf_select
-                $exclude_posts
-                $include_posts
-                $post_parents_select
-                $post_parents_exclude_select
-                $date_query
-                $post_fields_query
-                $add_where
-                {args_where}
-            LIMIT {limit}";
+				$term_query
+				$user_query
+				AND $cf_select
+				$exclude_posts
+				$include_posts
+				$post_parents_select
+				$post_parents_exclude_select
+				$date_query
+				$post_fields_query
+				$add_where
+				{args_where}
+			LIMIT {limit}";
 
 			// Place the argument query fields
 			if ( isset($args['cpt_query']) && is_array($args['cpt_query']) ) {
 				$_mod_q = $args['cpt_query'];
 				foreach ($_mod_q as $qk => $qv) {
-					$_mod_q[$qk] = str_replace($wpdb->posts.'.ID', 'asp_index.doc', $_mod_q[$qk]);
+					$_mod_q[$qk] = str_replace($wpdb->posts . '.ID', 'asp_index.doc', $_mod_q[$qk]);
 				}
 				$this->query = str_replace(
-						array('{args_fields}', '{args_join}', '{args_where}', '{args_orderby}'),
-						array($_mod_q['fields'], $_mod_q['join'], $_mod_q['where'], $_mod_q['orderby']),
-						$this->query
+					array('{args_fields}', '{args_join}', '{args_where}', '{args_orderby}'),
+					array($_mod_q['fields'], $_mod_q['join'], $_mod_q['where'], $_mod_q['orderby']),
+					$this->query
 				);
 			} else {
 				$this->query = str_replace(
-						array('{args_fields}', '{args_join}', '{args_where}', '{args_orderby}'),
-						'',
-						$this->query
+					array('{args_fields}', '{args_join}', '{args_where}', '{args_orderby}'),
+					'',
+					$this->query
 				);
 			}
 
@@ -423,85 +423,102 @@ if (!class_exists('ASP_Search_INDEX')) {
 			//$words = $options['set_exactonly'] == 1 ? array($s) : $_s;
 			$words = $_s;
 
-			if ($kw_logic == "orex") {
+			if ( $kw_logic == "orex" ) {
 				$rmod = 1;
-				$like_query = "asp_index.term = '" . implode( "' OR asp_index.term = '", $words ) . "'";
-				$queries[]  = str_replace( array('{like_query}', '{rmod}', '{limit}'), array($like_query, $rmod, $this->get_pool_size()), $this->query );
-			} else if ($kw_logic == "andex") {
-				foreach ( $words as $wk => $word ) {
-					$rmod = 10 - ( $wk * 8 ) < 1 ? 1 : 10 - ( $wk * 8 );
+				$like_query = "asp_index.term = '" . implode("' OR asp_index.term = '", $words) . "'";
+				$queries[] = str_replace(array('{like_query}', '{rmod}', '{limit}'), array($like_query, $rmod, $this->get_pool_size()), $this->query);
+			} else if ( $kw_logic == "andex" ) {
+				foreach ($words as $wk => $word) {
+					$rmod = 10 - ($wk * 8) < 1 ? 1 : 10 - ($wk * 8);
 
 					$like_query = "asp_index.term = '$word'";
-					$queries[]  = str_replace( array('{like_query}', '{rmod}', '{limit}'), array($like_query, $rmod, $this->get_pool_size($word)), $this->query );
+					$queries[] = str_replace(array('{like_query}', '{rmod}', '{limit}'), array($like_query, $rmod, $this->get_pool_size($word)), $this->query);
 				}
 			} else {
-				foreach ( $words as $wk => $word ) {
-					$rmod = 10 - ( $wk * 8 ) < 1 ? 1 : 10 - ( $wk * 8 );
+				foreach ($words as $wk => $word) {
+					$rmod = 10 - ($wk * 8) < 1 ? 1 : 10 - ($wk * 8);
 
-					$like_query = "asp_index.term LIKE '".$word."%'";
-					$queries[]  = str_replace( array('{like_query}', '{rmod}', '{limit}'), array($like_query, $rmod, $this->get_pool_size($word)), $this->query );
+					$like_query = "asp_index.term LIKE '" . $word . "%'";
+					$queries[] = str_replace(array('{like_query}', '{rmod}', '{limit}'), array($like_query, $rmod, $this->get_pool_size($word)), $this->query);
 
-					$like_query = "asp_index.term_reverse LIKE '". (isset($_sr[$wk]) ? $_sr[$wk] : $sr ) ."%'";
-					$queries[]  = str_replace( array('{like_query}', '{rmod}', '{limit}'), array($like_query, $rmod, $this->get_pool_size($word)), $this->query );
+					$like_query = "asp_index.term_reverse LIKE '" . (isset($_sr[$wk]) ? $_sr[$wk] : $sr) . "%'";
+					$queries[] = str_replace(array('{like_query}', '{rmod}', '{limit}'), array($like_query, $rmod, $this->get_pool_size($word)), $this->query);
 				}
 			}
 
 			/*---------------------- Post CPT IDs ---------------------------*/
 			if ( in_array("ids", $args['post_fields']) ) {
-				$queries[]  = str_replace( array('{like_query}', '{rmod}', '{limit}'), array("asp_index.doc LIKE '$s'", 1, $this->get_pool_size()), $this->query );
+				$queries[] = str_replace(array('{like_query}', '{rmod}', '{limit}'), array("asp_index.doc LIKE '$s'", 1, $this->get_pool_size()), $this->query);
 			}
 			/*---------------------------------------------------------------*/
 
 			/*----------------------- Improved title query ------------------*/
-            if ( in_array('title', $args['post_fields']) && ( ASP_mb::strlen($s) > 2 || count($_s) == 0 ) ) {
-                // Re-calculate the limit to slice the results to the real size
-                if ( $args['_limit'] > 0 ) {
-                    $limit = $args['_limit'];
-                } else {
-                    if ( $args['_ajax_search'] )
-                        $limit = $args['posts_limit'];
-                    else
-                        $limit = $args['posts_limit_override'];
-                }
-                if ( !$args['_ajax_search'] || ( $args['_ajax_search'] && $args['_show_more_results'] ) )
-                    $limit = $limit * $this->remaining_limit_mod;
+			if ( in_array('title', $args['post_fields']) && (ASP_mb::strlen($s) > 2 || count($_s) == 0) ) {
+				$rmod = 1000;
 
-                // Exact title query
-                $title_query = str_replace( array('{like_query}', '{rmod}', '{limit}'), array("(asp_index.term_reverse = '' AND asp_index.term LIKE '".$s."___')", 2000, $limit), $this->query );
-                aspDebug::start('-ASP-ISEARCH-QUERY-TITLE');
-                $results_arr[99998] = $wpdb->get_results($title_query);
-                aspDebug::stop('-ASP-ISEARCH-QUERY-TITLE');
+				// Re-calculate the limit to slice the results to the real size
+				if ( $args['_limit'] > 0 ) {
+					$limit = $args['_limit'];
+				} else {
+					if ( $args['_ajax_search'] )
+						$limit = $args['posts_limit'];
+					else
+						$limit = $args['posts_limit_override'];
+				}
+				if ( !$args['_ajax_search'] || ($args['_ajax_search'] && $args['_show_more_results']) )
+					$limit = $limit * $this->remaining_limit_mod;
 
-                // We reached the required limit, reset the other queries, as we don't need them
-                if ( count($results_arr[99998]) >= $limit ) {
-                    $queries = array();
-                } else if ( $kw_logic == "or" || $kw_logic == "and" )  { // partial only on partial keyword logic
-                    // Title query partial
-                    $title_query = str_replace( array('{like_query}', '{rmod}', '{limit}'), array("(asp_index.term_reverse = '' AND asp_index.term LIKE '$s%')", 1000, $limit), $this->query );
-                    aspDebug::start('-ASP-ISEARCH-QUERY-TITLE');
-                    $results_arr[99999] = $wpdb->get_results($title_query);
-                    aspDebug::stop('-ASP-ISEARCH-QUERY-TITLE');
+				// Exact title query
+				$single_delimiter = count($_s) == 0 ? '___' : '';
+				$title_query = str_replace(
+					array('{like_query}', '{rmod}', '{limit}'),
+					array("(asp_index.term_reverse = '' AND asp_index.term LIKE '" . $s . $single_delimiter . "')", $rmod * 2, $limit),
+					$this->query);
+				aspDebug::start('-ASP-ISEARCH-QUERY-TITLE');
+				$results_arr[99998] = $wpdb->get_results($title_query);
+				aspDebug::stop('-ASP-ISEARCH-QUERY-TITLE');
 
-                    // We reached the required limit, reset the other queries, as we don't need them
-                    if ( count($results_arr[99999]) >= $limit )
-                        $queries = array();
-                }
+				// We reached the required limit, reset the other queries, as we don't need them
+				if ( count($results_arr[99998]) >= $limit ) {
+					$queries = array();
+				} else {
+					// partial query on OR and AND
+					if ( $kw_logic == "or" || $kw_logic == "and" ) {
+						$title_query = str_replace(
+							array('{like_query}', '{rmod}', '{limit}'),
+							array("(asp_index.term_reverse = '' AND asp_index.term LIKE '$s%')", $rmod, $limit),
+							$this->query);
+					} else { // partial query (starting with) until the first keyword for OREX and ANDEX
+						$title_query = str_replace(
+							array('{like_query}', '{rmod}', '{limit}'),
+							array("(asp_index.term_reverse = '' AND asp_index.term LIKE '$s %')", $rmod, $limit),
+							$this->query);
+					}
 
-            }
+					aspDebug::start('-ASP-ISEARCH-QUERY-TITLE');
+					$results_arr[99999] = $wpdb->get_results($title_query);
+					aspDebug::stop('-ASP-ISEARCH-QUERY-TITLE');
+
+					// We reached the required limit, reset the other queries, as we don't need them
+					if ( count($results_arr[99999]) >= $limit )
+						$queries = array();
+				}
+
+			}
 			/*---------------------------------------------------------------*/
-			if (count($queries) > 0) {
+			if ( count($queries) > 0 ) {
 				foreach ($queries as $k => $query) {
-                    aspDebug::start('-ASP-ISEARCH-QUERY-'.$k);
-                    $query = apply_filters('asp_query_indextable', $query, $args, $args['_id'], $args['_ajax_search']);
+					aspDebug::start('-ASP-ISEARCH-QUERY-' . $k);
+					$query = apply_filters('asp_query_indextable', $query, $args, $args['_id'], $args['_ajax_search']);
 					$results_arr[$k] = $wpdb->get_results($query);
-                    aspDebug::stop('-ASP-ISEARCH-QUERY-'.$k);
+					aspDebug::stop('-ASP-ISEARCH-QUERY-' . $k);
 				}
 			}
 
 			// Merge results depending on the logic
 			$results_arr = $this->merge_raw_results($results_arr, $kw_logic);
 
-            aspDebug::start('-ASP-ISEARCH-PRESORT-');
+			aspDebug::start('-ASP-ISEARCH-PRESORT-');
 			// We need to save this array with keys, will need the values later.
 			$this->raw_results = $results_arr;
 
@@ -511,7 +528,7 @@ if (!class_exists('ASP_Search_INDEX')) {
 			// Do primary ordering here, because the results will sliced, and we need the correct ones on the top
 			// compare_by_pr is NOT giving the correct sub-set
 			usort($results_arr, array($this, 'compare_by_primary'));
-            aspDebug::stop('-ASP-ISEARCH-PRESORT-');
+			aspDebug::stop('-ASP-ISEARCH-PRESORT-');
 
 			// Re-calculate the limit to slice the results to the real size
 			if ( $args['_limit'] > 0 ) {
@@ -526,7 +543,7 @@ if (!class_exists('ASP_Search_INDEX')) {
 			$this->results_count = count($results_arr) > $limit * $this->remaining_limit_mod ? $limit * $this->remaining_limit_mod : count($results_arr);
 			// For non-ajax search, results count needs to be limited to the maximum limit,
 			// ..as nothing is parsed beyond that
-			if ($args['_ajax_search'] == false && $this->results_count > $limit) {
+			if ( $args['_ajax_search'] == false && $this->results_count > $limit ) {
 				$this->results_count = $limit;
 			}
 
@@ -545,7 +562,7 @@ if (!class_exists('ASP_Search_INDEX')) {
 
 			$this->return_count = count($this->results);
 
-            aspDebug::stop('-ASP-ISEARCH-');
+			aspDebug::stop('-ASP-ISEARCH-');
 			return $this->results;
 		}
 
@@ -581,12 +598,12 @@ if (!class_exists('ASP_Search_INDEX')) {
 			 *
 			 * This is only neccessary with the "and" logic. Others work fine.
 			 */
-			if ($kw_logic == 'and') {
+			if ( $kw_logic == 'and' ) {
 				$new_ra = array();
 				$i = 0;
 				$tmp_v = array();
 				foreach ($results_arr as $_k => $_v) {
-					if ($i & 1){
+					if ( $i & 1 ) {
 						// odd, so merge the previous with the current
 						$new_ra[] = array_merge($tmp_v, $_v);
 					}
@@ -596,41 +613,41 @@ if (!class_exists('ASP_Search_INDEX')) {
 				$results_arr = $new_ra;
 			}
 
-            aspDebug::start('-ASP-ISEARCH-MERGERAW-1-');
+			aspDebug::start('-ASP-ISEARCH-MERGERAW-1-');
 			$final_results = array();
 
 			foreach ($results_arr as $results) {
 				foreach ($results as $k => $r) {
-					if ( isset( $final_results[ $r->blogid . "x" . $r->id ] ) ) {
-						$final_results[ $r->blogid . "x" . $r->id ]->relevance += $r->relevance;
+					if ( isset($final_results[$r->blogid . "x" . $r->id]) ) {
+						$final_results[$r->blogid . "x" . $r->id]->relevance += $r->relevance;
 					} else {
-						$final_results[ $r->blogid . "x" . $r->id ] = $r;
+						$final_results[$r->blogid . "x" . $r->id] = $r;
 					}
 				}
 			}
 
-            foreach ($title_results as $k => $r) {
-                if (isset($final_results[$r->blogid . "x" . $r->id])) {
-                    $final_results[ $r->blogid . "x" . $r->id ]->relevance += $r->relevance;
-                } else {
-                    $final_results[ $r->blogid . "x" . $r->id ] = $r;
-                }
-            }
+			foreach ($title_results as $k => $r) {
+				if ( isset($final_results[$r->blogid . "x" . $r->id]) ) {
+					$final_results[$r->blogid . "x" . $r->id]->relevance += $r->relevance;
+				} else {
+					$final_results[$r->blogid . "x" . $r->id] = $r;
+				}
+			}
 
-            foreach ($exact_title_results as $k => $r) {
-                if (isset($final_results[$r->blogid . "x" . $r->id])) {
-                    $final_results[ $r->blogid . "x" . $r->id ]->relevance += $r->relevance;
-                } else {
-                    $final_results[ $r->blogid . "x" . $r->id ] = $r;
-                }
-            }
+			foreach ($exact_title_results as $k => $r) {
+				if ( isset($final_results[$r->blogid . "x" . $r->id]) ) {
+					$final_results[$r->blogid . "x" . $r->id]->relevance += $r->relevance;
+				} else {
+					$final_results[$r->blogid . "x" . $r->id] = $r;
+				}
+			}
 
-            aspDebug::stop('-ASP-ISEARCH-MERGERAW-1-');
+			aspDebug::stop('-ASP-ISEARCH-MERGERAW-1-');
 
-			if ($kw_logic == 'or' || $kw_logic == 'orex')
+			if ( $kw_logic == 'or' || $kw_logic == 'orex' )
 				return $final_results;
 
-            aspDebug::start('-ASP-ISEARCH-MERGERAW-2-');
+			aspDebug::start('-ASP-ISEARCH-MERGERAW-2-');
 			foreach ($results_arr as $results) {
 				/**
 				 * array_merge($results, $title_results) - why?
@@ -639,36 +656,36 @@ if (!class_exists('ASP_Search_INDEX')) {
 				 *     To make sure that the elements of $title_results are indeed used, merge it with the actual $results
 				 *     array. The $final_results at the end will contain all items from $title_results at all times.
 				 */
-				$final_results = array_uintersect($final_results, array_merge($results, $title_results), array($this, 'compare_results'));
+				$final_results = array_uintersect($final_results, array_merge($results, $title_results, $exact_title_results), array($this, 'compare_results'));
 			}
-            aspDebug::stop('-ASP-ISEARCH-MERGERAW-2-');
+			aspDebug::stop('-ASP-ISEARCH-MERGERAW-2-');
 
 			return $final_results;
 		}
 
 		public function get_pool_size($s = false) {
-		    $args = $this->args;
-            $len = ASP_mb::strlen($s);
+			$args = $this->args;
+			$len = ASP_mb::strlen($s);
 
-            if ( $s === false ) {
-                $pool_size = $args['it_pool_size_rest'];
-            } else if ( $len <= 1 ) {
-                $pool_size = $args['it_pool_size_one'];
-            } else if ( $len == 2 ) {
-                $pool_size = $args['it_pool_size_two'];
-            } else if ( $len == 3 ) {
-                $pool_size = $args['it_pool_size_three'];
-            } else {
-                $pool_size = $args['it_pool_size_rest'];
-            }
+			if ( $s === false ) {
+				$pool_size = $args['it_pool_size_rest'];
+			} else if ( $len <= 1 ) {
+				$pool_size = $args['it_pool_size_one'];
+			} else if ( $len == 2 ) {
+				$pool_size = $args['it_pool_size_two'];
+			} else if ( $len == 3 ) {
+				$pool_size = $args['it_pool_size_three'];
+			} else {
+				$pool_size = $args['it_pool_size_rest'];
+			}
 
-            $pool_size = $pool_size < 100 ? 100 : $pool_size;
+			$pool_size = $pool_size < 100 ? 100 : $pool_size;
 
-            return $pool_size;
-        }
+			return $pool_size;
+		}
 
 		public function compare_by_ptype_priority($a, $b) {
-			return  $a->p_type_priority - $b->p_type_priority;
+			return $a->p_type_priority - $b->p_type_priority;
 		}
 
 
@@ -681,7 +698,7 @@ if (!class_exists('ASP_Search_INDEX')) {
 		 * @return mixed
 		 */
 		protected function compare_results($a, $b) {
-			if ($a->blogid === $b->blogid)
+			if ( $a->blogid === $b->blogid )
 				return $b->id - $a->id;
 			// For different blogids return difference
 			return $b->blogid - $a->blogid;
@@ -706,14 +723,14 @@ if (!class_exists('ASP_Search_INDEX')) {
 		 * @return int
 		 */
 		protected function compare_by_pr($a, $b) {
-			if ($a->priority === $b->priority)
+			if ( $a->priority === $b->priority )
 				return $b->relevance - $a->relevance;
 			return $b->priority - $a->priority;
 		}
 
 		private function pre_process_results() {
 			// No results, save some resources
-			if (count($this->results) == 0)
+			if ( count($this->results) == 0 )
 				return array();
 
 			$pageposts = array();
@@ -734,16 +751,16 @@ if (!class_exists('ASP_Search_INDEX')) {
 				$post_ids[$v->blogid][] = $v->id;
 			}
 
-			foreach ( $post_ids as $blogid => $the_ids ) {
-				if (isset($args['_switch_on_preprocess']) && is_multisite())
+			foreach ($post_ids as $blogid => $the_ids) {
+				if ( isset($args['_switch_on_preprocess']) && is_multisite() )
 					switch_to_blog($blogid);
-				$pargs      = array(
-						'post__in'       => $the_ids,
-						'orderby'       => 'post__in',
-						'posts_per_page' => 1000000,
-						'post_status'    => 'any',
-						'post_type'      => $args['_exclude_page_parent_child'] != '' ?
-								array_merge($args['post_type'], array('page')) : $args['post_type']
+				$pargs = array(
+					'post__in' => $the_ids,
+					'orderby' => 'post__in',
+					'posts_per_page' => 1000000,
+					'post_status' => 'any',
+					'post_type' => $args['_exclude_page_parent_child'] != '' ?
+						array_merge($args['post_type'], array('page')) : $args['post_type']
 				);
 
 				/**
@@ -756,13 +773,13 @@ if (!class_exists('ASP_Search_INDEX')) {
 					$pargs['lang'] = '';
 				}
 
-				$get_posts = get_posts( $pargs );
-				foreach ($get_posts as $gk=>$gv)
+				$get_posts = get_posts($pargs);
+				foreach ($get_posts as $gk => $gv)
 					$get_posts[$gk]->blogid = $blogid;
-				$the_posts = array_merge( $the_posts, $get_posts );
+				$the_posts = array_merge($the_posts, $get_posts);
 			}
 
-			if (isset($args['_switch_on_preprocess']) && is_multisite())
+			if ( isset($args['_switch_on_preprocess']) && is_multisite() )
 				restore_current_blog();
 
 
@@ -778,7 +795,7 @@ if (!class_exists('ASP_Search_INDEX')) {
 				$new_result->excerpt = w_isset_def($r->post_excerpt, null);
 				$new_result->image = null;
 
-				if (isset($sd) && $sd['showauthor'] == 1) {
+				if ( isset($sd) && $sd['showauthor'] == 1 ) {
 					$post_user = get_user_by("id", $r->post_author);
 
 					if ( $post_user !== false ) {
@@ -800,7 +817,7 @@ if (!class_exists('ASP_Search_INDEX')) {
 				// Get the relevance and priority values
 				$new_result->relevance = (int)$this->raw_results[$new_result->blogid . "x" . $new_result->id]->relevance;
 				$new_result->priority = (int)$this->raw_results[$new_result->blogid . "x" . $new_result->id]->priority;
-                $new_result->group_priority = (int)$this->raw_results[$new_result->blogid . "x" . $new_result->id]->group_priority;
+				$new_result->group_priority = (int)$this->raw_results[$new_result->blogid . "x" . $new_result->id]->group_priority;
 				$new_result->p_type_priority = (int)$this->raw_results[$new_result->blogid . "x" . $new_result->id]->p_type_priority;
 				$new_result->post_type = $this->raw_results[$new_result->blogid . "x" . $new_result->id]->post_type;
 				if ( isset($this->raw_results[$new_result->blogid . "x" . $new_result->id]->average_rating) )
@@ -816,8 +833,8 @@ if (!class_exists('ASP_Search_INDEX')) {
 			}
 
 			// Order them once again
-			if (count($pageposts) > 0) {
-				usort( $pageposts, array( $this, 'compare_by_primary' ) );
+			if ( count($pageposts) > 0 ) {
+				usort($pageposts, array($this, 'compare_by_primary'));
 				/**
 				 * Let us save some time. There is going to be a user selecting the same sorting
 				 * for both primary and secondary. Only do secondary if it is different from the primary.
@@ -829,7 +846,7 @@ if (!class_exists('ASP_Search_INDEX')) {
 						$i++;
 					}
 
-					usort( $pageposts, array( $this, 'compare_by_secondary' ) );
+					usort($pageposts, array($this, 'compare_by_secondary'));
 				}
 			}
 

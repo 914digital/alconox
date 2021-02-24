@@ -57,6 +57,14 @@ echo '<option value="'.$k.'" '.$sel.'>'.$v.'</option>';
   </div>
   <div class="clear"></div>
   </div>  
+     <div class="crm_field">
+  <div class="crm_field_cell1"><label for="org_url"><?php _e('Salesforce URL (optional)','gravity-forms-salesforce-crm'); ?></label></div>
+  <div class="crm_field_cell2">
+  <input type="url" id="org_url" name="crm[org_url]" class="crm_text" placeholder="<?php _e('https://my-instance.salesforce.com','gravity-forms-salesforce-crm'); ?>" value="<?php echo esc_html($this->post('org_url',$info)); ?>">
+  <span class="howto"><?php _e('Copy your salesforce domain name with https from browser(e.g: https://my-instance.salesforce.com)','gravity-forms-salesforce-crm'); ?></span>
+  </div>
+  <div class="clear"></div>
+  </div> 
   <div class="crm_field">
   <div class="crm_field_cell1"><label for="debug_email"><?php _e('Salesforce Debugging Emails','gravity-forms-salesforce-crm'); ?></label></div>
   <div class="crm_field_cell2">

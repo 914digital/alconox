@@ -37,6 +37,89 @@ class Migration
     }
 
     /**
+     * Check and create sample rules if no rules exists
+     * */
+    public static function checkAndCreateSampleRules(){
+        $database = new \Wdr\App\Models\DBTable();
+        $rows = $database->getRulesCount();
+        if(empty($rows) || $rows <= 0){
+            self::createSampleRules();
+        }
+    }
+
+    protected static function getSampleRules(){
+        $rules[] = array(
+            'title' => "Store wide discount - sample",
+            'type' => "wdr_simple_discount",
+            'has_condition' => false,
+            'discount_type' => "percentage",
+            'discount_value' => 10,
+        );
+        $rules[] = array(
+            'title' => "Bulk/tiered discount - sample",
+            'type' => "wdr_bulk_discount",
+            'has_condition' => false,
+            'discount_ranges' => array(
+                array("from" => 1, "to" => 5, "discount_type" => "percentage", "discount_value" => 5),
+                array("from" => 6, "to" => 10, "discount_type" => "percentage", "discount_value" => 10),
+                array("from" => 11, "to" => 15, "discount_type" => "percentage", "discount_value" => 15),
+                array("from" => 16, "to" => 20, "discount_type" => "percentage", "discount_value" => 20),
+                array("from" => 21, "to" => '', "discount_type" => "percentage", "discount_value" => 25),
+            )
+        );
+        $rules[] = array(
+            'title' => "Cart discount - sample",
+            'type' => "wdr_cart_discount",
+            'has_condition' => true,
+            'discount_type' => "percentage",
+            'discount_value' => 20,
+            'discount_label' => "Subtotal discount",
+            'condition_type' => "cart_subtotal",
+            'condition_option' => array(
+                'operator' => 'greater_than_or_equal',
+                'value' => 500,
+                'calculate_from' => 'from_cart',
+            ),
+        );
+
+        return $rules;
+    }
+
+    protected static function createSampleRules(){
+        $current_obj = new self();
+        $rules = self::getSampleRules();
+        foreach ($rules as $key => $rule){
+            $current_obj->form->reset();
+            $current_obj->form->title = $rule['title'];
+            $current_obj->form->enabled = 0;
+            $current_obj->form->additional = array('condition_relationship' => 'and');
+            $current_obj->form->usage_limits = 0;
+            $current_obj->form->date_from = '';
+            $current_obj->form->date_to = '';
+            $current_obj->form->discount_type = $rule['type'];
+            $current_obj->form->setFilter('all_products');
+
+            if($rule['has_condition']){
+                $current_obj->form->setConditions($rule['condition_type'], $rule['condition_option']);
+            }
+            if($rule['type'] == 'wdr_cart_discount'){
+                $current_obj->form->setCartAdjustment($rule['discount_value'], $rule['discount_type'], $rule['discount_label']);
+            } else {
+                $current_obj->form->setCumulativeOption();
+                if($rule['type'] == 'wdr_simple_discount'){
+                    $current_obj->form->setProductAdjustment($rule['discount_type'], $rule['discount_value']);
+                } elseif ($rule['type'] == 'wdr_bulk_discount'){
+                    foreach ($rule['discount_ranges'] as $discount_range){
+                        $current_obj->form->setBulkRange($discount_range['from'], $discount_range['to'], $discount_range['discount_value'], $discount_range['discount_type']);
+                    }
+                }
+            }
+            $form_data = $current_obj->form->getForm();
+            $current_obj->rule->save($form_data);
+        }
+    }
+
+    /**
      * Migrate licence key
      * */
     protected function migrateLicenceKey(){
@@ -130,7 +213,7 @@ class Migration
             Woocommerce::setSession('awdr_v1_to_v2_total_migrated', $total_migrated);
         }
         $percentage = $percentage.'%';
-        $return_status['display_text'] = sprintf(esc_html__('%s Completed. Please wait..', WDR_TEXT_DOMAIN), $percentage);
+        $return_status['display_text'] = sprintf(esc_html__('%s Completed. Please wait..', 'woo-discount-rules'), $percentage);
 
         return $return_status;
     }
