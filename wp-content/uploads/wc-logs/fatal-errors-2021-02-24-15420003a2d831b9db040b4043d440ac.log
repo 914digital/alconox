@@ -1,0 +1,9 @@
+2021-02-24T17:11:40+00:00 CRITICAL Uncaught TypeError: Argument 2 passed to Yoast\WP\Lib\Dependency_Injection\Container_Registry::register() must be an instance of YoastSEO_Vendor\Symfony\Component\DependencyInjection\ContainerInterface, null given, called in /www/wp-content/plugins/wordpress-seo/lib/abstract-main.php on line 34 and defined in /www/wp-content/plugins/wordpress-seo/lib/dependency-injection/container-registry.php:28
+Stack trace:
+#0 /www/wp-content/plugins/wordpress-seo/lib/abstract-main.php(34): Yoast\WP\Lib\Dependency_Injection\Container_Registry::register('yoast-seo', NULL)
+#1 /www/wp-content/plugins/wordpress-seo/src/functions.php(36): Yoast\WP\Lib\Abstract_Main->load()
+#2 /www/wp-content/plugins/wordpress-seo/inc/options/class-wpseo-option-titles.php(273): YoastSEO()
+#3 /www/wp-content/plugins/wordpress-seo/inc/options/class-wpseo-option.php(519): WPSEO_Option_Titles->enrich_defaults()
+#4 /www/wp-content/plugins/wordpress-seo/inc/options/class-wpseo-option.php(837): WPSEO_Option->get_defaults()
+#5 /www/wp-content/plugins/wor in /www/wp-content/plugins/wordpress-seo/lib/dependency-injection/container-registry.php on line 28
+

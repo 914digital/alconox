@@ -50,9 +50,9 @@ class AgileStoreLocator_Public {
   public function __construct( $AgileStoreLocator, $version ) {
 
     $this->AgileStoreLocator = $AgileStoreLocator;
-    $this->version = time();
+    
     $this->version = $version;
-
+	
   }
 
   /**

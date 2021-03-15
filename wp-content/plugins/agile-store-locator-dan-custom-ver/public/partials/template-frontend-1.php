@@ -222,7 +222,7 @@ if($atts['no_script'] == 0):
 <script id="tmpl_list_item" type="text/x-jsrender">
   <div class="item" data-id="{{:id}}">
     <div class="row">
-      <div class="col-md-9 col-xs-9 addr-sec">
+      <div class="col-md-12 addr-sec">
         <p class="p-title">{{:title}}</p>
         <p class="p-area">{{:address}}</p>
         {{if phone}}
@@ -241,15 +241,6 @@ if($atts['no_script'] == 0):
         <p class="p-time"><span class="glyphicon icon-calendar"></span>{{:days_str}}</p>
         {{/if}}
       </div>
-      {{if path}}
-      <div class="col-md-3 col-xs-3">
-        <div class="item-thumb">
-            <a class="thumb-a">
-                <img src="<?php echo ASL_URL_PATH ?>public/Logo/{{:path}}" alt="logo">
-            </a>
-        </div>
-      </div>
-      {{/if}}
     </div>
     <div class="row">
       <div class="mt-10 distance">

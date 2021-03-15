@@ -45,6 +45,7 @@
                         <div class="soc-footer">
                             <a traget="_blank" href="https://www.facebook.com/alconox"><i class="fab fa-facebook-f"></i></a>
                             <a traget="_blank" href="https://twitter.com/alconox"><i class="fab fa-twitter"></i></a>
+                            <a traget="_blank" href="https://www.instagram.com/alconoxinc/"><i class="fab fa-instagram"></i></a>
                             <a traget="_blank" href="https://www.linkedin.com/company/alconox-inc-"><i class="fab fa-linkedin-in"></i></a>
                             <a traget="_blank" href="https://www.youtube.com/channel/UCC_boUUvVzpIUEwcwKOPecQ"><i class="fab fa-youtube"></i></a>
                         </div>
@@ -78,7 +79,7 @@
 
 <div class="help-tab">
     <div class="ht-close float-right">X</div>
-    <i class="fas fa-question-circle"></i> <p style="margin-top:25px;font-size:20px;">Not finding what you need?</p> <p>For further assistance please fill out the form at <a href="/ask-alconox?utm_source=site&utm_medium=popup&utm_campaign=not-finding-what-you-need">Ask Alconox</a> or email us at <a href="mailto:cleaning@alconox.com?subject=Ask Alconox (Futher Assistance)" onClick="ga(‘send’, ‘event’, ‘ Not Finding What You Need Popup’, ‘Click’, 'Email Link');">cleaning@alconox.com</a>.</p>   
+    <i class="fas fa-question-circle"></i> <p style="margin-top:25px;font-size:20px;">Not finding what you need?</p> <p>For further assistance please fill out the form at <a href="/ask-alconox?utm_source=site&utm_medium=popup&utm_campaign=not-finding-what-you-need">Ask Alconox</a> or email us at <a href="mailto:cleaning@alconox.com?subject=Ask Alconox (Further Assistance)" onClick="ga(‘send’, ‘event’, ‘ Not Finding What You Need Popup’, ‘Click’, 'Email Link');">cleaning@alconox.com</a>.</p>   
 </div>
 
 <div class="cookie-policy" id="cookiePolicy" style="display:none;">
