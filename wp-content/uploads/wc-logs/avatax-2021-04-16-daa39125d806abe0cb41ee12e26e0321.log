@@ -1,0 +1,66 @@
+04-16-2021 @ 12:09:49 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/utilities/ping
+user-agent: WooCommerce-AvaTax/1.11.2 (WooCommerce/5.1.0; WordPress/5.7)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.44857s
+
+04-16-2021 @ 12:09:49 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Fri, 16 Apr 2021 16:09:49 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 225
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0001687
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"version":"21.4.0","authenticated":true,"authenticationType":"AccountIdLicenseKey","authenticatedUserName":"anonymous@2000107471","authenticatedUserId":231879,"authenticatedAccountId":2000107471,"crmid":"0010b00002JHRLYAA5"}
+
+04-16-2021 @ 12:26:07 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/utilities/ping
+user-agent: WooCommerce-AvaTax/1.11.2 (WooCommerce/5.1.0; WordPress/5.7)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.39957s
+
+04-16-2021 @ 12:26:07 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Fri, 16 Apr 2021 16:26:07 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 225
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0001391
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"version":"21.4.0","authenticated":true,"authenticationType":"AccountIdLicenseKey","authenticatedUserName":"anonymous@2000107471","authenticatedUserId":231879,"authenticatedAccountId":2000107471,"crmid":"0010b00002JHRLYAA5"}
+

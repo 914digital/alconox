@@ -255,8 +255,10 @@ class ManageDiscount extends Base
                 //Calculate the product price
                 $prices = self::calculateInitialAndDiscountedPrice($product, $quantity, $is_cart = false, $ajax_price);
                 $apply_as_cart_rule = isset($prices['apply_as_cart_rule']) ? $prices['apply_as_cart_rule'] : array('no');
-                if(!in_array('no', $apply_as_cart_rule)){
-                    return $price_html;
+                if(!empty($apply_as_cart_rule)){
+                    if(!in_array('no', $apply_as_cart_rule)){
+                        return $price_html;
+                    }
                 }
                 if($ajax_price){
                     $discount_details = (isset($prices['total_discount_details'])) ? $prices['total_discount_details'] : false;
@@ -492,6 +494,7 @@ class ManageDiscount extends Base
      */
     function getStrikeoutPrice($original_price, $discounted_price, $format_price = true, $is_variable_product = false, $initial_price_html=false)
     {
+        $separator = ($is_variable_product) ? '<br>' : '&nbsp;';
         if ($original_price == $discounted_price) {
             if ($format_price) {
                 $discounted_price = self::$woocommerce_helper->formatPrice($discounted_price);
@@ -502,7 +505,7 @@ class ManageDiscount extends Base
                 $original_price = self::$woocommerce_helper->formatPrice($original_price);
                 $discounted_price = self::$woocommerce_helper->formatPrice($discounted_price);
             }
-            $separator = ($is_variable_product) ? '<br>' : '&nbsp;';
+
             if($initial_price_html){
                 $initial_price_html = preg_replace('/<del>.*<\/del>/', '', $initial_price_html);
                 $html = '<del>' . $initial_price_html . '</del>' . $separator . '<ins>' . $discounted_price . '</ins>';
@@ -510,7 +513,7 @@ class ManageDiscount extends Base
                 $html = '<del>' . $original_price . '</del>' . $separator . '<ins>' . $discounted_price . '</ins>';
             }
         }
-        return apply_filters('advanced_woo_discount_rules_strikeout_price_html', $html, $original_price, $discounted_price, $is_variable_product);
+        return apply_filters('advanced_woo_discount_rules_strikeout_price_html', $html, $original_price, $discounted_price, $is_variable_product, $initial_price_html, $separator);
     }
 
     /**
@@ -739,6 +742,7 @@ class ManageDiscount extends Base
                 'usage_limit_per_user' => '',
                 'limit_usage_to_x_items' => '',
                 'usage_count' => '',
+                'date_created' => apply_filters('advanced_woo_discount_rules_custom_coupon_date_created', date('Y-m-d')),
                 'expiry_date' => '',
                 'apply_before_tax' => 'yes',
                 'free_shipping' => false,
@@ -777,6 +781,7 @@ class ManageDiscount extends Base
                     'usage_limit_per_user' => '',
                     'limit_usage_to_x_items' => '',
                     'usage_count' => '',
+                    'date_created' => apply_filters('advanced_woo_discount_rules_custom_coupon_date_created', date('Y-m-d')),
                     'expiry_date' => '',
                     'apply_before_tax' => 'yes',
                     'free_shipping' => false,
@@ -1430,6 +1435,9 @@ class ManageDiscount extends Base
                         $bxgy_cheapest_discount_qty = isset($value['buy_x_get_y_cheapest_in_cart_discount']['discount_quantity']) ? $value['buy_x_get_y_cheapest_in_cart_discount']['discount_quantity'] : 0;
                         $bxgy_cheapest_discount = $bxgy_cheapest_discount_price * $bxgy_cheapest_discount_qty;
                         $buy_x_get_y_cheapest_additional = isset($value['buy_x_get_y_cheapest_in_cart_discount']['additional_discounts']) ? $value['buy_x_get_y_cheapest_in_cart_discount']['additional_discounts'] : '';
+                        $bxgy_cheapest_from_product_discount_price = isset($value['buy_x_get_y_cheapest_from_products_discount']['discount_price_per_quantity']) ? $value['buy_x_get_y_cheapest_from_products_discount']['discount_price_per_quantity'] : 0;
+                        $bxgy_cheapest_from_product_discount_qty = isset($value['buy_x_get_y_cheapest_from_products_discount']['discount_quantity']) ? $value['buy_x_get_y_cheapest_from_products_discount']['discount_quantity'] : 0;
+                        $bxgy_cheapest_from_product_discount = $bxgy_cheapest_from_product_discount_price * $bxgy_cheapest_from_product_discount_qty;
                         $bogo_cheapest_aditional_sum = 0;
                         if(!empty($buy_x_get_y_cheapest_additional)) {
                             $bogo_cheapest_aditional = array();
@@ -1440,7 +1448,8 @@ class ManageDiscount extends Base
                             }
                             $bogo_cheapest_aditional_sum = array_sum($bogo_cheapest_aditional);
                         }
-                        $discount_price = $simple_discount + $bulk_discount + $set_discount + $bxgx_discount + $bxgy_discount + $bxgy_cheapest_discount + $bogo_cheapest_aditional_sum;
+
+                        $discount_price = $simple_discount + $bulk_discount + $set_discount + $bxgx_discount + $bxgy_discount + $bxgy_cheapest_discount + $bogo_cheapest_aditional_sum + $bxgy_cheapest_from_product_discount;
                         if ($discount_price < 0) {
                             $discount_price = 0;
                         }

@@ -186,7 +186,7 @@ if(!empty($dev_key)){
   { $body=http_build_query($body);
   }
   if($method != "get"){
-  $header['content-length']= strlen($body);
+$header['content-length']= !empty($body) ? strlen($body) : 0;
   }   
   $response = wp_remote_post( $path, array(
   'method' => strtoupper($method),
@@ -945,11 +945,14 @@ public function add_order($post, $meta){
      $order_items=!empty($items['items']) ? $items['items'] : array();
 
     $sales_response=array();  $extra=array();
-if(is_array($order_items) && count($order_items)>0 && !empty($items['price_book'])){
 
+    
 if(!empty($items['extra'])){
     $extra=$items['extra'];
 }
+
+    if(is_array($order_items) && count($order_items)>0 && !empty($items['price_book'])){
+
 
      $post['Pricebook2Id']=$items['price_book'];
      $order_items=array_map(function($v){$v['attributes']=array('type'=>'OrderItem'); unset($v['Product2Id']); return $v;},$order_items);
@@ -998,11 +1001,12 @@ public function get_items($meta){
     if(!empty($meta['price_book'])){
         $price_book=$meta['price_book'];
     $q.="and Pricebook2Id='".$meta['price_book']."'";
+    }  if(!empty($meta['map']['CurrencyIsoCode']['value'])){
+    $q.=" and CurrencyIsoCode='".$meta['map']['CurrencyIsoCode']['value']."'";
     }
     $q.="  order by Id DESC Limit 1"; 
   $path.='?q='.urlencode($q);
     $sales_response=$this->post_sales_arr($path,'GET');   
-
         $extra['Search Product '.$k]=array('ProductCode'=>$sku,'Pricebook2Id'=>$price_book);
         $extra['Search Result '.$k]=$sales_response;
      if(isset($sales_response['records']) && is_array($sales_response['records']) && isset($sales_response['records'][0])){
@@ -1110,7 +1114,6 @@ if(method_exists($item,'get_product')){
             }catch(Exception $e){
                 echo $e->getMessage();
             }
-            die();
         }else{
          $product=$products[$p_id];   
         }

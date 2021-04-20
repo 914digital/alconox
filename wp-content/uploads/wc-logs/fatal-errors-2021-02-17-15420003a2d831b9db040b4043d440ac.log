@@ -1,4 +1,0 @@
-2021-02-17T22:53:48+00:00 CRITICAL require_once(): Failed opening required '/www/wp-content/plugins/google-analytics-for-wordpress/includes/options.php' (include_path='.:/usr/share/php') in /www/wp-content/plugins/google-analytics-for-wordpress/googleanalytics.php on line 466
-
-2021-02-17T22:53:49+00:00 CRITICAL require_once(): Failed opening required '/www/wp-content/plugins/google-analytics-for-wordpress/includes/options.php' (include_path='.:/usr/share/php') in /www/wp-content/plugins/google-analytics-for-wordpress/googleanalytics.php on line 466
-

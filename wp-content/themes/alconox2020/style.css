@@ -1424,6 +1424,10 @@ select.form-control:not([size]):not([multiple]) {
     visibility: hidden;
 }
 
+.woocommerce div.product .stock {
+    color: #eee!important;
+}
+
 .proinput input.orig {
 	color:#555!important;
 	text-transform: uppercase;
@@ -1434,6 +1438,42 @@ select.form-control:not([size]):not([multiple]) {
 	color:#555!important;
 	text-transform: uppercase;
 	font-weight:bold;
+}
+
+.merch-strip {
+	background-color:#eee;
+	margin-bottom:10px;
+	padding:15px 15px 20px;
+	font-size:14px;
+	display:block;
+	color:#555;
+}
+
+a.merch-strip:hover {
+	text-decoration:none;
+	background-color:#777;
+	color:#fff;
+}
+
+.merch-strip span {
+	color:#fff;
+	background-color:#1e73be;
+	padding:2px 5px;
+	display:inline-block;
+	margin-top:3px;
+}
+
+.merch-strip img {
+	float:left;
+	width:67px;
+	margin-right:10px;
+}
+
+.merch-strip .btn.btn-primary {
+	float: right;
+    font-size: 12px;
+    background-color: #000;
+    border: 0;
 }
 
 /* ------ Footer ------ */

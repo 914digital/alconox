@@ -99,7 +99,7 @@ If a customer buys  2 of Product A - Small,  4 of Product A - Medium,  6 of Prod
                 <input name="bulk_adjustments[cart_label]"
                        type="text"
                        value="<?php echo (isset($bulk_adj_as_cart_label)) ? $bulk_adj_as_cart_label : ''; ?>"
-                       placeholder="Discount Label">
+                       placeholder="<?php esc_attr('Discount Label', 'woo-discount-rules'); ?>">
             </div>
         </div>
     </div>

@@ -23,11 +23,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 <?php if(!has_term(179, 'product_cat')) { ?>
 	<?php the_title( '<h1 class="product_title entry-title">', '</h1><sup>&reg;</sup>' ); ?>
 <?php } else { ?>
-	<?php the_title( '<h1 class="product_title entry-title">', '</h1>' ); ?>
+	<?php the_title( '<h1 class="product_title entry-title" style="float:none;">', '</h1>' ); ?>
 <?php } ?>
 
-
+<?php if( get_field('product_sub_header') ): ?>
 <div class="prod-sub clearfix">
-	<h2> <?php the_field('product_sub_header'); ?> </h2>
+	<h2><?php the_field('product_sub_header'); ?></h2>
 </div>
-
+<?php endif; ?>

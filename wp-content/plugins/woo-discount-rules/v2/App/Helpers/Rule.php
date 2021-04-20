@@ -632,7 +632,7 @@ class Rule
         if ($this->hasAdvancedDiscountMessage()) {
             $badge_settings = json_decode($this->rule->advanced_discount_message);
             if ($key == 'badge_text' && isset($badge_settings->badge_text) && !empty($badge_settings->badge_text)) {
-                return htmlspecialchars_decode($badge_settings->badge_text);
+                return htmlspecialchars_decode(__($badge_settings->badge_text, 'woo-discount-rules'));
             }
             if (isset($badge_settings->$key) && !empty($badge_settings->$key)) {
                 return $badge_settings->$key;
@@ -1423,6 +1423,7 @@ class Rule
             'discount_type' => esc_sql($discount_type),
             'used_coupons' => json_encode($awdr_coupon_names),
         );
+
         if (!is_null($rule_id) && !empty($rule_id)) {
             $arg['modified_by'] = intval($current_user);
             $arg['modified_on'] = esc_sql($current_date_time);
@@ -1510,11 +1511,8 @@ class Rule
                     $array_filters[$key]['product_variants'] = array();
                     if ($array_filter['type'] == 'products' && !empty($array_filter['value'])) {
                         if (is_array($array_filter['value'])) {
-                            $variants = $this->getVariantsOfProducts($array_filter['value']);
-                            if(empty($variants)){
-                                $array_filters[$key]['product_variants_for_sale_badge'] = $this->getParentOfVariant($array_filter['value']);
-                            }
-                            $array_filters[$key]['product_variants'] = $variants;
+                            $array_filters[$key]['product_variants'] = $this->getVariantsOfProducts($array_filter['value']);
+                            $array_filters[$key]['product_variants_for_sale_badge'] = $this->getParentOfVariant($array_filter['value']);
                         }
                     }
                 }

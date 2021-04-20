@@ -45,7 +45,7 @@ $is_pro = \Wdr\App\Helpers\Helper::hasPro();
                     <input name="product_adjustments[cart_label]"
                            type="text"
                            value="<?php echo (isset($product_adjustments->cart_label)) ? $product_adjustments->cart_label : ''; ?>"
-                           placeholder="Discount Label">
+                           placeholder="<?php esc_attr('Discount Label', 'woo-discount-rules'); ?>">
                 </div>
             </div>
         </div>

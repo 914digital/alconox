@@ -20,9 +20,8 @@
  * @subpackage Enhanced_Ecommerce_Google_Analytics/admin
  * @author     Chiranjiv Pathak <chiranjiv@tatvic.com>
  */
-//require __DIR__ . '../includes/setup/CustomerClient.php';
 
-class Enhanced_Ecommerce_Google_Analytics_Admin {
+class Enhanced_Ecommerce_Google_Analytics_Admin extends TVC_Admin_Helper {
 
     /**
      * The ID of this plugin.
@@ -52,88 +51,90 @@ class Enhanced_Ecommerce_Google_Analytics_Admin {
     protected $ga_id;
     protected $ga_LC;
     protected $ga_eeT;
-    protected $customerClient;
-
-    public function __construct($plugin_name, $version) {
-
+    protected $site_url;
+    public function __construct($plugin_name, $version) {                       
         $this->plugin_name = $plugin_name;
         $this->version = $version;
-        if(isset($_SERVER['HTTPS']) && ($_SERVER['HTTPS'] == 'on' || $_SERVER['HTTPS'] == 1) || isset($_SERVER['HTTP_X_FORWARDED_PROTO']) &&  $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')  {
-            $protocol = 'https://';
-        } else {
-            $protocol = 'http://';
-        }
-        $server_name = $_SERVER['SERVER_NAME'];
-        $domain = $protocol.$server_name;
-        $woo_country = $this->woo_country();
-        $country = (!empty($woo_country)) ? $woo_country[0] : 'US';
-        $currency_code = $this->get_currency_code();
-        $timezone = get_option('timezone_string');
-        //sigin with google
-        $this->returnUrl = "estorenew.tatvic.com/tat_ee/ads-analytics-form.php?domain=".$domain."&country=".$country."&user_currency=".$currency_code."&timezone".$timezone;
-        $this->accessToken = isset($_GET['access_token']) ? $_GET['access_token'] : '';
-        $this->refreshToken = isset($_GET['refresh_token']) ? $_GET['refresh_token'] : '';
-        $this->email = isset($_GET['email']) ? $_GET['email'] : '';
-
-        if(isset($_GET['property_id']) && isset($_GET['ads_id'])) {
-            $data = unserialize(get_option('ee_options'));
-            if(isset($data['ga_id']) && ($data['ga_id'] != $_GET['property_id'])) {
-                $_POST['ga_id'] = $_GET['property_id'];
-                $_POST['ads_id'] = $_GET['ads_id'];
-            } else if(isset($data['ga_id']) && ($data['ga_id'] == $_GET['property_id'])) {
-                if($_GET['ads_id'] != '') {
-                    $_POST['ga_id'] = $_GET['property_id'];
-                    $_POST['ads_id'] = $_GET['ads_id'];
-                } else {
-                    $_POST['ga_id'] = $_GET['property_id'];
-                }
-            } else {
-                $_POST['ga_id'] = $_GET['property_id'];
-                $_POST['ads_id'] = $_GET['ads_id'];
+        $this->url = $this->get_connect_url();
+        $this->site_url = "admin.php?page=enhanced-ecommerce-google-analytics-admin-display&tab=";
+    }
+    public function tvc_admin_notice(){
+        //global $pagenow;
+        $ee_additional_data = $this->get_ee_additional_data();
+        if(isset($ee_additional_data['dismissed_ee_adimin_notic_a']) && $ee_additional_data['dismissed_ee_adimin_notic_a'] == 1){
+        }else{
+            if(!$this->get_subscriptionId()){          
+                echo '<div class="notice notice-info is-dismissible" data-id="ee_adimin_notic_a">
+                      <p>Tatvic EE plugin is now fully compatible with Google Analytics 4. Also, explore the new features of Google Shopping and Dynamic remarketing to reach million of shoppers across Google and scale your eCommerce business faster. <a href="admin.php?page=enhanced-ecommerce-google-analytics-admin-display"><b><u>CONFIGURE NOW</u></b></a></p>
+                     </div>'; 
             }
-
-            Enhanced_Ecommerce_Google_Settings::update_analytics_options('ee_options');
         }
-
-        $this->url = "https://estorenew.tatvic.com/tat_ee/ga_rdr_ee.php?return_url=" . $this->returnUrl;
+        if(isset($ee_additional_data['dismissed_ee_adimin_notic_b']) && $ee_additional_data['dismissed_ee_adimin_notic_b'] == 1){
+        }else{
+            $google_detail = $this->get_ee_options_data();
+            if(isset($google_detail['setting']) && $google_detail['setting']){
+                $googleDetail = $google_detail['setting'];
+                if(isset($googleDetail->google_merchant_center_id) && $googleDetail->google_merchant_center_id =="" && $this->subscriptionId != "" ){
+                    echo '<div class="notice notice-info is-dismissible" data-id="ee_adimin_notic_b">
+                      <p>Leverage the power of Google Shopping to reach out millions of shoppers across Google. Automate entire Google Shopping and get eligible for free listing when user searches on Google for products similar to your eCommerce business. <a href="admin.php?page=enhanced-ecommerce-google-analytics-admin-display"><b><u>Automate now</u></b></a></p>
+                     </div>';
+                     
+                }
+            } 
+        }
+        ?>
+        <script>
+            (function( $ ) {
+                $( function() {
+                    $( '.notice' ).on( 'click', '.notice-dismiss', function( event, el ) {
+                        var ee_notice_dismiss_id = $(this).parent('.is-dismissible').attr("data-id");
+                        jQuery.post(myAjaxNonces.ajaxurl,{
+                            action: "tvc_call_notice_dismiss",
+                            data:{ee_notice_dismiss_id:ee_notice_dismiss_id},
+                            dataType: "json",
+                            apiDomainClaimNonce: myAjaxNonces.apiNoticDismissNonce
+                        },function( response ){
+                            
+                        });
+                    });
+                } );
+            })( jQuery );
+         </script>
+        <?php
+               
+        
+        
     }
 
-    /**
-     * @return array
-     * Get woocommerce default set country
-     */
-    private function woo_country(){
-        // The country/state
-        $store_raw_country = get_option( 'woocommerce_default_country' );
-        // Split the country/state
-        $split_country = explode( ":", $store_raw_country );
-        return $split_country;
-    }
-    /**
-     * @return mixed
-     */
-    private function get_currency_code(){
-        $woo_country = $this->woo_country();
-        $country = (!empty($woo_country)) ? $woo_country[0] : 'US';
-        $getCurrency = file_get_contents(ENHANCAD_PLUGIN_DIR . 'includes/json/currency.json');
-        $contData = json_decode($getCurrency);
-        return $contData->{$country};
-    }
+    
     /**
      * Register the stylesheets for the admin area.
      *
      * @since    1.0.0
      */
     public function enqueue_styles() {
-
         $screen = get_current_screen();
         if ($screen->id == 'toplevel_page_enhanced-ecommerce-google-analytics-admin-display' || (isset($_GET['page']) && $_GET['page'] == 'enhanced-ecommerce-google-analytics-admin-display')) {
             wp_register_style('font_awesome', '//use.fontawesome.com/releases/v5.0.13/css/all.css');
             wp_enqueue_style('font_awesome');
-            wp_register_style('aga_bootstrap', '//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css');
-            wp_enqueue_style('aga_bootstrap');
+            wp_register_style('plugin-bootstrap',ENHANCAD_PLUGIN_URL . '/includes/setup/plugins/bootstrap/css/bootstrap.min.css');
+            wp_enqueue_style('plugin-bootstrap');
             wp_register_style('aga_confirm', '//cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css');
             wp_enqueue_style('aga_confirm');
+           
+            wp_enqueue_style('custom-css', ENHANCAD_PLUGIN_URL . '/admin/css/custom-style.css', array(), $this->version, 'all' );
+            if($this->is_current_tab_in(array('sync_product_page','gaa_config_page'))){
+                wp_register_style('plugin-select2',ENHANCAD_PLUGIN_URL . '/includes/setup/plugins/select2/select2.min.css');
+                wp_enqueue_style('plugin-select2');
+                wp_register_style('plugin-steps',ENHANCAD_PLUGIN_URL . '/includes/setup/plugins/jquery-steps/jquery.steps.css');
+                wp_enqueue_style('plugin-steps');
+            }
+            if($this->is_current_tab_in(array("shopping_campaigns_page","add_campaign_page"))){
+                wp_register_style('plugin-select2',ENHANCAD_PLUGIN_URL . '/includes/setup/plugins/select2/select2.min.css');
+                wp_enqueue_style('plugin-select2');
+                wp_register_style('bootstrap-datepicker',ENHANCAD_PLUGIN_URL. '/includes/setup/plugins/datepicker/bootstrap-datepicker.min.css');
+                wp_enqueue_style('bootstrap-datepicker');
+            }
             wp_enqueue_style($this->plugin_name, plugin_dir_url(__FILE__) . 'css/enhanced-ecommerce-google-analytics-admin.css', array(), $this->version, 'all');
         }
     }
@@ -144,16 +145,33 @@ class Enhanced_Ecommerce_Google_Analytics_Admin {
      * @since    1.0.0
      */
     public function enqueue_scripts() {
-
         $screen = get_current_screen();
         if ($screen->id == 'toplevel_page_enhanced-ecommerce-google-analytics-admin-display' || (isset($_GET['page']) && $_GET['page'] == 'enhanced-ecommerce-google-analytics-admin-display')) {
+
+            wp_enqueue_script( 'custom-jquery', ENHANCAD_PLUGIN_URL . '/admin/js/jquery-3.5.1.min.js', array( 'jquery' ), $this->version, false );
             wp_register_script('popper_bootstrap', '//cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js');
             wp_enqueue_script('popper_bootstrap');
-            wp_register_script('aga_bootstrap', '//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js');
+            wp_register_script('aga_bootstrap', '//maxcdn.bootstrapcdn.com/bootstrap/4.5.1/js/bootstrap.min.js');
             wp_enqueue_script('aga_bootstrap');
+            wp_register_script('aga_bootstrap_mod', 'https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js');
+            wp_enqueue_script('aga_bootstrap_mod');
             wp_register_script('aga_confirm_js', '//cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js');
             wp_enqueue_script('aga_confirm_js');
-            wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'js/enhanced-ecommerce-google-analytics-admin.js', array('jquery'), $this->version, false);
+            wp_enqueue_script( 'tvc-ee-custom-js', ENHANCAD_PLUGIN_URL . '/admin/js/tvc-ee-custom.js', array( 'jquery' ), $this->version, false );
+            if($this->is_current_tab_in(array('sync_product_page','gaa_config_page'))){
+                wp_register_script('plugin-select2',ENHANCAD_PLUGIN_URL . '/includes/setup/plugins/select2/select2.min.js');
+                wp_enqueue_script('plugin-select2');
+                wp_register_script('plugin-step-js',ENHANCAD_PLUGIN_URL . '/includes/setup/plugins/jquery-steps/jquery.steps.js');
+                wp_enqueue_script('plugin-step-js');
+            }
+            if($this->is_current_tab_in(array("shopping_campaigns_page","add_campaign_page"))){
+                wp_register_script('plugin-select2',ENHANCAD_PLUGIN_URL . '/includes/setup/plugins/select2/select2.min.js');
+                wp_enqueue_script('plugin-select2');
+                wp_register_script('plugin-chart',ENHANCAD_PLUGIN_URL . '/includes/setup/plugins/chart/chart.js');
+                wp_enqueue_script('plugin-chart');
+                wp_register_script('bootstrap_datepicker',ENHANCAD_PLUGIN_URL . '/includes/setup/plugins/datepicker/bootstrap-datepicker.min.js');
+                wp_enqueue_script('bootstrap_datepicker');
+            }
         }
     }
 
@@ -164,7 +182,23 @@ class Enhanced_Ecommerce_Google_Analytics_Admin {
      */
     public function display_admin_page() {
         add_menu_page(
-                'Tatvic EE Plugin', 'Tatvic EE Plugin', 'manage_options', "enhanced-ecommerce-google-analytics-admin-display", array($this, 'showPage'), plugin_dir_url(__FILE__) . 'images/tatvic_logo.png', 26
+            'Tatvic EE Plugin', 'Tatvic EE Plugin', 'manage_options', "enhanced-ecommerce-google-analytics-admin-display", array($this, 'showPage'), plugin_dir_url(__FILE__) . 'images/tatvic_logo.png', 26
+        );
+        add_submenu_page(
+            'enhanced-ecommerce-google-analytics-admin-display',
+            esc_html__('Google Ads', 'actionable-google-analytics-admin-display'),
+            esc_html__('Google Ads', 'actionable-google-analytics-admin-display'),
+            'manage_woocommerce',
+            'enhanced-ecommerce-google-analytics-admin-display&tab=google_ads',
+            array($this, 'showPage')
+        );
+        add_submenu_page(
+            'enhanced-ecommerce-google-analytics-admin-display',
+            esc_html__('Google Shopping', 'enhanced-ecommerce-google-analytics-admin-display'),
+            esc_html__('Google Shopping', 'enhanced-ecommerce-google-analytics-admin-display'),
+            'manage_woocommerce',
+            'enhanced-ecommerce-google-analytics-admin-display&tab=google_shopping_feed',
+            array($this, 'showPage')
         );
     }
     /**
@@ -173,7 +207,10 @@ class Enhanced_Ecommerce_Google_Analytics_Admin {
      * @since    1.0.0
      */
     public function showPage() {
+        echo '<div class="tvc_plugin_container">';
         require_once( 'partials/enhanced-ecommerce-google-analytics-admin-display.php');
+        new TVC_Tabs();
+        echo $this->call_tvc_site_verified_and_domain_claim();
         if (!empty($_GET['tab'])) {
             $get_action = $_GET['tab'];
         } else {
@@ -182,28 +219,63 @@ class Enhanced_Ecommerce_Google_Analytics_Admin {
         if (method_exists($this, $get_action)) {
             $this->$get_action();
         }
+        echo '</div>';
+        echo $this->get_tvc_popup_message();
     }
-
-    public function general_settings() {
+    public function check_nall_and_message($val, $msg, $msg_false){
+        if((isset($val) && $val != "" && $val != 0) ){
+            return $msg;
+        }else{
+             return $msg_false;
+        }
+    }
+    
+    public function general_settings() {       
         require_once( 'partials/general-fields.php');
     }
-
+    public function google_ads() {        
+        require_once(ENHANCAD_PLUGIN_DIR . 'includes/setup/help-html.php');
+        require_once(ENHANCAD_PLUGIN_DIR . 'includes/setup/google-ads.php');
+        new GoogleAds();
+    }
+    public function google_shopping_feed() {
+        include(ENHANCAD_PLUGIN_DIR . 'includes/setup/help-html.php');
+        include(ENHANCAD_PLUGIN_DIR . 'includes/setup/google-shopping-feed.php');
+        new GoogleShoppingFeed();
+    }
+    public function gaa_config_page() { 
+        include(ENHANCAD_PLUGIN_DIR . 'includes/setup/help-html.php');       
+        include(ENHANCAD_PLUGIN_DIR . 'includes/setup/google-shopping-feed-gaa-config.php');        
+        new GAAConfiguration();
+    }    
+    public function sync_product_page() {
+        include(ENHANCAD_PLUGIN_DIR . 'includes/setup/help-html.php');
+        include(ENHANCAD_PLUGIN_DIR . 'includes/setup/google-shopping-feed-sync-product.php');
+        new SyncProductConfiguration();
+    }
+    public function shopping_campaigns_page() {
+        include(ENHANCAD_PLUGIN_DIR . 'includes/setup/help-html.php');
+        include(ENHANCAD_PLUGIN_DIR . 'includes/setup/google-shopping-feed-shopping-campaigns.php');
+        new CampaignsConfiguration();
+    }
+    public function add_campaign_page() {
+        include(ENHANCAD_PLUGIN_DIR . 'includes/setup/help-html.php');
+        include(ENHANCAD_PLUGIN_DIR . 'includes/setup/add-campaign.php');
+        new AddCampaign();
+    }    
     public function conversion_tracking() {
         require_once( 'partials/conversion-tracking.php');
     }
-
     public function google_optimize() {
         require_once( 'partials/google-optimize.php');
     }
-
     public function about_plugin() {
         require_once( 'partials/about-plugin.php');
     }
     public function country_location() {
         // date function to hide 30% off sale after certain date
         return date_default_timezone_set('Australia/Sydney'); // Change this depending on what timezone your in
-    }
-
+    }    
     public function today() {
         $this->country_location();
         return strtotime(date('Y-m-d'));

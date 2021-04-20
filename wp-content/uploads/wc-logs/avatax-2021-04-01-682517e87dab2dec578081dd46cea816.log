@@ -1,0 +1,163 @@
+04-01-2021 @ 12:37:42 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/taxrates/byaddress?line1=&line2=&city=White+Plains&region=NY&country=US&postalCode=10603
+user-agent: WooCommerce-AvaTax/1.11.2 (WooCommerce/5.0.0; WordPress/5.6.2)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.3629s
+
+04-01-2021 @ 12:37:42 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Thu, 01 Apr 2021 16:37:42 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 203
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0164424
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"totalRate":0.083750,"rates":[{"rate":0.040000,"name":"NY STATE TAX","type":"State"},{"rate":0.040000,"name":"NY COUNTY TAX","type":"County"},{"rate":0.003750,"name":"NY SPECIAL TAX","type":"Special"}]}
+
+04-01-2021 @ 12:37:46 - Request
+Request
+method: POST
+uri: https://rest.avatax.com/api/v2/transactions/create
+user-agent: WooCommerce-AvaTax/1.11.2 (WooCommerce/5.0.0; WordPress/5.6.2)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body: {"code":"","companyCode":"ALC","customerCode":"mmodica@alconox.com","currencyCode":"USD","date":"2021-04-01","lines":[{"number":"dad0eb8ef352b656351ef2c8285ad148","itemCode":"9002","taxCode":"P0000000","description":"3 Measuring Scoops","quantity":1,"amount":2},{"number":"shipping_0","itemCode":"use-my-shipping-account","taxCode":"FR","description":"Use My Shipping Account","quantity":1}],"addresses":{"shipFrom":{"line1":"30 GLENN ST","line2":"","city":"WHITE PLAINS","region":"NY","country":"US","postalCode":"10603-3254"},"shipTo":{"line1":"30 Glenn St STE 309","line2":"","city":"White Plains","region":"NY","country":"US","postalCode":"10603"}},"type":"SalesOrder","commit":false}
+duration: 1.38777s
+
+04-01-2021 @ 12:37:46 - Response
+Response
+code: 201
+message: Created
+headers: Array
+(
+    [date] => Thu, 01 Apr 2021 16:37:46 GMT
+    [content-type] => application/json; charset=utf-8
+    [server] => Kestrel
+    [content-encoding] => br
+    [location] => /api/v2/companies/207925/transactions/0
+    [vary] => Accept-Encoding
+    [serverduration] => 00:00:00.0573453
+)
+body: {"id":0,"code":"0e3c75b9-e764-47d5-aa67-9418dacf469d","companyId":207925,"date":"2021-04-01","paymentDate":"2021-04-01","status":"Temporary","type":"SalesOrder","batchCode":"","currencyCode":"USD","exchangeRateCurrencyCode":"USD","customerUsageType":"","entityUseCode":"","customerVendorCode":"mmodica@alconox.com","customerCode":"mmodica@alconox.com","exemptNo":"","reconciled":false,"locationCode":"","reportingLocationCode":"","purchaseOrderNo":"","referenceCode":"","salespersonCode":"","totalAmount":2.0,"totalExempt":0.0,"totalDiscount":0.0,"totalTax":0.17,"totalTaxable":2.0,"totalTaxCalculated":0.17,"adjustmentReason":"NotAdjusted","locked":false,"version":1,"exchangeRateEffectiveDate":"2021-04-01","exchangeRate":1.0,"modifiedDate":"2021-04-01T16:37:46.3169215Z","modifiedUserId":231879,"taxDate":"2021-04-01T00:00:00Z","lines":[{"id":0,"transactionId":0,"lineNumber":"dad0eb8ef352b656351ef2c8285ad148","customerUsageType":"","entityUseCode":"","description":"3 Measuring Scoops","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"itemCode":"9002","lineAmount":2.0,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-04-01","tax":0.17,"taxableAmount":2.0,"taxCalculated":0.17,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-04-01","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"36","jurisName":"NEW YORK","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.040000,"tax":0.08,"taxableAmount":2.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxCalculated":0.08,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":2.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.08,"reportingTaxCalculated":0.08,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"119","jurisName":"WESTCHESTER","stateAssignedNo":"WH 6513","jurisType":"CTY","jurisdictionType":"County","nonTaxableAmount":0.0,"rate":0.000000,"tax":0.0,"taxableAmount":2.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY COUNTY TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":2.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"81677","jurisName":"WHITE PLAINS","stateAssignedNo":"WH 6513","jurisType":"CIT","jurisdictionType":"City","nonTaxableAmount":0.0,"rate":0.040000,"tax":0.08,"taxableAmount":2.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY CITY TAX","taxAuthorityTypeId":45,"taxCalculated":0.08,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":2.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.08,"reportingTaxCalculated":0.08,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"359080","jurisName":"WESTCHESTER CO TRANSIT DISTRICT","stateAssignedNo":"WH 6513","jurisType":"STJ","jurisdictionType":"Special","nonTaxableAmount":0.0,"rate":0.003750,"tax":0.01,"taxableAmount":2.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY SPECIAL TAX","taxAuthorityTypeId":45,"taxCalculated":0.01,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":2.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.01,"reportingTaxCalculated":0.01,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":0,"transactionId":0,"lineNumber":"shipping_0","customerUsageType":"","entityUseCode":"","description":"Use My Shipping Account","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":false,"itemCode":"use-my-shipping-account","lineAmount":0.0,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-04-01","tax":0.0,"taxableAmount":0.0,"taxCalculated":0.0,"taxCode":"FR","taxCodeId":7119,"taxDate":"2021-04-01","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"36","jurisName":"NEW YORK","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.040000,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"119","jurisName":"WESTCHESTER","stateAssignedNo":"WH 6513","jurisType":"CTY","jurisdictionType":"County","nonTaxableAmount":0.0,"rate":0.000000,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY COUNTY TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"81677","jurisName":"WHITE PLAINS","stateAssignedNo":"WH 6513","jurisType":"CIT","jurisdictionType":"City","nonTaxableAmount":0.0,"rate":0.040000,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY CITY TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"359080","jurisName":"WESTCHESTER CO TRANSIT DISTRICT","stateAssignedNo":"WH 6513","jurisType":"STJ","jurisdictionType":"Special","nonTaxableAmount":0.0,"rate":0.003750,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY SPECIAL TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0}],"addresses":[{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"30 Glenn St STE 309","line2":"","line3":"","city":"White Plains","region":"NY","postalCode":"10603","country":"US","taxRegionId":2090237,"latitude":"41.050608","longitude":"-73.771383"},{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"30 GLENN ST","line2":"","line3":"","city":"WHITE PLAINS","region":"NY","postalCode":"10603-3254","country":"US","taxRegionId":2090237,"latitude":"41.050608","longitude":"-73.771383"}],"summary":[{"country":"US","region":"NY","jurisType":"State","jurisCode":"36","jurisName":"NEW YORK","taxAuthorityType":45,"stateAssignedNo":"","taxType":"Sales","taxSubType":"S","taxName":"NY STATE TAX","rateType":"General","taxable":2.0,"rate":0.040000,"tax":0.08,"taxCalculated":0.08,"nonTaxable":0.0,"exemption":0.0},{"country":"US","region":"NY","jurisType":"County","jurisCode":"119","jurisName":"WESTCHESTER","taxAuthorityType":45,"stateAssignedNo":"WH 6513","taxType":"Sales","taxSubType":"S","taxName":"NY COUNTY TAX","rateType":"General","taxable":2.0,"rate":0.000000,"tax":0.0,"taxCalculated":0.0,"nonTaxable":0.0,"exemption":0.0},{"country":"US","region":"NY","jurisType":"City","jurisCode":"81677","jurisName":"WHITE PLAINS","taxAuthorityType":45,"stateAssignedNo":"WH 6513","taxType":"Sales","taxSubType":"S","taxName":"NY CITY TAX","rateType":"General","taxable":2.0,"rate":0.040000,"tax":0.08,"taxCalculated":0.08,"nonTaxable":0.0,"exemption":0.0},{"country":"US","region":"NY","jurisType":"Special","jurisCode":"359080","jurisName":"WESTCHESTER CO TRANSIT DISTRICT","taxAuthorityType":45,"stateAssignedNo":"WH 6513","taxType":"Sales","taxSubType":"S","taxName":"NY SPECIAL TAX","rateType":"General","taxable":2.0,"rate":0.003750,"tax":0.01,"taxCalculated":0.01,"nonTaxable":0.0,"exemption":0.0}]}
+
+04-01-2021 @ 12:37:51 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/taxrates/byaddress?line1=&line2=&city=White+Plains&region=NY&country=US&postalCode=10603
+user-agent: WooCommerce-AvaTax/1.11.2 (WooCommerce/5.0.0; WordPress/5.6.2)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.30985s
+
+04-01-2021 @ 12:37:51 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Thu, 01 Apr 2021 16:37:50 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 203
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0011000
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"totalRate":0.083750,"rates":[{"rate":0.040000,"name":"NY STATE TAX","type":"State"},{"rate":0.040000,"name":"NY COUNTY TAX","type":"County"},{"rate":0.003750,"name":"NY SPECIAL TAX","type":"Special"}]}
+
+04-01-2021 @ 12:37:51 - Request
+Request
+method: POST
+uri: https://rest.avatax.com/api/v2/transactions/create
+user-agent: WooCommerce-AvaTax/1.11.2 (WooCommerce/5.0.0; WordPress/5.6.2)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body: {"code":"","companyCode":"ALC","customerCode":"mmodica@alconox.com","currencyCode":"USD","date":"2021-04-01","lines":[{"number":"dad0eb8ef352b656351ef2c8285ad148","itemCode":"9002","taxCode":"P0000000","description":"3 Measuring Scoops","quantity":1,"amount":2},{"number":"shipping_0","itemCode":"pt-ups-merger:6:03","taxCode":"FR","description":"Ground (UPS)","quantity":1,"amount":10.41}],"addresses":{"shipFrom":{"line1":"30 GLENN ST","line2":"","city":"WHITE PLAINS","region":"NY","country":"US","postalCode":"10603-3254"},"shipTo":{"line1":"30 Glenn St STE 309","line2":"","city":"White Plains","region":"NY","country":"US","postalCode":"10603"}},"type":"SalesOrder","commit":false}
+duration: 0.34004s
+
+04-01-2021 @ 12:37:51 - Response
+Response
+code: 201
+message: Created
+headers: Array
+(
+    [date] => Thu, 01 Apr 2021 16:37:51 GMT
+    [content-type] => application/json; charset=utf-8
+    [server] => Kestrel
+    [content-encoding] => br
+    [location] => /api/v2/companies/207925/transactions/0
+    [vary] => Accept-Encoding
+    [serverduration] => 00:00:00.0442070
+)
+body: {"id":0,"code":"f6eb33a3-c45e-407a-90df-edacf1356514","companyId":207925,"date":"2021-04-01","paymentDate":"2021-04-01","status":"Temporary","type":"SalesOrder","batchCode":"","currencyCode":"USD","exchangeRateCurrencyCode":"USD","customerUsageType":"","entityUseCode":"","customerVendorCode":"mmodica@alconox.com","customerCode":"mmodica@alconox.com","exemptNo":"","reconciled":false,"locationCode":"","reportingLocationCode":"","purchaseOrderNo":"","referenceCode":"","salespersonCode":"","totalAmount":12.41,"totalExempt":10.41,"totalDiscount":0.0,"totalTax":0.17,"totalTaxable":2.0,"totalTaxCalculated":0.17,"adjustmentReason":"NotAdjusted","locked":false,"version":1,"exchangeRateEffectiveDate":"2021-04-01","exchangeRate":1.0,"modifiedDate":"2021-04-01T16:37:51.3817546Z","modifiedUserId":231879,"taxDate":"2021-04-01T00:00:00Z","lines":[{"id":0,"transactionId":0,"lineNumber":"dad0eb8ef352b656351ef2c8285ad148","customerUsageType":"","entityUseCode":"","description":"3 Measuring Scoops","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"itemCode":"9002","lineAmount":2.0,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-04-01","tax":0.17,"taxableAmount":2.0,"taxCalculated":0.17,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-04-01","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"36","jurisName":"NEW YORK","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.040000,"tax":0.08,"taxableAmount":2.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxCalculated":0.08,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":2.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.08,"reportingTaxCalculated":0.08,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"119","jurisName":"WESTCHESTER","stateAssignedNo":"WH 6513","jurisType":"CTY","jurisdictionType":"County","nonTaxableAmount":0.0,"rate":0.000000,"tax":0.0,"taxableAmount":2.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY COUNTY TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":2.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"81677","jurisName":"WHITE PLAINS","stateAssignedNo":"WH 6513","jurisType":"CIT","jurisdictionType":"City","nonTaxableAmount":0.0,"rate":0.040000,"tax":0.08,"taxableAmount":2.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY CITY TAX","taxAuthorityTypeId":45,"taxCalculated":0.08,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":2.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.08,"reportingTaxCalculated":0.08,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"359080","jurisName":"WESTCHESTER CO TRANSIT DISTRICT","stateAssignedNo":"WH 6513","jurisType":"STJ","jurisdictionType":"Special","nonTaxableAmount":0.0,"rate":0.003750,"tax":0.01,"taxableAmount":2.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY SPECIAL TAX","taxAuthorityTypeId":45,"taxCalculated":0.01,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":2.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.01,"reportingTaxCalculated":0.01,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":0,"transactionId":0,"lineNumber":"shipping_0","customerUsageType":"","entityUseCode":"","description":"Ground (UPS)","discountAmount":0.0,"exemptAmount":10.41,"exemptCertId":0,"exemptNo":"","isItemTaxable":false,"itemCode":"pt-ups-merger:6:03","lineAmount":10.41,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-04-01","tax":0.0,"taxableAmount":0.0,"taxCalculated":0.0,"taxCode":"FR","taxCodeId":7119,"taxDate":"2021-04-01","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"36","jurisName":"NEW YORK","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":10.41,"rate":0.040000,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":10.41,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"119","jurisName":"WESTCHESTER","stateAssignedNo":"WH 6513","jurisType":"CTY","jurisdictionType":"County","nonTaxableAmount":10.41,"rate":0.000000,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY COUNTY TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":10.41,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"81677","jurisName":"WHITE PLAINS","stateAssignedNo":"WH 6513","jurisType":"CIT","jurisdictionType":"City","nonTaxableAmount":10.41,"rate":0.040000,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY CITY TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":10.41,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"359080","jurisName":"WESTCHESTER CO TRANSIT DISTRICT","stateAssignedNo":"WH 6513","jurisType":"STJ","jurisdictionType":"Special","nonTaxableAmount":10.41,"rate":0.003750,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY SPECIAL TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":10.41,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0}],"addresses":[{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"30 Glenn St STE 309","line2":"","line3":"","city":"White Plains","region":"NY","postalCode":"10603","country":"US","taxRegionId":2090237,"latitude":"41.050608","longitude":"-73.771383"},{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"30 GLENN ST","line2":"","line3":"","city":"WHITE PLAINS","region":"NY","postalCode":"10603-3254","country":"US","taxRegionId":2090237,"latitude":"41.050608","longitude":"-73.771383"}],"summary":[{"country":"US","region":"NY","jurisType":"State","jurisCode":"36","jurisName":"NEW YORK","taxAuthorityType":45,"stateAssignedNo":"","taxType":"Sales","taxSubType":"S","taxName":"NY STATE TAX","rateType":"General","taxable":2.0,"rate":0.040000,"tax":0.08,"taxCalculated":0.08,"nonTaxable":10.41,"exemption":0.0},{"country":"US","region":"NY","jurisType":"County","jurisCode":"119","jurisName":"WESTCHESTER","taxAuthorityType":45,"stateAssignedNo":"WH 6513","taxType":"Sales","taxSubType":"S","taxName":"NY COUNTY TAX","rateType":"General","taxable":2.0,"rate":0.000000,"tax":0.0,"taxCalculated":0.0,"nonTaxable":10.41,"exemption":0.0},{"country":"US","region":"NY","jurisType":"City","jurisCode":"81677","jurisName":"WHITE PLAINS","taxAuthorityType":45,"stateAssignedNo":"WH 6513","taxType":"Sales","taxSubType":"S","taxName":"NY CITY TAX","rateType":"General","taxable":2.0,"rate":0.040000,"tax":0.08,"taxCalculated":0.08,"nonTaxable":10.41,"exemption":0.0},{"country":"US","region":"NY","jurisType":"Special","jurisCode":"359080","jurisName":"WESTCHESTER CO TRANSIT DISTRICT","taxAuthorityType":45,"stateAssignedNo":"WH 6513","taxType":"Sales","taxSubType":"S","taxName":"NY SPECIAL TAX","rateType":"General","taxable":2.0,"rate":0.003750,"tax":0.01,"taxCalculated":0.01,"nonTaxable":10.41,"exemption":0.0}]}
+
+04-01-2021 @ 15:34:16 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/utilities/ping
+user-agent: WooCommerce-AvaTax/1.11.2 (WooCommerce/5.0.0; WordPress/5.6.2)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.31771s
+
+04-01-2021 @ 15:34:16 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Thu, 01 Apr 2021 19:34:16 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 225
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0001282
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"version":"21.3.1","authenticated":true,"authenticationType":"AccountIdLicenseKey","authenticatedUserName":"anonymous@2000107471","authenticatedUserId":231879,"authenticatedAccountId":2000107471,"crmid":"0010b00002JHRLYAA5"}
+

@@ -1630,4 +1630,18 @@ class Woocommerce
     public static function displayTableIfAnyOneVariantHasDiscount(){
         return apply_filters('advanced_woo_discount_rules_display_bulk_table_if_any_one_variant_has_discount', false);
     }
+
+    /**
+     * get available product variations
+     * @param $product
+     * @return array
+     */
+   public static function availableProductVariations($product){
+       $available_variations = array();
+       $is_variable_product = self::productTypeIs($product, 'variable');
+       if ($is_variable_product && method_exists($product, 'get_available_variations')){
+           $available_variations = $product->get_available_variations();
+       }
+       return $available_variations;
+   }
 }

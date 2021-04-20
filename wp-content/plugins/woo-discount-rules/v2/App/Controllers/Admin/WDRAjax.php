@@ -12,6 +12,7 @@ use Wdr\App\Helpers\Migration;
 use Wdr\App\Helpers\Rule;
 use Wdr\App\Helpers\Validation;
 use Wdr\App\Helpers\Woocommerce;
+use Wdr\App\Models\Recipes;
 use Wdr\App\Router;
 
 if (!defined('ABSPATH')) exit;
@@ -145,6 +146,13 @@ class WDRAjax extends Base
         if(!is_array($taxonomy)){
             $taxonomy = array('product_cat');
         }
+        //For loading all language categories in select box.
+        global $sitepress;
+        if(!empty($sitepress)){
+            remove_filter( 'get_terms_args', array( $sitepress, 'get_terms_args_filter' ), 10 );
+            remove_filter( 'get_term', array( $sitepress, 'get_term_adjust_id' ), 1 );
+            remove_filter( 'terms_clauses', array( $sitepress, 'terms_clauses' ), 10 );
+        }
         $query = $this->input->post('query', '');
         $terms = get_terms(array('taxonomy' => $taxonomy, 'name__like' => $query, 'hide_empty' => false, 'number' => $this->search_result_limit));
 
@@ -236,10 +244,24 @@ class WDRAjax extends Base
 			FROM $wpdb->postmeta
 			WHERE meta_key = '_sku' AND meta_value  like '%$query%'
 		");
+
         return array_map(function ($result) {
+            $p_title = '';
+            if(function_exists('wc_get_product_id_by_sku') && function_exists('get_the_title')  ){
+                $p_id = wc_get_product_id_by_sku( $result->meta_value );
+                if( $p_id > 0){
+                    $p_title = $p_id.': '.get_the_title( $p_id );
+                    if(!empty($p_title)){
+                        $p_title =  'SKU: ' . $result->meta_value . ' ( ' . $p_title . ' )';
+                    }
+                }
+            }
+           if(empty( $p_title )){
+                $p_title =  'SKU: ' . $result->meta_value;
+           }
             return array(
                 'id' => (string)$result->meta_value,
-                'text' => 'SKU: ' . $result->meta_value,
+                'text' => $p_title,
             );
         }, $results);
     }
@@ -666,7 +688,7 @@ class WDRAjax extends Base
                    class="get_awdr_shipping_state append-preloaded-values edit-preloaded-values"
                    data-list="states"
                    data-field="preloaded"
-                   data-placeholder="Search State"
+                   data-placeholder="'. __('Search State', 'woo-discount-rules') .'"
                    name="conditions['.$selected_index.'][options][value][]">';
         if(!empty($selected_countries)){
             foreach ($selected_countries as $country) {
@@ -685,5 +707,27 @@ class WDRAjax extends Base
         }
         $state_options .= "</select>";
         return $state_options;
+    }
+
+    function wdr_ajax_create_rule_recipe()
+    {
+        Helper::validateRequest('common_recipe_nonce');
+        $recipes_object = new Recipes();
+        $recipes_data = $recipes_object->recipeDetails();
+        $awdr_recipe_type = isset($_POST['awdr_recipe_type']) ? $_POST['awdr_recipe_type'] : array();
+        $recipes_data_keys = array_keys($recipes_data);
+        if(in_array($awdr_recipe_type, $recipes_data_keys)){
+            $rule_data = $recipes_data[$awdr_recipe_type];
+            $rule_id = $recipes_object->save($rule_data);
+            if (!empty($rule_id)) {
+                $redirect_url = admin_url("admin.php?" . http_build_query(array('page' => WDR_SLUG, 'tab' => 'rules', 'task' => 'view', 'id' => $rule_id)));
+            } else {
+                $redirect_url = '';
+            }
+
+            wp_send_json_success(array('rule_id' => $rule_id, 'redirect' => $redirect_url, 'success' => true));
+        } else {
+            wp_send_json_error(array('message' => __('Invalid request', 'woo-discount-rules'), 'success' => false));
+        }
     }
 }

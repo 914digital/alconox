@@ -3,8 +3,8 @@ Contributors: edo888
 Author: Translate AI Multilingual Solutions
 Tags: translate, translate wordpress, multilingual, translation, translate language, bilingual, localization, translation proxy, localisation, multilanguage, google translate
 Requires at least: 2.8.1
-Tested up to: 5.6
-Stable tag: 2.8.61
+Tested up to: 5.7
+Stable tag: 2.8.62
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Donate link: https://gtranslate.io/?xyz=998#pricing
@@ -175,8 +175,7 @@ For example http://example.com/*about-us* &rarr; http://example.com/*sobre-nosot
 This is an important part of multilingual SEO strategy. When you have URL Translate option and translate also your website URLs also known us slugs, you are creating more keywords, which count as an improvement in your page rank for that keywords.
 
 = Does it translate emails too? =
-Yes, you can now translate WooCommerce emails too. Email translate feature is in beta testing stage, so if you notice any problems, please contact our live chat and let us know.
-Please note that it is possible to notice partially translated emails at the beginning, but when our system learns more about your email templates everything will be translated.
+Yes, with our paid version we can also translate WooCommerce emails.
 
 = How the free version differs from the paid versions? =
 Free vesion is a nice looking language selector you can place on your website. It has a built in Javascript engine which allows to translate your website automatically to multiple languages. With our free translate plugin your website URL doesn't change and the translations are not stored. While paid versions are a translation proxy also known as Translation Delivery Network. We host the translated versions of your website on our cloud network under a language specific domain. In that case every language will have a separate domain or separate URL and be indexed in search engines, which will help you to increase international traffic and sales.
@@ -252,6 +251,13 @@ If you want us to translate your website professionally or provide you a proofre
 8. User Dashboard
 
 == Changelog ==
+= 2.8.62 =
+* Tested with new WordPress 5.7 version
+* Fix for email translation debug
+* Avoid PHP warning suppression code
+* Autoswitch to browser language issue related to Chinese language code is fixed
+* Auto redirect to browser language issue related to Hebrew language code (he, iw) fixed
+
 = 2.8.61 =
 * Tested with new WordPress 5.6 version
 * Ground up rebuild of our Translation Proxy cloud network for paid customers, now page translations are 3x faster on average.

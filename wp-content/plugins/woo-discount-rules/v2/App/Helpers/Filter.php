@@ -101,7 +101,7 @@ class Filter
                             $processing_result = $this->compareWithAttributes($product, $values, $method, $cart_item);
                         }
                     } elseif ('product_sku' === $type) {
-                        $processing_result = $this->compareWithSku($product, $values, $method);
+                        $processing_result = $this->compareWithSku($product, $values, $method, $sale_badge);
                     } elseif ('product_on_sale' === $type) {
                         $processing_result = $this->compareWithOnSale($product, $method);
                     } elseif (in_array($type, array_keys(Woocommerce::getCustomProductTaxonomies()))) {
@@ -157,12 +157,13 @@ class Filter
      * @param $product
      * @param $operation_values
      * @param $operation_method
+     * @param $sale_badge
      * @return bool
      */
-    protected function compareWithSku($product, $operation_values, $operation_method)
+    protected function compareWithSku($product, $operation_values, $operation_method, $sale_badge=false)
     {
         $result = false;
-        $product_sku = Woocommerce::getProductSku($product);
+        $product_sku = apply_filters('advanced_woo_discount_rules_check_sku_filter', Woocommerce::getProductSku($product), $product, $operation_values, $operation_method, $sale_badge);
         if ('in_list' === $operation_method) {
             $result = (in_array($product_sku, $operation_values));
         } elseif ('not_in_list' === $operation_method) {
@@ -209,6 +210,7 @@ class Filter
                             $attr_ids = array_merge($attr_ids, Woocommerce::getAttributeOption($attr));
                     }
                 }
+                $attr_ids = apply_filters('advanced_woo_discount_rules_get_attribute_id_from_taxonomy_name', $attr_ids, $taxonomy, $product, $cart_item, $operation_values);
             }
             if(!empty($product_variation)){
                 $attributes_parent = Woocommerce::getProductAttributes($product_variation);

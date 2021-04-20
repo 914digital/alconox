@@ -1,0 +1,227 @@
+04-15-2021 @ 13:35:17 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/taxrates/byaddress?line1=&line2=&city=Pelham+Manor&region=NY&country=US&postalCode=10803
+user-agent: WooCommerce-AvaTax/1.11.2 (WooCommerce/5.1.0; WordPress/5.7)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.3064s
+
+04-15-2021 @ 13:35:17 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Thu, 15 Apr 2021 17:35:16 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 203
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0164607
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"totalRate":0.083750,"rates":[{"rate":0.040000,"name":"NY STATE TAX","type":"State"},{"rate":0.040000,"name":"NY COUNTY TAX","type":"County"},{"rate":0.003750,"name":"NY SPECIAL TAX","type":"Special"}]}
+
+04-15-2021 @ 13:35:20 - Request
+Request
+method: POST
+uri: https://rest.avatax.com/api/v2/transactions/create
+user-agent: WooCommerce-AvaTax/1.11.2 (WooCommerce/5.1.0; WordPress/5.7)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body: {"code":"","companyCode":"ALC","customerCode":"katyjsyang@gmail.com","currencyCode":"USD","date":"2021-04-15","lines":[{"number":"1d4e57d912f16d891796dc4178591cd5","itemCode":"90116","taxCode":"P0000000","description":"Ledizolv","quantity":1,"amount":21.800000000000001},{"number":"shipping_0","itemCode":"use-my-shipping-account","taxCode":"FR","description":"Use My Shipping Account","quantity":1}],"addresses":{"shipFrom":{"line1":"30 GLENN ST","line2":"","city":"WHITE PLAINS","region":"NY","country":"US","postalCode":"10603-3254"},"shipTo":{"line1":"1 Brier Lane","line2":"","city":"Pelham Manor","region":"NY","country":"US","postalCode":"10803"}},"type":"SalesOrder","commit":false}
+duration: 0.36998s
+
+04-15-2021 @ 13:35:20 - Response
+Response
+code: 201
+message: Created
+headers: Array
+(
+    [date] => Thu, 15 Apr 2021 17:35:20 GMT
+    [content-type] => application/json; charset=utf-8
+    [server] => Kestrel
+    [content-encoding] => br
+    [location] => /api/v2/companies/207925/transactions/0
+    [vary] => Accept-Encoding
+    [serverduration] => 00:00:00.0505690
+)
+body: {"id":0,"code":"60a98a61-933d-45fb-b58f-917ba4918392","companyId":207925,"date":"2021-04-15","paymentDate":"2021-04-15","status":"Temporary","type":"SalesOrder","batchCode":"","currencyCode":"USD","exchangeRateCurrencyCode":"USD","customerUsageType":"","entityUseCode":"","customerVendorCode":"katyjsyang@gmail.com","customerCode":"katyjsyang@gmail.com","exemptNo":"","reconciled":false,"locationCode":"","reportingLocationCode":"","purchaseOrderNo":"","referenceCode":"","salespersonCode":"","totalAmount":21.8,"totalExempt":0.0,"totalDiscount":0.0,"totalTax":1.82,"totalTaxable":21.8,"totalTaxCalculated":1.82,"adjustmentReason":"NotAdjusted","locked":false,"version":1,"exchangeRateEffectiveDate":"2021-04-15","exchangeRate":1.0,"modifiedDate":"2021-04-15T17:35:20.259235Z","modifiedUserId":231879,"taxDate":"2021-04-15T00:00:00Z","lines":[{"id":0,"transactionId":0,"lineNumber":"1d4e57d912f16d891796dc4178591cd5","customerUsageType":"","entityUseCode":"","description":"Ledizolv","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"itemCode":"90116","lineAmount":21.800000000000001,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-04-15","tax":1.82,"taxableAmount":21.8,"taxCalculated":1.82,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-04-15","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"36","jurisName":"NEW YORK","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.040000,"tax":0.87,"taxableAmount":21.8,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxCalculated":0.87,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":21.8,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.87,"reportingTaxCalculated":0.87,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"119","jurisName":"WESTCHESTER","stateAssignedNo":"WE 5581","jurisType":"CTY","jurisdictionType":"County","nonTaxableAmount":0.0,"rate":0.040000,"tax":0.87,"taxableAmount":21.8,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY COUNTY TAX","taxAuthorityTypeId":45,"taxCalculated":0.87,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":21.8,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.87,"reportingTaxCalculated":0.87,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"359080","jurisName":"WESTCHESTER CO TRANSIT DISTRICT","stateAssignedNo":"WE 5581","jurisType":"STJ","jurisdictionType":"Special","nonTaxableAmount":0.0,"rate":0.003750,"tax":0.08,"taxableAmount":21.8,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY SPECIAL TAX","taxAuthorityTypeId":45,"taxCalculated":0.08,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":21.8,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.08,"reportingTaxCalculated":0.08,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":0,"transactionId":0,"lineNumber":"shipping_0","customerUsageType":"","entityUseCode":"","description":"Use My Shipping Account","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":false,"itemCode":"use-my-shipping-account","lineAmount":0.0,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-04-15","tax":0.0,"taxableAmount":0.0,"taxCalculated":0.0,"taxCode":"FR","taxCodeId":7119,"taxDate":"2021-04-15","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"36","jurisName":"NEW YORK","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.040000,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"119","jurisName":"WESTCHESTER","stateAssignedNo":"WE 5581","jurisType":"CTY","jurisdictionType":"County","nonTaxableAmount":0.0,"rate":0.040000,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY COUNTY TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"359080","jurisName":"WESTCHESTER CO TRANSIT DISTRICT","stateAssignedNo":"WE 5581","jurisType":"STJ","jurisdictionType":"Special","nonTaxableAmount":0.0,"rate":0.003750,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY SPECIAL TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0}],"addresses":[{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"1 Brier Lane","line2":"","line3":"","city":"Pelham Manor","region":"NY","postalCode":"10803","country":"US","taxRegionId":4003975,"latitude":"40.894531","longitude":"-73.815853"},{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"30 GLENN ST","line2":"","line3":"","city":"WHITE PLAINS","region":"NY","postalCode":"10603-3254","country":"US","taxRegionId":2090237,"latitude":"41.050608","longitude":"-73.771383"}],"summary":[{"country":"US","region":"NY","jurisType":"State","jurisCode":"36","jurisName":"NEW YORK","taxAuthorityType":45,"stateAssignedNo":"","taxType":"Sales","taxSubType":"S","taxName":"NY STATE TAX","rateType":"General","taxable":21.8,"rate":0.040000,"tax":0.87,"taxCalculated":0.87,"nonTaxable":0.0,"exemption":0.0},{"country":"US","region":"NY","jurisType":"County","jurisCode":"119","jurisName":"WESTCHESTER","taxAuthorityType":45,"stateAssignedNo":"WE 5581","taxType":"Sales","taxSubType":"S","taxName":"NY COUNTY TAX","rateType":"General","taxable":21.8,"rate":0.040000,"tax":0.87,"taxCalculated":0.87,"nonTaxable":0.0,"exemption":0.0},{"country":"US","region":"NY","jurisType":"Special","jurisCode":"359080","jurisName":"WESTCHESTER CO TRANSIT DISTRICT","taxAuthorityType":45,"stateAssignedNo":"WE 5581","taxType":"Sales","taxSubType":"S","taxName":"NY SPECIAL TAX","rateType":"General","taxable":21.8,"rate":0.003750,"tax":0.08,"taxCalculated":0.08,"nonTaxable":0.0,"exemption":0.0}]}
+
+04-15-2021 @ 13:36:07 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/taxrates/byaddress?line1=&line2=&city=Pelham+Manor&region=NY&country=US&postalCode=10803
+user-agent: WooCommerce-AvaTax/1.11.2 (WooCommerce/5.1.0; WordPress/5.7)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.3045s
+
+04-15-2021 @ 13:36:07 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Thu, 15 Apr 2021 17:36:07 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 203
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0012080
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"totalRate":0.083750,"rates":[{"rate":0.040000,"name":"NY STATE TAX","type":"State"},{"rate":0.040000,"name":"NY COUNTY TAX","type":"County"},{"rate":0.003750,"name":"NY SPECIAL TAX","type":"Special"}]}
+
+04-15-2021 @ 13:36:07 - Request
+Request
+method: POST
+uri: https://rest.avatax.com/api/v2/transactions/create
+user-agent: WooCommerce-AvaTax/1.11.2 (WooCommerce/5.1.0; WordPress/5.7)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body: {"code":"","companyCode":"ALC","customerCode":"katyjsyang@gmail.com","currencyCode":"USD","date":"2021-04-15","lines":[{"number":"1d4e57d912f16d891796dc4178591cd5","itemCode":"90116","taxCode":"P0000000","description":"Ledizolv","quantity":1,"amount":21.800000000000001},{"number":"shipping_0","itemCode":"pt-ups-merger:6:03","taxCode":"FR","description":"Ground (UPS)","quantity":1,"amount":15.699999999999999}],"addresses":{"shipFrom":{"line1":"30 GLENN ST","line2":"","city":"WHITE PLAINS","region":"NY","country":"US","postalCode":"10603-3254"},"shipTo":{"line1":"1 Brier Lane","line2":"","city":"Pelham Manor","region":"NY","country":"US","postalCode":"10803"}},"type":"SalesOrder","commit":false}
+duration: 0.34905s
+
+04-15-2021 @ 13:36:07 - Response
+Response
+code: 201
+message: Created
+headers: Array
+(
+    [date] => Thu, 15 Apr 2021 17:36:07 GMT
+    [content-type] => application/json; charset=utf-8
+    [server] => Kestrel
+    [content-encoding] => br
+    [location] => /api/v2/companies/207925/transactions/0
+    [vary] => Accept-Encoding
+    [serverduration] => 00:00:00.0537728
+)
+body: {"id":0,"code":"e75fa958-f562-4591-ad77-0b420655abb8","companyId":207925,"date":"2021-04-15","paymentDate":"2021-04-15","status":"Temporary","type":"SalesOrder","batchCode":"","currencyCode":"USD","exchangeRateCurrencyCode":"USD","customerUsageType":"","entityUseCode":"","customerVendorCode":"katyjsyang@gmail.com","customerCode":"katyjsyang@gmail.com","exemptNo":"","reconciled":false,"locationCode":"","reportingLocationCode":"","purchaseOrderNo":"","referenceCode":"","salespersonCode":"","totalAmount":37.5,"totalExempt":15.7,"totalDiscount":0.0,"totalTax":1.82,"totalTaxable":21.8,"totalTaxCalculated":1.82,"adjustmentReason":"NotAdjusted","locked":false,"version":1,"exchangeRateEffectiveDate":"2021-04-15","exchangeRate":1.0,"modifiedDate":"2021-04-15T17:36:07.8854341Z","modifiedUserId":231879,"taxDate":"2021-04-15T00:00:00Z","lines":[{"id":0,"transactionId":0,"lineNumber":"1d4e57d912f16d891796dc4178591cd5","customerUsageType":"","entityUseCode":"","description":"Ledizolv","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"itemCode":"90116","lineAmount":21.800000000000001,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-04-15","tax":1.82,"taxableAmount":21.8,"taxCalculated":1.82,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-04-15","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"36","jurisName":"NEW YORK","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.040000,"tax":0.87,"taxableAmount":21.8,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxCalculated":0.87,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":21.8,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.87,"reportingTaxCalculated":0.87,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"119","jurisName":"WESTCHESTER","stateAssignedNo":"WE 5581","jurisType":"CTY","jurisdictionType":"County","nonTaxableAmount":0.0,"rate":0.040000,"tax":0.87,"taxableAmount":21.8,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY COUNTY TAX","taxAuthorityTypeId":45,"taxCalculated":0.87,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":21.8,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.87,"reportingTaxCalculated":0.87,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"359080","jurisName":"WESTCHESTER CO TRANSIT DISTRICT","stateAssignedNo":"WE 5581","jurisType":"STJ","jurisdictionType":"Special","nonTaxableAmount":0.0,"rate":0.003750,"tax":0.08,"taxableAmount":21.8,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY SPECIAL TAX","taxAuthorityTypeId":45,"taxCalculated":0.08,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":21.8,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.08,"reportingTaxCalculated":0.08,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":0,"transactionId":0,"lineNumber":"shipping_0","customerUsageType":"","entityUseCode":"","description":"Ground (UPS)","discountAmount":0.0,"exemptAmount":15.7,"exemptCertId":0,"exemptNo":"","isItemTaxable":false,"itemCode":"pt-ups-merger:6:03","lineAmount":15.699999999999999,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-04-15","tax":0.0,"taxableAmount":0.0,"taxCalculated":0.0,"taxCode":"FR","taxCodeId":7119,"taxDate":"2021-04-15","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"36","jurisName":"NEW YORK","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":15.7,"rate":0.040000,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":15.7,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"119","jurisName":"WESTCHESTER","stateAssignedNo":"WE 5581","jurisType":"CTY","jurisdictionType":"County","nonTaxableAmount":15.7,"rate":0.040000,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY COUNTY TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":15.7,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"359080","jurisName":"WESTCHESTER CO TRANSIT DISTRICT","stateAssignedNo":"WE 5581","jurisType":"STJ","jurisdictionType":"Special","nonTaxableAmount":15.7,"rate":0.003750,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY SPECIAL TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":15.7,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0}],"addresses":[{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"1 Brier Lane","line2":"","line3":"","city":"Pelham Manor","region":"NY","postalCode":"10803","country":"US","taxRegionId":4003975,"latitude":"40.894531","longitude":"-73.815853"},{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"30 GLENN ST","line2":"","line3":"","city":"WHITE PLAINS","region":"NY","postalCode":"10603-3254","country":"US","taxRegionId":2090237,"latitude":"41.050608","longitude":"-73.771383"}],"summary":[{"country":"US","region":"NY","jurisType":"State","jurisCode":"36","jurisName":"NEW YORK","taxAuthorityType":45,"stateAssignedNo":"","taxType":"Sales","taxSubType":"S","taxName":"NY STATE TAX","rateType":"General","taxable":21.8,"rate":0.040000,"tax":0.87,"taxCalculated":0.87,"nonTaxable":15.7,"exemption":0.0},{"country":"US","region":"NY","jurisType":"County","jurisCode":"119","jurisName":"WESTCHESTER","taxAuthorityType":45,"stateAssignedNo":"WE 5581","taxType":"Sales","taxSubType":"S","taxName":"NY COUNTY TAX","rateType":"General","taxable":21.8,"rate":0.040000,"tax":0.87,"taxCalculated":0.87,"nonTaxable":15.7,"exemption":0.0},{"country":"US","region":"NY","jurisType":"Special","jurisCode":"359080","jurisName":"WESTCHESTER CO TRANSIT DISTRICT","taxAuthorityType":45,"stateAssignedNo":"WE 5581","taxType":"Sales","taxSubType":"S","taxName":"NY SPECIAL TAX","rateType":"General","taxable":21.8,"rate":0.003750,"tax":0.08,"taxCalculated":0.08,"nonTaxable":15.7,"exemption":0.0}]}
+
+04-15-2021 @ 13:37:50 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/taxrates/byaddress?line1=&line2=&city=Pelham+Manor&region=NY&country=US&postalCode=10803
+user-agent: WooCommerce-AvaTax/1.11.2 (WooCommerce/5.1.0; WordPress/5.7)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.29885s
+
+04-15-2021 @ 13:37:50 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Thu, 15 Apr 2021 17:37:50 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 203
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0014297
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"totalRate":0.083750,"rates":[{"rate":0.040000,"name":"NY STATE TAX","type":"State"},{"rate":0.040000,"name":"NY COUNTY TAX","type":"County"},{"rate":0.003750,"name":"NY SPECIAL TAX","type":"Special"}]}
+
+04-15-2021 @ 13:37:50 - Request
+Request
+method: POST
+uri: https://rest.avatax.com/api/v2/transactions/create
+user-agent: WooCommerce-AvaTax/1.11.2 (WooCommerce/5.1.0; WordPress/5.7)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body: {"code":"","companyCode":"ALC","customerCode":"katyjsyang@gmail.com","currencyCode":"USD","date":"2021-04-15","lines":[{"number":"1d4e57d912f16d891796dc4178591cd5","itemCode":"90116","taxCode":"P0000000","description":"Ledizolv","quantity":1,"amount":21.800000000000001},{"number":"shipping_0","itemCode":"pt-ups-merger:6:03","taxCode":"FR","description":"Ground (UPS)","quantity":1,"amount":15.699999999999999}],"addresses":{"shipFrom":{"line1":"30 GLENN ST","line2":"","city":"WHITE PLAINS","region":"NY","country":"US","postalCode":"10603-3254"},"shipTo":{"line1":"1 Brier Lane","line2":"","city":"Pelham Manor","region":"NY","country":"US","postalCode":"10803"}},"type":"SalesOrder","commit":false}
+duration: 0.34132s
+
+04-15-2021 @ 13:37:50 - Response
+Response
+code: 201
+message: Created
+headers: Array
+(
+    [date] => Thu, 15 Apr 2021 17:37:50 GMT
+    [content-type] => application/json; charset=utf-8
+    [server] => Kestrel
+    [content-encoding] => br
+    [location] => /api/v2/companies/207925/transactions/0
+    [vary] => Accept-Encoding
+    [serverduration] => 00:00:00.0541818
+)
+body: {"id":0,"code":"6398f3f5-cd74-4209-9039-99ad2411269e","companyId":207925,"date":"2021-04-15","paymentDate":"2021-04-15","status":"Temporary","type":"SalesOrder","batchCode":"","currencyCode":"USD","exchangeRateCurrencyCode":"USD","customerUsageType":"","entityUseCode":"","customerVendorCode":"katyjsyang@gmail.com","customerCode":"katyjsyang@gmail.com","exemptNo":"","reconciled":false,"locationCode":"","reportingLocationCode":"","purchaseOrderNo":"","referenceCode":"","salespersonCode":"","totalAmount":37.5,"totalExempt":15.7,"totalDiscount":0.0,"totalTax":1.82,"totalTaxable":21.8,"totalTaxCalculated":1.82,"adjustmentReason":"NotAdjusted","locked":false,"version":1,"exchangeRateEffectiveDate":"2021-04-15","exchangeRate":1.0,"modifiedDate":"2021-04-15T17:37:50.7193317Z","modifiedUserId":231879,"taxDate":"2021-04-15T00:00:00Z","lines":[{"id":0,"transactionId":0,"lineNumber":"1d4e57d912f16d891796dc4178591cd5","customerUsageType":"","entityUseCode":"","description":"Ledizolv","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"itemCode":"90116","lineAmount":21.800000000000001,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-04-15","tax":1.82,"taxableAmount":21.8,"taxCalculated":1.82,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-04-15","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"36","jurisName":"NEW YORK","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.040000,"tax":0.87,"taxableAmount":21.8,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxCalculated":0.87,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":21.8,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.87,"reportingTaxCalculated":0.87,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"119","jurisName":"WESTCHESTER","stateAssignedNo":"WE 5581","jurisType":"CTY","jurisdictionType":"County","nonTaxableAmount":0.0,"rate":0.040000,"tax":0.87,"taxableAmount":21.8,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY COUNTY TAX","taxAuthorityTypeId":45,"taxCalculated":0.87,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":21.8,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.87,"reportingTaxCalculated":0.87,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"359080","jurisName":"WESTCHESTER CO TRANSIT DISTRICT","stateAssignedNo":"WE 5581","jurisType":"STJ","jurisdictionType":"Special","nonTaxableAmount":0.0,"rate":0.003750,"tax":0.08,"taxableAmount":21.8,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY SPECIAL TAX","taxAuthorityTypeId":45,"taxCalculated":0.08,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":21.8,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.08,"reportingTaxCalculated":0.08,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":0,"transactionId":0,"lineNumber":"shipping_0","customerUsageType":"","entityUseCode":"","description":"Ground (UPS)","discountAmount":0.0,"exemptAmount":15.7,"exemptCertId":0,"exemptNo":"","isItemTaxable":false,"itemCode":"pt-ups-merger:6:03","lineAmount":15.699999999999999,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-04-15","tax":0.0,"taxableAmount":0.0,"taxCalculated":0.0,"taxCode":"FR","taxCodeId":7119,"taxDate":"2021-04-15","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"36","jurisName":"NEW YORK","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":15.7,"rate":0.040000,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":15.7,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"119","jurisName":"WESTCHESTER","stateAssignedNo":"WE 5581","jurisType":"CTY","jurisdictionType":"County","nonTaxableAmount":15.7,"rate":0.040000,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY COUNTY TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":15.7,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"359080","jurisName":"WESTCHESTER CO TRANSIT DISTRICT","stateAssignedNo":"WE 5581","jurisType":"STJ","jurisdictionType":"Special","nonTaxableAmount":15.7,"rate":0.003750,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY SPECIAL TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":15.7,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0}],"addresses":[{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"1 Brier Lane","line2":"","line3":"","city":"Pelham Manor","region":"NY","postalCode":"10803","country":"US","taxRegionId":4003975,"latitude":"40.894531","longitude":"-73.815853"},{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"30 GLENN ST","line2":"","line3":"","city":"WHITE PLAINS","region":"NY","postalCode":"10603-3254","country":"US","taxRegionId":2090237,"latitude":"41.050608","longitude":"-73.771383"}],"summary":[{"country":"US","region":"NY","jurisType":"State","jurisCode":"36","jurisName":"NEW YORK","taxAuthorityType":45,"stateAssignedNo":"","taxType":"Sales","taxSubType":"S","taxName":"NY STATE TAX","rateType":"General","taxable":21.8,"rate":0.040000,"tax":0.87,"taxCalculated":0.87,"nonTaxable":15.7,"exemption":0.0},{"country":"US","region":"NY","jurisType":"County","jurisCode":"119","jurisName":"WESTCHESTER","taxAuthorityType":45,"stateAssignedNo":"WE 5581","taxType":"Sales","taxSubType":"S","taxName":"NY COUNTY TAX","rateType":"General","taxable":21.8,"rate":0.040000,"tax":0.87,"taxCalculated":0.87,"nonTaxable":15.7,"exemption":0.0},{"country":"US","region":"NY","jurisType":"Special","jurisCode":"359080","jurisName":"WESTCHESTER CO TRANSIT DISTRICT","taxAuthorityType":45,"stateAssignedNo":"WE 5581","taxType":"Sales","taxSubType":"S","taxName":"NY SPECIAL TAX","rateType":"General","taxable":21.8,"rate":0.003750,"tax":0.08,"taxCalculated":0.08,"nonTaxable":15.7,"exemption":0.0}]}
+
+04-15-2021 @ 13:37:56 - Request
+Request
+method: POST
+uri: https://rest.avatax.com/api/v2/transactions/create
+user-agent: WooCommerce-AvaTax/1.11.2 (WooCommerce/5.1.0; WordPress/5.7)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body: {"code":"wc_order_cBjAf1GpVY6zw","companyCode":"ALC","customerCode":"katyjsyang@gmail.com","currencyCode":"USD","date":"2021-04-15","lines":[{"number":23579,"itemCode":"90116","taxCode":"P0000000","description":"Ledizolv","quantity":1,"amount":21.800000000000001},{"number":"shipping_23580","itemCode":"pt-ups-merger","taxCode":"FR","description":"Ground (UPS)","quantity":1,"amount":15.699999999999999}],"addresses":{"shipFrom":{"line1":"30 GLENN ST","line2":"","city":"WHITE PLAINS","region":"NY","country":"US","postalCode":"10603-3254"},"shipTo":{"line1":"1 Brier Lane","line2":"","city":"Pelham Manor","region":"NY","country":"US","postalCode":"10803"}},"type":"SalesInvoice","purchaseOrderNo":"21406","commit":true}
+duration: 0.37888s
+
+04-15-2021 @ 13:37:56 - Response
+Response
+code: 201
+message: Created
+headers: Array
+(
+    [date] => Thu, 15 Apr 2021 17:37:56 GMT
+    [content-type] => application/json; charset=utf-8
+    [server] => Kestrel
+    [content-encoding] => br
+    [location] => /api/v2/companies/207925/transactions/2001508463414
+    [vary] => Accept-Encoding
+    [serverduration] => 00:00:00.0869753
+)
+body: {"id":2001508463414,"code":"wc_order_cBjAf1GpVY6zw","companyId":207925,"date":"2021-04-15","status":"Committed","type":"SalesInvoice","batchCode":"","currencyCode":"USD","exchangeRateCurrencyCode":"USD","customerUsageType":"","entityUseCode":"","customerVendorCode":"katyjsyang@gmail.com","customerCode":"katyjsyang@gmail.com","exemptNo":"","reconciled":false,"locationCode":"","reportingLocationCode":"","purchaseOrderNo":"21406","referenceCode":"","salespersonCode":"","taxOverrideType":"None","taxOverrideAmount":0.0,"taxOverrideReason":"","totalAmount":37.5,"totalExempt":15.7,"totalDiscount":0.0,"totalTax":1.82,"totalTaxable":21.8,"totalTaxCalculated":1.82,"adjustmentReason":"NotAdjusted","adjustmentDescription":"","locked":false,"region":"NY","country":"US","version":1,"softwareVersion":"21.4.1.0","originAddressId":5002245718476,"destinationAddressId":3002743620492,"exchangeRateEffectiveDate":"2021-04-15","exchangeRate":1.0,"description":"","email":"","businessIdentificationNo":"","modifiedDate":"2021-04-15T17:37:56.2836635Z","modifiedUserId":231879,"taxDate":"2021-04-15T00:00:00Z","lines":[{"id":3004669974597,"transactionId":2001508463414,"lineNumber":"23579","boundaryOverrideId":0,"customerUsageType":"","entityUseCode":"","description":"Ledizolv","destinationAddressId":3002743620492,"originAddressId":5002245718476,"discountAmount":0.0,"discountTypeId":0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"isSSTP":false,"itemCode":"90116","lineAmount":21.8,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-04-15","revAccount":"","sourcing":"Destination","tax":1.8200,"taxableAmount":21.8,"taxCalculated":1.8200,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-04-15","taxEngine":"","taxOverrideType":"None","businessIdentificationNo":"","taxOverrideAmount":0.0,"taxOverrideReason":"","taxIncluded":false,"details":[{"id":5004478207877,"transactionLineId":3004669974597,"transactionId":2001508463414,"addressId":3002743620492,"country":"US","region":"NY","countyFIPS":"","stateFIPS":"","exemptAmount":0.0000,"exemptReasonId":4,"inState":true,"jurisCode":"36","jurisName":"NEW YORK","jurisdictionId":42,"signatureCode":"BFEQ","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0000,"nonTaxableRuleId":0,"nonTaxableType":"RateRule","rate":0.040000,"rateRuleId":1434148,"rateSourceId":3,"serCode":"","sourcing":"Destination","tax":0.8700,"taxableAmount":21.8000,"taxType":"Sales","taxSubTypeId":"S","taxTypeGroupId":"SalesAndUse","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxRegionId":4003975,"taxCalculated":0.8700,"taxOverride":0.0000,"rateType":"General","rateTypeCode":"G","taxableUnits":21.8000,"nonTaxableUnits":0.0000,"exemptUnits":0.0000,"unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":21.8,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.87,"reportingTaxCalculated":0.87,"liabilityType":"Seller"},{"id":6004478207876,"transactionLineId":3004669974597,"transactionId":2001508463414,"addressId":3002743620492,"country":"US","region":"NY","countyFIPS":"","stateFIPS":"","exemptAmount":0.0000,"exemptReasonId":4,"inState":true,"jurisCode":"119","jurisName":"WESTCHESTER","jurisdictionId":1904,"signatureCode":"BHQB","stateAssignedNo":"WE 5581","jurisType":"CTY","jurisdictionType":"County","nonTaxableAmount":0.0000,"nonTaxableRuleId":0,"nonTaxableType":"RateRule","rate":0.040000,"rateRuleId":1624780,"rateSourceId":3,"serCode":"","sourcing":"Destination","tax":0.8700,"taxableAmount":21.8000,"taxType":"Sales","taxSubTypeId":"S","taxTypeGroupId":"SalesAndUse","taxName":"NY COUNTY TAX","taxAuthorityTypeId":45,"taxRegionId":4003975,"taxCalculated":0.8700,"taxOverride":0.0000,"rateType":"General","rateTypeCode":"G","taxableUnits":21.8000,"nonTaxableUnits":0.0000,"exemptUnits":0.0000,"unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":21.8,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.87,"reportingTaxCalculated":0.87,"liabilityType":"Seller"},{"id":9003400972504,"transactionLineId":3004669974597,"transactionId":2001508463414,"addressId":3002743620492,"country":"US","region":"NY","countyFIPS":"","stateFIPS":"","exemptAmount":0.0000,"exemptReasonId":4,"inState":true,"jurisCode":"359080","jurisName":"WESTCHESTER CO TRANSIT DISTRICT","jurisdictionId":359080,"signatureCode":"BHQC","stateAssignedNo":"WE 5581","jurisType":"STJ","jurisdictionType":"Special","nonTaxableAmount":0.0000,"nonTaxableRuleId":0,"nonTaxableType":"RateRule","rate":0.003750,"rateRuleId":1434128,"rateSourceId":3,"serCode":"","sourcing":"Destination","tax":0.0800,"taxableAmount":21.8000,"taxType":"Sales","taxSubTypeId":"S","taxTypeGroupId":"SalesAndUse","taxName":"NY SPECIAL TAX","taxAuthorityTypeId":45,"taxRegionId":4003975,"taxCalculated":0.0800,"taxOverride":0.0000,"rateType":"General","rateTypeCode":"G","taxableUnits":21.8000,"nonTaxableUnits":0.0000,"exemptUnits":0.0000,"unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":21.8,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.08,"reportingTaxCalculated":0.08,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"lineLocationTypes":[{"documentLineLocationTypeId":9003223620553,"documentLineId":3004669974597,"documentAddressId":5002245718476,"locationTypeCode":"ShipFrom"},{"documentLineLocationTypeId":10003223620553,"documentLineId":3004669974597,"documentAddressId":3002743620492,"locationTypeCode":"ShipTo"}],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":4004669974600,"transactionId":2001508463414,"lineNumber":"shipping_23580","boundaryOverrideId":0,"customerUsageType":"","entityUseCode":"","description":"Ground (UPS)","destinationAddressId":3002743620492,"originAddressId":5002245718476,"discountAmount":0.0,"discountTypeId":0,"exemptAmount":15.7,"exemptCertId":0,"exemptNo":"","isItemTaxable":false,"isSSTP":false,"itemCode":"pt-ups-merger","lineAmount":15.7,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-04-15","revAccount":"","sourcing":"Destination","tax":0.0000,"taxableAmount":0.0,"taxCalculated":0.0000,"taxCode":"FR","taxCodeId":7119,"taxDate":"2021-04-15","taxEngine":"","taxOverrideType":"None","businessIdentificationNo":"","taxOverrideAmount":0.0,"taxOverrideReason":"","taxIncluded":false,"details":[{"id":3004478207878,"transactionLineId":4004669974600,"transactionId":2001508463414,"addressId":3002743620492,"country":"US","region":"NY","countyFIPS":"","stateFIPS":"","exemptAmount":0.0000,"exemptReasonId":5,"inState":true,"jurisCode":"36","jurisName":"NEW YORK","jurisdictionId":42,"signatureCode":"BFEQ","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":15.7000,"nonTaxableRuleId":5594534,"nonTaxableType":"ProductTaxabilityRule","rate":0.040000,"rateRuleId":1434148,"rateSourceId":3,"serCode":"","sourcing":"Destination","tax":0.0000,"taxableAmount":0.0000,"taxType":"Sales","taxSubTypeId":"S","taxTypeGroupId":"SalesAndUse","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxRegionId":4003975,"taxCalculated":0.0000,"taxOverride":0.0000,"rateType":"General","rateTypeCode":"G","taxableUnits":0.0000,"nonTaxableUnits":15.7000,"exemptUnits":0.0000,"unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":15.7,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"},{"id":4004478207879,"transactionLineId":4004669974600,"transactionId":2001508463414,"addressId":3002743620492,"country":"US","region":"NY","countyFIPS":"","stateFIPS":"","exemptAmount":0.0000,"exemptReasonId":5,"inState":true,"jurisCode":"119","jurisName":"WESTCHESTER","jurisdictionId":1904,"signatureCode":"BHQB","stateAssignedNo":"WE 5581","jurisType":"CTY","jurisdictionType":"County","nonTaxableAmount":15.7000,"nonTaxableRuleId":5594534,"nonTaxableType":"ProductTaxabilityRule","rate":0.040000,"rateRuleId":1624780,"rateSourceId":3,"serCode":"","sourcing":"Destination","tax":0.0000,"taxableAmount":0.0000,"taxType":"Sales","taxSubTypeId":"S","taxTypeGroupId":"SalesAndUse","taxName":"NY COUNTY TAX","taxAuthorityTypeId":45,"taxRegionId":4003975,"taxCalculated":0.0000,"taxOverride":0.0000,"rateType":"General","rateTypeCode":"G","taxableUnits":0.0000,"nonTaxableUnits":15.7000,"exemptUnits":0.0000,"unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":15.7,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"},{"id":5004478207878,"transactionLineId":4004669974600,"transactionId":2001508463414,"addressId":3002743620492,"country":"US","region":"NY","countyFIPS":"","stateFIPS":"","exemptAmount":0.0000,"exemptReasonId":5,"inState":true,"jurisCode":"359080","jurisName":"WESTCHESTER CO TRANSIT DISTRICT","jurisdictionId":359080,"signatureCode":"BHQC","stateAssignedNo":"WE 5581","jurisType":"STJ","jurisdictionType":"Special","nonTaxableAmount":15.7000,"nonTaxableRuleId":5594534,"nonTaxableType":"ProductTaxabilityRule","rate":0.003750,"rateRuleId":1434128,"rateSourceId":3,"serCode":"","sourcing":"Destination","tax":0.0000,"taxableAmount":0.0000,"taxType":"Sales","taxSubTypeId":"S","taxTypeGroupId":"SalesAndUse","taxName":"NY SPECIAL TAX","taxAuthorityTypeId":45,"taxRegionId":4003975,"taxCalculated":0.0000,"taxOverride":0.0000,"rateType":"General","rateTypeCode":"G","taxableUnits":0.0000,"nonTaxableUnits":15.7000,"exemptUnits":0.0000,"unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":15.7,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"lineLocationTypes":[{"documentLineLocationTypeId":9003223620554,"documentLineId":4004669974600,"documentAddressId":5002245718476,"locationTypeCode":"ShipFrom"},{"documentLineLocationTypeId":11003223620554,"documentLineId":4004669974600,"documentAddressId":3002743620492,"locationTypeCode":"ShipTo"}],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0}],"addresses":[{"id":3002743620492,"transactionId":2001508463414,"boundaryLevel":"Address","line1":"1 BRIER LN","line2":"","line3":"","city":"PELHAM","region":"NY","postalCode":"10803-2615","country":"US","taxRegionId":4003975,"latitude":"40.894531","longitude":"-73.815853"},{"id":5002245718476,"transactionId":2001508463414,"boundaryLevel":"Address","line1":"30 GLENN ST","line2":"","line3":"","city":"WHITE PLAINS","region":"NY","postalCode":"10603-3254","country":"US","taxRegionId":2090237,"latitude":"41.050608","longitude":"-73.771383"}],"locationTypes":[{"documentLocationTypeId":5002018207596,"documentId":2001508463414,"documentAddressId":5002245718476,"locationTypeCode":"ShipFrom"},{"documentLocationTypeId":6002018207596,"documentId":2001508463414,"documentAddressId":3002743620492,"locationTypeCode":"ShipTo"}],"summary":[{"country":"US","region":"NY","jurisType":"State","jurisCode":"36","jurisName":"NEW YORK","taxAuthorityType":45,"stateAssignedNo":"","taxType":"Sales","taxSubType":"S","taxName":"NY STATE TAX","rateType":"General","taxable":21.80,"rate":0.040000,"tax":0.87,"taxCalculated":0.87,"nonTaxable":15.70,"exemption":0.00},{"country":"US","region":"NY","jurisType":"County","jurisCode":"119","jurisName":"WESTCHESTER","taxAuthorityType":45,"stateAssignedNo":"WE 5581","taxType":"Sales","taxSubType":"S","taxName":"NY COUNTY TAX","rateType":"General","taxable":21.80,"rate":0.040000,"tax":0.87,"taxCalculated":0.87,"nonTaxable":15.70,"exemption":0.00},{"country":"US","region":"NY","jurisType":"Special","jurisCode":"359080","jurisName":"WESTCHESTER CO TRANSIT DISTRICT","taxAuthorityType":45,"stateAssignedNo":"WE 5581","taxType":"Sales","taxSubType":"S","taxName":"NY SPECIAL TAX","rateType":"General","taxable":21.80,"rate":0.003750,"tax":0.08,"taxCalculated":0.08,"nonTaxable":15.70,"exemption":0.00}]}
+

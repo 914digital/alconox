@@ -417,7 +417,7 @@ class AgileStoreLocator_Admin {
 				'description_2'	=> $form_data['description_2'],
 				'logo_id'			=> $form_data['logo_id'],
 				'marker_id'		=> $form_data['marker_id'],
-				'states'				=> $form_data['states'],		// Custom DDL
+				'states'				=> isset($form_data['states'])? $form_data['states']: '',		// Custom DDL
 				'countries'			=> $form_data['countries'], // Custom DDL
 				'custom'			=> $form_data['custom'],
 				/*'start_time'	=> $form_data['start_time'],
@@ -437,13 +437,11 @@ class AgileStoreLocator_Admin {
 		$sql = "DELETE FROM ".ASL_PREFIX."stores_categories WHERE store_id = ".sanitize_text_field($update_id);
 		$wpdb->query($sql);
 
-			if(is_array($_REQUEST['category']))
+			if(isset($_REQUEST['category']) && is_array($_REQUEST['category']))
 			foreach ($_REQUEST['category'] as $category) {	
 
-			$wpdb->insert(ASL_PREFIX.'stores_categories', 
-			 	array('store_id'=>$update_id,'category_id'=>$category),
-			 	array('%s','%s'));	
-		}
+				$wpdb->insert(ASL_PREFIX.'stores_categories',  array('store_id'=>$update_id,'category_id'=>$category),array('%s','%s'));	
+			}
 
 
 		/*

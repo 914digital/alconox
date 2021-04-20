@@ -1118,6 +1118,7 @@ tr.awdr-listing-rule-tr td {
 }
 #wpfooter{
     position: relative;
+    z-index: -1;
 }
 .wdr-buyx-gety-discount-inner{
     padding: 5px;
@@ -1432,5 +1433,69 @@ div.wdr {
 }
 .awdr_promotion_message_display_pages .select2-search__field{
     width: 225% !important;
+}
+
+.awdr_recipe_container{
+    background-color: #ffffff;
+    display: flex;
+    padding: 10px;
+}
+.awdr_recipe_left {
+    float: left;
+    width: 19%;
+    background-color: #FFFFFF;
+    padding: 10px 10px 0px 10px;
+}
+.awdr_recipe_right {
+    width: 80%;
+    float: left;
+    /*background-color: #f3f1f1;*/
+    margin: 21px;
+}
+div.awdr_recipe_main_card{
+    cursor: pointer;
+}
+.awdr_recipe_main_card {
+    /*box-shadow: 0 4px 8px 0 rgba(100,149,237,1);*/
+    transition: 0.3s;
+    width: 100%;
+    border-radius: 5px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: 1px solid #6495ed;
+
+}
+.awdr_recipe_main_card:first-child{
+    background-color: #6495ed;
+    color: #ffffff;
+}
+.awdr_recipe_main_card div{
+    padding: 2px 16px;
+    border-radius: 5px;
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.awdr_common_border_class{
+    padding: 10px;
+    margin: 10px;
+    border: 1px solid #6495ed;
+    border-radius: 5px;
+}
+
+.awdr_recipe_main_content .button {
+    background-color: #6495ed;
+    border: none;
+    color: white;
+    padding: 0px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-left: 10px;
 }
 

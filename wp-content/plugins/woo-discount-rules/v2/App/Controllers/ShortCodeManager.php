@@ -360,6 +360,19 @@ class ShortCodeManager extends ManageDiscount
                         $query_arguments['post__in'] = $onsale_list['list'];
                     }
                 }
+                if(apply_filters('advanced_woo_discount_rules_exclude_out_of_stock_product_on_sale_page', false)){
+                    $exclude_out_of_stock = array('meta_query' => array(
+                        array(
+                            'key' => '_stock_status',
+                            'value' => 'instock'
+                        ),
+                        array(
+                            'key' => '_backorders',
+                            'value' => 'no'
+                        ),
+                    ));
+                    $query_arguments = array_merge($query_arguments, $exclude_out_of_stock);
+                }
             } else {
                 $query_arguments = array();
             }

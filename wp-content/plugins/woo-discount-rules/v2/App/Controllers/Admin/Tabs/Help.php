@@ -5,7 +5,7 @@ if (!defined('ABSPATH')) exit;
 
 class Help extends Base
 {
-    public $priority = 50;
+    public $priority = 60;
     protected $tab = 'help';
 
     /**

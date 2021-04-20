@@ -15,7 +15,7 @@ class DBTable
 
     function createDBTables()
     {
-        global $wpdb;
+        /*global $wpdb;
         if (is_multisite()) {
             // get ids of all sites
             $blog_table = $wpdb->blogs;
@@ -26,10 +26,10 @@ class DBTable
                 $this->createTable();
                 restore_current_blog();
             }
-        } else {
+        } else {*/
             // activated on a single site
             $this->createTable();
-        }
+        /*}*/
     }
 
     /**
@@ -177,6 +177,9 @@ class DBTable
             if(isset(self::$rules['front_end']) && $cache === true){
                 return self::$rules['front_end'];
             }
+            if($wpdb->get_var("show tables like '$rules_table_name'") != $rules_table_name){
+                return false;
+            }
             $current_time = current_time('timestamp');
             $current_language = Language::getCurrentLanguage();
             $language_query = '';
@@ -191,6 +194,9 @@ class DBTable
          * Need for Admin
          */
         if (is_admin()) {
+            if($wpdb->get_var("show tables like '$rules_table_name'") != $rules_table_name){
+                return false;
+            }
             if (!is_null($rule_id) && is_null($rule_name) && is_null($export)) {
                 if(isset(self::$rules['admin_based_on_rule_id']) && $cache === true){
                     return self::$rules['admin_based_on_rule_id'];
@@ -467,7 +473,7 @@ class DBTable
      * update new table structure
      */
     function updateDBTables(){
-        global $wpdb;
+        /*global $wpdb;
         if (is_multisite()) {
             // get ids of all sites
             $blog_table = $wpdb->blogs;
@@ -478,10 +484,10 @@ class DBTable
                 $this->updateTable();
                 restore_current_blog();
             }
-        } else {
+        } else {*/
             // activated on a single site
             $this->updateTable();
-        }
+        /*}*/
     }
 
     /**

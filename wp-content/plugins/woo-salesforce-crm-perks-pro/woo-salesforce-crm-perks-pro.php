@@ -2,10 +2,10 @@
 /*
 * Plugin Name: WooCommerce Salesforce Integration Pro
 * Description: Integrates WooCommerce with Salesforce allowing new orders to be automatically sent to your Salesforce account.
-* Version: 1.5.3
+* Version: 1.5.4
 * Requires at least: 4.7
-* Tested up to: 5.5
-* WC tested up to: 4.6
+* Tested up to: 5.7
+* WC tested up to: 5.1
 * Author: CRM Perks.
 * Author URI: https://www.crmperks.com
 * Plugin URI: https://www.crmperks.com/plugins/woocommerce-plugins/woocommerce-salesforce-plugin/
@@ -23,7 +23,7 @@ class vxc_sales{
   public $id='vxc_sales';
   public $domain='vxc-sales';
   public $crm_name='salesforce';
-  public $version = '1.5.3';
+  public $version = '1.5.4';
   public $min_wc_version = '2.1.1';
   public $update_id = '50001';
   public $type = 'vxc_sales_pro';
@@ -53,6 +53,7 @@ class vxc_sales{
   public static $is_pr;  
   public static $api_timeout;  
   public static $order_sent=false;  
+  public static $wp_user_update=0;  
   
   public function instance(){
  add_action('plugins_loaded', array($this,'setup_main'));
@@ -94,16 +95,21 @@ self::$is_pr=true;
 
   public function setup_main(){
         // hook into woocommerce order status changed hook to handle the desired subscription event trigger
-  add_action( 'woocommerce_order_status_changed',array($this,'status_changed'), 10, 3 );
-    add_action( 'ywraq_after_create_order',array($this,'quote_created'), 10, 3 );
-  add_action( 'woocommerce_subscription_status_updated',array($this,'status_changed_subscription'), 10, 3 );
-  add_action( 'woocommerce_checkout_update_order_meta',array($this,'order_submit'), 20 ); //order_id, posted
- add_action( 'woocommerce_new_order',array($this,'order_submit_new') ); //order_id
-add_action( 'profile_update',array($this,'profile_update'), 40 , 2 );
-add_action( 'woocommerce_checkout_update_user_meta',array($this,''), 40 );
+add_action( 'woocommerce_order_status_changed',array($this,'status_changed'), 10, 3 );
+add_action( 'ywraq_after_create_order',array($this,'quote_created'), 10, 3 );
+add_action( 'woocommerce_subscription_status_updated',array($this,'status_changed_subscription'), 10, 3 );
+add_action( 'woocommerce_checkout_update_order_meta',array($this,'order_submit'), 20 ); //order_id, posted
+add_action( 'woocommerce_new_order',array($this,'order_submit_new') ); //order_id
+
+//save user 
+add_action( 'profile_update',array($this,'profile_update_set'), 40 );
+add_action( 'user_register',array($this,'profile_update_set'), 40 );
+add_action( 'shutdown',array($this,'profile_update'), 40 );
+
+
 add_action('save_post_product',array($this,'save_product'),99);
 //add_action('woocommerce_update_product',array($this,'save_product'));
-//woocommerce_checkout_update_user_meta
+//woocommerce_checkout_update_user_meta $wp_user_update
 
  self::$path=$this->get_base_path();
  $sync_file=self::$path . "pro/sync-cron.php";
@@ -145,15 +151,15 @@ if($start_instance){
 self::$plugin->instance();
 }
 } }
-public function profile_update($user_id){ 
-    if(!defined('WC_DOING_AJAX')){ // ! empty( $_GET['wc-ajax'] )
-$this->push($user_id,'save_user');
-    }else{
-  add_action( 'woocommerce_update_customer',array($this,'profile_update_woo'), 40 );      
-    }    
+public function profile_update(){ 
+    //if(!defined('WC_DOING_AJAX')){ // ! empty( $_GET['wc-ajax'] )
+    if(!empty(self::$wp_user_update)){
+$this->push(self::$wp_user_update,'save_user');
+    }
+   
 }
-public function profile_update_woo($user_id){ 
-$this->push($user_id,'save_user');
+public function profile_update_set($user_id){ 
+    self::$wp_user_update=$user_id;
 }
   /**
 * Woocommerce status
@@ -1077,7 +1083,9 @@ self::$order[ '__vxo_order_total' ]=0;
                 // get all order items first.
                 $order_items = $order->get_items();
 
-                $order_total = $order->get_total(); 
+if(!in_array($order->get_status(),array('cancelled','refunded'))){
+                $order_total = $order->get_total();
+}
                 $order_count=count( $customer_orders );
                 self::$order[ '__vxo_order_total' ] += floatval( $order_total );
                 self::$order[ '__vxo_order_count' ]=$order_count;
@@ -1264,9 +1272,8 @@ self::$order=$log['__vx_data'];
    self::$order['_email_domain']=array($email_domain);
   }
 if(!$is_subscription){
-  self::$_order=$_order = new WC_Order($order_id); 
+  self::$_order=$_order= new WC_Order($order_id); 
 } 
-//$order->get_customer_id()
 //$user_id=$_order->get_user_id();
 $order_status=$_order->get_status();
 
@@ -1699,7 +1706,6 @@ $page_url = ( is_ssl() ? 'https://' : 'http://' ) . $_SERVER['HTTP_HOST'] . $_SE
   */
 public function get_field_val($map_field,$item=array()){
       $order=self::$order;
-
 if($this->post('type',$map_field) == ""){
   $type="field";    
   $f_key=$map_field[$type];
@@ -1722,7 +1728,7 @@ if(strpos($f_key,"__vx_wp-") ===0){ //if user field
   }
 if( is_object($user) && property_exists($user,'ID')){
  $user_id=$user->ID;
-  if(in_array($f_key,array('user_email','display_name','user_nicename','user_registered','roles','user_login','ID','caps'))){
+  if(in_array($f_key,array('user_email','display_name','user_nicename','user_registered','roles','user_login','user_url','ID','caps'))){
  $value=$user->$f_key;    
   }else{
   $value=get_user_meta($user_id,$f_key,true);
@@ -1733,9 +1739,9 @@ else if(strpos($f_key,"__vxp") === 0 && !empty($item) ){
       $f_key_type=substr($f_key,0,10);
       $f_key=substr($f_key,10);
       $p_id='';
-      if( method_exists($item,'get_product_id')){ 
+      if(is_object($item) && method_exists($item,'get_product_id')){ 
           $p_id=$item->get_product_id(); 
-      }else if(is_array($item) && isset($item['product_id'])){ $p_id=$item['product_id']; }
+      }else if(is_array($item) && isset($item['product_id'])){ $p_id=$item['product_id']; $item=new stdClass(); }
       
       $product=wc_get_product($p_id);
         if( in_array($f_key,array('sku','price','regular_price','sale_price')) && method_exists($item,'get_variation_id')){ 
@@ -1744,7 +1750,7 @@ else if(strpos($f_key,"__vxp") === 0 && !empty($item) ){
           $product=wc_get_product($var_id);
       }
           }
-       if(method_exists($product,'get_attributes')){
+       if( method_exists($product,'get_attributes')){
       if($f_key_type == '__vxp_fun-'){
           $fun='get_'.$f_key; 
             if(in_array($f_key,array('get_category_ids','get_category'))){
@@ -1827,7 +1833,7 @@ $terms = get_the_terms( $p_id, 'product_cat' );
       }
   }     
 }
-else if(strpos($f_key,"__vx_pa") === 0 && method_exists($item,'get_id') ){ 
+else if(strpos($f_key,"__vx_pa") === 0 && is_object($item) && method_exists($item,'get_id') ){ 
       
       //line item fields
     $f_key=substr($f_key,8); 
@@ -1836,8 +1842,9 @@ else if(strpos($f_key,"__vx_pa") === 0 && method_exists($item,'get_id') ){
     }else{       
    $value=wc_get_order_item_meta($item->get_id(),$f_key,true);   
   }
-} 
-else if(strpos($f_key,"__vx_sh") === 0 && method_exists($item,'get_id') ){ 
+ 
+  } 
+else if(strpos($f_key,"__vx_sh") === 0 && is_object($item) && method_exists($item,'get_id') ){ 
       //line item fields
     $f_key=substr($f_key,8); 
   
@@ -1848,7 +1855,7 @@ else if(strpos($f_key,"__vx_sh") === 0 && method_exists($item,'get_id') ){
   }
  
  }
-else if(strpos($f_key,'__vxs_') === 0  && method_exists(self::$_order,'get_date') ){
+  else if(strpos($f_key,'__vxs_') === 0  && is_object(self::$_order) && method_exists(self::$_order,'get_date') ){
       $f_key_type=substr($f_key,0,10);
       $f_key=substr($f_key,10);
    $value=self::$_order->get_date($f_key);  
@@ -1863,8 +1870,16 @@ $value=trim($qdata[$f_key]['value']);
  }
   }
 }
+else if($f_key == '_refund_reason'){
+    if(is_object(self::$_order) && method_exists(self::$_order,'get_refunds')){
+       $re=self::$_order->get_refunds(); 
+      if(is_object($re[0]) && method_exists($re[0],'get_reason')){
+     $value=$re[0]->get_reason();     
+      } 
+    }
+}
 else if($f_key == '_order_status_label'){
-    if(method_exists(self::$_order,'get_status')){
+    if(is_object(self::$_order) && method_exists(self::$_order,'get_status')){
     $wc_status=self::$_order->get_status();
     $status_list=wc_get_order_statuses(); 
     if(is_array($status_list) && isset($status_list['wc-'.$wc_status])){
@@ -1873,6 +1888,16 @@ else if($f_key == '_order_status_label'){
     }
     
 }
+else if(strpos($f_key,'vxship_') === 0){
+  if( isset($order['_wc_shipment_tracking_items'][0]) ){
+ $value=maybe_unserialize($order['_wc_shipment_tracking_items'][0]);  
+ if(isset($value[0])){ $value=$value[0];  }
+$real_key=substr($f_key,7); 
+if(isset($value[$real_key])){
+  $value=$value[$real_key];  
+}
+  }  
+ }
 else{ // general fields 
   if(isset($order[$f_key])){
   if( is_array($order[$f_key])){ 

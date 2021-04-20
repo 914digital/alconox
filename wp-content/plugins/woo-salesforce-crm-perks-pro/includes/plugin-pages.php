@@ -442,6 +442,7 @@ include_once(self::$path."templates/crm-order-box.php");
   if(!current_user_can($this->id."_edit_settings")){ 
    die('-1');  
  }
+
  $this->ajax=true;
   $object=$this->post('object');
   $this->post_id=$id=intval($this->post('id')); 
@@ -571,6 +572,7 @@ if(!empty($v['placeholder'])){ $label=$v['placeholder']; }
   '_shipping_method_title'=>array('label'=>'Shipping method Title'),
   '_order_currency'=>array('label'=>'Order Currency'),
   '_total_refunded'=>array('label'=>'Total Refunded'),
+  '_refund_reason'=>array('label'=>'Refund Reason'),
   '_total_refunded_tax'=>array('label'=>'Total Refunded Tax'),
   '_total_shipping_refunded'=>array('label'=>'Total Shipping Refunded'),
   '_total_qty_refunded'=>array('label'=>'Total Quantity Refunded'),
@@ -787,9 +789,10 @@ $data=$info['data'];
   $fields=$this->web_fields($module,$map);
   }else{
   if($this->ajax){ 
+      
   $api=$this->get_api($info);
   $fields=$api->get_crm_fields($module); 
- 
+
 $meta= is_array($meta) ? $meta : array(); 
   if(is_array($fields)){ 
            if(!self::$is_pr){
@@ -857,6 +860,7 @@ $meta= is_array($meta) ? $meta : array();
 }
 
   }
+   
   $map_fields=array();
 if($api_type != 'web'){
   foreach($fields as $k=>$v){
@@ -1557,7 +1561,7 @@ if(!is_array($feed)){ $feed=array(); }
   $this->post_id=$post_id=$post->ID;
   $feed=get_post_meta($post->ID,$this->id.'_meta',true);
 $accounts=$this->get_accounts(true);
- 
+    if(empty($feed)){ $feed=array('account'=>''); }
  if(!empty($feed['account'])){
  $this->account=$account=$feed['account'];
   $info=$this->get_info($feed['account']);   
@@ -1610,7 +1614,6 @@ include_once(self::$path."templates/uninstall.php");
   if(!empty($id)){
   $api=$this->get_api($info); 
   $client=$api->client_info();
-
   
   $force_check=false;
   if(isset($_POST['vx_test_connection']) || isset($_POST['crm'])){
@@ -1709,9 +1712,9 @@ $results = $wpdb->get_results( $sql ,ARRAY_A );
   * 
   */
   public function setup_plugin(){
-  
   global $wpdb;
-  if(isset($_REQUEST[$this->id.'_tab_action']) && $_REQUEST[$this->id.'_tab_action']=="get_code"){
+  if(isset($_REQUEST[$this->id.'_action']) && $_REQUEST[$this->id.'_action']=="get_code"){
+    
    $part=array('code'=>'');
 if(isset($_REQUEST['code'])){
 $part['code']=$this->post('code');   
@@ -1720,7 +1723,8 @@ if(isset($_REQUEST['error'])){
 $part['error']=$this->post('error');   
 $part['error_description']=$this->post('error_description');   
 }
-$redir= urldecode($this->post('state'))."&".http_build_query($part);
+$state=urldecode($this->post('state'));
+$redir= html_entity_decode($state)."&".http_build_query($part);
 wp_redirect($redir);
 die();
   }

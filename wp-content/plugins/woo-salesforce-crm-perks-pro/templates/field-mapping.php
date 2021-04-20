@@ -1,7 +1,7 @@
 <?php
 if ( ! defined( 'ABSPATH' ) ) {
      exit;
- }                                            
+ }                                          
  ?><div class="vx_div">
       <div class="vx_head">
 <div class="crm_head_div"> <?php _e('3. Map Form Fields to Salesforce Fields.',  'woocommerce-salesforce-crm' ); ?></div>
@@ -321,18 +321,22 @@ var crm_fields=<?php echo json_encode($json_fields); ?>;
   <div class="vx_col2">
   <select id="vxc_event" name="meta[event]" class="vx_sel" autocomplete="off">
   <?php  
+
   foreach($events as $f_key=>$f_val){
   $select="";
-  if($feed['event'] == $f_key)
+    if($feed['event'] == $f_key)
   $select='selected="selected"';
   echo '<option value="'.$f_key.'" '.$select.'>'.$f_val.'</option>';    
-  }    
+  } 
   ?>
   </select> 
   <div class="howto"><?php _e('Use different event, if one event does not work.', 'woocommerce-salesforce-crm'); ?></div>
 </div>
 <div class="clear"></div>
 </div>
+<?php
+   
+?>
   <div style="margin-top: 10px; padding-top: 10px; border-top: 1px dashed #ccc">
   <div class="vx_row">
   <div class="vx_col1">
@@ -348,7 +352,7 @@ var crm_fields=<?php echo json_encode($json_fields); ?>;
   <div id="crm_optin_div" style="margin: 10px auto; width: 90%;<?php echo empty($feed['optin_enabled']) ? 'display:none' : ''?>">
   
         <div>
-            <?php
+            <?php  
             $sno=0; 
                 foreach($filters as $filter_k=>$filter_v){
   $sno++;
@@ -470,6 +474,7 @@ var crm_fields=<?php echo json_encode($json_fields); ?>;
   </div>  
   </div>  
   <?php
+
   $panel_count=4;
   if($api_type != "web"){ 
       $panel_count++;

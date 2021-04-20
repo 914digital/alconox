@@ -27,10 +27,6 @@
  * @subpackage Enhanced_Ecommerce_Google_Analytics/includes
  * @author     Chiranjiv Pathak <chiranjiv@tatvic.com>
  */
-
-
-
-
 class Enhanced_Ecommerce_Google_Analytics {
 
     /**
@@ -113,8 +109,20 @@ class Enhanced_Ecommerce_Google_Analytics {
          * The class responsible for defining internationalization functionality
          * of the plugin.
          */
-        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-enhanced-ecommerce-google-analytics-i18n.php';
-
+        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-enhanced-ecommerce-google-analytics-i18n.php';        
+        // Feed Manager Files
+        require_once plugin_dir_path(dirname(__FILE__)) . 'includes/data/class-tvc-queries.php';
+        require_once plugin_dir_path(dirname(__FILE__)) . 'includes/data/class-tvc-file.php';        
+        require_once plugin_dir_path(dirname(__FILE__)) . 'includes/user-interface/tvc-url-functions.php';
+        
+        require_once plugin_dir_path(dirname(__FILE__)) . 'includes/data/class-tvc-ajax-calls.php';
+        require_once plugin_dir_path(dirname(__FILE__)) . 'includes/data/class-tvc-ajax-data.php';
+        require_once plugin_dir_path(dirname(__FILE__)) . 'includes/data/class-tvc-ajax-file.php';
+        
+        require_once plugin_dir_path(dirname(__FILE__)) . 'includes/data/class-tvc-feed-crud-handler.php';
+        require_once plugin_dir_path(dirname(__FILE__)) . 'includes/data/class-tvc-taxonomies.php';
+        
+        require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-tvc-register-scripts.php';
         /**
          * The class responsible for defining all actions that occur in the admin area.
          */
@@ -142,11 +150,8 @@ class Enhanced_Ecommerce_Google_Analytics {
      * @access   private
      */
     private function set_locale() {
-
         $plugin_i18n = new Enhanced_Ecommerce_Google_Analytics_i18n();
-
         $this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'load_plugin_textdomain' );
-
     }
 
     /**
@@ -163,6 +168,8 @@ class Enhanced_Ecommerce_Google_Analytics {
         // $this->loader->add_action("admin_menu", $plugin_admin, "add_new_menu");
         $this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
         $this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
+        $this->loader->add_action( 'admin_notices', $plugin_admin, 'tvc_admin_notice' );
+
     }
 
     /**
@@ -173,9 +180,10 @@ class Enhanced_Ecommerce_Google_Analytics {
      * @access   private
      */
     private function define_public_hooks() {
-
         $plugin_public = new Enhanced_Ecommerce_Google_Analytics_Public( $this->get_plugin_name(), $this->get_version() );
         $this->loader->add_action("wp_head", $plugin_public, "ee_settings");
+        $this->loader->add_action("wp_head", $plugin_public, "add_google_site_verification_tag",1);
+
         $this->loader->add_action("wp_footer", $plugin_public, "t_products_impre_clicks");
         $this->loader->add_action("woocommerce_after_shop_loop_item", $plugin_public, "bind_product_metadata");
         $this->loader->add_action("woocommerce_thankyou", $plugin_public, "ecommerce_tracking_code");
@@ -211,6 +219,8 @@ class Enhanced_Ecommerce_Google_Analytics {
             include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
             if ( is_plugin_active( 'woocommerce/woocommerce.php' ) ) {
                 $this->loader->run();
+            }else if( is_plugin_active( 'enhanced-e-commerce-for-woocommerce-store/enhanced-ecommerce-google-analytics.php' ) ){
+                printf('<div class="notice notice-error"><p>Hey, It seems WooCommerce plugin is not active on your wp-admin. Enhanced ecommerce plugin can only be activated if you have active WooCommerce plugin in your wp-admin.</p></div>');
             }
         }
     }
@@ -252,7 +262,7 @@ class Enhanced_Ecommerce_Google_Analytics {
         $setting_url = 'admin.php?page=enhanced-ecommerce-google-analytics-admin-display&tab=general_settings';
         $links[] = '<a href="' . get_admin_url(null, $setting_url) . '">Settings</a>';
         $links[] = '<a href="https://wordpress.org/plugins/enhanced-e-commerce-for-woocommerce-store/#faq" target="_blank">FAQ</a>';
-        $links[] = '<a href="http://plugins.tatvic.com/downloads/EE-Woocommerce-Plugin-Documentation.pdf" target="_blank">Documentation</a>';
+        $links[] = '<a href="http://plugins.tatvic.com/help-center/Installation-Manual.pdf" target="_blank">Documentation</a>';
         $links[] = '<a href="https://1.envato.market/Yvn3R" target="_blank"><b>Upgrade to Premium</b></a>';
         return $links;
     }

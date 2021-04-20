@@ -3,7 +3,7 @@
 Plugin Name: GTranslate
 Plugin URI: https://gtranslate.io/?xyz=998
 Description: Makes your website <strong>multilingual</strong> and available to the world using Google Translate. For support visit <a href="https://wordpress.org/support/plugin/gtranslate">GTranslate Support</a>.
-Version: 2.8.61
+Version: 2.8.62
 Author: Translate AI Multilingual Solutions
 Author URI: https://gtranslate.io
 Text Domain: gtranslate
@@ -131,7 +131,7 @@ class GTranslate extends WP_Widget {
             $allowed_languages = json_encode($allowed_languages);
 
             echo "<script>jQuery(document).ready(function() {";
-            echo "var allowed_languages = $allowed_languages;var accept_language = navigator.language.toLowerCase() || navigator.userLanguage.toLowerCase();switch(accept_language) {case 'zh-cn': var preferred_language = 'zh-CN'; break;case 'zh': var preferred_language = 'zh-CN'; break;case 'zh-tw': var preferred_language = 'zh-TW'; break;case 'zh-hk': var preferred_language = 'zh-TW'; break;default: var preferred_language = accept_language.substr(0, 2); break;}if(preferred_language != '".$data['default_language']."' && GTranslateGetCurrentLang() == null && document.cookie.match('gt_auto_switch') == null && allowed_languages.indexOf(preferred_language) >= 0){doGTranslate('".$data['default_language']."|'+preferred_language);document.cookie = 'gt_auto_switch=1; expires=Thu, 05 Dec 2030 08:08:08 UTC; path=/;';";
+            echo "var allowed_languages = $allowed_languages;var accept_language = navigator.language.toLowerCase() || navigator.userLanguage.toLowerCase();switch(accept_language) {case 'zh-cn': var preferred_language = 'zh-CN'; break;case 'zh': var preferred_language = 'zh-CN'; break;case 'zh-tw': var preferred_language = 'zh-TW'; break;case 'zh-hk': var preferred_language = 'zh-TW'; break;case 'he': var preferred_language = 'iw'; break;default: var preferred_language = accept_language.substr(0, 2); break;}if(preferred_language != '".$data['default_language']."' && GTranslateGetCurrentLang() == null && document.cookie.match('gt_auto_switch') == null && allowed_languages.indexOf(preferred_language) >= 0){doGTranslate('".$data['default_language']."|'+preferred_language);document.cookie = 'gt_auto_switch=1; expires=Thu, 05 Dec 2030 08:08:08 UTC; path=/;';";
             if($data['widget_look'] == 'dropdown_with_flags') {
                 echo "var lang_html = jQuery('div.switcher div.option').find('img[alt=\"'+preferred_language+'\"]').parent().html();if(typeof lang_html != 'undefined')jQuery('div.switcher div.selected a').html(lang_html.replace('data-gt-lazy-', ''));";
             } elseif($data['widget_look'] == 'popup') {
@@ -172,7 +172,7 @@ class GTranslate extends WP_Widget {
             $allowed_languages = json_encode($allowed_languages);
 
             echo "<script>jQuery(document).ready(function() {";
-            echo "var allowed_languages = $allowed_languages;var accept_language = navigator.language.toLowerCase() || navigator.userLanguage.toLowerCase();switch(accept_language) {case 'zh-cn': var preferred_language = 'zh-CN'; break;case 'zh': var preferred_language = 'zh-CN'; break;case 'zh-tw': var preferred_language = 'zh-TW'; break;case 'zh-hk': var preferred_language = 'zh-TW'; break;default: var preferred_language = accept_language.substr(0, 2); break;}if(preferred_language != '".$data['default_language']."' && GTranslateGetCurrentLang() == null && document.cookie.match('gt_auto_switch') == null && allowed_languages.indexOf(preferred_language) >= 0){doGTranslate('".$data['default_language']."|'+preferred_language);document.cookie = 'gt_auto_switch=1; expires=Thu, 05 Dec 2030 08:08:08 UTC; path=/;';";
+            echo "var allowed_languages = $allowed_languages;var accept_language = navigator.language.toLowerCase() || navigator.userLanguage.toLowerCase();switch(accept_language) {case 'zh-cn': var preferred_language = 'zh-CN'; break;case 'zh': var preferred_language = 'zh-CN'; break;case 'zh-tw': var preferred_language = 'zh-TW'; break;case 'zh-hk': var preferred_language = 'zh-TW'; break;case 'he': var preferred_language = 'iw'; break;default: var preferred_language = accept_language.substr(0, 2); break;}if(preferred_language != '".$data['default_language']."' && GTranslateGetCurrentLang() == null && document.cookie.match('gt_auto_switch') == null && allowed_languages.indexOf(preferred_language) >= 0){doGTranslate('".$data['default_language']."|'+preferred_language);document.cookie = 'gt_auto_switch=1; expires=Thu, 05 Dec 2030 08:08:08 UTC; path=/;';";
             if($data['widget_look'] == 'dropdown_with_flags') {
                 echo "var lang_html = jQuery('div.switcher div.option').find('img[alt=\"'+preferred_language+'\"]').parent().html();if(typeof lang_html != 'undefined')jQuery('div.switcher div.selected a').html(lang_html.replace('data-gt-lazy-', ''));";
             } elseif($data['widget_look'] == 'popup') {
@@ -212,7 +212,7 @@ class GTranslate extends WP_Widget {
                 $allowed_languages = json_encode($allowed_languages);
 
                 $data['widget_code'] .= "<script>jQuery(document).ready(function() {";
-                $data['widget_code'] .= "var allowed_languages = $allowed_languages;var accept_language = navigator.language.toLowerCase() || navigator.userLanguage.toLowerCase();switch(accept_language) {case 'zh-cn': var preferred_language = 'zh-CN'; break;case 'zh': var preferred_language = 'zh-CN'; break;case 'zh-tw': var preferred_language = 'zh-TW'; break;case 'zh-hk': var preferred_language = 'zh-TW'; break;default: var preferred_language = accept_language.substr(0, 2); break;}if(preferred_language != '".$data['default_language']."' && GTranslateGetCurrentLang() == null && document.cookie.match('gt_auto_switch') == null && allowed_languages.indexOf(preferred_language) >= 0){doGTranslate('".$data['default_language']."|'+preferred_language);document.cookie = 'gt_auto_switch=1; expires=Thu, 05 Dec 2030 08:08:08 UTC; path=/;';";
+                $data['widget_code'] .= "var allowed_languages = $allowed_languages;var accept_language = navigator.language.toLowerCase() || navigator.userLanguage.toLowerCase();switch(accept_language) {case 'zh-cn': var preferred_language = 'zh-CN'; break;case 'zh': var preferred_language = 'zh-CN'; break;case 'zh-tw': var preferred_language = 'zh-TW'; break;case 'zh-hk': var preferred_language = 'zh-TW'; break;case 'he': var preferred_language = 'iw'; break;default: var preferred_language = accept_language.substr(0, 2); break;}if(preferred_language != '".$data['default_language']."' && GTranslateGetCurrentLang() == null && document.cookie.match('gt_auto_switch') == null && allowed_languages.indexOf(preferred_language) >= 0){doGTranslate('".$data['default_language']."|'+preferred_language);document.cookie = 'gt_auto_switch=1; expires=Thu, 05 Dec 2030 08:08:08 UTC; path=/;';";
                 if($data['widget_look'] == 'dropdown_with_flags') {
                     $data['widget_code'] .= "var lang_html = jQuery('div.switcher div.option').find('img[alt=\"'+preferred_language+'\"]').parent().html();if(typeof lang_html != 'undefined')jQuery('div.switcher div.selected a').html(lang_html.replace('data-gt-lazy-', ''));";
                 } elseif($data['widget_look'] == 'popup') {
@@ -1671,7 +1671,7 @@ class GTranslateWidget extends WP_Widget {
             $allowed_languages = json_encode($allowed_languages);
 
             echo "<script>jQuery(document).ready(function() {";
-            echo "var allowed_languages = $allowed_languages;var accept_language = navigator.language.toLowerCase() || navigator.userLanguage.toLowerCase();switch(accept_language) {case 'zh-cn': var preferred_language = 'zh-CN'; break;case 'zh': var preferred_language = 'zh-CN'; break;case 'zh-tw': var preferred_language = 'zh-TW'; break;case 'zh-hk': var preferred_language = 'zh-TW'; break;default: var preferred_language = accept_language.substr(0, 2); break;}if(preferred_language != '".$data['default_language']."' && GTranslateGetCurrentLang() == null && document.cookie.match('gt_auto_switch') == null && allowed_languages.indexOf(preferred_language) >= 0){doGTranslate('".$data['default_language']."|'+preferred_language);document.cookie = 'gt_auto_switch=1; expires=Thu, 05 Dec 2030 08:08:08 UTC; path=/;';";
+            echo "var allowed_languages = $allowed_languages;var accept_language = navigator.language.toLowerCase() || navigator.userLanguage.toLowerCase();switch(accept_language) {case 'zh-cn': var preferred_language = 'zh-CN'; break;case 'zh': var preferred_language = 'zh-CN'; break;case 'zh-tw': var preferred_language = 'zh-TW'; break;case 'zh-hk': var preferred_language = 'zh-TW'; break;case 'he': var preferred_language = 'iw'; break;default: var preferred_language = accept_language.substr(0, 2); break;}if(preferred_language != '".$data['default_language']."' && GTranslateGetCurrentLang() == null && document.cookie.match('gt_auto_switch') == null && allowed_languages.indexOf(preferred_language) >= 0){doGTranslate('".$data['default_language']."|'+preferred_language);document.cookie = 'gt_auto_switch=1; expires=Thu, 05 Dec 2030 08:08:08 UTC; path=/;';";
             if($data['widget_look'] == 'dropdown_with_flags') {
                 echo "var lang_html = jQuery('div.switcher div.option').find('img[alt=\"'+preferred_language+'\"]').parent().html();if(typeof lang_html != 'undefined')jQuery('div.switcher div.selected a').html(lang_html.replace('data-gt-lazy-', ''));";
             } elseif($data['widget_look'] == 'popup') {
@@ -2030,7 +2030,13 @@ GTranslate::load_defaults($data);
 
 if($data['pro_version']) { // gtranslate redirect rules with PHP (for environments with no .htaccess support (pantheon, flywheel, etc.), usually .htaccess rules override this)
 
-    @list($request_uri, $query_params) = explode('?', $_SERVER['REQUEST_URI']);
+    //@list($request_uri, $query_params) = explode('?', $_SERVER['REQUEST_URI']);
+    $url_params = explode('?', $_SERVER['REQUEST_URI']);
+    $request_uri = $url_params[0];
+    if(isset($url_params[1]))
+        $query_params = $url_params[1];
+    else
+        $query_params = '';
 
     if(preg_match('/^\/(af|sq|am|ar|hy|az|eu|be|bn|bs|bg|ca|ceb|ny|zh-CN|zh-TW|co|hr|cs|da|nl|en|eo|et|tl|fi|fr|fy|gl|ka|de|el|gu|ht|ha|haw|iw|hi|hmn|hu|is|ig|id|ga|it|ja|jw|kn|kk|km|ko|ku|ky|lo|la|lv|lt|lb|mk|mg|ms|ml|mt|mi|mr|mn|my|ne|no|ps|fa|pl|pt|pa|ro|ru|sm|gd|sr|st|sn|sd|si|sk|sl|so|es|su|sw|sv|tg|ta|te|th|tr|uk|ur|uz|vi|cy|xh|yi|yo|zu)\/(af|sq|am|ar|hy|az|eu|be|bn|bs|bg|ca|ceb|ny|zh-CN|zh-TW|co|hr|cs|da|nl|en|eo|et|tl|fi|fr|fy|gl|ka|de|el|gu|ht|ha|haw|iw|hi|hmn|hu|is|ig|id|ga|it|ja|jw|kn|kk|km|ko|ku|ky|lo|la|lv|lt|lb|mk|mg|ms|ml|mt|mi|mr|mn|my|ne|no|ps|fa|pl|pt|pa|ro|ru|sm|gd|sr|st|sn|sd|si|sk|sl|so|es|su|sw|sv|tg|ta|te|th|tr|uk|ur|uz|vi|cy|xh|yi|yo|zu)\/(.*)$/', $request_uri, $matches)) {
         header('Location: ' . '/' . $matches[1] . '/' . $matches[3] . (empty($query_params) ? '' : '?'.$query_params), true, 301);
@@ -2257,7 +2263,9 @@ if(($data['pro_version'] or $data['enterprise_version']) and $data['detect_brows
         $accept_language = $_GET['gt_auto_switch_to'];
 
     if($accept_language == 'zh')
-        $accept_language == 'zh-CN';
+        $accept_language = 'zh-CN';
+    elseif($accept_language == 'he')
+        $accept_language = 'iw';
 
     if($accept_language != $data['default_language'] and in_array($accept_language, $allowed_languages) and !isset($_COOKIE['gt_auto_switch'])) {
         // set cookie for 30 days and redirect
@@ -2456,6 +2464,9 @@ if($data['pro_version'] or $data['enterprise_version']) {
 
                 // translate woocommerce
                 if(strpos($message, 'woocommerce') !== false) {
+                    $data = get_option('GTranslate');
+                    GTranslate::load_defaults($data);
+
                     include dirname(__FILE__) . '/url_addon/config.php';
                     $server_id = intval(substr(md5(preg_replace('/^www\./', '', $_SERVER['HTTP_HOST'])), 0, 5), 16) % count($servers);
                     $server = $servers[$server_id];

@@ -66,7 +66,7 @@ if (!defined('ABSPATH')) {
                                                     switch ($filter->type) {
                                                         case 'products':
                                                             $item_name = '#'.$option.' '.get_the_title($option);
-                                                            $placeholder = 'Products';
+                                                            $placeholder = __('Products', 'woo-discount-rules');
                                                             break;
                                                     }
                                                     if (!empty($item_name)) {

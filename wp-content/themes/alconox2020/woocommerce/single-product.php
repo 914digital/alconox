@@ -48,6 +48,9 @@
 						</div> <!-- Product Gallery -->
 					</div>
 					<div class="col-md-7">	
+						<a href="/product-category/merchandise" class="merch-strip">
+						<img src="/wp-content/uploads/2021/01/Alconox_75_Logo.png"> Celebrate with us! Shop 75th Anniversary Alconox Inc. Limited Edition Merchandise. <span>Shop Now <i class="fas fa-arrow-right"></i> </span>
+						</a>
 					<?php while ( have_posts() ) : the_post(); ?>
 					<?php wc_get_template_part( 'content', 'single-product' ); ?>
 					<?php endwhile; // end of the loop. ?>

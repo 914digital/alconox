@@ -7,6 +7,7 @@ use Wdr\App\Controllers\Admin\Tabs\DiscountRules;
 use Wdr\App\Controllers\Admin\Tabs\Help;
 use Wdr\App\Controllers\Admin\Tabs\GeneralSettings;
 use Wdr\App\Controllers\Admin\Tabs\ImportExport;
+use Wdr\App\Controllers\Admin\Tabs\Recipe;
 use Wdr\App\Controllers\Admin\Tabs\Statistics;
 use Wdr\App\Controllers\Base;
 use Wdr\App\Controllers\OnSaleShortCode;
@@ -132,6 +133,7 @@ class Settings extends Base
             'compatible' => new Compatible(),
             'importexport' => new ImportExport(),
             'help' => new Help(),
+            'recipe' => new Recipe(),
         );
         uasort($tabs, function ($tab1, $tab2) {
             $priority1 = (int)isset($tab1->priority) ? $tab1->priority : 1000;
@@ -202,7 +204,9 @@ class Settings extends Base
         wp_enqueue_script(WDR_SLUG . '-datetimepickerjs', WDR_PLUGIN_URL . 'Assets/Js/jquery.datetimepicker.full.min.js', array('jquery'), WDR_VERSION);
         wp_enqueue_script(WDR_SLUG . '-moment', WDR_PLUGIN_URL . 'Assets/Js/moment.min.js', array('jquery'), WDR_VERSION);
         wp_register_script(WDR_SLUG . '-admin', WDR_PLUGIN_URL . 'Assets/Js/admin_script.js', array(), WDR_VERSION);
+        wp_register_script(WDR_SLUG . '-recipe', WDR_PLUGIN_URL . 'Assets/Js/awdr_recipe.js', array(), WDR_VERSION);
         wp_enqueue_script(WDR_SLUG . '-admin');
+        wp_enqueue_script(WDR_SLUG . '-recipe');
         wp_enqueue_script(WDR_SLUG . '-dragndraop-js', WDR_PLUGIN_URL . 'Assets/Js/jquery.dragtable.js', array(), WDR_VERSION);
 
         if ( isset( $_REQUEST['tab'] ) AND $_REQUEST['tab'] == 'statistics' ) {

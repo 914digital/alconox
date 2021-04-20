@@ -6,7 +6,7 @@ if( !class_exists( 'vxcf_sales_cron' ) ) {
 class vxcf_sales_cron extends vxc_sales{
     
   public static $checking_update=false;
-  public $items_batch=10;
+  public $items_batch=30;
  public static $lics=array();    
  public static $users=array();    
  public static $updates=array();    
@@ -14,7 +14,7 @@ public function __construct() {
  add_action( 'add_section_tab_wc_vxc_sales', array( $this, 'output_sections' ),60 );
  add_filter( 'add_section_html_vxc_sales', array( $this, 'section_html' ) );
  add_action('wp_ajax_vxc_sales_get_sync_settings', array($this, 'get_settings_ajax'));
- //add_action('wp', array($this, 'wp')); 
+//add_action('wp', array($this, 'wp')); 
 // add_action( 'vxc_sales_stock_cron',array($this,'stock_cron'));
  add_action( 'vxc_sales_item_cron',array($this,'item_cron'));
 /// add_action( 'vx_abs2',array($this,'test'));
@@ -189,11 +189,18 @@ if(!empty($meta['after'])){
 if(!empty($where)){
  $q.=' WHERE '.implode(' AND ',$where);   
 }
-$q.=' order by LastModifiedDate ASC Limit 50';
+//$this->items_batch='500';
+$q.=' order by LastModifiedDate ASC Limit '.$this->items_batch;
+if(!empty($meta['page'])){
+    $q.=' offset '.(intval($meta['page'])*$this->items_batch);
+}
 
 $items=$created=$mod=array();
 $query='/services/data/'.$api->api_version.'/query?q='.urlencode($q);
 $sales_response=$api->post_sales_arr($query,"get");
+///echo $q.'---<hr>'.json_encode($sales_response); //die();
+//echo $q.'<hr>'.json_encode($sales_response['records']); // die();
+///
 if(!empty($sales_response['records'])){
 foreach($sales_response['records'] as $v){
     $id=$v['Id'];
@@ -229,7 +236,7 @@ $item_id=$item['Id'];
 $after=max($after,strtotime($item['LastModifiedDate'])); //createdDate 
 $last_id=$item_id;
 if( !empty($meta['last_id']) && $item_id <=  intval($meta['last_id']) ){
-continue;      
+//continue;      
 } 
 
 $log='Salesforce Item #'.$item_id;
@@ -389,6 +396,14 @@ $logs[$item_id]=$log;
 $time=current_time( 'timestamp' ,1 );
 $save=false;
 if(!empty($after)){
+    
+    if(!empty($meta['after']) && $meta['after'] == $after){
+        if(empty($meta['page'])){ $meta['page']=0; }
+     $meta['page']= $meta['page']+1;  
+    }else{
+     $meta['page']=0;    
+    }
+    
     $meta['after']=$after;
     $meta['last_id']=$last_id;
     $save=true;
@@ -424,6 +439,7 @@ if(!empty($log_arr['object'])){
 global $wpdb;
 $table=$wpdb->prefix ."vxc_sales_log";
 $wpdb->insert($table,$log_arr);
+//var_dump($wpdb->insert_id,$wpdb->last_error);
 }
 
 if($is_error && !empty($logs) && !empty($info['data']['error_email']) ){

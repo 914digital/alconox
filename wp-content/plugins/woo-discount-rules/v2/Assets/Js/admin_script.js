@@ -2680,4 +2680,5 @@ jQuery(document).ready(function ($) {
         });
     });
     $('.get_awdr_state_based_country').trigger('change');
+
 });

@@ -1,0 +1,357 @@
+03-22-2021 @ 13:19:45 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/taxrates/byaddress?line1=&line2=&city=Waterford&region=NY&country=US&postalCode=12188
+user-agent: WooCommerce-AvaTax/1.11.2 (WooCommerce/5.0.0; WordPress/5.6.2)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.31694s
+
+03-22-2021 @ 13:19:45 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Mon, 22 Mar 2021 17:19:44 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 144
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0010525
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"totalRate":0.070000,"rates":[{"rate":0.040000,"name":"NY STATE TAX","type":"State"},{"rate":0.030000,"name":"NY COUNTY TAX","type":"County"}]}
+
+03-22-2021 @ 13:19:48 - Request
+Request
+method: POST
+uri: https://rest.avatax.com/api/v2/transactions/create
+user-agent: WooCommerce-AvaTax/1.11.2 (WooCommerce/5.0.0; WordPress/5.6.2)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body: {"code":"","companyCode":"ALC","customerCode":"mkm@land-remediation.com","currencyCode":"USD","date":"2021-03-22","lines":[{"number":"c3c60202caf6e473a8469f2fea745c5e","itemCode":"1201-1","taxCode":"P0000000","description":"Liquinox","quantity":2,"amount":167.40000000000001},{"number":"shipping_0","itemCode":"use-my-shipping-account","taxCode":"FR","description":"Use My Shipping Account","quantity":1}],"addresses":{"shipFrom":{"line1":"30 GLENN ST","line2":"","city":"WHITE PLAINS","region":"NY","country":"US","postalCode":"10603-3254"},"shipTo":{"line1":"74 Hudson River Road","line2":"","city":"Waterford","region":"NY","country":"US","postalCode":"12188"}},"type":"SalesOrder","commit":false}
+duration: 0.34225s
+
+03-22-2021 @ 13:19:48 - Response
+Response
+code: 201
+message: Created
+headers: Array
+(
+    [date] => Mon, 22 Mar 2021 17:19:48 GMT
+    [content-type] => application/json; charset=utf-8
+    [server] => Kestrel
+    [content-encoding] => br
+    [location] => /api/v2/companies/207925/transactions/0
+    [vary] => Accept-Encoding
+    [serverduration] => 00:00:00.0387970
+)
+body: {"id":0,"code":"fff13e9f-698c-47cb-8adf-4286b4574792","companyId":207925,"date":"2021-03-22","paymentDate":"2021-03-22","status":"Temporary","type":"SalesOrder","batchCode":"","currencyCode":"USD","exchangeRateCurrencyCode":"USD","customerUsageType":"","entityUseCode":"","customerVendorCode":"mkm@land-remediation.com","customerCode":"mkm@land-remediation.com","exemptNo":"","reconciled":false,"locationCode":"","reportingLocationCode":"","purchaseOrderNo":"","referenceCode":"","salespersonCode":"","totalAmount":167.4,"totalExempt":0.0,"totalDiscount":0.0,"totalTax":11.72,"totalTaxable":167.4,"totalTaxCalculated":11.72,"adjustmentReason":"NotAdjusted","locked":false,"version":1,"exchangeRateEffectiveDate":"2021-03-22","exchangeRate":1.0,"modifiedDate":"2021-03-22T17:19:48.257856Z","modifiedUserId":231879,"taxDate":"2021-03-22T00:00:00Z","lines":[{"id":0,"transactionId":0,"lineNumber":"c3c60202caf6e473a8469f2fea745c5e","customerUsageType":"","entityUseCode":"","description":"Liquinox","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"itemCode":"1201-1","lineAmount":167.40000000000001,"quantity":2.0,"ref1":"","ref2":"","reportingDate":"2021-03-22","tax":11.72,"taxableAmount":167.4,"taxCalculated":11.72,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-03-22","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"36","jurisName":"NEW YORK","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.040000,"tax":6.7,"taxableAmount":167.4,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxCalculated":6.7,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":167.4,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":6.7,"reportingTaxCalculated":6.7,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"091","jurisName":"SARATOGA","stateAssignedNo":"SA 4111","jurisType":"CTY","jurisdictionType":"County","nonTaxableAmount":0.0,"rate":0.030000,"tax":5.02,"taxableAmount":167.4,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY COUNTY TAX","taxAuthorityTypeId":45,"taxCalculated":5.02,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":167.4,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":5.02,"reportingTaxCalculated":5.02,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":0,"transactionId":0,"lineNumber":"shipping_0","customerUsageType":"","entityUseCode":"","description":"Use My Shipping Account","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":false,"itemCode":"use-my-shipping-account","lineAmount":0.0,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-03-22","tax":0.0,"taxableAmount":0.0,"taxCalculated":0.0,"taxCode":"FR","taxCodeId":7119,"taxDate":"2021-03-22","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"36","jurisName":"NEW YORK","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.040000,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"091","jurisName":"SARATOGA","stateAssignedNo":"SA 4111","jurisType":"CTY","jurisdictionType":"County","nonTaxableAmount":0.0,"rate":0.030000,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY COUNTY TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0}],"addresses":[{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"74 Hudson River Road","line2":"","line3":"","city":"Waterford","region":"NY","postalCode":"12188","country":"US","taxRegionId":4001423,"latitude":"42.803074","longitude":"-73.66836"},{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"30 GLENN ST","line2":"","line3":"","city":"WHITE PLAINS","region":"NY","postalCode":"10603-3254","country":"US","taxRegionId":2090237,"latitude":"41.050608","longitude":"-73.771383"}],"summary":[{"country":"US","region":"NY","jurisType":"State","jurisCode":"36","jurisName":"NEW YORK","taxAuthorityType":45,"stateAssignedNo":"","taxType":"Sales","taxSubType":"S","taxName":"NY STATE TAX","rateType":"General","taxable":167.4,"rate":0.040000,"tax":6.7,"taxCalculated":6.7,"nonTaxable":0.0,"exemption":0.0},{"country":"US","region":"NY","jurisType":"County","jurisCode":"091","jurisName":"SARATOGA","taxAuthorityType":45,"stateAssignedNo":"SA 4111","taxType":"Sales","taxSubType":"S","taxName":"NY COUNTY TAX","rateType":"General","taxable":167.4,"rate":0.030000,"tax":5.02,"taxCalculated":5.02,"nonTaxable":0.0,"exemption":0.0}]}
+
+03-22-2021 @ 13:20:45 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/taxrates/byaddress?line1=&line2=&city=Waterford&region=NY&country=US&postalCode=12188
+user-agent: WooCommerce-AvaTax/1.11.2 (WooCommerce/5.0.0; WordPress/5.6.2)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.32502s
+
+03-22-2021 @ 13:20:45 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Mon, 22 Mar 2021 17:20:45 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 144
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0010555
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"totalRate":0.070000,"rates":[{"rate":0.040000,"name":"NY STATE TAX","type":"State"},{"rate":0.030000,"name":"NY COUNTY TAX","type":"County"}]}
+
+03-22-2021 @ 13:20:45 - Request
+Request
+method: POST
+uri: https://rest.avatax.com/api/v2/transactions/create
+user-agent: WooCommerce-AvaTax/1.11.2 (WooCommerce/5.0.0; WordPress/5.6.2)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body: {"code":"","companyCode":"ALC","customerCode":"mkm@land-remediation.com","currencyCode":"USD","date":"2021-03-22","lines":[{"number":"c3c60202caf6e473a8469f2fea745c5e","itemCode":"1201-1","taxCode":"P0000000","description":"Liquinox","quantity":2,"amount":167.40000000000001},{"number":"shipping_0","itemCode":"use-my-shipping-account","taxCode":"FR","description":"Use My Shipping Account","quantity":1}],"addresses":{"shipFrom":{"line1":"30 GLENN ST","line2":"","city":"WHITE PLAINS","region":"NY","country":"US","postalCode":"10603-3254"},"shipTo":{"line1":"74 Hudson River Road","line2":"","city":"Waterford","region":"NY","country":"US","postalCode":"12188"}},"type":"SalesOrder","commit":false}
+duration: 0.33089s
+
+03-22-2021 @ 13:20:45 - Response
+Response
+code: 201
+message: Created
+headers: Array
+(
+    [date] => Mon, 22 Mar 2021 17:20:45 GMT
+    [content-type] => application/json; charset=utf-8
+    [server] => Kestrel
+    [content-encoding] => br
+    [location] => /api/v2/companies/207925/transactions/0
+    [vary] => Accept-Encoding
+    [serverduration] => 00:00:00.0410725
+)
+body: {"id":0,"code":"d5dfacaf-233a-429c-80a3-c352e22b6dce","companyId":207925,"date":"2021-03-22","paymentDate":"2021-03-22","status":"Temporary","type":"SalesOrder","batchCode":"","currencyCode":"USD","exchangeRateCurrencyCode":"USD","customerUsageType":"","entityUseCode":"","customerVendorCode":"mkm@land-remediation.com","customerCode":"mkm@land-remediation.com","exemptNo":"","reconciled":false,"locationCode":"","reportingLocationCode":"","purchaseOrderNo":"","referenceCode":"","salespersonCode":"","totalAmount":167.4,"totalExempt":0.0,"totalDiscount":0.0,"totalTax":11.72,"totalTaxable":167.4,"totalTaxCalculated":11.72,"adjustmentReason":"NotAdjusted","locked":false,"version":1,"exchangeRateEffectiveDate":"2021-03-22","exchangeRate":1.0,"modifiedDate":"2021-03-22T17:20:45.4896178Z","modifiedUserId":231879,"taxDate":"2021-03-22T00:00:00Z","lines":[{"id":0,"transactionId":0,"lineNumber":"c3c60202caf6e473a8469f2fea745c5e","customerUsageType":"","entityUseCode":"","description":"Liquinox","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"itemCode":"1201-1","lineAmount":167.40000000000001,"quantity":2.0,"ref1":"","ref2":"","reportingDate":"2021-03-22","tax":11.72,"taxableAmount":167.4,"taxCalculated":11.72,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-03-22","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"36","jurisName":"NEW YORK","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.040000,"tax":6.7,"taxableAmount":167.4,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxCalculated":6.7,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":167.4,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":6.7,"reportingTaxCalculated":6.7,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"091","jurisName":"SARATOGA","stateAssignedNo":"SA 4111","jurisType":"CTY","jurisdictionType":"County","nonTaxableAmount":0.0,"rate":0.030000,"tax":5.02,"taxableAmount":167.4,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY COUNTY TAX","taxAuthorityTypeId":45,"taxCalculated":5.02,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":167.4,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":5.02,"reportingTaxCalculated":5.02,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":0,"transactionId":0,"lineNumber":"shipping_0","customerUsageType":"","entityUseCode":"","description":"Use My Shipping Account","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":false,"itemCode":"use-my-shipping-account","lineAmount":0.0,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-03-22","tax":0.0,"taxableAmount":0.0,"taxCalculated":0.0,"taxCode":"FR","taxCodeId":7119,"taxDate":"2021-03-22","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"36","jurisName":"NEW YORK","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.040000,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"091","jurisName":"SARATOGA","stateAssignedNo":"SA 4111","jurisType":"CTY","jurisdictionType":"County","nonTaxableAmount":0.0,"rate":0.030000,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY COUNTY TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0}],"addresses":[{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"74 Hudson River Road","line2":"","line3":"","city":"Waterford","region":"NY","postalCode":"12188","country":"US","taxRegionId":4001423,"latitude":"42.803074","longitude":"-73.66836"},{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"30 GLENN ST","line2":"","line3":"","city":"WHITE PLAINS","region":"NY","postalCode":"10603-3254","country":"US","taxRegionId":2090237,"latitude":"41.050608","longitude":"-73.771383"}],"summary":[{"country":"US","region":"NY","jurisType":"State","jurisCode":"36","jurisName":"NEW YORK","taxAuthorityType":45,"stateAssignedNo":"","taxType":"Sales","taxSubType":"S","taxName":"NY STATE TAX","rateType":"General","taxable":167.4,"rate":0.040000,"tax":6.7,"taxCalculated":6.7,"nonTaxable":0.0,"exemption":0.0},{"country":"US","region":"NY","jurisType":"County","jurisCode":"091","jurisName":"SARATOGA","taxAuthorityType":45,"stateAssignedNo":"SA 4111","taxType":"Sales","taxSubType":"S","taxName":"NY COUNTY TAX","rateType":"General","taxable":167.4,"rate":0.030000,"tax":5.02,"taxCalculated":5.02,"nonTaxable":0.0,"exemption":0.0}]}
+
+03-22-2021 @ 13:20:46 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/taxrates/byaddress?line1=&line2=&city=Waterford&region=NY&country=US&postalCode=12188
+user-agent: WooCommerce-AvaTax/1.11.2 (WooCommerce/5.0.0; WordPress/5.6.2)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.28998s
+
+03-22-2021 @ 13:20:46 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Mon, 22 Mar 2021 17:20:46 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 144
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0002444
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"totalRate":0.070000,"rates":[{"rate":0.040000,"name":"NY STATE TAX","type":"State"},{"rate":0.030000,"name":"NY COUNTY TAX","type":"County"}]}
+
+03-22-2021 @ 13:20:46 - Request
+Request
+method: POST
+uri: https://rest.avatax.com/api/v2/transactions/create
+user-agent: WooCommerce-AvaTax/1.11.2 (WooCommerce/5.0.0; WordPress/5.6.2)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body: {"code":"","companyCode":"ALC","customerCode":"mkm@land-remediation.com","currencyCode":"USD","date":"2021-03-22","lines":[{"number":"c3c60202caf6e473a8469f2fea745c5e","itemCode":"1201-1","taxCode":"P0000000","description":"Liquinox","quantity":2,"amount":167.40000000000001},{"number":"shipping_0","itemCode":"use-my-shipping-account","taxCode":"FR","description":"Use My Shipping Account","quantity":1}],"addresses":{"shipFrom":{"line1":"30 GLENN ST","line2":"","city":"WHITE PLAINS","region":"NY","country":"US","postalCode":"10603-3254"},"shipTo":{"line1":"74 Hudson River Road","line2":"","city":"Waterford","region":"NY","country":"US","postalCode":"12188"}},"type":"SalesOrder","commit":false}
+duration: 0.33936s
+
+03-22-2021 @ 13:20:46 - Response
+Response
+code: 201
+message: Created
+headers: Array
+(
+    [date] => Mon, 22 Mar 2021 17:20:46 GMT
+    [content-type] => application/json; charset=utf-8
+    [server] => Kestrel
+    [content-encoding] => br
+    [location] => /api/v2/companies/207925/transactions/0
+    [vary] => Accept-Encoding
+    [serverduration] => 00:00:00.0461635
+)
+body: {"id":0,"code":"a186f93c-20b8-461a-9567-58178d9692ff","companyId":207925,"date":"2021-03-22","paymentDate":"2021-03-22","status":"Temporary","type":"SalesOrder","batchCode":"","currencyCode":"USD","exchangeRateCurrencyCode":"USD","customerUsageType":"","entityUseCode":"","customerVendorCode":"mkm@land-remediation.com","customerCode":"mkm@land-remediation.com","exemptNo":"","reconciled":false,"locationCode":"","reportingLocationCode":"","purchaseOrderNo":"","referenceCode":"","salespersonCode":"","totalAmount":167.4,"totalExempt":0.0,"totalDiscount":0.0,"totalTax":11.72,"totalTaxable":167.4,"totalTaxCalculated":11.72,"adjustmentReason":"NotAdjusted","locked":false,"version":1,"exchangeRateEffectiveDate":"2021-03-22","exchangeRate":1.0,"modifiedDate":"2021-03-22T17:20:46.8854168Z","modifiedUserId":231879,"taxDate":"2021-03-22T00:00:00Z","lines":[{"id":0,"transactionId":0,"lineNumber":"c3c60202caf6e473a8469f2fea745c5e","customerUsageType":"","entityUseCode":"","description":"Liquinox","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"itemCode":"1201-1","lineAmount":167.40000000000001,"quantity":2.0,"ref1":"","ref2":"","reportingDate":"2021-03-22","tax":11.72,"taxableAmount":167.4,"taxCalculated":11.72,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-03-22","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"36","jurisName":"NEW YORK","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.040000,"tax":6.7,"taxableAmount":167.4,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxCalculated":6.7,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":167.4,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":6.7,"reportingTaxCalculated":6.7,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"091","jurisName":"SARATOGA","stateAssignedNo":"SA 4111","jurisType":"CTY","jurisdictionType":"County","nonTaxableAmount":0.0,"rate":0.030000,"tax":5.02,"taxableAmount":167.4,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY COUNTY TAX","taxAuthorityTypeId":45,"taxCalculated":5.02,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":167.4,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":5.02,"reportingTaxCalculated":5.02,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":0,"transactionId":0,"lineNumber":"shipping_0","customerUsageType":"","entityUseCode":"","description":"Use My Shipping Account","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":false,"itemCode":"use-my-shipping-account","lineAmount":0.0,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-03-22","tax":0.0,"taxableAmount":0.0,"taxCalculated":0.0,"taxCode":"FR","taxCodeId":7119,"taxDate":"2021-03-22","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"36","jurisName":"NEW YORK","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.040000,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"091","jurisName":"SARATOGA","stateAssignedNo":"SA 4111","jurisType":"CTY","jurisdictionType":"County","nonTaxableAmount":0.0,"rate":0.030000,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY COUNTY TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0}],"addresses":[{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"74 Hudson River Road","line2":"","line3":"","city":"Waterford","region":"NY","postalCode":"12188","country":"US","taxRegionId":4001423,"latitude":"42.803074","longitude":"-73.66836"},{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"30 GLENN ST","line2":"","line3":"","city":"WHITE PLAINS","region":"NY","postalCode":"10603-3254","country":"US","taxRegionId":2090237,"latitude":"41.050608","longitude":"-73.771383"}],"summary":[{"country":"US","region":"NY","jurisType":"State","jurisCode":"36","jurisName":"NEW YORK","taxAuthorityType":45,"stateAssignedNo":"","taxType":"Sales","taxSubType":"S","taxName":"NY STATE TAX","rateType":"General","taxable":167.4,"rate":0.040000,"tax":6.7,"taxCalculated":6.7,"nonTaxable":0.0,"exemption":0.0},{"country":"US","region":"NY","jurisType":"County","jurisCode":"091","jurisName":"SARATOGA","taxAuthorityType":45,"stateAssignedNo":"SA 4111","taxType":"Sales","taxSubType":"S","taxName":"NY COUNTY TAX","rateType":"General","taxable":167.4,"rate":0.030000,"tax":5.02,"taxCalculated":5.02,"nonTaxable":0.0,"exemption":0.0}]}
+
+03-22-2021 @ 13:21:09 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/taxrates/byaddress?line1=&line2=&city=Waterford&region=NY&country=US&postalCode=12188
+user-agent: WooCommerce-AvaTax/1.11.2 (WooCommerce/5.0.0; WordPress/5.6.2)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.29162s
+
+03-22-2021 @ 13:21:09 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Mon, 22 Mar 2021 17:21:09 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 144
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0001969
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"totalRate":0.070000,"rates":[{"rate":0.040000,"name":"NY STATE TAX","type":"State"},{"rate":0.030000,"name":"NY COUNTY TAX","type":"County"}]}
+
+03-22-2021 @ 13:21:09 - Request
+Request
+method: POST
+uri: https://rest.avatax.com/api/v2/transactions/create
+user-agent: WooCommerce-AvaTax/1.11.2 (WooCommerce/5.0.0; WordPress/5.6.2)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body: {"code":"","companyCode":"ALC","customerCode":"mkm@land-remediation.com","currencyCode":"USD","date":"2021-03-22","lines":[{"number":"c3c60202caf6e473a8469f2fea745c5e","itemCode":"1201-1","taxCode":"P0000000","description":"Liquinox","quantity":2,"amount":167.40000000000001},{"number":"shipping_0","itemCode":"pt-ups-merger:6:03","taxCode":"FR","description":"Ground (UPS)","quantity":1,"amount":12.52}],"addresses":{"shipFrom":{"line1":"30 GLENN ST","line2":"","city":"WHITE PLAINS","region":"NY","country":"US","postalCode":"10603-3254"},"shipTo":{"line1":"74 Hudson River Road","line2":"","city":"Waterford","region":"NY","country":"US","postalCode":"12188"}},"type":"SalesOrder","commit":false}
+duration: 0.327s
+
+03-22-2021 @ 13:21:09 - Response
+Response
+code: 201
+message: Created
+headers: Array
+(
+    [date] => Mon, 22 Mar 2021 17:21:09 GMT
+    [content-type] => application/json; charset=utf-8
+    [server] => Kestrel
+    [content-encoding] => br
+    [location] => /api/v2/companies/207925/transactions/0
+    [vary] => Accept-Encoding
+    [serverduration] => 00:00:00.0407108
+)
+body: {"id":0,"code":"ae846a27-2fff-48ca-98f5-d6d3023f4671","companyId":207925,"date":"2021-03-22","paymentDate":"2021-03-22","status":"Temporary","type":"SalesOrder","batchCode":"","currencyCode":"USD","exchangeRateCurrencyCode":"USD","customerUsageType":"","entityUseCode":"","customerVendorCode":"mkm@land-remediation.com","customerCode":"mkm@land-remediation.com","exemptNo":"","reconciled":false,"locationCode":"","reportingLocationCode":"","purchaseOrderNo":"","referenceCode":"","salespersonCode":"","totalAmount":179.92,"totalExempt":12.52,"totalDiscount":0.0,"totalTax":11.72,"totalTaxable":167.4,"totalTaxCalculated":11.72,"adjustmentReason":"NotAdjusted","locked":false,"version":1,"exchangeRateEffectiveDate":"2021-03-22","exchangeRate":1.0,"modifiedDate":"2021-03-22T17:21:09.4117378Z","modifiedUserId":231879,"taxDate":"2021-03-22T00:00:00Z","lines":[{"id":0,"transactionId":0,"lineNumber":"c3c60202caf6e473a8469f2fea745c5e","customerUsageType":"","entityUseCode":"","description":"Liquinox","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"itemCode":"1201-1","lineAmount":167.40000000000001,"quantity":2.0,"ref1":"","ref2":"","reportingDate":"2021-03-22","tax":11.72,"taxableAmount":167.4,"taxCalculated":11.72,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-03-22","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"36","jurisName":"NEW YORK","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.040000,"tax":6.7,"taxableAmount":167.4,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxCalculated":6.7,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":167.4,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":6.7,"reportingTaxCalculated":6.7,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"091","jurisName":"SARATOGA","stateAssignedNo":"SA 4111","jurisType":"CTY","jurisdictionType":"County","nonTaxableAmount":0.0,"rate":0.030000,"tax":5.02,"taxableAmount":167.4,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY COUNTY TAX","taxAuthorityTypeId":45,"taxCalculated":5.02,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":167.4,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":5.02,"reportingTaxCalculated":5.02,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":0,"transactionId":0,"lineNumber":"shipping_0","customerUsageType":"","entityUseCode":"","description":"Ground (UPS)","discountAmount":0.0,"exemptAmount":12.52,"exemptCertId":0,"exemptNo":"","isItemTaxable":false,"itemCode":"pt-ups-merger:6:03","lineAmount":12.52,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-03-22","tax":0.0,"taxableAmount":0.0,"taxCalculated":0.0,"taxCode":"FR","taxCodeId":7119,"taxDate":"2021-03-22","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"36","jurisName":"NEW YORK","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":12.52,"rate":0.040000,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":12.52,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"091","jurisName":"SARATOGA","stateAssignedNo":"SA 4111","jurisType":"CTY","jurisdictionType":"County","nonTaxableAmount":12.52,"rate":0.030000,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY COUNTY TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":12.52,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0}],"addresses":[{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"74 Hudson River Road","line2":"","line3":"","city":"Waterford","region":"NY","postalCode":"12188","country":"US","taxRegionId":4001423,"latitude":"42.803074","longitude":"-73.66836"},{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"30 GLENN ST","line2":"","line3":"","city":"WHITE PLAINS","region":"NY","postalCode":"10603-3254","country":"US","taxRegionId":2090237,"latitude":"41.050608","longitude":"-73.771383"}],"summary":[{"country":"US","region":"NY","jurisType":"State","jurisCode":"36","jurisName":"NEW YORK","taxAuthorityType":45,"stateAssignedNo":"","taxType":"Sales","taxSubType":"S","taxName":"NY STATE TAX","rateType":"General","taxable":167.4,"rate":0.040000,"tax":6.7,"taxCalculated":6.7,"nonTaxable":12.52,"exemption":0.0},{"country":"US","region":"NY","jurisType":"County","jurisCode":"091","jurisName":"SARATOGA","taxAuthorityType":45,"stateAssignedNo":"SA 4111","taxType":"Sales","taxSubType":"S","taxName":"NY COUNTY TAX","rateType":"General","taxable":167.4,"rate":0.030000,"tax":5.02,"taxCalculated":5.02,"nonTaxable":12.52,"exemption":0.0}]}
+
+03-22-2021 @ 13:26:45 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/taxrates/byaddress?line1=&line2=&city=Waterford&region=NY&country=US&postalCode=12188
+user-agent: WooCommerce-AvaTax/1.11.2 (WooCommerce/5.0.0; WordPress/5.6.2)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.34738s
+
+03-22-2021 @ 13:26:45 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Mon, 22 Mar 2021 17:26:45 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 144
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0170876
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"totalRate":0.070000,"rates":[{"rate":0.040000,"name":"NY STATE TAX","type":"State"},{"rate":0.030000,"name":"NY COUNTY TAX","type":"County"}]}
+
+03-22-2021 @ 13:26:45 - Request
+Request
+method: POST
+uri: https://rest.avatax.com/api/v2/transactions/create
+user-agent: WooCommerce-AvaTax/1.11.2 (WooCommerce/5.0.0; WordPress/5.6.2)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body: {"code":"","companyCode":"ALC","customerCode":"mkm@land-remediation.com","currencyCode":"USD","date":"2021-03-22","lines":[{"number":"c3c60202caf6e473a8469f2fea745c5e","itemCode":"1201-1","taxCode":"P0000000","description":"Liquinox","quantity":2,"amount":167.40000000000001},{"number":"shipping_0","itemCode":"pt-ups-merger:6:03","taxCode":"FR","description":"Ground (UPS)","quantity":1,"amount":12.52}],"addresses":{"shipFrom":{"line1":"30 GLENN ST","line2":"","city":"WHITE PLAINS","region":"NY","country":"US","postalCode":"10603-3254"},"shipTo":{"line1":"74 Hudson River Road","line2":"","city":"Waterford","region":"NY","country":"US","postalCode":"12188"}},"type":"SalesOrder","commit":false}
+duration: 0.35415s
+
+03-22-2021 @ 13:26:45 - Response
+Response
+code: 201
+message: Created
+headers: Array
+(
+    [date] => Mon, 22 Mar 2021 17:26:45 GMT
+    [content-type] => application/json; charset=utf-8
+    [server] => Kestrel
+    [content-encoding] => br
+    [location] => /api/v2/companies/207925/transactions/0
+    [vary] => Accept-Encoding
+    [serverduration] => 00:00:00.0595904
+)
+body: {"id":0,"code":"8d6b0780-e56b-4fff-a40c-cc48a893d225","companyId":207925,"date":"2021-03-22","paymentDate":"2021-03-22","status":"Temporary","type":"SalesOrder","batchCode":"","currencyCode":"USD","exchangeRateCurrencyCode":"USD","customerUsageType":"","entityUseCode":"","customerVendorCode":"mkm@land-remediation.com","customerCode":"mkm@land-remediation.com","exemptNo":"","reconciled":false,"locationCode":"","reportingLocationCode":"","purchaseOrderNo":"","referenceCode":"","salespersonCode":"","totalAmount":179.92,"totalExempt":12.52,"totalDiscount":0.0,"totalTax":11.72,"totalTaxable":167.4,"totalTaxCalculated":11.72,"adjustmentReason":"NotAdjusted","locked":false,"version":1,"exchangeRateEffectiveDate":"2021-03-22","exchangeRate":1.0,"modifiedDate":"2021-03-22T17:26:45.6535411Z","modifiedUserId":231879,"taxDate":"2021-03-22T00:00:00Z","lines":[{"id":0,"transactionId":0,"lineNumber":"c3c60202caf6e473a8469f2fea745c5e","customerUsageType":"","entityUseCode":"","description":"Liquinox","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"itemCode":"1201-1","lineAmount":167.40000000000001,"quantity":2.0,"ref1":"","ref2":"","reportingDate":"2021-03-22","tax":11.72,"taxableAmount":167.4,"taxCalculated":11.72,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-03-22","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"36","jurisName":"NEW YORK","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.040000,"tax":6.7,"taxableAmount":167.4,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxCalculated":6.7,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":167.4,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":6.7,"reportingTaxCalculated":6.7,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"091","jurisName":"SARATOGA","stateAssignedNo":"SA 4111","jurisType":"CTY","jurisdictionType":"County","nonTaxableAmount":0.0,"rate":0.030000,"tax":5.02,"taxableAmount":167.4,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY COUNTY TAX","taxAuthorityTypeId":45,"taxCalculated":5.02,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":167.4,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":5.02,"reportingTaxCalculated":5.02,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":0,"transactionId":0,"lineNumber":"shipping_0","customerUsageType":"","entityUseCode":"","description":"Ground (UPS)","discountAmount":0.0,"exemptAmount":12.52,"exemptCertId":0,"exemptNo":"","isItemTaxable":false,"itemCode":"pt-ups-merger:6:03","lineAmount":12.52,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-03-22","tax":0.0,"taxableAmount":0.0,"taxCalculated":0.0,"taxCode":"FR","taxCodeId":7119,"taxDate":"2021-03-22","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"36","jurisName":"NEW YORK","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":12.52,"rate":0.040000,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":12.52,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"091","jurisName":"SARATOGA","stateAssignedNo":"SA 4111","jurisType":"CTY","jurisdictionType":"County","nonTaxableAmount":12.52,"rate":0.030000,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY COUNTY TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":12.52,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0}],"addresses":[{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"74 Hudson River Road","line2":"","line3":"","city":"Waterford","region":"NY","postalCode":"12188","country":"US","taxRegionId":4001423,"latitude":"42.803074","longitude":"-73.66836"},{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"30 GLENN ST","line2":"","line3":"","city":"WHITE PLAINS","region":"NY","postalCode":"10603-3254","country":"US","taxRegionId":2090237,"latitude":"41.050608","longitude":"-73.771383"}],"summary":[{"country":"US","region":"NY","jurisType":"State","jurisCode":"36","jurisName":"NEW YORK","taxAuthorityType":45,"stateAssignedNo":"","taxType":"Sales","taxSubType":"S","taxName":"NY STATE TAX","rateType":"General","taxable":167.4,"rate":0.040000,"tax":6.7,"taxCalculated":6.7,"nonTaxable":12.52,"exemption":0.0},{"country":"US","region":"NY","jurisType":"County","jurisCode":"091","jurisName":"SARATOGA","taxAuthorityType":45,"stateAssignedNo":"SA 4111","taxType":"Sales","taxSubType":"S","taxName":"NY COUNTY TAX","rateType":"General","taxable":167.4,"rate":0.030000,"tax":5.02,"taxCalculated":5.02,"nonTaxable":12.52,"exemption":0.0}]}
+
+03-22-2021 @ 13:26:50 - Request
+Request
+method: POST
+uri: https://rest.avatax.com/api/v2/transactions/create
+user-agent: WooCommerce-AvaTax/1.11.2 (WooCommerce/5.0.0; WordPress/5.6.2)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body: {"code":"wc_order_9klO850SSILze","companyCode":"ALC","customerCode":"mkm@land-remediation.com","currencyCode":"USD","date":"2021-03-22","lines":[{"number":23426,"itemCode":"1201-1","taxCode":"P0000000","description":"Liquinox","quantity":2,"amount":167.40000000000001},{"number":"shipping_23427","itemCode":"pt-ups-merger","taxCode":"FR","description":"Ground (UPS)","quantity":1,"amount":12.52}],"addresses":{"shipFrom":{"line1":"30 GLENN ST","line2":"","city":"WHITE PLAINS","region":"NY","country":"US","postalCode":"10603-3254"},"shipTo":{"line1":"74 Hudson River Road","line2":"","city":"Waterford","region":"NY","country":"US","postalCode":"12188"}},"type":"SalesInvoice","purchaseOrderNo":"21277","commit":true}
+duration: 0.39764s
+
+03-22-2021 @ 13:26:50 - Response
+Response
+code: 201
+message: Created
+headers: Array
+(
+    [date] => Mon, 22 Mar 2021 17:26:50 GMT
+    [content-type] => application/json; charset=utf-8
+    [server] => Kestrel
+    [content-encoding] => br
+    [location] => /api/v2/companies/207925/transactions/2001443952048
+    [vary] => Accept-Encoding
+    [serverduration] => 00:00:00.0824385
+)
+body: {"id":2001443952048,"code":"wc_order_9klO850SSILze","companyId":207925,"date":"2021-03-22","status":"Committed","type":"SalesInvoice","batchCode":"","currencyCode":"USD","exchangeRateCurrencyCode":"USD","customerUsageType":"","entityUseCode":"","customerVendorCode":"mkm@land-remediation.com","customerCode":"mkm@land-remediation.com","exemptNo":"","reconciled":false,"locationCode":"","reportingLocationCode":"","purchaseOrderNo":"21277","referenceCode":"","salespersonCode":"","taxOverrideType":"None","taxOverrideAmount":0.0,"taxOverrideReason":"","totalAmount":179.92,"totalExempt":12.52,"totalDiscount":0.0,"totalTax":11.72,"totalTaxable":167.4,"totalTaxCalculated":11.72,"adjustmentReason":"NotAdjusted","adjustmentDescription":"","locked":false,"region":"NY","country":"US","version":1,"softwareVersion":"21.3.1.0","originAddressId":6002122018981,"destinationAddressId":3002619920996,"exchangeRateEffectiveDate":"2021-03-22","exchangeRate":1.0,"description":"","email":"","businessIdentificationNo":"","modifiedDate":"2021-03-22T17:26:50.6314735Z","modifiedUserId":231879,"taxDate":"2021-03-22T00:00:00Z","lines":[{"id":4004428815531,"transactionId":2001443952048,"lineNumber":"23426","boundaryOverrideId":0,"customerUsageType":"","entityUseCode":"","description":"Liquinox","destinationAddressId":3002619920996,"originAddressId":6002122018981,"discountAmount":0.0,"discountTypeId":0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"isSSTP":false,"itemCode":"1201-1","lineAmount":167.4,"quantity":2.0,"ref1":"","ref2":"","reportingDate":"2021-03-22","revAccount":"","sourcing":"Destination","tax":11.7200,"taxableAmount":167.4,"taxCalculated":11.7200,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-03-22","taxEngine":"","taxOverrideType":"None","businessIdentificationNo":"","taxOverrideAmount":0.0,"taxOverrideReason":"","taxIncluded":false,"details":[{"id":3004272391644,"transactionLineId":4004428815531,"transactionId":2001443952048,"addressId":3002619920996,"country":"US","region":"NY","countyFIPS":"","stateFIPS":"","exemptAmount":0.0000,"exemptReasonId":4,"inState":true,"jurisCode":"36","jurisName":"NEW YORK","jurisdictionId":42,"signatureCode":"BFEQ","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0000,"nonTaxableRuleId":0,"nonTaxableType":"RateRule","rate":0.040000,"rateRuleId":1442086,"rateSourceId":3,"serCode":"","sourcing":"Destination","tax":6.7000,"taxableAmount":167.4000,"taxType":"Sales","taxSubTypeId":"S","taxTypeGroupId":"SalesAndUse","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxRegionId":4001423,"taxCalculated":6.7000,"taxOverride":0.0000,"rateType":"General","rateTypeCode":"G","taxableUnits":167.4000,"nonTaxableUnits":0.0000,"exemptUnits":0.0000,"unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":167.4,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":6.7,"reportingTaxCalculated":6.7,"liabilityType":"Seller"},{"id":9003195156271,"transactionLineId":4004428815531,"transactionId":2001443952048,"addressId":3002619920996,"country":"US","region":"NY","countyFIPS":"","stateFIPS":"","exemptAmount":0.0000,"exemptReasonId":4,"inState":true,"jurisCode":"091","jurisName":"SARATOGA","jurisdictionId":1890,"signatureCode":"BGXH","stateAssignedNo":"SA 4111","jurisType":"CTY","jurisdictionType":"County","nonTaxableAmount":0.0000,"nonTaxableRuleId":0,"nonTaxableType":"RateRule","rate":0.030000,"rateRuleId":1449117,"rateSourceId":3,"serCode":"","sourcing":"Destination","tax":5.0200,"taxableAmount":167.4000,"taxType":"Sales","taxSubTypeId":"S","taxTypeGroupId":"SalesAndUse","taxName":"NY COUNTY TAX","taxAuthorityTypeId":45,"taxRegionId":4001423,"taxCalculated":5.0200,"taxOverride":0.0000,"rateType":"General","rateTypeCode":"G","taxableUnits":167.4000,"nonTaxableUnits":0.0000,"exemptUnits":0.0000,"unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":167.4,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":5.02,"reportingTaxCalculated":5.02,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"lineLocationTypes":[{"documentLineLocationTypeId":11003022894069,"documentLineId":4004428815531,"documentAddressId":6002122018981,"locationTypeCode":"ShipFrom"},{"documentLineLocationTypeId":3005721662332,"documentLineId":4004428815531,"documentAddressId":3002619920996,"locationTypeCode":"ShipTo"}],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":4004428815533,"transactionId":2001443952048,"lineNumber":"shipping_23427","boundaryOverrideId":0,"customerUsageType":"","entityUseCode":"","description":"Ground (UPS)","destinationAddressId":3002619920996,"originAddressId":6002122018981,"discountAmount":0.0,"discountTypeId":0,"exemptAmount":12.52,"exemptCertId":0,"exemptNo":"","isItemTaxable":false,"isSSTP":false,"itemCode":"pt-ups-merger","lineAmount":12.52,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-03-22","revAccount":"","sourcing":"Destination","tax":0.0000,"taxableAmount":0.0,"taxCalculated":0.0000,"taxCode":"FR","taxCodeId":7119,"taxDate":"2021-03-22","taxEngine":"","taxOverrideType":"None","businessIdentificationNo":"","taxOverrideAmount":0.0,"taxOverrideReason":"","taxIncluded":false,"details":[{"id":3004272391646,"transactionLineId":4004428815533,"transactionId":2001443952048,"addressId":3002619920996,"country":"US","region":"NY","countyFIPS":"","stateFIPS":"","exemptAmount":0.0000,"exemptReasonId":5,"inState":true,"jurisCode":"36","jurisName":"NEW YORK","jurisdictionId":42,"signatureCode":"BFEQ","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":12.5200,"nonTaxableRuleId":5594534,"nonTaxableType":"ProductTaxabilityRule","rate":0.040000,"rateRuleId":1442086,"rateSourceId":3,"serCode":"","sourcing":"Destination","tax":0.0000,"taxableAmount":0.0000,"taxType":"Sales","taxSubTypeId":"S","taxTypeGroupId":"SalesAndUse","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxRegionId":4001423,"taxCalculated":0.0000,"taxOverride":0.0000,"rateType":"General","rateTypeCode":"G","taxableUnits":0.0000,"nonTaxableUnits":12.5200,"exemptUnits":0.0000,"unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":12.52,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"},{"id":1004272391649,"transactionLineId":4004428815533,"transactionId":2001443952048,"addressId":3002619920996,"country":"US","region":"NY","countyFIPS":"","stateFIPS":"","exemptAmount":0.0000,"exemptReasonId":5,"inState":true,"jurisCode":"091","jurisName":"SARATOGA","jurisdictionId":1890,"signatureCode":"BGXH","stateAssignedNo":"SA 4111","jurisType":"CTY","jurisdictionType":"County","nonTaxableAmount":12.5200,"nonTaxableRuleId":5594534,"nonTaxableType":"ProductTaxabilityRule","rate":0.030000,"rateRuleId":1449117,"rateSourceId":3,"serCode":"","sourcing":"Destination","tax":0.0000,"taxableAmount":0.0000,"taxType":"Sales","taxSubTypeId":"S","taxTypeGroupId":"SalesAndUse","taxName":"NY COUNTY TAX","taxAuthorityTypeId":45,"taxRegionId":4001423,"taxCalculated":0.0000,"taxOverride":0.0000,"rateType":"General","rateTypeCode":"G","taxableUnits":0.0000,"nonTaxableUnits":12.5200,"exemptUnits":0.0000,"unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":12.52,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"lineLocationTypes":[{"documentLineLocationTypeId":2005721662332,"documentLineId":4004428815533,"documentAddressId":6002122018981,"locationTypeCode":"ShipFrom"},{"documentLineLocationTypeId":6004001590696,"documentLineId":4004428815533,"documentAddressId":3002619920996,"locationTypeCode":"ShipTo"}],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0}],"addresses":[{"id":3002619920996,"transactionId":2001443952048,"boundaryLevel":"Address","line1":"74 HUDSON RIVER RD","line2":"","line3":"","city":"WATERFORD","region":"NY","postalCode":"12188-1900","country":"US","taxRegionId":4001423,"latitude":"42.803074","longitude":"-73.66836"},{"id":6002122018981,"transactionId":2001443952048,"boundaryLevel":"Address","line1":"30 GLENN ST","line2":"","line3":"","city":"WHITE PLAINS","region":"NY","postalCode":"10603-3254","country":"US","taxRegionId":2090237,"latitude":"41.050608","longitude":"-73.771383"}],"locationTypes":[{"documentLocationTypeId":2002310020907,"documentId":2001443952048,"documentAddressId":6002122018981,"locationTypeCode":"ShipFrom"},{"documentLocationTypeId":3002310020907,"documentId":2001443952048,"documentAddressId":3002619920996,"locationTypeCode":"ShipTo"}],"summary":[{"country":"US","region":"NY","jurisType":"State","jurisCode":"36","jurisName":"NEW YORK","taxAuthorityType":45,"stateAssignedNo":"","taxType":"Sales","taxSubType":"S","taxName":"NY STATE TAX","rateType":"General","taxable":167.40,"rate":0.040000,"tax":6.70,"taxCalculated":6.70,"nonTaxable":12.52,"exemption":0.00},{"country":"US","region":"NY","jurisType":"County","jurisCode":"091","jurisName":"SARATOGA","taxAuthorityType":45,"stateAssignedNo":"SA 4111","taxType":"Sales","taxSubType":"S","taxName":"NY COUNTY TAX","rateType":"General","taxable":167.40,"rate":0.030000,"tax":5.02,"taxCalculated":5.02,"nonTaxable":12.52,"exemption":0.00}]}
+

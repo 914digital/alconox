@@ -79,6 +79,7 @@ body #asl-storelocator.asl-p-cont.container.storelocator-main.asl-template-2 .it
 body #asl-storelocator.asl-p-cont.asl-template-1 #asl-map-canv { height: 585px }
 #asl-storelocator.asl-p-cont.storelocator-main .panel-cont .item .p-title {margin-bottom: 8px;}
 .asl-p-cont #p-statelist > li{ margin-left: 0px }
+#asl-storelocator.asl-p-cont .asl-name-search .asl-clear-btn {right: 5px;background: #FFF}
 
 /*RTL Rules*/
 .rtl #asl-storelocator.asl-p-cont *{text-align: right;}

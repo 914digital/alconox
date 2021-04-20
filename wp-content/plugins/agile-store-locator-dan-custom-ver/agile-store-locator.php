@@ -56,7 +56,7 @@ if ( !class_exists( 'ASL_Store_locator' ) ) {
           define( 'ASL_PLUGIN_PATH', plugin_dir_path(__FILE__) );
           define( 'ASL_BASE_PATH', dirname( plugin_basename( __FILE__ ) ) );
           define( 'ASL_PREFIX', $wpdb->prefix."asl_" );
-          define( 'ASL_CVERSION', "4.6.1" );
+          define( 'ASL_CVERSION', "4.5.4" );
         }
         
         /**

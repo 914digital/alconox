@@ -1,0 +1,99 @@
+03-24-2021 @ 11:42:19 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/definitions/entityusecodes
+user-agent: WooCommerce-AvaTax/1.11.2 (WooCommerce/5.0.0; WordPress/5.6.2)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.31858s
+
+03-24-2021 @ 11:42:19 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Wed, 24 Mar 2021 15:42:19 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 1454
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0001140
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"@recordsetCount":18,"value":[{"code":"A","name":"FEDERAL GOV","description":"","validCountries":["US"]},{"code":"B","name":"STATE GOV","description":"","validCountries":["US"]},{"code":"C","name":"TRIBAL GOVERNMENT","description":"","validCountries":["*"]},{"code":"D","name":"FOREIGN DIPLOMAT","description":"","validCountries":["*"]},{"code":"E","name":"CHARITABLE/EXEMPT ORG","description":"","validCountries":["*"]},{"code":"F","name":"RELIGIOUS ORG","description":"","validCountries":["*"]},{"code":"G","name":"RESALE","description":"","validCountries":["*"]},{"code":"H","name":"AGRICULTURE","description":"","validCountries":["*"]},{"code":"I","name":"INDUSTRIAL PROD/MANUFACTURERS","description":"","validCountries":["*"]},{"code":"J","name":"DIRECT PAY","description":"","validCountries":["*"]},{"code":"K","name":"DIRECT MAIL","description":"","validCountries":["*"]},{"code":"L","name":"OTHER/CUSTOM","description":"","validCountries":["*"]},{"code":"M","name":"EDUCATIONAL ORG","description":"","validCountries":["*"]},{"code":"N","name":"LOCAL GOVERNMENT","description":"","validCountries":["US"]},{"code":"P","name":"COMMERCIAL AQUACULTURE","description":"","validCountries":["CA"]},{"code":"Q","name":"COMMERCIAL FISHERY","description":"","validCountries":["CA"]},{"code":"R","name":"NON-RESIDENT","description":"","validCountries":["CA"]},{"code":"TAXABLE","name":"NON-EXEMPT TAXABLE CUSTOMER","description":"","validCountries":["*"]}]}
+
+03-24-2021 @ 11:42:50 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/definitions/entityusecodes
+user-agent: WooCommerce-AvaTax/1.11.2 (WooCommerce/5.0.0; WordPress/5.6.2)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.34298s
+
+03-24-2021 @ 11:42:50 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Wed, 24 Mar 2021 15:42:50 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 1454
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0001745
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"@recordsetCount":18,"value":[{"code":"A","name":"FEDERAL GOV","description":"","validCountries":["US"]},{"code":"B","name":"STATE GOV","description":"","validCountries":["US"]},{"code":"C","name":"TRIBAL GOVERNMENT","description":"","validCountries":["*"]},{"code":"D","name":"FOREIGN DIPLOMAT","description":"","validCountries":["*"]},{"code":"E","name":"CHARITABLE/EXEMPT ORG","description":"","validCountries":["*"]},{"code":"F","name":"RELIGIOUS ORG","description":"","validCountries":["*"]},{"code":"G","name":"RESALE","description":"","validCountries":["*"]},{"code":"H","name":"AGRICULTURE","description":"","validCountries":["*"]},{"code":"I","name":"INDUSTRIAL PROD/MANUFACTURERS","description":"","validCountries":["*"]},{"code":"J","name":"DIRECT PAY","description":"","validCountries":["*"]},{"code":"K","name":"DIRECT MAIL","description":"","validCountries":["*"]},{"code":"L","name":"OTHER/CUSTOM","description":"","validCountries":["*"]},{"code":"M","name":"EDUCATIONAL ORG","description":"","validCountries":["*"]},{"code":"N","name":"LOCAL GOVERNMENT","description":"","validCountries":["US"]},{"code":"P","name":"COMMERCIAL AQUACULTURE","description":"","validCountries":["CA"]},{"code":"Q","name":"COMMERCIAL FISHERY","description":"","validCountries":["CA"]},{"code":"R","name":"NON-RESIDENT","description":"","validCountries":["CA"]},{"code":"TAXABLE","name":"NON-EXEMPT TAXABLE CUSTOMER","description":"","validCountries":["*"]}]}
+
+03-24-2021 @ 11:43:56 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/definitions/entityusecodes
+user-agent: WooCommerce-AvaTax/1.11.2 (WooCommerce/5.0.0; WordPress/5.6.2)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.3425s
+
+03-24-2021 @ 11:43:56 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Wed, 24 Mar 2021 15:43:56 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 1454
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0001174
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"@recordsetCount":18,"value":[{"code":"A","name":"FEDERAL GOV","description":"","validCountries":["US"]},{"code":"B","name":"STATE GOV","description":"","validCountries":["US"]},{"code":"C","name":"TRIBAL GOVERNMENT","description":"","validCountries":["*"]},{"code":"D","name":"FOREIGN DIPLOMAT","description":"","validCountries":["*"]},{"code":"E","name":"CHARITABLE/EXEMPT ORG","description":"","validCountries":["*"]},{"code":"F","name":"RELIGIOUS ORG","description":"","validCountries":["*"]},{"code":"G","name":"RESALE","description":"","validCountries":["*"]},{"code":"H","name":"AGRICULTURE","description":"","validCountries":["*"]},{"code":"I","name":"INDUSTRIAL PROD/MANUFACTURERS","description":"","validCountries":["*"]},{"code":"J","name":"DIRECT PAY","description":"","validCountries":["*"]},{"code":"K","name":"DIRECT MAIL","description":"","validCountries":["*"]},{"code":"L","name":"OTHER/CUSTOM","description":"","validCountries":["*"]},{"code":"M","name":"EDUCATIONAL ORG","description":"","validCountries":["*"]},{"code":"N","name":"LOCAL GOVERNMENT","description":"","validCountries":["US"]},{"code":"P","name":"COMMERCIAL AQUACULTURE","description":"","validCountries":["CA"]},{"code":"Q","name":"COMMERCIAL FISHERY","description":"","validCountries":["CA"]},{"code":"R","name":"NON-RESIDENT","description":"","validCountries":["CA"]},{"code":"TAXABLE","name":"NON-EXEMPT TAXABLE CUSTOMER","description":"","validCountries":["*"]}]}
+

@@ -3,8 +3,8 @@ Contributors: flycart
 Donate link: https://flycart.org/
 Tags: woocommerce, coupons, discounts, dynamic pricing, Buy One Get One Free, pricing deals, bulk discount, discount
 Requires at least: 4.4.1
-Tested up to: 5.5
-Stable tag: 2.3.4
+Tested up to: 5.7
+Stable tag: 2.3.5
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -323,19 +323,36 @@ Note : Enable recursive checkbox if the discounts should be applied in sequentia
 
 == Screenshots ==
 
-1. Discount Rules menu
-2. Price rules and Cart rules
-3. Creating a price rule
-4. Example Promotion Offers created using Discount rules
-5. Discounted price is applied in the Cart
-6. Creating a Buy X get Y rule
-7. Free product auto added in cart
+1. Price rules and Cart rules
+2. Creating a price rule
+3. Example Promotion Offers created using Discount rules
+4. Discounted price is applied in the Cart
+5. Creating a Buy X get Y rule
+6. Free product auto added in cart
 
 == Credits ==
 
 * Dutch Translation - [@mvdburg1971](https://profiles.wordpress.org/mvdburg1971) - Michael van der Burg
 
 == Changelog ==
+
+= 2.3.5 - 23/03/21 =
+* Feature - Cross sell feature for BXGY cheapest product option.
+* Feature - Recipe: sample rules to add.
+* Improvement - SKU with product title in product select box.
+* Improvement - Subtotal based promotion UI improvement at backend.
+* Improvement - Multi site query optimize.
+* Improvement - Smart Coupons plugin compatible.
+* Improvement - Sale badge translation improvement.
+* Improvement - Event: advanced_woo_discount_rules_get_attribute_id_from_taxonomy_name
+* Improvement - Event: advanced_woo_discount_rules_exclude_non_stock_product_on_sale_page
+* Improvement - Event: advanced_woo_discount_rules_strikeout_price_html additional params.
+* Improvement - Translation improvement.
+* Fix - Variable product with tag condition not working.
+* Fix - The discount bar is not displayed for variable product SKU filter.
+* Fix - Show product on sale page even if only the variant has chosen.
+* Fix - Report for BXGY cheapest product discount (fixed discount) is not shown.
+* Fix - Category select box is not showing all language categories while having WPML.
 
 = 2.3.4 - 01/02/21 =
 * Feature - Quantity based promotion message.

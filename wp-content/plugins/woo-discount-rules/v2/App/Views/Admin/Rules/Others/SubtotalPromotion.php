@@ -30,9 +30,9 @@ if($render_saved_condition != true && isset($i)){
             <textarea
                 name="conditions[<?php echo (isset($i)) ? $i : '{i}' ?>][options][subtotal_promotion_message]"
                 style="height: 60px;"
-                placeholder="<?php _e('Spent {{difference_amount}} more and get 10% discount', 'woo-discount-rules'); ?>"><?php echo ($subtotal_promotion_message) ? $subtotal_promotion_message : ''; ?></textarea>
+                placeholder="<?php _e('Spend {{difference_amount}} more and get 10% discount', 'woo-discount-rules'); ?>"><?php echo ($subtotal_promotion_message) ? $subtotal_promotion_message : ''; ?></textarea>
             <span class="wdr_desc_text awdr-clear-both"><?php _e('{{difference_amount}} -> Difference amount to get discount', 'woo-discount-rules'); ?></span>
-            <span class="wdr_desc_text awdr-clear-both"><?php _e('<b>Eg:</b> Spent {{difference_amount}} more and get 10% discount', 'woo-discount-rules'); ?></span>
+            <span class="wdr_desc_text awdr-clear-both"><?php _e('<b>Eg:</b> Spend {{difference_amount}} more and get 10% discount', 'woo-discount-rules'); ?></span>
         </div>
     </div><?php
 echo ($render_saved_condition == true) ? '' : '</div>'; ?>

@@ -391,7 +391,13 @@ abstract class Base
                 $not_in_list_product = in_array($product_sku, $comparision_value);
                 break;
             case 'product_tags':
-                $tag_ids = Woocommerce::getProductTags($product);
+                $product_parentId = Woocommerce::getProductParentId($product);
+                if(!empty($product_parentId)){
+                    $parent_product = Woocommerce::getProduct($product_parentId);
+                    $tag_ids = Woocommerce::getProductTags($parent_product);
+                }else{
+                    $tag_ids = Woocommerce::getProductTags($product);
+                }
                 $not_in_list_product = count(array_intersect($tag_ids, $comparision_value)) > 0;
                 break;
             default:

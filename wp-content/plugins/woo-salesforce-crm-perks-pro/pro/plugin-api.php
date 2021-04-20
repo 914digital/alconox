@@ -140,13 +140,16 @@ public function plugin_api_setup(){
   public function inject_update($updates){
   $update=$this->get_update(); 
 
-  if(empty($updates->response[$this->slug]))
+  if(is_object($updates) && empty($updates->response[$this->slug])){
   $updates->response[$this->slug] = new stdClass();
+  
   if(is_object($update)){ 
   $updates->response[$this->slug]=$update;
   }else if(isset($updates->response[$this->slug])){
   unset($updates->response[$this->slug]); 
   }
+  }
+
   return $updates;
   }
 
@@ -649,13 +652,12 @@ update_option('cfx_plugin_updates',self::$updates,false);
   * 
   * @param mixed $key
   */
-public function save_key($key="",$action){ 
+public function save_key($key="",$action=''){ 
        $key=trim($key);
   $update =$this->get_update_option();
   $time=current_time('timestamp',1); 
   $info=$this->get_req_vars($key,$action);
   $url=$this->get_url($update);
-  
   $vx_json=$this->request($url,'POST',$info); 
    $vx_arr=$log_key=json_decode($vx_json,true);
     if(!empty($vx_arr['wp_error'])){ 
@@ -755,7 +757,7 @@ $this->request($url,'POST',$info);
   }
 
 public function add_section_wc($tabs){
-    if(current_user_can($this->id.'_read_license')){  
+    if(current_user_can($this->id.'_read_license') || is_super_admin() ){  
     $tabs["vxc_license"]=__('License Key','contact-form-entries');
     }
     return $tabs;
@@ -844,7 +846,7 @@ public  function first_page($page_added,$form_tag=''){
   return $page_added;   
 } 
 public function license_section_wc($page_added){
-    if(!$page_added && current_user_can($this->id.'_read_license') ){
+    if(!$page_added && (current_user_can($this->id.'_read_license')|| is_super_admin() ) ){
       $page_added=$this->first_page($page_added,'false');
       if(!$page_added){
         global $current_section;
@@ -879,7 +881,7 @@ public function get_url($update){
 * 
 */
 public function license_section($form_tag=''){
-if( !(current_user_can($this->id.'_read_license') || current_user_can('manage_options'))){ return ; }
+if( !(current_user_can($this->id.'_read_license') || is_super_admin() )){ return ; }
 
               //$get_key=false;
               $lic_key=false; $msgs=array();

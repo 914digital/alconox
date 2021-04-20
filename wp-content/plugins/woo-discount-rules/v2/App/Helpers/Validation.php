@@ -283,6 +283,36 @@ class Validation
     }
 
     /**
+     * validate Radio Button And Select Box
+     *
+     * @param $field
+     * @param $value
+     * @param array $params
+     * @param array $fields
+     * @return bool
+     */
+    static function validateCrossSellOrdering($field, $value, array $params, array $fields)
+    {
+        $acceptable = array('desc', 'asc');
+        return in_array($value, $acceptable, true);
+    }
+
+    /**
+     * validate Order bY
+     *
+     * @param $field
+     * @param $value
+     * @param array $params
+     * @param array $fields
+     * @return bool
+     */
+    static function validateCrossSellOrderBy($field, $value, array $params, array $fields)
+    {
+        $acceptable = array('rand', 'menu_order', 'price');
+        return in_array($value, $acceptable, true);
+    }
+
+    /**
      * Check alphaNum values for selected array values (multi select box)
      *
      * @param $field
@@ -318,6 +348,18 @@ class Validation
         Validator::addRule('radioButtonAndSelectBox', array(__CLASS__, 'validateRadioButtonAndSelectBox'), __('Accept only yes, on, 1, true', 'woo-discount-rules'));
         Validator::addRule('plainInputText', array(__CLASS__, 'validatePlainInputText'), __('Should not contain any tags', 'woo-discount-rules'));
         Validator::addRule('selectedArrayValues', array(__CLASS__, 'validateSelectedArrayValues'), __('Should not contain any tags and special characters', 'woo-discount-rules'));
+        Validator::addRule('crossSellOrdering', array(__CLASS__, 'validateCrossSellOrdering'), __('Invalid inputs', 'woo-discount-rules'));
+        Validator::addRule('crossSellOrderBy', array(__CLASS__, 'validateCrossSellOrderBy'), __('Invalid inputs', 'woo-discount-rules'));
+        $settings_fields_validator->rule('crossSellOrdering',
+            array(
+                'cross_sell_on_cart_order',
+            )
+        );
+        $settings_fields_validator->rule('crossSellOrderBy',
+            array(
+                'cross_sell_on_cart_order_by',
+            )
+        );
         //allow br, strong, span,div, p tags only
         $settings_fields_validator->rule('basicTags',
             array(
@@ -358,6 +400,7 @@ class Validation
                 'show_subtotal_promotion',
                 'show_promo_text_con',
                 'show_applied_rules_message_on_cart',
+                'show_cross_sell_on_cart',
             )
         );
         //validate slug may contains a-zA-Z0-9_-
@@ -380,6 +423,8 @@ class Validation
                 'customize_bulk_table_title',
                 'customize_bulk_table_discount',
                 'customize_bulk_table_range',
+                'cross_sell_on_cart_limit',
+                'cross_sell_on_cart_column',
             )
         );
         //validate array

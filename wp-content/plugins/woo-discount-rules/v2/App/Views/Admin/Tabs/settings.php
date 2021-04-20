@@ -158,7 +158,7 @@
                         </td>
                         <td>
                             <textarea name="on_sale_badge_html"
-                                      placeholder='<span class="onsale">Sale!</span>'
+                                      placeholder='<span class="onsale"><?php _e('Sale!', 'woo-discount-rules') ?></span>'
                                       rows="5"
                                       cols="30"><?php echo $configuration->getConfig('on_sale_badge_html', '<span class="onsale">Sale!</span>'); ?></textarea>
                         </td>

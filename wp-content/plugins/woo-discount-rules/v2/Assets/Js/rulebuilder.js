@@ -51,17 +51,19 @@ var wdr_buildrule;
                 var condition_type = $(settings.addConditionType).html();
                 let  style_inline = "";
                 let  class_inline = "";
+                var condition_method = $(settings.addFilterMethod).html();
+                condition_method = condition_method.replace(new RegExp('{i}', 'g'), settings.newIndex);
                 if(!condition_type || condition_type == 'undefined'){
                     condition_type = '';
                     style_inline = "display:none";
                     class_inline = "promo_show_hide_"+settings.newIndex;
                     remove_icon = '';
+                    $(settings.ruleAppendTo +" [data-index='"+  settings.newIndex +"']").after('<div class="'+class_inline+' wdr-conditions-container wdr-condition-group" style="'+style_inline+'" data-index="' + settings.newIndex + '">' + condition_type + condition_method + remove_icon + '</div>');
                 }else{
                     condition_type = condition_type.replace(new RegExp('{i}', 'g'), settings.newIndex);
+                    $(settings.ruleAppendTo).append('<div class="'+class_inline+' wdr-conditions-container wdr-condition-group" style="'+style_inline+'" data-index="' + settings.newIndex + '">' + condition_type + condition_method + remove_icon + '</div>');
                 }
-                var condition_method = $(settings.addFilterMethod).html();
-                condition_method = condition_method.replace(new RegExp('{i}', 'g'), settings.newIndex);
-                $(settings.ruleAppendTo).append('<div class="'+class_inline+' wdr-conditions-container wdr-condition-group" style="'+style_inline+'" data-index="' + settings.newIndex + '">' + condition_type + condition_method + remove_icon + '</div>');
+
             } else if (settings.addDiscountType == null && settings.addDiscountElement !== null && settings.addFilterMethod !== null && settings.ruleAppendTo !== null) {
                 filter_method = filter_method.replace(new RegExp('{i}', 'g'), settings.newIndex);
                 $(settings.ruleAppendTo).append(filter_method);
