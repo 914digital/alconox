@@ -361,8 +361,8 @@ $p->set_stock_quantity($qty);
 $price= !empty($item['price']) ? $item['price'] : 0;
 $p->set_regular_price($price);
 $items_found[$item_id]['price']=$price;
-if(!empty($meta['item_img']) && !empty($item[$meta['item_img']])){
- $img=$item[$meta['item_img']];   
+if(!empty($meta['item_img']) && isset($item[$meta['item_img']])){
+$items_found[$item_id]['image']=$img=$item[$meta['item_img']];   
 }
 
 $upload='';

@@ -55,7 +55,6 @@ class WC_AvaTax_REST_API {
 		// order response
 		add_filter( 'woocommerce_rest_prepare_shop_order', array( $this, 'handle_order_response' ), 0, 3 );
 
-
 		// WC REST API v2 (WC 3.0+ ) / v3 (WC 3.5+)
 
 		// insert order

@@ -113,9 +113,9 @@ class WC_AvaTax_Tax_Handler {
 
 		$rates = $this->get_estimated_rates( $country, $state, $postcode, $city );
 
-		foreach ( $rates as $rate ) {
+		foreach ( $rates as $code => $rate ) {
 
-			$matched_tax_rates[ $rate->get_code() ] = array(
+			$matched_tax_rates[ $code ] = array(
 				'rate'     => $rate->get_rate() * 100,
 				'label'    => $rate->get_label(),
 				'shipping' => 'yes', // TODO: Is there any way to determine if a rate applies to shipping? This won't affect accuracy, but it would be nice to know {CW 2017-04-14}
@@ -210,7 +210,7 @@ class WC_AvaTax_Tax_Handler {
 
 		$taxes = WC_Tax::get_rates();
 
-		foreach ( $tax_totals as $code => $rate ) {
+		foreach ( array_keys( $tax_totals ) as $code ) {
 
 			if ( Framework\SV_WC_Helper::str_starts_with( $code, $this->get_rate_prefix() ) && ! empty( $taxes[ $code ]['label'] ) ) {
 

@@ -3,10 +3,10 @@ Contributors: crmperks, sbazzi, asif876
 Tags: salesforce, woocommerce salesforce integration, WooCommerce Salesforce, salesforce add-on, woocommerce integration with salesforce
 Requires at least: 4.7
 Tested up to: 5.7
-Stable tag: 1.5.4
-Version: 1.5.4
+Stable tag: 1.5.6
+Version: 1.5.6
 WC requires at least: 3.0
-WC tested up to: 5.1
+WC tested up to: 5.2
 Requires PHP: 5.3
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -130,6 +130,9 @@ Woocommerce is a free wordpress plugin, When someone places Order via Woocommerc
 
 
 == Changelog ==
+
+= 1.5.6 =
+* fixed "updating product price" issue.
 
 = 1.5.5 =
 * added "refund reason" field.

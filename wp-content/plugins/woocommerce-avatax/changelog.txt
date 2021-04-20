@@ -1,5 +1,11 @@
 *** WooCommerce AvaTax Changelog ***
 
+2021.04.19 - version 1.12.0
+ * Tweak - Tax rates that show up as Special Sales Tax will show up separate if they belong to different jurisdictions
+ * Fix - Improve handling of tax rates with duplicate names
+ * Fix - Prevent WooCommerce from overwriting AvaTax tax rate names for manual orders or when taxes are calculated using the Recalculate button
+ * Fix - Calculate tax rates for Apple Pay orders
+
 2021.01.26 - version 1.11.2
  * Fix - Fix tax calculation for manual orders without a billing email
 

@@ -207,22 +207,16 @@ class WC_AvaTax_Checkout_Handler {
 
 				$line_tax_data = array();
 
-				// isset checks below are to account for a niche possibility where taxes with the same code may exist
-				foreach ( $line['rates'] as $rate ) {
+				foreach ( $line['rates'] as $index => $rate ) {
 
-					$code  = $rate->get_code();
 					$total = $rate->get_total();
 
-					if ( isset( $line_tax_data[ $code ] ) ) {
-						$line_tax_data[ $code ] += $total;
-					} else {
-						$line_tax_data[ $code ] = $total;
-					}
+					$line_tax_data[ $index ] = $total;
 
-					if ( isset( $cart_taxes[ $code ] ) ) {
-						$cart_taxes[ $code ] += $total;
+					if ( isset( $cart_taxes[ $index ] ) ) {
+						$cart_taxes[ $index ] += $total;
 					} else {
-						$cart_taxes[ $code ] = $total;
+						$cart_taxes[ $index ] = $total;
 					}
 				}
 
@@ -377,32 +371,28 @@ class WC_AvaTax_Checkout_Handler {
 	protected function set_shipping_taxes( WC_Cart $cart, $lines ) {
 
 		$cart_shipping_taxes = $cart->get_shipping_taxes();
-		$shipping_taxes      = [];
 		$packages            = WC()->shipping()->get_packages();
 		$shipping_tax_total  = 0;
 
 		foreach ( $lines as $line ) {
 
-			$method_id = $line['sku'];
+			$shipping_taxes = [];
 
-			// isset checks below are to account for a niche possibility where taxes with the same code may exist
-			foreach ( $line['rates'] as $rate ) {
+			foreach ( $line['rates'] as $index => $rate ) {
 
-				$code  = $rate->get_code();
 				$total = $rate->get_total();
 
-				if ( isset( $shipping_taxes[ $code ] ) ) {
-					$shipping_taxes[ $code ] += $total;
-				} else {
-					$shipping_taxes[ $code ] = $total;
-				}
+				$shipping_taxes[ $index ] = $total;
 
-				if ( isset( $cart_shipping_taxes[ $code ] ) ) {
-					$cart_shipping_taxes[ $code ] += $total;
+				// isset checks below account for a case in which multiple lines include tax rates with the same code
+				if ( isset( $cart_shipping_taxes[ $index ] ) ) {
+					$cart_shipping_taxes[ $index ] += $total;
 				} else {
-					$cart_shipping_taxes[ $code ] = $total;
+					$cart_shipping_taxes[ $index ] = $total;
 				}
 			}
+
+			$method_id = $line['sku'];
 
 			foreach ( $packages as $index => $package ) {
 
@@ -415,16 +405,13 @@ class WC_AvaTax_Checkout_Handler {
 			$shipping_tax_total += max( (float) $line['tax'], 0.00 );
 		}
 
-		if ( Framework\SV_WC_Plugin_Compatibility::is_wc_version_gte( '3.2' ) ) {
-			$cart->set_shipping_taxes( $cart_shipping_taxes );
-			$cart->set_total_tax( $cart->get_total_tax() + $shipping_tax_total );
-		} else {
-			$cart->shipping_taxes = $cart_shipping_taxes;
-		}
+		$cart->set_shipping_taxes( $cart_shipping_taxes );
+		$cart->set_total_tax( $cart->get_total_tax() + $shipping_tax_total );
 
 		WC()->shipping()->packages = $packages;
 
-		$cart->total += array_sum( $shipping_taxes );
+		$cart->total += array_sum( $cart_shipping_taxes );
+
 		$cart->shipping_tax_total = array_sum( $cart_shipping_taxes );
 	}
 

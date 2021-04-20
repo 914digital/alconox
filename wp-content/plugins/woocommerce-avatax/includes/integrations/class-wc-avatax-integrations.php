@@ -21,7 +21,7 @@
  * @license   http://www.gnu.org/licenses/gpl-3.0.html GNU General Public License v3.0
  */
 
-use SkyVerge\WooCommerce\PluginFramework\v5_5_0 as Framework;
+use SkyVerge\WooCommerce\AvaTax\Integrations\ApplePay;
 
 defined( 'ABSPATH' ) or exit;
 
@@ -33,6 +33,17 @@ defined( 'ABSPATH' ) or exit;
 class WC_AvaTax_Integrations {
 
 
+	/** @var ApplePay Apple Pay integration instance */
+	protected $apple_pay;
+
+
+	/**
+	 * Constructor.
+	 *
+	 * TODO: move subscription integration methods into their own integration class {WV 2021-04-05}
+	 *
+	 * @since 1.5.0
+	 */
 	public function __construct() {
 
 		// remove any tax calculation meta from a newly created subscription
@@ -48,6 +59,19 @@ class WC_AvaTax_Integrations {
 		add_filter( 'wc_avatax_product_destination', array( $this, 'set_lpp_destination' ), 10, 3 );
 
 		add_filter( 'wc_avatax_checkout_ready_for_calculation', array( $this, 'set_lpp_ready_for_calculation' ) );
+
+		$this->load_integrations();
+	}
+
+
+	/**
+	 * Initializes integration classes.
+	 *
+	 * @since 1.12.0
+	 */
+	private function load_integrations() {
+
+		$this->apple_pay = wc_avatax()->load_class( '/includes/integrations/ApplePay.php', ApplePay::class );
 	}
 
 

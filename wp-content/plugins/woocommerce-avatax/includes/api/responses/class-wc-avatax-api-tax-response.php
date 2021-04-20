@@ -115,6 +115,8 @@ class WC_AvaTax_API_Tax_Response extends \WC_AvaTax_API_Response {
 
 		$lines = array();
 
+		$duplicate_tax_rate_codes = $this->get_duplicate_tax_rate_codes( $this->lines );
+
 		foreach ( $this->lines as $line ) {
 
 			$lines[] = array(
@@ -123,7 +125,7 @@ class WC_AvaTax_API_Tax_Response extends \WC_AvaTax_API_Response {
 				'amount'      => $line->lineAmount,
 				'tax'         => $line->tax,
 				'code'        => $line->taxCode,
-				'rates'       => $this->build_rates( $line->details ),
+				'rates'       => $this->build_rates( $line->details, $duplicate_tax_rate_codes ),
 				'origin'      => isset( $line->originAddressId ) ? $this->get_origin_address( $line ) : array(),
 				'destination' => isset( $line->destinationAddressId ) ? $this->get_destination_address( $line ) : array(),
 			);
@@ -276,18 +278,41 @@ class WC_AvaTax_API_Tax_Response extends \WC_AvaTax_API_Response {
 	 */
 	public function get_rates() {
 
-		$rates = [];
-		$lines = $this->get_lines();
+		return array_map( function( $line ) {
+			return $line['rates'];
+		}, $this->get_lines() );
+	}
 
-		foreach ( $lines as $index => $line ) {
 
-			foreach ( $line['rates'] as $rate ) {
+	/**
+	 * Gets an array of tax rates codes that are duplicate in at least one line.
+	 *
+	 * @since 1.12.0
+	 *
+	 * @param array $lines tax lines data
+	 *
+	 * @return array
+	 */
+	protected function get_duplicate_tax_rate_codes( $lines ) {
 
-				$rates[ $index ][ $rate->get_code() ] = $rate;
-			}
-		}
+		return array_reduce( $lines, function( $duplicate_tax_rate_codes, $line ) {
 
-		return $rates;
+			return array_merge(
+				$duplicate_tax_rate_codes,
+				array_filter(
+					array_reduce( $line->details, function ( $duplicate_line_tax_rate_codes, $rate ) {
+
+						if ( isset( $duplicate_line_tax_rate_codes[ $rate->taxName ] ) ) {
+							$duplicate_line_tax_rate_codes[ $rate->taxName ] = true;
+						} else {
+							$duplicate_line_tax_rate_codes[ $rate->taxName ] = false;
+						}
+
+						return $duplicate_line_tax_rate_codes;
+					}, [] )
+				)
+			);
+		}, [] );
 	}
 
 
@@ -297,10 +322,11 @@ class WC_AvaTax_API_Tax_Response extends \WC_AvaTax_API_Response {
 	 * @since 1.5.0
 	 *
 	 * @param array $raw_rates rate data from the AvaTax API
+	 * @param array $duplicate_tax_rate_codes array of codes that appear more than once on a single line
 	 *
 	 * @return array $rates \WC_AvaTax_API_Tax_Rate rate objects
 	 */
-	protected function build_rates( $raw_rates ) {
+	protected function build_rates( $raw_rates, $duplicate_tax_rate_codes ) {
 
 		$rates              = [];
 		$landed_costs_rates = [];
@@ -313,6 +339,7 @@ class WC_AvaTax_API_Tax_Response extends \WC_AvaTax_API_Response {
 
 			foreach ( $raw_rates as $raw_rate ) {
 
+				// TODO: why do we use $raw_rate->taxName as the name for non Landed Cost rates when the cart or the response includes Landed Cost rates? Shouldn't we use the {$raw_rate->jurisdictionType} {$raw_rate->taxType} for all rates that are not Landed Cost? {WV 2021-03-21}
 				if ( $has_landed_costs ) {
 
 					$name = 'LandedCost' === $raw_rate->taxType ? $raw_rate->taxType : $raw_rate->taxName;
@@ -342,8 +369,11 @@ class WC_AvaTax_API_Tax_Response extends \WC_AvaTax_API_Response {
 					$truncated_name = $name;
 				}
 
+				// include the jurisCode field in the rate code to reduce the chances of getting a duplicate code
+				$rate_code = isset( $duplicate_tax_rate_codes[ $raw_rate->taxName ] ) ? "{$raw_rate->taxName} {$raw_rate->jurisCode}" : $raw_rate->taxName;
+
 				$rate = new WC_AvaTax_API_Tax_Rate( [
-					'code'  => "{$raw_rate->taxName}",
+					'code'  => $rate_code,
 					'name'  => $truncated_name,
 					'rate'  => $raw_rate->rate,
 					'total' => $raw_rate->taxCalculated,
@@ -353,13 +383,18 @@ class WC_AvaTax_API_Tax_Response extends \WC_AvaTax_API_Response {
 
 					$landed_costs_rates[ $rate->get_code() ] = $rate;
 
+				} elseif ( empty( $rates[ $rate->get_code() ] ) ) {
+
+					$rates[ $rate->get_code() ] = $rate;
+
 				} else {
 
-					if ( ! empty( $rates[ $rate->get_code() ] ) ) {
-						$rates[ $rate->get_code() . "-{$count}" ] = $rate;
-					} else {
-						$rates[ $rate->get_code() ] = $rate;
-					}
+					$rates[ $rate->get_code() ] = new \WC_AvaTax_API_Tax_Rate( [
+						'code'  => $rate_code,
+						'name'  => $truncated_name,
+						'rate'  => $rate->get_rate() + $raw_rate->rate,
+						'total' => $rate->get_total() + $raw_rate->taxCalculated,
+					] );
 				}
 
 				$count++;

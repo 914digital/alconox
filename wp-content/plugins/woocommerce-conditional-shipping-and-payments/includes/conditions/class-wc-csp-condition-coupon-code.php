@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Coupon Code Condition.
  *
  * @class    WC_CSP_Condition_Coupon_Code
- * @version  1.8.11
+ * @version  1.9.0
  */
 class WC_CSP_Condition_Coupon_Code extends WC_CSP_Condition {
 
@@ -26,7 +26,7 @@ class WC_CSP_Condition_Coupon_Code extends WC_CSP_Condition {
 	public function __construct() {
 		$this->id                            = 'coupon_code_used';
 		$this->title                         = __( 'Coupon Code', 'woocommerce-conditional-shipping-and-payments' );
-		$this->supported_global_restrictions = array( 'shipping_methods', 'payment_gateways' );
+		$this->supported_global_restrictions = array( 'shipping_methods', 'payment_gateways', 'shipping_countries' );
 	}
 
 	/**

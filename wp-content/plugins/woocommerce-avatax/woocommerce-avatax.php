@@ -5,7 +5,7 @@
  * Description: Seamless integration with Avalara's tax calculation and management services.
  * Author: SkyVerge
  * Author URI: http://www.woocommerce.com/
- * Version: 1.11.2
+ * Version: 1.12.0
  * Text Domain: woocommerce-avatax
  * Domain Path: /i18n/languages/
  *
@@ -21,7 +21,7 @@
  *
  * Woo: 1389326:57077a4b28ba71cacf692bcf4a1a7f60
  * WC requires at least: 3.5
- * WC tested up to: 4.9.2
+ * WC tested up to: 5.2.2
  */
 
 defined( 'ABSPATH' ) or exit;

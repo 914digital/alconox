@@ -63,6 +63,9 @@ class WC_AvaTax_Order_Handler {
 			// set proper tax rate labels for new orders
 			add_action( 'woocommerce_checkout_create_order_tax_item', array( $this, 'set_tax_item_labels' ), 10, 2 );
 
+			// set proper tax rate labels after taxes are updated
+			add_action( 'woocommerce_before_order_item_object_save', [ $this, 'restore_tax_item_label' ] );
+
 			// Calculate order taxes and send to Avalara tax when payment is complete
 			add_action( 'woocommerce_payment_complete', array( $this, 'process_paid_order' ) );
 
@@ -177,6 +180,45 @@ class WC_AvaTax_Order_Handler {
 					break;
 				}
 			}
+		}
+	}
+
+
+	/**
+	 * Prevents WooCommerce from setting the default label for tax items that represent AvaTax tax items.
+	 *
+	 * {@see \WC_Order::update_taxes() sets the label of existing tax items using the value returned by {@see \WC_Tax::get_rate_label()},
+	 * which will always return the default label for AvaTax tax items, because those don't have tax rates stored in the database.
+	 *
+	 * @internal
+	 *
+	 * @since 1.12.0
+	 *
+	 * @param \WC_Order_Item $item
+	 */
+	public function restore_tax_item_label( $item ) {
+
+		if ( ! $item instanceof \WC_Order_Item_Tax ) {
+			return;
+		}
+
+		if ( ! Framework\SV_WC_Helper::str_starts_with( $item->get_rate_id(), \WC_AvaTax_Tax_Handler::RATE_PREFIX ) ) {
+			return;
+		}
+
+		if ( ! isset( WC()->countries ) || ! is_callable( [ WC()->countries, 'tax_or_vat' ] ) ) {
+			return;
+		}
+
+		$changes = $item->get_changes();
+		$data    = $item->get_data();
+
+		if ( ! is_array( $changes ) || ! is_array( $data ) || ! isset( $changes['label'], $data['label'] ) ) {
+			return;
+		}
+
+		if ( ! empty( $data['label'] ) && WC()->countries->tax_or_vat() === $changes['label'] ) {
+			$item->set_label( $data['label'] );
 		}
 	}
 
@@ -414,9 +456,9 @@ class WC_AvaTax_Order_Handler {
 
 			$item_rates = $item->get_taxes();
 
-			foreach ( $lines[ $line_index ]['rates'] as $rate ) {
-				$item_rates['total'][ $rate->get_code() ]    = $rate->get_total();
-				$item_rates['subtotal'][ $rate->get_code() ] = $rate->get_total();
+			foreach ( $lines[ $line_index ]['rates'] as $code => $rate ) {
+				$item_rates['total'][ $code ]    = $rate->get_total();
+				$item_rates['subtotal'][ $code ] = $rate->get_total();
 			}
 
 			$item->set_taxes( $item_rates );
@@ -605,24 +647,24 @@ class WC_AvaTax_Order_Handler {
 
 		foreach ( $lines as $line ) {
 
-			foreach ( $line['rates'] as $rate ) {
+			foreach ( $line['rates'] as $code => $rate ) {
 
-				$taxes_labels[ $rate->get_code() ] = $rate->get_label();
+				$taxes_labels[ $code ] = $rate->get_label();
 
 				if ( Framework\SV_WC_Helper::str_starts_with( $line['id'], 'shipping_' ) ) {
 
-					if ( isset( $shipping_taxes[ $rate->get_code() ] ) ) {
-						$shipping_taxes[ $rate->get_code() ] += $rate->get_total();
+					if ( isset( $shipping_taxes[ $code ] ) ) {
+						$shipping_taxes[ $code ] += $rate->get_total();
 					} else {
-						$shipping_taxes[ $rate->get_code() ] = $rate->get_total();
+						$shipping_taxes[ $code ] = $rate->get_total();
 					}
 
 				} else {
 
-					if ( isset( $cart_taxes[ $rate->get_code() ] ) ) {
-						$cart_taxes[ $rate->get_code() ] += $rate->get_total();
+					if ( isset( $cart_taxes[ $code ] ) ) {
+						$cart_taxes[ $code ] += $rate->get_total();
 					} else {
-						$cart_taxes[ $rate->get_code() ] = $rate->get_total();
+						$cart_taxes[ $code ] = $rate->get_total();
 					}
 				}
 			}

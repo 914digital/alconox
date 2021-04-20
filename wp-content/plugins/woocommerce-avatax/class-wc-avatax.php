@@ -34,7 +34,7 @@ class WC_AvaTax extends Framework\SV_WC_Plugin {
 
 
 	/** plugin version number */
-	const VERSION = '1.11.2';
+	const VERSION = '1.12.0';
 
 	/** plugin id */
 	const PLUGIN_ID = 'avatax';
@@ -113,7 +113,7 @@ class WC_AvaTax extends Framework\SV_WC_Plugin {
 	/**
 	 * Initializes the plugin.
 	 *
-	 * @since 1.12.0-dev.1
+	 * @since 1.12.0
 	 */
 	public function init_plugin() {
 

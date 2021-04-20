@@ -229,16 +229,34 @@ $header['content-length']= !empty($body) ? strlen($body) : 0;
   public function get_crm_fields($object,$is_options=false){ 
 
 $sales_response=$this->post_sales_arr('/services/data/'.$this->api_version.'/sobjects/'.ucfirst($object)."/describe","get",""); 
-
+//var_dump($sales_response);
   ///seprating fields
   if(isset($sales_response['fields']) && is_array($sales_response['fields'])){
+      
+      if(isset($this->id) && $this->id == 'vxc_sales' && in_array($object,array("Order",'Opportunity','Quote'))){
+         $line_object=$object.'LineItem';
+          if($object == 'Order'){ $line_object='OrderItem';  }
+       $item_res=$this->post_sales_arr('/services/data/'.$this->api_version.'/sobjects/'.$line_object."/describe","get",""); 
+       if(!empty($item_res['fields'])){
+           foreach($item_res['fields'] as $v){
+               if(isset($v['name']) && !in_array($v['name'],array('OrderId','PricebookEntryId','Id'))){ //,'Quantity','UnitPrice'
+                 $v['is_item']='1';
+                 if(isset($v['createable'])){
+                   $v['createable']='';  
+                 }
+                 $v['label']='Line Item - '.$v['label'];
+                   $sales_response['fields'][]=$v;  
+               }
+           }
+       }   
+      }
   $field_info=array();
   foreach($sales_response['fields'] as $k=>$field){ 
   
         if( (isset($field['createable']) && $field['createable'] ==true) || $field['name'] == 'Id' || (isset($field['custom']) && $field['custom'] ==true) ){
         
           $required=""; 
-  if( !empty($field['nameField']) || (!empty($field['createable']) && empty($field['nillable']) && empty($field['defaultedOnCreate']))  ){
+  if( !empty($field['nameField']) || (!empty($field['createable']) && empty($field['nillable']) && empty($field['defaultedOnCreate']) )  ){ // && !in_array($field['name'],array('Quantity','UnitPrice'))
   $required="true";   
   } 
   $type=$field['type'];
@@ -249,8 +267,10 @@ $sales_response=$this->post_sales_arr('/services/data/'.$this->api_version.'/sob
   $field_arr['label']=$field['label']; 
   $field_arr['req']=$required;
   $field_arr["maxlength"]=$field['length'];
-  $field_arr["custom"]=$field['custom'];    
-            
+  $field_arr["custom"]=$field['custom']; 
+  if(isset($field['is_item'])){   
+  $field_arr["is_item"]='1';    
+  }
          if(isset($field['picklistValues']) && is_array($field['picklistValues']) && count($field['picklistValues'])>0){
          $field_arr['options']=$field['picklistValues'];
              $egs=array();
@@ -543,7 +563,7 @@ public function push_object($object,$temp_fields,$meta){
 
 //$res=$this->get_entry('Lead','00Q0H00001sbljWUAQ');
 //$res=$this->post_sales_arr('/services/data/v39.0/sobjects/RecordType/describe','get','');
-//var_dump($res); die();
+//var_dump($temp_fields,$meta); die();
   $fields_info=array(); $fields=array(); $extra=array();
   $id=""; $error=""; $action=""; $link=""; $search=$search_response=$status=""; 
   $files=array();
@@ -592,7 +612,16 @@ if($i>1){ $field_n.=$i; }
     unset($fields[$field_n]);  
   }
 }
-  $fields=$this->clean_sf_fields($fields,$fields_info);
+if(!empty($fields_info)){
+    foreach($fields_info as $k=>$v){
+        if(!empty($v['is_item']) && isset($meta['map'][$k])){
+        $meta['item_fields'][$k]=$meta['map'][$k];
+        if(isset($fields[$k])){ unset($fields[$k]); }    
+        }
+    } 
+}
+
+$fields=$this->clean_sf_fields($fields,$fields_info);
 
 
 if(!empty($meta['owner'])){
@@ -743,6 +772,9 @@ $entry_exists=true;
          if($object == 'CampaignMember'){
        unset($fields['ContactId']);
        unset($fields['CampaignId']);
+         } if($object == 'PricebookEntry'){
+       unset($fields['Product2Id']);
+       unset($fields['Pricebook2Id']);
          }
   $sales_response=$this->post_sales_arr('/services/data/'.$this->api_version.'/sobjects/'.$object."/".$id,"PATCH",$fields);
    if(empty($sales_response)){ $status="2";  $sent=true; } 
@@ -878,6 +910,14 @@ public function get_search_val($field,$fields,$fields_info){
       if(strpos($field,'+Email') !== false ){
          $search['Email']= $fields['Email']; 
       }   
+  }else if(strpos($field,'Product2Id+') !== false ){
+      if(!empty($fields['Product2Id'])){
+          $search['Product2Id']=  $fields['Product2Id'];
+      }
+      if(!empty($fields['Pricebook2Id'])){
+          $search['Pricebook2Id']= $fields['Pricebook2Id'];
+      }
+     
   }else if(isset($fields[$field]) && $fields[$field] !=''){
       $val=$fields[$field];
       if(isset($fields_info[$field]['type'])){
@@ -1049,6 +1089,12 @@ public function get_items($meta){
         if(!empty($price_book_id)){
          //add as order item
        $order_item=array('quantity'=>$item['qty'],'PricebookEntryId'=>$price_book_id,'UnitPrice'=>$item['cost_woo']); //,'Product2Id'=>$product_id
+    if(!empty($item['fields']) && is_array($meta['fields'])){
+        $item['fields']=$this->clean_sf_fields($item['fields'],$meta['fields']);
+        foreach($item['fields'] as $k=>$v){
+            $order_item[$k]=$v;
+        }
+    }
        $order_items[]=$order_item; 
         } 
               
@@ -1133,7 +1179,18 @@ if(method_exists($item,'get_product')){
         $p_id=$item['product_id'];
         $name=$item['name'];
  }
-  $temp=array('sku'=>$sku,'unit_price'=>$unit_price,'title'=>$title,'qty'=>$qty,'tax'=>$tax,'total'=>$total,'desc'=>$desc,'p_id'=>$p_id,'var_id'=>$var_id,'name'=>$name,'cost'=>$cost,'cost_woo'=>$cost_woo);
+  $temp=array('sku'=>$sku,'unit_price'=>$unit_price,'title'=>$title,'qty'=>$qty,'tax'=>$tax,'total'=>$total,'desc'=>$desc,'p_id'=>$p_id,'var_id'=>$var_id,'name'=>$name,'cost'=>$cost,'cost_woo'=>$cost_woo,'fields'=>array());
+  
+     if(!empty($meta['item_fields'])){
+        foreach($meta['item_fields'] as $k=>$v){
+        if(isset($v['type'])){
+            if($v['type'] == 'value'){
+                $temp['fields'][$k]=$this->process_tags($v['value'],$item);
+        }else{
+         $temp['fields'][$k]=$this->get_field_val($v,$item);   
+        }    }
+        }   
+       }
           if(method_exists($product,'get_stock_quantity')){
    $temp['stock']=$product->get_stock_quantity();
 } 

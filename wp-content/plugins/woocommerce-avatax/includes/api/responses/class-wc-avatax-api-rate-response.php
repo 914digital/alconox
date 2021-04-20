@@ -59,21 +59,9 @@ class WC_AvaTax_API_Rate_Response extends \WC_AvaTax_API_Response {
 
 		if ( is_array( $this->rates ) ) {
 
-
 			foreach ( $this->rates as $rate ) {
 
-				$rate_key = sanitize_title( $rate->name );
-
-				// check if rate already exists, then add on top of it
-				if ( isset( $api_tax_rates[ $rate_key ] ) ) {
-
-					$updated_rate = $api_tax_rates[ $rate_key ]->get_rate() + $rate->rate;
-					$api_tax_rates[ $rate_key ]->set_rate( $updated_rate );
-
-					continue;
-				}
-
-				$api_tax_rates[ $rate_key ] = new WC_AvaTax_API_Tax_Rate( [
+				$api_tax_rates[] = new WC_AvaTax_API_Tax_Rate( [
 					'code' => $rate->name,
 					'name' => $rate->type,
 					'rate' => $rate->rate,
@@ -81,7 +69,53 @@ class WC_AvaTax_API_Rate_Response extends \WC_AvaTax_API_Response {
 			}
 		}
 
-		return $api_tax_rates;
+		return $this->ensure_unique_tax_rate_indexes( $api_tax_rates );
+	}
+
+
+	/**
+	 * Modifies the given array of tax rates to ensure each entry gets a unique index.
+	 *
+	 * If two tax rates use EXAMPLE as their code, the rates will be added to the resulting
+	 * array using EXAMPLE-1 and EXAMPLE-2 as the index.
+	 *
+	 * @since 1.12.0
+	 *
+	 * @param WC_AvaTax_API_Tax_Rate[] $rates original list of rates
+	 *
+	 * @return array
+	 */
+	protected function ensure_unique_tax_rate_indexes( $rates ) {
+
+		$groups = [];
+
+		// group tax rates by code
+		foreach ( $rates as $rate ) {
+			if ( isset( $groups[ $rate->get_code() ] ) ) {
+				$groups[ $rate->get_code() ][] = $rate;
+			} else {
+				$groups[ $rate->get_code() ] = [ $rate ];
+			}
+		}
+
+		$rates = [];
+
+		// create a list of rates adding a numeric prefix to the index for rates that have the same code
+		foreach ( $groups as $code => $group_rates ) {
+
+			if ( 1 === count( $group_rates ) ) {
+
+				$rates[ $code ] = reset( $group_rates );
+
+			} else {
+
+				foreach ( $group_rates as $index => $rate ) {
+					$rates[ $code . '-' . ( $index + 1 ) ] = $rate;
+				}
+			}
+		}
+
+		return $rates;
 	}
 
 

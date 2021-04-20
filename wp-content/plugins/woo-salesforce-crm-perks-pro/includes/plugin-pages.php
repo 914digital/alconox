@@ -753,7 +753,7 @@ if(!empty($v['placeholder'])){ $label=$v['placeholder']; }
 
   $fields=array();
      $account=$this->account;
-
+  if(!is_array($feed)){ $feed=array(); }
   if($object != ""){
    $module=$object;   
   }else{
@@ -782,6 +782,7 @@ $meta=$info['meta'];
   if(isset($info['data'])){
 $data=$info['data'];
   }
+
   $map=isset($feed['map']) && is_array($feed['map']) ? $feed['map'] : array();
   // $map_c=isset($feed['custom']) && is_array($feed['custom']) ? $feed['custom'] : array();
   $api_type=$this->post('api',$data);   
@@ -889,7 +890,7 @@ $feeds_arr=array('Account'=>array('fields'=>'{"Name":{"type":"value","custom":""
   if(empty($map) && !empty($feeds_arr[$module_json])){
       $map=json_decode($feeds_arr[$module_json]['fields'],1); 
      if(!empty($feeds_arr[$module_json]['feed'])){
-         foreach($feeds_arr[$module_json]['feed'] as $kk=>$vv){
+         foreach($feeds_arr[$module_json]['feed'] as $kk=>$vv){ 
      $feed[$kk]=$vv;  
          }
      }

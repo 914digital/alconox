@@ -2,10 +2,10 @@
 /*
 * Plugin Name: WooCommerce Salesforce Integration Pro
 * Description: Integrates WooCommerce with Salesforce allowing new orders to be automatically sent to your Salesforce account.
-* Version: 1.5.4
+* Version: 1.5.6
 * Requires at least: 4.7
 * Tested up to: 5.7
-* WC tested up to: 5.1
+* WC tested up to: 5.2
 * Author: CRM Perks.
 * Author URI: https://www.crmperks.com
 * Plugin URI: https://www.crmperks.com/plugins/woocommerce-plugins/woocommerce-salesforce-plugin/
@@ -23,7 +23,7 @@ class vxc_sales{
   public $id='vxc_sales';
   public $domain='vxc-sales';
   public $crm_name='salesforce';
-  public $version = '1.5.4';
+  public $version = '1.5.6';
   public $min_wc_version = '2.1.1';
   public $update_id = '50001';
   public $type = 'vxc_sales_pro';
@@ -403,7 +403,11 @@ $info = $wpdb->get_row($sql ,ARRAY_A );
 $info_arr=array(); $data=array();  $meta=array(); 
 if(is_array($info)){
 if(!empty($info['data'])){ 
-  $info_arr=json_decode($this->de_crypt($info['data']),true);   
+     $info['data']=trim($info['data']); 
+    if(strpos($info['data'],'{') !== 0){
+        $info['data']=$this->de_crypt($info['data']);
+    }
+  $info_arr=json_decode($info['data'],true);  
 if(!is_array($info_arr)){
     $info_arr=array();
 }
@@ -1987,8 +1991,8 @@ if(empty($id)){
        $sql['name']="Account #".$this->post('id'); 
   }
 
-    $str=json_encode($data['data']);
-  $enc_str=$this->en_crypt($str);
+    $enc_str=json_encode($data['data']);
+ // $enc_str=$this->en_crypt($enc_str);
   $sql['data']=$enc_str;
   }
   } 

@@ -67,6 +67,9 @@ class WC_AvaTax_API_Tax_Rate {
 	 * This method removes spaces & prepends 'AVATAX-' to the code so it can be
 	 * easily identified later.
 	 *
+	 * Note that the code used for WooCommerce tax items may include a numeric suffix if AvaTax returns
+	 * two or more rates with the same code.
+	 *
 	 * @since 1.5.0
 	 *
 	 * @return string the rate code, formatted like 'AVATAX-MI-STATE-TAX'

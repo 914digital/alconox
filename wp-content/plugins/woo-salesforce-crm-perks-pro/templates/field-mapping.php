@@ -486,7 +486,9 @@ var crm_fields=<?php echo json_encode($json_fields); ?>;
               $key_fields['FirstName+LastName']=array('label'=>'First Name & Last Name');
               if(isset($fields['Email'])){
               $key_fields['FirstName+LastName+Email']=array('label'=>'First Name & Last Name & Email');
-          }    }
+          }    }else   if($k == 'Product2Id' && isset($fields['Pricebook2Id'])){
+              $key_fields['Product2Id+Pricebook2Id']=array('label'=>'Product Id & Pricebook Id');
+              }
           }
       }
   ?>     
