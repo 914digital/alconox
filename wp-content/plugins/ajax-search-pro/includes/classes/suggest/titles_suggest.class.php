@@ -27,6 +27,7 @@ if (!class_exists('wpd_titlesKeywordSuggest')) {
 	        $this->matchStart = $args['match_start'];
             $this->searchID = $args['search_id'];
             $this->searchOptions = $args['options'];
+            $this->searchArgs = $args['args'];
         }
 
         function getKeywords($q) {
@@ -56,7 +57,7 @@ if (!class_exists('wpd_titlesKeywordSuggest')) {
             $polylang_query = "";
 
             if ( $this->searchID > 0 ) {
-                $search_args = ASP_Helpers::toQueryArgs($this->searchID, $this->searchOptions);
+                $search_args = ASP_Helpers::toQueryArgs($this->searchID, $this->searchOptions, $this->searchArgs);
 
                 // Allowed statuses
                 if ( count($search_args['post_status']) > 0) {

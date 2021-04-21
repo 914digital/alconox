@@ -13,7 +13,8 @@ jQuery.extend({
     highlight: function (node, re, nodeName, className, excludeParents) {
         excludeParents = excludeParents == '' ? '.exhghttt' : excludeParents;
         if (node.nodeType === 3) {
-            var match = node.data.match(re);
+            var normalized = node.data.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+            var match = normalized.match(re);
             if (match) {
                 var highlight = document.createElement(nodeName || 'span');
                 highlight.className = className || 'highlight';
@@ -62,7 +63,7 @@ jQuery.fn.highlight = function (words, options) {
         return word != '';
     });
     words = jQuery.map(words, function(word, i) {
-        return word.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+        return word.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&").normalize("NFD").replace(/[\u0300-\u036f]/g, "");
     });
     if (words.length == 0) { return this; };
 

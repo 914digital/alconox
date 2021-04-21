@@ -137,13 +137,14 @@
             if ( $this.usingLiveLoader ) {
                 $this.o.trigger.type = $this.o.resPage.trigger_type;
                 $this.o.trigger.facet = $this.o.resPage.trigger_facet;
-                $this.o.redirectOnClick = $this.o.resPage.trigger_magnifier == 0;
-                if ( !$this.o.redirectOnClick ) {
+                if ( $this.o.resPage.trigger_magnifier ) {
+                    $this.o.redirectOnClick = 0;
                     $this.o.trigger.click = 'ajax_search';
                 }
-                $this.o.redirectOnEnter = $this.o.resPage.trigger_return == 0;
-                if ( !$this.o.redirectOnEnter ) {
-                    $this.o.trigger.return = 'ajax_search';
+
+                if ( $this.o.resPage.trigger_return ) {
+                    $this.o.redirectOnEnter = 0;
+                    $this.o.trigger.click = 'ajax_search';
                 }
             }
 
@@ -152,13 +153,8 @@
              * like a link, so instead, use touchend
              * Stupid solution, but it works..
              */
-            if ( detectIOS() && isMobile() && is_touch_device() ) {
-                $this.clickTouchend = 'touchend';
-                $this.mouseupTouchend = 'touchend';
-            } else {
-                $this.clickTouchend = 'click touchend';
-                $this.mouseupTouchend = 'mouseup touchend';
-            }
+            $this.clickTouchend = 'click touchend';
+            $this.mouseupTouchend = 'mouseup touchend';
 
             // Move the try-this keywords to the correct position
             $this.n.trythis.detach().insertAfter($this.n.container);
@@ -181,7 +177,6 @@
                 "searchWithCheck": null
             };
 
-            $this.firstClick = true;
             $this.post = null;
             $this.postAuto = null;
             $this.cleanUp();
@@ -424,6 +419,8 @@
                     "id",
                     $this.n.searchsettings.attr("id").replace('probsettings', 'prosettings')
                 );
+                $this.n.searchsettings.removeClass('asp_sb asp_sb_' + $this.o.id + ' asp_sb_' + $this.o.rid);
+                $this.n.searchsettings.addClass('asp_s asp_s_' + $this.o.id + ' asp_s_' + $this.o.rid);
                 $this.n.searchsettings.detach().appendTo("body");
                 $this.n.searchsettings.css({
                     'position': 'absolute'
@@ -863,11 +860,12 @@
                 // Results highlight on results page
                 if ( $this.o.singleHighlight == 1 ) {
                     localStorage.removeItem('asp_phrase_highlight');
-                    if ( asp_unquote_phrase( $this.n.text.val() ) != '' )
+                    if ( asp_unquote_phrase( $this.n.text.val() ) != '' ) {
                         localStorage.setItem('asp_phrase_highlight', JSON.stringify({
                             'phrase': asp_unquote_phrase( $this.n.text.val() ),
                             'id': $this.o.id
                         }));
+                    }
                 }
             });
 
@@ -960,9 +958,13 @@
                 }
             });
 
-            if ( isMobile() && $this.o.mobile.force_sett_hover == 1 ) {
-                if ( $this.o.mobile.force_sett_state == "open" )
+            if ( isMobile() ) {
+                if (
+                    $this.o.mobile.force_sett_state == "open" ||
+                    ( $this.o.mobile.force_sett_state == "none" && $this.o.settingsVisible == 1 )
+                ) {
                     $this.n.prosettings.trigger('click');
+                }
             } else if ($this.o.settingsVisible == 1) {
                 $this.n.prosettings.trigger('click');
             }
@@ -1022,31 +1024,23 @@
                 }
             });
             // Isotope results swipe event
-            if ( $this.o.resultstype == "isotopic" && typeof $this.n.resultsDiv.swipe != "undefined" ) {
-                $this.n.resultsDiv.swipe({
-                    //Generic swipe handler for all directions
-                    excludedElements: "button, input, select, textarea, .noSwipe",
-                    preventDefaultEvents: (!detectIOS() && !detectIE()),
-                    // Params: e, direction, distance, duration, fingerCount, fingerData
-                    swipeLeft: function () {
-                        if ( $this.visiblePagination() )
-                            $("a.asp_next", $this.n.resultsDiv).trigger('click');
-                    },
-                    // Params: e, direction, distance, duration, fingerCount, fingerData
-                    swipeRight: function () {
-                        if ( $this.visiblePagination() )
-                            $("a.asp_prev", $this.n.resultsDiv).trigger('click');
-                    }
+            if ( $this.o.resultstype == "isotopic" ) {
+                // Mark the element for
+                $this.n.resultsDiv.addClass('asp_touchswipe');
+                $this.n.resultsDiv.on("asp_swipe.left", function(){
+                    if ( $this.visiblePagination() )
+                        $("a.asp_next", $this.n.resultsDiv).trigger('click');
                 });
-                $this.n.resultsDiv.on("click", function (e) {
-                    e.stopImmediatePropagation();
-                });
-            } else {
-                // Only cancel on touch, if the swipe is not enabled
-                $this.n.resultsDiv.on($this.clickTouchend, function (e) {
-                    e.stopImmediatePropagation();
+                $this.n.resultsDiv.on("asp_swipe.right", function(){
+                    if ( $this.visiblePagination() )
+                        $("a.asp_prev", $this.n.resultsDiv).trigger('click');
                 });
             }
+            // Stop closing the results when clicking on one of the elements
+            $this.n.resultsDiv.on($this.clickTouchend, function (e) {
+                if ( !$this.dragging )
+                    e.stopImmediatePropagation();
+            });
         },
 
         initOtherEvents: function() {
@@ -1105,6 +1099,22 @@
                     $this.scrolling(false);
                 }, 400);
             });
+
+            // Mobile navigation focus
+            if ( isMobile() && $this.o.mobile.menu_selector != '' ) {
+                $($this.o.mobile.menu_selector).on('touchend', function(){
+                    var _this = this;
+                    setTimeout(function () {
+                        var $input = $(_this).find('input.orig');
+                        $input = $input.length == 0 ? $(_this).next().find('input.orig') : $input;
+                        $input = $input.length == 0 ? $(_this).parent().find('input.orig') : $input;
+                        $input = $input.length == 0 ? $this.n.text : $input;
+                        if ( $this.n.container.is(':visible') ) {
+                            $input.get(0).focus();
+                        }
+                    }, 300);
+                });
+            }
 
             // Prevent zoom on IOS
             if ( detectIOS() && isMobile() && is_touch_device() ) {
@@ -1670,7 +1680,6 @@
 
         initPagerEvent: function () {
             var $this = this;
-            //$this.n.resultsDiv.on('click touchend click_trigger', 'nav>a', function (e) {
             $this.n.resultsDiv.on($this.clickTouchend + ' click_trigger', 'nav>a', function (e) {
                 e.preventDefault();
                 e.stopImmediatePropagation();
@@ -1829,13 +1838,16 @@
                             $(this).removeClass('animated pulse');
                         });
                     }
-                    $this.n.resultsDiv.on('mouseup', '.asp_isotopic_item', function(e){
+
+                    $this.n.resultsDiv.on('touchend mouseup', '.asp_isotopic_item', function(e){
                         // Method to preserve _blank, jQuery click() method only triggers event handlers
-                        var link = $('.asp_content h3 a', this).get(0);
-                        if (typeof link != "undefined") {
-                            if (e.which == 2)
-                                $(link).attr('target','_blank');
-                            link.click();
+                        if ( !$this.dragging ) {
+                            var link = $('.asp_content h3 a', this).get(0);
+                            if (typeof link != "undefined") {
+                                if (e.which == 2)
+                                    $(link).attr('target', '_blank');
+                                link.click();
+                            }
                         }
                     });
                 }
@@ -2360,23 +2372,25 @@
             } else {
                 $this.n.textAutocomplete.val('');
             }
-            var data = {
-                action: 'ajaxsearchpro_autocomplete',
-                asid: $this.o.id,
-                sauto: $this.n.text.val(),
-                asp_inst_id: $this.o.rid,
-                options: $('form', $this.n.searchsettings).serialize()
-            };
-            $this.postAuto = $.post(ASP.ajaxurl, data, function (response) {
-                if (response.length > 0) {
-                    response = $('<textarea />').html(response).text();
-                    response = response.replace(/^\s*[\r\n]/gm, "");
-                    var part1 = val;
-                    var part2 = response.substr(val.length);
-                    response = part1 + part2;
-                }
-                $this.n.textAutocomplete.val(response);
-            });
+            if ( $this.n.text.val().length >= $this.o.autocomplete.trigger_charcount ) {
+                var data = {
+                    action: 'ajaxsearchpro_autocomplete',
+                    asid: $this.o.id,
+                    sauto: $this.n.text.val(),
+                    asp_inst_id: $this.o.rid,
+                    options: $('form', $this.n.searchsettings).serialize()
+                };
+                $this.postAuto = $.post(ASP.ajaxurl, data, function (response) {
+                    if (response.length > 0) {
+                        response = $('<textarea />').html(response).text();
+                        response = response.replace(/^\s*[\r\n]/gm, "");
+                        var part1 = val;
+                        var part2 = response.substr(val.length);
+                        response = part1 + part2;
+                    }
+                    $this.n.textAutocomplete.val(response);
+                });
+            }
         },
 
         // If only google source is used, this is much faster..
@@ -2406,25 +2420,27 @@
                 }
             });
 
-            $.ajax({
-                url: 'https://clients1.google.com/complete/search',
-                dataType: 'jsonp',
-                data: {
-                    q: val,
-                    hl: lang,
-                    nolabels: 't',
-                    client: 'hp',
-                    ds: ''
-                },
-                success: function(data) {
-                    if (data[1].length > 0) {
-                        response = data[1][0][0].replace(/(<([^>]+)>)/ig,"");
-                        response = $('<textarea />').html(response).text();
-                        response = response.substr(val.length);
-                        $this.n.textAutocomplete.val(val + response);
+            if ( $this.n.text.val().length >= $this.o.autocomplete.trigger_charcount ) {
+                $.ajax({
+                    url: 'https://clients1.google.com/complete/search',
+                    dataType: 'jsonp',
+                    data: {
+                        q: val,
+                        hl: lang,
+                        nolabels: 't',
+                        client: 'hp',
+                        ds: ''
+                    },
+                    success: function (data) {
+                        if (data[1].length > 0) {
+                            response = data[1][0][0].replace(/(<([^>]+)>)/ig, "");
+                            response = $('<textarea />').html(response).text();
+                            response = response.substr(val.length);
+                            $this.n.textAutocomplete.val(val + response);
+                        }
                     }
-                }
-            });
+                });
+            }
         },
 
         isDuplicateSearchTriggered: function() {
@@ -3120,26 +3136,28 @@
                 var $container = $this.is_scroll ? $($this.scroll.getScrollElement()) : $this.n.results;
                 $container.scrollLeft(0);
 
-                var prevDelta = 0;
-                var prevTime = Date.now();
-                $container.off('mousewheel');
-                $container.on('mousewheel', function(e){
-                    var deltaFactor = typeof e.deltaFactor != 'undefined' ? e.deltaFactor : 65;
-                    var diff = Date.now() - prevTime;
-                    var speed = diff > 100 ? 1 : 3 - (2 * diff/100);
-                    if ( prevDelta != e.deltaY )
-                        speed = 1;
-                    $(this).stop(true).animate({
-                        "scrollLeft": "-=" + (e.deltaY * deltaFactor * 2 * speed) + "px"
-                    }, {
-                        "duration": 250,
-                        "easing" : "aspEaseOutQuad"
+                if ( $this.o.scrollBar.horizontal.enabled ) {
+                    var prevDelta = 0;
+                    var prevTime = Date.now();
+                    $container.off('mousewheel');
+                    $container.on('mousewheel', function (e) {
+                        var deltaFactor = typeof e.deltaFactor != 'undefined' ? e.deltaFactor : 65;
+                        var diff = Date.now() - prevTime;
+                        var speed = diff > 100 ? 1 : 3 - (2 * diff / 100);
+                        if (prevDelta != e.deltaY)
+                            speed = 1;
+                        $(this).stop(true).animate({
+                            "scrollLeft": "-=" + (e.deltaY * deltaFactor * 2 * speed) + "px"
+                        }, {
+                            "duration": 250,
+                            "easing": "aspEaseOutQuad"
+                        });
+                        prevDelta = e.deltaY;
+                        prevTime = Date.now();
+                        if (!((isScrolledToRight($container.get(0)) && e.deltaY == -1) || (isScrolledToLeft($container.get(0)) && e.deltaY == 1)))
+                            e.preventDefault();
                     });
-                    prevDelta = e.deltaY;
-                    prevTime = Date.now();
-                    if (!((isScrolledToRight($container.get(0)) && e.deltaY == -1) || (isScrolledToLeft($container.get(0)) && e.deltaY == 1)))
-                        e.preventDefault();
-                });
+                }
             }
 
             $this.showResultsBox();
@@ -3462,26 +3480,21 @@
                 }
             });
 
-            if ( typeof figures.swipe != "undefined" )
-                $this.n.resultsDiv.swipe( {
-                    //Generic swipe handler for all directions
-                    excludedElements: "button, input, select, textarea, .noSwipe",
-                    preventDefaultEvents: !detectIOS(),
-                    swipeLeft: function(e, direction, distance, duration, fingerCount, fingerData) {
-                        if ($('.photostack>nav span.current', $this.n.resultsDiv).next().length > 0) {
-                            $('.photostack>nav span.current', $this.n.resultsDiv).next().trigger('click');
-                        } else {
-                            $('.photostack>nav span:nth-child(1)', $this.n.resultsDiv).trigger('click');
-                        }
-                    },
-                    swipeRight:function(e, direction, distance, duration, fingerCount, fingerData) {
-                        if ($('.photostack>nav span.current', $this.n.resultsDiv).prev().length > 0) {
-                            $('.photostack>nav span.current', $this.n.resultsDiv).prev().trigger('click');
-                        } else {
-                            $('.photostack>nav span:nth-last-child(1)', $this.n.resultsDiv).trigger('click');
-                        }
-                    }
-                });
+            $this.n.resultsDiv.addClass('asp_touchswipe');
+            $this.n.resultsDiv.on("asp_swipe.left", function() {
+                if ($('.photostack>nav span.current', $this.n.resultsDiv).next().length > 0) {
+                    $('.photostack>nav span.current', $this.n.resultsDiv).next().trigger('click');
+                } else {
+                    $('.photostack>nav span:nth-child(1)', $this.n.resultsDiv).trigger('click');
+                }
+            });
+            $this.n.resultsDiv.on("asp_swipe.right", function() {
+                if ($('.photostack>nav span.current', $this.n.resultsDiv).prev().length > 0) {
+                    $('.photostack>nav span.current', $this.n.resultsDiv).prev().trigger('click');
+                } else {
+                    $('.photostack>nav span:nth-last-child(1)', $this.n.resultsDiv).trigger('click');
+                }
+            });
         },
 
         addAnimation: function () {
@@ -3977,6 +3990,18 @@
                             $(this).closest("form").trigger('submit');
                         });
 
+                        // Single highlight on live results
+                        if ( $this.o.singleHighlight == 1 ) {
+                            $(selector).find('a').on('click', function(){
+                                localStorage.removeItem('asp_phrase_highlight');
+                                if ( asp_unquote_phrase( $this.n.text.val() ) != '' )
+                                    localStorage.setItem('asp_phrase_highlight', JSON.stringify({
+                                        'phrase': asp_unquote_phrase( $this.n.text.val() ),
+                                        'id': $this.o.id
+                                    }));
+                            });
+                        }
+
                         ASP.fixClones();
                         ASP.initialize();
                         $this.lastSuccesfulSearch = $('form', $this.n.searchsettings).serialize() + $this.n.text.val().trim();
@@ -4030,7 +4055,7 @@
                         queryString = queryString.replace(/&asp_force_reset_pagination=1/gmi, '');
                         $('.asp_es_' + $this.o.id).find('.elementor-pagination a').each(function(){
                             var a = $(this).attr('href');
-                            if ( a.indexOf('asp_ls=') < 0 ) {
+                            if ( a.indexOf('asp_ls=') < 0 && a.indexOf('asp_ls&') < 0 ) {
                                 if ( a.indexOf('?') < 0 ) {
                                     $(this).attr('href', a + '?' + queryString);
                                 } else {
@@ -4052,6 +4077,10 @@
             // Correct previous query arguments (in case of paginated results)
             location = location.indexOf('asp_ls=') > -1 ? location.slice(0, location.indexOf('asp_ls=')) : location;
             location = location.indexOf('asp_ls&') > -1 ? location.slice(0, location.indexOf('asp_ls&')) : location;
+
+            // Was asp_ls missing but there are ASP related arguments? (ex. when using ASP.api('getStateURL'))
+            location = location.indexOf('p_asid=') > -1 ? location.slice(0, location.indexOf('p_asid=')) : location;
+            location = location.indexOf('asp_') > -1 ? location.slice(0, location.indexOf('asp_')) : location;
 
             if ( location.indexOf('?') === -1 ) {
                 start = '?';
@@ -4601,6 +4630,8 @@
     function apply_filters() {
         if ( typeof wp != 'undefined' && typeof wp.hooks != 'undefined' && typeof wp.hooks.applyFilters != 'undefined' ) {
             return wp.hooks.applyFilters.apply(null, arguments);
+        } else {
+            return typeof arguments[1] != 'undefined' ? arguments[1] : false;
         }
     }
 

@@ -544,13 +544,17 @@ if ( ! class_exists( 'ASP_Search_CPT' ) ) {
                             OR  " . $pre_field . $wpdb->posts . ".post_title" . $suf_field . " = '" . $word . "')";
                     }
                     if ( !$relevance_added ) {
+						$relevance_parts[] = "(case when
+                    (" . $pre_field . $wpdb->posts . ".post_title" . $suf_field . " LIKE '$s')
+                     then " . (w_isset_def($sd['etitleweight'], 10) * 4) . " else 0 end)";
+
                         $relevance_parts[] = "(case when
                     (" . $pre_field . $wpdb->posts . ".post_title" . $suf_field . " LIKE '$s%')
                      then " . (w_isset_def($sd['etitleweight'], 10) * 2) . " else 0 end)";
 
                         $relevance_parts[] = "(case when
                     (" . $pre_field . $wpdb->posts . ".post_title" . $suf_field . " LIKE '%$s%')
-                     then " . w_isset_def($sd['etitleweight'], 10) . " else 0 end)";
+                     then " . w_isset_def($sd['titleweight'], 10) . " else 0 end)";
 
                         // The first word relevance is higher
                         if ( isset($_s[0]) ) {
@@ -986,8 +990,6 @@ if ( ! class_exists( 'ASP_Search_CPT' ) ) {
             $args = $this->args;
             $parts = array();
 
-            aspDebug::start( '--searchContent-cf' );
-
             $allow_cf_null = $args['_post_meta_allow_null'];
 
             foreach ( $args['post_meta_filter'] as $data ) {
@@ -1167,7 +1169,6 @@ if ( ! class_exists( 'ASP_Search_CPT' ) ) {
                 $cf_select = "( ". implode( $args['_post_meta_logic'], $cf_select_arr ) . " )";
             }
 
-            aspDebug::stop( '--searchContent-cf' );
             return $cf_select;
         }
 
@@ -1218,10 +1219,8 @@ if ( ! class_exists( 'ASP_Search_CPT' ) ) {
                             case "average_rating DESC":
                                 // ceil() is very important here!! as this expects 1, 0, -1 but no values inbetween
                                 return ceil((float)$b->average_rating - (float)$a->average_rating);
-                                break;
                             case "relevance DESC":
                                 return $b->relevance - $a->relevance;
-                                break;
                             case "post_date DESC":
                                 $date_diff = strtotime($b->date) - strtotime($a->date);
                                 if ($date_diff == 0)
@@ -1235,13 +1234,10 @@ if ( ! class_exists( 'ASP_Search_CPT' ) ) {
                                     return $a->id - $b->id;
 
                                 return $date_diff;
-                                break;
                             case "post_title DESC":
                                 return strcasecmp($b->title, $a->title);
-                                break;
                             case "post_title ASC":
                                 return strcasecmp($a->title, $b->title);
-                                break;
                             case "menu_order DESC":
                                 return $b->menu_order - $a->menu_order;
                             case "menu_order ASC":
@@ -1251,16 +1247,15 @@ if ( ! class_exists( 'ASP_Search_CPT' ) ) {
                                     return floatval($b->customfp) - floatval($a->customfp);
                                 else
                                     return strcasecmp($b->customfp, $a->customfp);
-                                break;
                             case "customfp ASC":
                                 if ($this->args['post_primary_order_metatype'] == 'numeric')
                                     return floatval($a->customfp) - floatval($b->customfp);
                                 else
                                     return strcasecmp($a->customfp, $b->customfp);
-                                break;
+							case "RAND()":
+								return rand(-1,1);
                             default:
                                 return $b->relevance - $a->relevance;
-                                break;
                         }
 
                     }
@@ -1297,27 +1292,22 @@ if ( ! class_exists( 'ASP_Search_CPT' ) ) {
                             switch ($this->ordering['secondary']) {
                                 case "relevance DESC":
                                     return $b->relevance - $a->relevance;
-                                    break;
                                 case "post_date DESC":
                                     $date_diff = strtotime($b->date) - strtotime($a->date);
                                     if ($date_diff == 0)
                                         return $b->id - $a->id;
 
                                     return $date_diff;
-                                    break;
                                 case "post_date ASC":
                                     $date_diff = strtotime($a->date) - strtotime($b->date);
                                     if ($date_diff == 0)
                                         return $a->id - $b->id;
 
                                     return $date_diff;
-                                    break;
                                 case "post_title DESC":
                                     return strcasecmp($b->title, $a->title);
-                                    break;
                                 case "post_title ASC":
                                     return strcasecmp($a->title, $b->title);
-                                    break;
                                 case "menu_order DESC":
                                     return $b->menu_order - $a->menu_order;
                                 case "menu_order ASC":
@@ -1327,16 +1317,15 @@ if ( ! class_exists( 'ASP_Search_CPT' ) ) {
                                         return $b->customfs - $a->customfs;
                                     else
                                         return strcasecmp($b->customfs, $a->customfs);
-                                    break;
                                 case "customfs ASC":
                                     if ($this->args['post_secondary_order_metatype'] == 'numeric')
                                         return $a->customfs - $b->customfs;
                                     else
                                         return strcasecmp($a->customfs, $b->customfs);
-                                    break;
+								case "RAND()":
+									return rand(-1,1);
                                 default:
                                     return $b->relevance - $a->relevance;
-                                    break;
                             }
 
                         }
@@ -1610,8 +1599,6 @@ if ( ! class_exists( 'ASP_Search_CPT' ) ) {
 
             $this->deregisterShortcodes();
 
-            aspDebug::start( '--searchContent-posptrocess' );
-
             global $sitepress;
 
             /* Images, title, desc */
@@ -1629,15 +1616,21 @@ if ( ! class_exists( 'ASP_Search_CPT' ) ) {
                 } else {
                     $r->link = get_permalink( $r->id );
                 }
-                // Filter it though WPML
-                if ( $args['_wpml_lang'] != '') {
-                    $r->link = apply_filters('wpml_permalink', $r->link, $args['_wpml_lang'], true);
-                } else if ( is_object($sitepress) && method_exists($sitepress, 'get_default_language') ) {
-                    $l = apply_filters( 'wpml_post_language_details', null,  $r->id );
-                    if ( is_array($l) && isset($l['language_code']) ) {
-                        $r->link = apply_filters('wpml_permalink', $r->link, $l['language_code']);
-                    }
-                }
+				// Filter it though WPML
+				if ( $args['_wpml_lang'] != '') {
+					if ( ICL_LANGUAGE_CODE != $args['_wpml_lang'] ) {
+						$r->link = apply_filters('wpml_permalink', $r->link, $args['_wpml_lang'], true);
+					}
+				} else if ( is_object($sitepress) && method_exists($sitepress, 'get_default_language') ) {
+					$l = apply_filters( 'wpml_post_language_details', null,  $r->id );
+					if ( is_array($l) && isset($l['language_code']) ) {
+						$_lang = ICL_LANGUAGE_CODE;
+						do_action( 'wpml_switch_language', $l['language_code'] );;
+						$r->link = get_permalink($r->id);
+						$r->link = apply_filters('wpml_permalink', $r->link, $l['language_code'], true);
+						do_action( 'wpml_switch_language', $_lang );
+					}
+				}
 
                 // If no image and defined, remove the result here, to perevent JS confusions
                 if ( empty($r->image) && $sd['resultstype'] == "isotopic" && $sd['i_ifnoimage'] == 'removeres' ) {
@@ -1823,7 +1816,6 @@ if ( ! class_exists( 'ASP_Search_CPT' ) ) {
                 }
                 // --------------------------------------------------------------------------
             }
-            aspDebug::stop( '--searchContent-posptrocess' );
 
             if ( isset( $args['_switch_on_preprocess'] ) && is_multisite() ) {
                 restore_current_blog();

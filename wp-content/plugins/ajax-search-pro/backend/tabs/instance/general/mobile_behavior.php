@@ -92,6 +92,16 @@
     ?>
 </div>
 <div class="item">
+	<?php
+	$o = new wpdreamsText("mob_auto_focus_menu_selector", __('Auto focus when opening the navigation menu (jQuery selector)', 'ajax-search-pro'),
+		$sd['mob_auto_focus_menu_selector']);
+	$params[$o->getName()] = $o->getData();
+	?>
+	<p class="descMsg">
+		<?php echo __('When the search is placed within a mobile navigation menu, you can define a jQuery selector of the opening menu item here - which when clicking auto focuses the search', 'ajax-search-pro'); ?>
+	</p>
+</div>
+<div class="item">
     <?php
     $o = new wpdreamsYesNo("mob_force_res_hover", __('Force \'hover\' results layout on mobile devices?', 'ajax-search-pro'),
         $sd['mob_force_res_hover']);
@@ -107,17 +117,20 @@
         $sd['mob_force_sett_hover']);
     $params[$o->getName()] = $o->getData();
     ?>
-    <?php
-    $o = new wpdreamsCustomSelect("mob_force_sett_state", __(' and force state ', 'ajax-search-pro'), array(
-        'selects' => array(
-            array("option" => "hidden settings", "value" => "closed"),
-            array("option" => "visible settings", "value" => "open")
-        ),
-        "value" => $sd['mob_force_sett_state']
-    ));
-    $params[$o->getName()] = $o->getData();
-    ?>
     <div class="descMsg item-flex-grow item-flex-100">
         <?php echo __('This will force to display the settings below the search bar (floating above the content) on mobile devices, even if the settings shortcode is used.', 'ajax-search-pro'); ?>
     </div>
+</div>
+<div class="item">
+	<?php
+	$o = new wpdreamsCustomSelect("mob_force_sett_state", __('Force search settings state', 'ajax-search-pro'), array(
+		'selects' => array(
+			array("option" => "Same as desktop", "value" => "none"),
+			array("option" => "Hidden settings", "value" => "closed"),
+			array("option" => "Visible settings", "value" => "open")
+		),
+		"value" => $sd['mob_force_sett_state']
+	));
+	$params[$o->getName()] = $o->getData();
+	?>
 </div>

@@ -117,7 +117,6 @@ if (!class_exists("WD_ASP_StyleSheets_Action")) {
         public function inlineCSS() {
             ?>
             <style type="text/css">
-                <!--
                 @font-face {
                     font-family: 'asppsicons2';
                     src: url('<?php echo str_replace('http:',"",plugins_url()); ?>/ajax-search-pro/css/fonts/icons/icons2.eot');
@@ -142,7 +141,6 @@ if (!class_exists("WD_ASP_StyleSheets_Action")) {
                 }
                 ?>
                 <?php echo self::$inline_css != "" ? self::$inline_css : ''; ?>
-                -->
             </style>
             <?php
 

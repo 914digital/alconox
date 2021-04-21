@@ -28,5 +28,6 @@ if ( ! $notices ) {
 <?php foreach ( $notices as $notice ) : ?>
 	<div class="woocommerce-message"<?php echo wc_get_notice_data_attr( $notice ); ?> role="alert">
 		<?php echo wc_kses_notice( $notice['notice'] ); ?>
+		<a class="d-block mt-3" href="/product-category/product-accessories" id="accessories"><i class="fas fa-wrench"></i> Shop product accessories <i class="fas fa-arrow-right"></i></a>
 	</div>
 <?php endforeach; ?>

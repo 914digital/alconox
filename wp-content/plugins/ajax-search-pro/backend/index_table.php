@@ -153,10 +153,10 @@ $_comp = wpdreamsCompatibility::Instance();
                         ); ?>
                     </div>
                     <?php if( !class_exists('ZipArchive') ): ?>
-                        <div class="errorMsg">NOTICE: The <a href="https://www.google.sk/search?q=enable%20ZipArchive%20php" target="_blank">ZipArchive</a> module is not enabled on your server. The Office document parsers will not work without it!</div>
+                        <div class="errorMsg">NOTICE: The <a href="https://www.google.com/search?q=enable%20ZipArchive%20php" target="_blank">ZipArchive</a> module is not enabled on your server. The Office document parsers will not work without it!</div>
                     <?php endif; ?>
                     <?php if( !class_exists('DOMDocument') ): ?>
-                        <div class="errorMsg">NOTICE: The <a href="https://www.google.sk/search?q=enable%20DOMDocument%20php" target="_blank">DOMDocument</a> module is not enabled on your server. The Office document parsers will not work without it!</div>
+                        <div class="errorMsg">NOTICE: The <a href="https://www.google.com/search?q=enable%20DOMDocument%20php" target="_blank">DOMDocument</a> module is not enabled on your server. The Office document parsers will not work without it!</div>
                     <?php endif; ?>
                     <div class="item">
                         <?php $o = new wpdreamsYesNo("it_index_msword_content", __('Index Office Word document contents?', 'ajax-search-pro'),

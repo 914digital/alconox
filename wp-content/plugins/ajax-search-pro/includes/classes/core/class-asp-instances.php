@@ -181,7 +181,11 @@ class WD_ASP_Instances {
                 'showmoreresults', 'showmoreresultstext', 'v_res_max_height', 'results_click_blank', 'scroll_to_results', 'resultareaclickable',
                 'close_on_document_click', 'show_close_icon', 'showauthor', 'showdate', 'showdescription', 'descriptionlength', 'description_context',
                 'noresultstext', 'didyoumeantext', 'autocomplete', 'shortcode_op', 'striptagsexclude', 'excludeposts', 'wpml_compatibility', 'polylang_compatibility',
-                'click_action_location', 'return_action_location', 'showcustomtypes'
+                'click_action_location', 'return_action_location', 'showcustomtypes',
+				// 4.9
+				'primary_titlefield', 'primary_descriptionfield', 'primary_titlefield_cf', 'primary_descriptionfield_cf', 'advtitlefield', 'advdescriptionfield',
+				'kw_exceptions', 'kw_exceptions_e', 'single_highlight', 'single_highlightwholewords', 'single_highlightcolor', 'single_highlightbgcolor',
+				'single_highlight_scroll', 'single_highlight_offset', 'single_highlight_selector', 'image_display_mode'
             );
             foreach ( $as_is as $key ) {
                 if ( isset($lite[$key]) )
@@ -244,15 +248,15 @@ class WD_ASP_Instances {
                     $data['frontend_fields']['selected']
                 );
             }
-            // -- Post type filters
-            if ( $lite['showsearchinposts'] == 1 ) {
+            // -- Old version Post type filters
+            if ( isset($lite['showsearchinposts']) && $lite['showsearchinposts'] == 1 ) {
                 if ( $data['showcustomtypes'] == '' ) {
                     $data['showcustomtypes'] = 'post;' . $lite['searchinpoststext'];
                 } else {
                     $data['showcustomtypes'] = 'post;' . $lite['searchinpoststext'] . '|' . $data['showcustomtypes'];
                 }
             }
-            if ( $lite['showsearchinpages'] == 1 ) {
+            if ( isset($lite['showsearchinpages']) && $lite['showsearchinpages'] == 1 ) {
                 if ( $data['showcustomtypes'] == '' ) {
                     $data['showcustomtypes'] = 'page;' . $lite['searchinpagestext'];
                 } else {
@@ -331,6 +335,19 @@ class WD_ASP_Instances {
             if ( $lite['override_border'] == 1 ) {
                 $data['boxborder'] = $lite['override_border_style'];
             }
+			if ( $lite['results_bg_override'] == 1 ) {
+				$data['resultsbackground'] = $lite['results_bg_override_color'];
+			}
+			if ( $lite['results_item_bg_override'] == 1 ) {
+				$data['resultscontainerbackground'] = $lite['results_item_bg_override_color'];
+			}
+			if ( $lite['results_override_border'] == 1 ) {
+				$data['resultsborder'] = $lite['results_override_border_style'];
+			}
+			if ( $lite['settings_bg_override'] == 1 ) {
+				$data['settingsdropbackground'] = $lite['settings_bg_override_color'];
+			}
+
             // -- Category based exclusions
             if ( $lite['excludecategories'] != '' ) {
                 $terms = explode('|', $lite['excludecategories']);
@@ -402,7 +419,7 @@ class WD_ASP_Instances {
         return $wpdb->query("
             UPDATE " . wd_asp()->db->table('main') . "
             SET data = '" . wd_mysql_escape_mimic(json_encode($data)) . "'
-            WHERE id = " . $id . "
+            WHERE id = " . intval($id) . "
         ");
     }
 
@@ -431,12 +448,11 @@ class WD_ASP_Instances {
     public function reset($id) {
         global $wpdb;
         $this->refresh = true;
-        $id = $id + 0;
 
         $query = "UPDATE " . wd_asp()->db->table('main') . "
              SET
                 data='" . wd_mysql_escape_mimic(json_encode(wd_asp()->options['asp_defaults'])) . "'
-             WHERE id=" . $id;
+             WHERE id=" . intval($id);
         $wpdb->query($query);
     }
 
@@ -475,6 +491,50 @@ class WD_ASP_Instances {
             $wpdb->prepare("DELETE FROM " . wd_asp()->db->table('main') . " WHERE id=%d", $id)
         );
     }
+
+	/**
+	 * @param int $id
+	 * @return string
+	 */
+	public function export($id = 0 ) {
+    	if ( $this->exists($id) ) {
+			return base64_encode( json_encode( $this->get($id) ) );
+		}
+	}
+
+	/**
+	 * @param array|string $data json encoded array of base 64 encoded instance objects (or only one base 64 encoded instance)
+	 * @return int|string number of instances (int) or an error message from the Exception
+	 */
+	public function import($data ) {
+		$imported = 0;
+		$instances = array();
+		if ( is_array($data) ) {
+			foreach ( $data as $d ) {
+				$instances[] = json_decode(base64_decode($d), true);
+				if ( json_last_error() != 0 ) {
+					break;
+				}
+			}
+		} else if ( is_string($data) ) {
+			$instances[] = json_decode(base64_decode($data), true);
+		} else {
+			return new WP_Error('data', __('Invalid data', 'ajax-search-pro'));
+		}
+
+		if ( json_last_error() != 0 ) {
+			return new WP_Error( 'json', __('Invalid JSON data', 'ajax-search-pro'));
+		}
+
+		foreach ( $instances as $instance ) {
+			if ( isset($instance['name']) ) {
+				$id = $this->add($instance['name'] . ' imported');
+				$this->update($id, $instance['data']);
+				$imported++;
+			}
+		}
+		return $imported;
+	}
 
     /**
      * This method is intended to use on params AFTER parsed from the database

@@ -36,25 +36,21 @@ class asp_updates {
 
 	private $important_notes = "";
 
-    // -------------------------------------------- Auto Updater Stuff here---------------------------------------------
-    public $title = "Ajax Search Pro";
-
-    protected $download_link_url = 'http://update.wp-dreams.com/u.php';
+	// -------------------------------------------- Auto Updater Stuff here---------------------------------------------
+	public $title = "Ajax Search Pro";
 
 	function __construct() {
-	    if (
-	        defined('ASP_BLOCK_EXTERNAL') ||
-	        ( defined('WP_HTTP_BLOCK_EXTERNAL') && WP_HTTP_BLOCK_EXTERNAL )
-        )
-	        return false;
+		if (
+			defined('ASP_BLOCK_EXTERNAL') ||
+			( defined('WP_HTTP_BLOCK_EXTERNAL') && WP_HTTP_BLOCK_EXTERNAL )
+		)
+			return false;
 
-	    // Redundant: Let's make sure, that the version check is not executed during Ajax requests, by any chance
-	    if (  !( defined( 'DOING_AJAX' ) && DOING_AJAX ) ) {
-            $this->getData();
-            $this->processData();
-        }
-
-        add_filter( 'upgrader_pre_download', array( $this, 'preUpgradeFilter' ), 10, 4 );
+		// Redundant: Let's make sure, that the version check is not executed during Ajax requests, by any chance
+		if (  !( defined( 'DOING_AJAX' ) && DOING_AJAX ) ) {
+			$this->getData();
+			$this->processData();
+		}
 	}
 
 	function getData($force_update = false) {
@@ -73,11 +69,11 @@ class asp_updates {
 				$this->data = $response['body'];
 				update_option($this->option_name, $this->data);
 			}
-            /**
-             * Any case, success or failure, the last checked timer should be updated. Otherwise if the remote server
-             * is offline, it will block each back-end page load every time for 'timeout' seconds
-             */
-            update_option($this->option_name . "_lc", time());
+			/**
+			 * Any case, success or failure, the last checked timer should be updated. Otherwise if the remote server
+			 * is offline, it will block each back-end page load every time for 'timeout' seconds
+			 */
+			update_option($this->option_name . "_lc", time());
 		} else {
 			$this->data = get_option($this->option_name, false);
 		}
@@ -148,97 +144,13 @@ class asp_updates {
 				}
 		}
 
-        return true;
+		return true;
 	}
 
-    /**
-     * Get unique, short-lived download link
-     *
-     * @param string $license_key
-     *
-     * @return array|boolean JSON response or false if request failed
-     */
-    public function getDownloadUrl( $license_key ) {
-        $url = rawurlencode( $_SERVER['HTTP_HOST'] );
-        $key = rawurlencode( $license_key );
-
-        $url = $this->download_link_url . '?file=asp&url=' . $url . '&key=' . $key . '&version=' . ASP_CURR_VER;
-
-        $response = wp_remote_get( $url );
-
-        if ( is_wp_error( $response ) ) {
-            return false;
-        }
-
-        return json_decode( $response['body'], true );
-    }
-
-    /**
-     * Get link to newest update
-     *
-     * @param $reply
-     * @param $package
-     * @param $updater
-     *
-     * @return mixed|string|WP_Error
-     */
-    public function preUpgradeFilter( $reply, $package, $updater ) {
-        $condition1 = isset( $updater->skin->plugin ) && $updater->skin->plugin === ASP_PLUGIN_NAME;
-        $condition2 = isset( $updater->skin->plugin_info ) && $updater->skin->plugin_info['Name'] === $this->title;
-        if ( ! $condition1 && ! $condition2 ) {
-            return $reply;
-        }
-
-        $res = $updater->fs_connect( array( WP_CONTENT_DIR ) );
-        if ( ! $res ) {
-            return new WP_Error( 'no_credentials', __( "Error! Can't connect to filesystem", 'ajax-search-pro' ) );
-        }
-
-        $license_key = WD_ASP_License::isActivated();
-
-        if ( $license_key === false ) {
-            return new WP_Error( 'no_credentials', __( 'To receive automatic updates license activation is required. Please visit <a href="' . admin_url( 'admin.php?page=asp_updates_help' ) . '' . '" target="_blank">Settings</a> to activate Ajax Search Pro.', 'ajax-search-pro' ) );
-        }
-
-        $updater->strings['downloading_package_url'] = __( 'Getting download link...', 'ajax-search-pro' );
-        $updater->skin->feedback( 'downloading_package_url' );
-
-        $response = $this->getDownloadUrl( $license_key );
-        if ( empty($response) ) {
-            return new WP_Error( 'no_credentials', __( 'Download link could not be retrieved', 'ajax-search-pro' ) );
-        }
-
-        /** Status != 1, meaning that the plugin is actually not active for this site */
-        if ( isset($response['status']) && $response['status'] != 1 ) {
-            WD_ASP_License::deactivate( false );
-
-            return new WP_Error( 'inactive', $response['msg'] );
-        }
-
-        $updater->strings['downloading_package'] = __( 'Downloading package...', 'ajax-search-pro' );
-        $updater->skin->feedback( 'downloading_package' );
-
-        $downloaded_archive = download_url( $response['data'] );
-        if ( is_wp_error( $downloaded_archive ) ) {
-            return $downloaded_archive;
-        }
-
-        $plugin_directory_name = ASP_DIR;
-
-        // WP will use same name for plugin directory as archive name, so we have to rename it
-        if ( basename( $downloaded_archive, '.zip' ) !== $plugin_directory_name ) {
-            $new_archive_name = dirname( $downloaded_archive ) . '/' . $plugin_directory_name . '.zip';
-            rename( $downloaded_archive, $new_archive_name );
-            $downloaded_archive = $new_archive_name;
-        }
-
-        return $downloaded_archive;
-    }
-
-    public function refresh() {
-        $this->getData(true );
-        $this->processData();
-    }
+	public function refresh() {
+		$this->getData(true );
+		$this->processData();
+	}
 
 	public function getVersion() {
 		return $this->version;
@@ -249,8 +161,8 @@ class asp_updates {
 	}
 
 	public function needsUpdate( $refresh = false ) {
-        if ( $refresh )
-            $this->refresh();
+		if ( $refresh )
+			$this->refresh();
 
 		if ($this->version != "")
 			if ($this->version > ASP_CURR_VER)
@@ -291,24 +203,24 @@ class asp_updates {
 	public function getUpdateNotes( $vn = 0 ) {
 		if ( isset($this->update_notes[$vn]) && $this->update_notes[$vn] !="" ) {
 			$url = add_query_arg(array(
-					"asp_notice_clear_ru" => "1"
+				"asp_notice_clear_ru" => "1"
 			));
 			return str_replace(
-					"{hide_button}",
-					'<a class="button button-secondary" href="'.$url.'">Hide this message</a>',
-					$this->update_notes[$vn]
+				"{hide_button}",
+				'<a class="button button-secondary" href="'.$url.'">Hide this message</a>',
+				$this->update_notes[$vn]
 			);
 		}
 	}
 
 	public function getImportantNotes() {
 		$url = add_query_arg(array(
-				"asp_notice_clear_im" => "1"
+			"asp_notice_clear_im" => "1"
 		));
 		return str_replace(
-				"{hide_button}",
-				'<a class="button button-secondary" href="'.$url.'">Hide this message</a>',
-				$this->important_notes
+			"{hide_button}",
+			'<a class="button button-secondary" href="'.$url.'">Hide this message</a>',
+			$this->important_notes
 		);
 	}
 

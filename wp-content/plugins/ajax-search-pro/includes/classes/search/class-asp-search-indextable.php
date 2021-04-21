@@ -37,8 +37,6 @@ if ( !class_exists('ASP_Search_INDEX') ) {
 			global $wpdb;
 			global $q_config;
 
-			aspDebug::start('-ASP-ISEARCH-');
-
 			$current_blog_id = get_current_blog_id();
 			$args = &$this->args;
 
@@ -474,9 +472,7 @@ if ( !class_exists('ASP_Search_INDEX') ) {
 					array('{like_query}', '{rmod}', '{limit}'),
 					array("(asp_index.term_reverse = '' AND asp_index.term LIKE '" . $s . $single_delimiter . "')", $rmod * 2, $limit),
 					$this->query);
-				aspDebug::start('-ASP-ISEARCH-QUERY-TITLE');
 				$results_arr[99998] = $wpdb->get_results($title_query);
-				aspDebug::stop('-ASP-ISEARCH-QUERY-TITLE');
 
 				// We reached the required limit, reset the other queries, as we don't need them
 				if ( count($results_arr[99998]) >= $limit ) {
@@ -495,9 +491,7 @@ if ( !class_exists('ASP_Search_INDEX') ) {
 							$this->query);
 					}
 
-					aspDebug::start('-ASP-ISEARCH-QUERY-TITLE');
 					$results_arr[99999] = $wpdb->get_results($title_query);
-					aspDebug::stop('-ASP-ISEARCH-QUERY-TITLE');
 
 					// We reached the required limit, reset the other queries, as we don't need them
 					if ( count($results_arr[99999]) >= $limit )
@@ -508,17 +502,14 @@ if ( !class_exists('ASP_Search_INDEX') ) {
 			/*---------------------------------------------------------------*/
 			if ( count($queries) > 0 ) {
 				foreach ($queries as $k => $query) {
-					aspDebug::start('-ASP-ISEARCH-QUERY-' . $k);
 					$query = apply_filters('asp_query_indextable', $query, $args, $args['_id'], $args['_ajax_search']);
 					$results_arr[$k] = $wpdb->get_results($query);
-					aspDebug::stop('-ASP-ISEARCH-QUERY-' . $k);
 				}
 			}
 
 			// Merge results depending on the logic
 			$results_arr = $this->merge_raw_results($results_arr, $kw_logic);
 
-			aspDebug::start('-ASP-ISEARCH-PRESORT-');
 			// We need to save this array with keys, will need the values later.
 			$this->raw_results = $results_arr;
 
@@ -528,7 +519,6 @@ if ( !class_exists('ASP_Search_INDEX') ) {
 			// Do primary ordering here, because the results will sliced, and we need the correct ones on the top
 			// compare_by_pr is NOT giving the correct sub-set
 			usort($results_arr, array($this, 'compare_by_primary'));
-			aspDebug::stop('-ASP-ISEARCH-PRESORT-');
 
 			// Re-calculate the limit to slice the results to the real size
 			if ( $args['_limit'] > 0 ) {
@@ -562,7 +552,6 @@ if ( !class_exists('ASP_Search_INDEX') ) {
 
 			$this->return_count = count($this->results);
 
-			aspDebug::stop('-ASP-ISEARCH-');
 			return $this->results;
 		}
 
@@ -613,7 +602,6 @@ if ( !class_exists('ASP_Search_INDEX') ) {
 				$results_arr = $new_ra;
 			}
 
-			aspDebug::start('-ASP-ISEARCH-MERGERAW-1-');
 			$final_results = array();
 
 			foreach ($results_arr as $results) {
@@ -642,12 +630,9 @@ if ( !class_exists('ASP_Search_INDEX') ) {
 				}
 			}
 
-			aspDebug::stop('-ASP-ISEARCH-MERGERAW-1-');
-
 			if ( $kw_logic == 'or' || $kw_logic == 'orex' )
 				return $final_results;
 
-			aspDebug::start('-ASP-ISEARCH-MERGERAW-2-');
 			foreach ($results_arr as $results) {
 				/**
 				 * array_merge($results, $title_results) - why?
@@ -658,7 +643,6 @@ if ( !class_exists('ASP_Search_INDEX') ) {
 				 */
 				$final_results = array_uintersect($final_results, array_merge($results, $title_results, $exact_title_results), array($this, 'compare_results'));
 			}
-			aspDebug::stop('-ASP-ISEARCH-MERGERAW-2-');
 
 			return $final_results;
 		}

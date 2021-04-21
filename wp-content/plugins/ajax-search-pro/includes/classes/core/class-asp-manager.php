@@ -247,7 +247,6 @@ if (!class_exists("WD_ASP_Manager")) {
             require_once(ASP_CLASSES_PATH . "ajax/ajax.inc.php");
             require_once(ASP_CLASSES_PATH . "filters/filters.inc.php");
             require_once(ASP_CLASSES_PATH . "frontend/frontend.inc.php");
-            require_once(ASP_CLASSES_PATH . "etc/aspdebug.class.php");
             require_once(ASP_CLASSES_PATH . "etc/statistics.class.php");
 
             require_once(ASP_CLASSES_PATH . "etc/performance.class.php");

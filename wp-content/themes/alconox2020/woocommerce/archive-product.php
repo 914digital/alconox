@@ -1,4 +1,20 @@
 <?php get_template_part('parts/header'); ?>
+
+<?php if(is_product_category()) { ?> 
+	<div class="page-index-header prod-index-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="page-index-header-text">
+					<h1><?php single_term_title(); ?></h1>
+					<a class="ret-products" href="/products"><i class="fas fa-arrow-left"></i> Return To All Products</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<?php } else { ?>
+
 <div class="page-index-header prod-index-header">
     <div class="container">
         <div class="row">
@@ -11,6 +27,8 @@
         </div>
     </div>
 </div>
+
+<?php } ?>
 <div class="single-page-content prod-index-cont mt-5">
     <div class="container">
 <?php

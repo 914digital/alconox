@@ -196,6 +196,36 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
+				<div class="related-prod" style="display:<?php the_field('related_products_on'); ?>">
+					<h2>Related Products</h2>
+					<div class="row">
+					<?php if( have_rows('related_products') ): ?>
+						<?php while ( have_rows('related_products') ) : the_row(); ?>
+						<?php $post_object = get_sub_field('product');
+
+							if( $post_object ): 
+
+								// override $post
+								$post = $post_object;
+								setup_postdata( $post ); 
+								?>
+								<div class="col-md-4 mb-3">
+									<a href="<?php the_permalink(); ?>">
+										<?php echo the_post_thumbnail(); ?>
+										<h3><?php the_title(); ?></h3>
+									</a>
+								</div>
+								<?php wp_reset_postdata(); // IMPORTANT - reset the $post object so the rest of the page works correctly ?>
+							<?php endif; ?>
+													
+						<?php endwhile;
+							else :
+						// no rows found
+						endif; ?>
+				
+					</div>
+				
+				</div>
 				<div class="related-art" style="display:<?php the_field('tech_notes_on'); ?>">
 					<h2>Related Articles</h2>
 					<ul>
@@ -238,37 +268,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 					</div>
 				</div>
 				
-				<div class="related-prod" style="display:<?php the_field('related_products_on'); ?>">
-					<h2>Related Products</h2>
-					<div class="row">
-					<?php if( have_rows('related_products') ): ?>
-						<?php while ( have_rows('related_products') ) : the_row(); ?>
-						<?php $post_object = get_sub_field('product');
-
-							if( $post_object ): 
-
-								// override $post
-								$post = $post_object;
-								setup_postdata( $post ); 
-								?>
-								<div class="col-md-4 mb-3">
-									<a href="<?php the_permalink(); ?>">
-										<?php echo the_post_thumbnail(); ?>
-										<h3><?php the_title(); ?></h3>
-									</a>
-								</div>
-								<?php wp_reset_postdata(); // IMPORTANT - reset the $post object so the rest of the page works correctly ?>
-							<?php endif; ?>
-													
-						<?php endwhile;
-							else :
-						// no rows found
-						endif; ?>
-				
-					</div>
-				
-				</div>
-			
+			</div>
 		</div>
 	</div>
 </div>

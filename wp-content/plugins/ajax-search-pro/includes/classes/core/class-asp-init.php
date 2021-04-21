@@ -322,6 +322,15 @@ class WD_ASP_Init {
             }
             // ------------------------- 4.18.8 -----------------------------
 
+			// ------------------------- 4.20.5 -----------------------------
+			// The mobile settings state can be forced without forcing the hover
+			if ( ASP_Helpers::previousVersion('4.20.4') ) {
+				if ( $sd['mob_force_sett_hover'] == 0 ) {
+					$sd['mob_force_sett_state'] = 'none';
+				}
+			}
+			// ------------------------- 4.20.5 -----------------------------
+
             // ----------------- Unset some unused search data --------------
             // Leave this here, so it is executed as last
             $values = array(
@@ -416,6 +425,9 @@ class WD_ASP_Init {
             }
         }
 
+        // Load the wp hooks interface
+		wp_enqueue_script( 'wp-hooks' );
+
         // @TODO 4.10.5
         //$load_autocomplete = w_isset_def($comp_settings['load_autocomplete_js'], 1);
         $minify_string = (($load_noui == 1) ? '-noui' : '') . (($load_isotope == 1) ? '-isotope' : '') . (($load_mcustom == 1) ? '-sb' : '');
@@ -495,17 +507,17 @@ class WD_ASP_Init {
             wp_register_script('wd-asp-inviewport', ASP_URL . 'js/' . $js_source . '/jquery.inviewport.js', array($prereq), $media_query, $load_in_footer);
             wp_enqueue_script('wd-asp-inviewport');
 
-            wp_register_script('wd-asp-ajaxsearchpro', ASP_URL . 'js/' . $js_source . '/jquery.ajaxsearchpro.js', array($prereq, 'wp-hooks'), $media_query, $load_in_footer);
+            wp_register_script('wd-asp-ajaxsearchpro', ASP_URL . 'js/' . $js_source . '/jquery.ajaxsearchpro.js', array($prereq), $media_query, $load_in_footer);
             wp_enqueue_script('wd-asp-ajaxsearchpro');
 
-            wp_register_script('wd-asp-ajaxsearchpro-widgets', ASP_URL . 'js/' . $js_source . '/asp_widgets.js', array($prereq, "wd-asp-ajaxsearchpro", 'wp-hooks'), $media_query, $load_in_footer);
+            wp_register_script('wd-asp-ajaxsearchpro-widgets', ASP_URL . 'js/' . $js_source . '/asp_widgets.js', array($prereq, "wd-asp-ajaxsearchpro"), $media_query, $load_in_footer);
             wp_enqueue_script('wd-asp-ajaxsearchpro-widgets');
 
-            wp_register_script('wd-asp-ajaxsearchpro-wrapper', ASP_URL . 'js/' . $js_source . '/asp_wrapper.js', array($prereq, "wd-asp-ajaxsearchpro", 'wp-hooks'), $media_query, $load_in_footer);
+            wp_register_script('wd-asp-ajaxsearchpro-wrapper', ASP_URL . 'js/' . $js_source . '/asp_wrapper.js', array($prereq, "wd-asp-ajaxsearchpro"), $media_query, $load_in_footer);
             wp_enqueue_script('wd-asp-ajaxsearchpro-wrapper');
         } else {
             wp_enqueue_script('jquery');
-            wp_register_script('wd-asp-ajaxsearchpro', ASP_URL . "js/" . $js_source . "/jquery.ajaxsearchpro" . $minify_string . ".min.js", array('jquery', 'wp-hooks'), $media_query, $load_in_footer);
+            wp_register_script('wd-asp-ajaxsearchpro', ASP_URL . "js/" . $js_source . "/jquery.ajaxsearchpro" . $minify_string . ".min.js", array('jquery'), $media_query, $load_in_footer);
             wp_enqueue_script('wd-asp-ajaxsearchpro');
         }
 

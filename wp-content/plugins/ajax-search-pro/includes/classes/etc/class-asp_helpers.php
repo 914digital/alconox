@@ -749,6 +749,8 @@ if (!class_exists("ASP_Helpers")) {
             $comp_settings = wd_asp()->o['asp_compatibility'];
             $load_lazy = w_isset_def($comp_settings['load_lazy_js'], 0);
 
+			WD_ASP_PLL_Strings::init();
+
             if (empty($results) || !empty($results['nores'])) {
                 if (!empty($results['keywords'])) {
                     $s_keywords = $results['keywords'];
@@ -853,6 +855,9 @@ if (!class_exists("ASP_Helpers")) {
                     }
                 }
             }
+
+			WD_ASP_PLL_Strings::save();
+
             return preg_replace("/(^[\r\n]*|[\r\n]+)[\s\t]*[\r\n]+/", "\n", $html);
         }
 
@@ -912,7 +917,7 @@ if (!class_exists("ASP_Helpers")) {
          * @param $o
          * @return mixed
          */
-        public static function toQueryArgs($search_id, $o) {
+        public static function toQueryArgs($search_id, $o, $args = array()) {
             global $wpdb;
             // When $o is (bool)false, then this is called individually, not as ajax request
 
@@ -932,7 +937,7 @@ if (!class_exists("ASP_Helpers")) {
                 }
             }
 
-            $args = ASP_Query::$defaults;
+			$args = empty($args) ? ASP_Query::$defaults : array_merge(ASP_Query::$defaults, $args);
             $comp_options = wd_asp()->o['asp_compatibility'];
             $it_options = wd_asp()->o['asp_it_options'];
 
@@ -940,10 +945,13 @@ if (!class_exists("ASP_Helpers")) {
                 $sd['exclude_cpt']['ids'],
                 explode(',', str_replace(' ', '', $sd['excludeposts']))
             ));
-            foreach ( $exclude_post_ids as $k=>$v) {
-                if ($v == '')
-                    unset($exclude_post_ids[$k]);
-            }
+			foreach ( $exclude_post_ids as $k=>$v) {
+				if ($v == '') {
+					unset($exclude_post_ids[$k]);
+				} else {
+					$exclude_post_ids[$k] = intval($v);
+				}
+			}
 
             $include_post_ids = array_unique($sd['include_cpt']['ids']);
             foreach ( $include_post_ids as $k=>$v) {
@@ -994,8 +1002,11 @@ if (!class_exists("ASP_Helpers")) {
                 'attachments_limit_override' => $sd['attachments_limit_override']
             ));
             $args["_qtranslate_lang"] = isset($o['qtranslate_lang'])?$o['qtranslate_lang']:"";
-            $args["_polylang_lang"] = $sd['polylang_compatibility'] == 1 && isset($o['polylang_lang']) ? $o['polylang_lang'] : "";
-
+			if ( !$args["_ajax_search"] && function_exists("pll_current_language") ) {
+				$args["_polylang_lang"] = pll_current_language();
+			} else {
+				$args["_polylang_lang"] = $sd['polylang_compatibility'] == 1 && isset($o['polylang_lang']) ? $o['polylang_lang'] : "";
+			}
             $args["_exact_matches"] = isset($o['asp_gen']) && is_array($o['asp_gen']) && in_array('exact', $o['asp_gen']) ? 1 : 0;
             $args["_exact_match_location"] = $sd['exact_match_location'];
 
@@ -1108,14 +1119,25 @@ if (!class_exists("ASP_Helpers")) {
             }
 
             /*-------------------------- WPML -------------------------------*/
-            if ( $sd['wpml_compatibility'] == 1 )
-                if ( isset( $o['wpml_lang'] ) )
-                    $args['_wpml_lang'] = $o['wpml_lang'];
-                elseif (defined('ICL_LANGUAGE_CODE')
-                    && ICL_LANGUAGE_CODE != ''
-                    && defined('ICL_SITEPRESS_VERSION')
-                )
-                    $args['_wpml_lang'] = ICL_LANGUAGE_CODE;
+			if ( $sd['wpml_compatibility'] == 1 ) {
+				if ( isset( $o['wpml_lang'] ) && $args['_ajax_search'] )
+					$args['_wpml_lang'] = $o['wpml_lang'];
+				elseif (
+					defined('ICL_LANGUAGE_CODE')
+					&& ICL_LANGUAGE_CODE != ''
+					&& defined('ICL_SITEPRESS_VERSION')
+				)
+					$args['_wpml_lang'] = ICL_LANGUAGE_CODE;
+
+				/**
+				 * Switching the language will resolve issues with get_terms(..) and other functions
+				 * Otherwise wrong taxonomy terms would be returned etc..
+				 */
+				global $sitepress;
+				if ( is_object($sitepress) && method_exists($sitepress, 'switch_lang') ) {
+					$sitepress->switch_lang($args['_wpml_lang']);
+				}
+			}
 
             /*-------------------- Content, Excerpt -------------------------*/
             $args['_post_get_content'] = (
@@ -1517,6 +1539,7 @@ if (!class_exists("ASP_Helpers")) {
                     // No point of taking this into account, as the user selects the terms, thus they must exsist
                     $no_terms_exist = false;
 
+                    $display_mode = 'checkboxes';
                     $term_logic = $sd['term_logic'];
                     $is_checkboxes = true;
                     // If not the checkboxes are used, and there is no forced inclusion, temporary force the OR logic
@@ -1526,11 +1549,13 @@ if (!class_exists("ASP_Helpers")) {
                                 $sd['show_terms']['display_mode']['all']['type'] != "checkboxes"
                             ) {
                                 //$term_logic = "or";
+								$display_mode = $sd['show_terms']['display_mode']['all']['type'];
                                 $is_checkboxes = false;
                             }
                         } else if (isset($sd['show_terms']['display_mode'][$taxonomy])) {
                             if ( $sd['show_terms']['display_mode'][$taxonomy]['type'] != "checkboxes" ) {
                                 //$term_logic = "or";
+								$display_mode = $sd['show_terms']['display_mode'][$taxonomy]['type'];
                                 $is_checkboxes = false;
                             }
                         }
@@ -1598,6 +1623,11 @@ if (!class_exists("ASP_Helpers")) {
                     }
                     $exclude_showterms = array_unique( array_merge($exclude_showterms, $api_terms) );
                     $exclude_t = isset( $sd_exclude[$taxonomy] ) ? $sd_exclude[$taxonomy] : array();
+
+                    // Force logic for checkbox and single drop-downs
+					if ( $display_mode == 'dropdown' || $display_mode == 'dropdownsearch' || $display_mode == 'radio' ) {
+						$term_logic = 'or';
+					}
 
                     /*
                      AND -> Posts NOT in an array of term ids

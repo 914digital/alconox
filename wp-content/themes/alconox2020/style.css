@@ -580,6 +580,12 @@ button:active,
 	max-width: 100%;
 }
 
+.page-index-header-text a.ret-products {
+	color:#fff;
+	display:block;
+	margin-top:15px;
+}
+
 .page-index-header-text p {
 	color:#fff;
 	width: 60%;
@@ -670,6 +676,12 @@ button:active,
     font-size: 16px;
     text-transform: uppercase;
 	color: #757575;
+}
+
+a.title.pbc_title {
+	font-weight: 600;
+    margin-bottom: 20px;
+    font-size: 20px;
 }
 
 .industries h3 a:hover {
@@ -1117,6 +1129,12 @@ button:active,
     min-height: 320px;
 }
 
+@media (max-width:600px) {
+	.rss .rss-padding {
+		height:430px;
+	}
+}
+
 .rss .rss-padding h3 {
 	font-weight: 700;
     font-size: 18px;
@@ -1476,6 +1494,14 @@ a.merch-strip:hover {
     border: 0;
 }
 
+#accessories .fa-wrench {
+	background-color: #1d81c6;
+    color: #fff;
+    padding: 10px;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+
 /* ------ Footer ------ */
 
 footer {
@@ -1598,7 +1624,7 @@ footer {
 
 @media(max-width:1200px) {
 	.iso-footer a {
-		width:64%;
+		width:88%;
 	}
 }
 
@@ -1741,7 +1767,8 @@ footer .credit .site-by {
     color: #fff;
     background-repeat: no-repeat;
     background-position: center;
-    padding: 20px;
+	padding: 20px;
+	z-index: 99999999;
 }
 
 /* Plugins */ 

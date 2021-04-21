@@ -8,25 +8,45 @@ $errormsg = '';
 $import_count = 0;
 $sett_import_count = 0;
 
-if (isset($_POST['asp_import_textarea'])) {
-    if (empty($_POST['asp_import_textarea'])) {
-        $errormsg = 'Import data is empty.';
-    } else {
-        if (false === $import_count = asp_import_instances($_POST['asp_import_textarea']))
-            $errormsg = __('Cannot import. Invalid data! Please try again!', 'ajax-search-pro');
-    }
+if ( isset($_POST['asp_import_textarea'], $_POST['asp_import_nonce1']) ) {
+	if ( wp_verify_nonce( $_POST['asp_import_nonce1'], 'asp_import_nonce1' ) ) {
+		if ( empty($_POST['asp_import_textarea']) ) {
+			$errormsg = __('Import data is empty.', 'ajax-search-pro');
+		} else {
+			$data = json_decode(stripcslashes($_POST['asp_import_textarea']));
+			if ( json_last_error() == 0 ) {
+				$import_count = wd_asp()->instances->import($data);
+				if ( is_wp_error($import_count) ) {
+					$errormsg = $import_count->get_error_message();
+					$import_count = 0;
+				}
+			} else {
+				$errormsg = __('Import data error.', 'ajax-search-pro');
+			}
+		}
+	} else {
+		$errormsg = __('Error importing: invalid NONCE, please try again', 'ajax-search-pro');
+	}
 }
 
-if (isset($_POST['asp_import_textarea_sett'])) {
-    if (empty($_POST['asp_import_textarea_sett'])) {
-        $errormsg = 'Import data is empty.';
-    } else {
-        if (false === $sett_import_count = asp_import_settings($_POST['asp_import_sett'], $_POST['asp_import_textarea_sett']))
-            $errormsg = __('Cannot import. Invalid data! Please try again!', 'ajax-search-pro');
-    }
+if ( isset($_POST['asp_import_textarea_sett'], $_POST['asp_import_nonce2']) ) {
+	if ( wp_verify_nonce( $_POST['asp_import_nonce2'], 'asp_import_nonce2' ) ) {
+		if ( empty($_POST['asp_import_textarea_sett']) ) {
+			$errormsg = __('Import data is empty.', 'ajax-search-pro');
+		} else {
+			$instance = json_decode(base64_decode(stripcslashes($_POST['asp_import_textarea_sett'])), true);
+			if ( json_last_error() == 0 && isset($instance['data']) ) {
+				wd_asp()->instances->update($_POST['asp_import_sett'], $instance['data']);
+				$sett_import_count = 1;
+			} else {
+				$errormsg = __('Cannot import. Invalid data! Please try again!', 'ajax-search-pro');
+			}
+		}
+	} else {
+		$errormsg = __('Error importing: invalid NONCE, please try again', 'ajax-search-pro');
+	}
 }
 
-$exported_instances = asp_get_all_exported_instances();
 $search_instances = wd_asp()->instances->get(-1, true);
 
 if ( $import_count > 0 || $sett_import_count > 0) {
@@ -76,15 +96,12 @@ if ( $import_count > 0 || $sett_import_count > 0) {
                         <label style="text-align: right;" for="asp_export_textarea"><?php echo __('Copy and save the text appearing in this box', 'ajax-search-pro'); ?></label><br>
                         <select id="asp_export" multiple>
                             <?php foreach ($search_instances as $instance): ?>
-                                <option value="<?php echo $instance['id']; ?>"><?php echo esc_html( $instance['name'] ); ?></option>
+                                <option value="<?php echo wd_asp()->instances->export($instance['id']); ?>"><?php echo esc_html( $instance['name'] ); ?></option>
                             <?php endforeach; ?>
                         </select>
 
                         <textarea id="asp_export_textarea" class="wd-export-import"></textarea>
                         <input id='asp_export_button' type='button' class='submit' value='Export!'/><span class="small-loading hiddend"></span>
-                        <?php foreach ($search_instances as $instance): ?>
-                            <div style="display:none" id="asp_exid<?php echo $instance['id']; ?>"><?php echo $exported_instances[$instance['id']]; ?></div>
-                        <?php endforeach; ?>
                     </fieldset>
                     <form name="asp_import_instances" method="post" enctype='application/json'>
                     <fieldset>
@@ -92,6 +109,7 @@ if ( $import_count > 0 || $sett_import_count > 0) {
                         <p class="biggerDescMsg">
                             <?php echo __('Please note that the search IDs may differ from the exported instances. The imported instance names will have the "Imported" string appended after their names.', 'ajax-search-pro'); ?>
                         </p>
+						<input type="hidden" name="asp_import_nonce1" id="asp_import_nonce1" value="<?php echo wp_create_nonce( "asp_import_nonce1" ); ?>">
                         <label for="asp_import_textarea"><?php echo __('Paste the exported code here', 'ajax-search-pro'); ?></label><br>
                         <textarea id="asp_import_textarea" name="asp_import_textarea" class="wd-export-import"></textarea>
                         <br><input id='asp_import_button' type='submit' class='submit' value='Import!'/>
@@ -111,7 +129,7 @@ if ( $import_count > 0 || $sett_import_count > 0) {
                         <label style="text-align: right;" for="asp_export_textarea_sett"><?php echo __('Copy and save the text appearing in this box', 'ajax-search-pro'); ?></label><br>
                         <select id="asp_export_sett">
                             <?php foreach ($search_instances as $instance): ?>
-                                <option value="<?php echo $instance['id']; ?>"><?php echo esc_html( $instance['name'] ); ?></option>
+                                <option value="<?php echo wd_asp()->instances->export($instance['id']); ?>"><?php echo esc_html( $instance['name'] ); ?></option>
                             <?php endforeach; ?>
                         </select>
 
@@ -128,6 +146,7 @@ if ( $import_count > 0 || $sett_import_count > 0) {
                                     <option value="<?php echo $instance['id']; ?>"><?php echo esc_html( $instance['name'] ); ?></option>
                                 <?php endforeach; ?>
                             </select>
+							<input type="hidden" name="asp_import_nonce2" id="asp_import_nonce2" value="<?php echo wp_create_nonce( "asp_import_nonce2" ); ?>">
                             <textarea id="asp_import_textarea_sett" name="asp_import_textarea_sett" class="wd-export-import"></textarea>
                             <br><input id='asp_import_button_sett' type='submit' class='submit' value='Import!'/>
                         </fieldset>

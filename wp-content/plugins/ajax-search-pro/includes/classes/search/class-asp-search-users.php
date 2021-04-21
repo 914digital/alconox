@@ -475,8 +475,6 @@ if (!class_exists('ASP_Search_USERS')) {
             $args = $this->args;
             $parts = array();
 
-            aspDebug::start( '--searchContent-cf' );
-
             $allow_cf_null = $args['_post_meta_allow_null'];
 
             foreach ( $args['user_meta_filter'] as $data ) {
@@ -645,7 +643,6 @@ if (!class_exists('ASP_Search_USERS')) {
                 $cf_select = "( ". implode( $args['_post_meta_logic'], $cf_select_arr ) . " )";
             }
 
-            aspDebug::stop( '--searchContent-cf' );
             return $cf_select;
         }
 

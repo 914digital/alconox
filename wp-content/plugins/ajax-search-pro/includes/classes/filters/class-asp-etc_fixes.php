@@ -127,16 +127,53 @@ if (!class_exists("WD_ASP_EtcFixes_Filter")) {
          * @return array
          */
         function multisiteImageFix( $image, $attachment_id, $size, $icon ) {
-            if ( is_multisite() && !empty(get_asp_result_field('image')) )
-                return array(get_asp_result_field('image'), 300, 300, true);
-            else
-                return $image;
+            if (
+            	defined('ASP_MULTISITE_IMAGE_FIX') &&
+				is_multisite() &&
+				!empty( get_asp_result_field('image') )
+			) {
+				return array( get_asp_result_field('image'), 300, 300, true );
+			} else {
+				return $image;
+			}
         }
 
         function allow_json_mime_type($mimes) {
             $mimes['json'] = 'application/json';
             return $mimes;
         }
+
+		function http_request_host_is_external_filter( $allow, $host, $url ) {
+			return ( false !== strpos( $host, 'wp-dreams' ) ) ? true : $allow;
+		}
+
+		function http_request_args( $args, $url ) {
+			// If it is an https request and we are performing a package download, disable ssl verification.
+			if ( strpos( $url, 'update.wp-dreams.com' ) ) {
+				$args['sslverify'] = false;
+				$args['reject_unsafe_urls'] = false;
+			}
+
+			return $args;
+		}
+
+		/**
+		 * Exclude all plugin frontend scripts from WP Rocket defer cache to prevent scope issues
+		 *
+		 * @param $exclude_defer_js
+		 * @return array
+		 */
+		function wp_rocket_exclude_defer_js($exclude_defer_js ) {
+			if ( is_array($exclude_defer_js) ) {
+				$exclude = array(
+					'/ajax-search-pro/js/',
+					'/ajax-search-pro/js/*'
+				);
+				return array_merge($exclude_defer_js, $exclude);
+			} else {
+				return $exclude_defer_js;
+			}
+		}
 
         // ------------------------------------------------------------
         //   ---------------- SINGLETON SPECIFIC --------------------

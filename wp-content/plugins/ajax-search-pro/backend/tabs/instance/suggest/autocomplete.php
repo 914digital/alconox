@@ -78,6 +78,11 @@
     $params[$o->getName()] = $o->getData();
     ?>
 </div>
+<div class="item"><?php
+	$o = new wpdreamsTextSmall("autoc_trigger_charcount", __('Minimal character count to trigger autocomplete', 'ajax-search-pro'), $sd['autoc_trigger_charcount']);
+	$params[$o->getName()] = $o->getData();
+	?>
+</div>
 <div class="item hiddend"><?php
     $o = new wpdreamsText("autoc_google_places_api", __('Google places API key', 'ajax-search-pro'), $sd['autoc_google_places_api']);
     $params[$o->getName()] = $o->getData();

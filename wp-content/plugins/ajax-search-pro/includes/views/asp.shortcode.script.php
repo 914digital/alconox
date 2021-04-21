@@ -35,6 +35,7 @@ defined('ABSPATH') or die("You can't access this file directly.");
     },
     "autocomplete": {
         "enabled": <?php echo $style['autocomplete'] == 1 || $style['autocomplete'] == 2 ? 1 : 0; ?>,
+		"trigger_charcount": <?php echo intval($style['autoc_trigger_charcount']); ?>,
         "googleOnly": <?php echo $style['autocomplete_source'] == 'google' ? 1 : 0; ?>,
         "lang": "<?php echo $style['autocomplete_google_lang']; ?>",
         "mobile": <?php echo $style['autocomplete'] == 1 || $style['autocomplete'] == 3 ? 1 : 0; ?>
@@ -92,6 +93,7 @@ defined('ABSPATH') or die("You can't access this file directly.");
         "return_action_location": "<?php echo $style['mob_return_action'] == 'same' ? $style['return_action_location'] : $style['mob_return_action_location']; ?>",
         "redirect_url": "<?php echo $style['mob_click_action'] == 'custom_url' || $style['mob_return_action'] == 'custom_url' ? $style['mob_redirect_url'] : $style['redirect_url']; ?>",
         "elementor_url": "<?php echo $style['mob_click_action'] == 'same' ? $style['redirect_elementor'] : $style['mob_redirect_elementor']; ?>",
+        "menu_selector": "<?php echo $style['mob_auto_focus_menu_selector']; ?>",
         "hide_keyboard": <?php echo $style['mob_hide_keyboard']; ?>,
         "force_res_hover": <?php echo $style['mob_force_res_hover']; ?>,
         "force_sett_hover": <?php echo $style['mob_force_sett_hover']; ?>,

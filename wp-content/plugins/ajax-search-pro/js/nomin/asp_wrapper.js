@@ -56,7 +56,7 @@ window.ASP.initialize = function(id) {
     var _this = this;
 
     // Some weird ajax loader problem prevention
-    if ( typeof _this.getScope == 'undefined' )
+    if ( typeof _this.getScope == 'undefined' || typeof _this.version == 'undefined' )
         return false;
 
     // Yeah I could use $ or jQuery as the scope variable, but I like to avoid magical errors..
@@ -184,7 +184,6 @@ window.ASP.initialize = function(id) {
                             stop -= scope("#wpadminbar").height();
                         stop = stop + o.scroll_offset;
                         stop = stop < 0 ? 0 : stop;
-                        console.log('scroll: ', stop);
                         scope('html').animate({
                             "scrollTop": stop
                         }, {

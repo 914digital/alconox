@@ -236,7 +236,7 @@
     <div class="errorMsg">
         <?php echo sprintf( __('<strong>Disclaimer:</strong> Live loading items to a page causes the script event handlers to detach on the affected elements - if there are
         interactive elements (pop-up buttons etc..) controlled by a script within the results, they will probably stop working after a live load.
-        This cannot be prevented from this plugins perspective. <a href="%" target="_blank">More information here.</a>', 'ajax-search-pro'), 'https://documentation.ajaxsearchpro.com/behavior/results_page_live_loader' ); ?>
+        This cannot be prevented from this plugins perspective. <a href="%s" target="_blank">More information here.</a>', 'ajax-search-pro'), 'https://documentation.ajaxsearchpro.com/behavior/results_page_live_loader' ); ?>
     </div>
     <div class="item">
         <?php

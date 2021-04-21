@@ -1,7 +1,6 @@
 <?php
 /* Prevent direct access */
 defined( 'ABSPATH' ) or die( "You can't access this file directly." );
-
 if ( !class_exists('ASP_Media_Parser') ) {
     /**
      * Class ASP_Media_Parser
@@ -44,6 +43,7 @@ if ( !class_exists('ASP_Media_Parser') ) {
                 'application/vnd.oasis.opendocument.text'
             ),
             'mso_excel'      => array(
+            	'application/vnd.ms-excel',
                 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
                 'application/vnd.ms-excel.sheet.macroEnabled.12',
                 'application/vnd.ms-excel.sheet.binary.macroEnabled.12',
@@ -210,7 +210,31 @@ if ( !class_exists('ASP_Media_Parser') ) {
 
             if ( false !== strpos($mime, 'opendocument') ) {
                 $o = $this->getFileFromArchive('content.xml', $filename);
-            } else {
+            } else if ( substr_compare($filename, '.xls', -strlen('.xls')) === 0 ) {
+				$o = '';
+				// https://github.com/Janson-Leung/PHPExcel
+				include_once(ASP_EXTERNALS_PATH . 'php-excel/Excel.php');
+				include_once(ASP_EXTERNALS_PATH . 'php-excel/Contract/ReaderInterface.php');
+				include_once(ASP_EXTERNALS_PATH . 'php-excel/Parser/Excel5.php');
+				include_once(ASP_EXTERNALS_PATH . 'php-excel/Parser/Format.php');
+				include_once(ASP_EXTERNALS_PATH . 'php-excel/Parser/Excel5/OLERead.php');
+				include_once(ASP_EXTERNALS_PATH . 'php-excel/Parser/Excel5/RC4.php');
+				include_once(ASP_EXTERNALS_PATH . 'php-excel/Reader/BaseReader.php');
+				include_once(ASP_EXTERNALS_PATH . 'php-excel/Reader/Xls.php');
+				$reader = Asan\PHPExcel\Excel::load($filename, function(Asan\PHPExcel\Reader\Xls $reader) {
+					// Set row limit
+					//$reader->setRowLimit(10);
+					// Set column limit
+					//$reader->setColumnLimit(10);
+					// Ignore empty row
+					$reader->ignoreEmptyRow(true);
+					// Select sheet index
+					//$reader->setSheetIndex(1);
+				});
+				foreach ($reader as $row) {
+					$o .= ' '.wd_array_to_string($row);
+				}
+			} else {
                 $o = $this->getFileFromArchive('xl/sharedStrings.xml', $filename);
             }
             return $o;
@@ -229,7 +253,7 @@ if ( !class_exists('ASP_Media_Parser') ) {
 
             $out = '';
             if ( class_exists( 'ZipArchive' ) ) {
-                if (false !== strpos($mime, 'opendocument')) {
+                if ( false !== strpos($mime, 'opendocument') ) {
                     $out = $this->getFileFromArchive('content.xml', $filename);
                 } else {
                     $zip = new ZipArchive();
@@ -241,7 +265,26 @@ if ( !class_exists('ASP_Media_Parser') ) {
                             $slide_num++;
                         }
                         $zip->close();
-                    }
+                    } else if ( substr_compare($filename, '.ppt', -strlen('.ppt')) === 0 ) {
+						// This approach uses detection of the string "chr(0f).Hex_value.chr(0x00).chr(0x00).chr(0x00)" to find text strings, which are then terminated by another NUL chr(0x00). [1] Get text between delimiters [2]
+						$fileHandle = fopen($filename, "r");
+						$line = @fread($fileHandle, filesize($filename));
+						$lines = explode(chr(0x0f),$line);
+						$outtext = '';
+
+						foreach($lines as $thisline) {
+							if (strpos($thisline, chr(0x00).chr(0x00).chr(0x00)) == 1 ) {
+								$text_line = substr($thisline, 4);
+								$end_pos   = strpos($text_line, chr(0x00));
+								$text_line = substr($text_line, 0, $end_pos);
+								$text_line = preg_replace("/[^a-zA-Z0-9\s\,\.\-\n\r\t@\/\_\(\)]/","",$text_line);
+								if (strlen($text_line) > 1) {
+									$outtext.= substr($text_line, 0, $end_pos)."\n";
+								}
+							}
+						}
+						$out = $outtext;
+					}
                 }
             }
 

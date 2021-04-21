@@ -45,7 +45,9 @@ if (!class_exists("wpdreamsBP_XProfileFields")) {
             echo '<div class="sortablecontainer">' . __('Drag here the fields you want to search!', 'ajax-search-pro') . '<ul id="sortable_conn' . self::$_instancenumber . '" class="connectedSortable">';
             if ($this->selected != null && is_array($this->selected)) {
                 foreach ($this->selected as $k => $v) {
-                    echo '<li class="ui-state-default" bid="' . $pf_array[$v]->id . '">' . $pf_array[$v]->name . '</li>';
+                	if ( isset($pf_array[$v]) ) {
+						echo '<li class="ui-state-default" bid="' . $pf_array[$v]->id . '">' . $pf_array[$v]->name . '</li>';
+					}
                 }
             }
             echo "</ul></div>";

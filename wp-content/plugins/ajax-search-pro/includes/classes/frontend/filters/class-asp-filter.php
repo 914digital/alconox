@@ -30,7 +30,7 @@ if ( !class_exists('aspFilter') ) {
             'custom_field' => 'aspf'
         );
 
-        function __construct($label = '', $display_mode = 'checkboxes', $data, $position = -1) {
+        function __construct($label = '', $display_mode = 'checkboxes', $data = array(), $position = -1) {
             $this->label = $label;
             $this->display_mode = $display_mode;
             $data = is_array($data) ? $data : (array)$data;
@@ -61,7 +61,7 @@ if ( !class_exists('aspFilter') ) {
                 $this->values[] = $new;
             } else {
                 $position = intval($position);
-                array_splice( $this->values, $position, 0, $new );
+                array_splice( $this->values, $position, 0, array($new) );
             }
             return $new;
         }
@@ -119,7 +119,7 @@ if ( !class_exists('aspFilter') ) {
             }
         }
 
-        public function attr($ids = array(), $att, $val, $by_id = false) {
+        public function attr($ids = array(), $att = '', $val = '', $by_id = false) {
             if ( $by_id ) {
                 $i = is_array($ids) ? $ids : array($ids);
                 foreach ( $i as $ii ) {

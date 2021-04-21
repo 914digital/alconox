@@ -8,9 +8,8 @@ defined('ABSPATH') or die("You can't access this file directly.");
  *  2. FILE SYSTEM SPECIFIC WRAPPERS
  *  3. TAXONOMY AND TERM SPECIFIC
  *  4. BACK-END SPECIFIC
- *  5. EXPORT IMPORT
- *  6. NON-AJAX RESULTS
- *  7. FRONT-END
+ *  5. NON-AJAX RESULTS
+ *  6. FRONT-END
 */
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -345,15 +344,14 @@ if (!function_exists("wd_array_to_string")) {
 }
 
 if (!function_exists("wd_explode")) {
-    /**
-     * Explode with a trim function
-     *
-     * @param string $delim delimiter
-     * @param string $s input string
-     *
-     * @return string
-     */
-    function wd_explode($delim=',', $str) {
+	/**
+	 * Explode with a trim function
+	 *
+	 * @param string $delim delimiter
+	 * @param string $str
+	 * @return string
+	 */
+    function wd_explode($delim = ',', $str = '') {
         if ( !is_array($str) )
             $str = explode($delim, $str);
         foreach ( $str as $k => &$v) {
@@ -602,7 +600,7 @@ if (!function_exists("wpd_mem_convert")) {
 
 if ( !function_exists('asp_get_search_query') ) {
     function asp_get_search_query() {
-        return isset($_GET['asp_ls']) ? $_GET['asp_ls'] : get_search_query();
+        return isset($_GET['asp_ls']) ? $_GET['asp_ls'] : get_search_query( false );
     }
 }
 
@@ -1141,118 +1139,8 @@ if (!function_exists("wpdreams_width_from_px")) {
     }
 }
 
-
 //----------------------------------------------------------------------------------------------------------------------
-// 5. EXPORT IMPORT
-//----------------------------------------------------------------------------------------------------------------------
-
-/**
- * Generates exported search instances in serialized base 64 encded format
- *
- * @return array
- */
-function asp_get_all_exported_instances() {
-    global $wpdb;
-
-    $return = array();
-
-    $search_instances = $wpdb->get_results("SELECT * FROM " . wd_asp()->tables->main, ARRAY_A);
-    foreach ($search_instances as $instance)
-        $return[$instance['id']] = base64_encode(serialize($instance));
-    return $return;
-}
-
-/**
- * Get a single exported search instance by ID
- *
- * @param int $id
- * @return bool
- */
-function asp_get_exported_instance($id=0) {
-    $instances = asp_get_all_exported_instances();
-    return isset($instances[$id])?$instances[$id]:false;
-}
-
-/**
- * Imports the search instance
- *
- * @param $data
- * @return false on failure, affected rows on success
- */
-function asp_import_instances($data) {
-    global $wpdb;
-
-    $s_data = json_decode(stripcslashes($data));
-
-    $asp_def = wd_asp()->options;
-
-    $count = 0;
-
-    if (is_array($s_data)) {
-        foreach ($s_data as $dec_instance) {
-            $_instance = unserialize(base64_decode($dec_instance));
-            if (is_array($_instance)) {
-
-                // Merge with the defaults, in case of updated imports..
-                $data = json_decode($_instance['data'], true);
-                if ( $data === null ) continue;
-
-                $data = array_merge($asp_def['asp_defaults'], $data);
-
-                $wpdb->insert(
-                    wd_asp()->tables->main,
-                    array(
-                        'name' => $_instance['name'].' Imported',
-                        'data' => json_encode($data)
-                    ),
-                    array('%s', '%s')
-                );
-
-                $count++;
-            } else {
-                return false;
-            }
-        }
-    } else {
-        return false;
-    }
-
-    return $count;
-}
-
-function asp_import_settings($id, $data) {
-    global $wpdb;
-
-    //$data = stripcslashes($data);
-    $data = unserialize(base64_decode($data));
-
-    $asp_def = wd_asp()->options;
-    // Merge with the defaults, in case of updated imports..
-    $data = json_decode($data['data'], true);
-    if ( $data === null ) return;
-
-    $data = array_merge($asp_def['asp_defaults'], $data);
-
-    if (is_array($data)) {
-        return $wpdb->update(
-            wd_asp()->tables->main,
-            array(
-                'data' => json_encode($data)
-            ),
-            array( 'id' => $id ),
-            array(
-                '%s'
-            ),
-            array( '%d' )
-        );
-    } else {
-        return false;
-    }
-}
-
-
-//----------------------------------------------------------------------------------------------------------------------
-// 6. NON-AJAX RESULTS
+// 5. NON-AJAX RESULTS
 //----------------------------------------------------------------------------------------------------------------------
 
 if ( !class_exists("ASP_Post") )  {
@@ -1498,7 +1386,7 @@ if ( !function_exists("the_asp_result_field") ) {
 
 
 //----------------------------------------------------------------------------------------------------------------------
-// 7. FRONT-END
+// 6. FRONT-END
 //----------------------------------------------------------------------------------------------------------------------
 if ( !function_exists("asp_acf_get_field_choices") ) {
     function asp_acf_get_field_choices($field_name, $multi = false) {
@@ -2061,7 +1949,8 @@ if ( !function_exists("asp_parse_custom_field_filters") ) {
                             if ( $add['value'] == '' && $kk == 0 ) {
                                 $checked = $default;
                             } else {
-                                $checked = isset($o['_fo']['aspf'][$unique_field_name][$kk]);
+                                $checked = isset($o['_fo']['aspf'][$unique_field_name])
+									&& is_array($o['_fo']['aspf'][$unique_field_name]) && in_array($add['value'], $o['_fo']['aspf'][$unique_field_name]);
                             }
                         } else {
                             $checked = $default;

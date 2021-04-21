@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Blank WordPress "
 "Pot v1.0.0\n"
-"POT-Creation-Date: 2021-01-23 "
-"14:08+0100\n"
+"POT-Creation-Date: 2021-04-03 "
+"11:57+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Your Name "
 "<you@example.com>\n"
@@ -65,7 +65,7 @@ msgstr ""
 #: backend/analytics.php:94
 #: backend/cache_settings.php:14
 #: backend/compatibility_settings.php:18
-#: backend/export_import.php:41
+#: backend/export_import.php:61
 #: backend/index_table.php:56
 #: backend/maintenance.php:22
 #: backend/performance.php:18
@@ -83,7 +83,7 @@ msgstr ""
 #: backend/analytics.php:96
 #: backend/cache_settings.php:16
 #: backend/compatibility_settings.php:20
-#: backend/export_import.php:43
+#: backend/export_import.php:63
 #: backend/index_table.php:58
 #: backend/maintenance.php:24
 #: backend/performance.php:20
@@ -100,7 +100,7 @@ msgstr ""
 #: backend/analytics.php:98
 #: backend/cache_settings.php:18
 #: backend/compatibility_settings.php:22
-#: backend/export_import.php:45
+#: backend/export_import.php:65
 #: backend/index_table.php:60
 #: backend/maintenance.php:26
 #: backend/performance.php:22
@@ -351,7 +351,7 @@ msgstr ""
 #: backend/analytics.php:386
 #: backend/cache_settings.php:179
 #: backend/compatibility_settings.php:160
-#: backend/export_import.php:142
+#: backend/export_import.php:161
 #: backend/index_table.php:541
 #: backend/maintenance.php:107
 #: backend/priorities.php:78
@@ -364,7 +364,7 @@ msgstr ""
 #: backend/analytics.php:387
 #: backend/cache_settings.php:180
 #: backend/compatibility_settings.php:161
-#: backend/export_import.php:143
+#: backend/export_import.php:162
 #: backend/index_table.php:542
 #: backend/maintenance.php:108
 #: backend/priorities.php:79
@@ -568,35 +568,50 @@ msgstr ""
 msgid "No compatibility errors found!"
 msgstr ""
 
-#: backend/export_import.php:16
-#: backend/export_import.php:25
+#: backend/export_import.php:14
+#: backend/export_import.php:35
+msgid "Import data is empty."
+msgstr ""
+
+#: backend/export_import.php:24
+msgid "Import data error."
+msgstr ""
+
+#: backend/export_import.php:28
+#: backend/export_import.php:46
+msgid ""
+"Error importing: invalid NONCE, "
+"please try again"
+msgstr ""
+
+#: backend/export_import.php:42
 msgid ""
 "Cannot import. Invalid data! Please "
 "try again!"
 msgstr ""
 
-#: backend/export_import.php:56
+#: backend/export_import.php:76
 #, php-format
 msgid ""
 "Succesfully imported <b>%s</b> "
 "search instances."
 msgstr ""
 
-#: backend/export_import.php:60
+#: backend/export_import.php:80
 msgid ""
 "Succesfully imported the search "
 "settings."
 msgstr ""
 
-#: backend/export_import.php:63
+#: backend/export_import.php:83
 msgid "Instances"
 msgstr ""
 
-#: backend/export_import.php:64
+#: backend/export_import.php:84
 msgid "Settings Only"
 msgstr ""
 
-#: backend/export_import.php:71
+#: backend/export_import.php:91
 msgid ""
 "On this tab you can import complete "
 "search instances. If you prefer to "
@@ -605,28 +620,28 @@ msgid ""
 "this page."
 msgstr ""
 
-#: backend/export_import.php:74
+#: backend/export_import.php:94
 msgid "Export Search instances"
 msgstr ""
 
-#: backend/export_import.php:75
+#: backend/export_import.php:95
 msgid ""
 "Select the search instances to "
 "export"
 msgstr ""
 
-#: backend/export_import.php:76
-#: backend/export_import.php:111
+#: backend/export_import.php:96
+#: backend/export_import.php:129
 msgid ""
 "Copy and save the text appearing in "
 "this box"
 msgstr ""
 
-#: backend/export_import.php:91
+#: backend/export_import.php:108
 msgid "Import Search instances"
 msgstr ""
 
-#: backend/export_import.php:93
+#: backend/export_import.php:110
 msgid ""
 "Please note that the search IDs may "
 "differ from the exported instances. "
@@ -635,15 +650,15 @@ msgid ""
 "appended after their names."
 msgstr ""
 
-#: backend/export_import.php:95
+#: backend/export_import.php:113
 msgid "Paste the exported code here"
 msgstr ""
 
-#: backend/export_import.php:104
+#: backend/export_import.php:122
 msgid "Settings only"
 msgstr ""
 
-#: backend/export_import.php:106
+#: backend/export_import.php:124
 msgid ""
 "On this page you can import "
 "settings to existing search "
@@ -652,33 +667,33 @@ msgid ""
 "options!"
 msgstr ""
 
-#: backend/export_import.php:109
+#: backend/export_import.php:127
 msgid "Export settings"
 msgstr ""
 
-#: backend/export_import.php:110
+#: backend/export_import.php:128
 msgid ""
 "Select the instance to export "
 "settings from"
 msgstr ""
 
-#: backend/export_import.php:123
+#: backend/export_import.php:141
 msgid "Import settings"
 msgstr ""
 
-#: backend/export_import.php:124
+#: backend/export_import.php:142
 msgid ""
 "Select the instance to import "
 "settings to"
 msgstr ""
 
-#: backend/export_import.php:125
+#: backend/export_import.php:143
 msgid ""
 "Paste the exported settings code "
 "here"
 msgstr ""
 
-#: backend/export_import.php:198
+#: backend/export_import.php:217
 msgid ""
 "Are you sure you want to import "
 "settings to that search instance?"
@@ -690,7 +705,7 @@ msgstr ""
 #: backend/vc/vc.extend.php:117
 #: backend/vc/vc.extend.php:148
 #: includes/classes/core/class-asp-menu.php:44
-#: includes/classes/etc/updates_manager.class.php:77
+#: includes/classes/etc/updates_manager.class.php:99
 msgid "Ajax Search Pro"
 msgstr ""
 
@@ -5931,6 +5946,7 @@ msgid "Results page live loader"
 msgstr ""
 
 #: backend/tabs/instance/general/behaviour.php:237
+#, php-format
 msgid ""
 "<strong>Disclaimer:</strong> Live "
 "loading items to a page causes the "
@@ -5944,7 +5960,7 @@ msgid ""
 "live load.\n"
 "        This cannot be prevented "
 "from this plugins perspective. <a "
-"href=\"%\" target=\"_blank\">More "
+"href=\"%s\" target=\"_blank\">More "
 "information here.</a>"
 msgstr ""
 
@@ -6360,11 +6376,26 @@ msgstr ""
 
 #: backend/tabs/instance/general/mobile_behavior.php:96
 msgid ""
+"Auto focus when opening the "
+"navigation menu (jQuery selector)"
+msgstr ""
+
+#: backend/tabs/instance/general/mobile_behavior.php:101
+msgid ""
+"When the search is placed within a "
+"mobile navigation menu, you can "
+"define a jQuery selector of the "
+"opening menu item here - which when "
+"clicking auto focuses the search"
+msgstr ""
+
+#: backend/tabs/instance/general/mobile_behavior.php:106
+msgid ""
 "Force 'hover' results layout on "
 "mobile devices?"
 msgstr ""
 
-#: backend/tabs/instance/general/mobile_behavior.php:101
+#: backend/tabs/instance/general/mobile_behavior.php:111
 msgid ""
 "This will force to display the "
 "results below the search bar "
@@ -6374,14 +6405,10 @@ msgid ""
 "results shortcode is used)."
 msgstr ""
 
-#: backend/tabs/instance/general/mobile_behavior.php:106
+#: backend/tabs/instance/general/mobile_behavior.php:116
 msgid ""
 "Force 'hover' settings layout on "
 "mobile devices?"
-msgstr ""
-
-#: backend/tabs/instance/general/mobile_behavior.php:111
-msgid " and force state "
 msgstr ""
 
 #: backend/tabs/instance/general/mobile_behavior.php:121
@@ -6391,6 +6418,10 @@ msgid ""
 "(floating above the content) on "
 "mobile devices, even if the "
 "settings shortcode is used."
+msgstr ""
+
+#: backend/tabs/instance/general/mobile_behavior.php:126
+msgid "Force search settings state"
 msgstr ""
 
 #: backend/tabs/instance/general/ordering.php:9
@@ -7721,11 +7752,17 @@ msgid ""
 msgstr ""
 
 #: backend/tabs/instance/suggest/autocomplete.php:82
+msgid ""
+"Minimal character count to trigger "
+"autocomplete"
+msgstr ""
+
+#: backend/tabs/instance/suggest/autocomplete.php:87
 #: backend/tabs/instance/suggest/keywords.php:19
 msgid "Google places API key"
 msgstr ""
 
-#: backend/tabs/instance/suggest/autocomplete.php:86
+#: backend/tabs/instance/suggest/autocomplete.php:91
 #: backend/tabs/instance/suggest/keywords.php:23
 #, php-format
 msgid ""
@@ -7735,25 +7772,25 @@ msgid ""
 "API key here</a>."
 msgstr ""
 
-#: backend/tabs/instance/suggest/autocomplete.php:91
+#: backend/tabs/instance/suggest/autocomplete.php:96
 #: backend/tabs/instance/suggest/keywords.php:37
 msgid "Max. suggestion length"
 msgstr ""
 
-#: backend/tabs/instance/suggest/autocomplete.php:96
+#: backend/tabs/instance/suggest/autocomplete.php:101
 msgid ""
 "The length of each suggestion in "
 "characters. 30-60 is a good number "
 "to avoid too long suggestions."
 msgstr ""
 
-#: backend/tabs/instance/suggest/autocomplete.php:100
+#: backend/tabs/instance/suggest/autocomplete.php:105
 msgid ""
 "Google autocomplete suggestions "
 "language"
 msgstr ""
 
-#: backend/tabs/instance/suggest/autocomplete.php:107
+#: backend/tabs/instance/suggest/autocomplete.php:112
 msgid ""
 "Keyword exceptions (comma separated)"
 msgstr ""
@@ -8931,7 +8968,7 @@ msgid "How to manual update?"
 msgstr ""
 
 #: backend/updates_help.php:88
-#: includes/classes/etc/updates_manager.class.php:87
+#: includes/classes/etc/updates_manager.class.php:109
 msgid "Changelog"
 msgstr ""
 
@@ -9011,6 +9048,14 @@ msgstr ""
 msgid "Image negate failed."
 msgstr ""
 
+#: includes/classes/core/class-asp-instances.php:522
+msgid "Invalid data"
+msgstr ""
+
+#: includes/classes/core/class-asp-instances.php:526
+msgid "Invalid JSON data"
+msgstr ""
+
 #: includes/classes/core/class-asp-manager.php:137
 msgid "Every 2 Minutes"
 msgstr ""
@@ -9031,7 +9076,7 @@ msgstr ""
 msgid "Every 30 Minutes"
 msgstr ""
 
-#: includes/classes/core/class-asp-manager.php:361
+#: includes/classes/core/class-asp-manager.php:360
 msgid ""
 "<b>Ajax Search Pro notice: </b> The "
 "Index Table options have been "
@@ -9039,11 +9084,11 @@ msgid ""
 "index table!"
 msgstr ""
 
-#: includes/classes/core/class-asp-manager.php:362
+#: includes/classes/core/class-asp-manager.php:361
 msgid "Let's do it!"
 msgstr ""
 
-#: includes/classes/core/class-asp-manager.php:363
+#: includes/classes/core/class-asp-manager.php:362
 msgid "Hide this message"
 msgstr ""
 
@@ -9083,52 +9128,27 @@ msgstr ""
 msgid "Help & Updates"
 msgstr ""
 
-#: includes/classes/etc/updates.class.php:194
-msgid ""
-"Error! Can't connect to filesystem"
-msgstr ""
-
-#: includes/classes/etc/updates.class.php:200
-msgid ""
-"To receive automatic updates "
-"license activation is required. "
-"Please visit <a href=\""
-msgstr ""
-
-#: includes/classes/etc/updates.class.php:203
-msgid "Getting download link..."
-msgstr ""
-
-#: includes/classes/etc/updates.class.php:208
-msgid ""
-"Download link could not be retrieved"
-msgstr ""
-
-#: includes/classes/etc/updates.class.php:218
-msgid "Downloading package..."
-msgstr ""
-
-#: includes/classes/etc/updates_manager.class.php:83
+#: includes/classes/etc/updates_manager.class.php:105
 #, php-format
 msgid "More information about %s"
 msgstr ""
 
-#: includes/classes/etc/updates_manager.class.php:85
+#: includes/classes/etc/updates_manager.class.php:107
 msgid "View details"
 msgstr ""
 
-#: includes/classes/etc/updates_manager.class.php:87
+#: includes/classes/etc/updates_manager.class.php:109
 msgid ""
 "View Ajax Search Pro Pro Changelog"
 msgstr ""
 
-#: includes/classes/etc/updates_manager.class.php:143
+#: includes/classes/etc/updates_manager.class.php:165
 msgid ""
 "Download new version from "
 "CodeCanyon."
 msgstr ""
 
-#: includes/classes/etc/updates_manager.class.php:145
+#: includes/classes/etc/updates_manager.class.php:167
 msgid "Update Ajax Search Pro now."
 msgstr ""
 

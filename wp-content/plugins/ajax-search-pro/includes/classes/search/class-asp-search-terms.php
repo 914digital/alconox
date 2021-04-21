@@ -67,7 +67,7 @@ if (!class_exists('ASP_Search_TERMS')) {
                 else
                     $limit = $args['taxonomies_limit_override'];
             }
-            $query_limit = $limit * 3;
+            $query_limit = $limit * $this->remaining_limit_mod;
 
             /*----------------------- Gather Types --------------------------*/
             $taxonomies = "( $wpdb->term_taxonomy.taxonomy IN ('".implode("','", $args['taxonomy_include'])."') )";
@@ -368,14 +368,20 @@ if (!class_exists('ASP_Search_TERMS')) {
 
                     // Try parsing term meta
                     if ( empty($image) && !empty($sd['tax_image_custom_field']) ) {
-                        if ( function_exists('get_field') ) {
-                            $value = get_term_meta( $result->id, $sd['tax_image_custom_field'], true );
-                            if ( ( is_array($value) || is_object($value) ) && isset($value['url']) ) {
-                                $value = $value['url'];
-                            }
-                        } else {
-                            $value = get_term_meta( $sd['tax_image_custom_field'], 'term_' . $result->id );
-                        }
+						$value = get_term_meta( $result->id, $sd['tax_image_custom_field'], true );
+						if ( ( is_array($value) || is_object($value) ) ) {
+							if ( isset($value['url']) ) {
+								$value = $value['url'];
+							} else if ( isset($value['guid']) ) {
+								$value = $value['guid'];
+							} else if ( isset($value['id']) ) {
+								$value = $value['id'];
+							} else if ( isset($value['ID']) ) {
+								$value = $value['ID'];
+							} else if ( isset($value[0]) ) {
+								$value = $value[0];
+							}
+						}
                         if ( !empty($value) ) {
                             // Is this an image attachment ID
                             if ( is_numeric($value) ) {

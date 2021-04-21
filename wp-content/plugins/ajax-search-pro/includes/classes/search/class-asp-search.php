@@ -346,11 +346,11 @@ if (!class_exists('ASP_Search')) {
          * @return string
          */
         public function context_find($str, $needle, $context, $maxlength, $str_length_limit = 10000, $false_on_no_match = false) {
-            $haystack = ' '.trim($str).' ';
+            $haystack = remove_accents(' '.trim($str).' ');
 
             // To prevent memory overflow, we need to limit the hay to relatively low count
             $haystack = wd_substr_at_word(ASP_mb::strtolower($haystack), $str_length_limit);
-            $needle = ASP_mb::strtolower($needle);
+            $needle = remove_accents(ASP_mb::strtolower($needle));
 
             if ( $needle == "" ) {
                 if ( ASP_mb::strlen($str) > $maxlength) {

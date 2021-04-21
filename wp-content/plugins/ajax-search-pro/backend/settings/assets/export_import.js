@@ -1,5 +1,4 @@
 jQuery(function($){
-
     $('#asp_export_textarea').click(function(){
         var $this = $(this);
         $this.select();
@@ -20,7 +19,7 @@ jQuery(function($){
         setTimeout(function(){
             var searches = [];
             $('#asp_export :selected').each(function(i, selected){
-                searches.push( $('#asp_exid' + $(selected).val()).html() );
+                searches.push( $(this).val() );
             });
             if (searches.length > 0)
                 $('#asp_export_textarea').val(JSON.stringify(searches));
@@ -35,7 +34,7 @@ jQuery(function($){
         $(this).prop('disabled', true);
         var $this = $(this);
         setTimeout(function(){
-            $('#asp_export_textarea_sett').val($('#asp_exid' + $('#asp_export_sett').val()).html());
+            $('#asp_export_textarea_sett').val($('#asp_export_sett').val());
             $this.prop('disabled', false);
             $this.next().addClass('hiddend');
         }, 1000);

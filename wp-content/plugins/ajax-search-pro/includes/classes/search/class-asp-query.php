@@ -407,7 +407,7 @@ if (!class_exists('ASP_Query')) {
             if ( $search_id > -1 ) {
                 // Translate search data and options to args
                 // args priority $args > $search_args > $defaults
-                $search_args = ASP_Helpers::toQueryArgs($search_id, $options);
+                $search_args = ASP_Helpers::toQueryArgs($search_id, $options, $args);
                 $search_args = wp_parse_args( $search_args, self::$defaults );
                 $args = wp_parse_args( $args, $search_args );
             } else {
@@ -773,6 +773,8 @@ if (!class_exists('ASP_Query')) {
                                     );
                                 }
 
+								// Reset this at each loop, as post IDs can be the same across multisite
+								$args['post_not_in2'] = array();
                                 foreach ( $_temp_ptypes as $_tptype ) {
                                     foreach ( $logics as $lk => $logic ) {
                                         if ( $lk == 0 && $args['_exact_matches'] == 1 ) {
@@ -788,7 +790,7 @@ if (!class_exists('ASP_Query')) {
                                         $args['posts_limit'] = $_temp_ptype_limits[$_tptype][0];
                                         $args['posts_limit_override'] = $_temp_ptype_limits[$_tptype][1];
                                         // For exact matches the regular engine is used
-                                        if ($args['engine'] == 'regular' || $args['_exact_matches'] == 1)
+                                        if ($args['engine'] == 'regular' || $args['_exact_matches'] == 1 || $args['s'] == '')
                                             $_posts = new ASP_Search_CPT($args);
                                         else
                                             $_posts = new ASP_Search_INDEX($args);
@@ -806,6 +808,8 @@ if (!class_exists('ASP_Query')) {
                                 }
                                 $args['post_type'] = $_temp_ptypes;
                             } else {
+								// Reset this at each loop, as post IDs can be the same across multisite
+								$args['post_not_in2'] = array();
                                 foreach ( $logics as $lk => $logic ) {
                                     if ( $lk == 0 && $args['_exact_matches'] == 1 ) {
                                         // If exact matches is on, disregard the first logic
@@ -817,7 +821,7 @@ if (!class_exists('ASP_Query')) {
                                     }
 
                                     // For exact matches the regular engine is used
-                                    if ($args['engine'] == 'regular' || $args['_exact_matches'] == 1)
+                                    if ($args['engine'] == 'regular' || $args['_exact_matches'] == 1 || $args['s'] == '')
                                         $_posts = new ASP_Search_CPT($args);
                                     else
                                         $_posts = new ASP_Search_INDEX($args);
@@ -1169,7 +1173,8 @@ if (!class_exists('ASP_Query')) {
                         'taxonomy' => $taxonomy,
                         'api_key' => $sd['kws_google_places_api'],
                         'search_id' => $this->args['_sid'],
-                        'options' => $this->options
+                        'options' => $this->options,
+                        'args' => $args
                     ));
 
                     $keywords = array_merge($keywords, $t->getKeywords($phrase));

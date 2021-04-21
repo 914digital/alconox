@@ -73,7 +73,7 @@ if ( !class_exists('aspCfFilter') ) {
         protected $key = 'value';
         protected $type = 'custom_field';
 
-        public function __construct($label = '', $display_mode = 'checkboxes', $data, $position = -1) {
+        public function __construct($label = '', $display_mode = 'checkboxes', $data = array(), $position = -1) {
             parent::__construct($label, $display_mode, $data, $position);
             if ( isset($this->special_args[$this->display_mode]) ) {
                 $this->data = array_merge($this->data, $this->special_args[$this->display_mode], $data);

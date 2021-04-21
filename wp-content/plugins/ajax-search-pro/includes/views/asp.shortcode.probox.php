@@ -77,7 +77,7 @@ $asp_loaders = array(
         <form action='#' autocomplete="off" aria-label="<?php echo __('Search form', 'ajax-search-pro') . ' ' . $real_id; ?>">
             <input type='search' class='orig'
                    placeholder='<?php echo asp_icl_t( "Search bar placeholder text" . " ($real_id)", w_isset_def($style['defaultsearchtext'], '') ); ?>'
-                   name='phrase' value='<?php echo apply_filters('asp_print_search_query', asp_get_search_query(), $id, $real_id); ?>'
+                   name='phrase' value='<?php echo esc_attr(apply_filters('asp_print_search_query', asp_get_search_query(), $id, $real_id)); ?>'
                    aria-label="<?php echo __('Search input', 'ajax-search-pro') . ' ' . $real_id; ?>"
                    autocomplete="off"/>
             <input type='text' class='autocomplete' name='phrase' value=''
