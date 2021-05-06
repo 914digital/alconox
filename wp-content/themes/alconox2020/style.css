@@ -1502,6 +1502,13 @@ a.merch-strip:hover {
     margin-right: 5px;
 }
 
+.single-page-content.prod-index-cont h2.pbc_title {
+	font-weight: bold;
+    font-size: 25px;
+    text-transform: none;
+    margin-bottom: 20px;
+}
+
 /* ------ Footer ------ */
 
 footer {

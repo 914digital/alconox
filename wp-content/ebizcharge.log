@@ -840,3 +840,222 @@
 15-Apr-2021 05:39:27 :: RefNum: 2779688565 Result: Approved
 16-Apr-2021 08:25:15 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
 16-Apr-2021 08:25:17 :: RefNum: 2780231726 Result: Approved
+23-Apr-2021 07:13:24 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+23-Apr-2021 07:13:26 :: RefNum: 2786237866 Result: Approved
+25-Apr-2021 09:30:09 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+25-Apr-2021 09:30:11 :: RefNum: 2787368227 Result: Approved
+26-Apr-2021 12:10:03 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+26-Apr-2021 12:10:04 :: Transaction Declined (51)(15151). RefNum (2787701358) is "Declined".
+26-Apr-2021 12:11:17 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+26-Apr-2021 12:11:18 :: RefNum: 2787701901 Result: Approved
+26-Apr-2021 03:05:37 :: WC_Gateway_EBizCharge::TokenProcess  customerId: 12043
+26-Apr-2021 03:05:38 :: WC_Gateway_EBizCharge::TokenProcess customer not exist in the gateway, add customer.
+26-Apr-2021 03:05:39 :: WC_Gateway_EBizCharge::TokenProcess Econnect enabled. sync customer.
+26-Apr-2021 03:05:40 :: WC_Gateway_EBizCharge::TokenProcess CustNum updated: 116550806
+26-Apr-2021 03:05:41 :: Merchant does not accept this card, try a different card.(30004). RefNum (2788084172) is "Error".
+26-Apr-2021 07:18:02 :: Transaction using WC_Gateway_EBizCharge::NewPaymentProcess
+26-Apr-2021 07:18:02 :: WC_Gateway_EBizCharge::NewPaymentProcess save card info empty.
+26-Apr-2021 07:18:02 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+26-Apr-2021 07:18:04 :: Merchant does not accept this card, try a different card.(30004). RefNum (2788403645) is "Error".
+26-Apr-2021 08:53:12 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+26-Apr-2021 08:53:13 :: RefNum: 2788510658 Result: Approved
+27-Apr-2021 01:21:17 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+27-Apr-2021 01:21:18 :: RefNum: 2788884583 Result: Approved
+27-Apr-2021 02:11:01 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+27-Apr-2021 02:11:02 :: RefNum: 2788925370 Result: Approved
+27-Apr-2021 04:01:53 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+27-Apr-2021 04:01:55 :: RefNum: 2789033293 Result: Approved
+27-Apr-2021 04:15:55 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+27-Apr-2021 04:15:56 :: RefNum: 2789048291 Result: Approved
+27-Apr-2021 07:40:38 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+27-Apr-2021 07:40:39 :: RefNum: 2789268469 Result: Approved
+27-Apr-2021 07:45:31 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+27-Apr-2021 07:45:32 :: Transaction Declined (51)(15151). RefNum (2789273435) is "Declined".
+27-Apr-2021 07:46:05 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+27-Apr-2021 07:46:07 :: Transaction Declined (51)(15151). RefNum (2789274093) is "Declined".
+27-Apr-2021 07:52:06 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+27-Apr-2021 07:52:07 :: Transaction Declined (51)(15151). RefNum (2789280091) is "Declined".
+27-Apr-2021 07:53:09 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+27-Apr-2021 07:53:10 :: Transaction Declined (51)(15151). RefNum (2789281188) is "Declined".
+27-Apr-2021 07:53:41 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+27-Apr-2021 07:53:42 :: RefNum: 2789281741 Result: Approved
+27-Apr-2021 07:53:48 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+27-Apr-2021 07:53:49 :: Transaction Declined (51)(15151). RefNum (2789281874) is "Declined".
+27-Apr-2021 07:54:57 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+27-Apr-2021 07:54:58 :: Transaction Declined (51)(15151). RefNum (2789283014) is "Declined".
+27-Apr-2021 07:56:01 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+27-Apr-2021 07:56:02 :: You have tried this card too many times, please contact merchant.(10160). RefNum (2789284240) is "Error".
+28-Apr-2021 12:19:55 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+28-Apr-2021 12:19:56 :: RefNum: 2789698372 Result: Approved
+28-Apr-2021 02:40:54 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+28-Apr-2021 02:40:55 :: RefNum: 2789807364 Result: Approved
+28-Apr-2021 07:08:42 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+28-Apr-2021 07:08:44 :: RefNum: 2790078808 Result: Approved
+28-Apr-2021 09:54:29 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+28-Apr-2021 09:54:30 :: Transaction Declined (51)(15151). RefNum (2790230966) is "Declined".
+28-Apr-2021 09:55:03 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+28-Apr-2021 09:55:04 :: Transaction Declined (51)(15151). RefNum (2790231443) is "Declined".
+28-Apr-2021 10:00:38 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+28-Apr-2021 10:00:39 :: Transaction Declined (51)(15151). RefNum (2790235793) is "Declined".
+28-Apr-2021 10:00:52 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+28-Apr-2021 10:00:53 :: Transaction Declined (51)(15151). RefNum (2790236023) is "Declined".
+28-Apr-2021 10:33:35 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+28-Apr-2021 10:33:37 :: RefNum: 2790259491 Result: Approved
+29-Apr-2021 12:17:16 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+29-Apr-2021 12:17:17 :: Transaction Declined (51)(15151). RefNum (2790533999) is "Declined".
+29-Apr-2021 12:17:44 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+29-Apr-2021 12:17:45 :: Transaction Declined (51)(15151). RefNum (2790534218) is "Declined".
+29-Apr-2021 12:18:00 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+29-Apr-2021 12:18:01 :: Transaction Declined (51)(15151). RefNum (2790534325) is "Declined".
+29-Apr-2021 12:18:31 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+29-Apr-2021 12:18:32 :: You have tried this card too many times, please contact merchant.(10160). RefNum (2790534490) is "Error".
+29-Apr-2021 02:51:55 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+29-Apr-2021 02:51:56 :: RefNum: 2790643641 Result: Approved
+29-Apr-2021 05:21:28 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+29-Apr-2021 05:21:29 :: RefNum: 2790789724 Result: Approved
+29-Apr-2021 06:55:11 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+29-Apr-2021 06:55:13 :: RefNum: 2790889334 Result: Approved
+29-Apr-2021 07:56:48 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+29-Apr-2021 07:56:50 :: RefNum: 2790949611 Result: Approved
+30-Apr-2021 11:12:34 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+30-Apr-2021 11:12:35 :: RefNum: 2792412368 Result: Approved
+01-May-2021 12:47:17 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+01-May-2021 12:47:18 :: RefNum: 2792857534 Result: Approved
+03-May-2021 05:41:16 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+03-May-2021 05:41:17 :: RefNum: 2794641012 Result: Approved
+03-May-2021 09:07:49 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+03-May-2021 09:07:50 :: RefNum: 2794908035 Result: Approved
+04-May-2021 07:12:02 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+04-May-2021 07:12:03 :: Card expired (54)(15154). RefNum (2795209967) is "Declined".
+04-May-2021 07:13:01 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+04-May-2021 07:13:02 :: Card expired (54)(15154). RefNum (2795210064) is "Declined".
+04-May-2021 07:14:45 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+04-May-2021 07:14:46 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+04-May-2021 07:14:46 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+04-May-2021 07:14:46 :: Card expired (54)(15154). RefNum (2795210217) is "Declined".
+04-May-2021 07:14:47 :: CVV2 Declined (C2)(15434). RefNum (2795210219) is "Declined".
+04-May-2021 07:14:47 :: You have tried too many card numbers, please contact merchant.(10106). RefNum (2795210220) is "Error".
+04-May-2021 07:14:49 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+04-May-2021 07:14:49 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+04-May-2021 07:14:49 :: You have tried too many card numbers, please contact merchant.(10106). RefNum (2795210226) is "Error".
+04-May-2021 07:14:50 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+04-May-2021 07:14:50 :: You have tried too many card numbers, please contact merchant.(10106). RefNum (2795210228) is "Error".
+04-May-2021 07:14:50 :: You have tried too many card numbers, please contact merchant.(10106). RefNum (2795210230) is "Error".
+04-May-2021 07:14:52 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+04-May-2021 07:14:53 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+04-May-2021 07:14:53 :: You have tried too many card numbers, please contact merchant.(10106). RefNum (2795210233) is "Error".
+04-May-2021 07:14:53 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+04-May-2021 07:14:53 :: You have tried too many card numbers, please contact merchant.(10106). RefNum (2795210236) is "Error".
+04-May-2021 07:14:54 :: You have tried too many card numbers, please contact merchant.(10106). RefNum (2795210237) is "Error".
+04-May-2021 07:14:56 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+04-May-2021 07:14:56 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+04-May-2021 07:14:56 :: You have tried too many card numbers, please contact merchant.(10106). RefNum (2795210242) is "Error".
+04-May-2021 07:14:57 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+04-May-2021 07:14:57 :: You have tried too many card numbers, please contact merchant.(10106). RefNum (2795210244) is "Error".
+04-May-2021 07:14:57 :: You have tried too many card numbers, please contact merchant.(10106). RefNum (2795210246) is "Error".
+04-May-2021 07:14:59 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+04-May-2021 07:14:59 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+04-May-2021 07:15:00 :: You have tried too many card numbers, please contact merchant.(10106). RefNum (2795210250) is "Error".
+04-May-2021 07:15:00 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+04-May-2021 07:15:00 :: You have tried too many card numbers, please contact merchant.(10106). RefNum (2795210251) is "Error".
+04-May-2021 07:15:01 :: You have tried too many card numbers, please contact merchant.(10106). RefNum (2795210252) is "Error".
+04-May-2021 07:15:02 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+04-May-2021 07:15:03 :: You have tried too many card numbers, please contact merchant.(10106). RefNum (2795210259) is "Error".
+04-May-2021 07:15:03 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+04-May-2021 07:15:04 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+04-May-2021 07:15:04 :: You have tried too many card numbers, please contact merchant.(10106). RefNum (2795210261) is "Error".
+04-May-2021 07:15:05 :: You have tried too many card numbers, please contact merchant.(10106). RefNum (2795210262) is "Error".
+04-May-2021 02:37:40 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+04-May-2021 02:37:41 :: RefNum: 2795442017 Result: Approved
+04-May-2021 03:08:42 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+04-May-2021 03:08:44 :: RefNum: 2795473058 Result: Approved
+04-May-2021 04:04:18 :: Transaction using WC_Gateway_EBizCharge::NewPaymentProcess
+04-May-2021 04:04:18 :: WC_Gateway_EBizCharge::NewPaymentProcess save card info empty.
+04-May-2021 04:04:18 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+04-May-2021 04:04:21 :: Merchant does not accept this card, try a different card.(30004). RefNum (2795531389) is "Error".
+04-May-2021 04:09:00 :: Transaction using WC_Gateway_EBizCharge::NewPaymentProcess
+04-May-2021 04:09:00 :: WC_Gateway_EBizCharge::NewPaymentProcess save card info empty.
+04-May-2021 04:09:00 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+04-May-2021 04:09:01 :: Merchant does not accept this card, try a different card.(30004). RefNum (2795536293) is "Error".
+04-May-2021 06:54:03 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+04-May-2021 06:54:05 :: RefNum: 2795713843 Result: Approved
+04-May-2021 06:58:07 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+04-May-2021 06:58:08 :: RefNum: 2795718162 Result: Approved
+05-May-2021 05:35:37 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+05-May-2021 05:35:38 :: Transaction Declined (51)(15151). RefNum (2796109375) is "Declined".
+05-May-2021 05:35:52 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+05-May-2021 05:35:53 :: Invalid card number (14)(15114). RefNum (2796109446) is "Declined".
+05-May-2021 05:47:58 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+05-May-2021 05:47:59 :: Invalid card number (14)(15114). RefNum (2796111145) is "Declined".
+05-May-2021 05:54:31 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+05-May-2021 05:54:32 :: Transaction Declined (51)(15151). RefNum (2796111921) is "Declined".
+05-May-2021 05:54:55 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+05-May-2021 05:54:56 :: Invalid expiration date. Must be in MMYY format. (2)(16). RefNum (0) is "Error".
+05-May-2021 05:55:33 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+05-May-2021 05:55:33 :: Invalid expiration date. Must be in MMYY format. (2)(16). RefNum (0) is "Error".
+05-May-2021 05:57:22 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+05-May-2021 05:57:23 :: Transaction Declined (51)(15151). RefNum (2796112370) is "Declined".
+05-May-2021 05:58:10 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+05-May-2021 05:58:12 :: Transaction not allowed (57)(15157). RefNum (2796112448) is "Declined".
+05-May-2021 05:59:31 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+05-May-2021 05:59:33 :: Transaction not allowed (57)(15157). RefNum (2796112621) is "Declined".
+05-May-2021 06:00:26 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+05-May-2021 06:00:28 :: Transaction not allowed (57)(15157). RefNum (2796112803) is "Declined".
+05-May-2021 06:05:23 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+05-May-2021 06:05:23 :: Credit card has expired.(17). RefNum (2796114258) is "Declined".
+05-May-2021 06:05:41 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+05-May-2021 06:05:42 :: Transaction Declined (51)(15151). RefNum (2796114351) is "Declined".
+05-May-2021 06:09:42 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+05-May-2021 06:09:43 :: Transaction Declined (51)(15151). RefNum (2796114897) is "Declined".
+05-May-2021 06:10:53 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+05-May-2021 06:10:54 :: Credit card has expired.(17). RefNum (2796115060) is "Declined".
+05-May-2021 06:11:15 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+05-May-2021 06:11:21 :: Invalid card number (14)(15114). RefNum (2796115103) is "Declined".
+05-May-2021 06:12:28 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+05-May-2021 06:12:36 :: Invalid card number (14)(15114). RefNum (2796115256) is "Declined".
+05-May-2021 06:13:21 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+05-May-2021 06:13:28 :: Invalid card number (14)(15114). RefNum (2796115358) is "Declined".
+05-May-2021 06:13:53 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+05-May-2021 06:14:00 :: Invalid card number (14)(15114). RefNum (2796115432) is "Declined".
+05-May-2021 06:20:17 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+05-May-2021 06:20:19 :: Transaction Declined (51)(15151). RefNum (2796116303) is "Declined".
+05-May-2021 06:20:46 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+05-May-2021 06:20:46 :: Invalid expiration date. Must be in MMYY format. (2)(16). RefNum (0) is "Error".
+05-May-2021 06:21:09 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+05-May-2021 06:21:10 :: Invalid expiration date. Must be in MMYY format. (2)(16). RefNum (0) is "Error".
+05-May-2021 06:21:24 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+05-May-2021 06:21:25 :: Invalid expiration date. Must be in MMYY format. (2)(16). RefNum (0) is "Error".
+05-May-2021 06:21:53 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+05-May-2021 06:21:54 :: Invalid card number (14)(15114). RefNum (2796116520) is "Declined".
+05-May-2021 06:24:21 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+05-May-2021 06:24:21 :: Card Error(19060). RefNum (2796116808) is "Error".
+05-May-2021 06:37:02 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+05-May-2021 06:37:03 :: Card Error(19060). RefNum (2796120571) is "Error".
+05-May-2021 06:37:47 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+05-May-2021 06:37:48 :: Card Error(19060). RefNum (2796120780) is "Error".
+05-May-2021 06:54:46 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+05-May-2021 06:54:47 :: Card Error(19060). RefNum (2796126307) is "Error".
+05-May-2021 06:55:20 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+05-May-2021 06:55:20 :: Card Error(19060). RefNum (2796126527) is "Error".
+05-May-2021 06:55:57 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+05-May-2021 06:55:57 :: Card Error(19060). RefNum (2796126758) is "Error".
+05-May-2021 06:59:34 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+05-May-2021 06:59:34 :: Card Error(19060). RefNum (2796127074) is "Error".
+05-May-2021 07:00:42 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+05-May-2021 07:00:43 :: Card Error(19060). RefNum (2796127327) is "Error".
+05-May-2021 05:46:11 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+05-May-2021 05:46:12 :: RefNum: 2796536448 Result: Approved
+05-May-2021 06:02:17 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+05-May-2021 06:02:18 :: RefNum: 2796553086 Result: Approved
+05-May-2021 06:43:28 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+05-May-2021 06:43:29 :: RefNum: 2796597414 Result: Approved
+05-May-2021 11:51:18 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+05-May-2021 11:51:20 :: RefNum: 2796865906 Result: Approved
+06-May-2021 01:21:50 :: Transaction using WC_Gateway_EBizCharge::NewPaymentProcess
+06-May-2021 01:21:50 :: WC_Gateway_EBizCharge::NewPaymentProcess save card info empty.
+06-May-2021 01:21:50 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+06-May-2021 01:21:51 :: Invalid Card Number (3)(13). RefNum (2796913998) is "Error".
+06-May-2021 02:25:36 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+06-May-2021 02:25:37 :: RefNum: 2797219239 Result: Approved
+06-May-2021 04:37:17 :: Transaction using WC_Gateway_EBizCharge::RunTransaction
+06-May-2021 04:37:18 :: RefNum: 2797351821 Result: Approved

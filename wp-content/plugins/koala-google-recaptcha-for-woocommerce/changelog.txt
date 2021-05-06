@@ -1,0 +1,7 @@
+*** Google reCaptcha for WooCommerce Change log ***
+
+
+
+2021-03-19 - version 1.0.0
+
+* Initial release of the plugin.

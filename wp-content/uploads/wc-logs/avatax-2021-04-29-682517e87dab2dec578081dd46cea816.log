@@ -1,0 +1,196 @@
+04-28-2021 @ 22:09:57 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/utilities/ping
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.2.2; WordPress/5.7.1)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.31511s
+
+04-28-2021 @ 22:09:57 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Thu, 29 Apr 2021 02:09:57 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 225
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0001482
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"version":"21.4.0","authenticated":true,"authenticationType":"AccountIdLicenseKey","authenticatedUserName":"anonymous@2000107471","authenticatedUserId":231879,"authenticatedAccountId":2000107471,"crmid":"0010b00002JHRLYAA5"}
+
+04-28-2021 @ 22:15:29 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/utilities/ping
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.2.2; WordPress/5.7.1)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.26854s
+
+04-28-2021 @ 22:15:29 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Thu, 29 Apr 2021 02:15:29 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 225
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0001137
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"version":"21.4.0","authenticated":true,"authenticationType":"AccountIdLicenseKey","authenticatedUserName":"anonymous@2000107471","authenticatedUserId":231879,"authenticatedAccountId":2000107471,"crmid":"0010b00002JHRLYAA5"}
+
+04-29-2021 @ 13:04:26 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/taxrates/byaddress?line1=&line2=&city=Hawthorne&region=NJ&country=US&postalCode=07506
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.2.2; WordPress/5.7.1)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.32742s
+
+04-29-2021 @ 13:04:26 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Thu, 29 Apr 2021 17:04:26 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 87
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0131012
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"totalRate":0.066250,"rates":[{"rate":0.066250,"name":"NJ STATE TAX","type":"State"}]}
+
+04-29-2021 @ 13:04:28 - Request
+Request
+method: POST
+uri: https://rest.avatax.com/api/v2/transactions/create
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.2.2; WordPress/5.7.1)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body: {"code":"","companyCode":"ALC","customerCode":"Guest","currencyCode":"USD","date":"2021-04-29","lines":[{"number":"c06a91847ccd7cbfb74ff1dadf0c06dc","itemCode":"1232-1","taxCode":"P0000000","description":"Liquinox","quantity":1,"amount":24.899999999999999},{"number":"shipping_0","itemCode":"use-my-shipping-account","taxCode":"FR","description":"Use My Shipping Account","quantity":1}],"addresses":{"shipFrom":{"line1":"30 GLENN ST","line2":"","city":"WHITE PLAINS","region":"NY","country":"US","postalCode":"10603-3254"},"shipTo":{"line1":"62 Ekings Avenue","line2":"","city":"Hawthorne","region":"NJ","country":"US","postalCode":"07506"}},"type":"SalesOrder","commit":false}
+duration: 0.38196s
+
+04-29-2021 @ 13:04:28 - Response
+Response
+code: 201
+message: Created
+headers: Array
+(
+    [date] => Thu, 29 Apr 2021 17:04:28 GMT
+    [content-type] => application/json; charset=utf-8
+    [server] => Kestrel
+    [content-encoding] => br
+    [location] => /api/v2/companies/207925/transactions/0
+    [vary] => Accept-Encoding
+    [serverduration] => 00:00:00.0414765
+)
+body: {"id":0,"code":"906d72d1-0436-434d-8f02-5ee868281f5b","companyId":207925,"date":"2021-04-29","paymentDate":"2021-04-29","status":"Temporary","type":"SalesOrder","batchCode":"","currencyCode":"USD","exchangeRateCurrencyCode":"USD","customerUsageType":"","entityUseCode":"","customerVendorCode":"Guest","customerCode":"Guest","exemptNo":"","reconciled":false,"locationCode":"","reportingLocationCode":"","purchaseOrderNo":"","referenceCode":"","salespersonCode":"","totalAmount":24.9,"totalExempt":0.0,"totalDiscount":0.0,"totalTax":1.65,"totalTaxable":24.9,"totalTaxCalculated":1.65,"adjustmentReason":"NotAdjusted","locked":false,"version":1,"exchangeRateEffectiveDate":"2021-04-29","exchangeRate":1.0,"modifiedDate":"2021-04-29T17:04:28.3748485Z","modifiedUserId":231879,"taxDate":"2021-04-29T00:00:00","lines":[{"id":0,"transactionId":0,"lineNumber":"c06a91847ccd7cbfb74ff1dadf0c06dc","customerUsageType":"","entityUseCode":"","description":"Liquinox","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"itemCode":"1232-1","lineAmount":24.899999999999999,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-04-29","tax":1.65,"taxableAmount":24.9,"taxCalculated":1.65,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-04-29","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NJ","exemptAmount":0.0,"jurisCode":"34","jurisName":"NEW JERSEY","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.066250,"tax":1.65,"taxableAmount":24.9,"taxType":"Sales","taxSubTypeId":"S","taxName":"NJ STATE TAX","taxAuthorityTypeId":45,"taxCalculated":1.65,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":24.9,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":1.65,"reportingTaxCalculated":1.65,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":0,"transactionId":0,"lineNumber":"shipping_0","customerUsageType":"","entityUseCode":"","description":"Use My Shipping Account","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":false,"itemCode":"use-my-shipping-account","lineAmount":0.0,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-04-29","tax":0.0,"taxableAmount":0.0,"taxCalculated":0.0,"taxCode":"FR","taxCodeId":7119,"taxDate":"2021-04-29","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NJ","exemptAmount":0.0,"jurisCode":"34","jurisName":"NEW JERSEY","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.066250,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NJ STATE TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0}],"addresses":[{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"62 Ekings Avenue","line2":"","line3":"","city":"Hawthorne","region":"NJ","postalCode":"07506","country":"US","taxRegionId":4005796,"latitude":"40.958845","longitude":"-74.145006"},{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"30 GLENN ST","line2":"","line3":"","city":"WHITE PLAINS","region":"NY","postalCode":"10603-3254","country":"US","taxRegionId":2090237,"latitude":"41.050608","longitude":"-73.771383"}],"summary":[{"country":"US","region":"NJ","jurisType":"State","jurisCode":"34","jurisName":"NEW JERSEY","taxAuthorityType":45,"stateAssignedNo":"","taxType":"Sales","taxSubType":"S","taxName":"NJ STATE TAX","rateType":"General","taxable":24.9,"rate":0.066250,"tax":1.65,"taxCalculated":1.65,"nonTaxable":0.0,"exemption":0.0}]}
+
+04-29-2021 @ 13:04:45 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/taxrates/byaddress?line1=&line2=&city=Hawthorne&region=NJ&country=US&postalCode=07506
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.2.2; WordPress/5.7.1)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.28518s
+
+04-29-2021 @ 13:04:45 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Thu, 29 Apr 2021 17:04:45 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 87
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0009589
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"totalRate":0.066250,"rates":[{"rate":0.066250,"name":"NJ STATE TAX","type":"State"}]}
+
+04-29-2021 @ 13:04:46 - Request
+Request
+method: POST
+uri: https://rest.avatax.com/api/v2/transactions/create
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.2.2; WordPress/5.7.1)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body: {"code":"","companyCode":"ALC","customerCode":"Guest","currencyCode":"USD","date":"2021-04-29","lines":[{"number":"c06a91847ccd7cbfb74ff1dadf0c06dc","itemCode":"1232-1","taxCode":"P0000000","description":"Liquinox","quantity":1,"amount":24.899999999999999},{"number":"shipping_0","itemCode":"use-my-shipping-account","taxCode":"FR","description":"Use My Shipping Account","quantity":1}],"addresses":{"shipFrom":{"line1":"30 GLENN ST","line2":"","city":"WHITE PLAINS","region":"NY","country":"US","postalCode":"10603-3254"},"shipTo":{"line1":"62 Ekings Avenue","line2":"","city":"Hawthorne","region":"NJ","country":"US","postalCode":"07506"}},"type":"SalesOrder","commit":false}
+duration: 0.48827s
+
+04-29-2021 @ 13:04:46 - Response
+Response
+code: 201
+message: Created
+headers: Array
+(
+    [date] => Thu, 29 Apr 2021 17:04:46 GMT
+    [content-type] => application/json; charset=utf-8
+    [server] => Kestrel
+    [content-encoding] => br
+    [location] => /api/v2/companies/207925/transactions/0
+    [vary] => Accept-Encoding
+    [serverduration] => 00:00:00.1956274
+)
+body: {"id":0,"code":"cc9ecbf7-eacb-43d5-ab2e-ac926fb3e4b7","companyId":207925,"date":"2021-04-29","paymentDate":"2021-04-29","status":"Temporary","type":"SalesOrder","batchCode":"","currencyCode":"USD","exchangeRateCurrencyCode":"USD","customerUsageType":"","entityUseCode":"","customerVendorCode":"Guest","customerCode":"Guest","exemptNo":"","reconciled":false,"locationCode":"","reportingLocationCode":"","purchaseOrderNo":"","referenceCode":"","salespersonCode":"","totalAmount":24.9,"totalExempt":0.0,"totalDiscount":0.0,"totalTax":1.65,"totalTaxable":24.9,"totalTaxCalculated":1.65,"adjustmentReason":"NotAdjusted","locked":false,"version":1,"exchangeRateEffectiveDate":"2021-04-29","exchangeRate":1.0,"modifiedDate":"2021-04-29T17:04:46.453068Z","modifiedUserId":231879,"taxDate":"2021-04-29T00:00:00","lines":[{"id":0,"transactionId":0,"lineNumber":"c06a91847ccd7cbfb74ff1dadf0c06dc","customerUsageType":"","entityUseCode":"","description":"Liquinox","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"itemCode":"1232-1","lineAmount":24.899999999999999,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-04-29","tax":1.65,"taxableAmount":24.9,"taxCalculated":1.65,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-04-29","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NJ","exemptAmount":0.0,"jurisCode":"34","jurisName":"NEW JERSEY","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.066250,"tax":1.65,"taxableAmount":24.9,"taxType":"Sales","taxSubTypeId":"S","taxName":"NJ STATE TAX","taxAuthorityTypeId":45,"taxCalculated":1.65,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":24.9,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":1.65,"reportingTaxCalculated":1.65,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":0,"transactionId":0,"lineNumber":"shipping_0","customerUsageType":"","entityUseCode":"","description":"Use My Shipping Account","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":false,"itemCode":"use-my-shipping-account","lineAmount":0.0,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-04-29","tax":0.0,"taxableAmount":0.0,"taxCalculated":0.0,"taxCode":"FR","taxCodeId":7119,"taxDate":"2021-04-29","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NJ","exemptAmount":0.0,"jurisCode":"34","jurisName":"NEW JERSEY","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.066250,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NJ STATE TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0}],"addresses":[{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"62 Ekings Avenue","line2":"","line3":"","city":"Hawthorne","region":"NJ","postalCode":"07506","country":"US","taxRegionId":4005796,"latitude":"40.958845","longitude":"-74.145006"},{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"30 GLENN ST","line2":"","line3":"","city":"WHITE PLAINS","region":"NY","postalCode":"10603-3254","country":"US","taxRegionId":2090237,"latitude":"41.050608","longitude":"-73.771383"}],"summary":[{"country":"US","region":"NJ","jurisType":"State","jurisCode":"34","jurisName":"NEW JERSEY","taxAuthorityType":45,"stateAssignedNo":"","taxType":"Sales","taxSubType":"S","taxName":"NJ STATE TAX","rateType":"General","taxable":24.9,"rate":0.066250,"tax":1.65,"taxCalculated":1.65,"nonTaxable":0.0,"exemption":0.0}]}
+

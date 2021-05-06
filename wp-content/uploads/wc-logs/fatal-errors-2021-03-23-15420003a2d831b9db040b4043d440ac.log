@@ -1,8 +1,0 @@
-2021-03-23T15:00:58+00:00 CRITICAL Uncaught Error: Call to a member function get_total() on null in /www/wp-content/plugins/woocommerce-ebizcharge-gateway/includes/class-wc-gateway-ebizcharge-admin.php:449
-Stack trace:
-#0 /wordpress/wp-admin/includes/template.php(1389): WC_Gateway_EBizCharge_Admin->authorization_box(Object(WP_Post), Array)
-#1 /wordpress/wp-admin/edit-form-advanced.php(681): do_meta_boxes(Object(WP_Screen), 'side', Object(WP_Post))
-#2 /wordpress/wp-admin/post.php(206): require('/wordpress/wp-a...')
-#3 {main}
-  thrown in /www/wp-content/plugins/woocommerce-ebizcharge-gateway/includes/class-wc-gateway-ebizcharge-admin.php on line 449
-

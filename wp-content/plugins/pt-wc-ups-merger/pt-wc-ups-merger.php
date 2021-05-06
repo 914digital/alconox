@@ -3,7 +3,7 @@
   * Plugin Name: WooCommerce UPS Merger
   *
   * Description: Calculates and merges the UPS rates from different shipping classes. Orders by lowest rate value.
-  * Version: 4.8.0
+  * Version: 4.8.0.2
   *
   * Author: Plugin Territory
   * Author URI: http://pluginterritory.com/
@@ -86,7 +86,27 @@ function pt_wc_ups_merger_set_our_hooks() {
 
 	add_filter( 'woocommerce_locate_template', 'pt_wc_ups_merger_locate_template', 99, 3 ); // lets have our template, 99 hopes to be the last filter called
 
+	add_action( 'wc_avatax_after_checkout_tax_calculated', 'pt_wc_ups_merger_remove_shipping_taxes' );
+}
 
+function pt_wc_ups_merger_remove_shipping_taxes() {
+
+	$shipping_taxes = array_sum( WC()->cart->get_shipping_taxes() );
+
+	WC()->cart->set_shipping_tax( 0 );
+	WC()->cart->set_shipping_taxes( array() );
+	WC()->cart->set_total_tax( WC()->cart->get_total_tax() - $shipping_taxes );
+
+	WC()->cart->shipping_tax_total = 0;
+	WC()->cart->total -= $shipping_taxes * 2;
+
+	$packages = WC()->shipping()->get_packages();
+	foreach ( $packages as $index => $package ) {
+		foreach ( $package['rates'] as $method_id => $rate ) {
+			$packages[ $index ]['rates'][ $method_id ]->taxes = array();
+		}
+	}
+	WC()->shipping()->packages = $packages;
 }
 
 // use our template file

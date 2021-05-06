@@ -31855,3 +31855,4182 @@ Array
 
 )
 
+Add sales order params: 
+Array
+(
+    [securityToken] => Array
+        (
+            [SecurityId] => 10ff2a5f-34ea-4cb3-9ce1-5c6ec36909df
+            [UserId] => alconoxwoo
+            [Password] => 15Asd36
+        )
+
+    [salesOrder] => Array
+        (
+            [SalesOrderNumber] => 21438
+            [CustomerId] => 0
+            [Date] => 2021-04-23 15:13:22
+            [Currency] => USD
+            [Amount] => 130.79
+            [DueDate] => 2021-04-23 15:13:22
+            [DateUploaded] => 2021-04-23 15:13:22
+            [AmountDue] => 0
+            [PoNum] => 21438
+            [TotalTaxAmount] => 0
+            [Description] => Kevin Dragan Ahahswinis Green Ltd. 5275 Ahahswinis Drive  PORT ALBERNI BC V9Y 8J9 CA kevindragan@hotmail.com 7784194449
+            [NotifyCustomer] => false
+            [billingAddress] => Array
+                (
+                    [FirstName] => Kevin
+                    [LastName] => Dragan
+                    [CompanyName] => Ahahswinis Green Ltd.
+                    [Address1] => 5275 Ahahswinis Drive
+                    [Address2] => 
+                    [City] => PORT ALBERNI
+                    [State] => BC
+                    [ZipCode] => V9Y 8J9
+                    [Country] => CA
+                )
+
+            [shippingAddress] => Array
+                (
+                    [FirstName] => Kevin
+                    [LastName] => Dragan
+                    [CompanyName] => Ahahswinis Green Ltd.
+                    [Address1] => 5275 Ahahswinis Drive
+                    [Address2] => 
+                    [City] => PORT ALBERNI
+                    [State] => BC
+                    [ZipCode] => V9Y 8J9
+                    [Country] => CA
+                )
+
+            [Memo] => No
+            [ShipDate] => 2021-04-23 15:13:22
+            [ShipVia] => NA
+            [IsToBeEmailed] => false
+            [IsToBePrinted] => false
+            [UniqueId] => 21438
+            [Software] => woocommerce
+            [Items] => Array
+                (
+                    [0] => Array
+                        (
+                            [ItemId] => 17893
+                            [Name] => Citranox - 1 Gallon (3.8L)
+                            [Description] => Citranox - 1 Gallon (3.8L)
+                            [UnitPrice] => 74.40
+                            [Qty] => 1
+                            [Taxable] => 
+                            [TaxRate] => 0
+                            [TotalLineAmount] => 74.4
+                            [TotalLineTax] => 0
+                            [ItemLineNumber] => 1
+                            [GrossPrice] => 0
+                            [WarrantyDiscount] => 0
+                            [SalesDiscount] => 0
+                        )
+
+                )
+
+        )
+
+)
+
+Added sales order response: 
+stdClass Object
+(
+    [AddSalesOrderResult] => stdClass Object
+        (
+            [SalesOrderInternalId] => 
+            [Status] => Error
+            [StatusCode] => 0
+            [Error] => Adding Record error.  CustomerId not found
+            [ErrorCode] => 3
+        )
+
+)
+
+Sales order info saved. Order ID:21438
+Array
+(
+    [0] => Array
+        (
+            [type] => notice
+            [message] => Sync Orders process has been completed. 1 record(s) processed.
+        )
+
+    [1] => Array
+        (
+            [type] => error
+            [message] => Errors have occurred during the Sales order sync process, please review the logs. First error occurred is: Adding Record error.  CustomerId not found
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [type] => notice
+            [message] => Sync Invoices process has been completed. 0 record(s) processed.
+        )
+
+    [1] => Array
+        (
+            [type] => success
+            [message] => Completed the Invoice sync process with no errors.
+        )
+
+)
+
+Add sales order params: 
+Array
+(
+    [securityToken] => Array
+        (
+            [SecurityId] => 10ff2a5f-34ea-4cb3-9ce1-5c6ec36909df
+            [UserId] => alconoxwoo
+            [Password] => 15Asd36
+        )
+
+    [salesOrder] => Array
+        (
+            [SalesOrderNumber] => 21439
+            [CustomerId] => 0
+            [Date] => 2021-04-25 05:30:04
+            [Currency] => USD
+            [Amount] => 42.84
+            [DueDate] => 2021-04-25 05:30:04
+            [DateUploaded] => 2021-04-25 05:30:04
+            [AmountDue] => 0
+            [PoNum] => 21439
+            [TotalTaxAmount] => 1.56
+            [Description] => Drew Racz Spotready 1 sunset ct  Freehold NJ 07728 US Drew@spotready.com 7325137312
+            [NotifyCustomer] => false
+            [billingAddress] => Array
+                (
+                    [FirstName] => Drew
+                    [LastName] => Racz
+                    [CompanyName] => Spotready
+                    [Address1] => 1 sunset ct
+                    [Address2] => 
+                    [City] => Freehold
+                    [State] => NJ
+                    [ZipCode] => 07728
+                    [Country] => US
+                )
+
+            [shippingAddress] => Array
+                (
+                    [FirstName] => Drew
+                    [LastName] => Racz
+                    [CompanyName] => Spotready
+                    [Address1] => 1 sunset ct
+                    [Address2] => 
+                    [City] => Freehold
+                    [State] => NJ
+                    [ZipCode] => 07728
+                    [Country] => US
+                )
+
+            [Memo] => No
+            [ShipDate] => 2021-04-25 05:30:04
+            [ShipVia] => NA
+            [IsToBeEmailed] => false
+            [IsToBePrinted] => false
+            [UniqueId] => 21439
+            [Software] => woocommerce
+            [Items] => Array
+                (
+                    [0] => Array
+                        (
+                            [ItemId] => 17893
+                            [Name] => Citranox - 1 Quart (0.95L)
+                            [Description] => Citranox - 1 Quart (0.95L)
+                            [UnitPrice] => 23.50
+                            [Qty] => 1
+                            [Taxable] => 1
+                            [TaxRate] => 0
+                            [TotalLineAmount] => 23.5
+                            [TotalLineTax] => 1.56
+                            [ItemLineNumber] => 1
+                            [GrossPrice] => 0
+                            [WarrantyDiscount] => 0
+                            [SalesDiscount] => 0
+                        )
+
+                )
+
+        )
+
+)
+
+Added sales order response: 
+stdClass Object
+(
+    [AddSalesOrderResult] => stdClass Object
+        (
+            [SalesOrderInternalId] => 
+            [Status] => Error
+            [StatusCode] => 0
+            [Error] => Adding Record error.  CustomerId not found
+            [ErrorCode] => 3
+        )
+
+)
+
+Sales order info saved. Order ID:21439
+Array
+(
+    [0] => Array
+        (
+            [type] => notice
+            [message] => Sync Orders process has been completed. 1 record(s) processed.
+        )
+
+    [1] => Array
+        (
+            [type] => error
+            [message] => Errors have occurred during the Sales order sync process, please review the logs. First error occurred is: Adding Record error.  CustomerId not found
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [type] => notice
+            [message] => Sync Invoices process has been completed. 0 record(s) processed.
+        )
+
+    [1] => Array
+        (
+            [type] => success
+            [message] => Completed the Invoice sync process with no errors.
+        )
+
+)
+
+Add sales order params: 
+Array
+(
+    [securityToken] => Array
+        (
+            [SecurityId] => 10ff2a5f-34ea-4cb3-9ce1-5c6ec36909df
+            [UserId] => alconoxwoo
+            [Password] => 15Asd36
+        )
+
+    [salesOrder] => Array
+        (
+            [SalesOrderNumber] => 21440
+            [CustomerId] => 0
+            [Date] => 2021-04-25 20:10:01
+            [Currency] => USD
+            [Amount] => 42.23
+            [DueDate] => 2021-04-25 20:10:01
+            [DateUploaded] => 2021-04-25 20:10:01
+            [AmountDue] => 0
+            [PoNum] => 21440
+            [TotalTaxAmount] => 1.93
+            [Description] => Joseph Blaire  193 Java Street Apt 3R Brooklyn NY 11222 US Jblaire25@gmail.com 6468844926
+            [NotifyCustomer] => false
+            [billingAddress] => Array
+                (
+                    [FirstName] => Joseph
+                    [LastName] => Blaire
+                    [CompanyName] => 
+                    [Address1] => 193 Java Street
+                    [Address2] => Apt 3R
+                    [City] => Brooklyn
+                    [State] => NY
+                    [ZipCode] => 11222
+                    [Country] => US
+                )
+
+            [shippingAddress] => Array
+                (
+                    [FirstName] => Joseph
+                    [LastName] => Blaire
+                    [CompanyName] => 
+                    [Address1] => 193 Java Street
+                    [Address2] => Apt 3R
+                    [City] => Brooklyn
+                    [State] => NY
+                    [ZipCode] => 11222
+                    [Country] => US
+                )
+
+            [Memo] => No
+            [ShipDate] => 2021-04-25 20:10:01
+            [ShipVia] => NA
+            [IsToBeEmailed] => false
+            [IsToBePrinted] => false
+            [UniqueId] => 21440
+            [Software] => woocommerce
+            [Items] => Array
+                (
+                    [0] => Array
+                        (
+                            [ItemId] => 20801
+                            [Name] => Ledizolv - 16 oz (0.47L)
+                            [Description] => Ledizolv - 16 oz (0.47L)
+                            [UnitPrice] => 21.80
+                            [Qty] => 1
+                            [Taxable] => 1
+                            [TaxRate] => 0
+                            [TotalLineAmount] => 21.8
+                            [TotalLineTax] => 1.93
+                            [ItemLineNumber] => 1
+                            [GrossPrice] => 0
+                            [WarrantyDiscount] => 0
+                            [SalesDiscount] => 0
+                        )
+
+                )
+
+        )
+
+)
+
+Added sales order response: 
+stdClass Object
+(
+    [AddSalesOrderResult] => stdClass Object
+        (
+            [SalesOrderInternalId] => 
+            [Status] => Error
+            [StatusCode] => 0
+            [Error] => Adding Record error.  CustomerId not found
+            [ErrorCode] => 3
+        )
+
+)
+
+Sales order info saved. Order ID:21440
+Array
+(
+    [0] => Array
+        (
+            [type] => notice
+            [message] => Sync Orders process has been completed. 1 record(s) processed.
+        )
+
+    [1] => Array
+        (
+            [type] => error
+            [message] => Errors have occurred during the Sales order sync process, please review the logs. First error occurred is: Adding Record error.  CustomerId not found
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [type] => notice
+            [message] => Sync Invoices process has been completed. 0 record(s) processed.
+        )
+
+    [1] => Array
+        (
+            [type] => success
+            [message] => Completed the Invoice sync process with no errors.
+        )
+
+)
+
+Add sales order params: 
+Array
+(
+    [securityToken] => Array
+        (
+            [SecurityId] => 10ff2a5f-34ea-4cb3-9ce1-5c6ec36909df
+            [UserId] => alconoxwoo
+            [Password] => 15Asd36
+        )
+
+    [salesOrder] => Array
+        (
+            [SalesOrderNumber] => 21445
+            [CustomerId] => 0
+            [Date] => 2021-04-26 16:53:10
+            [Currency] => USD
+            [Amount] => 123.48
+            [DueDate] => 2021-04-26 16:53:10
+            [DateUploaded] => 2021-04-26 16:53:10
+            [AmountDue] => 0
+            [PoNum] => 21445
+            [TotalTaxAmount] => 0
+            [Description] => Shirley Helzberg  5805 Mission Drive  Mission Hills KS 66208 US sbhelzberg@sobela.com 9137224144
+            [NotifyCustomer] => false
+            [billingAddress] => Array
+                (
+                    [FirstName] => Shirley
+                    [LastName] => Helzberg
+                    [CompanyName] => 
+                    [Address1] => 5805 Mission Drive
+                    [Address2] => 
+                    [City] => Mission Hills
+                    [State] => KS
+                    [ZipCode] => 66208
+                    [Country] => US
+                )
+
+            [shippingAddress] => Array
+                (
+                    [FirstName] => Shirley
+                    [LastName] => Helzberg
+                    [CompanyName] => 
+                    [Address1] => 5805 Mission Drive
+                    [Address2] => 
+                    [City] => Mission Hills
+                    [State] => KS
+                    [ZipCode] => 66208
+                    [Country] => US
+                )
+
+            [Memo] => No
+            [ShipDate] => 2021-04-26 16:53:10
+            [ShipVia] => NA
+            [IsToBeEmailed] => false
+            [IsToBePrinted] => false
+            [UniqueId] => 21445
+            [Software] => woocommerce
+            [Items] => Array
+                (
+                    [0] => Array
+                        (
+                            [ItemId] => 17439
+                            [Name] => Alconox - Dispenser Box of 50×1/2 oz packs (50x15g)
+                            [Description] => Alconox - Dispenser Box of 50×1/2 oz packs (50x15g)
+                            [UnitPrice] => 105.10
+                            [Qty] => 1
+                            [Taxable] => 
+                            [TaxRate] => 0
+                            [TotalLineAmount] => 105.1
+                            [TotalLineTax] => 0
+                            [ItemLineNumber] => 1
+                            [GrossPrice] => 0
+                            [WarrantyDiscount] => 0
+                            [SalesDiscount] => 0
+                        )
+
+                )
+
+        )
+
+)
+
+Added sales order response: 
+stdClass Object
+(
+    [AddSalesOrderResult] => stdClass Object
+        (
+            [SalesOrderInternalId] => 
+            [Status] => Error
+            [StatusCode] => 0
+            [Error] => Adding Record error.  CustomerId not found
+            [ErrorCode] => 3
+        )
+
+)
+
+Sales order info saved. Order ID:21445
+Array
+(
+    [0] => Array
+        (
+            [type] => notice
+            [message] => Sync Orders process has been completed. 1 record(s) processed.
+        )
+
+    [1] => Array
+        (
+            [type] => error
+            [message] => Errors have occurred during the Sales order sync process, please review the logs. First error occurred is: Adding Record error.  CustomerId not found
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [type] => notice
+            [message] => Sync Invoices process has been completed. 0 record(s) processed.
+        )
+
+    [1] => Array
+        (
+            [type] => success
+            [message] => Completed the Invoice sync process with no errors.
+        )
+
+)
+
+Add sales order params: 
+Array
+(
+    [securityToken] => Array
+        (
+            [SecurityId] => 10ff2a5f-34ea-4cb3-9ce1-5c6ec36909df
+            [UserId] => alconoxwoo
+            [Password] => 15Asd36
+        )
+
+    [salesOrder] => Array
+        (
+            [SalesOrderNumber] => 21446
+            [CustomerId] => 0
+            [Date] => 2021-04-27 09:21:14
+            [Currency] => USD
+            [Amount] => 175.44
+            [DueDate] => 2021-04-27 09:21:14
+            [DateUploaded] => 2021-04-27 09:21:14
+            [AmountDue] => 0
+            [PoNum] => 21446
+            [TotalTaxAmount] => 12.83
+            [Description] => Bill Hirsch B.H. Aircraft Co. 2230 SMITHTOWN AVE  Ronkonkoma NY 11779-7329 US whirsch@bhaircraft.com +16319814200
+            [NotifyCustomer] => false
+            [billingAddress] => Array
+                (
+                    [FirstName] => Bill
+                    [LastName] => Hirsch
+                    [CompanyName] => B.H. Aircraft Co.
+                    [Address1] => 2230 SMITHTOWN AVE
+                    [Address2] => 
+                    [City] => Ronkonkoma
+                    [State] => NY
+                    [ZipCode] => 11779-7329
+                    [Country] => US
+                )
+
+            [shippingAddress] => Array
+                (
+                    [FirstName] => Bill
+                    [LastName] => Hirsch
+                    [CompanyName] => B.H. Aircraft Co.
+                    [Address1] => 2230 SMITHTOWN AVE
+                    [Address2] => 
+                    [City] => Ronkonkoma
+                    [State] => NY
+                    [ZipCode] => 11779-7329
+                    [Country] => US
+                )
+
+            [Memo] => No
+            [ShipDate] => 2021-04-27 09:21:14
+            [ShipVia] => NA
+            [IsToBeEmailed] => false
+            [IsToBePrinted] => false
+            [UniqueId] => 21446
+            [Software] => woocommerce
+            [Items] => Array
+                (
+                    [0] => Array
+                        (
+                            [ItemId] => 17893
+                            [Name] => Citranox - 1 Gallon (3.8L)
+                            [Description] => Citranox - 1 Gallon (3.8L)
+                            [UnitPrice] => 74.40
+                            [Qty] => 2
+                            [Taxable] => 1
+                            [TaxRate] => 0
+                            [TotalLineAmount] => 148.8
+                            [TotalLineTax] => 12.83
+                            [ItemLineNumber] => 1
+                            [GrossPrice] => 0
+                            [WarrantyDiscount] => 0
+                            [SalesDiscount] => 0
+                        )
+
+                )
+
+        )
+
+)
+
+Added sales order response: 
+stdClass Object
+(
+    [AddSalesOrderResult] => stdClass Object
+        (
+            [SalesOrderInternalId] => 
+            [Status] => Error
+            [StatusCode] => 0
+            [Error] => Adding Record error.  CustomerId not found
+            [ErrorCode] => 3
+        )
+
+)
+
+Sales order info saved. Order ID:21446
+Array
+(
+    [0] => Array
+        (
+            [type] => notice
+            [message] => Sync Orders process has been completed. 1 record(s) processed.
+        )
+
+    [1] => Array
+        (
+            [type] => error
+            [message] => Errors have occurred during the Sales order sync process, please review the logs. First error occurred is: Adding Record error.  CustomerId not found
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [type] => notice
+            [message] => Sync Invoices process has been completed. 0 record(s) processed.
+        )
+
+    [1] => Array
+        (
+            [type] => success
+            [message] => Completed the Invoice sync process with no errors.
+        )
+
+)
+
+Add sales order params: 
+Array
+(
+    [securityToken] => Array
+        (
+            [SecurityId] => 10ff2a5f-34ea-4cb3-9ce1-5c6ec36909df
+            [UserId] => alconoxwoo
+            [Password] => 15Asd36
+        )
+
+    [salesOrder] => Array
+        (
+            [SalesOrderNumber] => 21447
+            [CustomerId] => 0
+            [Date] => 2021-04-27 10:10:59
+            [Currency] => USD
+            [Amount] => 47.20
+            [DueDate] => 2021-04-27 10:10:59
+            [DateUploaded] => 2021-04-27 10:10:59
+            [AmountDue] => 0
+            [PoNum] => 21447
+            [TotalTaxAmount] => 0
+            [Description] => Robert Dallmayer OT Süd Orthopädietechnik GmbH Plattlinger Straße 31  Osterhofen  94486 DE Robert.dallmayer@otsued.de 015116304079
+            [NotifyCustomer] => false
+            [billingAddress] => Array
+                (
+                    [FirstName] => Robert
+                    [LastName] => Dallmayer
+                    [CompanyName] => OT Süd Orthopädietechnik GmbH
+                    [Address1] => Plattlinger Straße 31
+                    [Address2] => 
+                    [City] => Osterhofen
+                    [State] => 
+                    [ZipCode] => 94486
+                    [Country] => DE
+                )
+
+            [shippingAddress] => Array
+                (
+                    [FirstName] => Robert
+                    [LastName] => Dallmayer
+                    [CompanyName] => OT Süd Orthopädietechnik GmbH
+                    [Address1] => Plattlinger Straße 31
+                    [Address2] => 
+                    [City] => Osterhofen
+                    [State] => 
+                    [ZipCode] => 94486
+                    [Country] => DE
+                )
+
+            [Memo] => No
+            [ShipDate] => 2021-04-27 10:10:59
+            [ShipVia] => NA
+            [IsToBeEmailed] => false
+            [IsToBePrinted] => false
+            [UniqueId] => 21447
+            [Software] => woocommerce
+            [Items] => Array
+                (
+                    [0] => Array
+                        (
+                            [ItemId] => 17439
+                            [Name] => Alconox - 4 lb box (1.8Kg)
+                            [Description] => Alconox - 4 lb box (1.8Kg)
+                            [UnitPrice] => 47.20
+                            [Qty] => 1
+                            [Taxable] => 
+                            [TaxRate] => 0
+                            [TotalLineAmount] => 47.2
+                            [TotalLineTax] => 0
+                            [ItemLineNumber] => 1
+                            [GrossPrice] => 0
+                            [WarrantyDiscount] => 0
+                            [SalesDiscount] => 0
+                        )
+
+                )
+
+        )
+
+)
+
+Added sales order response: 
+stdClass Object
+(
+    [AddSalesOrderResult] => stdClass Object
+        (
+            [SalesOrderInternalId] => 
+            [Status] => Error
+            [StatusCode] => 0
+            [Error] => Adding Record error.  CustomerId not found
+            [ErrorCode] => 3
+        )
+
+)
+
+Sales order info saved. Order ID:21447
+Array
+(
+    [0] => Array
+        (
+            [type] => notice
+            [message] => Sync Orders process has been completed. 1 record(s) processed.
+        )
+
+    [1] => Array
+        (
+            [type] => error
+            [message] => Errors have occurred during the Sales order sync process, please review the logs. First error occurred is: Adding Record error.  CustomerId not found
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [type] => notice
+            [message] => Sync Invoices process has been completed. 0 record(s) processed.
+        )
+
+    [1] => Array
+        (
+            [type] => success
+            [message] => Completed the Invoice sync process with no errors.
+        )
+
+)
+
+Add sales order params: 
+Array
+(
+    [securityToken] => Array
+        (
+            [SecurityId] => 10ff2a5f-34ea-4cb3-9ce1-5c6ec36909df
+            [UserId] => alconoxwoo
+            [Password] => 15Asd36
+        )
+
+    [salesOrder] => Array
+        (
+            [SalesOrderNumber] => 21448
+            [CustomerId] => 0
+            [Date] => 2021-04-27 12:01:51
+            [Currency] => USD
+            [Amount] => 143.31
+            [DueDate] => 2021-04-27 12:01:51
+            [DateUploaded] => 2021-04-27 12:01:51
+            [AmountDue] => 0
+            [PoNum] => 21448
+            [TotalTaxAmount] => 0
+            [Description] => Keith Byram Cardinal Contact Lens 7-38 Cowansview Rd  Cambridge ON N1R 7N3 CA keith@cardinalcontactlens.com 5197403050
+            [NotifyCustomer] => false
+            [billingAddress] => Array
+                (
+                    [FirstName] => Keith
+                    [LastName] => Byram
+                    [CompanyName] => Cardinal Contact Lens
+                    [Address1] => 7-38 Cowansview Rd
+                    [Address2] => 
+                    [City] => Cambridge
+                    [State] => ON
+                    [ZipCode] => N1R 7N3
+                    [Country] => CA
+                )
+
+            [shippingAddress] => Array
+                (
+                    [FirstName] => Keith
+                    [LastName] => Byram
+                    [CompanyName] => Cardinal Contact Lens
+                    [Address1] => 7-38 Cowansview Rd
+                    [Address2] => 
+                    [City] => Cambridge
+                    [State] => ON
+                    [ZipCode] => N1R 7N3
+                    [Country] => CA
+                )
+
+            [Memo] => No
+            [ShipDate] => 2021-04-27 12:01:51
+            [ShipVia] => NA
+            [IsToBeEmailed] => false
+            [IsToBePrinted] => false
+            [UniqueId] => 21448
+            [Software] => woocommerce
+            [Items] => Array
+                (
+                    [0] => Array
+                        (
+                            [ItemId] => 17336
+                            [Name] => Liquinox - 1 Quart (0.95L)
+                            [Description] => Liquinox - 1 Quart (0.95L)
+                            [UnitPrice] => 24.90
+                            [Qty] => 4
+                            [Taxable] => 
+                            [TaxRate] => 0
+                            [TotalLineAmount] => 99.6
+                            [TotalLineTax] => 0
+                            [ItemLineNumber] => 1
+                            [GrossPrice] => 0
+                            [WarrantyDiscount] => 0
+                            [SalesDiscount] => 0
+                        )
+
+                )
+
+        )
+
+)
+
+Added sales order response: 
+stdClass Object
+(
+    [AddSalesOrderResult] => stdClass Object
+        (
+            [SalesOrderInternalId] => 
+            [Status] => Error
+            [StatusCode] => 0
+            [Error] => Adding Record error.  CustomerId not found
+            [ErrorCode] => 3
+        )
+
+)
+
+Sales order info saved. Order ID:21448
+Array
+(
+    [0] => Array
+        (
+            [type] => notice
+            [message] => Sync Orders process has been completed. 1 record(s) processed.
+        )
+
+    [1] => Array
+        (
+            [type] => error
+            [message] => Errors have occurred during the Sales order sync process, please review the logs. First error occurred is: Adding Record error.  CustomerId not found
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [type] => notice
+            [message] => Sync Invoices process has been completed. 0 record(s) processed.
+        )
+
+    [1] => Array
+        (
+            [type] => success
+            [message] => Completed the Invoice sync process with no errors.
+        )
+
+)
+
+Add sales order params: 
+Array
+(
+    [securityToken] => Array
+        (
+            [SecurityId] => 10ff2a5f-34ea-4cb3-9ce1-5c6ec36909df
+            [UserId] => alconoxwoo
+            [Password] => 15Asd36
+        )
+
+    [salesOrder] => Array
+        (
+            [SalesOrderNumber] => 21449
+            [CustomerId] => 0
+            [Date] => 2021-04-27 12:15:53
+            [Currency] => USD
+            [Amount] => 263.47
+            [DueDate] => 2021-04-27 12:15:53
+            [DateUploaded] => 2021-04-27 12:15:53
+            [AmountDue] => 0
+            [PoNum] => 21449
+            [TotalTaxAmount] => 0
+            [Description] => David Leety Arc Environmental 1311Haubert Street  Baltimore MD 21230 US lkarge@arcenvironmental.com 4106599971
+            [NotifyCustomer] => false
+            [billingAddress] => Array
+                (
+                    [FirstName] => David
+                    [LastName] => Leety
+                    [CompanyName] => Arc Environmental
+                    [Address1] => 1311Haubert Street
+                    [Address2] => 
+                    [City] => Baltimore
+                    [State] => MD
+                    [ZipCode] => 21230
+                    [Country] => US
+                )
+
+            [shippingAddress] => Array
+                (
+                    [FirstName] => David
+                    [LastName] => Leety
+                    [CompanyName] => Arc Environmental
+                    [Address1] => 1311Haubert Street
+                    [Address2] => 
+                    [City] => Baltimore
+                    [State] => MD
+                    [ZipCode] => 21230
+                    [Country] => US
+                )
+
+            [Memo] => No
+            [ShipDate] => 2021-04-27 12:15:53
+            [ShipVia] => NA
+            [IsToBeEmailed] => false
+            [IsToBePrinted] => false
+            [UniqueId] => 21449
+            [Software] => woocommerce
+            [Items] => Array
+                (
+                    [0] => Array
+                        (
+                            [ItemId] => 17336
+                            [Name] => Liquinox - Case of 12×1 Quart (12×0.95L)
+                            [Description] => Liquinox - Case of 12×1 Quart (12×0.95L)
+                            [UnitPrice] => 249.00
+                            [Qty] => 1
+                            [Taxable] => 
+                            [TaxRate] => 0
+                            [TotalLineAmount] => 249
+                            [TotalLineTax] => 0
+                            [ItemLineNumber] => 1
+                            [GrossPrice] => 0
+                            [WarrantyDiscount] => 0
+                            [SalesDiscount] => 0
+                        )
+
+                )
+
+        )
+
+)
+
+Added sales order response: 
+stdClass Object
+(
+    [AddSalesOrderResult] => stdClass Object
+        (
+            [SalesOrderInternalId] => 
+            [Status] => Error
+            [StatusCode] => 0
+            [Error] => Adding Record error.  CustomerId not found
+            [ErrorCode] => 3
+        )
+
+)
+
+Sales order info saved. Order ID:21449
+Array
+(
+    [0] => Array
+        (
+            [type] => notice
+            [message] => Sync Orders process has been completed. 1 record(s) processed.
+        )
+
+    [1] => Array
+        (
+            [type] => error
+            [message] => Errors have occurred during the Sales order sync process, please review the logs. First error occurred is: Adding Record error.  CustomerId not found
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [type] => notice
+            [message] => Sync Invoices process has been completed. 0 record(s) processed.
+        )
+
+    [1] => Array
+        (
+            [type] => success
+            [message] => Completed the Invoice sync process with no errors.
+        )
+
+)
+
+Add sales order params: 
+Array
+(
+    [securityToken] => Array
+        (
+            [SecurityId] => 10ff2a5f-34ea-4cb3-9ce1-5c6ec36909df
+            [UserId] => alconoxwoo
+            [Password] => 15Asd36
+        )
+
+    [salesOrder] => Array
+        (
+            [SalesOrderNumber] => 21450
+            [CustomerId] => 0
+            [Date] => 2021-04-27 15:40:35
+            [Currency] => USD
+            [Amount] => 375.85
+            [DueDate] => 2021-04-27 15:40:35
+            [DateUploaded] => 2021-04-27 15:40:35
+            [AmountDue] => 0
+            [PoNum] => 21450
+            [TotalTaxAmount] => 0
+            [Description] => David Sager Vulcan 998 Brookwood Dr.  Troy OH 45373 US david.sager@itwfeg.com 9378750758
+            [NotifyCustomer] => false
+            [billingAddress] => Array
+                (
+                    [FirstName] => David
+                    [LastName] => Sager
+                    [CompanyName] => Vulcan
+                    [Address1] => 998 Brookwood Dr.
+                    [Address2] => 
+                    [City] => Troy
+                    [State] => OH
+                    [ZipCode] => 45373
+                    [Country] => US
+                )
+
+            [shippingAddress] => Array
+                (
+                    [FirstName] => Pete
+                    [LastName] => Schellenbach
+                    [CompanyName] => Vulcan
+                    [Address1] => 3600 N POINT BLVD
+                    [Address2] => 
+                    [City] => Dundalk
+                    [State] => MD
+                    [ZipCode] => 21222-2726
+                    [Country] => US
+                )
+
+            [Memo] => No
+            [ShipDate] => 2021-04-27 15:40:35
+            [ShipVia] => NA
+            [IsToBeEmailed] => false
+            [IsToBePrinted] => false
+            [UniqueId] => 21450
+            [Software] => woocommerce
+            [Items] => Array
+                (
+                    [0] => Array
+                        (
+                            [ItemId] => 17449
+                            [Name] => Citrajet - Case of 4 X 1 Gallon (4×3.8L)
+                            [Description] => Citrajet - Case of 4 X 1 Gallon (4×3.8L)
+                            [UnitPrice] => 243.00
+                            [Qty] => 1
+                            [Taxable] => 
+                            [TaxRate] => 0
+                            [TotalLineAmount] => 243
+                            [TotalLineTax] => 0
+                            [ItemLineNumber] => 1
+                            [GrossPrice] => 0
+                            [WarrantyDiscount] => 0
+                            [SalesDiscount] => 0
+                        )
+
+                    [1] => Array
+                        (
+                            [ItemId] => 17462
+                            [Name] => Detojet - 1 Gallon (3.8L)
+                            [Description] => Detojet - 1 Gallon (3.8L)
+                            [UnitPrice] => 66.00
+                            [Qty] => 1
+                            [Taxable] => 
+                            [TaxRate] => 0
+                            [TotalLineAmount] => 66
+                            [TotalLineTax] => 0
+                            [ItemLineNumber] => 2
+                            [GrossPrice] => 0
+                            [WarrantyDiscount] => 0
+                            [SalesDiscount] => 0
+                        )
+
+                )
+
+        )
+
+)
+
+Added sales order response: 
+stdClass Object
+(
+    [AddSalesOrderResult] => stdClass Object
+        (
+            [SalesOrderInternalId] => 
+            [Status] => Error
+            [StatusCode] => 0
+            [Error] => Adding Record error.  CustomerId not found
+            [ErrorCode] => 3
+        )
+
+)
+
+Sales order info saved. Order ID:21450
+Array
+(
+    [0] => Array
+        (
+            [type] => notice
+            [message] => Sync Orders process has been completed. 1 record(s) processed.
+        )
+
+    [1] => Array
+        (
+            [type] => error
+            [message] => Errors have occurred during the Sales order sync process, please review the logs. First error occurred is: Adding Record error.  CustomerId not found
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [type] => notice
+            [message] => Sync Invoices process has been completed. 0 record(s) processed.
+        )
+
+    [1] => Array
+        (
+            [type] => success
+            [message] => Completed the Invoice sync process with no errors.
+        )
+
+)
+
+Add sales order params: 
+Array
+(
+    [securityToken] => Array
+        (
+            [SecurityId] => 10ff2a5f-34ea-4cb3-9ce1-5c6ec36909df
+            [UserId] => alconoxwoo
+            [Password] => 15Asd36
+        )
+
+    [salesOrder] => Array
+        (
+            [SalesOrderNumber] => 21453
+            [CustomerId] => 0
+            [Date] => 2021-04-27 15:53:39
+            [Currency] => USD
+            [Amount] => 307.00
+            [DueDate] => 2021-04-27 15:53:39
+            [DateUploaded] => 2021-04-27 15:53:39
+            [AmountDue] => 0
+            [PoNum] => 21453
+            [TotalTaxAmount] => 0
+            [Description] => VAL WILSON MARK TWO ENGINEERING 14000 NW 58TH COURT  MIAMI LAKES FL 33014 US vwilson@marktwo.com 3058893280
+            [NotifyCustomer] => false
+            [billingAddress] => Array
+                (
+                    [FirstName] => VAL
+                    [LastName] => WILSON
+                    [CompanyName] => MARK TWO ENGINEERING
+                    [Address1] => 14000 NW 58TH COURT
+                    [Address2] => 
+                    [City] => MIAMI LAKES
+                    [State] => FL
+                    [ZipCode] => 33014
+                    [Country] => US
+                )
+
+            [shippingAddress] => Array
+                (
+                    [FirstName] => VAL
+                    [LastName] => WILSON
+                    [CompanyName] => MARK TWO ENGINEERING
+                    [Address1] => 14000 NW 58TH COURT
+                    [Address2] => 
+                    [City] => MIAMI LAKES
+                    [State] => FL
+                    [ZipCode] => 33014
+                    [Country] => US
+                )
+
+            [Memo] => No
+            [ShipDate] => 2021-04-27 15:53:39
+            [ShipVia] => NA
+            [IsToBeEmailed] => false
+            [IsToBePrinted] => false
+            [UniqueId] => 21453
+            [Software] => woocommerce
+            [Items] => Array
+                (
+                    [0] => Array
+                        (
+                            [ItemId] => 17336
+                            [Name] => Liquinox - 5 Gallon Jerrycan (19L)
+                            [Description] => Liquinox - 5 Gallon Jerrycan (19L)
+                            [UnitPrice] => 307.00
+                            [Qty] => 1
+                            [Taxable] => 
+                            [TaxRate] => 0
+                            [TotalLineAmount] => 307
+                            [TotalLineTax] => 0
+                            [ItemLineNumber] => 1
+                            [GrossPrice] => 0
+                            [WarrantyDiscount] => 0
+                            [SalesDiscount] => 0
+                        )
+
+                )
+
+        )
+
+)
+
+Added sales order response: 
+stdClass Object
+(
+    [AddSalesOrderResult] => stdClass Object
+        (
+            [SalesOrderInternalId] => 
+            [Status] => Error
+            [StatusCode] => 0
+            [Error] => Adding Record error.  CustomerId not found
+            [ErrorCode] => 3
+        )
+
+)
+
+Sales order info saved. Order ID:21453
+Array
+(
+    [0] => Array
+        (
+            [type] => notice
+            [message] => Sync Orders process has been completed. 1 record(s) processed.
+        )
+
+    [1] => Array
+        (
+            [type] => error
+            [message] => Errors have occurred during the Sales order sync process, please review the logs. First error occurred is: Adding Record error.  CustomerId not found
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [type] => notice
+            [message] => Sync Invoices process has been completed. 0 record(s) processed.
+        )
+
+    [1] => Array
+        (
+            [type] => success
+            [message] => Completed the Invoice sync process with no errors.
+        )
+
+)
+
+Add sales order params: 
+Array
+(
+    [securityToken] => Array
+        (
+            [SecurityId] => 10ff2a5f-34ea-4cb3-9ce1-5c6ec36909df
+            [UserId] => alconoxwoo
+            [Password] => 15Asd36
+        )
+
+    [salesOrder] => Array
+        (
+            [SalesOrderNumber] => 21465
+            [CustomerId] => 0
+            [Date] => 2021-04-28 08:19:50
+            [Currency] => USD
+            [Amount] => 131.87
+            [DueDate] => 2021-04-28 08:19:50
+            [DateUploaded] => 2021-04-28 08:19:50
+            [AmountDue] => 0
+            [PoNum] => 21465
+            [TotalTaxAmount] => 0
+            [Description] => Vince Assetta Straub Brewery, Inc. 303 Sorg St  St Marys PA 15857 US vince.assetta@gmail.com 8143356518
+            [NotifyCustomer] => false
+            [billingAddress] => Array
+                (
+                    [FirstName] => Vince
+                    [LastName] => Assetta
+                    [CompanyName] => Straub Brewery, Inc.
+                    [Address1] => 303 Sorg St
+                    [Address2] => 
+                    [City] => St Marys
+                    [State] => PA
+                    [ZipCode] => 15857
+                    [Country] => US
+                )
+
+            [shippingAddress] => Array
+                (
+                    [FirstName] => Vince
+                    [LastName] => Assetta
+                    [CompanyName] => Straub Brewery, Inc.
+                    [Address1] => 303 Sorg St
+                    [Address2] => 
+                    [City] => St Marys
+                    [State] => PA
+                    [ZipCode] => 15857
+                    [Country] => US
+                )
+
+            [Memo] => No
+            [ShipDate] => 2021-04-28 08:19:50
+            [ShipVia] => NA
+            [IsToBeEmailed] => false
+            [IsToBePrinted] => false
+            [UniqueId] => 21465
+            [Software] => woocommerce
+            [Items] => Array
+                (
+                    [0] => Array
+                        (
+                            [ItemId] => 17336
+                            [Name] => Liquinox - 1 Quart (0.95L)
+                            [Description] => Liquinox - 1 Quart (0.95L)
+                            [UnitPrice] => 24.90
+                            [Qty] => 1
+                            [Taxable] => 
+                            [TaxRate] => 0
+                            [TotalLineAmount] => 24.9
+                            [TotalLineTax] => 0
+                            [ItemLineNumber] => 1
+                            [GrossPrice] => 0
+                            [WarrantyDiscount] => 0
+                            [SalesDiscount] => 0
+                        )
+
+                    [1] => Array
+                        (
+                            [ItemId] => 17336
+                            [Name] => Liquinox - 1 Gallon (3.8L)
+                            [Description] => Liquinox - 1 Gallon (3.8L)
+                            [UnitPrice] => 83.70
+                            [Qty] => 1
+                            [Taxable] => 
+                            [TaxRate] => 0
+                            [TotalLineAmount] => 83.7
+                            [TotalLineTax] => 0
+                            [ItemLineNumber] => 2
+                            [GrossPrice] => 0
+                            [WarrantyDiscount] => 0
+                            [SalesDiscount] => 0
+                        )
+
+                )
+
+        )
+
+)
+
+Added sales order response: 
+stdClass Object
+(
+    [AddSalesOrderResult] => stdClass Object
+        (
+            [SalesOrderInternalId] => 
+            [Status] => Error
+            [StatusCode] => 0
+            [Error] => Adding Record error.  CustomerId not found
+            [ErrorCode] => 3
+        )
+
+)
+
+Sales order info saved. Order ID:21465
+Array
+(
+    [0] => Array
+        (
+            [type] => notice
+            [message] => Sync Orders process has been completed. 1 record(s) processed.
+        )
+
+    [1] => Array
+        (
+            [type] => error
+            [message] => Errors have occurred during the Sales order sync process, please review the logs. First error occurred is: Adding Record error.  CustomerId not found
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [type] => notice
+            [message] => Sync Invoices process has been completed. 0 record(s) processed.
+        )
+
+    [1] => Array
+        (
+            [type] => success
+            [message] => Completed the Invoice sync process with no errors.
+        )
+
+)
+
+Add sales order params: 
+Array
+(
+    [securityToken] => Array
+        (
+            [SecurityId] => 10ff2a5f-34ea-4cb3-9ce1-5c6ec36909df
+            [UserId] => alconoxwoo
+            [Password] => 15Asd36
+        )
+
+    [salesOrder] => Array
+        (
+            [SalesOrderNumber] => 21466
+            [CustomerId] => 0
+            [Date] => 2021-04-28 10:40:51
+            [Currency] => USD
+            [Amount] => 35.96
+            [DueDate] => 2021-04-28 10:40:51
+            [DateUploaded] => 2021-04-28 10:40:51
+            [AmountDue] => 0
+            [PoNum] => 21466
+            [TotalTaxAmount] => 0
+            [Description] => Lissette Rodriguez Opa Laboratories LLC 8001 West 26 Avenue Unit 11 Hialeah FL 33016 US purchasing@opalaboratories.com 7863602428
+            [NotifyCustomer] => false
+            [billingAddress] => Array
+                (
+                    [FirstName] => Lissette
+                    [LastName] => Rodriguez
+                    [CompanyName] => Opa Laboratories LLC
+                    [Address1] => 8001 West 26 Avenue
+                    [Address2] => Unit 11
+                    [City] => Hialeah
+                    [State] => FL
+                    [ZipCode] => 33016
+                    [Country] => US
+                )
+
+            [shippingAddress] => Array
+                (
+                    [FirstName] => Lissette
+                    [LastName] => Rodriguez
+                    [CompanyName] => Opa Laboratories LLC
+                    [Address1] => 8001 West 26 Avenue
+                    [Address2] => Unit 11
+                    [City] => Hialeah
+                    [State] => FL
+                    [ZipCode] => 33016
+                    [Country] => US
+                )
+
+            [Memo] => No
+            [ShipDate] => 2021-04-28 10:40:51
+            [ShipVia] => NA
+            [IsToBeEmailed] => false
+            [IsToBePrinted] => false
+            [UniqueId] => 21466
+            [Software] => woocommerce
+            [Items] => Array
+                (
+                    [0] => Array
+                        (
+                            [ItemId] => 17893
+                            [Name] => Citranox - 1 Quart (0.95L)
+                            [Description] => Citranox - 1 Quart (0.95L)
+                            [UnitPrice] => 23.50
+                            [Qty] => 1
+                            [Taxable] => 
+                            [TaxRate] => 0
+                            [TotalLineAmount] => 23.5
+                            [TotalLineTax] => 0
+                            [ItemLineNumber] => 1
+                            [GrossPrice] => 0
+                            [WarrantyDiscount] => 0
+                            [SalesDiscount] => 0
+                        )
+
+                )
+
+        )
+
+)
+
+Added sales order response: 
+stdClass Object
+(
+    [AddSalesOrderResult] => stdClass Object
+        (
+            [SalesOrderInternalId] => 
+            [Status] => Error
+            [StatusCode] => 0
+            [Error] => Adding Record error.  CustomerId not found
+            [ErrorCode] => 3
+        )
+
+)
+
+Sales order info saved. Order ID:21466
+Array
+(
+    [0] => Array
+        (
+            [type] => notice
+            [message] => Sync Orders process has been completed. 1 record(s) processed.
+        )
+
+    [1] => Array
+        (
+            [type] => error
+            [message] => Errors have occurred during the Sales order sync process, please review the logs. First error occurred is: Adding Record error.  CustomerId not found
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [type] => notice
+            [message] => Sync Invoices process has been completed. 0 record(s) processed.
+        )
+
+    [1] => Array
+        (
+            [type] => success
+            [message] => Completed the Invoice sync process with no errors.
+        )
+
+)
+
+Add sales order params: 
+Array
+(
+    [securityToken] => Array
+        (
+            [SecurityId] => 10ff2a5f-34ea-4cb3-9ce1-5c6ec36909df
+            [UserId] => alconoxwoo
+            [Password] => 15Asd36
+        )
+
+    [salesOrder] => Array
+        (
+            [SalesOrderNumber] => 21467
+            [CustomerId] => 0
+            [Date] => 2021-04-28 15:08:40
+            [Currency] => USD
+            [Amount] => 80.01
+            [DueDate] => 2021-04-28 15:08:40
+            [DateUploaded] => 2021-04-28 15:08:40
+            [AmountDue] => 0
+            [PoNum] => 21467
+            [TotalTaxAmount] => 0
+            [Description] => Roxanne Desautels  699 Boul Curé-Poirier Ouest  Longueuil QC J4J 2J1 CA roxanne.desautels@longueuil.quebec 4504637100
+            [NotifyCustomer] => false
+            [billingAddress] => Array
+                (
+                    [FirstName] => Roxanne
+                    [LastName] => Desautels
+                    [CompanyName] => 
+                    [Address1] => 699 Boul Curé-Poirier Ouest
+                    [Address2] => 
+                    [City] => Longueuil
+                    [State] => QC
+                    [ZipCode] => J4J 2J1
+                    [Country] => CA
+                )
+
+            [shippingAddress] => Array
+                (
+                    [FirstName] => Roxanne
+                    [LastName] => Desautels
+                    [CompanyName] => 
+                    [Address1] => 699 Boul Curé-Poirier Ouest
+                    [Address2] => 
+                    [City] => Longueuil
+                    [State] => QC
+                    [ZipCode] => J4J 2J1
+                    [Country] => CA
+                )
+
+            [Memo] => No
+            [ShipDate] => 2021-04-28 15:08:40
+            [ShipVia] => NA
+            [IsToBeEmailed] => false
+            [IsToBePrinted] => false
+            [UniqueId] => 21467
+            [Software] => woocommerce
+            [Items] => Array
+                (
+                    [0] => Array
+                        (
+                            [ItemId] => 17439
+                            [Name] => Alconox - 4 lb box (1.8Kg)
+                            [Description] => Alconox - 4 lb box (1.8Kg)
+                            [UnitPrice] => 47.20
+                            [Qty] => 1
+                            [Taxable] => 
+                            [TaxRate] => 0
+                            [TotalLineAmount] => 47.2
+                            [TotalLineTax] => 0
+                            [ItemLineNumber] => 1
+                            [GrossPrice] => 0
+                            [WarrantyDiscount] => 0
+                            [SalesDiscount] => 0
+                        )
+
+                )
+
+        )
+
+)
+
+Added sales order response: 
+stdClass Object
+(
+    [AddSalesOrderResult] => stdClass Object
+        (
+            [SalesOrderInternalId] => 
+            [Status] => Error
+            [StatusCode] => 0
+            [Error] => Adding Record error.  CustomerId not found
+            [ErrorCode] => 3
+        )
+
+)
+
+Sales order info saved. Order ID:21467
+Array
+(
+    [0] => Array
+        (
+            [type] => notice
+            [message] => Sync Orders process has been completed. 1 record(s) processed.
+        )
+
+    [1] => Array
+        (
+            [type] => error
+            [message] => Errors have occurred during the Sales order sync process, please review the logs. First error occurred is: Adding Record error.  CustomerId not found
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [type] => notice
+            [message] => Sync Invoices process has been completed. 0 record(s) processed.
+        )
+
+    [1] => Array
+        (
+            [type] => success
+            [message] => Completed the Invoice sync process with no errors.
+        )
+
+)
+
+Add sales order params: 
+Array
+(
+    [securityToken] => Array
+        (
+            [SecurityId] => 10ff2a5f-34ea-4cb3-9ce1-5c6ec36909df
+            [UserId] => alconoxwoo
+            [Password] => 15Asd36
+        )
+
+    [salesOrder] => Array
+        (
+            [SalesOrderNumber] => 21470
+            [CustomerId] => 0
+            [Date] => 2021-04-28 18:33:33
+            [Currency] => USD
+            [Amount] => 70.70
+            [DueDate] => 2021-04-28 18:33:33
+            [DateUploaded] => 2021-04-28 18:33:33
+            [AmountDue] => 0
+            [PoNum] => 21470
+            [TotalTaxAmount] => 0
+            [Description] => Tahj Echols Coherent Ondax 850 E Duarte Rd.  Monrovia CA 91016 US po.monrovia@coherent.com 6263579600
+            [NotifyCustomer] => false
+            [billingAddress] => Array
+                (
+                    [FirstName] => Tahj
+                    [LastName] => Echols
+                    [CompanyName] => Coherent Ondax
+                    [Address1] => 850 E Duarte Rd.
+                    [Address2] => 
+                    [City] => Monrovia
+                    [State] => CA
+                    [ZipCode] => 91016
+                    [Country] => US
+                )
+
+            [shippingAddress] => Array
+                (
+                    [FirstName] => Tahj
+                    [LastName] => Echols
+                    [CompanyName] => Coherent Ondax
+                    [Address1] => 850 E Duarte Rd.
+                    [Address2] => 
+                    [City] => Monrovia
+                    [State] => CA
+                    [ZipCode] => 91016
+                    [Country] => US
+                )
+
+            [Memo] => No
+            [ShipDate] => 2021-04-28 18:33:33
+            [ShipVia] => NA
+            [IsToBeEmailed] => false
+            [IsToBePrinted] => false
+            [UniqueId] => 21470
+            [Software] => woocommerce
+            [Items] => Array
+                (
+                    [0] => Array
+                        (
+                            [ItemId] => 17893
+                            [Name] => Citranox - 1 Quart (0.95L)
+                            [Description] => Citranox - 1 Quart (0.95L)
+                            [UnitPrice] => 23.50
+                            [Qty] => 1
+                            [Taxable] => 
+                            [TaxRate] => 0
+                            [TotalLineAmount] => 23.5
+                            [TotalLineTax] => 0
+                            [ItemLineNumber] => 1
+                            [GrossPrice] => 0
+                            [WarrantyDiscount] => 0
+                            [SalesDiscount] => 0
+                        )
+
+                    [1] => Array
+                        (
+                            [ItemId] => 17439
+                            [Name] => Alconox - 4 lb box (1.8Kg)
+                            [Description] => Alconox - 4 lb box (1.8Kg)
+                            [UnitPrice] => 47.20
+                            [Qty] => 1
+                            [Taxable] => 
+                            [TaxRate] => 0
+                            [TotalLineAmount] => 47.2
+                            [TotalLineTax] => 0
+                            [ItemLineNumber] => 2
+                            [GrossPrice] => 0
+                            [WarrantyDiscount] => 0
+                            [SalesDiscount] => 0
+                        )
+
+                )
+
+        )
+
+)
+
+Added sales order response: 
+stdClass Object
+(
+    [AddSalesOrderResult] => stdClass Object
+        (
+            [SalesOrderInternalId] => 
+            [Status] => Error
+            [StatusCode] => 0
+            [Error] => Adding Record error.  CustomerId not found
+            [ErrorCode] => 3
+        )
+
+)
+
+Sales order info saved. Order ID:21470
+Array
+(
+    [0] => Array
+        (
+            [type] => notice
+            [message] => Sync Orders process has been completed. 1 record(s) processed.
+        )
+
+    [1] => Array
+        (
+            [type] => error
+            [message] => Errors have occurred during the Sales order sync process, please review the logs. First error occurred is: Adding Record error.  CustomerId not found
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [type] => notice
+            [message] => Sync Invoices process has been completed. 0 record(s) processed.
+        )
+
+    [1] => Array
+        (
+            [type] => success
+            [message] => Completed the Invoice sync process with no errors.
+        )
+
+)
+
+Add sales order params: 
+Array
+(
+    [securityToken] => Array
+        (
+            [SecurityId] => 10ff2a5f-34ea-4cb3-9ce1-5c6ec36909df
+            [UserId] => alconoxwoo
+            [Password] => 15Asd36
+        )
+
+    [salesOrder] => Array
+        (
+            [SalesOrderNumber] => 21473
+            [CustomerId] => 0
+            [Date] => 2021-04-29 10:51:53
+            [Currency] => USD
+            [Amount] => 83.70
+            [DueDate] => 2021-04-29 10:51:53
+            [DateUploaded] => 2021-04-29 10:51:53
+            [AmountDue] => 0
+            [PoNum] => 21473
+            [TotalTaxAmount] => 0
+            [Description] => Andrew Marshall NovaVision 524 E WOODLAND CIR  BOWLING GREEN OH 43402 US dmarshall@novavisioninc.com 4193541427
+            [NotifyCustomer] => false
+            [billingAddress] => Array
+                (
+                    [FirstName] => Andrew
+                    [LastName] => Marshall
+                    [CompanyName] => NovaVision
+                    [Address1] => 524 E WOODLAND CIR
+                    [Address2] => 
+                    [City] => BOWLING GREEN
+                    [State] => OH
+                    [ZipCode] => 43402
+                    [Country] => US
+                )
+
+            [shippingAddress] => Array
+                (
+                    [FirstName] => Andrew
+                    [LastName] => Marshall
+                    [CompanyName] => NovaVision
+                    [Address1] => 524 E WOODLAND CIR
+                    [Address2] => 
+                    [City] => BOWLING GREEN
+                    [State] => OH
+                    [ZipCode] => 43402
+                    [Country] => US
+                )
+
+            [Memo] => No
+            [ShipDate] => 2021-04-29 10:51:53
+            [ShipVia] => NA
+            [IsToBeEmailed] => false
+            [IsToBePrinted] => false
+            [UniqueId] => 21473
+            [Software] => woocommerce
+            [Items] => Array
+                (
+                    [0] => Array
+                        (
+                            [ItemId] => 17336
+                            [Name] => Liquinox - 1 Gallon (3.8L)
+                            [Description] => Liquinox - 1 Gallon (3.8L)
+                            [UnitPrice] => 83.70
+                            [Qty] => 1
+                            [Taxable] => 
+                            [TaxRate] => 0
+                            [TotalLineAmount] => 83.7
+                            [TotalLineTax] => 0
+                            [ItemLineNumber] => 1
+                            [GrossPrice] => 0
+                            [WarrantyDiscount] => 0
+                            [SalesDiscount] => 0
+                        )
+
+                )
+
+        )
+
+)
+
+Added sales order response: 
+stdClass Object
+(
+    [AddSalesOrderResult] => stdClass Object
+        (
+            [SalesOrderInternalId] => 
+            [Status] => Error
+            [StatusCode] => 0
+            [Error] => Adding Record error.  CustomerId not found
+            [ErrorCode] => 3
+        )
+
+)
+
+Sales order info saved. Order ID:21473
+Array
+(
+    [0] => Array
+        (
+            [type] => notice
+            [message] => Sync Orders process has been completed. 1 record(s) processed.
+        )
+
+    [1] => Array
+        (
+            [type] => error
+            [message] => Errors have occurred during the Sales order sync process, please review the logs. First error occurred is: Adding Record error.  CustomerId not found
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [type] => notice
+            [message] => Sync Invoices process has been completed. 0 record(s) processed.
+        )
+
+    [1] => Array
+        (
+            [type] => success
+            [message] => Completed the Invoice sync process with no errors.
+        )
+
+)
+
+Add sales order params: 
+Array
+(
+    [securityToken] => Array
+        (
+            [SecurityId] => 10ff2a5f-34ea-4cb3-9ce1-5c6ec36909df
+            [UserId] => alconoxwoo
+            [Password] => 15Asd36
+        )
+
+    [salesOrder] => Array
+        (
+            [SalesOrderNumber] => 21474
+            [CustomerId] => 0
+            [Date] => 2021-04-29 13:21:25
+            [Currency] => USD
+            [Amount] => 94.40
+            [DueDate] => 2021-04-29 13:21:25
+            [DateUploaded] => 2021-04-29 13:21:25
+            [AmountDue] => 0
+            [PoNum] => 21474
+            [TotalTaxAmount] => 0
+            [Description] => Patty Crossland Dyhydromatics, LLC 63 Great Road Suite 100 Maynard MA 01754 US pcrossland@godyhydro.com 9784610200
+            [NotifyCustomer] => false
+            [billingAddress] => Array
+                (
+                    [FirstName] => Patty
+                    [LastName] => Crossland
+                    [CompanyName] => Dyhydromatics, LLC
+                    [Address1] => 63 Great Road
+                    [Address2] => Suite 100
+                    [City] => Maynard
+                    [State] => MA
+                    [ZipCode] => 01754
+                    [Country] => US
+                )
+
+            [shippingAddress] => Array
+                (
+                    [FirstName] => Patty
+                    [LastName] => Crossland
+                    [CompanyName] => Dyhydromatics, LLC
+                    [Address1] => 63 Great Road
+                    [Address2] => Suite 100
+                    [City] => Maynard
+                    [State] => MA
+                    [ZipCode] => 01754
+                    [Country] => US
+                )
+
+            [Memo] => No
+            [ShipDate] => 2021-04-29 13:21:25
+            [ShipVia] => NA
+            [IsToBeEmailed] => false
+            [IsToBePrinted] => false
+            [UniqueId] => 21474
+            [Software] => woocommerce
+            [Items] => Array
+                (
+                    [0] => Array
+                        (
+                            [ItemId] => 17439
+                            [Name] => Alconox - 4 lb box (1.8Kg)
+                            [Description] => Alconox - 4 lb box (1.8Kg)
+                            [UnitPrice] => 47.20
+                            [Qty] => 2
+                            [Taxable] => 
+                            [TaxRate] => 0
+                            [TotalLineAmount] => 94.4
+                            [TotalLineTax] => 0
+                            [ItemLineNumber] => 1
+                            [GrossPrice] => 0
+                            [WarrantyDiscount] => 0
+                            [SalesDiscount] => 0
+                        )
+
+                )
+
+        )
+
+)
+
+Added sales order response: 
+stdClass Object
+(
+    [AddSalesOrderResult] => stdClass Object
+        (
+            [SalesOrderInternalId] => 
+            [Status] => Error
+            [StatusCode] => 0
+            [Error] => Adding Record error.  CustomerId not found
+            [ErrorCode] => 3
+        )
+
+)
+
+Sales order info saved. Order ID:21474
+Array
+(
+    [0] => Array
+        (
+            [type] => notice
+            [message] => Sync Orders process has been completed. 1 record(s) processed.
+        )
+
+    [1] => Array
+        (
+            [type] => error
+            [message] => Errors have occurred during the Sales order sync process, please review the logs. First error occurred is: Adding Record error.  CustomerId not found
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [type] => notice
+            [message] => Sync Invoices process has been completed. 0 record(s) processed.
+        )
+
+    [1] => Array
+        (
+            [type] => success
+            [message] => Completed the Invoice sync process with no errors.
+        )
+
+)
+
+Add sales order params: 
+Array
+(
+    [securityToken] => Array
+        (
+            [SecurityId] => 10ff2a5f-34ea-4cb3-9ce1-5c6ec36909df
+            [UserId] => alconoxwoo
+            [Password] => 15Asd36
+        )
+
+    [salesOrder] => Array
+        (
+            [SalesOrderNumber] => 21475
+            [CustomerId] => 0
+            [Date] => 2021-04-29 14:55:09
+            [Currency] => USD
+            [Amount] => 59.86
+            [DueDate] => 2021-04-29 14:55:09
+            [DateUploaded] => 2021-04-29 14:55:09
+            [AmountDue] => 0
+            [PoNum] => 21475
+            [TotalTaxAmount] => 0
+            [Description] => misty lohman PATHWAY 202 SW 17TH ST  OCALA FL 34471 US mlohman@pathwaysrx.com 352-624-2779
+            [NotifyCustomer] => false
+            [billingAddress] => Array
+                (
+                    [FirstName] => misty
+                    [LastName] => lohman
+                    [CompanyName] => PATHWAY
+                    [Address1] => 202 SW 17TH ST
+                    [Address2] => 
+                    [City] => OCALA
+                    [State] => FL
+                    [ZipCode] => 34471
+                    [Country] => US
+                )
+
+            [shippingAddress] => Array
+                (
+                    [FirstName] => misty
+                    [LastName] => lohman
+                    [CompanyName] => PATHWAY
+                    [Address1] => 202 SW 17TH ST
+                    [Address2] => 
+                    [City] => OCALA
+                    [State] => FL
+                    [ZipCode] => 34471
+                    [Country] => US
+                )
+
+            [Memo] => No
+            [ShipDate] => 2021-04-29 14:55:09
+            [ShipVia] => NA
+            [IsToBeEmailed] => false
+            [IsToBePrinted] => false
+            [UniqueId] => 21475
+            [Software] => woocommerce
+            [Items] => Array
+                (
+                    [0] => Array
+                        (
+                            [ItemId] => 17439
+                            [Name] => Alconox - 4 lb box (1.8Kg)
+                            [Description] => Alconox - 4 lb box (1.8Kg)
+                            [UnitPrice] => 47.20
+                            [Qty] => 1
+                            [Taxable] => 
+                            [TaxRate] => 0
+                            [TotalLineAmount] => 47.2
+                            [TotalLineTax] => 0
+                            [ItemLineNumber] => 1
+                            [GrossPrice] => 0
+                            [WarrantyDiscount] => 0
+                            [SalesDiscount] => 0
+                        )
+
+                )
+
+        )
+
+)
+
+Added sales order response: 
+stdClass Object
+(
+    [AddSalesOrderResult] => stdClass Object
+        (
+            [SalesOrderInternalId] => 
+            [Status] => Error
+            [StatusCode] => 0
+            [Error] => Adding Record error.  CustomerId not found
+            [ErrorCode] => 3
+        )
+
+)
+
+Sales order info saved. Order ID:21475
+Array
+(
+    [0] => Array
+        (
+            [type] => notice
+            [message] => Sync Orders process has been completed. 1 record(s) processed.
+        )
+
+    [1] => Array
+        (
+            [type] => error
+            [message] => Errors have occurred during the Sales order sync process, please review the logs. First error occurred is: Adding Record error.  CustomerId not found
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [type] => notice
+            [message] => Sync Invoices process has been completed. 0 record(s) processed.
+        )
+
+    [1] => Array
+        (
+            [type] => success
+            [message] => Completed the Invoice sync process with no errors.
+        )
+
+)
+
+Add sales order params: 
+Array
+(
+    [securityToken] => Array
+        (
+            [SecurityId] => 10ff2a5f-34ea-4cb3-9ce1-5c6ec36909df
+            [UserId] => alconoxwoo
+            [Password] => 15Asd36
+        )
+
+    [salesOrder] => Array
+        (
+            [SalesOrderNumber] => 21476
+            [CustomerId] => 0
+            [Date] => 2021-04-29 15:56:46
+            [Currency] => USD
+            [Amount] => 57.35
+            [DueDate] => 2021-04-29 15:56:46
+            [DateUploaded] => 2021-04-29 15:56:46
+            [AmountDue] => 0
+            [PoNum] => 21476
+            [TotalTaxAmount] => 0
+            [Description] => Andrée-Anne Gélinas Novo 1505 rue Royale  Trois-Rivières QC G9A 4J9 CA comptabilite@fromnovo.com 8198405340
+            [NotifyCustomer] => false
+            [billingAddress] => Array
+                (
+                    [FirstName] => Andrée-Anne
+                    [LastName] => Gélinas
+                    [CompanyName] => Novo
+                    [Address1] => 1505 rue Royale
+                    [Address2] => 
+                    [City] => Trois-Rivières
+                    [State] => QC
+                    [ZipCode] => G9A 4J9
+                    [Country] => CA
+                )
+
+            [shippingAddress] => Array
+                (
+                    [FirstName] => Justin
+                    [LastName] => Bourassa
+                    [CompanyName] => Novo
+                    [Address1] => 1840-1, Avenue de la Normandie
+                    [Address2] => 
+                    [City] => Québec
+                    [State] => QC
+                    [ZipCode] => G1L 3Y7
+                    [Country] => CA
+                )
+
+            [Memo] => No
+            [ShipDate] => 2021-04-29 15:56:46
+            [ShipVia] => NA
+            [IsToBeEmailed] => false
+            [IsToBePrinted] => false
+            [UniqueId] => 21476
+            [Software] => woocommerce
+            [Items] => Array
+                (
+                    [0] => Array
+                        (
+                            [ItemId] => 17336
+                            [Name] => Liquinox - 1 Quart (0.95L)
+                            [Description] => Liquinox - 1 Quart (0.95L)
+                            [UnitPrice] => 24.90
+                            [Qty] => 1
+                            [Taxable] => 
+                            [TaxRate] => 0
+                            [TotalLineAmount] => 24.9
+                            [TotalLineTax] => 0
+                            [ItemLineNumber] => 1
+                            [GrossPrice] => 0
+                            [WarrantyDiscount] => 0
+                            [SalesDiscount] => 0
+                        )
+
+                )
+
+        )
+
+)
+
+Added sales order response: 
+stdClass Object
+(
+    [AddSalesOrderResult] => stdClass Object
+        (
+            [SalesOrderInternalId] => 
+            [Status] => Error
+            [StatusCode] => 0
+            [Error] => Adding Record error.  CustomerId not found
+            [ErrorCode] => 3
+        )
+
+)
+
+Sales order info saved. Order ID:21476
+Array
+(
+    [0] => Array
+        (
+            [type] => notice
+            [message] => Sync Orders process has been completed. 1 record(s) processed.
+        )
+
+    [1] => Array
+        (
+            [type] => error
+            [message] => Errors have occurred during the Sales order sync process, please review the logs. First error occurred is: Adding Record error.  CustomerId not found
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [type] => notice
+            [message] => Sync Invoices process has been completed. 0 record(s) processed.
+        )
+
+    [1] => Array
+        (
+            [type] => success
+            [message] => Completed the Invoice sync process with no errors.
+        )
+
+)
+
+Add sales order params: 
+Array
+(
+    [securityToken] => Array
+        (
+            [SecurityId] => 10ff2a5f-34ea-4cb3-9ce1-5c6ec36909df
+            [UserId] => alconoxwoo
+            [Password] => 15Asd36
+        )
+
+    [salesOrder] => Array
+        (
+            [SalesOrderNumber] => 21477
+            [CustomerId] => 0
+            [Date] => 2021-04-30 19:12:31
+            [Currency] => USD
+            [Amount] => 41.53
+            [DueDate] => 2021-04-30 19:12:31
+            [DateUploaded] => 2021-04-30 19:12:31
+            [AmountDue] => 0
+            [PoNum] => 21477
+            [TotalTaxAmount] => 0
+            [Description] => Steven Hanson  5508 Hennsley Circle  Weldon Spring MO 63304 US smhanson21@gmail.com 6364975784
+            [NotifyCustomer] => false
+            [billingAddress] => Array
+                (
+                    [FirstName] => Steven
+                    [LastName] => Hanson
+                    [CompanyName] => 
+                    [Address1] => 5508 Hennsley Circle
+                    [Address2] => 
+                    [City] => Weldon Spring
+                    [State] => MO
+                    [ZipCode] => 63304
+                    [Country] => US
+                )
+
+            [shippingAddress] => Array
+                (
+                    [FirstName] => Steven
+                    [LastName] => Hanson
+                    [CompanyName] => 
+                    [Address1] => 5508 Hennsley Circle
+                    [Address2] => 
+                    [City] => Weldon Spring
+                    [State] => MO
+                    [ZipCode] => 63304
+                    [Country] => US
+                )
+
+            [Memo] => No
+            [ShipDate] => 2021-04-30 19:12:31
+            [ShipVia] => NA
+            [IsToBeEmailed] => false
+            [IsToBePrinted] => false
+            [UniqueId] => 21477
+            [Software] => woocommerce
+            [Items] => Array
+                (
+                    [0] => Array
+                        (
+                            [ItemId] => 17893
+                            [Name] => Citranox - 1 Quart (0.95L)
+                            [Description] => Citranox - 1 Quart (0.95L)
+                            [UnitPrice] => 23.50
+                            [Qty] => 1
+                            [Taxable] => 
+                            [TaxRate] => 0
+                            [TotalLineAmount] => 23.5
+                            [TotalLineTax] => 0
+                            [ItemLineNumber] => 1
+                            [GrossPrice] => 0
+                            [WarrantyDiscount] => 0
+                            [SalesDiscount] => 0
+                        )
+
+                )
+
+        )
+
+)
+
+Added sales order response: 
+stdClass Object
+(
+    [AddSalesOrderResult] => stdClass Object
+        (
+            [SalesOrderInternalId] => 
+            [Status] => Error
+            [StatusCode] => 0
+            [Error] => Adding Record error.  CustomerId not found
+            [ErrorCode] => 3
+        )
+
+)
+
+Sales order info saved. Order ID:21477
+Array
+(
+    [0] => Array
+        (
+            [type] => notice
+            [message] => Sync Orders process has been completed. 1 record(s) processed.
+        )
+
+    [1] => Array
+        (
+            [type] => error
+            [message] => Errors have occurred during the Sales order sync process, please review the logs. First error occurred is: Adding Record error.  CustomerId not found
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [type] => notice
+            [message] => Sync Invoices process has been completed. 0 record(s) processed.
+        )
+
+    [1] => Array
+        (
+            [type] => success
+            [message] => Completed the Invoice sync process with no errors.
+        )
+
+)
+
+Add sales order params: 
+Array
+(
+    [securityToken] => Array
+        (
+            [SecurityId] => 10ff2a5f-34ea-4cb3-9ce1-5c6ec36909df
+            [UserId] => alconoxwoo
+            [Password] => 15Asd36
+        )
+
+    [salesOrder] => Array
+        (
+            [SalesOrderNumber] => 21478
+            [CustomerId] => 0
+            [Date] => 2021-05-01 08:47:12
+            [Currency] => USD
+            [Amount] => 67.03
+            [DueDate] => 2021-05-01 08:47:12
+            [DateUploaded] => 2021-05-01 08:47:12
+            [AmountDue] => 0
+            [PoNum] => 21478
+            [TotalTaxAmount] => 3.13
+            [Description] => Elizabeth Raike QualTech Laboratories, Inc. 104 Green Grove Road  Ocean NJ 07712 US qtlabs@aol.com 7323069134
+            [NotifyCustomer] => false
+            [billingAddress] => Array
+                (
+                    [FirstName] => Elizabeth
+                    [LastName] => Raike
+                    [CompanyName] => QualTech Laboratories, Inc.
+                    [Address1] => 104 Green Grove Road
+                    [Address2] => 
+                    [City] => Ocean
+                    [State] => NJ
+                    [ZipCode] => 07712
+                    [Country] => US
+                )
+
+            [shippingAddress] => Array
+                (
+                    [FirstName] => Elizabeth
+                    [LastName] => Raike
+                    [CompanyName] => QualTech Laboratories, Inc.
+                    [Address1] => 104 Green Grove Road
+                    [Address2] => 
+                    [City] => Ocean
+                    [State] => NJ
+                    [ZipCode] => 07712
+                    [Country] => US
+                )
+
+            [Memo] => No
+            [ShipDate] => 2021-05-01 08:47:12
+            [ShipVia] => NA
+            [IsToBeEmailed] => false
+            [IsToBePrinted] => false
+            [UniqueId] => 21478
+            [Software] => woocommerce
+            [Items] => Array
+                (
+                    [0] => Array
+                        (
+                            [ItemId] => 17439
+                            [Name] => Alconox - 4 lb box (1.8Kg)
+                            [Description] => Alconox - 4 lb box (1.8Kg)
+                            [UnitPrice] => 47.20
+                            [Qty] => 1
+                            [Taxable] => 1
+                            [TaxRate] => 0
+                            [TotalLineAmount] => 47.2
+                            [TotalLineTax] => 3.13
+                            [ItemLineNumber] => 1
+                            [GrossPrice] => 0
+                            [WarrantyDiscount] => 0
+                            [SalesDiscount] => 0
+                        )
+
+                )
+
+        )
+
+)
+
+Added sales order response: 
+stdClass Object
+(
+    [AddSalesOrderResult] => stdClass Object
+        (
+            [SalesOrderInternalId] => 
+            [Status] => Error
+            [StatusCode] => 0
+            [Error] => Adding Record error.  CustomerId not found
+            [ErrorCode] => 3
+        )
+
+)
+
+Sales order info saved. Order ID:21478
+Array
+(
+    [0] => Array
+        (
+            [type] => notice
+            [message] => Sync Orders process has been completed. 1 record(s) processed.
+        )
+
+    [1] => Array
+        (
+            [type] => error
+            [message] => Errors have occurred during the Sales order sync process, please review the logs. First error occurred is: Adding Record error.  CustomerId not found
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [type] => notice
+            [message] => Sync Invoices process has been completed. 0 record(s) processed.
+        )
+
+    [1] => Array
+        (
+            [type] => success
+            [message] => Completed the Invoice sync process with no errors.
+        )
+
+)
+
+Add sales order params: 
+Array
+(
+    [securityToken] => Array
+        (
+            [SecurityId] => 10ff2a5f-34ea-4cb3-9ce1-5c6ec36909df
+            [UserId] => alconoxwoo
+            [Password] => 15Asd36
+        )
+
+    [salesOrder] => Array
+        (
+            [SalesOrderNumber] => 21482
+            [CustomerId] => 0
+            [Date] => 2021-05-03 13:41:12
+            [Currency] => USD
+            [Amount] => 47.20
+            [DueDate] => 2021-05-03 13:41:12
+            [DateUploaded] => 2021-05-03 13:41:12
+            [AmountDue] => 0
+            [PoNum] => 21482
+            [TotalTaxAmount] => 0
+            [Description] => Khayat-Maher TREFPUNT KM BV TREFPUNT KM BV Keenstraat 25 Rotterdam  3011 HE NL r.maher@trefpunt.nl 0622000099
+            [NotifyCustomer] => false
+            [billingAddress] => Array
+                (
+                    [FirstName] => Khayat-Maher
+                    [LastName] => TREFPUNT KM BV
+                    [CompanyName] => TREFPUNT KM BV
+                    [Address1] => Keenstraat
+                    [Address2] => 25
+                    [City] => Rotterdam
+                    [State] => 
+                    [ZipCode] => 3011 HE
+                    [Country] => NL
+                )
+
+            [shippingAddress] => Array
+                (
+                    [FirstName] => Khayat-Maher
+                    [LastName] => TREFPUNT KM BV
+                    [CompanyName] => TREFPUNT KM BV
+                    [Address1] => Keenstraat
+                    [Address2] => 25
+                    [City] => Rotterdam
+                    [State] => 
+                    [ZipCode] => 3011 HE
+                    [Country] => NL
+                )
+
+            [Memo] => No
+            [ShipDate] => 2021-05-03 13:41:12
+            [ShipVia] => NA
+            [IsToBeEmailed] => false
+            [IsToBePrinted] => false
+            [UniqueId] => 21482
+            [Software] => woocommerce
+            [Items] => Array
+                (
+                    [0] => Array
+                        (
+                            [ItemId] => 17439
+                            [Name] => Alconox - 4 lb box (1.8Kg)
+                            [Description] => Alconox - 4 lb box (1.8Kg)
+                            [UnitPrice] => 47.20
+                            [Qty] => 1
+                            [Taxable] => 
+                            [TaxRate] => 0
+                            [TotalLineAmount] => 47.2
+                            [TotalLineTax] => 0
+                            [ItemLineNumber] => 1
+                            [GrossPrice] => 0
+                            [WarrantyDiscount] => 0
+                            [SalesDiscount] => 0
+                        )
+
+                )
+
+        )
+
+)
+
+Added sales order response: 
+stdClass Object
+(
+    [AddSalesOrderResult] => stdClass Object
+        (
+            [SalesOrderInternalId] => 
+            [Status] => Error
+            [StatusCode] => 0
+            [Error] => Adding Record error.  CustomerId not found
+            [ErrorCode] => 3
+        )
+
+)
+
+Sales order info saved. Order ID:21482
+Array
+(
+    [0] => Array
+        (
+            [type] => notice
+            [message] => Sync Orders process has been completed. 1 record(s) processed.
+        )
+
+    [1] => Array
+        (
+            [type] => error
+            [message] => Errors have occurred during the Sales order sync process, please review the logs. First error occurred is: Adding Record error.  CustomerId not found
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [type] => notice
+            [message] => Sync Invoices process has been completed. 0 record(s) processed.
+        )
+
+    [1] => Array
+        (
+            [type] => success
+            [message] => Completed the Invoice sync process with no errors.
+        )
+
+)
+
+Add sales order params: 
+Array
+(
+    [securityToken] => Array
+        (
+            [SecurityId] => 10ff2a5f-34ea-4cb3-9ce1-5c6ec36909df
+            [UserId] => alconoxwoo
+            [Password] => 15Asd36
+        )
+
+    [salesOrder] => Array
+        (
+            [SalesOrderNumber] => 21483
+            [CustomerId] => 0
+            [Date] => 2021-05-03 17:07:45
+            [Currency] => USD
+            [Amount] => 51.50
+            [DueDate] => 2021-05-03 17:07:45
+            [DateUploaded] => 2021-05-03 17:07:45
+            [AmountDue] => 0
+            [PoNum] => 21483
+            [TotalTaxAmount] => 0
+            [Description] => Gled Biris Nushores Biosciences LLC 1523 S. Bowman Rd Ste 3H Little Rock AR 72211 US gled@nushores.com 5017499149
+            [NotifyCustomer] => false
+            [billingAddress] => Array
+                (
+                    [FirstName] => Gled
+                    [LastName] => Biris
+                    [CompanyName] => Nushores Biosciences LLC
+                    [Address1] => 1523 S. Bowman Rd
+                    [Address2] => Ste 3H
+                    [City] => Little Rock
+                    [State] => AR
+                    [ZipCode] => 72211
+                    [Country] => US
+                )
+
+            [shippingAddress] => Array
+                (
+                    [FirstName] => Gled
+                    [LastName] => Biris
+                    [CompanyName] => Nushores Biosciences LLC
+                    [Address1] => 1523 S. Bowman Rd
+                    [Address2] => Ste 3H
+                    [City] => Little Rock
+                    [State] => AR
+                    [ZipCode] => 72211
+                    [Country] => US
+                )
+
+            [Memo] => No
+            [ShipDate] => 2021-05-03 17:07:45
+            [ShipVia] => NA
+            [IsToBeEmailed] => false
+            [IsToBePrinted] => false
+            [UniqueId] => 21483
+            [Software] => woocommerce
+            [Items] => Array
+                (
+                    [0] => Array
+                        (
+                            [ItemId] => 17453
+                            [Name] => Tergazyme - 4 lb box (1.8Kg)
+                            [Description] => Tergazyme - 4 lb box (1.8Kg)
+                            [UnitPrice] => 51.50
+                            [Qty] => 1
+                            [Taxable] => 
+                            [TaxRate] => 0
+                            [TotalLineAmount] => 51.5
+                            [TotalLineTax] => 0
+                            [ItemLineNumber] => 1
+                            [GrossPrice] => 0
+                            [WarrantyDiscount] => 0
+                            [SalesDiscount] => 0
+                        )
+
+                )
+
+        )
+
+)
+
+Added sales order response: 
+stdClass Object
+(
+    [AddSalesOrderResult] => stdClass Object
+        (
+            [SalesOrderInternalId] => 
+            [Status] => Error
+            [StatusCode] => 0
+            [Error] => Adding Record error.  CustomerId not found
+            [ErrorCode] => 3
+        )
+
+)
+
+Sales order info saved. Order ID:21483
+Array
+(
+    [0] => Array
+        (
+            [type] => notice
+            [message] => Sync Orders process has been completed. 1 record(s) processed.
+        )
+
+    [1] => Array
+        (
+            [type] => error
+            [message] => Errors have occurred during the Sales order sync process, please review the logs. First error occurred is: Adding Record error.  CustomerId not found
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [type] => notice
+            [message] => Sync Invoices process has been completed. 0 record(s) processed.
+        )
+
+    [1] => Array
+        (
+            [type] => success
+            [message] => Completed the Invoice sync process with no errors.
+        )
+
+)
+
+Add sales order params: 
+Array
+(
+    [securityToken] => Array
+        (
+            [SecurityId] => 10ff2a5f-34ea-4cb3-9ce1-5c6ec36909df
+            [UserId] => alconoxwoo
+            [Password] => 15Asd36
+        )
+
+    [salesOrder] => Array
+        (
+            [SalesOrderNumber] => 21493
+            [CustomerId] => 0
+            [Date] => 2021-05-04 10:37:37
+            [Currency] => USD
+            [Amount] => 86.19
+            [DueDate] => 2021-05-04 10:37:37
+            [DateUploaded] => 2021-05-04 10:37:37
+            [AmountDue] => 0
+            [PoNum] => 21493
+            [TotalTaxAmount] => 0
+            [Description] => Kaitlin Tauriainen Ashwaubenon School District 1055 Griffiths Ln  Green Bay WI 54304 US ktauriainen@ashwaubenonk12.org 92049229001009
+            [NotifyCustomer] => false
+            [billingAddress] => Array
+                (
+                    [FirstName] => Kaitlin
+                    [LastName] => Tauriainen
+                    [CompanyName] => Ashwaubenon School District
+                    [Address1] => 1055 Griffiths Ln
+                    [Address2] => 
+                    [City] => Green Bay
+                    [State] => WI
+                    [ZipCode] => 54304
+                    [Country] => US
+                )
+
+            [shippingAddress] => Array
+                (
+                    [FirstName] => Ashwaubenon High School
+                    [LastName] => ATTN: Food Service
+                    [CompanyName] => 
+                    [Address1] => 2391 S. Ridge Rd.
+                    [Address2] => 
+                    [City] => Green Bay
+                    [State] => WI
+                    [ZipCode] => 54304
+                    [Country] => US
+                )
+
+            [Memo] => No
+            [ShipDate] => 2021-05-04 10:37:37
+            [ShipVia] => NA
+            [IsToBeEmailed] => false
+            [IsToBePrinted] => false
+            [UniqueId] => 21493
+            [Software] => woocommerce
+            [Items] => Array
+                (
+                    [0] => Array
+                        (
+                            [ItemId] => 17449
+                            [Name] => Citrajet - 1 Gallon (3.8L)
+                            [Description] => Citrajet - 1 Gallon (3.8L)
+                            [UnitPrice] => 72.90
+                            [Qty] => 1
+                            [Taxable] => 
+                            [TaxRate] => 0
+                            [TotalLineAmount] => 72.9
+                            [TotalLineTax] => 0
+                            [ItemLineNumber] => 1
+                            [GrossPrice] => 0
+                            [WarrantyDiscount] => 0
+                            [SalesDiscount] => 0
+                        )
+
+                )
+
+        )
+
+)
+
+Added sales order response: 
+stdClass Object
+(
+    [AddSalesOrderResult] => stdClass Object
+        (
+            [SalesOrderInternalId] => 
+            [Status] => Error
+            [StatusCode] => 0
+            [Error] => Adding Record error.  CustomerId not found
+            [ErrorCode] => 3
+        )
+
+)
+
+Sales order info saved. Order ID:21493
+Array
+(
+    [0] => Array
+        (
+            [type] => notice
+            [message] => Sync Orders process has been completed. 1 record(s) processed.
+        )
+
+    [1] => Array
+        (
+            [type] => error
+            [message] => Errors have occurred during the Sales order sync process, please review the logs. First error occurred is: Adding Record error.  CustomerId not found
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [type] => notice
+            [message] => Sync Invoices process has been completed. 0 record(s) processed.
+        )
+
+    [1] => Array
+        (
+            [type] => success
+            [message] => Completed the Invoice sync process with no errors.
+        )
+
+)
+
+Add sales order params: 
+Array
+(
+    [securityToken] => Array
+        (
+            [SecurityId] => 10ff2a5f-34ea-4cb3-9ce1-5c6ec36909df
+            [UserId] => alconoxwoo
+            [Password] => 15Asd36
+        )
+
+    [salesOrder] => Array
+        (
+            [SalesOrderNumber] => 21494
+            [CustomerId] => 0
+            [Date] => 2021-05-04 11:08:40
+            [Currency] => USD
+            [Amount] => 45.80
+            [DueDate] => 2021-05-04 11:08:40
+            [DateUploaded] => 2021-05-04 11:08:40
+            [AmountDue] => 0
+            [PoNum] => 21494
+            [TotalTaxAmount] => 3.4
+            [Description] => Courtney Lysyczyn Advion, Inc. ATTN: 50326 61 Brown Rd Ste 100 Ithaca NY 14850 US courtney.lysyczyn@advion.com 16078829929
+            [NotifyCustomer] => false
+            [billingAddress] => Array
+                (
+                    [FirstName] => Courtney
+                    [LastName] => Lysyczyn
+                    [CompanyName] => Advion, Inc.
+                    [Address1] => ATTN: 50326 61 Brown Rd
+                    [Address2] => Ste 100
+                    [City] => Ithaca
+                    [State] => NY
+                    [ZipCode] => 14850
+                    [Country] => US
+                )
+
+            [shippingAddress] => Array
+                (
+                    [FirstName] => Courtney
+                    [LastName] => Lysyczyn
+                    [CompanyName] => Advion, Inc.
+                    [Address1] => ATTN: 50326 61 Brown Rd
+                    [Address2] => Ste 100
+                    [City] => Ithaca
+                    [State] => NY
+                    [ZipCode] => 14850
+                    [Country] => US
+                )
+
+            [Memo] => No
+            [ShipDate] => 2021-05-04 11:08:40
+            [ShipVia] => NA
+            [IsToBeEmailed] => false
+            [IsToBePrinted] => false
+            [UniqueId] => 21494
+            [Software] => woocommerce
+            [Items] => Array
+                (
+                    [0] => Array
+                        (
+                            [ItemId] => 17456
+                            [Name] => Alcojet - 4 lb box (1.8Kg)
+                            [Description] => Alcojet - 4 lb box (1.8Kg)
+                            [UnitPrice] => 42.40
+                            [Qty] => 1
+                            [Taxable] => 1
+                            [TaxRate] => 0
+                            [TotalLineAmount] => 42.4
+                            [TotalLineTax] => 3.4
+                            [ItemLineNumber] => 1
+                            [GrossPrice] => 0
+                            [WarrantyDiscount] => 0
+                            [SalesDiscount] => 0
+                        )
+
+                )
+
+        )
+
+)
+
+Added sales order response: 
+stdClass Object
+(
+    [AddSalesOrderResult] => stdClass Object
+        (
+            [SalesOrderInternalId] => 
+            [Status] => Error
+            [StatusCode] => 0
+            [Error] => Adding Record error.  CustomerId not found
+            [ErrorCode] => 3
+        )
+
+)
+
+Sales order info saved. Order ID:21494
+Array
+(
+    [0] => Array
+        (
+            [type] => notice
+            [message] => Sync Orders process has been completed. 1 record(s) processed.
+        )
+
+    [1] => Array
+        (
+            [type] => error
+            [message] => Errors have occurred during the Sales order sync process, please review the logs. First error occurred is: Adding Record error.  CustomerId not found
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [type] => notice
+            [message] => Sync Invoices process has been completed. 0 record(s) processed.
+        )
+
+    [1] => Array
+        (
+            [type] => success
+            [message] => Completed the Invoice sync process with no errors.
+        )
+
+)
+
+Add sales order params: 
+Array
+(
+    [securityToken] => Array
+        (
+            [SecurityId] => 10ff2a5f-34ea-4cb3-9ce1-5c6ec36909df
+            [UserId] => alconoxwoo
+            [Password] => 15Asd36
+        )
+
+    [salesOrder] => Array
+        (
+            [SalesOrderNumber] => 21497
+            [CustomerId] => 0
+            [Date] => 2021-05-04 14:54:00
+            [Currency] => USD
+            [Amount] => 24.90
+            [DueDate] => 2021-05-04 14:54:00
+            [DateUploaded] => 2021-05-04 14:54:00
+            [AmountDue] => 0
+            [PoNum] => 21497
+            [TotalTaxAmount] => 0
+            [Description] => Ralph Pizzuti TRANSMURAL SYSTEMS 4 Dundee Park Dr  Andover MA 01810 US ralph.pizzuti@transmuralsystems.com 19784943159
+            [NotifyCustomer] => false
+            [billingAddress] => Array
+                (
+                    [FirstName] => Ralph
+                    [LastName] => Pizzuti
+                    [CompanyName] => TRANSMURAL SYSTEMS
+                    [Address1] => 4 Dundee Park Dr
+                    [Address2] => 
+                    [City] => Andover
+                    [State] => MA
+                    [ZipCode] => 01810
+                    [Country] => US
+                )
+
+            [shippingAddress] => Array
+                (
+                    [FirstName] => Ralph
+                    [LastName] => Pizzuti
+                    [CompanyName] => TRANSMURAL SYSTEMS
+                    [Address1] => 4 Dundee Park Dr
+                    [Address2] => 
+                    [City] => Andover
+                    [State] => MA
+                    [ZipCode] => 01810
+                    [Country] => US
+                )
+
+            [Memo] => No
+            [ShipDate] => 2021-05-04 14:54:00
+            [ShipVia] => NA
+            [IsToBeEmailed] => false
+            [IsToBePrinted] => false
+            [UniqueId] => 21497
+            [Software] => woocommerce
+            [Items] => Array
+                (
+                    [0] => Array
+                        (
+                            [ItemId] => 17336
+                            [Name] => Liquinox - 1 Quart (0.95L)
+                            [Description] => Liquinox - 1 Quart (0.95L)
+                            [UnitPrice] => 24.90
+                            [Qty] => 1
+                            [Taxable] => 
+                            [TaxRate] => 0
+                            [TotalLineAmount] => 24.9
+                            [TotalLineTax] => 0
+                            [ItemLineNumber] => 1
+                            [GrossPrice] => 0
+                            [WarrantyDiscount] => 0
+                            [SalesDiscount] => 0
+                        )
+
+                )
+
+        )
+
+)
+
+Added sales order response: 
+stdClass Object
+(
+    [AddSalesOrderResult] => stdClass Object
+        (
+            [SalesOrderInternalId] => 
+            [Status] => Error
+            [StatusCode] => 0
+            [Error] => Adding Record error.  CustomerId not found
+            [ErrorCode] => 3
+        )
+
+)
+
+Sales order info saved. Order ID:21497
+Array
+(
+    [0] => Array
+        (
+            [type] => notice
+            [message] => Sync Orders process has been completed. 1 record(s) processed.
+        )
+
+    [1] => Array
+        (
+            [type] => error
+            [message] => Errors have occurred during the Sales order sync process, please review the logs. First error occurred is: Adding Record error.  CustomerId not found
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [type] => notice
+            [message] => Sync Invoices process has been completed. 0 record(s) processed.
+        )
+
+    [1] => Array
+        (
+            [type] => success
+            [message] => Completed the Invoice sync process with no errors.
+        )
+
+)
+
+Add sales order params: 
+Array
+(
+    [securityToken] => Array
+        (
+            [SecurityId] => 10ff2a5f-34ea-4cb3-9ce1-5c6ec36909df
+            [UserId] => alconoxwoo
+            [Password] => 15Asd36
+        )
+
+    [salesOrder] => Array
+        (
+            [SalesOrderNumber] => 21498
+            [CustomerId] => 0
+            [Date] => 2021-05-04 14:58:05
+            [Currency] => USD
+            [Amount] => 24.90
+            [DueDate] => 2021-05-04 14:58:05
+            [DateUploaded] => 2021-05-04 14:58:05
+            [AmountDue] => 0
+            [PoNum] => 21498
+            [TotalTaxAmount] => 0
+            [Description] => Ralph Pizzuti TRANSMURAL SYSTEMS 4 Dundee Park Dr  Andover MA 01810 US ralph.pizzuti@transmuralsystems.com 19784943159
+            [NotifyCustomer] => false
+            [billingAddress] => Array
+                (
+                    [FirstName] => Ralph
+                    [LastName] => Pizzuti
+                    [CompanyName] => TRANSMURAL SYSTEMS
+                    [Address1] => 4 Dundee Park Dr
+                    [Address2] => 
+                    [City] => Andover
+                    [State] => MA
+                    [ZipCode] => 01810
+                    [Country] => US
+                )
+
+            [shippingAddress] => Array
+                (
+                    [FirstName] => Ralph
+                    [LastName] => Pizzuti
+                    [CompanyName] => TRANSMURAL SYSTEMS
+                    [Address1] => 4 Dundee Park Dr
+                    [Address2] => 
+                    [City] => Andover
+                    [State] => MA
+                    [ZipCode] => 01810
+                    [Country] => US
+                )
+
+            [Memo] => No
+            [ShipDate] => 2021-05-04 14:58:05
+            [ShipVia] => NA
+            [IsToBeEmailed] => false
+            [IsToBePrinted] => false
+            [UniqueId] => 21498
+            [Software] => woocommerce
+            [Items] => Array
+                (
+                    [0] => Array
+                        (
+                            [ItemId] => 17336
+                            [Name] => Liquinox - 1 Quart (0.95L)
+                            [Description] => Liquinox - 1 Quart (0.95L)
+                            [UnitPrice] => 24.90
+                            [Qty] => 1
+                            [Taxable] => 
+                            [TaxRate] => 0
+                            [TotalLineAmount] => 24.9
+                            [TotalLineTax] => 0
+                            [ItemLineNumber] => 1
+                            [GrossPrice] => 0
+                            [WarrantyDiscount] => 0
+                            [SalesDiscount] => 0
+                        )
+
+                )
+
+        )
+
+)
+
+Added sales order response: 
+stdClass Object
+(
+    [AddSalesOrderResult] => stdClass Object
+        (
+            [SalesOrderInternalId] => 
+            [Status] => Error
+            [StatusCode] => 0
+            [Error] => Adding Record error.  CustomerId not found
+            [ErrorCode] => 3
+        )
+
+)
+
+Sales order info saved. Order ID:21498
+Array
+(
+    [0] => Array
+        (
+            [type] => notice
+            [message] => Sync Orders process has been completed. 1 record(s) processed.
+        )
+
+    [1] => Array
+        (
+            [type] => error
+            [message] => Errors have occurred during the Sales order sync process, please review the logs. First error occurred is: Adding Record error.  CustomerId not found
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [type] => notice
+            [message] => Sync Invoices process has been completed. 0 record(s) processed.
+        )
+
+    [1] => Array
+        (
+            [type] => success
+            [message] => Completed the Invoice sync process with no errors.
+        )
+
+)
+
+Add sales order params: 
+Array
+(
+    [securityToken] => Array
+        (
+            [SecurityId] => 10ff2a5f-34ea-4cb3-9ce1-5c6ec36909df
+            [UserId] => alconoxwoo
+            [Password] => 15Asd36
+        )
+
+    [salesOrder] => Array
+        (
+            [SalesOrderNumber] => 21535
+            [CustomerId] => 0
+            [Date] => 2021-05-05 13:46:08
+            [Currency] => USD
+            [Amount] => 1586.00
+            [DueDate] => 2021-05-05 13:46:08
+            [DateUploaded] => 2021-05-05 13:46:08
+            [AmountDue] => 0
+            [PoNum] => 21535
+            [TotalTaxAmount] => 0
+            [Description] => Frank Ravera Morgan Advanced Materials 13079 Earhart Avenue  Auburn CA 95602 US frank.ravera@morganplc.com 15302176627
+            [NotifyCustomer] => false
+            [billingAddress] => Array
+                (
+                    [FirstName] => Frank
+                    [LastName] => Ravera
+                    [CompanyName] => Morgan Advanced Materials
+                    [Address1] => 13079 Earhart Avenue
+                    [Address2] => 
+                    [City] => Auburn
+                    [State] => CA
+                    [ZipCode] => 95602
+                    [Country] => US
+                )
+
+            [shippingAddress] => Array
+                (
+                    [FirstName] => Frank
+                    [LastName] => Ravera
+                    [CompanyName] => Morgan Advanced Materials
+                    [Address1] => 13079 Earhart Avenue
+                    [Address2] => 
+                    [City] => Auburn
+                    [State] => CA
+                    [ZipCode] => 95602
+                    [Country] => US
+                )
+
+            [Memo] => No
+            [ShipDate] => 2021-05-05 13:46:08
+            [ShipVia] => NA
+            [IsToBeEmailed] => false
+            [IsToBePrinted] => false
+            [UniqueId] => 21535
+            [Software] => woocommerce
+            [Items] => Array
+                (
+                    [0] => Array
+                        (
+                            [ItemId] => 17439
+                            [Name] => Alconox - 100 lb drum (45Kg)
+                            [Description] => Alconox - 100 lb drum (45Kg)
+                            [UnitPrice] => 793.00
+                            [Qty] => 2
+                            [Taxable] => 
+                            [TaxRate] => 0
+                            [TotalLineAmount] => 1586
+                            [TotalLineTax] => 0
+                            [ItemLineNumber] => 1
+                            [GrossPrice] => 0
+                            [WarrantyDiscount] => 0
+                            [SalesDiscount] => 0
+                        )
+
+                )
+
+        )
+
+)
+
+Added sales order response: 
+stdClass Object
+(
+    [AddSalesOrderResult] => stdClass Object
+        (
+            [SalesOrderInternalId] => 
+            [Status] => Error
+            [StatusCode] => 0
+            [Error] => Adding Record error.  CustomerId not found
+            [ErrorCode] => 3
+        )
+
+)
+
+Sales order info saved. Order ID:21535
+Array
+(
+    [0] => Array
+        (
+            [type] => notice
+            [message] => Sync Orders process has been completed. 1 record(s) processed.
+        )
+
+    [1] => Array
+        (
+            [type] => error
+            [message] => Errors have occurred during the Sales order sync process, please review the logs. First error occurred is: Adding Record error.  CustomerId not found
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [type] => notice
+            [message] => Sync Invoices process has been completed. 0 record(s) processed.
+        )
+
+    [1] => Array
+        (
+            [type] => success
+            [message] => Completed the Invoice sync process with no errors.
+        )
+
+)
+
+Add sales order params: 
+Array
+(
+    [securityToken] => Array
+        (
+            [SecurityId] => 10ff2a5f-34ea-4cb3-9ce1-5c6ec36909df
+            [UserId] => alconoxwoo
+            [Password] => 15Asd36
+        )
+
+    [salesOrder] => Array
+        (
+            [SalesOrderNumber] => 21536
+            [CustomerId] => 0
+            [Date] => 2021-05-05 14:02:14
+            [Currency] => USD
+            [Amount] => 57.22
+            [DueDate] => 2021-05-05 14:02:14
+            [DateUploaded] => 2021-05-05 14:02:14
+            [AmountDue] => 0
+            [PoNum] => 21536
+            [TotalTaxAmount] => 0
+            [Description] => Erin Hamilton RKO PO Box 4807  Arcata CA 95518 US eveda333@gmail.com 5104511431
+            [NotifyCustomer] => false
+            [billingAddress] => Array
+                (
+                    [FirstName] => Erin
+                    [LastName] => Hamilton
+                    [CompanyName] => RKO
+                    [Address1] => PO Box 4807
+                    [Address2] => 
+                    [City] => Arcata
+                    [State] => CA
+                    [ZipCode] => 95518
+                    [Country] => US
+                )
+
+            [shippingAddress] => Array
+                (
+                    [FirstName] => Chris
+                    [LastName] => Hall
+                    [CompanyName] => RKO
+                    [Address1] => 4701 West End Rd
+                    [Address2] => 
+                    [City] => Arcata
+                    [State] => CA
+                    [ZipCode] => 95521
+                    [Country] => US
+                )
+
+            [Memo] => No
+            [ShipDate] => 2021-05-05 14:02:14
+            [ShipVia] => NA
+            [IsToBeEmailed] => false
+            [IsToBePrinted] => false
+            [UniqueId] => 21536
+            [Software] => woocommerce
+            [Items] => Array
+                (
+                    [0] => Array
+                        (
+                            [ItemId] => 17456
+                            [Name] => Alcojet - 4 lb box (1.8Kg)
+                            [Description] => Alcojet - 4 lb box (1.8Kg)
+                            [UnitPrice] => 42.40
+                            [Qty] => 1
+                            [Taxable] => 
+                            [TaxRate] => 0
+                            [TotalLineAmount] => 42.4
+                            [TotalLineTax] => 0
+                            [ItemLineNumber] => 1
+                            [GrossPrice] => 0
+                            [WarrantyDiscount] => 0
+                            [SalesDiscount] => 0
+                        )
+
+                )
+
+        )
+
+)
+
+Added sales order response: 
+stdClass Object
+(
+    [AddSalesOrderResult] => stdClass Object
+        (
+            [SalesOrderInternalId] => 
+            [Status] => Error
+            [StatusCode] => 0
+            [Error] => Adding Record error.  CustomerId not found
+            [ErrorCode] => 3
+        )
+
+)
+
+Sales order info saved. Order ID:21536
+Array
+(
+    [0] => Array
+        (
+            [type] => notice
+            [message] => Sync Orders process has been completed. 1 record(s) processed.
+        )
+
+    [1] => Array
+        (
+            [type] => error
+            [message] => Errors have occurred during the Sales order sync process, please review the logs. First error occurred is: Adding Record error.  CustomerId not found
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [type] => notice
+            [message] => Sync Invoices process has been completed. 0 record(s) processed.
+        )
+
+    [1] => Array
+        (
+            [type] => success
+            [message] => Completed the Invoice sync process with no errors.
+        )
+
+)
+
+Add sales order params: 
+Array
+(
+    [securityToken] => Array
+        (
+            [SecurityId] => 10ff2a5f-34ea-4cb3-9ce1-5c6ec36909df
+            [UserId] => alconoxwoo
+            [Password] => 15Asd36
+        )
+
+    [salesOrder] => Array
+        (
+            [SalesOrderNumber] => 21538
+            [CustomerId] => 0
+            [Date] => 2021-05-05 14:43:26
+            [Currency] => USD
+            [Amount] => 175.96
+            [DueDate] => 2021-05-05 14:43:26
+            [DateUploaded] => 2021-05-05 14:43:26
+            [AmountDue] => 0
+            [PoNum] => 21538
+            [TotalTaxAmount] => 0
+            [Description] => Accounts Payable Fast Ag Solutions 4130 Commerce Blvd  Windom MN 56101 US cpeters@fastagsolutions.com 5074273861
+            [NotifyCustomer] => false
+            [billingAddress] => Array
+                (
+                    [FirstName] => Accounts
+                    [LastName] => Payable
+                    [CompanyName] => Fast Ag Solutions
+                    [Address1] => 4130 Commerce Blvd
+                    [Address2] => 
+                    [City] => Windom
+                    [State] => MN
+                    [ZipCode] => 56101
+                    [Country] => US
+                )
+
+            [shippingAddress] => Array
+                (
+                    [FirstName] => Accounts
+                    [LastName] => Payable
+                    [CompanyName] => Fast Ag Solutions
+                    [Address1] => 4130 Commerce Blvd
+                    [Address2] => 
+                    [City] => Windom
+                    [State] => MN
+                    [ZipCode] => 56101
+                    [Country] => US
+                )
+
+            [Memo] => No
+            [ShipDate] => 2021-05-05 14:43:26
+            [ShipVia] => NA
+            [IsToBeEmailed] => false
+            [IsToBePrinted] => false
+            [UniqueId] => 21538
+            [Software] => woocommerce
+            [Items] => Array
+                (
+                    [0] => Array
+                        (
+                            [ItemId] => 17893
+                            [Name] => Citranox - 1 Gallon (3.8L)
+                            [Description] => Citranox - 1 Gallon (3.8L)
+                            [UnitPrice] => 74.40
+                            [Qty] => 2
+                            [Taxable] => 
+                            [TaxRate] => 0
+                            [TotalLineAmount] => 148.8
+                            [TotalLineTax] => 0
+                            [ItemLineNumber] => 1
+                            [GrossPrice] => 0
+                            [WarrantyDiscount] => 0
+                            [SalesDiscount] => 0
+                        )
+
+                )
+
+        )
+
+)
+
+Added sales order response: 
+stdClass Object
+(
+    [AddSalesOrderResult] => stdClass Object
+        (
+            [SalesOrderInternalId] => 
+            [Status] => Error
+            [StatusCode] => 0
+            [Error] => Adding Record error.  CustomerId not found
+            [ErrorCode] => 3
+        )
+
+)
+
+Sales order info saved. Order ID:21538
+Array
+(
+    [0] => Array
+        (
+            [type] => notice
+            [message] => Sync Orders process has been completed. 1 record(s) processed.
+        )
+
+    [1] => Array
+        (
+            [type] => error
+            [message] => Errors have occurred during the Sales order sync process, please review the logs. First error occurred is: Adding Record error.  CustomerId not found
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [type] => notice
+            [message] => Sync Invoices process has been completed. 0 record(s) processed.
+        )
+
+    [1] => Array
+        (
+            [type] => success
+            [message] => Completed the Invoice sync process with no errors.
+        )
+
+)
+
+Add sales order params: 
+Array
+(
+    [securityToken] => Array
+        (
+            [SecurityId] => 10ff2a5f-34ea-4cb3-9ce1-5c6ec36909df
+            [UserId] => alconoxwoo
+            [Password] => 15Asd36
+        )
+
+    [salesOrder] => Array
+        (
+            [SalesOrderNumber] => 21539
+            [CustomerId] => 0
+            [Date] => 2021-05-05 19:51:16
+            [Currency] => USD
+            [Amount] => 101.48
+            [DueDate] => 2021-05-05 19:51:16
+            [DateUploaded] => 2021-05-05 19:51:16
+            [AmountDue] => 0
+            [PoNum] => 21539
+            [TotalTaxAmount] => 0
+            [Description] => Angel Silva H&J Precision Tools 9651 AIRWAY RD Suite D SAN DIEGO CA 92154-7914 US alejandro.ruiz@hjprecisiontools.com 6197100996
+            [NotifyCustomer] => false
+            [billingAddress] => Array
+                (
+                    [FirstName] => Angel
+                    [LastName] => Silva
+                    [CompanyName] => H&J Precision Tools
+                    [Address1] => 9651 AIRWAY RD
+                    [Address2] => Suite D
+                    [City] => SAN DIEGO
+                    [State] => CA
+                    [ZipCode] => 92154-7914
+                    [Country] => US
+                )
+
+            [shippingAddress] => Array
+                (
+                    [FirstName] => Angel
+                    [LastName] => Silva
+                    [CompanyName] => H&J Precision Tools
+                    [Address1] => 9651 AIRWAY RD
+                    [Address2] => Suite D
+                    [City] => SAN DIEGO
+                    [State] => CA
+                    [ZipCode] => 92154-7914
+                    [Country] => US
+                )
+
+            [Memo] => No
+            [ShipDate] => 2021-05-05 19:51:16
+            [ShipVia] => NA
+            [IsToBeEmailed] => false
+            [IsToBePrinted] => false
+            [UniqueId] => 21539
+            [Software] => woocommerce
+            [Items] => Array
+                (
+                    [0] => Array
+                        (
+                            [ItemId] => 17336
+                            [Name] => Liquinox - 1 Gallon (3.8L)
+                            [Description] => Liquinox - 1 Gallon (3.8L)
+                            [UnitPrice] => 83.70
+                            [Qty] => 1
+                            [Taxable] => 
+                            [TaxRate] => 0
+                            [TotalLineAmount] => 83.7
+                            [TotalLineTax] => 0
+                            [ItemLineNumber] => 1
+                            [GrossPrice] => 0
+                            [WarrantyDiscount] => 0
+                            [SalesDiscount] => 0
+                        )
+
+                )
+
+        )
+
+)
+
+Added sales order response: 
+stdClass Object
+(
+    [AddSalesOrderResult] => stdClass Object
+        (
+            [SalesOrderInternalId] => 
+            [Status] => Error
+            [StatusCode] => 0
+            [Error] => Adding Record error.  CustomerId not found
+            [ErrorCode] => 3
+        )
+
+)
+
+Sales order info saved. Order ID:21539
+Array
+(
+    [0] => Array
+        (
+            [type] => notice
+            [message] => Sync Orders process has been completed. 1 record(s) processed.
+        )
+
+    [1] => Array
+        (
+            [type] => error
+            [message] => Errors have occurred during the Sales order sync process, please review the logs. First error occurred is: Adding Record error.  CustomerId not found
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [type] => notice
+            [message] => Sync Invoices process has been completed. 0 record(s) processed.
+        )
+
+    [1] => Array
+        (
+            [type] => success
+            [message] => Completed the Invoice sync process with no errors.
+        )
+
+)
+
+Add sales order params: 
+Array
+(
+    [securityToken] => Array
+        (
+            [SecurityId] => 10ff2a5f-34ea-4cb3-9ce1-5c6ec36909df
+            [UserId] => alconoxwoo
+            [Password] => 15Asd36
+        )
+
+    [salesOrder] => Array
+        (
+            [SalesOrderNumber] => 21541
+            [CustomerId] => 0
+            [Date] => 2021-05-06 10:25:32
+            [Currency] => USD
+            [Amount] => 103.00
+            [DueDate] => 2021-05-06 10:25:32
+            [DateUploaded] => 2021-05-06 10:25:32
+            [AmountDue] => 0
+            [PoNum] => 21541
+            [TotalTaxAmount] => 0
+            [Description] => Ben Rutledge Pulpo LLC 216 Racquette Dr. Suite 1 Fort Collins CO 80524 US brutledge@cellg8.com 9706915426
+            [NotifyCustomer] => false
+            [billingAddress] => Array
+                (
+                    [FirstName] => Ben
+                    [LastName] => Rutledge
+                    [CompanyName] => Pulpo LLC
+                    [Address1] => 216 Racquette Dr.
+                    [Address2] => Suite 1
+                    [City] => Fort Collins
+                    [State] => CO
+                    [ZipCode] => 80524
+                    [Country] => US
+                )
+
+            [shippingAddress] => Array
+                (
+                    [FirstName] => Ben
+                    [LastName] => Rutledge
+                    [CompanyName] => Pulpo LLC
+                    [Address1] => 216 Racquette Dr.
+                    [Address2] => Suite 1
+                    [City] => Fort Collins
+                    [State] => CO
+                    [ZipCode] => 80524
+                    [Country] => US
+                )
+
+            [Memo] => No
+            [ShipDate] => 2021-05-06 10:25:32
+            [ShipVia] => NA
+            [IsToBeEmailed] => false
+            [IsToBePrinted] => false
+            [UniqueId] => 21541
+            [Software] => woocommerce
+            [Items] => Array
+                (
+                    [0] => Array
+                        (
+                            [ItemId] => 17453
+                            [Name] => Tergazyme - 4 lb box (1.8Kg)
+                            [Description] => Tergazyme - 4 lb box (1.8Kg)
+                            [UnitPrice] => 51.50
+                            [Qty] => 2
+                            [Taxable] => 
+                            [TaxRate] => 0
+                            [TotalLineAmount] => 103
+                            [TotalLineTax] => 0
+                            [ItemLineNumber] => 1
+                            [GrossPrice] => 0
+                            [WarrantyDiscount] => 0
+                            [SalesDiscount] => 0
+                        )
+
+                )
+
+        )
+
+)
+
+Added sales order response: 
+stdClass Object
+(
+    [AddSalesOrderResult] => stdClass Object
+        (
+            [SalesOrderInternalId] => 
+            [Status] => Error
+            [StatusCode] => 0
+            [Error] => Adding Record error.  CustomerId not found
+            [ErrorCode] => 3
+        )
+
+)
+
+Sales order info saved. Order ID:21541
+Array
+(
+    [0] => Array
+        (
+            [type] => notice
+            [message] => Sync Orders process has been completed. 1 record(s) processed.
+        )
+
+    [1] => Array
+        (
+            [type] => error
+            [message] => Errors have occurred during the Sales order sync process, please review the logs. First error occurred is: Adding Record error.  CustomerId not found
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [type] => notice
+            [message] => Sync Invoices process has been completed. 0 record(s) processed.
+        )
+
+    [1] => Array
+        (
+            [type] => success
+            [message] => Completed the Invoice sync process with no errors.
+        )
+
+)
+
+Add sales order params: 
+Array
+(
+    [securityToken] => Array
+        (
+            [SecurityId] => 10ff2a5f-34ea-4cb3-9ce1-5c6ec36909df
+            [UserId] => alconoxwoo
+            [Password] => 15Asd36
+        )
+
+    [salesOrder] => Array
+        (
+            [SalesOrderNumber] => 21542
+            [CustomerId] => 0
+            [Date] => 2021-05-06 12:37:14
+            [Currency] => USD
+            [Amount] => 38.80
+            [DueDate] => 2021-05-06 12:37:14
+            [DateUploaded] => 2021-05-06 12:37:14
+            [AmountDue] => 0
+            [PoNum] => 21542
+            [TotalTaxAmount] => 0
+            [Description] => Robert Danduran Lightning Protection Corporation 5750 Thornwood Drive  Goleta CA 93117 US chesterk@west.net 805 967 4577
+            [NotifyCustomer] => false
+            [billingAddress] => Array
+                (
+                    [FirstName] => Robert
+                    [LastName] => Danduran
+                    [CompanyName] => Lightning Protection Corporation
+                    [Address1] => 5750 Thornwood Drive
+                    [Address2] => 
+                    [City] => Goleta
+                    [State] => CA
+                    [ZipCode] => 93117
+                    [Country] => US
+                )
+
+            [shippingAddress] => Array
+                (
+                    [FirstName] => Robert
+                    [LastName] => Danduran
+                    [CompanyName] => Lightning Protection Corporation
+                    [Address1] => 5750 Thornwood Drive
+                    [Address2] => 
+                    [City] => Goleta
+                    [State] => CA
+                    [ZipCode] => 93117
+                    [Country] => US
+                )
+
+            [Memo] => No
+            [ShipDate] => 2021-05-06 12:37:14
+            [ShipVia] => NA
+            [IsToBeEmailed] => false
+            [IsToBePrinted] => false
+            [UniqueId] => 21542
+            [Software] => woocommerce
+            [Items] => Array
+                (
+                    [0] => Array
+                        (
+                            [ItemId] => 17336
+                            [Name] => Liquinox - 1 Quart (0.95L)
+                            [Description] => Liquinox - 1 Quart (0.95L)
+                            [UnitPrice] => 24.90
+                            [Qty] => 1
+                            [Taxable] => 
+                            [TaxRate] => 0
+                            [TotalLineAmount] => 24.9
+                            [TotalLineTax] => 0
+                            [ItemLineNumber] => 1
+                            [GrossPrice] => 0
+                            [WarrantyDiscount] => 0
+                            [SalesDiscount] => 0
+                        )
+
+                )
+
+        )
+
+)
+
+Added sales order response: 
+stdClass Object
+(
+    [AddSalesOrderResult] => stdClass Object
+        (
+            [SalesOrderInternalId] => 
+            [Status] => Error
+            [StatusCode] => 0
+            [Error] => Adding Record error.  CustomerId not found
+            [ErrorCode] => 3
+        )
+
+)
+
+Sales order info saved. Order ID:21542
+Array
+(
+    [0] => Array
+        (
+            [type] => notice
+            [message] => Sync Orders process has been completed. 1 record(s) processed.
+        )
+
+    [1] => Array
+        (
+            [type] => error
+            [message] => Errors have occurred during the Sales order sync process, please review the logs. First error occurred is: Adding Record error.  CustomerId not found
+        )
+
+)
+
+Array
+(
+    [0] => Array
+        (
+            [type] => notice
+            [message] => Sync Invoices process has been completed. 0 record(s) processed.
+        )
+
+    [1] => Array
+        (
+            [type] => success
+            [message] => Completed the Invoice sync process with no errors.
+        )
+
+)
+
