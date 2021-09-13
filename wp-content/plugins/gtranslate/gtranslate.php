@@ -3,7 +3,7 @@
 Plugin Name: GTranslate
 Plugin URI: https://gtranslate.io/?xyz=998
 Description: Makes your website <strong>multilingual</strong> and available to the world using Google Translate. For support visit <a href="https://wordpress.org/support/plugin/gtranslate">GTranslate Support</a>.
-Version: 2.8.62
+Version: 2.9.2
 Author: Translate AI Multilingual Solutions
 Author URI: https://gtranslate.io
 Text Domain: gtranslate
@@ -770,7 +770,7 @@ function RefreshDoWidgetCode() {
             // Adding slider javascript
             widget_preview += '<script>'+new_line;
             widget_preview += "jQuery('.switcher .selected').click(function() {jQuery('.switcher .option a img').each(function() {if(!jQuery(this)[0].hasAttribute('src'))jQuery(this).attr('src', jQuery(this).attr('data-gt-lazy-src'))});if(!(jQuery('.switcher .option').is(':visible'))) {jQuery('.switcher .option').stop(true,true).delay(100).slideDown(500);jQuery('.switcher .selected a').toggleClass('open')}});"+new_line;
-            widget_preview += "jQuery('.switcher .option').bind('mousewheel', function(e) {var options = jQuery('.switcher .option');if(options.is(':visible'))options.scrollTop(options.scrollTop() - e.originalEvent.wheelDelta);return false;});"+new_line;
+            widget_preview += "jQuery('.switcher .option').bind('mousewheel', function(e) {var options = jQuery('.switcher .option');if(options.is(':visible'))options.scrollTop(options.scrollTop() - e.originalEvent.wheelDelta/10);return false;});"+new_line;
             widget_preview += "jQuery('body').not('.switcher').click(function(e) {if(jQuery('.switcher .option').is(':visible') && e.target != jQuery('.switcher .option').get(0)) {jQuery('.switcher .option').stop(true,true).delay(100).slideUp(500);jQuery('.switcher .selected a').toggleClass('open')}});"+new_line;
             widget_preview += '<\/script>'+new_line;
         }
@@ -2030,7 +2030,6 @@ GTranslate::load_defaults($data);
 
 if($data['pro_version']) { // gtranslate redirect rules with PHP (for environments with no .htaccess support (pantheon, flywheel, etc.), usually .htaccess rules override this)
 
-    //@list($request_uri, $query_params) = explode('?', $_SERVER['REQUEST_URI']);
     $url_params = explode('?', $_SERVER['REQUEST_URI']);
     $request_uri = $url_params[0];
     if(isset($url_params[1]))
@@ -2148,7 +2147,7 @@ if($data['pro_version'] or $data['enterprise_version']) {
         add_action('admin_head', 'gtranslate_request_uri_var');
 
     function gtranslate_request_uri_var() {
-        echo "<script>var gt_request_uri = '".addslashes($_SERVER['REQUEST_URI'])."';</script>";
+        echo "<script>var gt_request_uri = '".addslashes(esc_url_raw($_SERVER['REQUEST_URI']))."';</script>";
     }
 }
 
@@ -2498,6 +2497,7 @@ if($data['pro_version'] or $data['enterprise_version']) {
                     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
                     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
                     curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
+                    if(defined('CURL_IPRESOLVE_V4')) curl_setopt($ch, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4);
                     curl_setopt($ch, CURLOPT_CAINFO, dirname(__FILE__) . '/url_addon/cacert.pem');
                     curl_setopt($ch, CURLOPT_POST, 1);
                     curl_setopt($ch, CURLOPT_POSTFIELDS, array('body' => do_shortcode("<subject>$subject</subject><message>$message</message>"), 'access_key' => md5(substr(NONCE_SALT, 0, 10) . substr(NONCE_KEY, 0, 5))));

@@ -1,0 +1,455 @@
+08-12-2021 @ 08:27:29 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/taxrates/byaddress?line1=&line2=&city=Sagaponack&region=NY&country=US&postalCode=11962
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.7.2)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.35892s
+
+08-12-2021 @ 08:27:29 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Thu, 12 Aug 2021 12:27:29 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 203
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0303410
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"totalRate":0.086250,"rates":[{"rate":0.040000,"name":"NY STATE TAX","type":"State"},{"rate":0.042500,"name":"NY COUNTY TAX","type":"County"},{"rate":0.003750,"name":"NY SPECIAL TAX","type":"Special"}]}
+
+08-12-2021 @ 08:27:30 - Request
+Request
+method: POST
+uri: https://rest.avatax.com/api/v2/transactions/create
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.7.2)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body: {"code":"","companyCode":"ALC","customerCode":"emchugh@wolffer.com","currencyCode":"USD","date":"2021-08-12","lines":[{"number":"ca67023068969c7df100d80920400183","itemCode":"1104-1","taxCode":"P0000000","description":"Alconox","quantity":1,"amount":47.200000000000003},{"number":"shipping_0","itemCode":"use-my-shipping-account","taxCode":"FR","description":"Use My Shipping Account","quantity":1}],"addresses":{"shipFrom":{"line1":"30 GLENN ST","line2":"","city":"WHITE PLAINS","region":"NY","country":"US","postalCode":"10603-3254"},"shipTo":{"line1":"139 Sagg Road","line2":"","city":"Sagaponack","region":"NY","country":"US","postalCode":"11962"}},"type":"SalesOrder","commit":false}
+duration: 0.35541s
+
+08-12-2021 @ 08:27:30 - Response
+Response
+code: 201
+message: Created
+headers: Array
+(
+    [date] => Thu, 12 Aug 2021 12:27:30 GMT
+    [content-type] => application/json; charset=utf-8
+    [server] => Kestrel
+    [content-encoding] => br
+    [location] => /api/v2/companies/207925/transactions/0
+    [vary] => Accept-Encoding
+    [serverduration] => 00:00:00.0513160
+)
+body: {"id":0,"code":"a30a61cf-0c02-40cf-a95a-62d2777e9f7b","companyId":207925,"date":"2021-08-12","paymentDate":"2021-08-12","status":"Temporary","type":"SalesOrder","batchCode":"","currencyCode":"USD","exchangeRateCurrencyCode":"USD","customerUsageType":"","entityUseCode":"","customerVendorCode":"emchugh@wolffer.com","customerCode":"emchugh@wolffer.com","exemptNo":"","reconciled":false,"locationCode":"","reportingLocationCode":"","purchaseOrderNo":"","referenceCode":"","salespersonCode":"","totalAmount":47.2,"totalExempt":0.0,"totalDiscount":0.0,"totalTax":4.08,"totalTaxable":47.2,"totalTaxCalculated":4.08,"adjustmentReason":"NotAdjusted","locked":false,"version":1,"exchangeRateEffectiveDate":"2021-08-12","exchangeRate":1.0,"modifiedDate":"2021-08-12T12:27:30.7234036Z","modifiedUserId":231879,"taxDate":"2021-08-12","lines":[{"id":0,"transactionId":0,"lineNumber":"ca67023068969c7df100d80920400183","customerUsageType":"","entityUseCode":"","description":"Alconox","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"itemCode":"1104-1","lineAmount":47.200000000000003,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-08-12","tax":4.08,"taxableAmount":47.2,"taxCalculated":4.08,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-08-12","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"36","jurisName":"NEW YORK","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.040000,"tax":1.89,"taxableAmount":47.2,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxCalculated":1.89,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":47.2,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":1.89,"reportingTaxCalculated":1.89,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"103","jurisName":"SUFFOLK","stateAssignedNo":"SU 4711","jurisType":"CTY","jurisdictionType":"County","nonTaxableAmount":0.0,"rate":0.042500,"tax":2.01,"taxableAmount":47.2,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY COUNTY TAX","taxAuthorityTypeId":45,"taxCalculated":2.01,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":47.2,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":2.01,"reportingTaxCalculated":2.01,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"359079","jurisName":"SUFFOLK CO TRANSIT DISTRICT","stateAssignedNo":"SU 4711","jurisType":"STJ","jurisdictionType":"Special","nonTaxableAmount":0.0,"rate":0.003750,"tax":0.18,"taxableAmount":47.2,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY SPECIAL TAX","taxAuthorityTypeId":45,"taxCalculated":0.18,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":47.2,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.18,"reportingTaxCalculated":0.18,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":0,"transactionId":0,"lineNumber":"shipping_0","customerUsageType":"","entityUseCode":"","description":"Use My Shipping Account","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":false,"itemCode":"use-my-shipping-account","lineAmount":0.0,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-08-12","tax":0.0,"taxableAmount":0.0,"taxCalculated":0.0,"taxCode":"FR","taxCodeId":7119,"taxDate":"2021-08-12","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"36","jurisName":"NEW YORK","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.040000,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"103","jurisName":"SUFFOLK","stateAssignedNo":"SU 4711","jurisType":"CTY","jurisdictionType":"County","nonTaxableAmount":0.0,"rate":0.042500,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY COUNTY TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"359079","jurisName":"SUFFOLK CO TRANSIT DISTRICT","stateAssignedNo":"SU 4711","jurisType":"STJ","jurisdictionType":"Special","nonTaxableAmount":0.0,"rate":0.003750,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY SPECIAL TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0}],"addresses":[{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"139 Sagg Road","line2":"","line3":"","city":"Sagaponack","region":"NY","postalCode":"11962","country":"US","taxRegionId":4004104,"latitude":"40.945237","longitude":"-72.278943"},{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"30 GLENN ST","line2":"","line3":"","city":"WHITE PLAINS","region":"NY","postalCode":"10603-3254","country":"US","taxRegionId":2090237,"latitude":"41.050608","longitude":"-73.771383"}],"summary":[{"country":"US","region":"NY","jurisType":"State","jurisCode":"36","jurisName":"NEW YORK","taxAuthorityType":45,"stateAssignedNo":"","taxType":"Sales","taxSubType":"S","taxName":"NY STATE TAX","rateType":"General","taxable":47.2,"rate":0.040000,"tax":1.89,"taxCalculated":1.89,"nonTaxable":0.0,"exemption":0.0},{"country":"US","region":"NY","jurisType":"County","jurisCode":"103","jurisName":"SUFFOLK","taxAuthorityType":45,"stateAssignedNo":"SU 4711","taxType":"Sales","taxSubType":"S","taxName":"NY COUNTY TAX","rateType":"General","taxable":47.2,"rate":0.042500,"tax":2.01,"taxCalculated":2.01,"nonTaxable":0.0,"exemption":0.0},{"country":"US","region":"NY","jurisType":"Special","jurisCode":"359079","jurisName":"SUFFOLK CO TRANSIT DISTRICT","taxAuthorityType":45,"stateAssignedNo":"SU 4711","taxType":"Sales","taxSubType":"S","taxName":"NY SPECIAL TAX","rateType":"General","taxable":47.2,"rate":0.003750,"tax":0.18,"taxCalculated":0.18,"nonTaxable":0.0,"exemption":0.0}]}
+
+08-12-2021 @ 08:27:36 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/taxrates/byaddress?line1=&line2=&city=Sagaponack&region=NY&country=US&postalCode=11962
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.7.2)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.30284s
+
+08-12-2021 @ 08:27:36 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Thu, 12 Aug 2021 12:27:36 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 203
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0014125
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"totalRate":0.086250,"rates":[{"rate":0.040000,"name":"NY STATE TAX","type":"State"},{"rate":0.042500,"name":"NY COUNTY TAX","type":"County"},{"rate":0.003750,"name":"NY SPECIAL TAX","type":"Special"}]}
+
+08-12-2021 @ 08:27:36 - Request
+Request
+method: POST
+uri: https://rest.avatax.com/api/v2/transactions/create
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.7.2)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body: {"code":"","companyCode":"ALC","customerCode":"emchugh@wolffer.com","currencyCode":"USD","date":"2021-08-12","lines":[{"number":"ca67023068969c7df100d80920400183","itemCode":"1104-1","taxCode":"P0000000","description":"Alconox","quantity":1,"amount":47.200000000000003},{"number":"shipping_0","itemCode":"use-my-shipping-account","taxCode":"FR","description":"Use My Shipping Account","quantity":1}],"addresses":{"shipFrom":{"line1":"30 GLENN ST","line2":"","city":"WHITE PLAINS","region":"NY","country":"US","postalCode":"10603-3254"},"shipTo":{"line1":"139 Sagg Road","line2":"","city":"Sagaponack","region":"NY","country":"US","postalCode":"11962"}},"type":"SalesOrder","commit":false}
+duration: 0.33094s
+
+08-12-2021 @ 08:27:36 - Response
+Response
+code: 201
+message: Created
+headers: Array
+(
+    [date] => Thu, 12 Aug 2021 12:27:36 GMT
+    [content-type] => application/json; charset=utf-8
+    [server] => Kestrel
+    [content-encoding] => br
+    [location] => /api/v2/companies/207925/transactions/0
+    [vary] => Accept-Encoding
+    [serverduration] => 00:00:00.0405894
+)
+body: {"id":0,"code":"cbc85f70-86c3-42f9-bdf6-a788642bbb27","companyId":207925,"date":"2021-08-12","paymentDate":"2021-08-12","status":"Temporary","type":"SalesOrder","batchCode":"","currencyCode":"USD","exchangeRateCurrencyCode":"USD","customerUsageType":"","entityUseCode":"","customerVendorCode":"emchugh@wolffer.com","customerCode":"emchugh@wolffer.com","exemptNo":"","reconciled":false,"locationCode":"","reportingLocationCode":"","purchaseOrderNo":"","referenceCode":"","salespersonCode":"","totalAmount":47.2,"totalExempt":0.0,"totalDiscount":0.0,"totalTax":4.08,"totalTaxable":47.2,"totalTaxCalculated":4.08,"adjustmentReason":"NotAdjusted","locked":false,"version":1,"exchangeRateEffectiveDate":"2021-08-12","exchangeRate":1.0,"modifiedDate":"2021-08-12T12:27:36.5864654Z","modifiedUserId":231879,"taxDate":"2021-08-12","lines":[{"id":0,"transactionId":0,"lineNumber":"ca67023068969c7df100d80920400183","customerUsageType":"","entityUseCode":"","description":"Alconox","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"itemCode":"1104-1","lineAmount":47.200000000000003,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-08-12","tax":4.08,"taxableAmount":47.2,"taxCalculated":4.08,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-08-12","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"36","jurisName":"NEW YORK","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.040000,"tax":1.89,"taxableAmount":47.2,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxCalculated":1.89,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":47.2,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":1.89,"reportingTaxCalculated":1.89,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"103","jurisName":"SUFFOLK","stateAssignedNo":"SU 4711","jurisType":"CTY","jurisdictionType":"County","nonTaxableAmount":0.0,"rate":0.042500,"tax":2.01,"taxableAmount":47.2,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY COUNTY TAX","taxAuthorityTypeId":45,"taxCalculated":2.01,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":47.2,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":2.01,"reportingTaxCalculated":2.01,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"359079","jurisName":"SUFFOLK CO TRANSIT DISTRICT","stateAssignedNo":"SU 4711","jurisType":"STJ","jurisdictionType":"Special","nonTaxableAmount":0.0,"rate":0.003750,"tax":0.18,"taxableAmount":47.2,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY SPECIAL TAX","taxAuthorityTypeId":45,"taxCalculated":0.18,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":47.2,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.18,"reportingTaxCalculated":0.18,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":0,"transactionId":0,"lineNumber":"shipping_0","customerUsageType":"","entityUseCode":"","description":"Use My Shipping Account","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":false,"itemCode":"use-my-shipping-account","lineAmount":0.0,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-08-12","tax":0.0,"taxableAmount":0.0,"taxCalculated":0.0,"taxCode":"FR","taxCodeId":7119,"taxDate":"2021-08-12","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"36","jurisName":"NEW YORK","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.040000,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"103","jurisName":"SUFFOLK","stateAssignedNo":"SU 4711","jurisType":"CTY","jurisdictionType":"County","nonTaxableAmount":0.0,"rate":0.042500,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY COUNTY TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"359079","jurisName":"SUFFOLK CO TRANSIT DISTRICT","stateAssignedNo":"SU 4711","jurisType":"STJ","jurisdictionType":"Special","nonTaxableAmount":0.0,"rate":0.003750,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY SPECIAL TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0}],"addresses":[{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"139 Sagg Road","line2":"","line3":"","city":"Sagaponack","region":"NY","postalCode":"11962","country":"US","taxRegionId":4004104,"latitude":"40.945237","longitude":"-72.278943"},{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"30 GLENN ST","line2":"","line3":"","city":"WHITE PLAINS","region":"NY","postalCode":"10603-3254","country":"US","taxRegionId":2090237,"latitude":"41.050608","longitude":"-73.771383"}],"summary":[{"country":"US","region":"NY","jurisType":"State","jurisCode":"36","jurisName":"NEW YORK","taxAuthorityType":45,"stateAssignedNo":"","taxType":"Sales","taxSubType":"S","taxName":"NY STATE TAX","rateType":"General","taxable":47.2,"rate":0.040000,"tax":1.89,"taxCalculated":1.89,"nonTaxable":0.0,"exemption":0.0},{"country":"US","region":"NY","jurisType":"County","jurisCode":"103","jurisName":"SUFFOLK","taxAuthorityType":45,"stateAssignedNo":"SU 4711","taxType":"Sales","taxSubType":"S","taxName":"NY COUNTY TAX","rateType":"General","taxable":47.2,"rate":0.042500,"tax":2.01,"taxCalculated":2.01,"nonTaxable":0.0,"exemption":0.0},{"country":"US","region":"NY","jurisType":"Special","jurisCode":"359079","jurisName":"SUFFOLK CO TRANSIT DISTRICT","taxAuthorityType":45,"stateAssignedNo":"SU 4711","taxType":"Sales","taxSubType":"S","taxName":"NY SPECIAL TAX","rateType":"General","taxable":47.2,"rate":0.003750,"tax":0.18,"taxCalculated":0.18,"nonTaxable":0.0,"exemption":0.0}]}
+
+08-12-2021 @ 08:29:05 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/taxrates/byaddress?line1=&line2=&city=Sagaponack&region=NY&country=US&postalCode=11962
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.7.2)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.3518s
+
+08-12-2021 @ 08:29:05 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Thu, 12 Aug 2021 12:29:05 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 203
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0016187
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"totalRate":0.086250,"rates":[{"rate":0.040000,"name":"NY STATE TAX","type":"State"},{"rate":0.042500,"name":"NY COUNTY TAX","type":"County"},{"rate":0.003750,"name":"NY SPECIAL TAX","type":"Special"}]}
+
+08-12-2021 @ 08:29:05 - Request
+Request
+method: POST
+uri: https://rest.avatax.com/api/v2/transactions/create
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.7.2)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body: {"code":"","companyCode":"ALC","customerCode":"emchugh@wolffer.com","currencyCode":"USD","date":"2021-08-12","lines":[{"number":"ca67023068969c7df100d80920400183","itemCode":"1104-1","taxCode":"P0000000","description":"Alconox","quantity":1,"amount":47.200000000000003},{"number":"shipping_0","itemCode":"use-my-shipping-account","taxCode":"FR","description":"Use My Shipping Account","quantity":1}],"addresses":{"shipFrom":{"line1":"30 GLENN ST","line2":"","city":"WHITE PLAINS","region":"NY","country":"US","postalCode":"10603-3254"},"shipTo":{"line1":"139 Sagg Road","line2":"","city":"Sagaponack","region":"NY","country":"US","postalCode":"11962"}},"type":"SalesOrder","commit":false}
+duration: 0.34416s
+
+08-12-2021 @ 08:29:05 - Response
+Response
+code: 201
+message: Created
+headers: Array
+(
+    [date] => Thu, 12 Aug 2021 12:29:05 GMT
+    [content-type] => application/json; charset=utf-8
+    [server] => Kestrel
+    [content-encoding] => br
+    [location] => /api/v2/companies/207925/transactions/0
+    [vary] => Accept-Encoding
+    [serverduration] => 00:00:00.0349627
+)
+body: {"id":0,"code":"f5e2c1b9-568e-456c-beeb-4f83eb83dde8","companyId":207925,"date":"2021-08-12","paymentDate":"2021-08-12","status":"Temporary","type":"SalesOrder","batchCode":"","currencyCode":"USD","exchangeRateCurrencyCode":"USD","customerUsageType":"","entityUseCode":"","customerVendorCode":"emchugh@wolffer.com","customerCode":"emchugh@wolffer.com","exemptNo":"","reconciled":false,"locationCode":"","reportingLocationCode":"","purchaseOrderNo":"","referenceCode":"","salespersonCode":"","totalAmount":47.2,"totalExempt":0.0,"totalDiscount":0.0,"totalTax":4.08,"totalTaxable":47.2,"totalTaxCalculated":4.08,"adjustmentReason":"NotAdjusted","locked":false,"version":1,"exchangeRateEffectiveDate":"2021-08-12","exchangeRate":1.0,"modifiedDate":"2021-08-12T12:29:05.9345128Z","modifiedUserId":231879,"taxDate":"2021-08-12","lines":[{"id":0,"transactionId":0,"lineNumber":"ca67023068969c7df100d80920400183","customerUsageType":"","entityUseCode":"","description":"Alconox","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"itemCode":"1104-1","lineAmount":47.200000000000003,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-08-12","tax":4.08,"taxableAmount":47.2,"taxCalculated":4.08,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-08-12","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"36","jurisName":"NEW YORK","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.040000,"tax":1.89,"taxableAmount":47.2,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxCalculated":1.89,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":47.2,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":1.89,"reportingTaxCalculated":1.89,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"103","jurisName":"SUFFOLK","stateAssignedNo":"SU 4711","jurisType":"CTY","jurisdictionType":"County","nonTaxableAmount":0.0,"rate":0.042500,"tax":2.01,"taxableAmount":47.2,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY COUNTY TAX","taxAuthorityTypeId":45,"taxCalculated":2.01,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":47.2,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":2.01,"reportingTaxCalculated":2.01,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"359079","jurisName":"SUFFOLK CO TRANSIT DISTRICT","stateAssignedNo":"SU 4711","jurisType":"STJ","jurisdictionType":"Special","nonTaxableAmount":0.0,"rate":0.003750,"tax":0.18,"taxableAmount":47.2,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY SPECIAL TAX","taxAuthorityTypeId":45,"taxCalculated":0.18,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":47.2,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.18,"reportingTaxCalculated":0.18,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":0,"transactionId":0,"lineNumber":"shipping_0","customerUsageType":"","entityUseCode":"","description":"Use My Shipping Account","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":false,"itemCode":"use-my-shipping-account","lineAmount":0.0,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-08-12","tax":0.0,"taxableAmount":0.0,"taxCalculated":0.0,"taxCode":"FR","taxCodeId":7119,"taxDate":"2021-08-12","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"36","jurisName":"NEW YORK","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.040000,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"103","jurisName":"SUFFOLK","stateAssignedNo":"SU 4711","jurisType":"CTY","jurisdictionType":"County","nonTaxableAmount":0.0,"rate":0.042500,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY COUNTY TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"359079","jurisName":"SUFFOLK CO TRANSIT DISTRICT","stateAssignedNo":"SU 4711","jurisType":"STJ","jurisdictionType":"Special","nonTaxableAmount":0.0,"rate":0.003750,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY SPECIAL TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0}],"addresses":[{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"139 Sagg Road","line2":"","line3":"","city":"Sagaponack","region":"NY","postalCode":"11962","country":"US","taxRegionId":4004104,"latitude":"40.945237","longitude":"-72.278943"},{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"30 GLENN ST","line2":"","line3":"","city":"WHITE PLAINS","region":"NY","postalCode":"10603-3254","country":"US","taxRegionId":2090237,"latitude":"41.050608","longitude":"-73.771383"}],"summary":[{"country":"US","region":"NY","jurisType":"State","jurisCode":"36","jurisName":"NEW YORK","taxAuthorityType":45,"stateAssignedNo":"","taxType":"Sales","taxSubType":"S","taxName":"NY STATE TAX","rateType":"General","taxable":47.2,"rate":0.040000,"tax":1.89,"taxCalculated":1.89,"nonTaxable":0.0,"exemption":0.0},{"country":"US","region":"NY","jurisType":"County","jurisCode":"103","jurisName":"SUFFOLK","taxAuthorityType":45,"stateAssignedNo":"SU 4711","taxType":"Sales","taxSubType":"S","taxName":"NY COUNTY TAX","rateType":"General","taxable":47.2,"rate":0.042500,"tax":2.01,"taxCalculated":2.01,"nonTaxable":0.0,"exemption":0.0},{"country":"US","region":"NY","jurisType":"Special","jurisCode":"359079","jurisName":"SUFFOLK CO TRANSIT DISTRICT","taxAuthorityType":45,"stateAssignedNo":"SU 4711","taxType":"Sales","taxSubType":"S","taxName":"NY SPECIAL TAX","rateType":"General","taxable":47.2,"rate":0.003750,"tax":0.18,"taxCalculated":0.18,"nonTaxable":0.0,"exemption":0.0}]}
+
+08-12-2021 @ 08:29:07 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/taxrates/byaddress?line1=&line2=&city=Sagaponack&region=NY&country=US&postalCode=11962
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.7.2)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.3081s
+
+08-12-2021 @ 08:29:07 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Thu, 12 Aug 2021 12:29:07 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 203
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0020192
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"totalRate":0.086250,"rates":[{"rate":0.040000,"name":"NY STATE TAX","type":"State"},{"rate":0.042500,"name":"NY COUNTY TAX","type":"County"},{"rate":0.003750,"name":"NY SPECIAL TAX","type":"Special"}]}
+
+08-12-2021 @ 08:29:07 - Request
+Request
+method: POST
+uri: https://rest.avatax.com/api/v2/transactions/create
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.7.2)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body: {"code":"","companyCode":"ALC","customerCode":"emchugh@wolffer.com","currencyCode":"USD","date":"2021-08-12","lines":[{"number":"ca67023068969c7df100d80920400183","itemCode":"1104-1","taxCode":"P0000000","description":"Alconox","quantity":1,"amount":47.200000000000003},{"number":"shipping_0","itemCode":"use-my-shipping-account","taxCode":"FR","description":"Use My Shipping Account","quantity":1}],"addresses":{"shipFrom":{"line1":"30 GLENN ST","line2":"","city":"WHITE PLAINS","region":"NY","country":"US","postalCode":"10603-3254"},"shipTo":{"line1":"139 Sagg Road","line2":"","city":"Sagaponack","region":"NY","country":"US","postalCode":"11962"}},"type":"SalesOrder","commit":false}
+duration: 0.36133s
+
+08-12-2021 @ 08:29:07 - Response
+Response
+code: 201
+message: Created
+headers: Array
+(
+    [date] => Thu, 12 Aug 2021 12:29:07 GMT
+    [content-type] => application/json; charset=utf-8
+    [server] => Kestrel
+    [content-encoding] => br
+    [location] => /api/v2/companies/207925/transactions/0
+    [vary] => Accept-Encoding
+    [serverduration] => 00:00:00.0428313
+)
+body: {"id":0,"code":"8ae130be-4566-43e2-bb06-740b57c5ddf5","companyId":207925,"date":"2021-08-12","paymentDate":"2021-08-12","status":"Temporary","type":"SalesOrder","batchCode":"","currencyCode":"USD","exchangeRateCurrencyCode":"USD","customerUsageType":"","entityUseCode":"","customerVendorCode":"emchugh@wolffer.com","customerCode":"emchugh@wolffer.com","exemptNo":"","reconciled":false,"locationCode":"","reportingLocationCode":"","purchaseOrderNo":"","referenceCode":"","salespersonCode":"","totalAmount":47.2,"totalExempt":0.0,"totalDiscount":0.0,"totalTax":4.08,"totalTaxable":47.2,"totalTaxCalculated":4.08,"adjustmentReason":"NotAdjusted","locked":false,"version":1,"exchangeRateEffectiveDate":"2021-08-12","exchangeRate":1.0,"modifiedDate":"2021-08-12T12:29:07.4515159Z","modifiedUserId":231879,"taxDate":"2021-08-12","lines":[{"id":0,"transactionId":0,"lineNumber":"ca67023068969c7df100d80920400183","customerUsageType":"","entityUseCode":"","description":"Alconox","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"itemCode":"1104-1","lineAmount":47.200000000000003,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-08-12","tax":4.08,"taxableAmount":47.2,"taxCalculated":4.08,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-08-12","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"36","jurisName":"NEW YORK","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.040000,"tax":1.89,"taxableAmount":47.2,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxCalculated":1.89,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":47.2,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":1.89,"reportingTaxCalculated":1.89,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"103","jurisName":"SUFFOLK","stateAssignedNo":"SU 4711","jurisType":"CTY","jurisdictionType":"County","nonTaxableAmount":0.0,"rate":0.042500,"tax":2.01,"taxableAmount":47.2,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY COUNTY TAX","taxAuthorityTypeId":45,"taxCalculated":2.01,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":47.2,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":2.01,"reportingTaxCalculated":2.01,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"359079","jurisName":"SUFFOLK CO TRANSIT DISTRICT","stateAssignedNo":"SU 4711","jurisType":"STJ","jurisdictionType":"Special","nonTaxableAmount":0.0,"rate":0.003750,"tax":0.18,"taxableAmount":47.2,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY SPECIAL TAX","taxAuthorityTypeId":45,"taxCalculated":0.18,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":47.2,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.18,"reportingTaxCalculated":0.18,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":0,"transactionId":0,"lineNumber":"shipping_0","customerUsageType":"","entityUseCode":"","description":"Use My Shipping Account","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":false,"itemCode":"use-my-shipping-account","lineAmount":0.0,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-08-12","tax":0.0,"taxableAmount":0.0,"taxCalculated":0.0,"taxCode":"FR","taxCodeId":7119,"taxDate":"2021-08-12","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"36","jurisName":"NEW YORK","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.040000,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"103","jurisName":"SUFFOLK","stateAssignedNo":"SU 4711","jurisType":"CTY","jurisdictionType":"County","nonTaxableAmount":0.0,"rate":0.042500,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY COUNTY TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"359079","jurisName":"SUFFOLK CO TRANSIT DISTRICT","stateAssignedNo":"SU 4711","jurisType":"STJ","jurisdictionType":"Special","nonTaxableAmount":0.0,"rate":0.003750,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY SPECIAL TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0}],"addresses":[{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"139 Sagg Road","line2":"","line3":"","city":"Sagaponack","region":"NY","postalCode":"11962","country":"US","taxRegionId":4004104,"latitude":"40.945237","longitude":"-72.278943"},{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"30 GLENN ST","line2":"","line3":"","city":"WHITE PLAINS","region":"NY","postalCode":"10603-3254","country":"US","taxRegionId":2090237,"latitude":"41.050608","longitude":"-73.771383"}],"summary":[{"country":"US","region":"NY","jurisType":"State","jurisCode":"36","jurisName":"NEW YORK","taxAuthorityType":45,"stateAssignedNo":"","taxType":"Sales","taxSubType":"S","taxName":"NY STATE TAX","rateType":"General","taxable":47.2,"rate":0.040000,"tax":1.89,"taxCalculated":1.89,"nonTaxable":0.0,"exemption":0.0},{"country":"US","region":"NY","jurisType":"County","jurisCode":"103","jurisName":"SUFFOLK","taxAuthorityType":45,"stateAssignedNo":"SU 4711","taxType":"Sales","taxSubType":"S","taxName":"NY COUNTY TAX","rateType":"General","taxable":47.2,"rate":0.042500,"tax":2.01,"taxCalculated":2.01,"nonTaxable":0.0,"exemption":0.0},{"country":"US","region":"NY","jurisType":"Special","jurisCode":"359079","jurisName":"SUFFOLK CO TRANSIT DISTRICT","taxAuthorityType":45,"stateAssignedNo":"SU 4711","taxType":"Sales","taxSubType":"S","taxName":"NY SPECIAL TAX","rateType":"General","taxable":47.2,"rate":0.003750,"tax":0.18,"taxCalculated":0.18,"nonTaxable":0.0,"exemption":0.0}]}
+
+08-12-2021 @ 08:29:25 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/taxrates/byaddress?line1=&line2=&city=Sagaponack&region=NY&country=US&postalCode=11962
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.7.2)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.28711s
+
+08-12-2021 @ 08:29:25 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Thu, 12 Aug 2021 12:29:25 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 203
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0009674
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"totalRate":0.086250,"rates":[{"rate":0.040000,"name":"NY STATE TAX","type":"State"},{"rate":0.042500,"name":"NY COUNTY TAX","type":"County"},{"rate":0.003750,"name":"NY SPECIAL TAX","type":"Special"}]}
+
+08-12-2021 @ 08:29:26 - Request
+Request
+method: POST
+uri: https://rest.avatax.com/api/v2/transactions/create
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.7.2)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body: {"code":"","companyCode":"ALC","customerCode":"emchugh@wolffer.com","currencyCode":"USD","date":"2021-08-12","lines":[{"number":"ca67023068969c7df100d80920400183","itemCode":"1104-1","taxCode":"P0000000","description":"Alconox","quantity":1,"amount":47.200000000000003},{"number":"shipping_0","itemCode":"pt-ups-merger:6:03","taxCode":"FR","description":"Ground (UPS)","quantity":1,"amount":14.16}],"addresses":{"shipFrom":{"line1":"30 GLENN ST","line2":"","city":"WHITE PLAINS","region":"NY","country":"US","postalCode":"10603-3254"},"shipTo":{"line1":"139 Sagg Road","line2":"","city":"Sagaponack","region":"NY","country":"US","postalCode":"11962"}},"type":"SalesOrder","commit":false}
+duration: 0.32336s
+
+08-12-2021 @ 08:29:26 - Response
+Response
+code: 201
+message: Created
+headers: Array
+(
+    [date] => Thu, 12 Aug 2021 12:29:26 GMT
+    [content-type] => application/json; charset=utf-8
+    [server] => Kestrel
+    [content-encoding] => br
+    [location] => /api/v2/companies/207925/transactions/0
+    [vary] => Accept-Encoding
+    [serverduration] => 00:00:00.0429739
+)
+body: {"id":0,"code":"d1822d9e-561d-40a7-b593-fa9a0ae2a3b6","companyId":207925,"date":"2021-08-12","paymentDate":"2021-08-12","status":"Temporary","type":"SalesOrder","batchCode":"","currencyCode":"USD","exchangeRateCurrencyCode":"USD","customerUsageType":"","entityUseCode":"","customerVendorCode":"emchugh@wolffer.com","customerCode":"emchugh@wolffer.com","exemptNo":"","reconciled":false,"locationCode":"","reportingLocationCode":"","purchaseOrderNo":"","referenceCode":"","salespersonCode":"","totalAmount":61.36,"totalExempt":14.16,"totalDiscount":0.0,"totalTax":4.08,"totalTaxable":47.2,"totalTaxCalculated":4.08,"adjustmentReason":"NotAdjusted","locked":false,"version":1,"exchangeRateEffectiveDate":"2021-08-12","exchangeRate":1.0,"modifiedDate":"2021-08-12T12:29:26.2160408Z","modifiedUserId":231879,"taxDate":"2021-08-12","lines":[{"id":0,"transactionId":0,"lineNumber":"ca67023068969c7df100d80920400183","customerUsageType":"","entityUseCode":"","description":"Alconox","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"itemCode":"1104-1","lineAmount":47.200000000000003,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-08-12","tax":4.08,"taxableAmount":47.2,"taxCalculated":4.08,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-08-12","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"36","jurisName":"NEW YORK","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.040000,"tax":1.89,"taxableAmount":47.2,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxCalculated":1.89,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":47.2,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":1.89,"reportingTaxCalculated":1.89,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"103","jurisName":"SUFFOLK","stateAssignedNo":"SU 4711","jurisType":"CTY","jurisdictionType":"County","nonTaxableAmount":0.0,"rate":0.042500,"tax":2.01,"taxableAmount":47.2,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY COUNTY TAX","taxAuthorityTypeId":45,"taxCalculated":2.01,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":47.2,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":2.01,"reportingTaxCalculated":2.01,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"359079","jurisName":"SUFFOLK CO TRANSIT DISTRICT","stateAssignedNo":"SU 4711","jurisType":"STJ","jurisdictionType":"Special","nonTaxableAmount":0.0,"rate":0.003750,"tax":0.18,"taxableAmount":47.2,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY SPECIAL TAX","taxAuthorityTypeId":45,"taxCalculated":0.18,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":47.2,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.18,"reportingTaxCalculated":0.18,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":0,"transactionId":0,"lineNumber":"shipping_0","customerUsageType":"","entityUseCode":"","description":"Ground (UPS)","discountAmount":0.0,"exemptAmount":14.16,"exemptCertId":0,"exemptNo":"","isItemTaxable":false,"itemCode":"pt-ups-merger:6:03","lineAmount":14.16,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-08-12","tax":0.0,"taxableAmount":0.0,"taxCalculated":0.0,"taxCode":"FR","taxCodeId":7119,"taxDate":"2021-08-12","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"36","jurisName":"NEW YORK","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":14.16,"rate":0.040000,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":14.16,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"103","jurisName":"SUFFOLK","stateAssignedNo":"SU 4711","jurisType":"CTY","jurisdictionType":"County","nonTaxableAmount":14.16,"rate":0.042500,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY COUNTY TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":14.16,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"359079","jurisName":"SUFFOLK CO TRANSIT DISTRICT","stateAssignedNo":"SU 4711","jurisType":"STJ","jurisdictionType":"Special","nonTaxableAmount":14.16,"rate":0.003750,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY SPECIAL TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":14.16,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0}],"addresses":[{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"139 Sagg Road","line2":"","line3":"","city":"Sagaponack","region":"NY","postalCode":"11962","country":"US","taxRegionId":4004104,"latitude":"40.945237","longitude":"-72.278943"},{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"30 GLENN ST","line2":"","line3":"","city":"WHITE PLAINS","region":"NY","postalCode":"10603-3254","country":"US","taxRegionId":2090237,"latitude":"41.050608","longitude":"-73.771383"}],"summary":[{"country":"US","region":"NY","jurisType":"State","jurisCode":"36","jurisName":"NEW YORK","taxAuthorityType":45,"stateAssignedNo":"","taxType":"Sales","taxSubType":"S","taxName":"NY STATE TAX","rateType":"General","taxable":47.2,"rate":0.040000,"tax":1.89,"taxCalculated":1.89,"nonTaxable":14.16,"exemption":0.0},{"country":"US","region":"NY","jurisType":"County","jurisCode":"103","jurisName":"SUFFOLK","taxAuthorityType":45,"stateAssignedNo":"SU 4711","taxType":"Sales","taxSubType":"S","taxName":"NY COUNTY TAX","rateType":"General","taxable":47.2,"rate":0.042500,"tax":2.01,"taxCalculated":2.01,"nonTaxable":14.16,"exemption":0.0},{"country":"US","region":"NY","jurisType":"Special","jurisCode":"359079","jurisName":"SUFFOLK CO TRANSIT DISTRICT","taxAuthorityType":45,"stateAssignedNo":"SU 4711","taxType":"Sales","taxSubType":"S","taxName":"NY SPECIAL TAX","rateType":"General","taxable":47.2,"rate":0.003750,"tax":0.18,"taxCalculated":0.18,"nonTaxable":14.16,"exemption":0.0}]}
+
+08-12-2021 @ 08:29:30 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/taxrates/byaddress?line1=&line2=&city=Sagaponack&region=NY&country=US&postalCode=11962
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.7.2)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.29954s
+
+08-12-2021 @ 08:29:30 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Thu, 12 Aug 2021 12:29:30 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 203
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0022117
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"totalRate":0.086250,"rates":[{"rate":0.040000,"name":"NY STATE TAX","type":"State"},{"rate":0.042500,"name":"NY COUNTY TAX","type":"County"},{"rate":0.003750,"name":"NY SPECIAL TAX","type":"Special"}]}
+
+08-12-2021 @ 08:29:30 - Request
+Request
+method: POST
+uri: https://rest.avatax.com/api/v2/transactions/create
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.7.2)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body: {"code":"","companyCode":"ALC","customerCode":"emchugh@wolffer.com","currencyCode":"USD","date":"2021-08-12","lines":[{"number":"ca67023068969c7df100d80920400183","itemCode":"1104-1","taxCode":"P0000000","description":"Alconox","quantity":1,"amount":47.200000000000003},{"number":"shipping_0","itemCode":"pt-ups-merger:6:03","taxCode":"FR","description":"Ground (UPS)","quantity":1,"amount":14.16}],"addresses":{"shipFrom":{"line1":"30 GLENN ST","line2":"","city":"WHITE PLAINS","region":"NY","country":"US","postalCode":"10603-3254"},"shipTo":{"line1":"139 Sagg Road","line2":"","city":"Sagaponack","region":"NY","country":"US","postalCode":"11962"}},"type":"SalesOrder","commit":false}
+duration: 0.33165s
+
+08-12-2021 @ 08:29:30 - Response
+Response
+code: 201
+message: Created
+headers: Array
+(
+    [date] => Thu, 12 Aug 2021 12:29:30 GMT
+    [content-type] => application/json; charset=utf-8
+    [server] => Kestrel
+    [content-encoding] => br
+    [location] => /api/v2/companies/207925/transactions/0
+    [vary] => Accept-Encoding
+    [serverduration] => 00:00:00.0439076
+)
+body: {"id":0,"code":"04e49975-5dff-4484-bfee-8c37a895de33","companyId":207925,"date":"2021-08-12","paymentDate":"2021-08-12","status":"Temporary","type":"SalesOrder","batchCode":"","currencyCode":"USD","exchangeRateCurrencyCode":"USD","customerUsageType":"","entityUseCode":"","customerVendorCode":"emchugh@wolffer.com","customerCode":"emchugh@wolffer.com","exemptNo":"","reconciled":false,"locationCode":"","reportingLocationCode":"","purchaseOrderNo":"","referenceCode":"","salespersonCode":"","totalAmount":61.36,"totalExempt":14.16,"totalDiscount":0.0,"totalTax":4.08,"totalTaxable":47.2,"totalTaxCalculated":4.08,"adjustmentReason":"NotAdjusted","locked":false,"version":1,"exchangeRateEffectiveDate":"2021-08-12","exchangeRate":1.0,"modifiedDate":"2021-08-12T12:29:30.7822608Z","modifiedUserId":231879,"taxDate":"2021-08-12","lines":[{"id":0,"transactionId":0,"lineNumber":"ca67023068969c7df100d80920400183","customerUsageType":"","entityUseCode":"","description":"Alconox","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"itemCode":"1104-1","lineAmount":47.200000000000003,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-08-12","tax":4.08,"taxableAmount":47.2,"taxCalculated":4.08,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-08-12","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"36","jurisName":"NEW YORK","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.040000,"tax":1.89,"taxableAmount":47.2,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxCalculated":1.89,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":47.2,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":1.89,"reportingTaxCalculated":1.89,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"103","jurisName":"SUFFOLK","stateAssignedNo":"SU 4711","jurisType":"CTY","jurisdictionType":"County","nonTaxableAmount":0.0,"rate":0.042500,"tax":2.01,"taxableAmount":47.2,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY COUNTY TAX","taxAuthorityTypeId":45,"taxCalculated":2.01,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":47.2,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":2.01,"reportingTaxCalculated":2.01,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"359079","jurisName":"SUFFOLK CO TRANSIT DISTRICT","stateAssignedNo":"SU 4711","jurisType":"STJ","jurisdictionType":"Special","nonTaxableAmount":0.0,"rate":0.003750,"tax":0.18,"taxableAmount":47.2,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY SPECIAL TAX","taxAuthorityTypeId":45,"taxCalculated":0.18,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":47.2,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.18,"reportingTaxCalculated":0.18,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":0,"transactionId":0,"lineNumber":"shipping_0","customerUsageType":"","entityUseCode":"","description":"Ground (UPS)","discountAmount":0.0,"exemptAmount":14.16,"exemptCertId":0,"exemptNo":"","isItemTaxable":false,"itemCode":"pt-ups-merger:6:03","lineAmount":14.16,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-08-12","tax":0.0,"taxableAmount":0.0,"taxCalculated":0.0,"taxCode":"FR","taxCodeId":7119,"taxDate":"2021-08-12","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"36","jurisName":"NEW YORK","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":14.16,"rate":0.040000,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":14.16,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"103","jurisName":"SUFFOLK","stateAssignedNo":"SU 4711","jurisType":"CTY","jurisdictionType":"County","nonTaxableAmount":14.16,"rate":0.042500,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY COUNTY TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":14.16,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"359079","jurisName":"SUFFOLK CO TRANSIT DISTRICT","stateAssignedNo":"SU 4711","jurisType":"STJ","jurisdictionType":"Special","nonTaxableAmount":14.16,"rate":0.003750,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY SPECIAL TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":14.16,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0}],"addresses":[{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"139 Sagg Road","line2":"","line3":"","city":"Sagaponack","region":"NY","postalCode":"11962","country":"US","taxRegionId":4004104,"latitude":"40.945237","longitude":"-72.278943"},{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"30 GLENN ST","line2":"","line3":"","city":"WHITE PLAINS","region":"NY","postalCode":"10603-3254","country":"US","taxRegionId":2090237,"latitude":"41.050608","longitude":"-73.771383"}],"summary":[{"country":"US","region":"NY","jurisType":"State","jurisCode":"36","jurisName":"NEW YORK","taxAuthorityType":45,"stateAssignedNo":"","taxType":"Sales","taxSubType":"S","taxName":"NY STATE TAX","rateType":"General","taxable":47.2,"rate":0.040000,"tax":1.89,"taxCalculated":1.89,"nonTaxable":14.16,"exemption":0.0},{"country":"US","region":"NY","jurisType":"County","jurisCode":"103","jurisName":"SUFFOLK","taxAuthorityType":45,"stateAssignedNo":"SU 4711","taxType":"Sales","taxSubType":"S","taxName":"NY COUNTY TAX","rateType":"General","taxable":47.2,"rate":0.042500,"tax":2.01,"taxCalculated":2.01,"nonTaxable":14.16,"exemption":0.0},{"country":"US","region":"NY","jurisType":"Special","jurisCode":"359079","jurisName":"SUFFOLK CO TRANSIT DISTRICT","taxAuthorityType":45,"stateAssignedNo":"SU 4711","taxType":"Sales","taxSubType":"S","taxName":"NY SPECIAL TAX","rateType":"General","taxable":47.2,"rate":0.003750,"tax":0.18,"taxCalculated":0.18,"nonTaxable":14.16,"exemption":0.0}]}
+
+08-12-2021 @ 08:29:37 - Request
+Request
+method: POST
+uri: https://rest.avatax.com/api/v2/transactions/create
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.7.2)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body: {"code":"wc_order_StJZdTCe6Yjaj","companyCode":"ALC","customerCode":"emchugh@wolffer.com","currencyCode":"USD","date":"2021-08-12","lines":[{"number":24487,"itemCode":"1104-1","taxCode":"P0000000","description":"Alconox","quantity":1,"amount":47.200000000000003},{"number":"shipping_24488","itemCode":"pt-ups-merger","taxCode":"FR","description":"Ground (UPS)","quantity":1,"amount":14.16}],"addresses":{"shipFrom":{"line1":"30 GLENN ST","line2":"","city":"WHITE PLAINS","region":"NY","country":"US","postalCode":"10603-3254"},"shipTo":{"line1":"139 Sagg Road","line2":"","city":"Sagaponack","region":"NY","country":"US","postalCode":"11962"}},"type":"SalesInvoice","purchaseOrderNo":"22096","commit":true}
+duration: 0.39036s
+
+08-12-2021 @ 08:29:37 - Response
+Response
+code: 201
+message: Created
+headers: Array
+(
+    [date] => Thu, 12 Aug 2021 12:29:37 GMT
+    [content-type] => application/json; charset=utf-8
+    [server] => Kestrel
+    [content-encoding] => br
+    [location] => /api/v2/companies/207925/transactions/4001808286432
+    [vary] => Accept-Encoding
+    [serverduration] => 00:00:00.0983469
+)
+body: {"id":4001808286432,"code":"wc_order_StJZdTCe6Yjaj","companyId":207925,"date":"2021-08-12","status":"Committed","type":"SalesInvoice","batchCode":"","currencyCode":"USD","exchangeRateCurrencyCode":"USD","customerUsageType":"","entityUseCode":"","customerVendorCode":"emchugh@wolffer.com","customerCode":"emchugh@wolffer.com","exemptNo":"","reconciled":false,"locationCode":"","reportingLocationCode":"","purchaseOrderNo":"22096","referenceCode":"","salespersonCode":"","taxOverrideType":"None","taxOverrideAmount":0.0,"taxOverrideReason":"","totalAmount":61.36,"totalExempt":14.16,"totalDiscount":0.0,"totalTax":4.08,"totalTaxable":47.2,"totalTaxCalculated":4.08,"adjustmentReason":"NotAdjusted","adjustmentDescription":"","locked":false,"region":"NY","country":"US","version":1,"softwareVersion":"21.7.2.0","originAddressId":2003323420306,"destinationAddressId":1003323420307,"exchangeRateEffectiveDate":"2021-08-12","exchangeRate":1.0,"description":"","email":"","businessIdentificationNo":"","modifiedDate":"2021-08-12T12:29:37.0985211Z","modifiedUserId":231879,"taxDate":"2021-08-12","lines":[{"id":2005599667222,"transactionId":4001808286432,"lineNumber":"24487","boundaryOverrideId":0,"customerUsageType":"","entityUseCode":"","description":"Alconox","destinationAddressId":1003323420307,"originAddressId":2003323420306,"discountAmount":0.0,"discountTypeId":0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"isSSTP":false,"itemCode":"1104-1","lineAmount":47.2,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-08-12","revAccount":"","sourcing":"Destination","tax":4.0800,"taxableAmount":47.2,"taxCalculated":4.0800,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-08-12","taxEngine":"","taxOverrideType":"None","businessIdentificationNo":"","taxOverrideAmount":0.0,"taxOverrideReason":"","taxIncluded":false,"details":[{"id":6005535566168,"transactionLineId":2005599667222,"transactionId":4001808286432,"addressId":1003323420307,"country":"US","region":"NY","countyFIPS":"","stateFIPS":"","exemptAmount":0.0000,"exemptReasonId":4,"inState":true,"jurisCode":"36","jurisName":"NEW YORK","jurisdictionId":42,"signatureCode":"BFEQ","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0000,"nonTaxableRuleId":0,"nonTaxableType":"RateRule","rate":0.040000,"rateRuleId":1435576,"rateSourceId":3,"serCode":"","sourcing":"Destination","tax":1.8900,"taxableAmount":47.2000,"taxType":"Sales","taxSubTypeId":"S","taxTypeGroupId":"SalesAndUse","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxRegionId":4004104,"taxCalculated":1.8900,"taxOverride":0.0000,"rateType":"General","rateTypeCode":"G","taxableUnits":47.2000,"nonTaxableUnits":0.0000,"exemptUnits":0.0000,"unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":47.2,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":1.89,"reportingTaxCalculated":1.89,"liabilityType":"Seller"},{"id":8004458330795,"transactionLineId":2005599667222,"transactionId":4001808286432,"addressId":1003323420307,"country":"US","region":"NY","countyFIPS":"","stateFIPS":"","exemptAmount":0.0000,"exemptReasonId":4,"inState":true,"jurisCode":"103","jurisName":"SUFFOLK","jurisdictionId":1896,"signatureCode":"BHDK","stateAssignedNo":"SU 4711","jurisType":"CTY","jurisdictionType":"County","nonTaxableAmount":0.0000,"nonTaxableRuleId":0,"nonTaxableType":"RateRule","rate":0.042500,"rateRuleId":1435538,"rateSourceId":3,"serCode":"","sourcing":"Destination","tax":2.0100,"taxableAmount":47.2000,"taxType":"Sales","taxSubTypeId":"S","taxTypeGroupId":"SalesAndUse","taxName":"NY COUNTY TAX","taxAuthorityTypeId":45,"taxRegionId":4004104,"taxCalculated":2.0100,"taxOverride":0.0000,"rateType":"General","rateTypeCode":"G","taxableUnits":47.2000,"nonTaxableUnits":0.0000,"exemptUnits":0.0000,"unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":47.2,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":2.01,"reportingTaxCalculated":2.01,"liabilityType":"Seller"},{"id":11004458330796,"transactionLineId":2005599667222,"transactionId":4001808286432,"addressId":1003323420307,"country":"US","region":"NY","countyFIPS":"","stateFIPS":"","exemptAmount":0.0000,"exemptReasonId":4,"inState":true,"jurisCode":"359079","jurisName":"SUFFOLK CO TRANSIT DISTRICT","jurisdictionId":359079,"signatureCode":"BHDL","stateAssignedNo":"SU 4711","jurisType":"STJ","jurisdictionType":"Special","nonTaxableAmount":0.0000,"nonTaxableRuleId":0,"nonTaxableType":"RateRule","rate":0.003750,"rateRuleId":1435542,"rateSourceId":3,"serCode":"","sourcing":"Destination","tax":0.1800,"taxableAmount":47.2000,"taxType":"Sales","taxSubTypeId":"S","taxTypeGroupId":"SalesAndUse","taxName":"NY SPECIAL TAX","taxAuthorityTypeId":45,"taxRegionId":4004104,"taxCalculated":0.1800,"taxOverride":0.0000,"rateType":"General","rateTypeCode":"G","taxableUnits":47.2000,"nonTaxableUnits":0.0000,"exemptUnits":0.0000,"unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":47.2,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.18,"reportingTaxCalculated":0.18,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"lineLocationTypes":[{"documentLineLocationTypeId":12004259761284,"documentLineId":2005599667222,"documentAddressId":2003323420306,"locationTypeCode":"ShipFrom"},{"documentLineLocationTypeId":1006958529550,"documentLineId":2005599667222,"documentAddressId":1003323420307,"locationTypeCode":"ShipTo"}],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":4005599667223,"transactionId":4001808286432,"lineNumber":"shipping_24488","boundaryOverrideId":0,"customerUsageType":"","entityUseCode":"","description":"Ground (UPS)","destinationAddressId":1003323420307,"originAddressId":2003323420306,"discountAmount":0.0,"discountTypeId":0,"exemptAmount":14.16,"exemptCertId":0,"exemptNo":"","isItemTaxable":false,"isSSTP":false,"itemCode":"pt-ups-merger","lineAmount":14.16,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-08-12","revAccount":"","sourcing":"Destination","tax":0.0000,"taxableAmount":0.0,"taxCalculated":0.0000,"taxCode":"FR","taxCodeId":7119,"taxDate":"2021-08-12","taxEngine":"","taxOverrideType":"None","businessIdentificationNo":"","taxOverrideAmount":0.0,"taxOverrideReason":"","taxIncluded":false,"details":[{"id":4005535566171,"transactionLineId":4005599667223,"transactionId":4001808286432,"addressId":1003323420307,"country":"US","region":"NY","countyFIPS":"","stateFIPS":"","exemptAmount":0.0000,"exemptReasonId":5,"inState":true,"jurisCode":"36","jurisName":"NEW YORK","jurisdictionId":42,"signatureCode":"BFEQ","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":14.1600,"nonTaxableRuleId":5594534,"nonTaxableType":"ProductTaxabilityRule","rate":0.040000,"rateRuleId":1435576,"rateSourceId":3,"serCode":"","sourcing":"Destination","tax":0.0000,"taxableAmount":0.0000,"taxType":"Sales","taxSubTypeId":"S","taxTypeGroupId":"SalesAndUse","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxRegionId":4004104,"taxCalculated":0.0000,"taxOverride":0.0000,"rateType":"General","rateTypeCode":"G","taxableUnits":0.0000,"nonTaxableUnits":14.1600,"exemptUnits":0.0000,"unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":14.16,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"},{"id":5005535566170,"transactionLineId":4005599667223,"transactionId":4001808286432,"addressId":1003323420307,"country":"US","region":"NY","countyFIPS":"","stateFIPS":"","exemptAmount":0.0000,"exemptReasonId":5,"inState":true,"jurisCode":"103","jurisName":"SUFFOLK","jurisdictionId":1896,"signatureCode":"BHDK","stateAssignedNo":"SU 4711","jurisType":"CTY","jurisdictionType":"County","nonTaxableAmount":14.1600,"nonTaxableRuleId":5594534,"nonTaxableType":"ProductTaxabilityRule","rate":0.042500,"rateRuleId":1435538,"rateSourceId":3,"serCode":"","sourcing":"Destination","tax":0.0000,"taxableAmount":0.0000,"taxType":"Sales","taxSubTypeId":"S","taxTypeGroupId":"SalesAndUse","taxName":"NY COUNTY TAX","taxAuthorityTypeId":45,"taxRegionId":4004104,"taxCalculated":0.0000,"taxOverride":0.0000,"rateType":"General","rateTypeCode":"G","taxableUnits":0.0000,"nonTaxableUnits":14.1600,"exemptUnits":0.0000,"unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":14.16,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"},{"id":7004458330795,"transactionLineId":4005599667223,"transactionId":4001808286432,"addressId":1003323420307,"country":"US","region":"NY","countyFIPS":"","stateFIPS":"","exemptAmount":0.0000,"exemptReasonId":5,"inState":true,"jurisCode":"359079","jurisName":"SUFFOLK CO TRANSIT DISTRICT","jurisdictionId":359079,"signatureCode":"BHDL","stateAssignedNo":"SU 4711","jurisType":"STJ","jurisdictionType":"Special","nonTaxableAmount":14.1600,"nonTaxableRuleId":5594534,"nonTaxableType":"ProductTaxabilityRule","rate":0.003750,"rateRuleId":1435542,"rateSourceId":3,"serCode":"","sourcing":"Destination","tax":0.0000,"taxableAmount":0.0000,"taxType":"Sales","taxSubTypeId":"S","taxTypeGroupId":"SalesAndUse","taxName":"NY SPECIAL TAX","taxAuthorityTypeId":45,"taxRegionId":4004104,"taxCalculated":0.0000,"taxOverride":0.0000,"rateType":"General","rateTypeCode":"G","taxableUnits":0.0000,"nonTaxableUnits":14.1600,"exemptUnits":0.0000,"unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":14.16,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"lineLocationTypes":[{"documentLineLocationTypeId":6005238457909,"documentLineId":4005599667223,"documentAddressId":2003323420306,"locationTypeCode":"ShipFrom"},{"documentLineLocationTypeId":7004259761285,"documentLineId":4005599667223,"documentAddressId":1003323420307,"locationTypeCode":"ShipTo"}],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0}],"addresses":[{"id":1003323420307,"transactionId":4001808286432,"boundaryLevel":"Address","line1":"139 SAGG RD","line2":"","line3":"","city":"SAGAPONACK","region":"NY","postalCode":"11962-2006","country":"US","taxRegionId":4004104,"latitude":"40.945237","longitude":"-72.278943"},{"id":2003323420306,"transactionId":4001808286432,"boundaryLevel":"Address","line1":"30 GLENN ST","line2":"","line3":"","city":"WHITE PLAINS","region":"NY","postalCode":"10603-3254","country":"US","taxRegionId":2090237,"latitude":"41.050608","longitude":"-73.771383"}],"locationTypes":[{"documentLocationTypeId":5002360639103,"documentId":4001808286432,"documentAddressId":2003323420306,"locationTypeCode":"ShipFrom"},{"documentLocationTypeId":7000207472539,"documentId":4001808286432,"documentAddressId":1003323420307,"locationTypeCode":"ShipTo"}],"summary":[{"country":"US","region":"NY","jurisType":"State","jurisCode":"36","jurisName":"NEW YORK","taxAuthorityType":45,"stateAssignedNo":"","taxType":"Sales","taxSubType":"S","taxName":"NY STATE TAX","rateType":"General","taxable":47.20,"rate":0.040000,"tax":1.89,"taxCalculated":1.89,"nonTaxable":14.16,"exemption":0.00},{"country":"US","region":"NY","jurisType":"County","jurisCode":"103","jurisName":"SUFFOLK","taxAuthorityType":45,"stateAssignedNo":"SU 4711","taxType":"Sales","taxSubType":"S","taxName":"NY COUNTY TAX","rateType":"General","taxable":47.20,"rate":0.042500,"tax":2.01,"taxCalculated":2.01,"nonTaxable":14.16,"exemption":0.00},{"country":"US","region":"NY","jurisType":"Special","jurisCode":"359079","jurisName":"SUFFOLK CO TRANSIT DISTRICT","taxAuthorityType":45,"stateAssignedNo":"SU 4711","taxType":"Sales","taxSubType":"S","taxName":"NY SPECIAL TAX","rateType":"General","taxable":47.20,"rate":0.003750,"tax":0.18,"taxCalculated":0.18,"nonTaxable":14.16,"exemption":0.00}]}
+
+08-12-2021 @ 10:02:52 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/utilities/ping
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.7.2)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.31447s
+
+08-12-2021 @ 10:02:52 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Thu, 12 Aug 2021 14:02:52 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 225
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0001201
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"version":"21.7.1","authenticated":true,"authenticationType":"AccountIdLicenseKey","authenticatedUserName":"anonymous@2000107471","authenticatedUserId":231879,"authenticatedAccountId":2000107471,"crmid":"0010b00002JHRLYAA5"}
+

@@ -78,12 +78,15 @@
     $o = new wpdreamsYesNo("search_all_cf", __('Search all custom fields?', 'ajax-search-pro'),
         $sd['search_all_cf']);
     $params[$o->getName()] = $o->getData();
-    ?></div><?php
+    ?></div>
+	<div wd-enable-on="search_all_cf:0">
+	<?php
     $o = new wpdreamsCustomFields("customfields", __('..or search in selected custom fields?', 'ajax-search-pro'),
         $sd['customfields']);
     $params[$o->getName()] = $o->getData();
     $params['selected-'.$o->getName()] = $o->getSelected();
     ?>
+	</div>
 </div>
 <div class="item it_engine_index">
     <?php $o = new wpdreamsText("post_status", __('Post statuses to search', 'ajax-search-pro'), $sd['post_status']);

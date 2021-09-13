@@ -47,9 +47,19 @@ SHORTHAND CLASSES
     .asp_rb -> Block results layout
 */
 
+
+
 /*  *******************************************************************************************************************\
-    0. ANIMATIONS AND TRANSITIONS
+    0. ANIMATIONS AND TRANSITIONS & FONTS
 \**********************************************************************************************************************/
+
+@font-face {
+	font-family: 'asppsicons2';
+	src: url('<?php echo str_replace('http:',"",plugins_url()); ?>/ajax-search-pro/css/fonts/icons/icons2.woff2') format('woff2');
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+}
 
 @keyframes aspAnFadeIn {
     0%   {opacity: 0;}
@@ -137,6 +147,7 @@ div.ajaxsearchpro.asp_main_container {
     1. GENERIC CSS RESET
 \**********************************************************************************************************************/
 
+asp_w_container,
 div.asp_w.ajaxsearchpro,
 div.asp_w.asp_r,
 div.asp_w.asp_s,
@@ -158,6 +169,11 @@ div.asp_w.asp_sb * {
     text-align: left;
     text-indent: initial;
     letter-spacing: normal;
+	font-display: swap;
+}
+
+div.asp_w_container div[id*=__original__] {
+	display: none !important;
 }
 
 div.asp_w.ajaxsearchpro {
@@ -216,7 +232,7 @@ div.asp_w.ajaxsearchpro {
 }
 
 div.asp_w.ajaxsearchpro.asp_non_compact {
-    min-width: 140px;
+    min-width: 200px;
 }
 
 #asp_absolute_overlay {
@@ -340,6 +356,10 @@ div.asp_m.ajaxsearchpro .probox .prosettings {
     z-index: 1;
 }
 
+div.asp_m.ajaxsearchpro button.promagnifier:focus-visible {
+	box-shadow: inset 0 0 0 2px rgba(0, 0, 0, 0.4);
+}
+
 div.asp_m.ajaxsearchpro .probox .proloading,
 div.asp_m.ajaxsearchpro .probox .proclose {
     background-position: center center;
@@ -381,12 +401,6 @@ div.asp_m.ajaxsearchpro .probox .proloading svg {
     width: 22px;
     vertical-align: baseline;
     display: inline-block;
-}
-
-div.asp_m.ajaxsearchpro.asp_msie .probox .proloading .asp_loader {
-    height: 0;
-    width: 0;
-    display: none !important;
 }
 
 div.asp_m.ajaxsearchpro .probox .proclose svg  {
@@ -810,9 +824,11 @@ div.asp_w.asp_r.isotopic .results .item .asp_item_overlay_m{
     background: rgba(0, 0, 0, 0.2);
     top: 0;
     left: 0;
-    display: none;
+    display: block;
+	opacity: 0;
     z-index: 4;
     cursor: pointer;
+	transition: all 0.3s;
 }
 
 div.asp_w.asp_r.isotopic .results .item .asp_item_overlay_m {
@@ -897,7 +913,9 @@ div.asp_w.asp_r.isotopic .results .item .asp_item_overlay_img {
     -webkit-filter: url('#aspblur');
     -ms-filter: url('#aspblur');
     -o-filter: url('#aspblur');
-    display: none;
+	transition: all 0.2s;
+    display: block;
+	opacity: 0;
     cursor: pointer;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -2654,6 +2672,11 @@ div.asp_w .asp_select2-container {
   .asp_select2-search--dropdown.asp_select2-search--hide {
     display: none; }
 
+  /*
+.asp_select2-search.asp_select2-search--inline:first-child .asp_select2-search__field {
+	width: auto !important;
+}*/
+
 .asp_select2-close-mask {
   border: 0;
   margin: 0;
@@ -2682,191 +2705,6 @@ div.asp_w .asp_select2-container {
   position: absolute !important;
   width: 1px !important;
   white-space: nowrap !important; }
-
-
-.asp_select2-container--classic .asp_select2-selection--single {
-  background-color: #f7f7f7;
-  border: 1px solid #aaa;
-  border-radius: 4px;
-  outline: 0;
-  background-image: -webkit-linear-gradient(top, white 50%, #eeeeee 100%);
-  background-image: -o-linear-gradient(top, white 50%, #eeeeee 100%);
-  background-image: linear-gradient(to bottom, white 50%, #eeeeee 100%);
-  background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFFFF', endColorstr='#FFEEEEEE', GradientType=0); }
-  .asp_select2-container--classic .asp_select2-selection--single:focus {
-    border: 1px solid #5897fb; }
-  .asp_select2-container--classic .asp_select2-selection--single .asp_select2-selection__rendered {
-    color: #444;}
-  .asp_select2-container--classic .asp_select2-selection--single .asp_select2-selection__clear {
-    cursor: pointer;
-    float: right;
-    font-weight: bold;
-    margin-right: 10px; }
-  .asp_select2-container--classic .asp_select2-selection--single .asp_select2-selection__placeholder {
-    color: #999; }
-  .asp_select2-container--classic .asp_select2-selection--single .asp_select2-selection__arrow {
-    background-color: #ddd;
-    border: none;
-    border-left: 1px solid #aaa;
-    border-top-right-radius: 4px;
-    border-bottom-right-radius: 4px;
-    height: 26px;
-    position: absolute;
-    top: 1px;
-    right: 1px;
-    width: 20px;
-    background-image: -webkit-linear-gradient(top, #eeeeee 50%, #cccccc 100%);
-    background-image: -o-linear-gradient(top, #eeeeee 50%, #cccccc 100%);
-    background-image: linear-gradient(to bottom, #eeeeee 50%, #cccccc 100%);
-    background-repeat: repeat-x;
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFEEEEEE', endColorstr='#FFCCCCCC', GradientType=0); }
-    .asp_select2-container--classic .asp_select2-selection--single .asp_select2-selection__arrow b {
-      border-color: #888 transparent transparent transparent;
-      border-style: solid;
-      border-width: 5px 4px 0 4px;
-      height: 0;
-      left: 50%;
-      margin-left: -4px;
-      margin-top: -2px;
-      position: absolute;
-      top: 50%;
-      width: 0; }
-
-.asp_select2-container--classic[dir="rtl"] .asp_select2-selection--single .asp_select2-selection__clear {
-  float: left; }
-
-.asp_select2-container--classic[dir="rtl"] .asp_select2-selection--single .asp_select2-selection__arrow {
-  border: none;
-  border-right: 1px solid #aaa;
-  border-radius: 0;
-  border-top-left-radius: 4px;
-  border-bottom-left-radius: 4px;
-  left: 1px;
-  right: auto; }
-
-.asp_select2-container--classic.asp_select2-container--open .asp_select2-selection--single {
-  border: 1px solid #5897fb; }
-  .asp_select2-container--classic.asp_select2-container--open .asp_select2-selection--single .asp_select2-selection__arrow {
-    background: transparent;
-    border: none; }
-    .asp_select2-container--classic.asp_select2-container--open .asp_select2-selection--single .asp_select2-selection__arrow b {
-      border-color: transparent transparent #888 transparent;
-      border-width: 0 4px 5px 4px; }
-
-.asp_select2-container--classic.asp_select2-container--open.asp_select2-container--above .asp_select2-selection--single {
-  border-top: none;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-  background-image: -webkit-linear-gradient(top, white 0%, #eeeeee 50%);
-  background-image: -o-linear-gradient(top, white 0%, #eeeeee 50%);
-  background-image: linear-gradient(to bottom, white 0%, #eeeeee 50%);
-  background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFFFF', endColorstr='#FFEEEEEE', GradientType=0); }
-
-.asp_select2-container--classic.asp_select2-container--open.asp_select2-container--below .asp_select2-selection--single {
-  border-bottom: none;
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-  background-image: -webkit-linear-gradient(top, #eeeeee 50%, white 100%);
-  background-image: -o-linear-gradient(top, #eeeeee 50%, white 100%);
-  background-image: linear-gradient(to bottom, #eeeeee 50%, white 100%);
-  background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFEEEEEE', endColorstr='#FFFFFFFF', GradientType=0); }
-
-.asp_select2-container--classic .asp_select2-selection--multiple {
-  background-color: white;
-  border: 1px solid #aaa;
-  border-radius: 4px;
-  cursor: text;
-  outline: 0; }
-  .asp_select2-container--classic .asp_select2-selection--multiple:focus {
-    border: 1px solid #5897fb; }
-  .asp_select2-container--classic .asp_select2-selection--multiple .asp_select2-selection__rendered {
-    list-style: none;
-    margin: 0;
-    padding: 0 5px; }
-  .asp_select2-container--classic .asp_select2-selection--multiple .asp_select2-selection__clear {
-    display: none; }
-  .asp_select2-container--classic .asp_select2-selection--multiple .asp_select2-selection__choice {
-    background-color: #e4e4e4;
-    border: 1px solid #aaa;
-    border-radius: 4px;
-    cursor: default;
-    float: left;
-    margin-right: 5px;
-    margin-top: 5px;
-    padding: 0 5px; }
-  .asp_select2-container--classic .asp_select2-selection--multiple .asp_select2-selection__choice__remove {
-    color: #888;
-    cursor: pointer;
-    display: inline-block;
-    font-weight: bold;
-    margin-right: 2px; }
-    .asp_select2-container--classic .asp_select2-selection--multiple .asp_select2-selection__choice__remove:hover {
-      color: #555; }
-
-.asp_select2-container--classic[dir="rtl"] .asp_select2-selection--multiple .asp_select2-selection__choice {
-  float: right;
-  margin-left: 5px;
-  margin-right: auto; }
-
-.asp_select2-container--classic[dir="rtl"] .asp_select2-selection--multiple .asp_select2-selection__choice__remove {
-  margin-left: 2px;
-  margin-right: auto; }
-
-.asp_select2-container--classic.asp_select2-container--open .asp_select2-selection--multiple {
-  border: 1px solid #5897fb; }
-
-.asp_select2-container--classic.asp_select2-container--open.asp_select2-container--above .asp_select2-selection--multiple {
-  border-top: none;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0; }
-
-.asp_select2-container--classic.asp_select2-container--open.asp_select2-container--below .asp_select2-selection--multiple {
-  border-bottom: none;
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0; }
-
-.asp_select2-container--classic .asp_select2-search--dropdown .asp_select2-search__field {
-  border: 1px solid #aaa;
-  outline: 0; }
-
-.asp_select2-container--classic .asp_select2-search--inline .asp_select2-search__field {
-  outline: 0;
-  box-shadow: none; }
-
-.asp_select2-container--classic .asp_select2-dropdown {
-  background-color: white;
-  border: 1px solid transparent; }
-
-.asp_select2-container--classic .asp_select2-dropdown--above {
-  border-bottom: none; }
-
-.asp_select2-container--classic .asp_select2-dropdown--below {
-  border-top: none; }
-
-.asp_select2-container--classic .asp_select2-results > .asp_select2-results__options {
-  max-height: 200px;
-  overflow-y: auto; }
-
-.asp_select2-container--classic .asp_select2-results__option[role=group] {
-  padding: 0; }
-
-.asp_select2-container--classic .asp_select2-results__option[aria-disabled=true] {
-  color: grey; }
-
-.asp_select2-container--classic .asp_select2-results__option--highlighted[aria-selected] {
-  background-color: #3875d7;
-  color: white; }
-
-.asp_select2-container--classic .asp_select2-results__group {
-  cursor: default;
-  display: block;
-  padding: 6px; }
-
-.asp_select2-container--classic.asp_select2-container--open .asp_select2-dropdown {
-  border-color: #5897fb; }
 
 .asp_select2-container {
     background: #fafafa;
@@ -3122,3 +2960,16 @@ div.asp_w .asp_select2-container--flat .asp_select2-selection--single {
     opacity: 0 !important;
     z-index: -1 !important;
 }
+
+<?php
+// Highlight on single result page
+foreach ( wd_asp()->instances->get() as $instance ) {
+	if ( $instance['data']['single_highlight'] == 1 ) {
+		echo "body span.asp_single_highlighted_" . $instance['id'] . "{
+			display: inline !important;
+			color: ".$instance['data']['single_highlightcolor']." !important;
+			background-color: ".$instance['data']['single_highlightbgcolor']." !important;
+		}";
+	}
+}
+?>

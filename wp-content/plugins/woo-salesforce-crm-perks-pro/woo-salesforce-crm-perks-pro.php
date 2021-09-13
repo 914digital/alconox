@@ -2,15 +2,15 @@
 /*
 * Plugin Name: WooCommerce Salesforce Integration Pro
 * Description: Integrates WooCommerce with Salesforce allowing new orders to be automatically sent to your Salesforce account.
-* Version: 1.5.6
+* Version: 1.5.9
 * Requires at least: 4.7
-* Tested up to: 5.7
-* WC tested up to: 5.2
+* Tested up to: 5.8
+* WC tested up to: 5.6
 * Author: CRM Perks.
 * Author URI: https://www.crmperks.com
 * Plugin URI: https://www.crmperks.com/plugins/woocommerce-plugins/woocommerce-salesforce-plugin/
 *
-* Copyright: © 2020 CRM Perks, Inc
+* Copyright: © 2021 CRM Perks, Inc
 * 
 */ 
 // Exit if accessed directly
@@ -23,7 +23,7 @@ class vxc_sales{
   public $id='vxc_sales';
   public $domain='vxc-sales';
   public $crm_name='salesforce';
-  public $version = '1.5.6';
+  public $version = '1.5.9';
   public $min_wc_version = '2.1.1';
   public $update_id = '50001';
   public $type = 'vxc_sales_pro';
@@ -535,7 +535,7 @@ do_action('plugin_status_'.$this->type,'activate');
   }
  public function do_actions(){
      if(!is_object(self::$plugin) ){ $this->plugin_api(); }
-      if(method_exists(self::$plugin,'valid_addons')){
+      if(is_object(self::$plugin) && method_exists(self::$plugin,'valid_addons')){
        return self::$plugin->valid_addons();  
       }
     
@@ -950,6 +950,9 @@ if($note['status'] == '1'){
             $refund=$_order->get_total_refunded();
             $val+=$refund;
             break;
+            case"_order_total_refunded": 
+            $val=$_order->get_total() - $_order->get_total_refunded();
+            break;
             case"_order_fees_total": 
             $fees=$_order->get_fees();
  $val=0;
@@ -1151,6 +1154,7 @@ if($f_key == '_order_notes' && !isset(self::$order[$f_key]) ){
             $meta->key     = rawurldecode( (string) $meta->key );
             $meta->value   = rawurldecode( (string) $meta->value );
             $attribute_key = str_replace( 'attribute_', '', $meta->key );
+            $product=$item->get_product();
             $display_key   = wc_attribute_label( $attribute_key, $product );
             $display_value = wp_kses_post( $meta->value );
 
@@ -1426,7 +1430,8 @@ $parent_id=self::$note['id'];
        //do not post comment in al other cases 
      $post_comment=false; 
 
- } //var_dump(self::$note,$object,$feed['note_object'],$feed['object'],$feed['crm_id'],$feed['event'],$temp,$feed_log); die();
+ } 
+ //var_dump(self::$note,$object,$feed['note_object'],$feed['object'],$feed['crm_id'],$feed['event'],$temp,$feed_log); die();
 
   // filter on basis of events
   if($feed['event'] == "manual" && $status=="user") //on order submission by user , if set to manual , do not post order
@@ -1877,7 +1882,7 @@ $value=trim($qdata[$f_key]['value']);
 else if($f_key == '_refund_reason'){
     if(is_object(self::$_order) && method_exists(self::$_order,'get_refunds')){
        $re=self::$_order->get_refunds(); 
-      if(is_object($re[0]) && method_exists($re[0],'get_reason')){
+      if(isset($re[0]) && is_object($re[0]) && method_exists($re[0],'get_reason')){
      $value=$re[0]->get_reason();     
       } 
     }

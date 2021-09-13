@@ -1,0 +1,1234 @@
+08-20-2021 @ 12:57:41 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/taxrates/byaddress?line1=&line2=&city=Morristown&region=NJ&country=US&postalCode=07960
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.8)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.32123s
+
+08-20-2021 @ 12:57:41 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Fri, 20 Aug 2021 16:57:40 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 87
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0201642
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"totalRate":0.066250,"rates":[{"rate":0.066250,"name":"NJ STATE TAX","type":"State"}]}
+
+08-20-2021 @ 12:57:42 - Request
+Request
+method: POST
+uri: https://rest.avatax.com/api/v2/transactions/create
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.8)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body: {"code":"","companyCode":"ALC","customerCode":"angorczyca@gmail.com","currencyCode":"USD","date":"2021-08-20","lines":[{"number":"8128f5d1226159ea61104ea4cef1e77c","itemCode":"1404-1","taxCode":"P0000000","description":"Alcojet","quantity":1,"amount":42.399999999999999},{"number":"shipping_0","itemCode":"use-my-shipping-account","taxCode":"FR","description":"Use My Shipping Account","quantity":1}],"addresses":{"shipFrom":{"line1":"30 GLENN ST","line2":"","city":"WHITE PLAINS","region":"NY","country":"US","postalCode":"10603-3254"},"shipTo":{"line1":"47 Ridgedale Avenue","line2":"Unit 3","city":"Morristown","region":"NJ","country":"US","postalCode":"07960"}},"type":"SalesOrder","commit":false}
+duration: 0.33647s
+
+08-20-2021 @ 12:57:42 - Response
+Response
+code: 201
+message: Created
+headers: Array
+(
+    [date] => Fri, 20 Aug 2021 16:57:42 GMT
+    [content-type] => application/json; charset=utf-8
+    [server] => Kestrel
+    [content-encoding] => br
+    [location] => /api/v2/companies/207925/transactions/0
+    [vary] => Accept-Encoding
+    [serverduration] => 00:00:00.0453891
+)
+body: {"id":0,"code":"6521514a-a8f3-4347-8d38-e6046d713b63","companyId":207925,"date":"2021-08-20","paymentDate":"2021-08-20","status":"Temporary","type":"SalesOrder","batchCode":"","currencyCode":"USD","exchangeRateCurrencyCode":"USD","customerUsageType":"","entityUseCode":"","customerVendorCode":"angorczyca@gmail.com","customerCode":"angorczyca@gmail.com","exemptNo":"","reconciled":false,"locationCode":"","reportingLocationCode":"","purchaseOrderNo":"","referenceCode":"","salespersonCode":"","totalAmount":42.4,"totalExempt":0.0,"totalDiscount":0.0,"totalTax":2.81,"totalTaxable":42.4,"totalTaxCalculated":2.81,"adjustmentReason":"NotAdjusted","locked":false,"version":1,"exchangeRateEffectiveDate":"2021-08-20","exchangeRate":1.0,"modifiedDate":"2021-08-20T16:57:42.9272204Z","modifiedUserId":231879,"taxDate":"2021-08-20","lines":[{"id":0,"transactionId":0,"lineNumber":"8128f5d1226159ea61104ea4cef1e77c","customerUsageType":"","entityUseCode":"","description":"Alcojet","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"itemCode":"1404-1","lineAmount":42.399999999999999,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-08-20","tax":2.81,"taxableAmount":42.4,"taxCalculated":2.81,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-08-20","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NJ","exemptAmount":0.0,"jurisCode":"34","jurisName":"NEW JERSEY","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.066250,"tax":2.81,"taxableAmount":42.4,"taxType":"Sales","taxSubTypeId":"S","taxName":"NJ STATE TAX","taxAuthorityTypeId":45,"taxCalculated":2.81,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":42.4,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":2.81,"reportingTaxCalculated":2.81,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":0,"transactionId":0,"lineNumber":"shipping_0","customerUsageType":"","entityUseCode":"","description":"Use My Shipping Account","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":false,"itemCode":"use-my-shipping-account","lineAmount":0.0,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-08-20","tax":0.0,"taxableAmount":0.0,"taxCalculated":0.0,"taxCode":"FR","taxCodeId":7119,"taxDate":"2021-08-20","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NJ","exemptAmount":0.0,"jurisCode":"34","jurisName":"NEW JERSEY","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.066250,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NJ STATE TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0}],"addresses":[{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"47 Ridgedale Avenue","line2":"Unit 3","line3":"","city":"Morristown","region":"NJ","postalCode":"07960","country":"US","taxRegionId":4005641,"latitude":"40.798411","longitude":"-74.469446"},{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"30 GLENN ST","line2":"","line3":"","city":"WHITE PLAINS","region":"NY","postalCode":"10603-3254","country":"US","taxRegionId":2090237,"latitude":"41.050608","longitude":"-73.771383"}],"summary":[{"country":"US","region":"NJ","jurisType":"State","jurisCode":"34","jurisName":"NEW JERSEY","taxAuthorityType":45,"stateAssignedNo":"","taxType":"Sales","taxSubType":"S","taxName":"NJ STATE TAX","rateType":"General","taxable":42.4,"rate":0.066250,"tax":2.81,"taxCalculated":2.81,"nonTaxable":0.0,"exemption":0.0}]}
+
+08-20-2021 @ 12:57:47 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/taxrates/byaddress?line1=&line2=&city=Morristown&region=NJ&country=US&postalCode=07960
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.8)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.30515s
+
+08-20-2021 @ 12:57:47 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Fri, 20 Aug 2021 16:57:47 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 87
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0002024
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"totalRate":0.066250,"rates":[{"rate":0.066250,"name":"NJ STATE TAX","type":"State"}]}
+
+08-20-2021 @ 12:57:48 - Request
+Request
+method: POST
+uri: https://rest.avatax.com/api/v2/transactions/create
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.8)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body: {"code":"","companyCode":"ALC","customerCode":"angorczyca@gmail.com","currencyCode":"USD","date":"2021-08-20","lines":[{"number":"8128f5d1226159ea61104ea4cef1e77c","itemCode":"1404-1","taxCode":"P0000000","description":"Alcojet","quantity":1,"amount":42.399999999999999},{"number":"shipping_0","itemCode":"use-my-shipping-account","taxCode":"FR","description":"Use My Shipping Account","quantity":1}],"addresses":{"shipFrom":{"line1":"30 GLENN ST","line2":"","city":"WHITE PLAINS","region":"NY","country":"US","postalCode":"10603-3254"},"shipTo":{"line1":"1851","line2":"Unit 3","city":"Morristown","region":"NJ","country":"US","postalCode":"07960"}},"type":"SalesOrder","commit":false}
+duration: 0.33104s
+
+08-20-2021 @ 12:57:48 - Response
+Response
+code: 201
+message: Created
+headers: Array
+(
+    [date] => Fri, 20 Aug 2021 16:57:48 GMT
+    [content-type] => application/json; charset=utf-8
+    [server] => Kestrel
+    [content-encoding] => br
+    [location] => /api/v2/companies/207925/transactions/0
+    [vary] => Accept-Encoding
+    [serverduration] => 00:00:00.0471140
+)
+body: {"id":0,"code":"3c79989f-1d00-4d38-b56a-22ba36d61256","companyId":207925,"date":"2021-08-20","paymentDate":"2021-08-20","status":"Temporary","type":"SalesOrder","batchCode":"","currencyCode":"USD","exchangeRateCurrencyCode":"USD","customerUsageType":"","entityUseCode":"","customerVendorCode":"angorczyca@gmail.com","customerCode":"angorczyca@gmail.com","exemptNo":"","reconciled":false,"locationCode":"","reportingLocationCode":"","purchaseOrderNo":"","referenceCode":"","salespersonCode":"","totalAmount":42.4,"totalExempt":0.0,"totalDiscount":0.0,"totalTax":2.81,"totalTaxable":42.4,"totalTaxCalculated":2.81,"adjustmentReason":"NotAdjusted","locked":false,"version":1,"exchangeRateEffectiveDate":"2021-08-20","exchangeRate":1.0,"modifiedDate":"2021-08-20T16:57:48.3085631Z","modifiedUserId":231879,"taxDate":"2021-08-20","lines":[{"id":0,"transactionId":0,"lineNumber":"8128f5d1226159ea61104ea4cef1e77c","customerUsageType":"","entityUseCode":"","description":"Alcojet","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"itemCode":"1404-1","lineAmount":42.399999999999999,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-08-20","tax":2.81,"taxableAmount":42.4,"taxCalculated":2.81,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-08-20","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NJ","exemptAmount":0.0,"jurisCode":"34","jurisName":"NEW JERSEY","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.066250,"tax":2.81,"taxableAmount":42.4,"taxType":"Sales","taxSubTypeId":"S","taxName":"NJ STATE TAX","taxAuthorityTypeId":45,"taxCalculated":2.81,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":42.4,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":2.81,"reportingTaxCalculated":2.81,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":0,"transactionId":0,"lineNumber":"shipping_0","customerUsageType":"","entityUseCode":"","description":"Use My Shipping Account","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":false,"itemCode":"use-my-shipping-account","lineAmount":0.0,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-08-20","tax":0.0,"taxableAmount":0.0,"taxCalculated":0.0,"taxCode":"FR","taxCodeId":7119,"taxDate":"2021-08-20","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NJ","exemptAmount":0.0,"jurisCode":"34","jurisName":"NEW JERSEY","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.066250,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NJ STATE TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0}],"addresses":[{"id":0,"transactionId":0,"boundaryLevel":"Zip5","line1":"1851","line2":"Unit 3","line3":"","city":"Morristown","region":"NJ","postalCode":"07960","country":"US","taxRegionId":4005641,"latitude":"40.793986","longitude":"-74.482076"},{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"30 GLENN ST","line2":"","line3":"","city":"WHITE PLAINS","region":"NY","postalCode":"10603-3254","country":"US","taxRegionId":2090237,"latitude":"41.050608","longitude":"-73.771383"}],"summary":[{"country":"US","region":"NJ","jurisType":"State","jurisCode":"34","jurisName":"NEW JERSEY","taxAuthorityType":45,"stateAssignedNo":"","taxType":"Sales","taxSubType":"S","taxName":"NJ STATE TAX","rateType":"General","taxable":42.4,"rate":0.066250,"tax":2.81,"taxCalculated":2.81,"nonTaxable":0.0,"exemption":0.0}]}
+
+08-20-2021 @ 12:57:52 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/taxrates/byaddress?line1=&line2=&city=Morristown&region=NJ&country=US&postalCode=07960
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.8)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.27385s
+
+08-20-2021 @ 12:57:52 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Fri, 20 Aug 2021 16:57:52 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 87
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0009402
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"totalRate":0.066250,"rates":[{"rate":0.066250,"name":"NJ STATE TAX","type":"State"}]}
+
+08-20-2021 @ 12:57:52 - Request
+Request
+method: POST
+uri: https://rest.avatax.com/api/v2/transactions/create
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.8)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body: {"code":"","companyCode":"ALC","customerCode":"angorczyca@gmail.com","currencyCode":"USD","date":"2021-08-20","lines":[{"number":"8128f5d1226159ea61104ea4cef1e77c","itemCode":"1404-1","taxCode":"P0000000","description":"Alcojet","quantity":1,"amount":42.399999999999999},{"number":"shipping_0","itemCode":"use-my-shipping-account","taxCode":"FR","description":"Use My Shipping Account","quantity":1}],"addresses":{"shipFrom":{"line1":"30 GLENN ST","line2":"","city":"WHITE PLAINS","region":"NY","country":"US","postalCode":"10603-3254"},"shipTo":{"line1":"1851 Route","line2":"Unit 3","city":"Morristown","region":"NJ","country":"US","postalCode":"07960"}},"type":"SalesOrder","commit":false}
+duration: 0.32884s
+
+08-20-2021 @ 12:57:52 - Response
+Response
+code: 201
+message: Created
+headers: Array
+(
+    [date] => Fri, 20 Aug 2021 16:57:52 GMT
+    [content-type] => application/json; charset=utf-8
+    [server] => Kestrel
+    [content-encoding] => br
+    [location] => /api/v2/companies/207925/transactions/0
+    [vary] => Accept-Encoding
+    [serverduration] => 00:00:00.0445476
+)
+body: {"id":0,"code":"33b8ac02-4314-4587-9bf3-28bcafff7cec","companyId":207925,"date":"2021-08-20","paymentDate":"2021-08-20","status":"Temporary","type":"SalesOrder","batchCode":"","currencyCode":"USD","exchangeRateCurrencyCode":"USD","customerUsageType":"","entityUseCode":"","customerVendorCode":"angorczyca@gmail.com","customerCode":"angorczyca@gmail.com","exemptNo":"","reconciled":false,"locationCode":"","reportingLocationCode":"","purchaseOrderNo":"","referenceCode":"","salespersonCode":"","totalAmount":42.4,"totalExempt":0.0,"totalDiscount":0.0,"totalTax":2.81,"totalTaxable":42.4,"totalTaxCalculated":2.81,"adjustmentReason":"NotAdjusted","locked":false,"version":1,"exchangeRateEffectiveDate":"2021-08-20","exchangeRate":1.0,"modifiedDate":"2021-08-20T16:57:52.9634574Z","modifiedUserId":231879,"taxDate":"2021-08-20","lines":[{"id":0,"transactionId":0,"lineNumber":"8128f5d1226159ea61104ea4cef1e77c","customerUsageType":"","entityUseCode":"","description":"Alcojet","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"itemCode":"1404-1","lineAmount":42.399999999999999,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-08-20","tax":2.81,"taxableAmount":42.4,"taxCalculated":2.81,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-08-20","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NJ","exemptAmount":0.0,"jurisCode":"34","jurisName":"NEW JERSEY","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.066250,"tax":2.81,"taxableAmount":42.4,"taxType":"Sales","taxSubTypeId":"S","taxName":"NJ STATE TAX","taxAuthorityTypeId":45,"taxCalculated":2.81,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":42.4,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":2.81,"reportingTaxCalculated":2.81,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":0,"transactionId":0,"lineNumber":"shipping_0","customerUsageType":"","entityUseCode":"","description":"Use My Shipping Account","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":false,"itemCode":"use-my-shipping-account","lineAmount":0.0,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-08-20","tax":0.0,"taxableAmount":0.0,"taxCalculated":0.0,"taxCode":"FR","taxCodeId":7119,"taxDate":"2021-08-20","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NJ","exemptAmount":0.0,"jurisCode":"34","jurisName":"NEW JERSEY","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.066250,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NJ STATE TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0}],"addresses":[{"id":0,"transactionId":0,"boundaryLevel":"Zip5","line1":"1851 Route","line2":"Unit 3","line3":"","city":"Morristown","region":"NJ","postalCode":"07960","country":"US","taxRegionId":4005641,"latitude":"40.793986","longitude":"-74.482076"},{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"30 GLENN ST","line2":"","line3":"","city":"WHITE PLAINS","region":"NY","postalCode":"10603-3254","country":"US","taxRegionId":2090237,"latitude":"41.050608","longitude":"-73.771383"}],"summary":[{"country":"US","region":"NJ","jurisType":"State","jurisCode":"34","jurisName":"NEW JERSEY","taxAuthorityType":45,"stateAssignedNo":"","taxType":"Sales","taxSubType":"S","taxName":"NJ STATE TAX","rateType":"General","taxable":42.4,"rate":0.066250,"tax":2.81,"taxCalculated":2.81,"nonTaxable":0.0,"exemption":0.0}]}
+
+08-20-2021 @ 12:57:53 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/taxrates/byaddress?line1=&line2=&city=Morristown&region=NJ&country=US&postalCode=07960
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.8)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.28173s
+
+08-20-2021 @ 12:57:53 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Fri, 20 Aug 2021 16:57:53 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 87
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0011589
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"totalRate":0.066250,"rates":[{"rate":0.066250,"name":"NJ STATE TAX","type":"State"}]}
+
+08-20-2021 @ 12:57:54 - Request
+Request
+method: POST
+uri: https://rest.avatax.com/api/v2/transactions/create
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.8)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body: {"code":"","companyCode":"ALC","customerCode":"angorczyca@gmail.com","currencyCode":"USD","date":"2021-08-20","lines":[{"number":"8128f5d1226159ea61104ea4cef1e77c","itemCode":"1404-1","taxCode":"P0000000","description":"Alcojet","quantity":1,"amount":42.399999999999999},{"number":"shipping_0","itemCode":"use-my-shipping-account","taxCode":"FR","description":"Use My Shipping Account","quantity":1}],"addresses":{"shipFrom":{"line1":"30 GLENN ST","line2":"","city":"WHITE PLAINS","region":"NY","country":"US","postalCode":"10603-3254"},"shipTo":{"line1":"1851 Route 31","line2":"Unit 3","city":"Morristown","region":"NJ","country":"US","postalCode":"07960"}},"type":"SalesOrder","commit":false}
+duration: 0.32023s
+
+08-20-2021 @ 12:57:54 - Response
+Response
+code: 201
+message: Created
+headers: Array
+(
+    [date] => Fri, 20 Aug 2021 16:57:54 GMT
+    [content-type] => application/json; charset=utf-8
+    [server] => Kestrel
+    [content-encoding] => br
+    [location] => /api/v2/companies/207925/transactions/0
+    [vary] => Accept-Encoding
+    [serverduration] => 00:00:00.0466402
+)
+body: {"id":0,"code":"5d75441e-f13c-40ca-b461-8d6918366732","companyId":207925,"date":"2021-08-20","paymentDate":"2021-08-20","status":"Temporary","type":"SalesOrder","batchCode":"","currencyCode":"USD","exchangeRateCurrencyCode":"USD","customerUsageType":"","entityUseCode":"","customerVendorCode":"angorczyca@gmail.com","customerCode":"angorczyca@gmail.com","exemptNo":"","reconciled":false,"locationCode":"","reportingLocationCode":"","purchaseOrderNo":"","referenceCode":"","salespersonCode":"","totalAmount":42.4,"totalExempt":0.0,"totalDiscount":0.0,"totalTax":2.81,"totalTaxable":42.4,"totalTaxCalculated":2.81,"adjustmentReason":"NotAdjusted","locked":false,"version":1,"exchangeRateEffectiveDate":"2021-08-20","exchangeRate":1.0,"modifiedDate":"2021-08-20T16:57:54.055629Z","modifiedUserId":231879,"taxDate":"2021-08-20","lines":[{"id":0,"transactionId":0,"lineNumber":"8128f5d1226159ea61104ea4cef1e77c","customerUsageType":"","entityUseCode":"","description":"Alcojet","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"itemCode":"1404-1","lineAmount":42.399999999999999,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-08-20","tax":2.81,"taxableAmount":42.4,"taxCalculated":2.81,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-08-20","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NJ","exemptAmount":0.0,"jurisCode":"34","jurisName":"NEW JERSEY","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.066250,"tax":2.81,"taxableAmount":42.4,"taxType":"Sales","taxSubTypeId":"S","taxName":"NJ STATE TAX","taxAuthorityTypeId":45,"taxCalculated":2.81,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":42.4,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":2.81,"reportingTaxCalculated":2.81,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":0,"transactionId":0,"lineNumber":"shipping_0","customerUsageType":"","entityUseCode":"","description":"Use My Shipping Account","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":false,"itemCode":"use-my-shipping-account","lineAmount":0.0,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-08-20","tax":0.0,"taxableAmount":0.0,"taxCalculated":0.0,"taxCode":"FR","taxCodeId":7119,"taxDate":"2021-08-20","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NJ","exemptAmount":0.0,"jurisCode":"34","jurisName":"NEW JERSEY","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.066250,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NJ STATE TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0}],"addresses":[{"id":0,"transactionId":0,"boundaryLevel":"Zip5","line1":"1851 Route 31","line2":"Unit 3","line3":"","city":"Morristown","region":"NJ","postalCode":"07960","country":"US","taxRegionId":4005641,"latitude":"40.793986","longitude":"-74.482076"},{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"30 GLENN ST","line2":"","line3":"","city":"WHITE PLAINS","region":"NY","postalCode":"10603-3254","country":"US","taxRegionId":2090237,"latitude":"41.050608","longitude":"-73.771383"}],"summary":[{"country":"US","region":"NJ","jurisType":"State","jurisCode":"34","jurisName":"NEW JERSEY","taxAuthorityType":45,"stateAssignedNo":"","taxType":"Sales","taxSubType":"S","taxName":"NJ STATE TAX","rateType":"General","taxable":42.4,"rate":0.066250,"tax":2.81,"taxCalculated":2.81,"nonTaxable":0.0,"exemption":0.0}]}
+
+08-20-2021 @ 12:57:55 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/taxrates/byaddress?line1=&line2=&city=Morristown&region=NJ&country=US&postalCode=07960
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.8)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.28302s
+
+08-20-2021 @ 12:57:55 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Fri, 20 Aug 2021 16:57:55 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 87
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0010887
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"totalRate":0.066250,"rates":[{"rate":0.066250,"name":"NJ STATE TAX","type":"State"}]}
+
+08-20-2021 @ 12:57:56 - Request
+Request
+method: POST
+uri: https://rest.avatax.com/api/v2/transactions/create
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.8)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body: {"code":"","companyCode":"ALC","customerCode":"angorczyca@gmail.com","currencyCode":"USD","date":"2021-08-20","lines":[{"number":"8128f5d1226159ea61104ea4cef1e77c","itemCode":"1404-1","taxCode":"P0000000","description":"Alcojet","quantity":1,"amount":42.399999999999999},{"number":"shipping_0","itemCode":"use-my-shipping-account","taxCode":"FR","description":"Use My Shipping Account","quantity":1}],"addresses":{"shipFrom":{"line1":"30 GLENN ST","line2":"","city":"WHITE PLAINS","region":"NY","country":"US","postalCode":"10603-3254"},"shipTo":{"line1":"1851 Route 31","line2":"","city":"Morristown","region":"NJ","country":"US","postalCode":"07960"}},"type":"SalesOrder","commit":false}
+duration: 0.30453s
+
+08-20-2021 @ 12:57:56 - Response
+Response
+code: 201
+message: Created
+headers: Array
+(
+    [date] => Fri, 20 Aug 2021 16:57:56 GMT
+    [content-type] => application/json; charset=utf-8
+    [server] => Kestrel
+    [content-encoding] => br
+    [location] => /api/v2/companies/207925/transactions/0
+    [vary] => Accept-Encoding
+    [serverduration] => 00:00:00.0351548
+)
+body: {"id":0,"code":"49230516-652c-458a-b2fa-144cd5091490","companyId":207925,"date":"2021-08-20","paymentDate":"2021-08-20","status":"Temporary","type":"SalesOrder","batchCode":"","currencyCode":"USD","exchangeRateCurrencyCode":"USD","customerUsageType":"","entityUseCode":"","customerVendorCode":"angorczyca@gmail.com","customerCode":"angorczyca@gmail.com","exemptNo":"","reconciled":false,"locationCode":"","reportingLocationCode":"","purchaseOrderNo":"","referenceCode":"","salespersonCode":"","totalAmount":42.4,"totalExempt":0.0,"totalDiscount":0.0,"totalTax":2.81,"totalTaxable":42.4,"totalTaxCalculated":2.81,"adjustmentReason":"NotAdjusted","locked":false,"version":1,"exchangeRateEffectiveDate":"2021-08-20","exchangeRate":1.0,"modifiedDate":"2021-08-20T16:57:56.2274116Z","modifiedUserId":231879,"taxDate":"2021-08-20","lines":[{"id":0,"transactionId":0,"lineNumber":"8128f5d1226159ea61104ea4cef1e77c","customerUsageType":"","entityUseCode":"","description":"Alcojet","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"itemCode":"1404-1","lineAmount":42.399999999999999,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-08-20","tax":2.81,"taxableAmount":42.4,"taxCalculated":2.81,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-08-20","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NJ","exemptAmount":0.0,"jurisCode":"34","jurisName":"NEW JERSEY","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.066250,"tax":2.81,"taxableAmount":42.4,"taxType":"Sales","taxSubTypeId":"S","taxName":"NJ STATE TAX","taxAuthorityTypeId":45,"taxCalculated":2.81,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":42.4,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":2.81,"reportingTaxCalculated":2.81,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":0,"transactionId":0,"lineNumber":"shipping_0","customerUsageType":"","entityUseCode":"","description":"Use My Shipping Account","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":false,"itemCode":"use-my-shipping-account","lineAmount":0.0,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-08-20","tax":0.0,"taxableAmount":0.0,"taxCalculated":0.0,"taxCode":"FR","taxCodeId":7119,"taxDate":"2021-08-20","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NJ","exemptAmount":0.0,"jurisCode":"34","jurisName":"NEW JERSEY","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.066250,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NJ STATE TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0}],"addresses":[{"id":0,"transactionId":0,"boundaryLevel":"Zip5","line1":"1851 Route 31","line2":"","line3":"","city":"Morristown","region":"NJ","postalCode":"07960","country":"US","taxRegionId":4005641,"latitude":"40.793986","longitude":"-74.482076"},{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"30 GLENN ST","line2":"","line3":"","city":"WHITE PLAINS","region":"NY","postalCode":"10603-3254","country":"US","taxRegionId":2090237,"latitude":"41.050608","longitude":"-73.771383"}],"summary":[{"country":"US","region":"NJ","jurisType":"State","jurisCode":"34","jurisName":"NEW JERSEY","taxAuthorityType":45,"stateAssignedNo":"","taxType":"Sales","taxSubType":"S","taxName":"NJ STATE TAX","rateType":"General","taxable":42.4,"rate":0.066250,"tax":2.81,"taxCalculated":2.81,"nonTaxable":0.0,"exemption":0.0}]}
+
+08-20-2021 @ 12:57:58 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/taxrates/byaddress?line1=&line2=&city=Clinton&region=NJ&country=US&postalCode=07960
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.8)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.30672s
+
+08-20-2021 @ 12:57:58 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Fri, 20 Aug 2021 16:57:58 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 87
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0252957
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"totalRate":0.066250,"rates":[{"rate":0.066250,"name":"NJ STATE TAX","type":"State"}]}
+
+08-20-2021 @ 12:57:59 - Request
+Request
+method: POST
+uri: https://rest.avatax.com/api/v2/transactions/create
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.8)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body: {"code":"","companyCode":"ALC","customerCode":"angorczyca@gmail.com","currencyCode":"USD","date":"2021-08-20","lines":[{"number":"8128f5d1226159ea61104ea4cef1e77c","itemCode":"1404-1","taxCode":"P0000000","description":"Alcojet","quantity":1,"amount":42.399999999999999},{"number":"shipping_0","itemCode":"use-my-shipping-account","taxCode":"FR","description":"Use My Shipping Account","quantity":1}],"addresses":{"shipFrom":{"line1":"30 GLENN ST","line2":"","city":"WHITE PLAINS","region":"NY","country":"US","postalCode":"10603-3254"},"shipTo":{"line1":"1851 Route 31","line2":"","city":"Clinton","region":"NJ","country":"US","postalCode":"07960"}},"type":"SalesOrder","commit":false}
+duration: 0.32595s
+
+08-20-2021 @ 12:57:59 - Response
+Response
+code: 201
+message: Created
+headers: Array
+(
+    [date] => Fri, 20 Aug 2021 16:57:59 GMT
+    [content-type] => application/json; charset=utf-8
+    [server] => Kestrel
+    [content-encoding] => br
+    [location] => /api/v2/companies/207925/transactions/0
+    [vary] => Accept-Encoding
+    [serverduration] => 00:00:00.0533507
+)
+body: {"id":0,"code":"6b6479b6-ed30-4d9b-92be-77d9cd28589b","companyId":207925,"date":"2021-08-20","paymentDate":"2021-08-20","status":"Temporary","type":"SalesOrder","batchCode":"","currencyCode":"USD","exchangeRateCurrencyCode":"USD","customerUsageType":"","entityUseCode":"","customerVendorCode":"angorczyca@gmail.com","customerCode":"angorczyca@gmail.com","exemptNo":"","reconciled":false,"locationCode":"","reportingLocationCode":"","purchaseOrderNo":"","referenceCode":"","salespersonCode":"","totalAmount":42.4,"totalExempt":0.0,"totalDiscount":0.0,"totalTax":2.81,"totalTaxable":42.4,"totalTaxCalculated":2.81,"adjustmentReason":"NotAdjusted","locked":false,"version":1,"exchangeRateEffectiveDate":"2021-08-20","exchangeRate":1.0,"modifiedDate":"2021-08-20T16:57:59.0219464Z","modifiedUserId":231879,"taxDate":"2021-08-20","lines":[{"id":0,"transactionId":0,"lineNumber":"8128f5d1226159ea61104ea4cef1e77c","customerUsageType":"","entityUseCode":"","description":"Alcojet","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"itemCode":"1404-1","lineAmount":42.399999999999999,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-08-20","tax":2.81,"taxableAmount":42.4,"taxCalculated":2.81,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-08-20","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NJ","exemptAmount":0.0,"jurisCode":"34","jurisName":"NEW JERSEY","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.066250,"tax":2.81,"taxableAmount":42.4,"taxType":"Sales","taxSubTypeId":"S","taxName":"NJ STATE TAX","taxAuthorityTypeId":45,"taxCalculated":2.81,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":42.4,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":2.81,"reportingTaxCalculated":2.81,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":0,"transactionId":0,"lineNumber":"shipping_0","customerUsageType":"","entityUseCode":"","description":"Use My Shipping Account","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":false,"itemCode":"use-my-shipping-account","lineAmount":0.0,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-08-20","tax":0.0,"taxableAmount":0.0,"taxCalculated":0.0,"taxCode":"FR","taxCodeId":7119,"taxDate":"2021-08-20","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NJ","exemptAmount":0.0,"jurisCode":"34","jurisName":"NEW JERSEY","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.066250,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NJ STATE TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0}],"addresses":[{"id":0,"transactionId":0,"boundaryLevel":"Zip5","line1":"1851 Route 31","line2":"","line3":"","city":"Clinton","region":"NJ","postalCode":"07960","country":"US","taxRegionId":4005641,"latitude":"40.793986","longitude":"-74.482076"},{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"30 GLENN ST","line2":"","line3":"","city":"WHITE PLAINS","region":"NY","postalCode":"10603-3254","country":"US","taxRegionId":2090237,"latitude":"41.050608","longitude":"-73.771383"}],"summary":[{"country":"US","region":"NJ","jurisType":"State","jurisCode":"34","jurisName":"NEW JERSEY","taxAuthorityType":45,"stateAssignedNo":"","taxType":"Sales","taxSubType":"S","taxName":"NJ STATE TAX","rateType":"General","taxable":42.4,"rate":0.066250,"tax":2.81,"taxCalculated":2.81,"nonTaxable":0.0,"exemption":0.0}]}
+
+08-20-2021 @ 12:58:01 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/taxrates/byaddress?line1=&line2=&city=Clinton&region=NJ&country=US&postalCode=08809
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.8)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.28014s
+
+08-20-2021 @ 12:58:01 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Fri, 20 Aug 2021 16:58:01 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 87
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0163594
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"totalRate":0.066250,"rates":[{"rate":0.066250,"name":"NJ STATE TAX","type":"State"}]}
+
+08-20-2021 @ 12:58:02 - Request
+Request
+method: POST
+uri: https://rest.avatax.com/api/v2/transactions/create
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.8)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body: {"code":"","companyCode":"ALC","customerCode":"angorczyca@gmail.com","currencyCode":"USD","date":"2021-08-20","lines":[{"number":"8128f5d1226159ea61104ea4cef1e77c","itemCode":"1404-1","taxCode":"P0000000","description":"Alcojet","quantity":1,"amount":42.399999999999999},{"number":"shipping_0","itemCode":"use-my-shipping-account","taxCode":"FR","description":"Use My Shipping Account","quantity":1}],"addresses":{"shipFrom":{"line1":"30 GLENN ST","line2":"","city":"WHITE PLAINS","region":"NY","country":"US","postalCode":"10603-3254"},"shipTo":{"line1":"1851 Route 31","line2":"","city":"Clinton","region":"NJ","country":"US","postalCode":"08809"}},"type":"SalesOrder","commit":false}
+duration: 0.30344s
+
+08-20-2021 @ 12:58:02 - Response
+Response
+code: 201
+message: Created
+headers: Array
+(
+    [date] => Fri, 20 Aug 2021 16:58:02 GMT
+    [content-type] => application/json; charset=utf-8
+    [server] => Kestrel
+    [content-encoding] => br
+    [location] => /api/v2/companies/207925/transactions/0
+    [vary] => Accept-Encoding
+    [serverduration] => 00:00:00.0354123
+)
+body: {"id":0,"code":"f7de549e-d7f1-4f9e-8fc5-995237fb07dc","companyId":207925,"date":"2021-08-20","paymentDate":"2021-08-20","status":"Temporary","type":"SalesOrder","batchCode":"","currencyCode":"USD","exchangeRateCurrencyCode":"USD","customerUsageType":"","entityUseCode":"","customerVendorCode":"angorczyca@gmail.com","customerCode":"angorczyca@gmail.com","exemptNo":"","reconciled":false,"locationCode":"","reportingLocationCode":"","purchaseOrderNo":"","referenceCode":"","salespersonCode":"","totalAmount":42.4,"totalExempt":0.0,"totalDiscount":0.0,"totalTax":2.81,"totalTaxable":42.4,"totalTaxCalculated":2.81,"adjustmentReason":"NotAdjusted","locked":false,"version":1,"exchangeRateEffectiveDate":"2021-08-20","exchangeRate":1.0,"modifiedDate":"2021-08-20T16:58:02.7304003Z","modifiedUserId":231879,"taxDate":"2021-08-20","lines":[{"id":0,"transactionId":0,"lineNumber":"8128f5d1226159ea61104ea4cef1e77c","customerUsageType":"","entityUseCode":"","description":"Alcojet","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"itemCode":"1404-1","lineAmount":42.399999999999999,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-08-20","tax":2.81,"taxableAmount":42.4,"taxCalculated":2.81,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-08-20","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NJ","exemptAmount":0.0,"jurisCode":"34","jurisName":"NEW JERSEY","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.066250,"tax":2.81,"taxableAmount":42.4,"taxType":"Sales","taxSubTypeId":"S","taxName":"NJ STATE TAX","taxAuthorityTypeId":45,"taxCalculated":2.81,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":42.4,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":2.81,"reportingTaxCalculated":2.81,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":0,"transactionId":0,"lineNumber":"shipping_0","customerUsageType":"","entityUseCode":"","description":"Use My Shipping Account","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":false,"itemCode":"use-my-shipping-account","lineAmount":0.0,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-08-20","tax":0.0,"taxableAmount":0.0,"taxCalculated":0.0,"taxCode":"FR","taxCodeId":7119,"taxDate":"2021-08-20","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NJ","exemptAmount":0.0,"jurisCode":"34","jurisName":"NEW JERSEY","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.066250,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NJ STATE TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0}],"addresses":[{"id":0,"transactionId":0,"boundaryLevel":"Zip5","line1":"1851 Route 31","line2":"","line3":"","city":"Clinton","region":"NJ","postalCode":"08809","country":"US","taxRegionId":4005460,"latitude":"40.641245","longitude":"-74.910849"},{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"30 GLENN ST","line2":"","line3":"","city":"WHITE PLAINS","region":"NY","postalCode":"10603-3254","country":"US","taxRegionId":2090237,"latitude":"41.050608","longitude":"-73.771383"}],"summary":[{"country":"US","region":"NJ","jurisType":"State","jurisCode":"34","jurisName":"NEW JERSEY","taxAuthorityType":45,"stateAssignedNo":"","taxType":"Sales","taxSubType":"S","taxName":"NJ STATE TAX","rateType":"General","taxable":42.4,"rate":0.066250,"tax":2.81,"taxCalculated":2.81,"nonTaxable":0.0,"exemption":0.0}]}
+
+08-20-2021 @ 12:58:26 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/taxrates/byaddress?line1=&line2=&city=Clinton&region=NJ&country=US&postalCode=08809
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.8)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.29561s
+
+08-20-2021 @ 12:58:26 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Fri, 20 Aug 2021 16:58:26 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 87
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0008641
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"totalRate":0.066250,"rates":[{"rate":0.066250,"name":"NJ STATE TAX","type":"State"}]}
+
+08-20-2021 @ 12:58:26 - Request
+Request
+method: POST
+uri: https://rest.avatax.com/api/v2/transactions/create
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.8)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body: {"code":"","companyCode":"ALC","customerCode":"amostwill@raritanbasin.org","currencyCode":"USD","date":"2021-08-20","lines":[{"number":"8128f5d1226159ea61104ea4cef1e77c","itemCode":"1404-1","taxCode":"P0000000","description":"Alcojet","quantity":1,"amount":42.399999999999999},{"number":"shipping_0","itemCode":"use-my-shipping-account","taxCode":"FR","description":"Use My Shipping Account","quantity":1}],"addresses":{"shipFrom":{"line1":"30 GLENN ST","line2":"","city":"WHITE PLAINS","region":"NY","country":"US","postalCode":"10603-3254"},"shipTo":{"line1":"1851 Route 31","line2":"","city":"Clinton","region":"NJ","country":"US","postalCode":"08809"}},"type":"SalesOrder","commit":false}
+duration: 0.32387s
+
+08-20-2021 @ 12:58:26 - Response
+Response
+code: 201
+message: Created
+headers: Array
+(
+    [date] => Fri, 20 Aug 2021 16:58:26 GMT
+    [content-type] => application/json; charset=utf-8
+    [server] => Kestrel
+    [content-encoding] => br
+    [location] => /api/v2/companies/207925/transactions/0
+    [vary] => Accept-Encoding
+    [serverduration] => 00:00:00.0322812
+)
+body: {"id":0,"code":"879f35b9-e3aa-4738-973a-42c38d7152bf","companyId":207925,"date":"2021-08-20","paymentDate":"2021-08-20","status":"Temporary","type":"SalesOrder","batchCode":"","currencyCode":"USD","exchangeRateCurrencyCode":"USD","customerUsageType":"","entityUseCode":"","customerVendorCode":"amostwill@raritanbasin.org","customerCode":"amostwill@raritanbasin.org","exemptNo":"","reconciled":false,"locationCode":"","reportingLocationCode":"","purchaseOrderNo":"","referenceCode":"","salespersonCode":"","totalAmount":42.4,"totalExempt":0.0,"totalDiscount":0.0,"totalTax":2.81,"totalTaxable":42.4,"totalTaxCalculated":2.81,"adjustmentReason":"NotAdjusted","locked":false,"version":1,"exchangeRateEffectiveDate":"2021-08-20","exchangeRate":1.0,"modifiedDate":"2021-08-20T16:58:26.8659949Z","modifiedUserId":231879,"taxDate":"2021-08-20","lines":[{"id":0,"transactionId":0,"lineNumber":"8128f5d1226159ea61104ea4cef1e77c","customerUsageType":"","entityUseCode":"","description":"Alcojet","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"itemCode":"1404-1","lineAmount":42.399999999999999,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-08-20","tax":2.81,"taxableAmount":42.4,"taxCalculated":2.81,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-08-20","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NJ","exemptAmount":0.0,"jurisCode":"34","jurisName":"NEW JERSEY","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.066250,"tax":2.81,"taxableAmount":42.4,"taxType":"Sales","taxSubTypeId":"S","taxName":"NJ STATE TAX","taxAuthorityTypeId":45,"taxCalculated":2.81,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":42.4,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":2.81,"reportingTaxCalculated":2.81,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":0,"transactionId":0,"lineNumber":"shipping_0","customerUsageType":"","entityUseCode":"","description":"Use My Shipping Account","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":false,"itemCode":"use-my-shipping-account","lineAmount":0.0,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-08-20","tax":0.0,"taxableAmount":0.0,"taxCalculated":0.0,"taxCode":"FR","taxCodeId":7119,"taxDate":"2021-08-20","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NJ","exemptAmount":0.0,"jurisCode":"34","jurisName":"NEW JERSEY","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.066250,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NJ STATE TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0}],"addresses":[{"id":0,"transactionId":0,"boundaryLevel":"Zip5","line1":"1851 Route 31","line2":"","line3":"","city":"Clinton","region":"NJ","postalCode":"08809","country":"US","taxRegionId":4005460,"latitude":"40.641245","longitude":"-74.910849"},{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"30 GLENN ST","line2":"","line3":"","city":"WHITE PLAINS","region":"NY","postalCode":"10603-3254","country":"US","taxRegionId":2090237,"latitude":"41.050608","longitude":"-73.771383"}],"summary":[{"country":"US","region":"NJ","jurisType":"State","jurisCode":"34","jurisName":"NEW JERSEY","taxAuthorityType":45,"stateAssignedNo":"","taxType":"Sales","taxSubType":"S","taxName":"NJ STATE TAX","rateType":"General","taxable":42.4,"rate":0.066250,"tax":2.81,"taxCalculated":2.81,"nonTaxable":0.0,"exemption":0.0}]}
+
+08-20-2021 @ 12:58:33 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/taxrates/byaddress?line1=&line2=&city=Clinton&region=NJ&country=US&postalCode=08809
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.8)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.28556s
+
+08-20-2021 @ 12:58:33 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Fri, 20 Aug 2021 16:58:33 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 87
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0012462
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"totalRate":0.066250,"rates":[{"rate":0.066250,"name":"NJ STATE TAX","type":"State"}]}
+
+08-20-2021 @ 12:58:33 - Request
+Request
+method: POST
+uri: https://rest.avatax.com/api/v2/transactions/create
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.8)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body: {"code":"","companyCode":"ALC","customerCode":"amostwill@raritanbasin.org","currencyCode":"USD","date":"2021-08-20","lines":[{"number":"8128f5d1226159ea61104ea4cef1e77c","itemCode":"1404-1","taxCode":"P0000000","description":"Alcojet","quantity":1,"amount":42.399999999999999},{"number":"shipping_0","itemCode":"pt-ups-merger:6:03","taxCode":"FR","description":"Ground (UPS)","quantity":1,"amount":14.25}],"addresses":{"shipFrom":{"line1":"30 GLENN ST","line2":"","city":"WHITE PLAINS","region":"NY","country":"US","postalCode":"10603-3254"},"shipTo":{"line1":"1851 Route 31","line2":"","city":"Clinton","region":"NJ","country":"US","postalCode":"08809"}},"type":"SalesOrder","commit":false}
+duration: 0.31589s
+
+08-20-2021 @ 12:58:34 - Response
+Response
+code: 201
+message: Created
+headers: Array
+(
+    [date] => Fri, 20 Aug 2021 16:58:33 GMT
+    [content-type] => application/json; charset=utf-8
+    [server] => Kestrel
+    [content-encoding] => br
+    [location] => /api/v2/companies/207925/transactions/0
+    [vary] => Accept-Encoding
+    [serverduration] => 00:00:00.0361483
+)
+body: {"id":0,"code":"3000d031-d004-4fec-863a-9b1ef343e04e","companyId":207925,"date":"2021-08-20","paymentDate":"2021-08-20","status":"Temporary","type":"SalesOrder","batchCode":"","currencyCode":"USD","exchangeRateCurrencyCode":"USD","customerUsageType":"","entityUseCode":"","customerVendorCode":"amostwill@raritanbasin.org","customerCode":"amostwill@raritanbasin.org","exemptNo":"","reconciled":false,"locationCode":"","reportingLocationCode":"","purchaseOrderNo":"","referenceCode":"","salespersonCode":"","totalAmount":56.65,"totalExempt":14.25,"totalDiscount":0.0,"totalTax":2.81,"totalTaxable":42.4,"totalTaxCalculated":2.81,"adjustmentReason":"NotAdjusted","locked":false,"version":1,"exchangeRateEffectiveDate":"2021-08-20","exchangeRate":1.0,"modifiedDate":"2021-08-20T16:58:33.9634396Z","modifiedUserId":231879,"taxDate":"2021-08-20","lines":[{"id":0,"transactionId":0,"lineNumber":"8128f5d1226159ea61104ea4cef1e77c","customerUsageType":"","entityUseCode":"","description":"Alcojet","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"itemCode":"1404-1","lineAmount":42.399999999999999,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-08-20","tax":2.81,"taxableAmount":42.4,"taxCalculated":2.81,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-08-20","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NJ","exemptAmount":0.0,"jurisCode":"34","jurisName":"NEW JERSEY","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.066250,"tax":2.81,"taxableAmount":42.4,"taxType":"Sales","taxSubTypeId":"S","taxName":"NJ STATE TAX","taxAuthorityTypeId":45,"taxCalculated":2.81,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":42.4,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":2.81,"reportingTaxCalculated":2.81,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":0,"transactionId":0,"lineNumber":"shipping_0","customerUsageType":"","entityUseCode":"","description":"Ground (UPS)","discountAmount":0.0,"exemptAmount":14.25,"exemptCertId":0,"exemptNo":"","isItemTaxable":false,"itemCode":"pt-ups-merger:6:03","lineAmount":14.25,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-08-20","tax":0.0,"taxableAmount":0.0,"taxCalculated":0.0,"taxCode":"FR","taxCodeId":7119,"taxDate":"2021-08-20","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NJ","exemptAmount":0.0,"jurisCode":"34","jurisName":"NEW JERSEY","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":14.25,"rate":0.066250,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NJ STATE TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":14.25,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0}],"addresses":[{"id":0,"transactionId":0,"boundaryLevel":"Zip5","line1":"1851 Route 31","line2":"","line3":"","city":"Clinton","region":"NJ","postalCode":"08809","country":"US","taxRegionId":4005460,"latitude":"40.641245","longitude":"-74.910849"},{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"30 GLENN ST","line2":"","line3":"","city":"WHITE PLAINS","region":"NY","postalCode":"10603-3254","country":"US","taxRegionId":2090237,"latitude":"41.050608","longitude":"-73.771383"}],"summary":[{"country":"US","region":"NJ","jurisType":"State","jurisCode":"34","jurisName":"NEW JERSEY","taxAuthorityType":45,"stateAssignedNo":"","taxType":"Sales","taxSubType":"S","taxName":"NJ STATE TAX","rateType":"General","taxable":42.4,"rate":0.066250,"tax":2.81,"taxCalculated":2.81,"nonTaxable":14.25,"exemption":0.0}]}
+
+08-20-2021 @ 13:04:23 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/taxrates/byaddress?line1=&line2=&city=Clinton&region=NJ&country=US&postalCode=08809
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.8)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.3401s
+
+08-20-2021 @ 13:04:23 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Fri, 20 Aug 2021 17:04:23 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 87
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0021163
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"totalRate":0.066250,"rates":[{"rate":0.066250,"name":"NJ STATE TAX","type":"State"}]}
+
+08-20-2021 @ 13:04:24 - Request
+Request
+method: POST
+uri: https://rest.avatax.com/api/v2/transactions/create
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.8)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body: {"code":"","companyCode":"ALC","customerCode":"Guest","currencyCode":"USD","date":"2021-08-20","lines":[{"number":"8128f5d1226159ea61104ea4cef1e77c","itemCode":"1404-1","taxCode":"P0000000","description":"Alcojet","quantity":1,"amount":42.399999999999999},{"number":"shipping_0","itemCode":"pt-ups-merger:6:03","taxCode":"FR","description":"Ground (UPS)","quantity":1,"amount":14.25}],"addresses":{"shipFrom":{"line1":"30 GLENN ST","line2":"","city":"WHITE PLAINS","region":"NY","country":"US","postalCode":"10603-3254"},"shipTo":{"line1":"1851 Route 31","line2":"","city":"Clinton","region":"NJ","country":"US","postalCode":"08809"}},"type":"SalesOrder","commit":false}
+duration: 0.37756s
+
+08-20-2021 @ 13:04:24 - Response
+Response
+code: 201
+message: Created
+headers: Array
+(
+    [date] => Fri, 20 Aug 2021 17:04:24 GMT
+    [content-type] => application/json; charset=utf-8
+    [server] => Kestrel
+    [content-encoding] => br
+    [location] => /api/v2/companies/207925/transactions/0
+    [vary] => Accept-Encoding
+    [serverduration] => 00:00:00.0397903
+)
+body: {"id":0,"code":"b5e5b10a-3220-42f2-b20f-be2e8a461e16","companyId":207925,"date":"2021-08-20","paymentDate":"2021-08-20","status":"Temporary","type":"SalesOrder","batchCode":"","currencyCode":"USD","exchangeRateCurrencyCode":"USD","customerUsageType":"","entityUseCode":"","customerVendorCode":"Guest","customerCode":"Guest","exemptNo":"","reconciled":false,"locationCode":"","reportingLocationCode":"","purchaseOrderNo":"","referenceCode":"","salespersonCode":"","totalAmount":56.65,"totalExempt":14.25,"totalDiscount":0.0,"totalTax":2.81,"totalTaxable":42.4,"totalTaxCalculated":2.81,"adjustmentReason":"NotAdjusted","locked":false,"version":1,"exchangeRateEffectiveDate":"2021-08-20","exchangeRate":1.0,"modifiedDate":"2021-08-20T17:04:24.2352556Z","modifiedUserId":231879,"taxDate":"2021-08-20","lines":[{"id":0,"transactionId":0,"lineNumber":"8128f5d1226159ea61104ea4cef1e77c","customerUsageType":"","entityUseCode":"","description":"Alcojet","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"itemCode":"1404-1","lineAmount":42.399999999999999,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-08-20","tax":2.81,"taxableAmount":42.4,"taxCalculated":2.81,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-08-20","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NJ","exemptAmount":0.0,"jurisCode":"34","jurisName":"NEW JERSEY","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.066250,"tax":2.81,"taxableAmount":42.4,"taxType":"Sales","taxSubTypeId":"S","taxName":"NJ STATE TAX","taxAuthorityTypeId":45,"taxCalculated":2.81,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":42.4,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":2.81,"reportingTaxCalculated":2.81,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":0,"transactionId":0,"lineNumber":"shipping_0","customerUsageType":"","entityUseCode":"","description":"Ground (UPS)","discountAmount":0.0,"exemptAmount":14.25,"exemptCertId":0,"exemptNo":"","isItemTaxable":false,"itemCode":"pt-ups-merger:6:03","lineAmount":14.25,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-08-20","tax":0.0,"taxableAmount":0.0,"taxCalculated":0.0,"taxCode":"FR","taxCodeId":7119,"taxDate":"2021-08-20","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NJ","exemptAmount":0.0,"jurisCode":"34","jurisName":"NEW JERSEY","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":14.25,"rate":0.066250,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NJ STATE TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":14.25,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0}],"addresses":[{"id":0,"transactionId":0,"boundaryLevel":"Zip5","line1":"1851 Route 31","line2":"","line3":"","city":"Clinton","region":"NJ","postalCode":"08809","country":"US","taxRegionId":4005460,"latitude":"40.641245","longitude":"-74.910849"},{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"30 GLENN ST","line2":"","line3":"","city":"WHITE PLAINS","region":"NY","postalCode":"10603-3254","country":"US","taxRegionId":2090237,"latitude":"41.050608","longitude":"-73.771383"}],"summary":[{"country":"US","region":"NJ","jurisType":"State","jurisCode":"34","jurisName":"NEW JERSEY","taxAuthorityType":45,"stateAssignedNo":"","taxType":"Sales","taxSubType":"S","taxName":"NJ STATE TAX","rateType":"General","taxable":42.4,"rate":0.066250,"tax":2.81,"taxCalculated":2.81,"nonTaxable":14.25,"exemption":0.0}]}
+
+08-20-2021 @ 13:04:26 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/taxrates/byaddress?line1=&line2=&city=Clinton&region=NJ&country=US&postalCode=08809
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.8)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.26956s
+
+08-20-2021 @ 13:04:26 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Fri, 20 Aug 2021 17:04:26 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 87
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0009571
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"totalRate":0.066250,"rates":[{"rate":0.066250,"name":"NJ STATE TAX","type":"State"}]}
+
+08-20-2021 @ 13:04:27 - Request
+Request
+method: POST
+uri: https://rest.avatax.com/api/v2/transactions/create
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.8)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body: {"code":"","companyCode":"ALC","customerCode":"Guest","currencyCode":"USD","date":"2021-08-20","lines":[{"number":"8128f5d1226159ea61104ea4cef1e77c","itemCode":"1404-1","taxCode":"P0000000","description":"Alcojet","quantity":1,"amount":42.399999999999999},{"number":"shipping_0","itemCode":"pt-ups-merger:6:03","taxCode":"FR","description":"Ground (UPS)","quantity":1,"amount":14.25}],"addresses":{"shipFrom":{"line1":"30 GLENN ST","line2":"","city":"WHITE PLAINS","region":"NY","country":"US","postalCode":"10603-3254"},"shipTo":{"line1":"1851 Route 31","line2":"","city":"Clinton","region":"NJ","country":"US","postalCode":"08809"}},"type":"SalesOrder","commit":false}
+duration: 0.31007s
+
+08-20-2021 @ 13:04:27 - Response
+Response
+code: 201
+message: Created
+headers: Array
+(
+    [date] => Fri, 20 Aug 2021 17:04:27 GMT
+    [content-type] => application/json; charset=utf-8
+    [server] => Kestrel
+    [content-encoding] => br
+    [location] => /api/v2/companies/207925/transactions/0
+    [vary] => Accept-Encoding
+    [serverduration] => 00:00:00.0350124
+)
+body: {"id":0,"code":"89b97332-3352-4d3a-bed6-689433299b67","companyId":207925,"date":"2021-08-20","paymentDate":"2021-08-20","status":"Temporary","type":"SalesOrder","batchCode":"","currencyCode":"USD","exchangeRateCurrencyCode":"USD","customerUsageType":"","entityUseCode":"","customerVendorCode":"Guest","customerCode":"Guest","exemptNo":"","reconciled":false,"locationCode":"","reportingLocationCode":"","purchaseOrderNo":"","referenceCode":"","salespersonCode":"","totalAmount":56.65,"totalExempt":14.25,"totalDiscount":0.0,"totalTax":2.81,"totalTaxable":42.4,"totalTaxCalculated":2.81,"adjustmentReason":"NotAdjusted","locked":false,"version":1,"exchangeRateEffectiveDate":"2021-08-20","exchangeRate":1.0,"modifiedDate":"2021-08-20T17:04:27.2988452Z","modifiedUserId":231879,"taxDate":"2021-08-20","lines":[{"id":0,"transactionId":0,"lineNumber":"8128f5d1226159ea61104ea4cef1e77c","customerUsageType":"","entityUseCode":"","description":"Alcojet","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"itemCode":"1404-1","lineAmount":42.399999999999999,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-08-20","tax":2.81,"taxableAmount":42.4,"taxCalculated":2.81,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-08-20","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NJ","exemptAmount":0.0,"jurisCode":"34","jurisName":"NEW JERSEY","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.066250,"tax":2.81,"taxableAmount":42.4,"taxType":"Sales","taxSubTypeId":"S","taxName":"NJ STATE TAX","taxAuthorityTypeId":45,"taxCalculated":2.81,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":42.4,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":2.81,"reportingTaxCalculated":2.81,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":0,"transactionId":0,"lineNumber":"shipping_0","customerUsageType":"","entityUseCode":"","description":"Ground (UPS)","discountAmount":0.0,"exemptAmount":14.25,"exemptCertId":0,"exemptNo":"","isItemTaxable":false,"itemCode":"pt-ups-merger:6:03","lineAmount":14.25,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-08-20","tax":0.0,"taxableAmount":0.0,"taxCalculated":0.0,"taxCode":"FR","taxCodeId":7119,"taxDate":"2021-08-20","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NJ","exemptAmount":0.0,"jurisCode":"34","jurisName":"NEW JERSEY","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":14.25,"rate":0.066250,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NJ STATE TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":14.25,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0}],"addresses":[{"id":0,"transactionId":0,"boundaryLevel":"Zip5","line1":"1851 Route 31","line2":"","line3":"","city":"Clinton","region":"NJ","postalCode":"08809","country":"US","taxRegionId":4005460,"latitude":"40.641245","longitude":"-74.910849"},{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"30 GLENN ST","line2":"","line3":"","city":"WHITE PLAINS","region":"NY","postalCode":"10603-3254","country":"US","taxRegionId":2090237,"latitude":"41.050608","longitude":"-73.771383"}],"summary":[{"country":"US","region":"NJ","jurisType":"State","jurisCode":"34","jurisName":"NEW JERSEY","taxAuthorityType":45,"stateAssignedNo":"","taxType":"Sales","taxSubType":"S","taxName":"NJ STATE TAX","rateType":"General","taxable":42.4,"rate":0.066250,"tax":2.81,"taxCalculated":2.81,"nonTaxable":14.25,"exemption":0.0}]}
+
+08-20-2021 @ 13:04:43 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/taxrates/byaddress?line1=&line2=&city=Morristown&region=NJ&country=US&postalCode=07960
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.8)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.29767s
+
+08-20-2021 @ 13:04:43 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Fri, 20 Aug 2021 17:04:43 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 87
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0014986
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"totalRate":0.066250,"rates":[{"rate":0.066250,"name":"NJ STATE TAX","type":"State"}]}
+
+08-20-2021 @ 13:04:43 - Request
+Request
+method: POST
+uri: https://rest.avatax.com/api/v2/transactions/create
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.8)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body: {"code":"","companyCode":"ALC","customerCode":"angorczyca@gmail.com","currencyCode":"USD","date":"2021-08-20","lines":[{"number":"8128f5d1226159ea61104ea4cef1e77c","itemCode":"1404-1","taxCode":"P0000000","description":"Alcojet","quantity":1,"amount":42.399999999999999},{"number":"shipping_0","itemCode":"pt-ups-merger:6:03","taxCode":"FR","description":"Ground (UPS)","quantity":1,"amount":15.869999999999999}],"addresses":{"shipFrom":{"line1":"30 GLENN ST","line2":"","city":"WHITE PLAINS","region":"NY","country":"US","postalCode":"10603-3254"},"shipTo":{"line1":"47 Ridgedale Avenue","line2":"Unit 3","city":"Morristown","region":"NJ","country":"US","postalCode":"07960"}},"type":"SalesOrder","commit":false}
+duration: 0.32293s
+
+08-20-2021 @ 13:04:43 - Response
+Response
+code: 201
+message: Created
+headers: Array
+(
+    [date] => Fri, 20 Aug 2021 17:04:43 GMT
+    [content-type] => application/json; charset=utf-8
+    [server] => Kestrel
+    [content-encoding] => br
+    [location] => /api/v2/companies/207925/transactions/0
+    [vary] => Accept-Encoding
+    [serverduration] => 00:00:00.0398626
+)
+body: {"id":0,"code":"6f5a6be5-99f2-4435-9de9-12d9ef14f0b5","companyId":207925,"date":"2021-08-20","paymentDate":"2021-08-20","status":"Temporary","type":"SalesOrder","batchCode":"","currencyCode":"USD","exchangeRateCurrencyCode":"USD","customerUsageType":"","entityUseCode":"","customerVendorCode":"angorczyca@gmail.com","customerCode":"angorczyca@gmail.com","exemptNo":"","reconciled":false,"locationCode":"","reportingLocationCode":"","purchaseOrderNo":"","referenceCode":"","salespersonCode":"","totalAmount":58.27,"totalExempt":15.87,"totalDiscount":0.0,"totalTax":2.81,"totalTaxable":42.4,"totalTaxCalculated":2.81,"adjustmentReason":"NotAdjusted","locked":false,"version":1,"exchangeRateEffectiveDate":"2021-08-20","exchangeRate":1.0,"modifiedDate":"2021-08-20T17:04:43.6661098Z","modifiedUserId":231879,"taxDate":"2021-08-20","lines":[{"id":0,"transactionId":0,"lineNumber":"8128f5d1226159ea61104ea4cef1e77c","customerUsageType":"","entityUseCode":"","description":"Alcojet","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"itemCode":"1404-1","lineAmount":42.399999999999999,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-08-20","tax":2.81,"taxableAmount":42.4,"taxCalculated":2.81,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-08-20","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NJ","exemptAmount":0.0,"jurisCode":"34","jurisName":"NEW JERSEY","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.066250,"tax":2.81,"taxableAmount":42.4,"taxType":"Sales","taxSubTypeId":"S","taxName":"NJ STATE TAX","taxAuthorityTypeId":45,"taxCalculated":2.81,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":42.4,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":2.81,"reportingTaxCalculated":2.81,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":0,"transactionId":0,"lineNumber":"shipping_0","customerUsageType":"","entityUseCode":"","description":"Ground (UPS)","discountAmount":0.0,"exemptAmount":15.87,"exemptCertId":0,"exemptNo":"","isItemTaxable":false,"itemCode":"pt-ups-merger:6:03","lineAmount":15.869999999999999,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-08-20","tax":0.0,"taxableAmount":0.0,"taxCalculated":0.0,"taxCode":"FR","taxCodeId":7119,"taxDate":"2021-08-20","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NJ","exemptAmount":0.0,"jurisCode":"34","jurisName":"NEW JERSEY","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":15.87,"rate":0.066250,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NJ STATE TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":15.87,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0}],"addresses":[{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"47 Ridgedale Avenue","line2":"Unit 3","line3":"","city":"Morristown","region":"NJ","postalCode":"07960","country":"US","taxRegionId":4005641,"latitude":"40.798411","longitude":"-74.469446"},{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"30 GLENN ST","line2":"","line3":"","city":"WHITE PLAINS","region":"NY","postalCode":"10603-3254","country":"US","taxRegionId":2090237,"latitude":"41.050608","longitude":"-73.771383"}],"summary":[{"country":"US","region":"NJ","jurisType":"State","jurisCode":"34","jurisName":"NEW JERSEY","taxAuthorityType":45,"stateAssignedNo":"","taxType":"Sales","taxSubType":"S","taxName":"NJ STATE TAX","rateType":"General","taxable":42.4,"rate":0.066250,"tax":2.81,"taxCalculated":2.81,"nonTaxable":15.87,"exemption":0.0}]}
+
+08-20-2021 @ 13:04:52 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/taxrates/byaddress?line1=&line2=&city=Morristown&region=NJ&country=US&postalCode=07960
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.8)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.29519s
+
+08-20-2021 @ 13:04:52 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Fri, 20 Aug 2021 17:04:52 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 87
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0002299
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"totalRate":0.066250,"rates":[{"rate":0.066250,"name":"NJ STATE TAX","type":"State"}]}
+
+08-20-2021 @ 13:04:52 - Request
+Request
+method: POST
+uri: https://rest.avatax.com/api/v2/transactions/create
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.8)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body: {"code":"","companyCode":"ALC","customerCode":"angorczyca@gmail.com","currencyCode":"USD","date":"2021-08-20","lines":[{"number":"8128f5d1226159ea61104ea4cef1e77c","itemCode":"1404-1","taxCode":"P0000000","description":"Alcojet","quantity":1,"amount":42.399999999999999},{"number":"shipping_0","itemCode":"pt-ups-merger:6:03","taxCode":"FR","description":"Ground (UPS)","quantity":1,"amount":15.869999999999999}],"addresses":{"shipFrom":{"line1":"30 GLENN ST","line2":"","city":"WHITE PLAINS","region":"NY","country":"US","postalCode":"10603-3254"},"shipTo":{"line1":"1851 Route 31","line2":"Unit 3","city":"Morristown","region":"NJ","country":"US","postalCode":"07960"}},"type":"SalesOrder","commit":false}
+duration: 0.32152s
+
+08-20-2021 @ 13:04:52 - Response
+Response
+code: 201
+message: Created
+headers: Array
+(
+    [date] => Fri, 20 Aug 2021 17:04:52 GMT
+    [content-type] => application/json; charset=utf-8
+    [server] => Kestrel
+    [content-encoding] => br
+    [location] => /api/v2/companies/207925/transactions/0
+    [vary] => Accept-Encoding
+    [serverduration] => 00:00:00.0448164
+)
+body: {"id":0,"code":"0927e15e-6be7-4be9-bb05-1eeacc685ca3","companyId":207925,"date":"2021-08-20","paymentDate":"2021-08-20","status":"Temporary","type":"SalesOrder","batchCode":"","currencyCode":"USD","exchangeRateCurrencyCode":"USD","customerUsageType":"","entityUseCode":"","customerVendorCode":"angorczyca@gmail.com","customerCode":"angorczyca@gmail.com","exemptNo":"","reconciled":false,"locationCode":"","reportingLocationCode":"","purchaseOrderNo":"","referenceCode":"","salespersonCode":"","totalAmount":58.27,"totalExempt":15.87,"totalDiscount":0.0,"totalTax":2.81,"totalTaxable":42.4,"totalTaxCalculated":2.81,"adjustmentReason":"NotAdjusted","locked":false,"version":1,"exchangeRateEffectiveDate":"2021-08-20","exchangeRate":1.0,"modifiedDate":"2021-08-20T17:04:52.7432523Z","modifiedUserId":231879,"taxDate":"2021-08-20","lines":[{"id":0,"transactionId":0,"lineNumber":"8128f5d1226159ea61104ea4cef1e77c","customerUsageType":"","entityUseCode":"","description":"Alcojet","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"itemCode":"1404-1","lineAmount":42.399999999999999,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-08-20","tax":2.81,"taxableAmount":42.4,"taxCalculated":2.81,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-08-20","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NJ","exemptAmount":0.0,"jurisCode":"34","jurisName":"NEW JERSEY","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.066250,"tax":2.81,"taxableAmount":42.4,"taxType":"Sales","taxSubTypeId":"S","taxName":"NJ STATE TAX","taxAuthorityTypeId":45,"taxCalculated":2.81,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":42.4,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":2.81,"reportingTaxCalculated":2.81,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":0,"transactionId":0,"lineNumber":"shipping_0","customerUsageType":"","entityUseCode":"","description":"Ground (UPS)","discountAmount":0.0,"exemptAmount":15.87,"exemptCertId":0,"exemptNo":"","isItemTaxable":false,"itemCode":"pt-ups-merger:6:03","lineAmount":15.869999999999999,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-08-20","tax":0.0,"taxableAmount":0.0,"taxCalculated":0.0,"taxCode":"FR","taxCodeId":7119,"taxDate":"2021-08-20","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NJ","exemptAmount":0.0,"jurisCode":"34","jurisName":"NEW JERSEY","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":15.87,"rate":0.066250,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NJ STATE TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":15.87,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0}],"addresses":[{"id":0,"transactionId":0,"boundaryLevel":"Zip5","line1":"1851 Route 31","line2":"Unit 3","line3":"","city":"Morristown","region":"NJ","postalCode":"07960","country":"US","taxRegionId":4005641,"latitude":"40.793986","longitude":"-74.482076"},{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"30 GLENN ST","line2":"","line3":"","city":"WHITE PLAINS","region":"NY","postalCode":"10603-3254","country":"US","taxRegionId":2090237,"latitude":"41.050608","longitude":"-73.771383"}],"summary":[{"country":"US","region":"NJ","jurisType":"State","jurisCode":"34","jurisName":"NEW JERSEY","taxAuthorityType":45,"stateAssignedNo":"","taxType":"Sales","taxSubType":"S","taxName":"NJ STATE TAX","rateType":"General","taxable":42.4,"rate":0.066250,"tax":2.81,"taxCalculated":2.81,"nonTaxable":15.87,"exemption":0.0}]}
+
+08-20-2021 @ 13:04:54 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/taxrates/byaddress?line1=&line2=&city=Morristown&region=NJ&country=US&postalCode=07960
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.8)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.26488s
+
+08-20-2021 @ 13:04:54 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Fri, 20 Aug 2021 17:04:54 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 87
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0001753
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"totalRate":0.066250,"rates":[{"rate":0.066250,"name":"NJ STATE TAX","type":"State"}]}
+
+08-20-2021 @ 13:04:54 - Request
+Request
+method: POST
+uri: https://rest.avatax.com/api/v2/transactions/create
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.8)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body: {"code":"","companyCode":"ALC","customerCode":"angorczyca@gmail.com","currencyCode":"USD","date":"2021-08-20","lines":[{"number":"8128f5d1226159ea61104ea4cef1e77c","itemCode":"1404-1","taxCode":"P0000000","description":"Alcojet","quantity":1,"amount":42.399999999999999},{"number":"shipping_0","itemCode":"pt-ups-merger:6:03","taxCode":"FR","description":"Ground (UPS)","quantity":1,"amount":15.869999999999999}],"addresses":{"shipFrom":{"line1":"30 GLENN ST","line2":"","city":"WHITE PLAINS","region":"NY","country":"US","postalCode":"10603-3254"},"shipTo":{"line1":"1851 Route 31","line2":"","city":"Morristown","region":"NJ","country":"US","postalCode":"07960"}},"type":"SalesOrder","commit":false}
+duration: 0.31722s
+
+08-20-2021 @ 13:04:54 - Response
+Response
+code: 201
+message: Created
+headers: Array
+(
+    [date] => Fri, 20 Aug 2021 17:04:54 GMT
+    [content-type] => application/json; charset=utf-8
+    [server] => Kestrel
+    [content-encoding] => br
+    [location] => /api/v2/companies/207925/transactions/0
+    [vary] => Accept-Encoding
+    [serverduration] => 00:00:00.0408034
+)
+body: {"id":0,"code":"dfbd6ae2-044e-4ba6-8384-ca5037d5895b","companyId":207925,"date":"2021-08-20","paymentDate":"2021-08-20","status":"Temporary","type":"SalesOrder","batchCode":"","currencyCode":"USD","exchangeRateCurrencyCode":"USD","customerUsageType":"","entityUseCode":"","customerVendorCode":"angorczyca@gmail.com","customerCode":"angorczyca@gmail.com","exemptNo":"","reconciled":false,"locationCode":"","reportingLocationCode":"","purchaseOrderNo":"","referenceCode":"","salespersonCode":"","totalAmount":58.27,"totalExempt":15.87,"totalDiscount":0.0,"totalTax":2.81,"totalTaxable":42.4,"totalTaxCalculated":2.81,"adjustmentReason":"NotAdjusted","locked":false,"version":1,"exchangeRateEffectiveDate":"2021-08-20","exchangeRate":1.0,"modifiedDate":"2021-08-20T17:04:54.4182121Z","modifiedUserId":231879,"taxDate":"2021-08-20","lines":[{"id":0,"transactionId":0,"lineNumber":"8128f5d1226159ea61104ea4cef1e77c","customerUsageType":"","entityUseCode":"","description":"Alcojet","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"itemCode":"1404-1","lineAmount":42.399999999999999,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-08-20","tax":2.81,"taxableAmount":42.4,"taxCalculated":2.81,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-08-20","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NJ","exemptAmount":0.0,"jurisCode":"34","jurisName":"NEW JERSEY","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.066250,"tax":2.81,"taxableAmount":42.4,"taxType":"Sales","taxSubTypeId":"S","taxName":"NJ STATE TAX","taxAuthorityTypeId":45,"taxCalculated":2.81,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":42.4,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":2.81,"reportingTaxCalculated":2.81,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":0,"transactionId":0,"lineNumber":"shipping_0","customerUsageType":"","entityUseCode":"","description":"Ground (UPS)","discountAmount":0.0,"exemptAmount":15.87,"exemptCertId":0,"exemptNo":"","isItemTaxable":false,"itemCode":"pt-ups-merger:6:03","lineAmount":15.869999999999999,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-08-20","tax":0.0,"taxableAmount":0.0,"taxCalculated":0.0,"taxCode":"FR","taxCodeId":7119,"taxDate":"2021-08-20","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NJ","exemptAmount":0.0,"jurisCode":"34","jurisName":"NEW JERSEY","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":15.87,"rate":0.066250,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NJ STATE TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":15.87,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0}],"addresses":[{"id":0,"transactionId":0,"boundaryLevel":"Zip5","line1":"1851 Route 31","line2":"","line3":"","city":"Morristown","region":"NJ","postalCode":"07960","country":"US","taxRegionId":4005641,"latitude":"40.793986","longitude":"-74.482076"},{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"30 GLENN ST","line2":"","line3":"","city":"WHITE PLAINS","region":"NY","postalCode":"10603-3254","country":"US","taxRegionId":2090237,"latitude":"41.050608","longitude":"-73.771383"}],"summary":[{"country":"US","region":"NJ","jurisType":"State","jurisCode":"34","jurisName":"NEW JERSEY","taxAuthorityType":45,"stateAssignedNo":"","taxType":"Sales","taxSubType":"S","taxName":"NJ STATE TAX","rateType":"General","taxable":42.4,"rate":0.066250,"tax":2.81,"taxCalculated":2.81,"nonTaxable":15.87,"exemption":0.0}]}
+
+08-20-2021 @ 13:04:55 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/taxrates/byaddress?line1=&line2=&city=Clinton&region=NJ&country=US&postalCode=07960
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.8)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.26634s
+
+08-20-2021 @ 13:04:55 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Fri, 20 Aug 2021 17:04:55 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 87
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0010341
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"totalRate":0.066250,"rates":[{"rate":0.066250,"name":"NJ STATE TAX","type":"State"}]}
+
+08-20-2021 @ 13:04:56 - Request
+Request
+method: POST
+uri: https://rest.avatax.com/api/v2/transactions/create
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.8)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body: {"code":"","companyCode":"ALC","customerCode":"angorczyca@gmail.com","currencyCode":"USD","date":"2021-08-20","lines":[{"number":"8128f5d1226159ea61104ea4cef1e77c","itemCode":"1404-1","taxCode":"P0000000","description":"Alcojet","quantity":1,"amount":42.399999999999999},{"number":"shipping_0","itemCode":"pt-ups-merger:6:03","taxCode":"FR","description":"Ground (UPS)","quantity":1,"amount":15.869999999999999}],"addresses":{"shipFrom":{"line1":"30 GLENN ST","line2":"","city":"WHITE PLAINS","region":"NY","country":"US","postalCode":"10603-3254"},"shipTo":{"line1":"1851 Route 31","line2":"","city":"Clinton","region":"NJ","country":"US","postalCode":"07960"}},"type":"SalesOrder","commit":false}
+duration: 0.30913s
+
+08-20-2021 @ 13:04:56 - Response
+Response
+code: 201
+message: Created
+headers: Array
+(
+    [date] => Fri, 20 Aug 2021 17:04:56 GMT
+    [content-type] => application/json; charset=utf-8
+    [server] => Kestrel
+    [content-encoding] => br
+    [location] => /api/v2/companies/207925/transactions/0
+    [vary] => Accept-Encoding
+    [serverduration] => 00:00:00.0327729
+)
+body: {"id":0,"code":"a113f353-679e-4911-bc5b-4a8b155012e3","companyId":207925,"date":"2021-08-20","paymentDate":"2021-08-20","status":"Temporary","type":"SalesOrder","batchCode":"","currencyCode":"USD","exchangeRateCurrencyCode":"USD","customerUsageType":"","entityUseCode":"","customerVendorCode":"angorczyca@gmail.com","customerCode":"angorczyca@gmail.com","exemptNo":"","reconciled":false,"locationCode":"","reportingLocationCode":"","purchaseOrderNo":"","referenceCode":"","salespersonCode":"","totalAmount":58.27,"totalExempt":15.87,"totalDiscount":0.0,"totalTax":2.81,"totalTaxable":42.4,"totalTaxCalculated":2.81,"adjustmentReason":"NotAdjusted","locked":false,"version":1,"exchangeRateEffectiveDate":"2021-08-20","exchangeRate":1.0,"modifiedDate":"2021-08-20T17:04:56.2826928Z","modifiedUserId":231879,"taxDate":"2021-08-20","lines":[{"id":0,"transactionId":0,"lineNumber":"8128f5d1226159ea61104ea4cef1e77c","customerUsageType":"","entityUseCode":"","description":"Alcojet","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"itemCode":"1404-1","lineAmount":42.399999999999999,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-08-20","tax":2.81,"taxableAmount":42.4,"taxCalculated":2.81,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-08-20","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NJ","exemptAmount":0.0,"jurisCode":"34","jurisName":"NEW JERSEY","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.066250,"tax":2.81,"taxableAmount":42.4,"taxType":"Sales","taxSubTypeId":"S","taxName":"NJ STATE TAX","taxAuthorityTypeId":45,"taxCalculated":2.81,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":42.4,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":2.81,"reportingTaxCalculated":2.81,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":0,"transactionId":0,"lineNumber":"shipping_0","customerUsageType":"","entityUseCode":"","description":"Ground (UPS)","discountAmount":0.0,"exemptAmount":15.87,"exemptCertId":0,"exemptNo":"","isItemTaxable":false,"itemCode":"pt-ups-merger:6:03","lineAmount":15.869999999999999,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-08-20","tax":0.0,"taxableAmount":0.0,"taxCalculated":0.0,"taxCode":"FR","taxCodeId":7119,"taxDate":"2021-08-20","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NJ","exemptAmount":0.0,"jurisCode":"34","jurisName":"NEW JERSEY","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":15.87,"rate":0.066250,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NJ STATE TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":15.87,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0}],"addresses":[{"id":0,"transactionId":0,"boundaryLevel":"Zip5","line1":"1851 Route 31","line2":"","line3":"","city":"Clinton","region":"NJ","postalCode":"07960","country":"US","taxRegionId":4005641,"latitude":"40.793986","longitude":"-74.482076"},{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"30 GLENN ST","line2":"","line3":"","city":"WHITE PLAINS","region":"NY","postalCode":"10603-3254","country":"US","taxRegionId":2090237,"latitude":"41.050608","longitude":"-73.771383"}],"summary":[{"country":"US","region":"NJ","jurisType":"State","jurisCode":"34","jurisName":"NEW JERSEY","taxAuthorityType":45,"stateAssignedNo":"","taxType":"Sales","taxSubType":"S","taxName":"NJ STATE TAX","rateType":"General","taxable":42.4,"rate":0.066250,"tax":2.81,"taxCalculated":2.81,"nonTaxable":15.87,"exemption":0.0}]}
+
+08-20-2021 @ 13:05:04 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/taxrates/byaddress?line1=&line2=&city=Clinton&region=NJ&country=US&postalCode=08809
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.8)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.31524s
+
+08-20-2021 @ 13:05:04 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Fri, 20 Aug 2021 17:05:04 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 87
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0009301
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"totalRate":0.066250,"rates":[{"rate":0.066250,"name":"NJ STATE TAX","type":"State"}]}
+
+08-20-2021 @ 13:05:05 - Request
+Request
+method: POST
+uri: https://rest.avatax.com/api/v2/transactions/create
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.8)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body: {"code":"","companyCode":"ALC","customerCode":"angorczyca@gmail.com","currencyCode":"USD","date":"2021-08-20","lines":[{"number":"8128f5d1226159ea61104ea4cef1e77c","itemCode":"1404-1","taxCode":"P0000000","description":"Alcojet","quantity":1,"amount":42.399999999999999},{"number":"shipping_0","itemCode":"pt-ups-merger:6:03","taxCode":"FR","description":"Ground (UPS)","quantity":1,"amount":14.25}],"addresses":{"shipFrom":{"line1":"30 GLENN ST","line2":"","city":"WHITE PLAINS","region":"NY","country":"US","postalCode":"10603-3254"},"shipTo":{"line1":"1851 Route 31","line2":"","city":"Clinton","region":"NJ","country":"US","postalCode":"08809"}},"type":"SalesOrder","commit":false}
+duration: 0.34399s
+
+08-20-2021 @ 13:05:05 - Response
+Response
+code: 201
+message: Created
+headers: Array
+(
+    [date] => Fri, 20 Aug 2021 17:05:05 GMT
+    [content-type] => application/json; charset=utf-8
+    [server] => Kestrel
+    [content-encoding] => br
+    [location] => /api/v2/companies/207925/transactions/0
+    [vary] => Accept-Encoding
+    [serverduration] => 00:00:00.0419641
+)
+body: {"id":0,"code":"bd8d45ec-2ef5-471c-92ee-0171f9f25f9b","companyId":207925,"date":"2021-08-20","paymentDate":"2021-08-20","status":"Temporary","type":"SalesOrder","batchCode":"","currencyCode":"USD","exchangeRateCurrencyCode":"USD","customerUsageType":"","entityUseCode":"","customerVendorCode":"angorczyca@gmail.com","customerCode":"angorczyca@gmail.com","exemptNo":"","reconciled":false,"locationCode":"","reportingLocationCode":"","purchaseOrderNo":"","referenceCode":"","salespersonCode":"","totalAmount":56.65,"totalExempt":14.25,"totalDiscount":0.0,"totalTax":2.81,"totalTaxable":42.4,"totalTaxCalculated":2.81,"adjustmentReason":"NotAdjusted","locked":false,"version":1,"exchangeRateEffectiveDate":"2021-08-20","exchangeRate":1.0,"modifiedDate":"2021-08-20T17:05:05.0502271Z","modifiedUserId":231879,"taxDate":"2021-08-20","lines":[{"id":0,"transactionId":0,"lineNumber":"8128f5d1226159ea61104ea4cef1e77c","customerUsageType":"","entityUseCode":"","description":"Alcojet","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"itemCode":"1404-1","lineAmount":42.399999999999999,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-08-20","tax":2.81,"taxableAmount":42.4,"taxCalculated":2.81,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-08-20","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NJ","exemptAmount":0.0,"jurisCode":"34","jurisName":"NEW JERSEY","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.066250,"tax":2.81,"taxableAmount":42.4,"taxType":"Sales","taxSubTypeId":"S","taxName":"NJ STATE TAX","taxAuthorityTypeId":45,"taxCalculated":2.81,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":42.4,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":2.81,"reportingTaxCalculated":2.81,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":0,"transactionId":0,"lineNumber":"shipping_0","customerUsageType":"","entityUseCode":"","description":"Ground (UPS)","discountAmount":0.0,"exemptAmount":14.25,"exemptCertId":0,"exemptNo":"","isItemTaxable":false,"itemCode":"pt-ups-merger:6:03","lineAmount":14.25,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-08-20","tax":0.0,"taxableAmount":0.0,"taxCalculated":0.0,"taxCode":"FR","taxCodeId":7119,"taxDate":"2021-08-20","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NJ","exemptAmount":0.0,"jurisCode":"34","jurisName":"NEW JERSEY","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":14.25,"rate":0.066250,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NJ STATE TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":14.25,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0}],"addresses":[{"id":0,"transactionId":0,"boundaryLevel":"Zip5","line1":"1851 Route 31","line2":"","line3":"","city":"Clinton","region":"NJ","postalCode":"08809","country":"US","taxRegionId":4005460,"latitude":"40.641245","longitude":"-74.910849"},{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"30 GLENN ST","line2":"","line3":"","city":"WHITE PLAINS","region":"NY","postalCode":"10603-3254","country":"US","taxRegionId":2090237,"latitude":"41.050608","longitude":"-73.771383"}],"summary":[{"country":"US","region":"NJ","jurisType":"State","jurisCode":"34","jurisName":"NEW JERSEY","taxAuthorityType":45,"stateAssignedNo":"","taxType":"Sales","taxSubType":"S","taxName":"NJ STATE TAX","rateType":"General","taxable":42.4,"rate":0.066250,"tax":2.81,"taxCalculated":2.81,"nonTaxable":14.25,"exemption":0.0}]}
+
+08-20-2021 @ 13:05:29 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/taxrates/byaddress?line1=&line2=&city=Clinton&region=NJ&country=US&postalCode=08809
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.8)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.30223s
+
+08-20-2021 @ 13:05:29 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Fri, 20 Aug 2021 17:05:29 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 87
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0013662
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"totalRate":0.066250,"rates":[{"rate":0.066250,"name":"NJ STATE TAX","type":"State"}]}
+
+08-20-2021 @ 13:05:30 - Request
+Request
+method: POST
+uri: https://rest.avatax.com/api/v2/transactions/create
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.8)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body: {"code":"","companyCode":"ALC","customerCode":"amostwill@raritanbasin.org","currencyCode":"USD","date":"2021-08-20","lines":[{"number":"8128f5d1226159ea61104ea4cef1e77c","itemCode":"1404-1","taxCode":"P0000000","description":"Alcojet","quantity":1,"amount":42.399999999999999},{"number":"shipping_0","itemCode":"pt-ups-merger:6:03","taxCode":"FR","description":"Ground (UPS)","quantity":1,"amount":14.25}],"addresses":{"shipFrom":{"line1":"30 GLENN ST","line2":"","city":"WHITE PLAINS","region":"NY","country":"US","postalCode":"10603-3254"},"shipTo":{"line1":"1851 Route 31","line2":"","city":"Clinton","region":"NJ","country":"US","postalCode":"08809"}},"type":"SalesOrder","commit":false}
+duration: 0.32735s
+
+08-20-2021 @ 13:05:30 - Response
+Response
+code: 201
+message: Created
+headers: Array
+(
+    [date] => Fri, 20 Aug 2021 17:05:30 GMT
+    [content-type] => application/json; charset=utf-8
+    [server] => Kestrel
+    [content-encoding] => br
+    [location] => /api/v2/companies/207925/transactions/0
+    [vary] => Accept-Encoding
+    [serverduration] => 00:00:00.0319977
+)
+body: {"id":0,"code":"eb50e564-237a-4009-ab06-6d31cc76cd79","companyId":207925,"date":"2021-08-20","paymentDate":"2021-08-20","status":"Temporary","type":"SalesOrder","batchCode":"","currencyCode":"USD","exchangeRateCurrencyCode":"USD","customerUsageType":"","entityUseCode":"","customerVendorCode":"amostwill@raritanbasin.org","customerCode":"amostwill@raritanbasin.org","exemptNo":"","reconciled":false,"locationCode":"","reportingLocationCode":"","purchaseOrderNo":"","referenceCode":"","salespersonCode":"","totalAmount":56.65,"totalExempt":14.25,"totalDiscount":0.0,"totalTax":2.81,"totalTaxable":42.4,"totalTaxCalculated":2.81,"adjustmentReason":"NotAdjusted","locked":false,"version":1,"exchangeRateEffectiveDate":"2021-08-20","exchangeRate":1.0,"modifiedDate":"2021-08-20T17:05:30.3550858Z","modifiedUserId":231879,"taxDate":"2021-08-20","lines":[{"id":0,"transactionId":0,"lineNumber":"8128f5d1226159ea61104ea4cef1e77c","customerUsageType":"","entityUseCode":"","description":"Alcojet","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"itemCode":"1404-1","lineAmount":42.399999999999999,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-08-20","tax":2.81,"taxableAmount":42.4,"taxCalculated":2.81,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-08-20","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NJ","exemptAmount":0.0,"jurisCode":"34","jurisName":"NEW JERSEY","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.066250,"tax":2.81,"taxableAmount":42.4,"taxType":"Sales","taxSubTypeId":"S","taxName":"NJ STATE TAX","taxAuthorityTypeId":45,"taxCalculated":2.81,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":42.4,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":2.81,"reportingTaxCalculated":2.81,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":0,"transactionId":0,"lineNumber":"shipping_0","customerUsageType":"","entityUseCode":"","description":"Ground (UPS)","discountAmount":0.0,"exemptAmount":14.25,"exemptCertId":0,"exemptNo":"","isItemTaxable":false,"itemCode":"pt-ups-merger:6:03","lineAmount":14.25,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-08-20","tax":0.0,"taxableAmount":0.0,"taxCalculated":0.0,"taxCode":"FR","taxCodeId":7119,"taxDate":"2021-08-20","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NJ","exemptAmount":0.0,"jurisCode":"34","jurisName":"NEW JERSEY","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":14.25,"rate":0.066250,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NJ STATE TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":14.25,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0}],"addresses":[{"id":0,"transactionId":0,"boundaryLevel":"Zip5","line1":"1851 Route 31","line2":"","line3":"","city":"Clinton","region":"NJ","postalCode":"08809","country":"US","taxRegionId":4005460,"latitude":"40.641245","longitude":"-74.910849"},{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"30 GLENN ST","line2":"","line3":"","city":"WHITE PLAINS","region":"NY","postalCode":"10603-3254","country":"US","taxRegionId":2090237,"latitude":"41.050608","longitude":"-73.771383"}],"summary":[{"country":"US","region":"NJ","jurisType":"State","jurisCode":"34","jurisName":"NEW JERSEY","taxAuthorityType":45,"stateAssignedNo":"","taxType":"Sales","taxSubType":"S","taxName":"NJ STATE TAX","rateType":"General","taxable":42.4,"rate":0.066250,"tax":2.81,"taxCalculated":2.81,"nonTaxable":14.25,"exemption":0.0}]}
+
+08-20-2021 @ 13:06:13 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/taxrates/byaddress?line1=&line2=&city=Clinton&region=NJ&country=US&postalCode=08809
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.8)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.30375s
+
+08-20-2021 @ 13:06:13 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Fri, 20 Aug 2021 17:06:13 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 87
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0014996
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"totalRate":0.066250,"rates":[{"rate":0.066250,"name":"NJ STATE TAX","type":"State"}]}
+
+08-20-2021 @ 13:06:13 - Request
+Request
+method: POST
+uri: https://rest.avatax.com/api/v2/transactions/create
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.8)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body: {"code":"","companyCode":"ALC","customerCode":"amostwill@raritanbasin.org","currencyCode":"USD","date":"2021-08-20","lines":[{"number":"8128f5d1226159ea61104ea4cef1e77c","itemCode":"1404-1","taxCode":"P0000000","description":"Alcojet","quantity":1,"amount":42.399999999999999},{"number":"shipping_0","itemCode":"pt-ups-merger:6:03","taxCode":"FR","description":"Ground (UPS)","quantity":1,"amount":14.25}],"addresses":{"shipFrom":{"line1":"30 GLENN ST","line2":"","city":"WHITE PLAINS","region":"NY","country":"US","postalCode":"10603-3254"},"shipTo":{"line1":"1851 Route 31","line2":"","city":"Clinton","region":"NJ","country":"US","postalCode":"08809"}},"type":"SalesOrder","commit":false}
+duration: 0.33474s
+
+08-20-2021 @ 13:06:13 - Response
+Response
+code: 201
+message: Created
+headers: Array
+(
+    [date] => Fri, 20 Aug 2021 17:06:13 GMT
+    [content-type] => application/json; charset=utf-8
+    [server] => Kestrel
+    [content-encoding] => br
+    [location] => /api/v2/companies/207925/transactions/0
+    [vary] => Accept-Encoding
+    [serverduration] => 00:00:00.0428619
+)
+body: {"id":0,"code":"645c23a0-b6fe-440d-9477-3b1587529cb7","companyId":207925,"date":"2021-08-20","paymentDate":"2021-08-20","status":"Temporary","type":"SalesOrder","batchCode":"","currencyCode":"USD","exchangeRateCurrencyCode":"USD","customerUsageType":"","entityUseCode":"","customerVendorCode":"amostwill@raritanbasin.org","customerCode":"amostwill@raritanbasin.org","exemptNo":"","reconciled":false,"locationCode":"","reportingLocationCode":"","purchaseOrderNo":"","referenceCode":"","salespersonCode":"","totalAmount":56.65,"totalExempt":14.25,"totalDiscount":0.0,"totalTax":2.81,"totalTaxable":42.4,"totalTaxCalculated":2.81,"adjustmentReason":"NotAdjusted","locked":false,"version":1,"exchangeRateEffectiveDate":"2021-08-20","exchangeRate":1.0,"modifiedDate":"2021-08-20T17:06:13.4626872Z","modifiedUserId":231879,"taxDate":"2021-08-20","lines":[{"id":0,"transactionId":0,"lineNumber":"8128f5d1226159ea61104ea4cef1e77c","customerUsageType":"","entityUseCode":"","description":"Alcojet","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"itemCode":"1404-1","lineAmount":42.399999999999999,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-08-20","tax":2.81,"taxableAmount":42.4,"taxCalculated":2.81,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-08-20","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NJ","exemptAmount":0.0,"jurisCode":"34","jurisName":"NEW JERSEY","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.066250,"tax":2.81,"taxableAmount":42.4,"taxType":"Sales","taxSubTypeId":"S","taxName":"NJ STATE TAX","taxAuthorityTypeId":45,"taxCalculated":2.81,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":42.4,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":2.81,"reportingTaxCalculated":2.81,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":0,"transactionId":0,"lineNumber":"shipping_0","customerUsageType":"","entityUseCode":"","description":"Ground (UPS)","discountAmount":0.0,"exemptAmount":14.25,"exemptCertId":0,"exemptNo":"","isItemTaxable":false,"itemCode":"pt-ups-merger:6:03","lineAmount":14.25,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-08-20","tax":0.0,"taxableAmount":0.0,"taxCalculated":0.0,"taxCode":"FR","taxCodeId":7119,"taxDate":"2021-08-20","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NJ","exemptAmount":0.0,"jurisCode":"34","jurisName":"NEW JERSEY","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":14.25,"rate":0.066250,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NJ STATE TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":14.25,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0}],"addresses":[{"id":0,"transactionId":0,"boundaryLevel":"Zip5","line1":"1851 Route 31","line2":"","line3":"","city":"Clinton","region":"NJ","postalCode":"08809","country":"US","taxRegionId":4005460,"latitude":"40.641245","longitude":"-74.910849"},{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"30 GLENN ST","line2":"","line3":"","city":"WHITE PLAINS","region":"NY","postalCode":"10603-3254","country":"US","taxRegionId":2090237,"latitude":"41.050608","longitude":"-73.771383"}],"summary":[{"country":"US","region":"NJ","jurisType":"State","jurisCode":"34","jurisName":"NEW JERSEY","taxAuthorityType":45,"stateAssignedNo":"","taxType":"Sales","taxSubType":"S","taxName":"NJ STATE TAX","rateType":"General","taxable":42.4,"rate":0.066250,"tax":2.81,"taxCalculated":2.81,"nonTaxable":14.25,"exemption":0.0}]}
+
+08-20-2021 @ 13:06:20 - Request
+Request
+method: POST
+uri: https://rest.avatax.com/api/v2/transactions/create
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.8)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body: {"code":"wc_order_xLS9tmY3CwhIQ","companyCode":"ALC","customerCode":"amostwill@raritanbasin.org","currencyCode":"USD","date":"2021-08-20","lines":[{"number":24531,"itemCode":"1404-1","taxCode":"P0000000","description":"Alcojet","quantity":1,"amount":42.399999999999999},{"number":"shipping_24532","itemCode":"pt-ups-merger","taxCode":"FR","description":"Ground (UPS)","quantity":1,"amount":14.25}],"addresses":{"shipFrom":{"line1":"30 GLENN ST","line2":"","city":"WHITE PLAINS","region":"NY","country":"US","postalCode":"10603-3254"},"shipTo":{"line1":"1851 Route 31","line2":"","city":"Clinton","region":"NJ","country":"US","postalCode":"08809"}},"type":"SalesInvoice","purchaseOrderNo":"22122","commit":true}
+duration: 0.40583s
+
+08-20-2021 @ 13:06:20 - Response
+Response
+code: 201
+message: Created
+headers: Array
+(
+    [date] => Fri, 20 Aug 2021 17:06:20 GMT
+    [content-type] => application/json; charset=utf-8
+    [server] => Kestrel
+    [content-encoding] => br
+    [location] => /api/v2/companies/207925/transactions/1001826669301
+    [vary] => Accept-Encoding
+    [serverduration] => 00:00:00.1037829
+)
+body: {"id":1001826669301,"code":"wc_order_xLS9tmY3CwhIQ","companyId":207925,"date":"2021-08-20","status":"Committed","type":"SalesInvoice","batchCode":"","currencyCode":"USD","exchangeRateCurrencyCode":"USD","customerUsageType":"","entityUseCode":"","customerVendorCode":"amostwill@raritanbasin.org","customerCode":"amostwill@raritanbasin.org","exemptNo":"","reconciled":false,"locationCode":"","reportingLocationCode":"","purchaseOrderNo":"22122","referenceCode":"","salespersonCode":"","taxOverrideType":"None","taxOverrideAmount":0.0,"taxOverrideReason":"","totalAmount":56.65,"totalExempt":14.25,"totalDiscount":0.0,"totalTax":2.81,"totalTaxable":42.4,"totalTaxCalculated":2.81,"adjustmentReason":"NotAdjusted","adjustmentDescription":"","locked":false,"region":"NJ","country":"US","version":1,"softwareVersion":"21.7.2.0","originAddressId":1003358308566,"destinationAddressId":5002860406548,"exchangeRateEffectiveDate":"2021-08-20","exchangeRate":1.0,"description":"","email":"","businessIdentificationNo":"","modifiedDate":"2021-08-20T17:06:19.938286Z","modifiedUserId":231879,"taxDate":"2021-08-20","lines":[{"id":5003638518159,"transactionId":1001826669301,"lineNumber":"24531","boundaryOverrideId":0,"customerUsageType":"","entityUseCode":"","description":"Alcojet","destinationAddressId":5002860406548,"originAddressId":1003358308566,"discountAmount":0.0,"discountTypeId":0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"isSSTP":false,"itemCode":"1404-1","lineAmount":42.4,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-08-20","revAccount":"","sourcing":"Destination","tax":2.8100,"taxableAmount":42.4,"taxCalculated":2.8100,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-08-20","taxEngine":"","taxOverrideType":"None","businessIdentificationNo":"","taxOverrideAmount":0.0,"taxOverrideReason":"","taxIncluded":false,"details":[{"id":4005606687003,"transactionLineId":5003638518159,"transactionId":1001826669301,"addressId":5002860406548,"country":"US","region":"NJ","countyFIPS":"","stateFIPS":"","exemptAmount":0.0000,"exemptReasonId":4,"inState":false,"jurisCode":"34","jurisName":"NEW JERSEY","jurisdictionId":34,"signatureCode":"BEJY","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0000,"nonTaxableRuleId":0,"nonTaxableType":"RateRule","rate":0.066250,"rateRuleId":1459609,"rateSourceId":3,"serCode":"","sourcing":"Destination","tax":2.8100,"taxableAmount":42.4000,"taxType":"Sales","taxSubTypeId":"S","taxTypeGroupId":"SalesAndUse","taxName":"NJ STATE TAX","taxAuthorityTypeId":45,"taxRegionId":4005460,"taxCalculated":2.8100,"taxOverride":0.0000,"rateType":"General","rateTypeCode":"G","taxableUnits":42.4000,"nonTaxableUnits":0.0000,"exemptUnits":0.0000,"unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":42.4,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":2.81,"reportingTaxCalculated":2.81,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"lineLocationTypes":[{"documentLineLocationTypeId":1007027581323,"documentLineId":5003638518159,"documentAddressId":1003358308566,"locationTypeCode":"ShipFrom"},{"documentLineLocationTypeId":3007027581320,"documentLineId":5003638518159,"documentAddressId":5002860406548,"locationTypeCode":"ShipTo"}],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":1005661417321,"transactionId":1001826669301,"lineNumber":"shipping_24532","boundaryOverrideId":0,"customerUsageType":"","entityUseCode":"","description":"Ground (UPS)","destinationAddressId":5002860406548,"originAddressId":1003358308566,"discountAmount":0.0,"discountTypeId":0,"exemptAmount":14.25,"exemptCertId":0,"exemptNo":"","isItemTaxable":false,"isSSTP":false,"itemCode":"pt-ups-merger","lineAmount":14.25,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-08-20","revAccount":"","sourcing":"Destination","tax":0.0000,"taxableAmount":0.0,"taxCalculated":0.0000,"taxCode":"FR","taxCodeId":7119,"taxDate":"2021-08-20","taxEngine":"","taxOverrideType":"None","businessIdentificationNo":"","taxOverrideAmount":0.0,"taxOverrideReason":"","taxIncluded":false,"details":[{"id":6005606687002,"transactionLineId":1005661417321,"transactionId":1001826669301,"addressId":5002860406548,"country":"US","region":"NJ","countyFIPS":"","stateFIPS":"","exemptAmount":0.0000,"exemptReasonId":5,"inState":false,"jurisCode":"34","jurisName":"NEW JERSEY","jurisdictionId":34,"signatureCode":"BEJY","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":14.2500,"nonTaxableRuleId":5594535,"nonTaxableType":"ProductTaxabilityRule","rate":0.066250,"rateRuleId":1459609,"rateSourceId":3,"serCode":"","sourcing":"Destination","tax":0.0000,"taxableAmount":0.0000,"taxType":"Sales","taxSubTypeId":"S","taxTypeGroupId":"SalesAndUse","taxName":"NJ STATE TAX","taxAuthorityTypeId":45,"taxRegionId":4005460,"taxCalculated":0.0000,"taxOverride":0.0000,"rateType":"General","rateTypeCode":"G","taxableUnits":0.0000,"nonTaxableUnits":14.2500,"exemptUnits":0.0000,"unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":14.25,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"lineLocationTypes":[{"documentLineLocationTypeId":11004328813059,"documentLineId":1005661417321,"documentAddressId":1003358308566,"locationTypeCode":"ShipFrom"},{"documentLineLocationTypeId":5005307509684,"documentLineId":1005661417321,"documentAddressId":5002860406548,"locationTypeCode":"ShipTo"}],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0}],"addresses":[{"id":5002860406548,"transactionId":1001826669301,"boundaryLevel":"Zip5","line1":"1851 Route 31","line2":"","line3":"","city":"Clinton","region":"NJ","postalCode":"08809","country":"US","taxRegionId":4005460,"latitude":"40.641245","longitude":"-74.910849"},{"id":1003358308566,"transactionId":1001826669301,"boundaryLevel":"Address","line1":"30 GLENN ST","line2":"","line3":"","city":"WHITE PLAINS","region":"NY","postalCode":"10603-3254","country":"US","taxRegionId":2090237,"latitude":"41.050608","longitude":"-73.771383"}],"locationTypes":[{"documentLocationTypeId":12000224832117,"documentId":1001826669301,"documentAddressId":1003358308566,"locationTypeCode":"ShipFrom"},{"documentLocationTypeId":2002785267617,"documentId":1001826669301,"documentAddressId":5002860406548,"locationTypeCode":"ShipTo"}],"summary":[{"country":"US","region":"NJ","jurisType":"State","jurisCode":"34","jurisName":"NEW JERSEY","taxAuthorityType":45,"stateAssignedNo":"","taxType":"Sales","taxSubType":"S","taxName":"NJ STATE TAX","rateType":"General","taxable":42.40,"rate":0.066250,"tax":2.81,"taxCalculated":2.81,"nonTaxable":14.25,"exemption":0.00}]}
+
+08-20-2021 @ 13:16:13 - Request
+Request
+method: POST
+uri: https://rest.avatax.com/api/v2/companies/ALC/transactions/wc_order_xLS9tmY3CwhIQ/void
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.8)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body: {"code":"DocVoided"}
+duration: 0.39239s
+
+08-20-2021 @ 13:16:13 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Fri, 20 Aug 2021 17:16:13 GMT
+    [content-type] => application/json; charset=utf-8
+    [server] => Kestrel
+    [content-encoding] => br
+    [location] => /api/v2/companies/207925/transactions/1001826669301
+    [vary] => Accept-Encoding
+    [serverduration] => 00:00:00.0611678
+)
+body: {"id":1001826669301,"code":"wc_order_xLS9tmY3CwhIQ","companyId":207925,"date":"2021-08-20","paymentDate":"1900-01-01","status":"Cancelled","type":"SalesInvoice","batchCode":"","currencyCode":"USD","exchangeRateCurrencyCode":"USD","customerUsageType":"","entityUseCode":"","customerVendorCode":"amostwill@raritanbasin.org","customerCode":"amostwill@raritanbasin.org","exemptNo":"","reconciled":false,"locationCode":"","reportingLocationCode":"","purchaseOrderNo":"22122","referenceCode":"","salespersonCode":"","taxOverrideType":"None","taxOverrideAmount":0.0000,"taxOverrideReason":"","totalAmount":56.6500,"totalExempt":14.2500,"totalDiscount":0.0000,"totalTax":2.8100,"totalTaxable":42.4000,"totalTaxCalculated":2.8100,"adjustmentReason":"NotAdjusted","adjustmentDescription":"","locked":false,"region":"NJ","country":"US","version":1,"softwareVersion":"21.7.2.0","originAddressId":1003358308566,"destinationAddressId":5002860406548,"exchangeRateEffectiveDate":"2021-08-20","exchangeRate":1.0000,"isSellerImporterOfRecord":false,"description":"","email":"","businessIdentificationNo":"","modifiedDate":"2021-08-20T17:16:13.743Z","modifiedUserId":231879,"taxDate":"2021-08-20","lines":[{"id":5003638518159,"transactionId":1001826669301,"lineNumber":"24531","boundaryOverrideId":0,"customerUsageType":"","entityUseCode":"","description":"Alcojet","destinationAddressId":5002860406548,"originAddressId":1003358308566,"discountAmount":0.0000,"discountTypeId":0,"exemptAmount":0.0000,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"isSSTP":false,"itemCode":"1404-1","lineAmount":42.4000,"quantity":1.0000,"ref1":"","ref2":"","reportingDate":"2021-08-20","revAccount":"","sourcing":"Destination","tax":2.8100,"taxableAmount":42.4000,"taxCalculated":2.8100,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-08-20","taxEngine":"","taxOverrideType":"None","businessIdentificationNo":"","taxOverrideAmount":0.0000,"taxOverrideReason":"","taxAmountByTaxTypes":[],"taxIncluded":false,"details":[{"id":4005606687003,"transactionLineId":5003638518159,"transactionId":1001826669301,"addressId":5002860406548,"country":"US","region":"NJ","countyFIPS":"","stateFIPS":"34","exemptAmount":0.0000,"exemptReasonId":4,"inState":false,"jurisCode":"34","jurisName":"NEW JERSEY","jurisdictionId":34,"signatureCode":"BEJY","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0000,"nonTaxableRuleId":0,"nonTaxableType":"RateRule","rate":0.066250,"rateRuleId":1459609,"rateSourceId":3,"serCode":"","sourcing":"Destination","tax":2.8100,"taxableAmount":42.4000,"taxType":"Sales","taxSubTypeId":"S","taxTypeGroupId":"SalesAndUse","taxName":"NJ STATE TAX","taxAuthorityTypeId":45,"taxRegionId":4005460,"taxCalculated":2.8100,"taxOverride":0.0000,"rateType":"General","rateTypeCode":"G","taxableUnits":42.4000,"nonTaxableUnits":0.0000,"exemptUnits":0.0000,"unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":42.4000,"reportingNonTaxableUnits":0.0000,"reportingExemptUnits":0.0000,"reportingTax":2.8100,"reportingTaxCalculated":2.8100,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"lineLocationTypes":[{"documentLineLocationTypeId":3007027581320,"documentLineId":5003638518159,"documentAddressId":5002860406548,"locationTypeCode":"ShipTo"},{"documentLineLocationTypeId":1007027581323,"documentLineId":5003638518159,"documentAddressId":1003358308566,"locationTypeCode":"ShipFrom"}],"hsCode":"","costInsuranceFreight":0.0000,"vatCode":"","vatNumberTypeId":0},{"id":1005661417321,"transactionId":1001826669301,"lineNumber":"shipping_24532","boundaryOverrideId":0,"customerUsageType":"","entityUseCode":"","description":"Ground (UPS)","destinationAddressId":5002860406548,"originAddressId":1003358308566,"discountAmount":0.0000,"discountTypeId":0,"exemptAmount":14.2500,"exemptCertId":0,"exemptNo":"","isItemTaxable":false,"isSSTP":false,"itemCode":"pt-ups-merger","lineAmount":14.2500,"quantity":1.0000,"ref1":"","ref2":"","reportingDate":"2021-08-20","revAccount":"","sourcing":"Destination","tax":0.0000,"taxableAmount":0.0000,"taxCalculated":0.0000,"taxCode":"FR","taxCodeId":7119,"taxDate":"2021-08-20","taxEngine":"","taxOverrideType":"None","businessIdentificationNo":"","taxOverrideAmount":0.0000,"taxOverrideReason":"","taxAmountByTaxTypes":[],"taxIncluded":false,"details":[{"id":6005606687002,"transactionLineId":1005661417321,"transactionId":1001826669301,"addressId":5002860406548,"country":"US","region":"NJ","countyFIPS":"","stateFIPS":"34","exemptAmount":0.0000,"exemptReasonId":5,"inState":false,"jurisCode":"34","jurisName":"NEW JERSEY","jurisdictionId":34,"signatureCode":"BEJY","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":14.2500,"nonTaxableRuleId":5594535,"nonTaxableType":"ProductTaxabilityRule","rate":0.066250,"rateRuleId":1459609,"rateSourceId":3,"serCode":"","sourcing":"Destination","tax":0.0000,"taxableAmount":0.0000,"taxType":"Sales","taxSubTypeId":"S","taxTypeGroupId":"SalesAndUse","taxName":"NJ STATE TAX","taxAuthorityTypeId":45,"taxRegionId":4005460,"taxCalculated":0.0000,"taxOverride":0.0000,"rateType":"General","rateTypeCode":"G","taxableUnits":0.0000,"nonTaxableUnits":14.2500,"exemptUnits":0.0000,"unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0000,"reportingNonTaxableUnits":14.2500,"reportingExemptUnits":0.0000,"reportingTax":0.0000,"reportingTaxCalculated":0.0000,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"lineLocationTypes":[{"documentLineLocationTypeId":11004328813059,"documentLineId":1005661417321,"documentAddressId":1003358308566,"locationTypeCode":"ShipFrom"},{"documentLineLocationTypeId":5005307509684,"documentLineId":1005661417321,"documentAddressId":5002860406548,"locationTypeCode":"ShipTo"}],"hsCode":"","costInsuranceFreight":0.0000,"vatCode":"","vatNumberTypeId":0}],"addresses":[{"id":1003358308566,"transactionId":1001826669301,"boundaryLevel":"Address","line1":"30 GLENN ST","line2":"","line3":"","city":"WHITE PLAINS","region":"NY","postalCode":"10603-3254","country":"US","taxRegionId":2090237,"latitude":"41.050608","longitude":"-73.771383"},{"id":5002860406548,"transactionId":1001826669301,"boundaryLevel":"Zip5","line1":"1851 Route 31","line2":"","line3":"","city":"Clinton","region":"NJ","postalCode":"08809","country":"US","taxRegionId":4005460,"latitude":"40.641245","longitude":"-74.910849"}],"locationTypes":[{"documentLocationTypeId":12000224832117,"documentId":1001826669301,"documentAddressId":1003358308566,"locationTypeCode":"ShipFrom"},{"documentLocationTypeId":2002785267617,"documentId":1001826669301,"documentAddressId":5002860406548,"locationTypeCode":"ShipTo"}],"summary":[{"country":"US","region":"NJ","jurisType":"State","jurisCode":"34","jurisName":"NEW JERSEY","taxAuthorityType":45,"stateAssignedNo":"","taxType":"Sales","taxSubType":"S","taxName":"NJ STATE TAX","rateType":"General","taxable":42.40,"rate":0.066250,"tax":2.81,"taxCalculated":2.81,"nonTaxable":14.25,"exemption":0.00}],"messages":[]}
+

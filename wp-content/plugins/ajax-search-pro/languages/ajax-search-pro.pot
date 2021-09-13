@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Blank WordPress "
 "Pot v1.0.0\n"
-"POT-Creation-Date: 2021-04-03 "
-"11:57+0200\n"
+"POT-Creation-Date: 2021-09-13 "
+"10:05+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Your Name "
 "<you@example.com>\n"
@@ -33,7 +33,7 @@ msgstr ""
 "__ngettext_noop:1,2;_c,_nc:4c,1,2\n"
 "X-Poedit-Basepath: ..\n"
 "Language: en_US\n"
-"X-Generator: Poedit 2.4.2\n"
+"X-Generator: Poedit 3.0\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: "
 "includes/externals\n"
@@ -127,10 +127,11 @@ msgid ""
 msgstr ""
 
 #: backend/analytics.php:120
+#: backend/settings/class/datefilter-post.class.php:30
 #: backend/settings/class/datefilter.class.php:28
 #: backend/settings/class/dateinterval.class.php:31
 #: backend/settings/class/dateinterval.class.php:48
-#: backend/tabs/instance/general/behaviour.php:27
+#: backend/tabs/instance/general/behaviour.php:31
 #: backend/tabs/instance/layout/search_box_layout.php:67
 #: backend/tabs/instance/suggest/autocomplete.php:5
 #: backend/tabs/instance/suggest/autocomplete.php:35
@@ -156,16 +157,25 @@ msgstr ""
 
 #: backend/analytics.php:135
 msgid ""
-"Google analytics Tracking ID (ex.: "
-"UA-XXXXXX-X)"
+"[optional] Google analytics "
+"Tracking ID (ex.: UA-XXXXXX-X)"
 msgstr ""
 
-#: backend/analytics.php:147
+#: backend/analytics.php:137
+msgid ""
+"You can leave this empty, the "
+"plugin should auto detect the "
+"tracking id. If you have multiple "
+"tracking IDs, you can specify one "
+"in this box."
+msgstr ""
+
+#: backend/analytics.php:150
 msgid ""
 "Google analytics pageview string"
 msgstr ""
 
-#: backend/analytics.php:149
+#: backend/analytics.php:152
 msgid ""
 "This is how the pageview will look "
 "like on the google analytics "
@@ -174,79 +184,46 @@ msgid ""
 "the pageview."
 msgstr ""
 
-#: backend/analytics.php:153
+#: backend/analytics.php:156
 msgid ""
 "After some time you should be able "
 "to see the hits on your analytics "
 "board."
 msgstr ""
 
-#: backend/analytics.php:159
+#: backend/analytics.php:162
 msgid ""
 "Search input focus event tracking"
 msgstr ""
 
-#: backend/analytics.php:162
-#: backend/analytics.php:187
-#: backend/analytics.php:212
-#: backend/analytics.php:237
-#: backend/analytics.php:262
-#: backend/analytics.php:287
-#: backend/analytics.php:312
-#: backend/analytics.php:337
+#: backend/analytics.php:165
+#: backend/analytics.php:190
+#: backend/analytics.php:215
+#: backend/analytics.php:240
+#: backend/analytics.php:265
+#: backend/analytics.php:290
+#: backend/analytics.php:315
+#: backend/analytics.php:340
 #: backend/tabs/instance/suggest/autocomplete.php:34
 msgid "Enabled"
 msgstr ""
 
-#: backend/analytics.php:165
+#: backend/analytics.php:168
 msgid ""
 "Triggers, whenever the user clicks "
 "on the search input field."
 msgstr ""
 
-#: backend/analytics.php:171
-#: backend/analytics.php:196
-#: backend/analytics.php:221
-#: backend/analytics.php:246
-#: backend/analytics.php:271
-#: backend/analytics.php:296
-#: backend/analytics.php:321
-#: backend/analytics.php:346
+#: backend/analytics.php:174
+#: backend/analytics.php:199
+#: backend/analytics.php:224
+#: backend/analytics.php:249
+#: backend/analytics.php:274
+#: backend/analytics.php:299
+#: backend/analytics.php:324
+#: backend/analytics.php:349
 #, php-format
 msgid "Usable variables: %s"
-msgstr ""
-
-#: backend/analytics.php:176
-#: backend/analytics.php:201
-#: backend/analytics.php:226
-#: backend/analytics.php:251
-#: backend/analytics.php:276
-#: backend/analytics.php:301
-#: backend/analytics.php:326
-#: backend/analytics.php:351
-msgid "Event action"
-msgstr ""
-
-#: backend/analytics.php:177
-#: backend/analytics.php:202
-#: backend/analytics.php:227
-#: backend/analytics.php:252
-#: backend/analytics.php:277
-#: backend/analytics.php:302
-#: backend/analytics.php:327
-#: backend/analytics.php:352
-msgid "Event category"
-msgstr ""
-
-#: backend/analytics.php:178
-#: backend/analytics.php:203
-#: backend/analytics.php:228
-#: backend/analytics.php:253
-#: backend/analytics.php:278
-#: backend/analytics.php:303
-#: backend/analytics.php:328
-#: backend/analytics.php:353
-msgid "Event label"
 msgstr ""
 
 #: backend/analytics.php:179
@@ -257,77 +234,110 @@ msgstr ""
 #: backend/analytics.php:304
 #: backend/analytics.php:329
 #: backend/analytics.php:354
+msgid "Event action"
+msgstr ""
+
+#: backend/analytics.php:180
+#: backend/analytics.php:205
+#: backend/analytics.php:230
+#: backend/analytics.php:255
+#: backend/analytics.php:280
+#: backend/analytics.php:305
+#: backend/analytics.php:330
+#: backend/analytics.php:355
+msgid "Event category"
+msgstr ""
+
+#: backend/analytics.php:181
+#: backend/analytics.php:206
+#: backend/analytics.php:231
+#: backend/analytics.php:256
+#: backend/analytics.php:281
+#: backend/analytics.php:306
+#: backend/analytics.php:331
+#: backend/analytics.php:356
+msgid "Event label"
+msgstr ""
+
+#: backend/analytics.php:182
+#: backend/analytics.php:207
+#: backend/analytics.php:232
+#: backend/analytics.php:257
+#: backend/analytics.php:282
+#: backend/analytics.php:307
+#: backend/analytics.php:332
+#: backend/analytics.php:357
 msgid "Event value"
 msgstr ""
 
-#: backend/analytics.php:184
+#: backend/analytics.php:187
 msgid ""
 "Live search start event tracking"
 msgstr ""
 
-#: backend/analytics.php:190
+#: backend/analytics.php:193
 msgid ""
 "Triggers, whenever the live search "
 "starts."
 msgstr ""
 
-#: backend/analytics.php:209
+#: backend/analytics.php:212
 msgid "Live search end event tracking"
 msgstr ""
 
-#: backend/analytics.php:215
+#: backend/analytics.php:218
 msgid ""
 "Triggers, whenever the live search "
 "ends."
 msgstr ""
 
-#: backend/analytics.php:234
+#: backend/analytics.php:237
 msgid "Magnifier click event tracking"
 msgstr ""
 
-#: backend/analytics.php:240
+#: backend/analytics.php:243
 msgid ""
 "Triggers, whenever the user clicks "
 "the magnifier icon"
 msgstr ""
 
-#: backend/analytics.php:259
+#: backend/analytics.php:262
 msgid "Return key event tracking"
 msgstr ""
 
-#: backend/analytics.php:265
+#: backend/analytics.php:268
 msgid ""
 "Triggers, whenever the user hits "
 "the enter button in the search "
 "input field"
 msgstr ""
 
-#: backend/analytics.php:284
+#: backend/analytics.php:287
 msgid "\"Try this\" keyword clicks"
 msgstr ""
 
-#: backend/analytics.php:290
+#: backend/analytics.php:293
 msgid ""
 "Triggers, whenever the user clicks "
 "on any of the \"try this\" keywords"
 msgstr ""
 
-#: backend/analytics.php:309
+#: backend/analytics.php:312
 msgid "Facet change event tracking"
 msgstr ""
 
-#: backend/analytics.php:315
-#: backend/analytics.php:340
+#: backend/analytics.php:318
+#: backend/analytics.php:343
 msgid ""
 "Triggers, whenever the user changes "
 "any option on the front-end settings"
 msgstr ""
 
-#: backend/analytics.php:334
+#: backend/analytics.php:337
 msgid "Results click event tracking"
 msgstr ""
 
-#: backend/analytics.php:362
+#: backend/analytics.php:365
 #: backend/tabs/instance/advanced_options.php:52
 #: backend/tabs/instance/autocomplete_options.php:68
 #: backend/tabs/instance/frontend_options.php:78
@@ -338,21 +348,21 @@ msgstr ""
 msgid "Restore defaults"
 msgstr ""
 
-#: backend/analytics.php:363
-#: backend/compatibility_settings.php:135
-#: backend/index_table.php:531
+#: backend/analytics.php:366
+#: backend/compatibility_settings.php:133
+#: backend/index_table.php:540
 msgid "Save options"
 msgstr ""
 
-#: backend/analytics.php:376
+#: backend/analytics.php:379
 msgid "Analytics options"
 msgstr ""
 
-#: backend/analytics.php:386
+#: backend/analytics.php:389
 #: backend/cache_settings.php:179
-#: backend/compatibility_settings.php:160
+#: backend/compatibility_settings.php:158
 #: backend/export_import.php:161
-#: backend/index_table.php:541
+#: backend/index_table.php:550
 #: backend/maintenance.php:107
 #: backend/priorities.php:78
 #: backend/search.php:366
@@ -361,11 +371,11 @@ msgstr ""
 msgid "DISABLE ACCESSIBILITY"
 msgstr ""
 
-#: backend/analytics.php:387
+#: backend/analytics.php:390
 #: backend/cache_settings.php:180
-#: backend/compatibility_settings.php:161
+#: backend/compatibility_settings.php:159
 #: backend/export_import.php:162
-#: backend/index_table.php:542
+#: backend/index_table.php:551
 #: backend/maintenance.php:108
 #: backend/priorities.php:79
 #: backend/search.php:367
@@ -405,9 +415,9 @@ msgstr ""
 #: backend/tabs/instance/frontend/search_button.php:3
 #: backend/tabs/instance/frontend/taxonomy_terms.php:3
 #: backend/tabs/instance/general/behaviour.php:6
-#: backend/tabs/instance/general/behaviour.php:84
-#: backend/tabs/instance/general/behaviour.php:211
-#: backend/tabs/instance/general/behaviour.php:232
+#: backend/tabs/instance/general/behaviour.php:92
+#: backend/tabs/instance/general/behaviour.php:227
+#: backend/tabs/instance/general/behaviour.php:248
 #: backend/tabs/instance/general/ordering.php:12
 #: backend/tabs/instance/general_options.php:81
 #: backend/tabs/instance/layout/highlight_loadmore.php:6
@@ -465,7 +475,7 @@ msgstr ""
 #: backend/cache_settings.php:66
 msgid ""
 "Caching interval (in minutes, "
-"default 1440, aka. 1 day)"
+"default 43200, aka. 30 days)"
 msgstr ""
 
 #: backend/cache_settings.php:100
@@ -520,51 +530,51 @@ msgstr ""
 msgid "Other options"
 msgstr ""
 
-#: backend/compatibility_settings.php:112
+#: backend/compatibility_settings.php:110
 msgid ""
 "Search compatibility settings "
 "successfuly updated!"
 msgstr ""
 
-#: backend/compatibility_settings.php:121
+#: backend/compatibility_settings.php:119
 msgid "CSS & JS compatibility"
 msgstr ""
 
-#: backend/compatibility_settings.php:122
+#: backend/compatibility_settings.php:120
 msgid "CSS & JS loading"
 msgstr ""
 
-#: backend/compatibility_settings.php:123
+#: backend/compatibility_settings.php:121
 msgid "Query compatibility"
 msgstr ""
 
-#: backend/compatibility_settings.php:124
+#: backend/compatibility_settings.php:122
 msgid "Other"
 msgstr ""
 
-#: backend/compatibility_settings.php:147
+#: backend/compatibility_settings.php:145
 msgid "Possible compatibility errors:"
 msgstr ""
 
-#: backend/compatibility_settings.php:150
+#: backend/compatibility_settings.php:148
 msgid "Error"
 msgstr ""
 
-#: backend/compatibility_settings.php:151
+#: backend/compatibility_settings.php:149
 msgid "Possible Consequences"
 msgstr ""
 
-#: backend/compatibility_settings.php:152
+#: backend/compatibility_settings.php:150
 msgid "Solutions"
 msgstr ""
 
-#: backend/compatibility_settings.php:155
+#: backend/compatibility_settings.php:153
 msgid ""
 "Please note, that these errors may "
 "not be accurate!"
 msgstr ""
 
-#: backend/compatibility_settings.php:162
+#: backend/compatibility_settings.php:160
 msgid "No compatibility errors found!"
 msgstr ""
 
@@ -909,7 +919,7 @@ msgid "Post statuses to index"
 msgstr ""
 
 #: backend/index_table.php:216
-#: backend/tabs/instance/general/sources.php:93
+#: backend/tabs/instance/general/sources.php:96
 msgid ""
 "Comma separated list. WP Defaults: "
 "publish, future, draft, pending, "
@@ -1057,65 +1067,73 @@ msgstr ""
 
 #: backend/index_table.php:346
 msgid ""
+"(Default: OFF) May help when posts "
+"are imported and if you notice "
+"missing results for metadata "
+"keywords."
+msgstr ""
+
+#: backend/index_table.php:354
+msgid ""
 "Will register a cron job with "
 "wp_cron() and run it periodically."
 msgstr ""
 
-#: backend/index_table.php:353
+#: backend/index_table.php:361
 msgid "Every 2 minutes"
 msgstr ""
 
-#: backend/index_table.php:354
+#: backend/index_table.php:362
 msgid "Every 3 minutes"
 msgstr ""
 
-#: backend/index_table.php:355
+#: backend/index_table.php:363
 msgid "Every 5 minutes"
 msgstr ""
 
-#: backend/index_table.php:356
+#: backend/index_table.php:364
 msgid "Every 15 minutes"
 msgstr ""
 
-#: backend/index_table.php:357
+#: backend/index_table.php:365
 msgid "Every 30 minutes"
 msgstr ""
 
-#: backend/index_table.php:358
+#: backend/index_table.php:366
 msgid "Hourly"
 msgstr ""
 
-#: backend/index_table.php:359
+#: backend/index_table.php:367
 msgid "Twice Daily"
 msgstr ""
 
-#: backend/index_table.php:360
+#: backend/index_table.php:368
 msgid "Daily"
 msgstr ""
 
-#: backend/index_table.php:366
+#: backend/index_table.php:374
 msgid ""
 "The periodicity of execution. "
 "wp_cron() only accepts these values."
 msgstr ""
 
-#: backend/index_table.php:374
+#: backend/index_table.php:382
 msgid "Last exeuction time:"
 msgstr ""
 
-#: backend/index_table.php:377
+#: backend/index_table.php:385
 msgid "Current system time:"
 msgstr ""
 
-#: backend/index_table.php:379
+#: backend/index_table.php:387
 msgid "Posts indexed:"
 msgstr ""
 
-#: backend/index_table.php:381
+#: backend/index_table.php:389
 msgid "Keywords found:"
 msgstr ""
 
-#: backend/index_table.php:447
+#: backend/index_table.php:456
 msgid ""
 "The options have changed, don't "
 "forget to re-create the index table "
@@ -1123,61 +1141,61 @@ msgid ""
 "button!"
 msgstr ""
 
-#: backend/index_table.php:460
+#: backend/index_table.php:469
 msgid "Index Table Operations"
 msgstr ""
 
-#: backend/index_table.php:464
+#: backend/index_table.php:473
 msgid ""
 "Do you want to generate a new index "
 "table?"
 msgstr ""
 
-#: backend/index_table.php:465
+#: backend/index_table.php:474
 msgid "Create new index"
 msgstr ""
 
-#: backend/index_table.php:468
+#: backend/index_table.php:477
 msgid ""
 "Do you want to extend the index "
 "table?"
 msgstr ""
 
-#: backend/index_table.php:469
+#: backend/index_table.php:478
 msgid "Continue existing index"
 msgstr ""
 
-#: backend/index_table.php:471
+#: backend/index_table.php:480
 msgid ""
 "Do you really want to empty the "
 "index table?"
 msgstr ""
 
-#: backend/index_table.php:472
+#: backend/index_table.php:481
 msgid "Delete the index"
 msgstr ""
 
-#: backend/index_table.php:475
+#: backend/index_table.php:484
 msgid ""
 "Initializing, please wait. This "
 "might take a while."
 msgstr ""
 
-#: backend/index_table.php:477
+#: backend/index_table.php:486
 msgid "Stop"
 msgstr ""
 
-#: backend/index_table.php:479
+#: backend/index_table.php:488
 msgid ""
 "100% - Index table successfully "
 "generated!"
 msgstr ""
 
-#: backend/index_table.php:480
+#: backend/index_table.php:489
 msgid "Something went wrong :("
 msgstr ""
 
-#: backend/index_table.php:484
+#: backend/index_table.php:493
 #, php-format
 msgid ""
 "To read more about the index table, "
@@ -1186,234 +1204,233 @@ msgid ""
 "Index table</a> usage."
 msgstr ""
 
-#: backend/index_table.php:489
-#: backend/index_table.php:499
+#: backend/index_table.php:498
+#: backend/index_table.php:508
 msgid "Total keywords:"
 msgstr ""
 
-#: backend/index_table.php:495
+#: backend/index_table.php:504
 msgid ""
 "<b>Stats</b> (reloads periodically)"
 msgstr ""
 
-#: backend/index_table.php:496
+#: backend/index_table.php:505
 msgid "Items Indexed:"
 msgstr ""
 
-#: backend/index_table.php:497
+#: backend/index_table.php:506
 msgid "Items not indexed:"
 msgstr ""
 
-#: backend/index_table.php:502
+#: backend/index_table.php:511
 msgid "Loading stats"
 msgstr ""
 
-#: backend/index_table.php:512
+#: backend/index_table.php:521
 msgid "Index Table options"
 msgstr ""
 
-#: backend/index_table.php:516
+#: backend/index_table.php:525
 msgid ""
 "Index table options successfuly "
 "updated!"
 msgstr ""
 
-#: backend/index_table.php:519
+#: backend/index_table.php:528
 #: backend/tabs/instance/frontend/general.php:3
 #: backend/tabs/instance/frontend_options.php:3
 msgid "General"
 msgstr ""
 
-#: backend/index_table.php:520
+#: backend/index_table.php:529
 #: backend/tabs/instance/frontend_options.php:13
 msgid "Advanced"
 msgstr ""
 
-#: backend/index_table.php:521
+#: backend/index_table.php:530
 #: backend/tabs/index_table/synonyms.php:40
 msgid "Synonyms"
 msgstr ""
 
-#: backend/index_table.php:522
+#: backend/index_table.php:531
 msgid "Indexing & Cron"
 msgstr ""
 
-#: backend/index_table.php:523
+#: backend/index_table.php:532
 msgid "Performance & Accuracy"
 msgstr ""
 
-#: backend/index_table.php:549
+#: backend/index_table.php:558
 msgid ""
 "The index table had been created, "
 "so don't forget to enable it on the "
 "search instances, where you need it."
 msgstr ""
 
-#: backend/index_table.php:551
+#: backend/index_table.php:560
 msgid ""
 "If you don't know how to do that, "
 "these documentations will help "
 "(links open in new tab):"
 msgstr ""
 
-#: backend/index_table.php:553
-#: backend/index_table.php:558
+#: backend/index_table.php:562
+#: backend/index_table.php:567
 msgid "Enabling for"
 msgstr ""
 
-#: backend/index_table.php:555
+#: backend/index_table.php:564
 msgid "Custom Post Types"
 msgstr ""
 
-#: backend/index_table.php:560
-#: backend/tabs/instance/general_options.php:16
+#: backend/index_table.php:569
 msgid "Attachments"
 msgstr ""
 
-#: backend/index_table.php:573
+#: backend/index_table.php:582
 msgid "Success:"
 msgstr ""
 
-#: backend/index_table.php:574
+#: backend/index_table.php:583
 msgid "items were imported!"
 msgstr ""
 
-#: backend/index_table.php:575
+#: backend/index_table.php:584
 msgid ""
 "Something went wrong, please try "
 "again later."
 msgstr ""
 
-#: backend/index_table.php:576
+#: backend/index_table.php:585
 msgid ""
 "There are no synonyms in the "
 "database to export."
 msgstr ""
 
-#: backend/index_table.php:577
+#: backend/index_table.php:586
 msgid ""
 "The file is empty or invalid. "
 "Please make sure to upload and "
 "choose the correct one."
 msgstr ""
 
-#: backend/index_table.php:578
+#: backend/index_table.php:587
 msgid ""
 "Nothing was imported. The items in "
 "this file are already in the "
 "database."
 msgstr ""
 
-#: backend/index_table.php:579
+#: backend/index_table.php:588
 msgid ""
 "Something went wrong, please check "
 "your connection, and try again."
 msgstr ""
 
-#: backend/index_table.php:580
+#: backend/index_table.php:589
 msgid ""
 "This keyword already exists in the "
 "database! (use the search above if "
 "you look to edit it)"
 msgstr ""
 
-#: backend/index_table.php:581
+#: backend/index_table.php:590
 msgid ""
 "The keyword was not deleted, please "
 "try refreshing this page!"
 msgstr ""
 
-#: backend/index_table.php:582
+#: backend/index_table.php:591
 msgid ""
 "The keyword field is empty, please "
 "enter a keyword!"
 msgstr ""
 
-#: backend/index_table.php:583
+#: backend/index_table.php:592
 msgid ""
 "The synonyms field is missing, "
 "please enter some synonyms!"
 msgstr ""
 
-#: backend/index_table.php:584
+#: backend/index_table.php:593
 msgid ""
 "Are you sure you want to delete "
 "this keyword?"
 msgstr ""
 
-#: backend/index_table.php:585
+#: backend/index_table.php:594
 msgid ""
 "Are you sure you want to delete all "
 "of the synonyms?"
 msgstr ""
 
-#: backend/index_table.php:586
+#: backend/index_table.php:595
 msgid "Export Synonyms"
 msgstr ""
 
-#: backend/index_table.php:587
+#: backend/index_table.php:596
 msgid "Import Synonyms"
 msgstr ""
 
-#: backend/index_table.php:588
+#: backend/index_table.php:597
 msgid "Close"
 msgstr ""
 
-#: backend/index_table.php:598
+#: backend/index_table.php:607
 msgid "Okay!"
 msgstr ""
 
-#: backend/index_table.php:599
+#: backend/index_table.php:608
 msgid "Congratulations, but wait!"
 msgstr ""
 
-#: backend/index_table.php:600
+#: backend/index_table.php:609
 msgid "Progress:"
 msgstr ""
 
-#: backend/index_table.php:601
+#: backend/index_table.php:610
 msgid "Keywords found so far:"
 msgstr ""
 
-#: backend/index_table.php:602
+#: backend/index_table.php:611
 msgid "Processing blog no."
 msgstr ""
 
-#: backend/index_table.php:603
+#: backend/index_table.php:612
 #, php-format
 msgid ""
 "Success. <strong>%s</strong> new "
 "keywords were added to the database."
 msgstr ""
 
-#: backend/index_table.php:604
+#: backend/index_table.php:613
 msgid ""
 "Success. The index table was "
 "emptied."
 msgstr ""
 
-#: backend/index_table.php:605
+#: backend/index_table.php:614
 msgid ""
 "Something went wrong. Here is the "
 "error message returned:"
 msgstr ""
 
-#: backend/index_table.php:606
+#: backend/index_table.php:615
 msgid ""
 "Timeout error. Try lowering the "
 "<strong>Post limit per iteration</"
 "strong> option below."
 msgstr ""
 
-#: backend/index_table.php:607
+#: backend/index_table.php:616
 msgid "Status:"
 msgstr ""
 
-#: backend/index_table.php:608
+#: backend/index_table.php:617
 msgid "Code:"
 msgstr ""
 
-#: backend/index_table.php:609
+#: backend/index_table.php:618
 msgid "Initializing, please wait."
 msgstr ""
 
@@ -2107,13 +2124,13 @@ msgid ""
 msgstr ""
 
 #: backend/search.php:250
-#: backend/tabs/instance/general/behaviour.php:208
+#: backend/tabs/instance/general/behaviour.php:224
 msgid ""
 "Elementor Posts Widget Live Filter"
 msgstr ""
 
 #: backend/search.php:253
-#: backend/tabs/instance/general/behaviour.php:217
+#: backend/tabs/instance/general/behaviour.php:233
 msgid ""
 "Add to Elementor Posts Widget class "
 "name to enable live filtering on "
@@ -2121,7 +2138,7 @@ msgid ""
 msgstr ""
 
 #: backend/search.php:258
-#: backend/tabs/instance/general/behaviour.php:222
+#: backend/tabs/instance/general/behaviour.php:238
 #, php-format
 msgid ""
 "Please check the <a href=\"%s"
@@ -2457,24 +2474,26 @@ msgstr ""
 
 #: backend/settings/class/customposttypes-all.class.php:28
 #: backend/settings/class/customposttypes.class.php:37
-#: backend/settings/class/customposttypeseditable.class.php:42
+#: backend/settings/class/customposttypeseditable.class.php:25
 #: backend/settings/class/wd_cpt_editable.class.php:25
 msgid "Available post types"
 msgstr ""
 
 #: backend/settings/class/customposttypes-all.class.php:37
 #: backend/settings/class/customposttypes.class.php:48
-#: backend/settings/class/customposttypeseditable.class.php:54
+#: backend/settings/class/customposttypeseditable.class.php:37
 #: backend/settings/class/wd_cpt_editable.class.php:37
 msgid ""
 "Drag here the post types you want "
 "to use!"
 msgstr ""
 
+#: backend/settings/class/datefilter-post.class.php:25
 #: backend/settings/class/datefilter.class.php:25
 msgid "Date type"
 msgstr ""
 
+#: backend/settings/class/datefilter-post.class.php:26
 #: backend/settings/class/datefilter.class.php:26
 #: backend/settings/class/dateinterval.class.php:29
 #: backend/settings/class/dateinterval.class.php:46
@@ -2485,6 +2504,7 @@ msgstr ""
 msgid "Date"
 msgstr ""
 
+#: backend/settings/class/datefilter-post.class.php:27
 #: backend/settings/class/datefilter.class.php:27
 #: backend/settings/class/dateinterval.class.php:30
 #: backend/settings/class/dateinterval.class.php:47
@@ -2493,6 +2513,15 @@ msgstr ""
 msgid "Relative Date"
 msgstr ""
 
+#: backend/settings/class/datefilter-post.class.php:28
+msgid "Earliest Post Date"
+msgstr ""
+
+#: backend/settings/class/datefilter-post.class.php:29
+msgid "Latest Post Date"
+msgstr ""
+
+#: backend/settings/class/datefilter-post.class.php:35
 #: backend/settings/class/datefilter.class.php:33
 #: backend/settings/class/wd_frontfilters/views/date_from.php:32
 #: backend/settings/class/wd_frontfilters/views/date_to.php:32
@@ -2502,12 +2531,14 @@ msgid ""
 "appear."
 msgstr ""
 
+#: backend/settings/class/datefilter-post.class.php:39
 #: backend/settings/class/datefilter.class.php:37
 #: backend/settings/class/dateinterval.class.php:35
 #: backend/settings/class/dateinterval.class.php:52
 msgid "Years"
 msgstr ""
 
+#: backend/settings/class/datefilter-post.class.php:40
 #: backend/settings/class/datefilter.class.php:38
 #: backend/settings/class/dateinterval.class.php:36
 #: backend/settings/class/dateinterval.class.php:53
@@ -2516,12 +2547,14 @@ msgstr ""
 msgid "years"
 msgstr ""
 
+#: backend/settings/class/datefilter-post.class.php:41
 #: backend/settings/class/datefilter.class.php:39
 #: backend/settings/class/dateinterval.class.php:37
 #: backend/settings/class/dateinterval.class.php:54
 msgid "Months"
 msgstr ""
 
+#: backend/settings/class/datefilter-post.class.php:42
 #: backend/settings/class/datefilter.class.php:40
 #: backend/settings/class/dateinterval.class.php:38
 #: backend/settings/class/dateinterval.class.php:55
@@ -2530,12 +2563,14 @@ msgstr ""
 msgid "months"
 msgstr ""
 
+#: backend/settings/class/datefilter-post.class.php:43
 #: backend/settings/class/datefilter.class.php:41
 #: backend/settings/class/dateinterval.class.php:39
 #: backend/settings/class/dateinterval.class.php:56
 msgid "Days before current date"
 msgstr ""
 
+#: backend/settings/class/datefilter-post.class.php:44
 #: backend/settings/class/datefilter.class.php:42
 #: backend/settings/class/dateinterval.class.php:40
 #: backend/settings/class/dateinterval.class.php:57
@@ -2544,6 +2579,7 @@ msgstr ""
 msgid "days before current date"
 msgstr ""
 
+#: backend/settings/class/datefilter-post.class.php:46
 #: backend/settings/class/datefilter.class.php:44
 #: backend/settings/class/wd_frontfilters/views/date_from.php:23
 #: backend/settings/class/wd_frontfilters/views/date_to.php:23
@@ -2645,7 +2681,7 @@ msgstr ""
 #: backend/settings/class/wd_frontfilters/views/generic.php:13
 #: backend/settings/class/wd_frontfilters/views/post_type.php:13
 #: backend/settings/class/wd_frontfilters/views/taxonomy.php:13
-#: backend/settings/class/wd_taxonomy_term_select.class.php:128
+#: backend/settings/class/wd_taxonomy_term_select.class.php:115
 #: backend/tabs/instance/frontend/custom_fields.php:396
 #: backend/tabs/instance/frontend/custom_fields.php:608
 msgid "Checkboxes"
@@ -2686,7 +2722,7 @@ msgstr ""
 
 #: backend/settings/class/tagselect.class.php:62
 #: backend/settings/class/wd_frontfilters/views/taxonomy.php:80
-#: backend/settings/class/wd_taxonomy_term_select.class.php:134
+#: backend/settings/class/wd_taxonomy_term_select.class.php:121
 #: backend/tabs/instance/frontend/post_tags.php:22
 msgid "Checked"
 msgstr ""
@@ -2847,19 +2883,19 @@ msgid "Display mode:"
 msgstr ""
 
 #: backend/settings/class/wd_draggable_fields.class.php:67
-#: backend/settings/class/wd_taxonomy_term_select.class.php:129
+#: backend/settings/class/wd_taxonomy_term_select.class.php:116
 msgid "Drop-down"
 msgstr ""
 
 #: backend/settings/class/wd_draggable_fields.class.php:78
-#: backend/settings/class/wd_taxonomy_term_select.class.php:177
+#: backend/settings/class/wd_taxonomy_term_select.class.php:164
 #: backend/tabs/instance/frontend/custom_fields.php:569
 #: backend/tabs/instance/frontend/custom_fields.php:768
 msgid "Required?"
 msgstr ""
 
 #: backend/settings/class/wd_draggable_fields.class.php:82
-#: backend/settings/class/wd_taxonomy_term_select.class.php:178
+#: backend/settings/class/wd_taxonomy_term_select.class.php:165
 msgid "Required popup text:"
 msgstr ""
 
@@ -2920,7 +2956,7 @@ msgstr ""
 #: backend/settings/class/wd_frontfilters/views/generic.php:15
 #: backend/settings/class/wd_frontfilters/views/post_type.php:15
 #: backend/settings/class/wd_frontfilters/views/taxonomy.php:17
-#: backend/settings/class/wd_taxonomy_term_select.class.php:132
+#: backend/settings/class/wd_taxonomy_term_select.class.php:119
 #: backend/tabs/instance/frontend/custom_fields.php:394
 #: backend/tabs/instance/frontend/custom_fields.php:606
 msgid "Radio"
@@ -2994,7 +3030,7 @@ msgstr ""
 #: backend/settings/class/wd_frontfilters/views/generic.php:65
 #: backend/settings/class/wd_frontfilters/views/post_type.php:65
 #: backend/settings/class/wd_frontfilters/views/taxonomy.php:171
-#: backend/settings/class/wd_taxonomy_term_select.class.php:171
+#: backend/settings/class/wd_taxonomy_term_select.class.php:158
 msgid "Text:"
 msgstr ""
 
@@ -3080,14 +3116,14 @@ msgid "Drop-down values logic"
 msgstr ""
 
 #: backend/settings/class/wd_frontfilters/views/custom_field.php:66
-#: backend/tabs/instance/general/behaviour.php:15
-#: backend/tabs/instance/general/behaviour.php:28
+#: backend/tabs/instance/general/behaviour.php:16
+#: backend/tabs/instance/general/behaviour.php:32
 msgid "OR"
 msgstr ""
 
 #: backend/settings/class/wd_frontfilters/views/custom_field.php:67
-#: backend/tabs/instance/general/behaviour.php:17
-#: backend/tabs/instance/general/behaviour.php:30
+#: backend/tabs/instance/general/behaviour.php:18
+#: backend/tabs/instance/general/behaviour.php:34
 msgid "AND"
 msgstr ""
 
@@ -3144,7 +3180,7 @@ msgid "Dropdown with search"
 msgstr ""
 
 #: backend/settings/class/wd_frontfilters/views/taxonomy.php:16
-#: backend/settings/class/wd_taxonomy_term_select.class.php:131
+#: backend/settings/class/wd_taxonomy_term_select.class.php:118
 msgid "Multiselect with search"
 msgstr ""
 
@@ -3153,7 +3189,7 @@ msgid "Taxonomy"
 msgstr ""
 
 #: backend/settings/class/wd_frontfilters/views/taxonomy.php:23
-#: backend/settings/class/wd_taxonomy_term_select.class.php:82
+#: backend/settings/class/wd_taxonomy_term_select.class.php:72
 msgid "Select a taxonomy"
 msgstr ""
 
@@ -3182,12 +3218,12 @@ msgid "Layout & Functionality Options"
 msgstr ""
 
 #: backend/settings/class/wd_frontfilters/views/taxonomy.php:59
-#: backend/tabs/instance/frontend/taxonomy_terms.php:31
+#: backend/tabs/instance/frontend/taxonomy_terms.php:30
 msgid "Hide empty terms?"
 msgstr ""
 
 #: backend/settings/class/wd_frontfilters/views/taxonomy.php:63
-#: backend/tabs/instance/frontend/taxonomy_terms.php:35
+#: backend/tabs/instance/frontend/taxonomy_terms.php:34
 msgid ""
 "Automatically hides terms, that "
 "have no posts or any CPT assigned "
@@ -3219,7 +3255,7 @@ msgid ""
 msgstr ""
 
 #: backend/settings/class/wd_frontfilters/views/taxonomy.php:89
-#: backend/tabs/instance/frontend/taxonomy_terms.php:44
+#: backend/tabs/instance/frontend/taxonomy_terms.php:43
 msgid ""
 "Automatically hides the checkbox "
 "options, where the parent terms are "
@@ -3255,7 +3291,7 @@ msgid "Maintain term hierarchy"
 msgstr ""
 
 #: backend/settings/class/wd_frontfilters/views/taxonomy.php:114
-#: backend/tabs/instance/frontend/taxonomy_terms.php:53
+#: backend/tabs/instance/frontend/taxonomy_terms.php:52
 msgid ""
 "Shows child terms hierarchically "
 "under their parents with padding. "
@@ -3263,32 +3299,32 @@ msgid ""
 msgstr ""
 
 #: backend/settings/class/wd_frontfilters/views/taxonomy.php:117
-#: backend/tabs/instance/frontend/taxonomy_terms.php:60
+#: backend/tabs/instance/frontend/taxonomy_terms.php:59
 msgid "Default term order"
 msgstr ""
 
 #: backend/settings/class/wd_frontfilters/views/taxonomy.php:119
-#: backend/tabs/instance/frontend/taxonomy_terms.php:66
+#: backend/tabs/instance/frontend/taxonomy_terms.php:65
 msgid "Name"
 msgstr ""
 
 #: backend/settings/class/wd_frontfilters/views/taxonomy.php:120
-#: backend/tabs/instance/frontend/taxonomy_terms.php:67
+#: backend/tabs/instance/frontend/taxonomy_terms.php:66
 msgid "Item count"
 msgstr ""
 
 #: backend/settings/class/wd_frontfilters/views/taxonomy.php:121
-#: backend/tabs/instance/frontend/taxonomy_terms.php:68
+#: backend/tabs/instance/frontend/taxonomy_terms.php:67
 msgid "ID"
 msgstr ""
 
 #: backend/settings/class/wd_frontfilters/views/taxonomy.php:124
-#: backend/tabs/instance/frontend/taxonomy_terms.php:71
+#: backend/tabs/instance/frontend/taxonomy_terms.php:70
 msgid "Ascending"
 msgstr ""
 
 #: backend/settings/class/wd_frontfilters/views/taxonomy.php:125
-#: backend/tabs/instance/frontend/taxonomy_terms.php:72
+#: backend/tabs/instance/frontend/taxonomy_terms.php:71
 msgid "Descending"
 msgstr ""
 
@@ -3336,122 +3372,117 @@ msgid ""
 "are not excluded."
 msgstr ""
 
-#: backend/settings/class/wd_taxonomy_term_select.class.php:80
+#: backend/settings/class/wd_taxonomy_term_select.class.php:70
 msgid "Select the taxonomy:"
 msgstr ""
 
-#: backend/settings/class/wd_taxonomy_term_select.class.php:97
+#: backend/settings/class/wd_taxonomy_term_select.class.php:87
 #: backend/settings/class/wd_user_select.class.php:34
 msgid "Operation:"
 msgstr ""
 
-#: backend/settings/class/wd_taxonomy_term_select.class.php:100
+#: backend/settings/class/wd_taxonomy_term_select.class.php:90
 msgid "Include the selected"
 msgstr ""
 
-#: backend/settings/class/wd_taxonomy_term_select.class.php:103
+#: backend/settings/class/wd_taxonomy_term_select.class.php:93
 msgid "Exclude the selected"
 msgstr ""
 
-#: backend/settings/class/wd_taxonomy_term_select.class.php:108
+#: backend/settings/class/wd_taxonomy_term_select.class.php:98
 msgid "Change display mode"
 msgstr ""
 
 #: backend/settings/class/wd_taxonomy_term_select.class.php:112
-msgid ""
-"Separate filter boxes per taxonomy"
-msgstr ""
-
-#: backend/settings/class/wd_taxonomy_term_select.class.php:125
 msgid "Terms from"
 msgstr ""
 
-#: backend/settings/class/wd_taxonomy_term_select.class.php:126
+#: backend/settings/class/wd_taxonomy_term_select.class.php:113
 msgid "Box header:"
 msgstr ""
 
-#: backend/settings/class/wd_taxonomy_term_select.class.php:126
+#: backend/settings/class/wd_taxonomy_term_select.class.php:113
 msgid "Filter by "
 msgstr ""
 
-#: backend/settings/class/wd_taxonomy_term_select.class.php:126
+#: backend/settings/class/wd_taxonomy_term_select.class.php:113
 msgid "Filter by terms"
 msgstr ""
 
-#: backend/settings/class/wd_taxonomy_term_select.class.php:127
+#: backend/settings/class/wd_taxonomy_term_select.class.php:114
 msgid "Display as"
 msgstr ""
 
-#: backend/settings/class/wd_taxonomy_term_select.class.php:130
+#: backend/settings/class/wd_taxonomy_term_select.class.php:117
 msgid "Drop-down with search"
 msgstr ""
 
-#: backend/settings/class/wd_taxonomy_term_select.class.php:133
+#: backend/settings/class/wd_taxonomy_term_select.class.php:120
 msgid "default"
 msgstr ""
 
-#: backend/settings/class/wd_taxonomy_term_select.class.php:135
+#: backend/settings/class/wd_taxonomy_term_select.class.php:122
 msgid "Un-checked"
 msgstr ""
 
-#: backend/settings/class/wd_taxonomy_term_select.class.php:138
+#: backend/settings/class/wd_taxonomy_term_select.class.php:125
 msgid "\"Choose one/Any\" option"
 msgstr ""
 
-#: backend/settings/class/wd_taxonomy_term_select.class.php:139
+#: backend/settings/class/wd_taxonomy_term_select.class.php:126
 msgid "First item"
 msgstr ""
 
-#: backend/settings/class/wd_taxonomy_term_select.class.php:140
+#: backend/settings/class/wd_taxonomy_term_select.class.php:127
 msgid "Last item"
 msgstr ""
 
-#: backend/settings/class/wd_taxonomy_term_select.class.php:142
+#: backend/settings/class/wd_taxonomy_term_select.class.php:129
 msgid "As defined:"
 msgstr ""
 
-#: backend/settings/class/wd_taxonomy_term_select.class.php:152
-#: backend/settings/class/wd_taxonomy_term_select.class.php:200
+#: backend/settings/class/wd_taxonomy_term_select.class.php:139
+#: backend/settings/class/wd_taxonomy_term_select.class.php:187
 msgid "Search terms.."
 msgstr ""
 
-#: backend/settings/class/wd_taxonomy_term_select.class.php:162
-#: backend/settings/class/wd_taxonomy_term_select.class.php:164
+#: backend/settings/class/wd_taxonomy_term_select.class.php:149
+#: backend/settings/class/wd_taxonomy_term_select.class.php:151
 msgid "No selected term."
 msgstr ""
 
-#: backend/settings/class/wd_taxonomy_term_select.class.php:170
+#: backend/settings/class/wd_taxonomy_term_select.class.php:157
 msgid "Display the"
 msgstr ""
 
-#: backend/settings/class/wd_taxonomy_term_select.class.php:170
+#: backend/settings/class/wd_taxonomy_term_select.class.php:157
 msgid "\"Select all option\"?"
 msgstr ""
 
-#: backend/settings/class/wd_taxonomy_term_select.class.php:174
+#: backend/settings/class/wd_taxonomy_term_select.class.php:161
 msgid "Placeholder:"
 msgstr ""
 
-#: backend/settings/class/wd_taxonomy_term_select.class.php:174
+#: backend/settings/class/wd_taxonomy_term_select.class.php:161
 msgid "Select options.."
 msgstr ""
 
-#: backend/settings/class/wd_taxonomy_term_select.class.php:185
+#: backend/settings/class/wd_taxonomy_term_select.class.php:172
 msgid "Show parent categories only"
 msgstr ""
 
-#: backend/settings/class/wd_taxonomy_term_select.class.php:190
+#: backend/settings/class/wd_taxonomy_term_select.class.php:177
 msgid ""
 "Available terms for the selected "
 "taxonomy"
 msgstr ""
 
-#: backend/settings/class/wd_taxonomy_term_select.class.php:194
+#: backend/settings/class/wd_taxonomy_term_select.class.php:181
 msgid ""
 "Drag here the terms you want to"
 msgstr ""
 
-#: backend/settings/class/wd_taxonomy_term_select.class.php:208
+#: backend/settings/class/wd_taxonomy_term_select.class.php:195
 msgid ""
 "Excluded terms from displaying:"
 msgstr ""
@@ -3561,23 +3592,58 @@ msgid "Last 20 Search Phrases"
 msgstr ""
 
 #: backend/tabs/compatibility/cssjs_loading.php:5
+msgid "Javascript source"
+msgstr ""
+
+#: backend/tabs/compatibility/cssjs_loading.php:14
+#, php-format
+msgid ""
+"<a target=\"_blank\" href=\"%s"
+"\">Read More</a>"
+msgstr ""
+
+#: backend/tabs/compatibility/cssjs_loading.php:20
+msgid "Script loading method"
+msgstr ""
+
+#: backend/tabs/compatibility/cssjs_loading.php:33
+msgid ""
+"<b>Classic</b> - All scripts are "
+"loaded as blocking at the same time"
+msgstr ""
+
+#: backend/tabs/compatibility/cssjs_loading.php:34
+msgid ""
+"<b>Optimized</b> - Scripts are "
+"loaded separately, but only the "
+"required ones"
+msgstr ""
+
+#: backend/tabs/compatibility/cssjs_loading.php:35
+msgid ""
+"<b>Optimized asnynchronous</b> - "
+"Same as the Optimized, but the "
+"scripts load in the background"
+msgstr ""
+
+#: backend/tabs/compatibility/cssjs_loading.php:42
 msgid "Load the scrollbar script?"
 msgstr ""
 
-#: backend/tabs/compatibility/cssjs_loading.php:17
+#: backend/tabs/compatibility/cssjs_loading.php:54
 msgid ""
 "When set to <strong>No</strong>, "
 "the custom scrollbar will "
 "<strong>not be used at all</strong>."
 msgstr ""
 
-#: backend/tabs/compatibility/cssjs_loading.php:22
+#: backend/tabs/compatibility/cssjs_loading.php:59
 msgid ""
 "Use the Lazy Loader jQuery script "
 "to load the images?"
 msgstr ""
 
-#: backend/tabs/compatibility/cssjs_loading.php:26
+#: backend/tabs/compatibility/cssjs_loading.php:63
 #, php-format
 msgid ""
 "Will load an use a modified version "
@@ -3586,93 +3652,45 @@ msgid ""
 "images of results."
 msgstr ""
 
-#: backend/tabs/compatibility/cssjs_loading.php:33
+#: backend/tabs/compatibility/cssjs_loading.php:70
 msgid ""
 "Enable selective script & style "
 "loading?"
 msgstr ""
 
-#: backend/tabs/compatibility/cssjs_loading.php:36
+#: backend/tabs/compatibility/cssjs_loading.php:73
 msgid ""
 "It enables the rules below, so the "
 "scritps and styles can be excluded "
 "from specific parts of your website."
 msgstr ""
 
-#: backend/tabs/compatibility/cssjs_loading.php:39
+#: backend/tabs/compatibility/cssjs_loading.php:76
 msgid ""
 "Load scripts & styles on the front "
 "page?"
 msgstr ""
 
-#: backend/tabs/compatibility/cssjs_loading.php:44
+#: backend/tabs/compatibility/cssjs_loading.php:81
 msgid ""
 "Load scripts & styles on archive "
 "pages?"
 msgstr ""
 
-#: backend/tabs/compatibility/cssjs_loading.php:65
+#: backend/tabs/compatibility/cssjs_loading.php:102
 msgid ""
 "Comma separated list of Post/Page/"
 "CPT IDs."
 msgstr ""
 
-#: backend/tabs/compatibility/cssjs_options.php:3
-msgid "Javascript source"
-msgstr ""
-
-#: backend/tabs/compatibility/cssjs_options.php:12
-msgid ""
-"<b>Non minified</b> - Optimal "
-"Compatibility, Medium space"
-msgstr ""
-
-#: backend/tabs/compatibility/cssjs_options.php:13
-msgid ""
-"<b>Minified</b> - Optimal "
-"Compatibility, Low space "
-"(recommended)"
-msgstr ""
-
-#: backend/tabs/compatibility/cssjs_options.php:14
-msgid ""
-"<b>Non minified Scoped</b> - High "
-"Compatibility, High space"
-msgstr ""
-
-#: backend/tabs/compatibility/cssjs_options.php:15
-msgid ""
-"<b>Minified Scoped</b> - High "
-"Compatibility, Medium space"
-msgstr ""
-
-#: backend/tabs/compatibility/cssjs_options.php:22
-msgid "Javascript init method"
-msgstr ""
-
-#: backend/tabs/compatibility/cssjs_options.php:24
-msgid "Dynamic (default)"
-msgstr ""
-
-#: backend/tabs/compatibility/cssjs_options.php:25
-msgid "Blocking"
-msgstr ""
-
-#: backend/tabs/compatibility/cssjs_options.php:33
-msgid ""
-"Try to choose <strong>Blocking</"
-"strong> if the search bar is not "
-"responding to anything."
-msgstr ""
-
-#: backend/tabs/compatibility/cssjs_options.php:37
+#: backend/tabs/compatibility/cssjs_options.php:2
 msgid ""
 "Try preventing body touch scroll on "
 "mobile devices, when using the "
 "vertical results layout?"
 msgstr ""
 
-#: backend/tabs/compatibility/cssjs_options.php:41
+#: backend/tabs/compatibility/cssjs_options.php:6
 msgid ""
 "When reaching the top or bottom of "
 "the results list via touch devices, "
@@ -3682,19 +3700,19 @@ msgid ""
 "that."
 msgstr ""
 
-#: backend/tabs/compatibility/cssjs_options.php:46
+#: backend/tabs/compatibility/cssjs_options.php:11
 msgid ""
 "You can turn some of these off, if "
 "you are not using them."
 msgstr ""
 
-#: backend/tabs/compatibility/cssjs_options.php:48
+#: backend/tabs/compatibility/cssjs_options.php:13
 msgid ""
 "Remember search phrase and options "
 "when using the Browser Back button?"
 msgstr ""
 
-#: backend/tabs/compatibility/cssjs_options.php:52
+#: backend/tabs/compatibility/cssjs_options.php:17
 msgid ""
 "Whenever the user clicks on a live "
 "search result, and decides to "
@@ -3703,31 +3721,13 @@ msgid ""
 "options."
 msgstr ""
 
-#: backend/tabs/compatibility/cssjs_options.php:56
-msgid ""
-"Try fixing DOM duplicates of the "
-"search bar if they exist?"
-msgstr ""
-
-#: backend/tabs/compatibility/cssjs_options.php:60
-msgid ""
-"Some menu or widgets scripts tend "
-"to <strong>clone</strong> the "
-"search bar completely for Mobile "
-"viewports, causing a malfunctioning "
-"search bar with no event handlers. "
-"When this is active, the plugin "
-"script will try to fix that, if "
-"possible."
-msgstr ""
-
-#: backend/tabs/compatibility/cssjs_options.php:64
+#: backend/tabs/compatibility/cssjs_options.php:21
 msgid ""
 "Try to re-initialize if the page "
 "was loaded via ajax?"
 msgstr ""
 
-#: backend/tabs/compatibility/cssjs_options.php:68
+#: backend/tabs/compatibility/cssjs_options.php:25
 msgid ""
 "Will try to re-initialize the "
 "plugin in case an AJAX page loader "
@@ -3735,43 +3735,43 @@ msgid ""
 "switcher etc.."
 msgstr ""
 
-#: backend/tabs/compatibility/cssjs_options.php:72
+#: backend/tabs/compatibility/cssjs_options.php:29
 msgid "Load scripts in footer?"
 msgstr ""
 
-#: backend/tabs/compatibility/cssjs_options.php:76
+#: backend/tabs/compatibility/cssjs_options.php:33
 msgid ""
 "Will load the scripts in the footer "
 "for better performance."
 msgstr ""
 
-#: backend/tabs/compatibility/cssjs_options.php:81
+#: backend/tabs/compatibility/cssjs_options.php:38
 msgid "CSS compatibility level"
 msgstr ""
 
-#: backend/tabs/compatibility/cssjs_options.php:94
+#: backend/tabs/compatibility/cssjs_options.php:51
 msgid ""
 "<b>Optimal</b> - Good "
 "compabibility, smallest size"
 msgstr ""
 
-#: backend/tabs/compatibility/cssjs_options.php:95
+#: backend/tabs/compatibility/cssjs_options.php:52
 msgid ""
 "<b>Medium</b> - Better "
 "compatibility, bigger size"
 msgstr ""
 
-#: backend/tabs/compatibility/cssjs_options.php:96
+#: backend/tabs/compatibility/cssjs_options.php:53
 msgid ""
 "<b>Maximum</b> - High "
 "compatibility, very big size"
 msgstr ""
 
-#: backend/tabs/compatibility/cssjs_options.php:102
+#: backend/tabs/compatibility/cssjs_options.php:59
 msgid "Minify the generated CSS?"
 msgstr ""
 
-#: backend/tabs/compatibility/cssjs_options.php:106
+#: backend/tabs/compatibility/cssjs_options.php:63
 msgid ""
 "When enabled, the generated "
 "stylesheet files will be minified "
@@ -3779,7 +3779,7 @@ msgid ""
 "file size."
 msgstr ""
 
-#: backend/tabs/compatibility/cssjs_options.php:111
+#: backend/tabs/compatibility/cssjs_options.php:68
 msgid ""
 "Set to yes if you are experiencing "
 "issues with the <b>search styling</"
@@ -3787,17 +3787,17 @@ msgid ""
 "saving</b>!"
 msgstr ""
 
-#: backend/tabs/compatibility/cssjs_options.php:113
+#: backend/tabs/compatibility/cssjs_options.php:70
 msgid "Force inline styles?"
 msgstr ""
 
-#: backend/tabs/compatibility/cssjs_options.php:118
+#: backend/tabs/compatibility/cssjs_options.php:75
 msgid ""
 "Load CSS files conditionally? "
 "(asnychronous, <b>experimental!</b>)"
 msgstr ""
 
-#: backend/tabs/compatibility/cssjs_options.php:122
+#: backend/tabs/compatibility/cssjs_options.php:79
 msgid ""
 "Will save every search instance CSS "
 "file separately and load them with "
@@ -3805,7 +3805,7 @@ msgid ""
 "event."
 msgstr ""
 
-#: backend/tabs/compatibility/cssjs_options.php:123
+#: backend/tabs/compatibility/cssjs_options.php:80
 msgid ""
 "Only loads them if it finds the "
 "search instance on the page. Huge "
@@ -3813,7 +3813,7 @@ msgid ""
 "not work so test it seriously!"
 msgstr ""
 
-#: backend/tabs/compatibility/cssjs_options.php:124
+#: backend/tabs/compatibility/cssjs_options.php:81
 #, php-format
 msgid ""
 "Check the <a target=\"_blank\" href="
@@ -3822,13 +3822,13 @@ msgid ""
 "more info."
 msgstr ""
 
-#: backend/tabs/compatibility/cssjs_options.php:129
+#: backend/tabs/compatibility/cssjs_options.php:86
 msgid ""
 "Load the <strong>google fonts</"
 "strong> used in the search options?"
 msgstr ""
 
-#: backend/tabs/compatibility/cssjs_options.php:133
+#: backend/tabs/compatibility/cssjs_options.php:90
 msgid ""
 "When <strong>turned off</strong>, "
 "the google fonts <strong>will not "
@@ -3838,21 +3838,15 @@ msgid ""
 "loading times."
 msgstr ""
 
-#: backend/tabs/compatibility/cssjs_options.php:138
+#: backend/tabs/compatibility/cssjs_options.php:95
 msgid ""
 "This might speed up the search, but "
 "also can cause incompatibility "
 "issues with other plugins."
 msgstr ""
 
-#: backend/tabs/compatibility/cssjs_options.php:140
+#: backend/tabs/compatibility/cssjs_options.php:97
 msgid "Use the custom ajax handler?"
-msgstr ""
-
-#: backend/tabs/compatibility/cssjs_options.php:145
-msgid ""
-"Display the default search box on "
-"old browsers? (IE<=8)"
 msgstr ""
 
 #: backend/tabs/compatibility/other.php:3
@@ -4375,14 +4369,14 @@ msgid ""
 "categories/taxonomy terms"
 msgstr ""
 
-#: backend/tabs/instance/advanced/exclude_results.php:48
+#: backend/tabs/instance/advanced/exclude_results.php:47
 msgid ""
 "An object is excluded if matches "
 "<strong>any</strong> of the "
 "selected items."
 msgstr ""
 
-#: backend/tabs/instance/advanced/exclude_results.php:52
+#: backend/tabs/instance/advanced/exclude_results.php:51
 msgid ""
 "<span style='color: red; font-"
 "weight: bold;'>Include</span> posts "
@@ -4391,17 +4385,17 @@ msgid ""
 "taxonomy terms"
 msgstr ""
 
-#: backend/tabs/instance/advanced/exclude_results.php:68
+#: backend/tabs/instance/advanced/exclude_results.php:66
 msgid ""
 "The exclusions from the above "
 "option <strong>still apply!</strong>"
 msgstr ""
 
-#: backend/tabs/instance/advanced/exclude_results.php:72
+#: backend/tabs/instance/advanced/exclude_results.php:70
 msgid "Exclude posts/pages/cpt"
 msgstr ""
 
-#: backend/tabs/instance/advanced/exclude_results.php:80
+#: backend/tabs/instance/advanced/exclude_results.php:78
 msgid ""
 "The \"Exclude direct children too?"
 "\" option only works with "
@@ -4409,13 +4403,13 @@ msgid ""
 "child relationships. (1 level down)"
 msgstr ""
 
-#: backend/tabs/instance/advanced/exclude_results.php:84
+#: backend/tabs/instance/advanced/exclude_results.php:82
 msgid ""
 "Exclude Posts/Pages/CPT by ID's "
 "(comma separated post ID-s)"
 msgstr ""
 
-#: backend/tabs/instance/advanced/exclude_results.php:87
+#: backend/tabs/instance/advanced/exclude_results.php:85
 msgid ""
 "If you wish to exclude Posts, Pages "
 "and custom post types (like "
@@ -4423,7 +4417,7 @@ msgid ""
 "separated list."
 msgstr ""
 
-#: backend/tabs/instance/advanced/exclude_results.php:90
+#: backend/tabs/instance/advanced/exclude_results.php:88
 msgid ""
 "<strong>WARNING:</strong> This "
 "option restricts Posts/Pages/CPT to "
@@ -4432,7 +4426,7 @@ msgid ""
 "<br>Exclusions still apply."
 msgstr ""
 
-#: backend/tabs/instance/advanced/exclude_results.php:92
+#: backend/tabs/instance/advanced/exclude_results.php:90
 msgid "Include only posts/pages/cpt"
 msgstr ""
 
@@ -5528,8 +5522,8 @@ msgid ""
 msgstr ""
 
 #: backend/tabs/instance/frontend/search_button.php:24
-#: backend/tabs/instance/general/behaviour.php:120
-#: backend/tabs/instance/general/behaviour.php:139
+#: backend/tabs/instance/general/behaviour.php:131
+#: backend/tabs/instance/general/behaviour.php:154
 #: backend/tabs/instance/general/mobile_behavior.php:34
 #: backend/tabs/instance/general/mobile_behavior.php:53
 #: backend/tabs/instance/layout/highlight_loadmore.php:58
@@ -5537,19 +5531,19 @@ msgid " location: "
 msgstr ""
 
 #: backend/tabs/instance/frontend/search_button.php:27
-#: backend/tabs/instance/general/behaviour.php:123
-#: backend/tabs/instance/general/behaviour.php:142
+#: backend/tabs/instance/general/behaviour.php:134
+#: backend/tabs/instance/general/behaviour.php:157
 msgid "Use same tab"
 msgstr ""
 
 #: backend/tabs/instance/frontend/search_button.php:28
-#: backend/tabs/instance/general/behaviour.php:124
-#: backend/tabs/instance/general/behaviour.php:143
+#: backend/tabs/instance/general/behaviour.php:135
+#: backend/tabs/instance/general/behaviour.php:158
 msgid "Open new tab"
 msgstr ""
 
 #: backend/tabs/instance/frontend/search_button.php:37
-#: backend/tabs/instance/general/behaviour.php:152
+#: backend/tabs/instance/general/behaviour.php:168
 #: backend/tabs/instance/general/mobile_behavior.php:66
 #: backend/tabs/instance/layout/highlight_loadmore.php:32
 msgid ""
@@ -5558,13 +5552,13 @@ msgid ""
 msgstr ""
 
 #: backend/tabs/instance/frontend/search_button.php:49
-#: backend/tabs/instance/general/behaviour.php:164
+#: backend/tabs/instance/general/behaviour.php:180
 #: backend/tabs/instance/general/mobile_behavior.php:78
 msgid "Custom redirect URL"
 msgstr ""
 
 #: backend/tabs/instance/frontend/search_button.php:54
-#: backend/tabs/instance/general/behaviour.php:169
+#: backend/tabs/instance/general/behaviour.php:185
 #, php-format
 msgid ""
 "You can use the "
@@ -5586,17 +5580,17 @@ msgid ""
 "selectors on frontend"
 msgstr ""
 
-#: backend/tabs/instance/frontend/taxonomy_terms.php:23
+#: backend/tabs/instance/frontend/taxonomy_terms.php:22
 msgid "nav_menu"
 msgstr ""
 
-#: backend/tabs/instance/frontend/taxonomy_terms.php:40
+#: backend/tabs/instance/frontend/taxonomy_terms.php:39
 msgid ""
 "Hide child terms, where the parent "
 "checkbox is unchecked?"
 msgstr ""
 
-#: backend/tabs/instance/frontend/taxonomy_terms.php:49
+#: backend/tabs/instance/frontend/taxonomy_terms.php:48
 msgid "Maintain term hierarchy?"
 msgstr ""
 
@@ -5642,11 +5636,11 @@ msgstr ""
 msgid "Return attachments as results?"
 msgstr ""
 
-#: backend/tabs/instance/general/attachment_results.php:9
+#: backend/tabs/instance/general/attachment_results.php:10
 msgid "Search engine for attachments"
 msgstr ""
 
-#: backend/tabs/instance/general/attachment_results.php:20
+#: backend/tabs/instance/general/attachment_results.php:21
 #, php-format
 msgid ""
 "Index table engine will only work "
@@ -5660,37 +5654,37 @@ msgid ""
 "table</a>."
 msgstr ""
 
-#: backend/tabs/instance/general/attachment_results.php:31
+#: backend/tabs/instance/general/attachment_results.php:33
 msgid "Search in attachment titles?"
 msgstr ""
 
-#: backend/tabs/instance/general/attachment_results.php:38
+#: backend/tabs/instance/general/attachment_results.php:40
 msgid ""
 "Search in attachment description?"
 msgstr ""
 
-#: backend/tabs/instance/general/attachment_results.php:45
+#: backend/tabs/instance/general/attachment_results.php:47
 msgid "Search in attachment captions?"
 msgstr ""
 
-#: backend/tabs/instance/general/attachment_results.php:52
+#: backend/tabs/instance/general/attachment_results.php:54
 msgid "Search in attachment IDs?"
 msgstr ""
 
-#: backend/tabs/instance/general/attachment_results.php:59
+#: backend/tabs/instance/general/attachment_results.php:61
 msgid ""
 "Search in attachment terms (tags, "
 "etc..)?"
 msgstr ""
 
-#: backend/tabs/instance/general/attachment_results.php:63
+#: backend/tabs/instance/general/attachment_results.php:65
 msgid ""
 "Will search in terms (categories, "
 "tags) related to the attachments."
 msgstr ""
 
-#: backend/tabs/instance/general/attachment_results.php:64
-#: backend/tabs/instance/general/sources.php:111
+#: backend/tabs/instance/general/attachment_results.php:66
+#: backend/tabs/instance/general/sources.php:114
 msgid ""
 "WARNING: <strong>Search in terms</"
 "strong> can be database heavy "
@@ -5698,33 +5692,33 @@ msgid ""
 "databases."
 msgstr ""
 
-#: backend/tabs/instance/general/attachment_results.php:68
+#: backend/tabs/instance/general/attachment_results.php:72
 msgid "Link the results to"
 msgstr ""
 
-#: backend/tabs/instance/general/attachment_results.php:71
+#: backend/tabs/instance/general/attachment_results.php:75
 msgid "attachment page"
 msgstr ""
 
-#: backend/tabs/instance/general/attachment_results.php:72
+#: backend/tabs/instance/general/attachment_results.php:76
 msgid "attachment file directly"
 msgstr ""
 
-#: backend/tabs/instance/general/attachment_results.php:73
+#: backend/tabs/instance/general/attachment_results.php:77
 msgid "attachment parent post"
 msgstr ""
 
-#: backend/tabs/instance/general/attachment_results.php:78
+#: backend/tabs/instance/general/attachment_results.php:86
 msgid ""
 " ..and if parent does not exist "
 "then "
 msgstr ""
 
-#: backend/tabs/instance/general/attachment_results.php:91
+#: backend/tabs/instance/general/attachment_results.php:100
 msgid "Allowed mime types"
 msgstr ""
 
-#: backend/tabs/instance/general/attachment_results.php:96
+#: backend/tabs/instance/general/attachment_results.php:105
 #, php-format
 msgid ""
 "<strong>Comma separated list</"
@@ -5734,29 +5728,29 @@ msgid ""
 "mime types</a> in WordPress."
 msgstr ""
 
-#: backend/tabs/instance/general/attachment_results.php:102
+#: backend/tabs/instance/general/attachment_results.php:111
 msgid ""
 "Use the image of image mime types "
 "as the result image?"
 msgstr ""
 
-#: backend/tabs/instance/general/attachment_results.php:109
+#: backend/tabs/instance/general/attachment_results.php:118
 msgid ""
 "Allow custom field filters to apply "
 "on Attachment results as well?"
 msgstr ""
 
-#: backend/tabs/instance/general/attachment_results.php:114
+#: backend/tabs/instance/general/attachment_results.php:123
 msgid ""
 "This only has effect if you have "
 "use any custom field filters."
 msgstr ""
 
-#: backend/tabs/instance/general/attachment_results.php:119
+#: backend/tabs/instance/general/attachment_results.php:128
 msgid "Exclude attachment IDs"
 msgstr ""
 
-#: backend/tabs/instance/general/attachment_results.php:123
+#: backend/tabs/instance/general/attachment_results.php:132
 msgid ""
 "<strong>Comma separated list</"
 "strong> of attachment IDs to "
@@ -5767,25 +5761,25 @@ msgstr ""
 msgid "Logic and matching"
 msgstr ""
 
-#: backend/tabs/instance/general/behaviour.php:12
+#: backend/tabs/instance/general/behaviour.php:13
 msgid "Primary keyword logic"
 msgstr ""
 
-#: backend/tabs/instance/general/behaviour.php:16
-#: backend/tabs/instance/general/behaviour.php:29
+#: backend/tabs/instance/general/behaviour.php:17
+#: backend/tabs/instance/general/behaviour.php:33
 msgid "OR with exact word matches"
 msgstr ""
 
-#: backend/tabs/instance/general/behaviour.php:18
-#: backend/tabs/instance/general/behaviour.php:31
+#: backend/tabs/instance/general/behaviour.php:19
+#: backend/tabs/instance/general/behaviour.php:35
 msgid "AND with exact word matches"
 msgstr ""
 
-#: backend/tabs/instance/general/behaviour.php:24
+#: backend/tabs/instance/general/behaviour.php:28
 msgid "Secondary logic"
 msgstr ""
 
-#: backend/tabs/instance/general/behaviour.php:38
+#: backend/tabs/instance/general/behaviour.php:43
 #, php-format
 msgid ""
 "<strong>Secodary logic</strong> is "
@@ -5796,39 +5790,39 @@ msgid ""
 "a>."
 msgstr ""
 
-#: backend/tabs/instance/general/behaviour.php:43
+#: backend/tabs/instance/general/behaviour.php:48
 msgid "Show exact matches only?"
 msgstr ""
 
-#: backend/tabs/instance/general/behaviour.php:47
+#: backend/tabs/instance/general/behaviour.php:54
 msgid ""
 "..and match fields against the "
 "search phrase"
 msgstr ""
 
-#: backend/tabs/instance/general/behaviour.php:50
+#: backend/tabs/instance/general/behaviour.php:57
 msgid "Anywhere"
 msgstr ""
 
-#: backend/tabs/instance/general/behaviour.php:51
+#: backend/tabs/instance/general/behaviour.php:58
 msgid "Starting with phrase"
 msgstr ""
 
-#: backend/tabs/instance/general/behaviour.php:52
+#: backend/tabs/instance/general/behaviour.php:59
 msgid "Ending with phrase"
 msgstr ""
 
-#: backend/tabs/instance/general/behaviour.php:53
+#: backend/tabs/instance/general/behaviour.php:60
 msgid "Complete match"
 msgstr ""
 
-#: backend/tabs/instance/general/behaviour.php:61
+#: backend/tabs/instance/general/behaviour.php:69
 msgid ""
 " ..allow Secondary logic when exact "
 "matching?"
 msgstr ""
 
-#: backend/tabs/instance/general/behaviour.php:66
+#: backend/tabs/instance/general/behaviour.php:74
 msgid ""
 "If this is enabled, the Regular "
 "search engine is used. Index table "
@@ -5836,11 +5830,11 @@ msgid ""
 "matches."
 msgstr ""
 
-#: backend/tabs/instance/general/behaviour.php:71
+#: backend/tabs/instance/general/behaviour.php:79
 msgid "Minimum word length"
 msgstr ""
 
-#: backend/tabs/instance/general/behaviour.php:75
+#: backend/tabs/instance/general/behaviour.php:83
 msgid ""
 "Words shorter than this will not be "
 "treated as separate keywords. "
@@ -5849,19 +5843,19 @@ msgid ""
 "Recommended values: 2-5"
 msgstr ""
 
-#: backend/tabs/instance/general/behaviour.php:81
+#: backend/tabs/instance/general/behaviour.php:89
 msgid ""
 "Trigger and redirection behavior"
 msgstr ""
 
-#: backend/tabs/instance/general/behaviour.php:90
+#: backend/tabs/instance/general/behaviour.php:98
 msgid ""
 "Trigger <strong>live</strong> "
 "search when changing a facet on "
 "settings?"
 msgstr ""
 
-#: backend/tabs/instance/general/behaviour.php:95
+#: backend/tabs/instance/general/behaviour.php:103
 msgid ""
 "Will trigger the search if the user "
 "changes a checkbox, radio button, "
@@ -5869,42 +5863,42 @@ msgid ""
 "            search settings panel."
 msgstr ""
 
-#: backend/tabs/instance/general/behaviour.php:101
+#: backend/tabs/instance/general/behaviour.php:109
 msgid ""
 "Trigger <strong>live</strong> "
 "search when typing?"
 msgstr ""
 
-#: backend/tabs/instance/general/behaviour.php:108
+#: backend/tabs/instance/general/behaviour.php:116
 msgid ""
 "Minimal character count to trigger "
 "search"
 msgstr ""
 
-#: backend/tabs/instance/general/behaviour.php:114
+#: backend/tabs/instance/general/behaviour.php:122
 msgid ""
 "Action when clicking <strong>the "
 "magnifier</strong> icon"
 msgstr ""
 
-#: backend/tabs/instance/general/behaviour.php:133
+#: backend/tabs/instance/general/behaviour.php:145
 msgid ""
 "Action when pressing <strong>the "
 "return</strong> button"
 msgstr ""
 
-#: backend/tabs/instance/general/behaviour.php:174
+#: backend/tabs/instance/general/behaviour.php:190
 msgid ""
 "<b>Override</b> the default "
 "WordPress search results with "
 "results from this search instance?"
 msgstr ""
 
-#: backend/tabs/instance/general/behaviour.php:179
+#: backend/tabs/instance/general/behaviour.php:195
 msgid " method "
 msgstr ""
 
-#: backend/tabs/instance/general/behaviour.php:189
+#: backend/tabs/instance/general/behaviour.php:205
 msgid ""
 "If this is enabled, the plugin will "
 "try to replace the default results "
@@ -5913,17 +5907,17 @@ msgid ""
 "query themselves (very very rare)."
 msgstr ""
 
-#: backend/tabs/instance/general/behaviour.php:194
+#: backend/tabs/instance/general/behaviour.php:210
 msgid "Results count per page?"
 msgstr ""
 
-#: backend/tabs/instance/general/behaviour.php:198
+#: backend/tabs/instance/general/behaviour.php:214
 msgid ""
 "The number of results per page, on "
 "the results page. Default: auto"
 msgstr ""
 
-#: backend/tabs/instance/general/behaviour.php:200
+#: backend/tabs/instance/general/behaviour.php:216
 msgid ""
 "<strong>WARNING:</strong> This "
 "should be set to the same as the "
@@ -5941,11 +5935,11 @@ msgid ""
 "value</strong> as well."
 msgstr ""
 
-#: backend/tabs/instance/general/behaviour.php:229
+#: backend/tabs/instance/general/behaviour.php:245
 msgid "Results page live loader"
 msgstr ""
 
-#: backend/tabs/instance/general/behaviour.php:237
+#: backend/tabs/instance/general/behaviour.php:253
 #, php-format
 msgid ""
 "<strong>Disclaimer:</strong> Live "
@@ -5964,14 +5958,14 @@ msgid ""
 "information here.</a>"
 msgstr ""
 
-#: backend/tabs/instance/general/behaviour.php:243
+#: backend/tabs/instance/general/behaviour.php:259
 msgid ""
 "Live load the results on the "
 "results page? "
 "<strong>(experimental)</strong>"
 msgstr ""
 
-#: backend/tabs/instance/general/behaviour.php:248
+#: backend/tabs/instance/general/behaviour.php:264
 msgid ""
 "If this is enabled, and the current "
 "page is the results page, the "
@@ -5979,13 +5973,13 @@ msgid ""
 "there, without reloading the page."
 msgstr ""
 
-#: backend/tabs/instance/general/behaviour.php:253
+#: backend/tabs/instance/general/behaviour.php:269
 msgid ""
 "Results container jQuery element "
 "selector"
 msgstr ""
 
-#: backend/tabs/instance/general/behaviour.php:257
+#: backend/tabs/instance/general/behaviour.php:273
 msgid ""
 "In many themes this is "
 "<strong>#main</strong>, but it can "
@@ -5996,22 +5990,22 @@ msgid ""
 "this fails."
 msgstr ""
 
-#: backend/tabs/instance/general/behaviour.php:262
+#: backend/tabs/instance/general/behaviour.php:278
 msgid ""
 "Results page live loader and "
 "Elementor post widget override "
 "triggers"
 msgstr ""
 
-#: backend/tabs/instance/general/behaviour.php:265
+#: backend/tabs/instance/general/behaviour.php:281
 msgid ""
 "Trigger live search when typing?"
 msgstr ""
 
-#: backend/tabs/instance/general/behaviour.php:270
-#: backend/tabs/instance/general/behaviour.php:280
-#: backend/tabs/instance/general/behaviour.php:290
-#: backend/tabs/instance/general/behaviour.php:300
+#: backend/tabs/instance/general/behaviour.php:286
+#: backend/tabs/instance/general/behaviour.php:296
+#: backend/tabs/instance/general/behaviour.php:306
+#: backend/tabs/instance/general/behaviour.php:316
 msgid ""
 "If enabled, on the results page (or "
 "custom Elementor posts widget "
@@ -6019,19 +6013,19 @@ msgid ""
 "behavior."
 msgstr ""
 
-#: backend/tabs/instance/general/behaviour.php:275
+#: backend/tabs/instance/general/behaviour.php:291
 msgid ""
 "Trigger live search when changing a "
 "facet on settings?"
 msgstr ""
 
-#: backend/tabs/instance/general/behaviour.php:285
+#: backend/tabs/instance/general/behaviour.php:301
 msgid ""
 "Trigger live search when clicking "
 "the magnifier button?"
 msgstr ""
 
-#: backend/tabs/instance/general/behaviour.php:295
+#: backend/tabs/instance/general/behaviour.php:311
 msgid ""
 "Trigger live search when hitting "
 "the return key?"
@@ -6208,12 +6202,10 @@ msgid "User image options"
 msgstr ""
 
 #: backend/tabs/instance/general/image_options.php:179
-#: backend/tabs/instance/general/user_search.php:136
 msgid "Display user images?"
 msgstr ""
 
 #: backend/tabs/instance/general/image_options.php:182
-#: backend/tabs/instance/general/user_search.php:143
 msgid "Image source"
 msgstr ""
 
@@ -6431,43 +6423,44 @@ msgid "Ordering"
 msgstr ""
 
 #: backend/tabs/instance/general/ordering.php:17
+#: backend/tabs/instance/general/user_search.php:52
 msgid "Primary ordering"
 msgstr ""
 
 #: backend/tabs/instance/general/ordering.php:20
 #: backend/tabs/instance/general/ordering.php:53
-#: backend/tabs/instance/general/user_search.php:54
-#: backend/tabs/instance/general/user_search.php:85
+#: backend/tabs/instance/general/user_search.php:55
+#: backend/tabs/instance/general/user_search.php:92
 msgid "Relevance"
 msgstr ""
 
 #: backend/tabs/instance/general/ordering.php:21
 #: backend/tabs/instance/general/ordering.php:54
-#: backend/tabs/instance/general/user_search.php:55
-#: backend/tabs/instance/general/user_search.php:86
+#: backend/tabs/instance/general/user_search.php:56
+#: backend/tabs/instance/general/user_search.php:93
 #: backend/tabs/priorities/priorities_individual.php:20
 msgid "Title descending"
 msgstr ""
 
 #: backend/tabs/instance/general/ordering.php:22
 #: backend/tabs/instance/general/ordering.php:55
-#: backend/tabs/instance/general/user_search.php:56
-#: backend/tabs/instance/general/user_search.php:87
+#: backend/tabs/instance/general/user_search.php:57
+#: backend/tabs/instance/general/user_search.php:94
 #: backend/tabs/priorities/priorities_individual.php:21
 msgid "Title ascending"
 msgstr ""
 
 #: backend/tabs/instance/general/ordering.php:23
 #: backend/tabs/instance/general/ordering.php:56
-#: backend/tabs/instance/general/user_search.php:57
-#: backend/tabs/instance/general/user_search.php:88
+#: backend/tabs/instance/general/user_search.php:58
+#: backend/tabs/instance/general/user_search.php:95
 msgid "Date descending"
 msgstr ""
 
 #: backend/tabs/instance/general/ordering.php:24
 #: backend/tabs/instance/general/ordering.php:57
-#: backend/tabs/instance/general/user_search.php:58
-#: backend/tabs/instance/general/user_search.php:89
+#: backend/tabs/instance/general/user_search.php:59
+#: backend/tabs/instance/general/user_search.php:96
 msgid "Date ascending"
 msgstr ""
 
@@ -6481,20 +6474,20 @@ msgstr ""
 
 #: backend/tabs/instance/general/ordering.php:27
 #: backend/tabs/instance/general/ordering.php:58
-#: backend/tabs/instance/general/user_search.php:59
-#: backend/tabs/instance/general/user_search.php:90
+#: backend/tabs/instance/general/user_search.php:60
+#: backend/tabs/instance/general/user_search.php:97
 msgid "Random"
 msgstr ""
 
 #: backend/tabs/instance/general/ordering.php:28
 #: backend/tabs/instance/general/ordering.php:59
-#: backend/tabs/instance/general/user_search.php:60
-#: backend/tabs/instance/general/user_search.php:91
+#: backend/tabs/instance/general/user_search.php:61
+#: backend/tabs/instance/general/user_search.php:98
 msgid "Custom Field descending"
 msgstr ""
 
 #: backend/tabs/instance/general/ordering.php:29
-#: backend/tabs/instance/general/user_search.php:61
+#: backend/tabs/instance/general/user_search.php:62
 msgid "Custom Field  ascending"
 msgstr ""
 
@@ -6505,22 +6498,22 @@ msgstr ""
 
 #: backend/tabs/instance/general/ordering.php:38
 #: backend/tabs/instance/general/ordering.php:69
-#: backend/tabs/instance/general/user_search.php:70
-#: backend/tabs/instance/general/user_search.php:101
+#: backend/tabs/instance/general/user_search.php:76
+#: backend/tabs/instance/general/user_search.php:113
 msgid "type"
 msgstr ""
 
 #: backend/tabs/instance/general/ordering.php:41
 #: backend/tabs/instance/general/ordering.php:72
-#: backend/tabs/instance/general/user_search.php:73
-#: backend/tabs/instance/general/user_search.php:104
+#: backend/tabs/instance/general/user_search.php:79
+#: backend/tabs/instance/general/user_search.php:116
 msgid "numeric"
 msgstr ""
 
 #: backend/tabs/instance/general/ordering.php:42
 #: backend/tabs/instance/general/ordering.php:73
-#: backend/tabs/instance/general/user_search.php:74
-#: backend/tabs/instance/general/user_search.php:105
+#: backend/tabs/instance/general/user_search.php:80
+#: backend/tabs/instance/general/user_search.php:117
 msgid "string or date"
 msgstr ""
 
@@ -6529,12 +6522,12 @@ msgid "Secondary ordering"
 msgstr ""
 
 #: backend/tabs/instance/general/ordering.php:60
-#: backend/tabs/instance/general/user_search.php:92
+#: backend/tabs/instance/general/user_search.php:99
 msgid "Custom Field ascending"
 msgstr ""
 
 #: backend/tabs/instance/general/ordering.php:80
-#: backend/tabs/instance/general/user_search.php:112
+#: backend/tabs/instance/general/user_search.php:125
 msgid ""
 "If two elements match the primary "
 "ordering criteria, the <b>Secondary "
@@ -6704,28 +6697,28 @@ msgstr ""
 msgid "Search all custom fields?"
 msgstr ""
 
-#: backend/tabs/instance/general/sources.php:82
+#: backend/tabs/instance/general/sources.php:84
 msgid ""
 "..or search in selected custom "
 "fields?"
 msgstr ""
 
-#: backend/tabs/instance/general/sources.php:89
+#: backend/tabs/instance/general/sources.php:92
 msgid "Post statuses to search"
 msgstr ""
 
-#: backend/tabs/instance/general/sources.php:97
+#: backend/tabs/instance/general/sources.php:100
 msgid ""
 "Search and return password "
 "protected posts?"
 msgstr ""
 
-#: backend/tabs/instance/general/sources.php:103
+#: backend/tabs/instance/general/sources.php:106
 msgid ""
 "Search in terms? (categories, tags)"
 msgstr ""
 
-#: backend/tabs/instance/general/sources.php:108
+#: backend/tabs/instance/general/sources.php:111
 msgid ""
 "Will search in terms (categories, "
 "tags) related to posts."
@@ -6745,52 +6738,52 @@ msgid ""
 "Return taxonomy terms as results"
 msgstr ""
 
-#: backend/tabs/instance/general/sources2.php:26
+#: backend/tabs/instance/general/sources2.php:27
 msgid "Search term titles?"
 msgstr ""
 
-#: backend/tabs/instance/general/sources2.php:33
+#: backend/tabs/instance/general/sources2.php:34
 msgid "Search term descriptions?"
 msgstr ""
 
-#: backend/tabs/instance/general/sources2.php:40
+#: backend/tabs/instance/general/sources2.php:41
 msgid "Search in term metadata?"
 msgstr ""
 
-#: backend/tabs/instance/general/sources2.php:44
+#: backend/tabs/instance/general/sources2.php:45
 msgid ""
 "<strong>NOTICE:</strong> This may "
 "slow down the search."
 msgstr ""
 
-#: backend/tabs/instance/general/sources2.php:49
+#: backend/tabs/instance/general/sources2.php:50
 msgid ""
 "Display the number of posts "
 "associated with the terms?"
 msgstr ""
 
-#: backend/tabs/instance/general/sources2.php:54
+#: backend/tabs/instance/general/sources2.php:55
 msgid ""
 "Will display the number of "
 "associated posts in a bracket after "
 "the term."
 msgstr ""
 
-#: backend/tabs/instance/general/sources2.php:59
+#: backend/tabs/instance/general/sources2.php:60
 msgid "Exclude empty taxonomy terms?"
 msgstr ""
 
-#: backend/tabs/instance/general/sources2.php:64
+#: backend/tabs/instance/general/sources2.php:65
 msgid ""
 "Ex. categories that does not "
 "contain posts"
 msgstr ""
 
-#: backend/tabs/instance/general/sources2.php:69
+#: backend/tabs/instance/general/sources2.php:70
 msgid "Exclude categories/terms by ID"
 msgstr ""
 
-#: backend/tabs/instance/general/sources2.php:74
+#: backend/tabs/instance/general/sources2.php:75
 msgid ""
 "Comma \",\" separated list of "
 "category/term IDs."
@@ -6800,60 +6793,56 @@ msgstr ""
 msgid "Enable search in users?"
 msgstr ""
 
-#: backend/tabs/instance/general/user_search.php:10
+#: backend/tabs/instance/general/user_search.php:11
 msgid "Search in user login names?"
 msgstr ""
 
-#: backend/tabs/instance/general/user_search.php:17
+#: backend/tabs/instance/general/user_search.php:18
 msgid "Search in user display names?"
 msgstr ""
 
-#: backend/tabs/instance/general/user_search.php:24
+#: backend/tabs/instance/general/user_search.php:25
 msgid "Search in user first names?"
 msgstr ""
 
-#: backend/tabs/instance/general/user_search.php:31
+#: backend/tabs/instance/general/user_search.php:32
 msgid "Search in user last names?"
 msgstr ""
 
-#: backend/tabs/instance/general/user_search.php:38
+#: backend/tabs/instance/general/user_search.php:39
 msgid "Search in user bio?"
 msgstr ""
 
-#: backend/tabs/instance/general/user_search.php:45
+#: backend/tabs/instance/general/user_search.php:46
 msgid ""
 "Search in user email addresses?"
 msgstr ""
 
-#: backend/tabs/instance/general/user_search.php:51
-msgid "Primary user result ordering"
-msgstr ""
-
-#: backend/tabs/instance/general/user_search.php:67
-#: backend/tabs/instance/general/user_search.php:98
+#: backend/tabs/instance/general/user_search.php:70
+#: backend/tabs/instance/general/user_search.php:107
 msgid "custom field"
 msgstr ""
 
-#: backend/tabs/instance/general/user_search.php:82
+#: backend/tabs/instance/general/user_search.php:89
 msgid "Secondary result ordering"
 msgstr ""
 
-#: backend/tabs/instance/general/user_search.php:117
+#: backend/tabs/instance/general/user_search.php:130
 msgid "User roles exclude"
 msgstr ""
 
-#: backend/tabs/instance/general/user_search.php:124
+#: backend/tabs/instance/general/user_search.php:137
 msgid ""
 "Exclude or Include users from "
 "results"
 msgstr ""
 
-#: backend/tabs/instance/general/user_search.php:156
+#: backend/tabs/instance/general/user_search.php:149
 msgid ""
 "Search in following user meta fields"
 msgstr ""
 
-#: backend/tabs/instance/general/user_search.php:165
+#: backend/tabs/instance/general/user_search.php:158
 msgid ""
 "Search in these BP Xprofile fields"
 msgstr ""
@@ -6899,6 +6888,10 @@ msgstr ""
 #: backend/tabs/instance/general_options.php:15
 #: backend/tabs/instance/general_options.php:91
 msgid "Sources 2"
+msgstr ""
+
+#: backend/tabs/instance/general_options.php:16
+msgid "Media Files Search"
 msgstr ""
 
 #: backend/tabs/instance/general_options.php:17
@@ -6957,11 +6950,11 @@ msgid "Taxonomy Terms as results"
 msgstr ""
 
 #: backend/tabs/instance/general_options.php:121
-msgid "Attachment Search"
+msgid "Media File Search"
 msgstr ""
 
 #: backend/tabs/instance/general_options.php:124
-msgid "Search in attachments"
+msgid "Search in Media Files"
 msgstr ""
 
 #: backend/tabs/instance/layout/compact_box_layout.php:3
@@ -9156,11 +9149,11 @@ msgstr ""
 msgid "Search form"
 msgstr ""
 
-#: includes/views/asp.shortcode.probox.php:81
+#: includes/views/asp.shortcode.probox.php:82
 msgid "Search input"
 msgstr ""
 
-#: includes/views/asp.shortcode.probox.php:84
+#: includes/views/asp.shortcode.probox.php:85
 msgid ""
 "Search autocomplete, ignore please"
 msgstr ""

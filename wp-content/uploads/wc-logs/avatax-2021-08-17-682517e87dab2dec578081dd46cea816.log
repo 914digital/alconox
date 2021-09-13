@@ -1,0 +1,260 @@
+08-17-2021 @ 10:35:15 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/taxrates/byaddress?line1=&line2=&city=Sackets+Harbor&region=NY&country=US&postalCode=13685
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.7.2)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.3521s
+
+08-17-2021 @ 10:35:15 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Tue, 17 Aug 2021 14:35:15 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 144
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0192807
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"totalRate":0.080000,"rates":[{"rate":0.040000,"name":"NY STATE TAX","type":"State"},{"rate":0.040000,"name":"NY COUNTY TAX","type":"County"}]}
+
+08-17-2021 @ 10:35:16 - Request
+Request
+method: POST
+uri: https://rest.avatax.com/api/v2/transactions/create
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.7.2)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body: {"code":"","companyCode":"ALC","customerCode":"Cagle@agbotic.com","currencyCode":"USD","date":"2021-08-17","lines":[{"number":"6991f7ad57a9b45b6be706ec2d54510c","itemCode":"1201","taxCode":"P0000000","description":"Liquinox","quantity":1,"amount":279},{"number":"shipping_0","itemCode":"use-my-shipping-account","taxCode":"FR","description":"Use My Shipping Account","quantity":1}],"addresses":{"shipFrom":{"line1":"30 GLENN ST","line2":"","city":"WHITE PLAINS","region":"NY","country":"US","postalCode":"10603-3254"},"shipTo":{"line1":"18135 county route 75","line2":"","city":"Sackets Harbor","region":"NY","country":"US","postalCode":"13685"}},"type":"SalesOrder","commit":false}
+duration: 0.33923s
+
+08-17-2021 @ 10:35:16 - Response
+Response
+code: 201
+message: Created
+headers: Array
+(
+    [date] => Tue, 17 Aug 2021 14:35:16 GMT
+    [content-type] => application/json; charset=utf-8
+    [server] => Kestrel
+    [content-encoding] => br
+    [location] => /api/v2/companies/207925/transactions/0
+    [vary] => Accept-Encoding
+    [serverduration] => 00:00:00.0340495
+)
+body: {"id":0,"code":"0e7f0b1b-c1a8-4755-bad0-44d539855d69","companyId":207925,"date":"2021-08-17","paymentDate":"2021-08-17","status":"Temporary","type":"SalesOrder","batchCode":"","currencyCode":"USD","exchangeRateCurrencyCode":"USD","customerUsageType":"","entityUseCode":"","customerVendorCode":"Cagle@agbotic.com","customerCode":"Cagle@agbotic.com","exemptNo":"","reconciled":false,"locationCode":"","reportingLocationCode":"","purchaseOrderNo":"","referenceCode":"","salespersonCode":"","totalAmount":279.0,"totalExempt":0.0,"totalDiscount":0.0,"totalTax":22.32,"totalTaxable":279.0,"totalTaxCalculated":22.32,"adjustmentReason":"NotAdjusted","locked":false,"version":1,"exchangeRateEffectiveDate":"2021-08-17","exchangeRate":1.0,"modifiedDate":"2021-08-17T14:35:16.6126474Z","modifiedUserId":231879,"taxDate":"2021-08-17","lines":[{"id":0,"transactionId":0,"lineNumber":"6991f7ad57a9b45b6be706ec2d54510c","customerUsageType":"","entityUseCode":"","description":"Liquinox","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"itemCode":"1201","lineAmount":279.0,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-08-17","tax":22.32,"taxableAmount":279.0,"taxCalculated":22.32,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-08-17","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"36","jurisName":"NEW YORK","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.040000,"tax":11.16,"taxableAmount":279.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxCalculated":11.16,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":279.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":11.16,"reportingTaxCalculated":11.16,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"045","jurisName":"JEFFERSON","stateAssignedNo":"JE 2221","jurisType":"CTY","jurisdictionType":"County","nonTaxableAmount":0.0,"rate":0.040000,"tax":11.16,"taxableAmount":279.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY COUNTY TAX","taxAuthorityTypeId":45,"taxCalculated":11.16,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":279.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":11.16,"reportingTaxCalculated":11.16,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":0,"transactionId":0,"lineNumber":"shipping_0","customerUsageType":"","entityUseCode":"","description":"Use My Shipping Account","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":false,"itemCode":"use-my-shipping-account","lineAmount":0.0,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-08-17","tax":0.0,"taxableAmount":0.0,"taxCalculated":0.0,"taxCode":"FR","taxCodeId":7119,"taxDate":"2021-08-17","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"36","jurisName":"NEW YORK","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.040000,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"045","jurisName":"JEFFERSON","stateAssignedNo":"JE 2221","jurisType":"CTY","jurisdictionType":"County","nonTaxableAmount":0.0,"rate":0.040000,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY COUNTY TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0}],"addresses":[{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"18135 county route 75","line2":"","line3":"","city":"Sackets Harbor","region":"NY","postalCode":"13685","country":"US","taxRegionId":4002358,"latitude":"43.929871","longitude":"-76.110456"},{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"30 GLENN ST","line2":"","line3":"","city":"WHITE PLAINS","region":"NY","postalCode":"10603-3254","country":"US","taxRegionId":2090237,"latitude":"41.050608","longitude":"-73.771383"}],"summary":[{"country":"US","region":"NY","jurisType":"State","jurisCode":"36","jurisName":"NEW YORK","taxAuthorityType":45,"stateAssignedNo":"","taxType":"Sales","taxSubType":"S","taxName":"NY STATE TAX","rateType":"General","taxable":279.0,"rate":0.040000,"tax":11.16,"taxCalculated":11.16,"nonTaxable":0.0,"exemption":0.0},{"country":"US","region":"NY","jurisType":"County","jurisCode":"045","jurisName":"JEFFERSON","taxAuthorityType":45,"stateAssignedNo":"JE 2221","taxType":"Sales","taxSubType":"S","taxName":"NY COUNTY TAX","rateType":"General","taxable":279.0,"rate":0.040000,"tax":11.16,"taxCalculated":11.16,"nonTaxable":0.0,"exemption":0.0}]}
+
+08-17-2021 @ 10:39:28 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/taxrates/byaddress?line1=&line2=&city=Sackets+Harbor&region=NY&country=US&postalCode=13685
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.7.2)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 1.53637s
+
+08-17-2021 @ 10:39:28 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Tue, 17 Aug 2021 14:39:28 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 144
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0077106
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"totalRate":0.080000,"rates":[{"rate":0.040000,"name":"NY STATE TAX","type":"State"},{"rate":0.040000,"name":"NY COUNTY TAX","type":"County"}]}
+
+08-17-2021 @ 10:39:29 - Request
+Request
+method: POST
+uri: https://rest.avatax.com/api/v2/transactions/create
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.7.2)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body: {"code":"","companyCode":"ALC","customerCode":"Cagle@agbotic.com","currencyCode":"USD","date":"2021-08-17","lines":[{"number":"6991f7ad57a9b45b6be706ec2d54510c","itemCode":"1201","taxCode":"P0000000","description":"Liquinox","quantity":1,"amount":279},{"number":"shipping_0","itemCode":"pt-ups-merger:6:03","taxCode":"FR","description":"Ground (UPS)","quantity":1,"amount":31.5}],"addresses":{"shipFrom":{"line1":"30 GLENN ST","line2":"","city":"WHITE PLAINS","region":"NY","country":"US","postalCode":"10603-3254"},"shipTo":{"line1":"18135 county route 75","line2":"","city":"Sackets Harbor","region":"NY","country":"US","postalCode":"13685"}},"type":"SalesOrder","commit":false}
+duration: 0.3376s
+
+08-17-2021 @ 10:39:29 - Response
+Response
+code: 201
+message: Created
+headers: Array
+(
+    [date] => Tue, 17 Aug 2021 14:39:29 GMT
+    [content-type] => application/json; charset=utf-8
+    [server] => Kestrel
+    [content-encoding] => br
+    [location] => /api/v2/companies/207925/transactions/0
+    [vary] => Accept-Encoding
+    [serverduration] => 00:00:00.0375118
+)
+body: {"id":0,"code":"e60e3986-5227-4de8-a842-a9228d8c1249","companyId":207925,"date":"2021-08-17","paymentDate":"2021-08-17","status":"Temporary","type":"SalesOrder","batchCode":"","currencyCode":"USD","exchangeRateCurrencyCode":"USD","customerUsageType":"","entityUseCode":"","customerVendorCode":"Cagle@agbotic.com","customerCode":"Cagle@agbotic.com","exemptNo":"","reconciled":false,"locationCode":"","reportingLocationCode":"","purchaseOrderNo":"","referenceCode":"","salespersonCode":"","totalAmount":310.5,"totalExempt":31.5,"totalDiscount":0.0,"totalTax":22.32,"totalTaxable":279.0,"totalTaxCalculated":22.32,"adjustmentReason":"NotAdjusted","locked":false,"version":1,"exchangeRateEffectiveDate":"2021-08-17","exchangeRate":1.0,"modifiedDate":"2021-08-17T14:39:28.9983713Z","modifiedUserId":231879,"taxDate":"2021-08-17","lines":[{"id":0,"transactionId":0,"lineNumber":"6991f7ad57a9b45b6be706ec2d54510c","customerUsageType":"","entityUseCode":"","description":"Liquinox","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"itemCode":"1201","lineAmount":279.0,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-08-17","tax":22.32,"taxableAmount":279.0,"taxCalculated":22.32,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-08-17","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"36","jurisName":"NEW YORK","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.040000,"tax":11.16,"taxableAmount":279.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxCalculated":11.16,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":279.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":11.16,"reportingTaxCalculated":11.16,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"045","jurisName":"JEFFERSON","stateAssignedNo":"JE 2221","jurisType":"CTY","jurisdictionType":"County","nonTaxableAmount":0.0,"rate":0.040000,"tax":11.16,"taxableAmount":279.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY COUNTY TAX","taxAuthorityTypeId":45,"taxCalculated":11.16,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":279.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":11.16,"reportingTaxCalculated":11.16,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":0,"transactionId":0,"lineNumber":"shipping_0","customerUsageType":"","entityUseCode":"","description":"Ground (UPS)","discountAmount":0.0,"exemptAmount":31.5,"exemptCertId":0,"exemptNo":"","isItemTaxable":false,"itemCode":"pt-ups-merger:6:03","lineAmount":31.5,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-08-17","tax":0.0,"taxableAmount":0.0,"taxCalculated":0.0,"taxCode":"FR","taxCodeId":7119,"taxDate":"2021-08-17","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"36","jurisName":"NEW YORK","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":31.5,"rate":0.040000,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":31.5,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"045","jurisName":"JEFFERSON","stateAssignedNo":"JE 2221","jurisType":"CTY","jurisdictionType":"County","nonTaxableAmount":31.5,"rate":0.040000,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY COUNTY TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":31.5,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0}],"addresses":[{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"18135 county route 75","line2":"","line3":"","city":"Sackets Harbor","region":"NY","postalCode":"13685","country":"US","taxRegionId":4002358,"latitude":"43.929871","longitude":"-76.110456"},{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"30 GLENN ST","line2":"","line3":"","city":"WHITE PLAINS","region":"NY","postalCode":"10603-3254","country":"US","taxRegionId":2090237,"latitude":"41.050608","longitude":"-73.771383"}],"summary":[{"country":"US","region":"NY","jurisType":"State","jurisCode":"36","jurisName":"NEW YORK","taxAuthorityType":45,"stateAssignedNo":"","taxType":"Sales","taxSubType":"S","taxName":"NY STATE TAX","rateType":"General","taxable":279.0,"rate":0.040000,"tax":11.16,"taxCalculated":11.16,"nonTaxable":31.5,"exemption":0.0},{"country":"US","region":"NY","jurisType":"County","jurisCode":"045","jurisName":"JEFFERSON","taxAuthorityType":45,"stateAssignedNo":"JE 2221","taxType":"Sales","taxSubType":"S","taxName":"NY COUNTY TAX","rateType":"General","taxable":279.0,"rate":0.040000,"tax":11.16,"taxCalculated":11.16,"nonTaxable":31.5,"exemption":0.0}]}
+
+08-17-2021 @ 10:39:44 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/taxrates/byaddress?line1=&line2=&city=Sackets+Harbor&region=NY&country=US&postalCode=13685
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.7.2)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.30753s
+
+08-17-2021 @ 10:39:44 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Tue, 17 Aug 2021 14:39:44 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 144
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0011540
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"totalRate":0.080000,"rates":[{"rate":0.040000,"name":"NY STATE TAX","type":"State"},{"rate":0.040000,"name":"NY COUNTY TAX","type":"County"}]}
+
+08-17-2021 @ 10:39:44 - Request
+Request
+method: POST
+uri: https://rest.avatax.com/api/v2/transactions/create
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.7.2)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body: {"code":"","companyCode":"ALC","customerCode":"Cagle@agbotic.com","currencyCode":"USD","date":"2021-08-17","lines":[{"number":"6991f7ad57a9b45b6be706ec2d54510c","itemCode":"1201","taxCode":"P0000000","description":"Liquinox","quantity":1,"amount":279},{"number":"shipping_0","itemCode":"use-my-shipping-account","taxCode":"FR","description":"Use My Shipping Account","quantity":1}],"addresses":{"shipFrom":{"line1":"30 GLENN ST","line2":"","city":"WHITE PLAINS","region":"NY","country":"US","postalCode":"10603-3254"},"shipTo":{"line1":"18135 county route 75","line2":"","city":"Sackets Harbor","region":"NY","country":"US","postalCode":"13685"}},"type":"SalesOrder","commit":false}
+duration: 0.34374s
+
+08-17-2021 @ 10:39:44 - Response
+Response
+code: 201
+message: Created
+headers: Array
+(
+    [date] => Tue, 17 Aug 2021 14:39:44 GMT
+    [content-type] => application/json; charset=utf-8
+    [server] => Kestrel
+    [content-encoding] => br
+    [location] => /api/v2/companies/207925/transactions/0
+    [vary] => Accept-Encoding
+    [serverduration] => 00:00:00.0380568
+)
+body: {"id":0,"code":"a9af452e-c586-469b-96d0-35873232328e","companyId":207925,"date":"2021-08-17","paymentDate":"2021-08-17","status":"Temporary","type":"SalesOrder","batchCode":"","currencyCode":"USD","exchangeRateCurrencyCode":"USD","customerUsageType":"","entityUseCode":"","customerVendorCode":"Cagle@agbotic.com","customerCode":"Cagle@agbotic.com","exemptNo":"","reconciled":false,"locationCode":"","reportingLocationCode":"","purchaseOrderNo":"","referenceCode":"","salespersonCode":"","totalAmount":279.0,"totalExempt":0.0,"totalDiscount":0.0,"totalTax":22.32,"totalTaxable":279.0,"totalTaxCalculated":22.32,"adjustmentReason":"NotAdjusted","locked":false,"version":1,"exchangeRateEffectiveDate":"2021-08-17","exchangeRate":1.0,"modifiedDate":"2021-08-17T14:39:44.8094314Z","modifiedUserId":231879,"taxDate":"2021-08-17","lines":[{"id":0,"transactionId":0,"lineNumber":"6991f7ad57a9b45b6be706ec2d54510c","customerUsageType":"","entityUseCode":"","description":"Liquinox","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"itemCode":"1201","lineAmount":279.0,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-08-17","tax":22.32,"taxableAmount":279.0,"taxCalculated":22.32,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-08-17","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"36","jurisName":"NEW YORK","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.040000,"tax":11.16,"taxableAmount":279.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxCalculated":11.16,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":279.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":11.16,"reportingTaxCalculated":11.16,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"045","jurisName":"JEFFERSON","stateAssignedNo":"JE 2221","jurisType":"CTY","jurisdictionType":"County","nonTaxableAmount":0.0,"rate":0.040000,"tax":11.16,"taxableAmount":279.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY COUNTY TAX","taxAuthorityTypeId":45,"taxCalculated":11.16,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":279.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":11.16,"reportingTaxCalculated":11.16,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":0,"transactionId":0,"lineNumber":"shipping_0","customerUsageType":"","entityUseCode":"","description":"Use My Shipping Account","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":false,"itemCode":"use-my-shipping-account","lineAmount":0.0,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-08-17","tax":0.0,"taxableAmount":0.0,"taxCalculated":0.0,"taxCode":"FR","taxCodeId":7119,"taxDate":"2021-08-17","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"36","jurisName":"NEW YORK","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.040000,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"045","jurisName":"JEFFERSON","stateAssignedNo":"JE 2221","jurisType":"CTY","jurisdictionType":"County","nonTaxableAmount":0.0,"rate":0.040000,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY COUNTY TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0}],"addresses":[{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"18135 county route 75","line2":"","line3":"","city":"Sackets Harbor","region":"NY","postalCode":"13685","country":"US","taxRegionId":4002358,"latitude":"43.929871","longitude":"-76.110456"},{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"30 GLENN ST","line2":"","line3":"","city":"WHITE PLAINS","region":"NY","postalCode":"10603-3254","country":"US","taxRegionId":2090237,"latitude":"41.050608","longitude":"-73.771383"}],"summary":[{"country":"US","region":"NY","jurisType":"State","jurisCode":"36","jurisName":"NEW YORK","taxAuthorityType":45,"stateAssignedNo":"","taxType":"Sales","taxSubType":"S","taxName":"NY STATE TAX","rateType":"General","taxable":279.0,"rate":0.040000,"tax":11.16,"taxCalculated":11.16,"nonTaxable":0.0,"exemption":0.0},{"country":"US","region":"NY","jurisType":"County","jurisCode":"045","jurisName":"JEFFERSON","taxAuthorityType":45,"stateAssignedNo":"JE 2221","taxType":"Sales","taxSubType":"S","taxName":"NY COUNTY TAX","rateType":"General","taxable":279.0,"rate":0.040000,"tax":11.16,"taxCalculated":11.16,"nonTaxable":0.0,"exemption":0.0}]}
+
+08-17-2021 @ 10:40:23 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/taxrates/byaddress?line1=&line2=&city=Sackets+Harbor&region=NY&country=US&postalCode=13685
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.7.2)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.32061s
+
+08-17-2021 @ 10:40:23 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Tue, 17 Aug 2021 14:40:23 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 144
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0008828
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"totalRate":0.080000,"rates":[{"rate":0.040000,"name":"NY STATE TAX","type":"State"},{"rate":0.040000,"name":"NY COUNTY TAX","type":"County"}]}
+
+08-17-2021 @ 10:40:23 - Request
+Request
+method: POST
+uri: https://rest.avatax.com/api/v2/transactions/create
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.7.2)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body: {"code":"","companyCode":"ALC","customerCode":"Cagle@agbotic.com","currencyCode":"USD","date":"2021-08-17","lines":[{"number":"6991f7ad57a9b45b6be706ec2d54510c","itemCode":"1201","taxCode":"P0000000","description":"Liquinox","quantity":1,"amount":279},{"number":"shipping_0","itemCode":"pt-ups-merger:6:03","taxCode":"FR","description":"Ground (UPS)","quantity":1,"amount":31.5}],"addresses":{"shipFrom":{"line1":"30 GLENN ST","line2":"","city":"WHITE PLAINS","region":"NY","country":"US","postalCode":"10603-3254"},"shipTo":{"line1":"18135 county route 75","line2":"","city":"Sackets Harbor","region":"NY","country":"US","postalCode":"13685"}},"type":"SalesOrder","commit":false}
+duration: 0.46327s
+
+08-17-2021 @ 10:40:23 - Response
+Response
+code: 201
+message: Created
+headers: Array
+(
+    [date] => Tue, 17 Aug 2021 14:40:23 GMT
+    [content-type] => application/json; charset=utf-8
+    [server] => Kestrel
+    [content-encoding] => br
+    [location] => /api/v2/companies/207925/transactions/0
+    [vary] => Accept-Encoding
+    [serverduration] => 00:00:00.0337800
+)
+body: {"id":0,"code":"63aea5ef-9249-4b09-a3fd-195944677612","companyId":207925,"date":"2021-08-17","paymentDate":"2021-08-17","status":"Temporary","type":"SalesOrder","batchCode":"","currencyCode":"USD","exchangeRateCurrencyCode":"USD","customerUsageType":"","entityUseCode":"","customerVendorCode":"Cagle@agbotic.com","customerCode":"Cagle@agbotic.com","exemptNo":"","reconciled":false,"locationCode":"","reportingLocationCode":"","purchaseOrderNo":"","referenceCode":"","salespersonCode":"","totalAmount":310.5,"totalExempt":31.5,"totalDiscount":0.0,"totalTax":22.32,"totalTaxable":279.0,"totalTaxCalculated":22.32,"adjustmentReason":"NotAdjusted","locked":false,"version":1,"exchangeRateEffectiveDate":"2021-08-17","exchangeRate":1.0,"modifiedDate":"2021-08-17T14:40:23.8066145Z","modifiedUserId":231879,"taxDate":"2021-08-17","lines":[{"id":0,"transactionId":0,"lineNumber":"6991f7ad57a9b45b6be706ec2d54510c","customerUsageType":"","entityUseCode":"","description":"Liquinox","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"itemCode":"1201","lineAmount":279.0,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-08-17","tax":22.32,"taxableAmount":279.0,"taxCalculated":22.32,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-08-17","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"36","jurisName":"NEW YORK","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.040000,"tax":11.16,"taxableAmount":279.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxCalculated":11.16,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":279.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":11.16,"reportingTaxCalculated":11.16,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"045","jurisName":"JEFFERSON","stateAssignedNo":"JE 2221","jurisType":"CTY","jurisdictionType":"County","nonTaxableAmount":0.0,"rate":0.040000,"tax":11.16,"taxableAmount":279.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY COUNTY TAX","taxAuthorityTypeId":45,"taxCalculated":11.16,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":279.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":11.16,"reportingTaxCalculated":11.16,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":0,"transactionId":0,"lineNumber":"shipping_0","customerUsageType":"","entityUseCode":"","description":"Ground (UPS)","discountAmount":0.0,"exemptAmount":31.5,"exemptCertId":0,"exemptNo":"","isItemTaxable":false,"itemCode":"pt-ups-merger:6:03","lineAmount":31.5,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-08-17","tax":0.0,"taxableAmount":0.0,"taxCalculated":0.0,"taxCode":"FR","taxCodeId":7119,"taxDate":"2021-08-17","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"36","jurisName":"NEW YORK","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":31.5,"rate":0.040000,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":31.5,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"045","jurisName":"JEFFERSON","stateAssignedNo":"JE 2221","jurisType":"CTY","jurisdictionType":"County","nonTaxableAmount":31.5,"rate":0.040000,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY COUNTY TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":31.5,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0}],"addresses":[{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"18135 county route 75","line2":"","line3":"","city":"Sackets Harbor","region":"NY","postalCode":"13685","country":"US","taxRegionId":4002358,"latitude":"43.929871","longitude":"-76.110456"},{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"30 GLENN ST","line2":"","line3":"","city":"WHITE PLAINS","region":"NY","postalCode":"10603-3254","country":"US","taxRegionId":2090237,"latitude":"41.050608","longitude":"-73.771383"}],"summary":[{"country":"US","region":"NY","jurisType":"State","jurisCode":"36","jurisName":"NEW YORK","taxAuthorityType":45,"stateAssignedNo":"","taxType":"Sales","taxSubType":"S","taxName":"NY STATE TAX","rateType":"General","taxable":279.0,"rate":0.040000,"tax":11.16,"taxCalculated":11.16,"nonTaxable":31.5,"exemption":0.0},{"country":"US","region":"NY","jurisType":"County","jurisCode":"045","jurisName":"JEFFERSON","taxAuthorityType":45,"stateAssignedNo":"JE 2221","taxType":"Sales","taxSubType":"S","taxName":"NY COUNTY TAX","rateType":"General","taxable":279.0,"rate":0.040000,"tax":11.16,"taxCalculated":11.16,"nonTaxable":31.5,"exemption":0.0}]}
+

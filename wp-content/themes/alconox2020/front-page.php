@@ -17,12 +17,18 @@
             <div class="carousel-image" style="background-image:url('<?php the_sub_field('slider_image'); ?>');"></div>
             <div class="mask"></div>
             <div class="carousel-text">
-                <h1><?php the_sub_field('slider_header'); ?></h1>
-                <?php if(get_sub_field('slider_sub_header')) : ?>
-                <p><?php the_sub_field('slider_sub_header'); ?></p>
-                <?php endif; ?>
-                <a href="<?php the_sub_field('slider_link'); ?>" class="btn pls-btn mr-2"><i class="fas fa-plus"></i> Learn More</a>
-                <a href="<?php the_sub_field('slider_video_link'); ?>" class="btn pls-btn"><i class="fas fa-play"></i> Watch Video</a>
+           
+                    <h1><?php the_sub_field('slider_header'); ?></h1>
+                    <?php if(get_sub_field('slider_sub_header')) : ?>
+                    <p><?php the_sub_field('slider_sub_header'); ?></p>
+                    <?php endif; ?>
+                <div class="button-width">
+                    <a href="<?php the_sub_field('slider_link'); ?>" class="btn pls-btn mr-2 mb-2"><i class="fas fa-plus"></i> Learn More</a>
+                    <a href="<?php the_sub_field('slider_video_link'); ?>" class="btn pls-btn mb-2"><i class="fas fa-play"></i> Watch Video</a>
+                    <?php if(get_sub_field('slider_merch_button_text')): ?>
+                        <a href="<?php the_sub_field('slider_merch_button_link'); ?>" class="btn pls-btn merch-btn d-block"><i class="fas fa-cart-plus"></i> <?php the_sub_field('slider_merch_button_text'); ?></a>
+                    <?php endif; ?>
+                </div>                
             </div>
         </div>
         <?php endwhile; ?>

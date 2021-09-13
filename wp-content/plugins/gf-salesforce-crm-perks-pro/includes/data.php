@@ -140,6 +140,7 @@ class vxg_salesforce_data extends vxg_salesforce{
   $sql = "SELECT s.id, s.status,s.object ,s.parent_id, s.link, s.form_id, s.meta as error,s.entry_id,s.crm_id,s.time
   $sql_end
   limit $start , $per_page";
+
   $results = $wpdb->get_results($sql, ARRAY_A);     
                  
   $page_id=isset($_REQUEST['page_id'])&& $_REQUEST['page_id'] !="" ? $this->post('page_id') : "1";

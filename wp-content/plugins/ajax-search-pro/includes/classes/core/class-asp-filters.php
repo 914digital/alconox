@@ -150,12 +150,6 @@ if ( !class_exists("WD_ASP_Filters") ) {
 				"handler" => array("EtcFixes", "http_request_args"),
 				"priority" => 9999,
 				"args" => 2
-			),
-			array(
-				"filter" => "rocket_exclude_defer_js",
-				"handler" => array("EtcFixes", "wp_rocket_exclude_defer_js"),
-				"priority"    => 999,
-				"args"  => 1
 			)
 		);
 

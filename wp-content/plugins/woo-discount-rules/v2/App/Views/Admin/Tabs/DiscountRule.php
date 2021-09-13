@@ -54,7 +54,7 @@ $is_pro = \Wdr\App\Helpers\Helper::hasPro();
             }?>
             <a href="https://www.flycart.org/woocommerce-discount-rules-examples?utm_source=woo-discount-rules-v2&utm_campaign=doc&utm_medium=text-click&utm_content=examples#commonly-asked-scenarios" target="_blank"
                class="btn btn-info text-right" style="float: right"><?php _e('View Examples', 'woo-discount-rules'); ?></a>
-            <a href="https://docs.flycart.org/en/collections/2195266-discount-rules-2-0?utm_source=woo-discount-rules-v2&utm_campaign=doc&utm_medium=text-click&utm_content=documentation" target="_blank"
+            <a href="https://docs.flycart.org/en/collections/806883-woocommerce-discount-rules?utm_source=woo-discount-rules-v2&utm_campaign=doc&utm_medium=text-click&utm_content=documentation" target="_blank"
                class="btn btn-info text-right" style="float: right"><?php _e('Documentation', 'woo-discount-rules'); ?></a>
         </div>
 
@@ -134,7 +134,7 @@ $is_pro = \Wdr\App\Helpers\Helper::hasPro();
                     foreach ($rules as $rule_row) { ?>
                         <tr id="<?php echo $rule_row->getId(); ?>" class="awdr-listing-rule-tr">
                             <th scope="row" class="check-column awdr-listing-rule-check-box-align">
-                                <span class="dashicons dashicons-menu" style="padding-left: 5px;"></span>
+                                <span class="dashicons dashicons-menu awdr-sortable-handle" style="padding-left: 5px;"></span>
                             </th>
                             <th scope="row" class="check-column awdr-listing-rule-check-box-align">
                                 <input id="cb-select-<?php echo $rule_row->getId(); ?>" class="wdr-rules-selector"

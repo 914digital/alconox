@@ -3,4 +3,4 @@
 This file is used by the Wordfence Web Application Firewall. Read 
 more at https://docs.wordfence.com/en/Web_Application_Firewall_FAQ
 ******************************************************************
-a:6:{s:9:"wafStatus";s:7:"enabled";s:30:"learningModeGracePeriodEnabled";i:0;s:7:"authKey";s:64:")y0W,0P9<MzBQEq;3F[fhO{urLA,Cvb.>x}<fv;t<4uA?<P])3F3X4nwtf8/m%U_";s:7:"version";s:5:"1.0.4";s:11:"wafDisabled";b:0;s:13:"attackDataKey";i:2572;}
+a:6:{s:9:"wafStatus";s:7:"enabled";s:30:"learningModeGracePeriodEnabled";i:0;s:7:"authKey";s:64:"#}YP5#QomPZtQaJv5I{Fh]+7z~#[[LKy+dfBj^MdXbI c.1qq[.d?Z;IQo6bD,cO";s:7:"version";s:5:"1.0.4";s:13:"attackDataKey";i:1506;s:11:"wafDisabled";b:0;}

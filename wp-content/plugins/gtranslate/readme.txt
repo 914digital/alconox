@@ -3,8 +3,8 @@ Contributors: edo888
 Author: Translate AI Multilingual Solutions
 Tags: translate, translate wordpress, multilingual, translation, translate language, bilingual, localization, translation proxy, localisation, multilanguage, google translate
 Requires at least: 2.8.1
-Tested up to: 5.7
-Stable tag: 2.8.62
+Tested up to: 5.8
+Stable tag: 2.9.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Donate link: https://gtranslate.io/?xyz=998#pricing
@@ -251,6 +251,23 @@ If you want us to translate your website professionally or provide you a proofre
 8. User Dashboard
 
 == Changelog ==
+= 2.9.2 =
+* Smoother scrolling for Nice dropdown with flags language selector widget look
+
+= 2.9.1 =
+* New server added into our Translation Delivery Network
+
+= 2.8.65 =
+* Possible Cross-site scripting (XSS) vulnerability fixed, only possible for sub-domain, sub-directory paid options:
+An attacker can generate a malicious link and if followed by a victim with an old browser without proper URL encoding support (<= IE 9) then javascript code can be executed on victim's computer.
+Kudos to Ram Gall @ Wordfence for notifying
+
+= 2.8.64 =
+* New server added into our Translation Delivery Network
+
+= 2.8.63 =
+* Minor change: prefer IPv4 in paid version server communication as some hosts have issues with IPv6
+
 = 2.8.62 =
 * Tested with new WordPress 5.7 version
 * Fix for email translation debug

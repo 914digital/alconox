@@ -1,39 +1,4 @@
 <div class="item">
-    <?php
-    $o = new wpdreamsCustomSelect("js_source", __('Javascript source', 'ajax-search-pro'), array(
-            'selects'   => wd_asp()->o['asp_compatibility_def']['js_source_def'],
-            'value'     => $com_options['js_source']
-        )
-    );
-    $params[$o->getName()] = $o->getData();
-    ?>
-    <p class="descMsg">
-        <ul style="float:right;text-align:left;width:50%;">
-            <li><?php echo __('<b>Non minified</b> - Optimal Compatibility, Medium space', 'ajax-search-pro'); ?></li>
-            <li><?php echo __('<b>Minified</b> - Optimal Compatibility, Low space (recommended)', 'ajax-search-pro'); ?></li>
-            <li><?php echo __('<b>Non minified Scoped</b> - High Compatibility, High space', 'ajax-search-pro'); ?></li>
-            <li><?php echo __('<b>Minified Scoped</b> - High Compatibility, Medium space', 'ajax-search-pro'); ?></li>
-        </ul>
-        <div class="clear"></div>
-    </p>
-</div>
-<div class="item">
-    <?php
-    $o = new wpdreamsCustomSelect("js_init", __('Javascript init method', 'ajax-search-pro'), array(
-            'selects'=>array(
-                array('option'=>__('Dynamic (default)', 'ajax-search-pro'), 'value'=>'dynamic'),
-                array('option'=>__('Blocking', 'ajax-search-pro'), 'value'=>'blocking')
-            ),
-            'value'=>$com_options['js_init']
-        )
-    );
-    $params[$o->getName()] = $o->getData();
-    ?>
-    <p class="descMsg">
-        <?php echo __('Try to choose <strong>Blocking</strong> if the search bar is not responding to anything.', 'ajax-search-pro'); ?>
-    </p>
-</div>
-<div class="item">
     <?php $o = new wpdreamsYesNo("js_prevent_body_scroll", __('Try preventing body touch scroll on mobile devices, when using the vertical results layout?', 'ajax-search-pro'),
         $com_options['js_prevent_body_scroll']
     ); ?>
@@ -50,14 +15,6 @@
     ); ?>
     <p class='descMsg'>
         <?php echo __('Whenever the user clicks on a live search result, and decides to navigate back, the search will re-trigger and reset the previous options.', 'ajax-search-pro'); ?>
-    </p>
-</div>
-<div class="item">
-    <?php $o = new wpdreamsYesNo("js_fix_duplicates", __('Try fixing DOM duplicates of the search bar if they exist?', 'ajax-search-pro'),
-        $com_options['js_fix_duplicates']
-    ); ?>
-    <p class='descMsg'>
-        <?php echo __('Some menu or widgets scripts tend to <strong>clone</strong> the search bar completely for Mobile viewports, causing a malfunctioning search bar with no event handlers. When this is active, the plugin script will try to fix that, if possible.', 'ajax-search-pro'); ?>
     </p>
 </div>
 <div class="item">
@@ -139,10 +96,5 @@
     </p>
     <?php $o = new wpdreamsYesNo("usecustomajaxhandler", __('Use the custom ajax handler?', 'ajax-search-pro'),
         $com_options['usecustomajaxhandler']
-    ); ?>
-</div>
-<div class="item">
-    <?php $o = new wpdreamsYesNo("old_browser_compatibility", __('Display the default search box on old browsers? (IE<=8)', 'ajax-search-pro'),
-        $com_options['old_browser_compatibility']
     ); ?>
 </div>

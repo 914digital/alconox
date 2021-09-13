@@ -29,6 +29,9 @@ function bst_enqueues()
 	wp_register_style('slb-css', get_template_directory_uri() . '/css/simpleLightbox.css', false, null);
 	wp_enqueue_style('slb-css');
 
+	wp_register_style('tl-css', get_template_directory_uri() . '/css/timeline.css', false, null);
+	wp_enqueue_style('tl-css');
+
 
 	//Javascript
         
@@ -58,6 +61,9 @@ function bst_enqueues()
 
 	wp_register_script('slb-js', get_template_directory_uri() . '/js/simpleLightbox.js', false, null, true);
 	wp_enqueue_script('slb-js');
+
+	wp_register_script('tl-js', get_template_directory_uri() . '/js/timeline.js', false, null, true);
+	wp_enqueue_script('tl-js');
 
     if (is_singular() && comments_open() && get_option('thread_comments')) {
         wp_enqueue_script('comment-reply');

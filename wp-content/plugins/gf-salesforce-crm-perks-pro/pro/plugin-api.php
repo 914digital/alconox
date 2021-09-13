@@ -114,7 +114,7 @@ public function plugin_api_setup(){
   'vx_check_for_updates'
   );
   
-  $linkText = __('Check for updates','contact-form-entries');
+  $linkText = esc_html__('Check for updates','contact-form-entries');
   $plugin_meta[] = sprintf('<a href="%s">%s</a>', esc_attr($linkUrl), $linkText);
   }
   return $plugin_meta;
@@ -140,13 +140,16 @@ public function plugin_api_setup(){
   public function inject_update($updates){
   $update=$this->get_update(); 
 
-  if(empty($updates->response[$this->slug]))
+  if(is_object($updates) && empty($updates->response[$this->slug])){
   $updates->response[$this->slug] = new stdClass();
+  
   if(is_object($update)){ 
   $updates->response[$this->slug]=$update;
   }else if(isset($updates->response[$this->slug])){
   unset($updates->response[$this->slug]); 
   }
+  }
+
   return $updates;
   }
 
@@ -496,7 +499,7 @@ public function display_msg($type,$message,$id=""){
   $ver=floatval($wp_version);
   if($type == "admin"){
   ?>
-  <div class="error vx_notice below-h2 notice is-dismissible" data-id="<?php echo $id ?>"><p><span class="dashicons dashicons-megaphone"></span> <b><?php echo $this->title ?>. </b> <?php echo wp_kses_post($message);?> </p>
+  <div class="error vx_notice below-h2 notice is-dismissible" data-id="<?php echo esc_html($id) ?>"><p><span class="dashicons dashicons-megaphone"></span> <b><?php echo $this->title ?>. </b> <?php echo wp_kses_post($message);?> </p>
   </div>    
   <?php
   }else{
@@ -524,7 +527,7 @@ public function display_msg($type,$message,$id=""){
   */
 public function screen_msg( $message, $level = 'updated') {
   echo '<div class="'. esc_attr( $level ) .' fade below-h2 notice is-dismissible"><p>';
-  echo $message ;
+  echo wp_kses_post($message);
   echo '</p></div>';
   }
  
@@ -570,6 +573,9 @@ if(!empty(self::$lics)){
   public function get_update_option(){
       if(empty(self::$updates)){
   self::$updates=get_option("cfx_plugin_updates",array());   
+  if(!is_array(self::$updates)){
+      self::$updates=array();
+  }
       }  
 if(!$this->update){
     $user=$update=array();
@@ -649,13 +655,12 @@ update_option('cfx_plugin_updates',self::$updates,false);
   * 
   * @param mixed $key
   */
-public function save_key($key="",$action){ 
+public function save_key($key="",$action=''){ 
        $key=trim($key);
   $update =$this->get_update_option();
   $time=current_time('timestamp',1); 
   $info=$this->get_req_vars($key,$action);
   $url=$this->get_url($update);
-  
   $vx_json=$this->request($url,'POST',$info); 
    $vx_arr=$log_key=json_decode($vx_json,true);
     if(!empty($vx_arr['wp_error'])){ 
@@ -755,7 +760,7 @@ $this->request($url,'POST',$info);
   }
 
 public function add_section_wc($tabs){
-    if(current_user_can($this->id.'_read_license')){  
+    if(current_user_can($this->id.'_read_license') || is_super_admin() ){  
     $tabs["vxc_license"]=__('License Key','contact-form-entries');
     }
     return $tabs;
@@ -777,7 +782,7 @@ public  function first_page($page_added,$form_tag=''){
         check_admin_referer("vx_crm_ajax",'vx_crm_ajax'); 
   $vx_res=$this->save_key($_POST['lic_key'],'verify_user');
 
-  $message= __("Error while installing Plugin",'contact-form-entries');
+  $message= esc_html__("Error while installing Plugin",'contact-form-entries');
   $class="error";
   if(isset($vx_res['status']) && $vx_res['status'] == "ok"){
   $valid=true;
@@ -793,7 +798,7 @@ public  function first_page($page_added,$form_tag=''){
   if($valid){
   ?>
   <h2>
-  <?php _e('Redirecting, Please Wait','contact-form-entries'); ?>
+  <?php esc_html_e('Redirecting, Please Wait','contact-form-entries'); ?>
   </h2>
   <?php
   if($message) {
@@ -817,15 +822,15 @@ public  function first_page($page_added,$form_tag=''){
   <table class="form-table">
   <tr>
   <th scope="row"><label for="vx_key">
-  <?php _e("License Key", 'contact-form-entries'); ?>
+  <?php esc_html_e("License Key", 'contact-form-entries'); ?>
   </label>
   </th>
   <td><input type="text" size="75" name="lic_key" id="vx_key" />
   <br/>
-  <?php _e("Enter Your License Key", 'contact-form-entries') ?></td>
+  <?php esc_html_e("Enter Your License Key", 'contact-form-entries') ?></td>
   </tr>
   <tr>
-  <td colspan="2" ><input type="submit" name="<?php echo $this->id ?>_install" class="button-primary" value="<?php _e("Save Settings", 'contact-form-entries') ?>" /></td>
+  <td colspan="2" ><input type="submit" name="<?php echo $this->id ?>_install" class="button-primary" value="<?php esc_html_e("Save Settings", 'contact-form-entries') ?>" /></td>
   </tr>
   </table>
   <div> </div>
@@ -844,7 +849,7 @@ public  function first_page($page_added,$form_tag=''){
   return $page_added;   
 } 
 public function license_section_wc($page_added){
-    if(!$page_added && current_user_can($this->id.'_read_license') ){
+    if(!$page_added && (current_user_can($this->id.'_read_license')|| is_super_admin() ) ){
       $page_added=$this->first_page($page_added,'false');
       if(!$page_added){
         global $current_section;
@@ -920,15 +925,15 @@ $this->screen_msg($msg['msg'],$msg['class']);
   <table class="form-table">
   <tr>
   <th scope="row"><label for="vx_license_key">
-  <?php _e("License Key", 'contact-form-entries'); ?>
+  <?php esc_html_e("License Key", 'contact-form-entries'); ?>
   </label>
   </th>
   <td>
   <div style="display: table" class="vx_tr">
   <div style="display: table-cell; width: 85%;">
-  <input type="password" style="width: 100%;" class="crm_text" id="vx_license_key" name="vx_lic_key" placeholder="<?php _e('Enter License Key','contact-form-entries') ?>" value="<?php echo $lic_key ?>">
+  <input type="password" style="width: 100%;" class="crm_text" id="vx_license_key" name="vx_lic_key" placeholder="<?php esc_html_e('Enter License Key','contact-form-entries') ?>" value="<?php echo $lic_key ?>">
   </div><div style="display: table-cell;">
-  <a href="#" style="margin: 0 0 0 10px; vertical-align: baseline; text-align: center; width: 110px" class="button vx_toggle_key ddd" id="vx_toggle_key" title="<?php _e('Toggle License Key','contact-form-entries'); ?>">Show Key</a>
+  <a href="#" style="margin: 0 0 0 10px; vertical-align: baseline; text-align: center; width: 110px" class="button vx_toggle_key ddd" id="vx_toggle_key" title="<?php esc_html_e('Toggle License Key','contact-form-entries'); ?>">Show Key</a>
   
   </div></div>
   <?php
@@ -944,7 +949,7 @@ $this->screen_msg($msg['msg'],$msg['class']);
                       ?></td>
   </tr>
   <tr>
-  <th colspan="2" ><input type="submit" name="<?php echo $this->id."_key"; ?>" class="button-primary" title="<?php _e('Save License Key','contact-form-entries'); ?>" value="<?php _e("Save License Key", 'contact-form-entries') ?>" /></th>
+  <th colspan="2" ><input type="submit" name="<?php echo $this->id."_key"; ?>" class="button-primary" title="<?php esc_html_e('Save License Key','contact-form-entries'); ?>" value="<?php esc_html_e("Save License Key", 'contact-form-entries') ?>" /></th>
   </tr>
   </table>
   <?php

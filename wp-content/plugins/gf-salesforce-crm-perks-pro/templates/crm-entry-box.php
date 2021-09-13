@@ -12,11 +12,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 </style>
 <div class="postbox">
-<h3 style="border-bottom: 1px solid #ddd;"><?php _e("Salesforce", 'gravity-forms-salesforce-crm') ?></h3>
+<h3 style="border-bottom: 1px solid #ddd;"><?php esc_html_e("Salesforce", 'gravity-forms-salesforce-crm') ?></h3>
 <div class="inside">
 
 <?php
-
                $comments=false; 
   if( is_array($log) && count($log)>0){
       $comments=true;
@@ -34,20 +33,20 @@ if(isset($icons[$st])){
   $bg=$icons[$st]['color'];  
   $icon=$icons[$st]['icon'];  
 }
-echo '<p style="background: '.$bg.'; padding: 10px; color: #fff " class="vx_msg_div"><i class="fa '.$icon.'"></i> '.$msg.'</p>';
+echo '<p style="background: '.$bg.'; padding: 10px; color: #fff " class="vx_msg_div"><i class="fa '.$icon.'"></i> '.wp_kses_post($msg).'</p>';
   }
   if(isset($_GET['vx_debug'])){
   ?>
-  <input type="hidden" name="vx_debug" value="<?php echo $this->post('vx_debug') ?>">
+  <input type="hidden" name="vx_debug" value="<?php echo esc_attr($this->post('vx_debug')) ?>">
   <?php
   }
   ?>
   <p>
-  <button class="button" type="submit" name="<?php echo $this->id ?>_send" value="yes" title="<?php _e("Send to Salesforce",'gravity-forms-salesforce-crm')?>"><?php _e("Send to Salesforce",'gravity-forms-salesforce-crm')?></button>
+  <button class="button" type="submit" name="<?php echo $this->id ?>_send" value="yes" title="<?php esc_html_e("Send to Salesforce",'gravity-forms-salesforce-crm')?>"><?php esc_html_e("Send to Salesforce",'gravity-forms-salesforce-crm')?></button>
   <?php
       if($comments ){
   ?>
-    <a class="button button-secondary" title="<?php _e('Go to Logs','gravity-forms-salesforce-crm') ?>" href="<?php echo $log_url ?>"><?php _e('Go to Logs','gravity-forms-salesforce-crm') ?></a>
+    <a class="button button-secondary" title="<?php esc_html_e('Go to Logs','gravity-forms-salesforce-crm') ?>" href="<?php echo esc_url($log_url) ?>"><?php esc_html_e('Go to Logs','gravity-forms-salesforce-crm') ?></a>
   <?php
       }
   ?>

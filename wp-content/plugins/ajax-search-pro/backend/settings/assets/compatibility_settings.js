@@ -5,10 +5,10 @@ jQuery(function ($) {
 
     if(hash != ''){
         hash = parseInt(hash);
-        $('.tabs a[tabid=' + Math.floor( hash / 100 ) + ']').click();
-        $('.tabs a[tabid=' + hash + ']').click();
+        $('.tabs a[tabid=' + Math.floor( hash / 100 ) + ']').trigger('click');
+        $('.tabs a[tabid=' + hash + ']').trigger('click');
     } else {
-        $('.tabs a[tabid=1]').click();
+        $('.tabs a[tabid=1]').trigger('click');
     }
 
     $('.tabs a').on('click', function(){
@@ -21,6 +21,15 @@ jQuery(function ($) {
        } else {
            $(this).closest('fieldset').find('.item_selective_load').removeClass('disabled');
        }
-    });
-    $('input[name=selective_enabled]').change();
+    }).trigger('change');
+
+    $('select[name=js_source]').on('change', function(){
+       if ( $(this).val().indexOf('jqueryless') < 0 ) {
+           $('select[name=script_loading_method]').closest('.item').addClass('disabled');
+       } else {
+           $('select[name=script_loading_method]').closest('.item').removeClass('disabled');
+       }
+    }).trigger('change');
+
+
 });

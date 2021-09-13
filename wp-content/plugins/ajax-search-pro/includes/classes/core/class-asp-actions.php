@@ -49,12 +49,6 @@ if ( !class_exists("WD_ASP_Actions") ) {
                 'args'  => 0
             ),
             array(
-                "action" => "wp_head",
-                "handler" => "CustomFonts",
-                "priority"    => 10,
-                "args"  => 0
-            ),
-            array(
                 "action" => "wp_footer",
                 "handler" => "FooterStuff",
                 "priority"    => 10,
@@ -78,6 +72,18 @@ if ( !class_exists("WD_ASP_Actions") ) {
                 "priority"    => 999999998,
                 "args"  => 3
             ),
+			array(
+				"action" => "added_post_meta",
+				"handler" => array("IndexTable", "update_post_meta"),
+				"priority"    => 999999999,
+				"args"  => 4
+			),
+			array(
+				"action" => "updated_post_meta",
+				"handler" => array("IndexTable", "update_post_meta"),
+				"priority"    => 999999999,
+				"args"  => 4
+			),
             array(
                 "action" => "wp_insert_post",
                 "handler" => array("IndexTable", "update"),

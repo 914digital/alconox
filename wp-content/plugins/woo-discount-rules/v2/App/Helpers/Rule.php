@@ -654,7 +654,7 @@ class Rule
      * @param $cart_item
      * @return int
      */
-    function calculateDiscount($product_price, $quantity, $product, $ajax_price, $cart_item = array(), $price_display_condition, $is_cart=true, $manual_request = false)
+    function calculateDiscount($product_price, $quantity, $product, $ajax_price, $cart_item = array(), $price_display_condition='show_when_matched', $is_cart=true, $manual_request = false)
     {
         $product_id = self::$woocommerce_helper->getProductId($product);
         self::$simple_discounts[$product_id] = 0;
@@ -1224,13 +1224,14 @@ class Rule
         if (empty($product_price)) {
             return $discounts;
         }
+        $rule_title = is_null($this->getTitle()) ? __('Discount', 'woo-discount-rules') : __($this->getTitle(), 'woo-discount-rules');
         if ($adjustment = $this->getCartAdjustments()) {
             if (!empty($adjustment)) {
                 $type = isset($adjustment->type) ? $adjustment->type : 'flat';
                 $value = isset($adjustment->value) ? $adjustment->value : 0;
                 if (in_array($type, array('flat', 'percentage'))) {
                     if (!empty($value)) {
-                        $label = isset($adjustment->label) ? $adjustment->label : __('discount', 'woo-discount-rules');
+                        $label = (isset($adjustment->label) && !empty($adjustment->label)) ? $adjustment->label : __($rule_title, 'woo-discount-rules');
                         $discounts[] = array(
                             'free_shipping' => 0,
                             'discount' => $value,
@@ -1241,7 +1242,7 @@ class Rule
                     }
                 } elseif($type == 'flat_in_subtotal'){
                     if (!empty($value)) {
-                        $label = isset($adjustment->label) ? $adjustment->label : __('discount', 'woo-discount-rules');
+                        $label = (isset($adjustment->label) && !empty($adjustment->label)) ? $adjustment->label : __($rule_title, 'woo-discount-rules');
                         $discounts[] = array(
                             'free_shipping' => 0,
                             'discount' => $value,

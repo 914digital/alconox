@@ -12,7 +12,7 @@ if (!defined('ABSPATH')) exit; // Exit if accessed directly
 
 class Recipe extends Base
 {
-    public $priority = 50;
+    public $priority = 70;
     protected $tab = 'recipe';
 
     /**
@@ -21,7 +21,7 @@ class Recipe extends Base
     public function __construct()
     {
         parent::__construct();
-        $this->title = __('Recipe', WDR_TEXT_DOMAIN);
+        $this->title = __('Recipe', 'woo-discount-rules');
     }
 
     /**

@@ -47,11 +47,13 @@ $current_language = FlycartWooDiscountRulesGeneralHelper::getWPMLLanguage();
                         <div class="col-md-8">
                             <h4><?php esc_html_e('Cart Rules', 'woo-discount-rules'); ?></h4>
                         </div>
-                        <div class="col-md-4 text-right">
-                            <br/>
-                            <a href="https://www.flycart.org/woocommerce-discount-rules-examples?utm_source=woo-discount-rules&utm_campaign=doc&utm_medium=text-click&utm_content=example_cart_rules#cartdiscountexample" target="_blank" class="btn btn-info"><?php esc_html_e('View Examples', 'woo-discount-rules'); ?></a>
-                            <a href="http://docs.flycart.org/woocommerce-discount-rules/cart-discount-rules?utm_source=woo-discount-rules&utm_campaign=doc&utm_medium=text-click&utm_content=documentation_cart_rules" target="_blank" class="btn btn-info"><?php esc_html_e('Documentation', 'woo-discount-rules'); ?></a>
-                        </div>
+                        <?php if(0) { /* Removed from v2.3.6 */ ?>
+                            <div class="col-md-4 text-right">
+                                <br/>
+                                <a href="https://www.flycart.org/woocommerce-discount-rules-examples?utm_source=woo-discount-rules&utm_campaign=doc&utm_medium=text-click&utm_content=example_cart_rules#cartdiscountexample" target="_blank" class="btn btn-info"><?php esc_html_e('View Examples', 'woo-discount-rules'); ?></a>
+                                <a href="http://docs.flycart.org/woocommerce-discount-rules/cart-discount-rules?utm_source=woo-discount-rules&utm_campaign=doc&utm_medium=text-click&utm_content=documentation_cart_rules" target="_blank" class="btn btn-info"><?php esc_html_e('Documentation', 'woo-discount-rules'); ?></a>
+                            </div>
+                        <?php } ?>
                         <hr>
                     </div>
                     <form id="woo_discount_list_form" method="post" action="?page=woo_discount_rules">

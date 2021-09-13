@@ -37,7 +37,7 @@ jQuery(function($){
         tShadow += p.find('input._xx_blurradius_xx_').val() + "px " + p.find('.wpd_font_shadow input.color').val();
         var textShadow = "text-shadow:" + tShadow + ";";
 
-        p.find("input[isparam=1]").val(weight+family+color+size+lh+textShadow).change();
+        p.find("input[isparam=1]").val(weight+family+color+size+lh+textShadow).trigger('change');
     });
 
     $('.wpdreamsFontComplete select.wd_fonts_select').on('change', function(){

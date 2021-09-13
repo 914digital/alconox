@@ -12,7 +12,7 @@ if (!defined('ABSPATH')) exit; // Exit if accessed directly
 
 class Statistics extends Base
 {
-    public $priority = 30;
+    public $priority = 60;
     protected $tab = 'statistics';
     protected $reports;
     protected $rule_details = array();

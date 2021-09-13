@@ -15,7 +15,7 @@ jQuery(function($){
             $(this).parent().addClass("active");
         }
         $(hidden).val(val);
-        $(hidden).change();
+        $(hidden).trigger('change').trigger('input');;
     });
     $('.wpdreamsYesNo .triggerer').on('click', function () {
         var hidden = $('input[type=hidden]', $(this).parent());
@@ -26,27 +26,27 @@ jQuery(function($){
         } else {
             div.addClass("active");
         }
-        $(hidden).change();
+        $(hidden).trigger('change').trigger('input');
     });
 
     /**
      * Up-down arrow
      */
-    $('.wpdreams-updown .wpdreams-uparrow').click(function () {
+    $('.wpdreams-updown .wpdreams-uparrow').on('click', function() {
         var prev = $(this).parent().prev();
         while (!prev.is('input')) {
             prev = prev.prev();
         }
         prev.val(parseFloat($(prev).val()) + 1);
-        prev.change();
+        prev.trigger('change');
     });
-    $('.wpdreams-updown .wpdreams-downarrow').click(function () {
+    $('.wpdreams-updown .wpdreams-downarrow').on('click', function() {
         var prev = $(this).parent().prev();
         while (!prev.is('input')) {
             prev = prev.prev();
         }
         prev.val(parseFloat($(prev).val()) - 1);
-        prev.change();
+        prev.trigger('change');
     });
 
     /**
@@ -84,16 +84,16 @@ jQuery(function($){
                 i++;
             }
         });
-        hidden.change();
+        hidden.trigger('change');
     });
 
-    $('.wpdreamsFour input[type=text]').change(function () {
+    $('.wpdreamsFour input[type=text]').on('change', function() {
         var value = "";
         $('input[type=text]', $(this).parent()).each(function () {
             value += $(this).val() + "||";
         });
         $('input[isparam=1]', $(this).parent()).val("||" + value);
-        $('input[isparam=1]', $(this).parent()).change();
+        $('input[isparam=1]', $(this).parent()).trigger('change');
     });
     $('.wpdreamsFour>fieldset>.triggerer').bind('click', function () {
         var hidden = $("input[isparam=1]", $(this).parent());
@@ -105,7 +105,7 @@ jQuery(function($){
                 i++;
             }
         });
-        hidden.change();
+        hidden.trigger('change');
     });
 
     /**
@@ -133,7 +133,7 @@ jQuery(function($){
         //When a file is selected, grab the URL and set it as the text field's value
         custom_uploader.on('select', function () {
             var attachment = custom_uploader.state().get('selection').first().toJSON();
-            $cup_text.val(attachment.url).change();
+            $cup_text.val(attachment.url).trigger('change');
         });
 
         //Open the uploader dialog
@@ -157,7 +157,7 @@ jQuery(function($){
     /**
      * Array-chained select
      */
-    $('.wpdreamsCustomArraySelect select').change(function () {
+    $('.wpdreamsCustomArraySelect select').on('change', function() {
         var $hidden = $('input[isparam=1]', $(this).parent());
         var valArr = [];
 
@@ -279,14 +279,14 @@ jQuery(function($){
                 val += "|" + $(this).attr('taxonomy');
             });
             val = val.substring(1);
-            hidden.val(val);
+            hidden.val(val).trigger('input');
         });
-        $("#sortablecontainer" + id + " .arrow-all-left").click(function(){
+        $("#sortablecontainer" + id + " .arrow-all-left").on('click', function(){
             $("#sortable_conn" + id + " li")
                 .detach().appendTo("#sortable" + id + "");
             $(selector).trigger("sortupdate");
         });
-        $("#sortablecontainer" + id + " .arrow-all-right").click(function(){
+        $("#sortablecontainer" + id + " .arrow-all-right").on('click', function(){
             $("#sortable" + id + " li:not(.hiddend)")
                 .detach().appendTo("#sortable_conn" + id);
             $(selector).trigger("sortupdate");
@@ -509,7 +509,7 @@ jQuery(function($){
 
             if (phrase == "") {
                 $loader.addClass('hiddend');
-                $(".wd_tagSelSearch .wd_ts_close", $this).click();
+                $(".wd_tagSelSearch .wd_ts_close", $this).trigger('click');
                 return;
             }
 
@@ -667,7 +667,7 @@ jQuery(function($){
 
             if (phrase == "") {
                 $loader.addClass('hiddend');
-                $(".wd_tagSelSearch .wd_ts_close", $this).click();
+                $(".wd_tagSelSearch .wd_ts_close", $this).trigger('click');
                 return;
             }
 
@@ -776,12 +776,12 @@ jQuery(function($){
             val = val.substring(1);
             hidden.val(val);
         });
-        $("#sortablecontainer" + id + " .arrow-all-left").click(function(){
+        $("#sortablecontainer" + id + " .arrow-all-left").on('click', function(){
             $("#sortable_conn" + id + " li")
                 .detach().appendTo("#sortable" + id + "");
             $(selector).trigger("sortupdate");
         });
-        $("#sortablecontainer" + id + " .arrow-all-right").click(function(){
+        $("#sortablecontainer" + id + " .arrow-all-right").on('click', function(){
             $("#sortable" + id + " li:not(.hiddend)")
                 .detach().appendTo("#sortable_conn" + id);
             $(selector).trigger("sortupdate");
@@ -855,12 +855,12 @@ jQuery(function($){
             hidden.val(val);
         });
 
-        $("#sortablecontainer" + id + " .arrow-all-left").click(function(){
+        $("#sortablecontainer" + id + " .arrow-all-left").on('click', function(){
             $("#sortable_conn" + id + " li")
                 .detach().appendTo("#sortable" + id + "");
             $(selector).trigger("sortupdate");
         });
-        $("#sortablecontainer" + id + " .arrow-all-right").click(function(){
+        $("#sortablecontainer" + id + " .arrow-all-right").on('click', function(){
             $("#sortable" + id + " li:not(.hiddend)")
                 .detach().appendTo("#sortable_conn" + id);
             $(selector).trigger("sortupdate");
@@ -932,12 +932,12 @@ jQuery(function($){
             hidden.val(val);
         });
 
-        $("#sortablecontainer" + id + " .arrow-all-left").click(function(){
+        $("#sortablecontainer" + id + " .arrow-all-left").on('click', function(){
             $("#sortable_conn" + id + " li")
                 .detach().appendTo("#sortable" + id + "");
             $(selector).trigger("sortupdate");
         });
-        $("#sortablecontainer" + id + " .arrow-all-right").click(function(){
+        $("#sortablecontainer" + id + " .arrow-all-right").on('click', function(){
             $("#sortable" + id + " li:not(.hiddend)")
                 .detach().appendTo("#sortable_conn" + id);
             $(selector).trigger("sortupdate");
@@ -952,7 +952,7 @@ jQuery(function($){
         var selector = "#sortable" + id +", #sortable_conn" + id;
         var name = $('input[isparam=1]', this).attr('name');
 
-        $(selector).keyup(function () {
+        $(selector).on('keyup', function() {
             var parent = $(this).parent();
             while (!parent.hasClass('wpdreamsCustomPostTypesEditable')) {
                 parent = $(parent).parent();
@@ -970,7 +970,7 @@ jQuery(function($){
             connectWith: ".connectedSortable"
         }, {
             update: function (event, ui) {
-                $("#sortable_conn" + id + " li input").keyup(function () {
+                $("#sortable_conn" + id + " li input").on('keyup', function() {
                     var parent = $(this).parent();
                     while (!parent.hasClass('wpdreamsCustomPostTypesEditable')) {
                         parent = $(parent).parent();
@@ -985,7 +985,7 @@ jQuery(function($){
                     hidden.val(val);
                 });
                 if ($("#sortable_conn" + id + " li input").length != 0) {
-                    $("#sortable_conn" + id + " li input").keyup();
+                    $("#sortable_conn" + id + " li input").trigger('keyup');
                 } else {
                     $("#sortable_conn" + id).each(function () {
                         var parent = $(this).parent();
@@ -1117,11 +1117,11 @@ jQuery(function($){
             data_update();
         });
 
-        $("#draggablecontainer" + id + " .arrow-all-left").click(function(){
+        $("#draggablecontainer" + id + " .arrow-all-left").on('click', function(){
             $("#sortable_conn" + id + " li").detach();
             $("#sortable_conn" + id).trigger('sortupdate');
         });
-        $("#draggablecontainer" + id + " .arrow-all-right").click(function(){
+        $("#draggablecontainer" + id + " .arrow-all-right").on('click', function(){
             $("#sortable" + id + " li:not(.hiddend):not(.ui-state-disabled)").clone().appendTo("#sortable_conn" + id);
             $("#sortable_conn" + id).trigger('sortupdate');
         });
@@ -1158,12 +1158,12 @@ jQuery(function($){
             hidden.val(val);
         });
 
-        $("#sortablecontainer" + id + " .arrow-all-left").click(function(){
+        $("#sortablecontainer" + id + " .arrow-all-left").on('click', function(){
             $("#sortable_conn" + id + " li")
                 .detach().appendTo("#sortable" + id + "");
             $(selector).trigger("sortupdate");
         });
-        $("#sortablecontainer" + id + " .arrow-all-right").click(function(){
+        $("#sortablecontainer" + id + " .arrow-all-right").on('click', function(){
             $("#sortable" + id + " li:not(.hiddend)")
                 .detach().appendTo("#sortable_conn" + id);
             $(selector).trigger("sortupdate");
@@ -1247,11 +1247,11 @@ jQuery(function($){
             data_update();
         });
 
-        $("#draggablecontainer" + id + " .arrow-all-left").click(function(){
+        $("#draggablecontainer" + id + " .arrow-all-left").on('click', function(){
             $("#sortable_conn" + id + " li").detach();
             $("#sortable_conn" + id).trigger('sortupdate');
         });
-        $("#draggablecontainer" + id + " .arrow-all-right").click(function(){
+        $("#draggablecontainer" + id + " .arrow-all-right").on('click', function(){
             $("#sortable" + id + " li:not(.hiddend):not(.ui-state-disabled)").clone().appendTo("#sortable_conn" + id);
             $("#sortable_conn" + id).trigger('sortupdate');
         });
@@ -1290,12 +1290,12 @@ jQuery(function($){
             hidden.val(val);
         });
 
-        $("#sortablecontainer" + id + " .arrow-all-left").click(function(){
+        $("#sortablecontainer" + id + " .arrow-all-left").on('click', function(){
             $("#sortable_conn" + id + " li")
                 .detach().appendTo("#sortable" + id + "");
             $(selector).trigger("sortupdate");
         });
-        $("#sortablecontainer" + id + " .arrow-all-right").click(function(){
+        $("#sortablecontainer" + id + " .arrow-all-right").on('click', function(){
             $("#sortable" + id + " li:not(.hiddend)")
                 .detach().appendTo("#sortable_conn" + id);
             $(selector).trigger("sortupdate");
@@ -1315,12 +1315,12 @@ jQuery(function($){
             update: function (event, ui) {
             }
         }).disableSelection();
-        $("#taxonomy_selector_" + id).change(function () {
+        $("#taxonomy_selector_" + id).on('change', function() {
             var taxonomy = $(this).val();
             $("li", "#sortable" + id).css('display', 'none').addClass('hiddend');
             $("li[taxonomy='" + taxonomy + "']", "#sortable" + id).css('display', 'block').removeClass('hiddend');
         });
-        $("#taxonomy_selector_" + id).change();
+        $("#taxonomy_selector_" + id).trigger('change');
         $(selector).on('sortupdate', function(event, ui) {
             if (typeof(ui)!='undefined')
                 var parent = $(ui.item).parent();
@@ -1338,19 +1338,19 @@ jQuery(function($){
             val = val.substring(1);
             hidden.val(val);
         });
-        $("#wpdreamsCustomTaxonomyTerm-" + id + " .hide-children").change(function(){
+        $("#wpdreamsCustomTaxonomyTerm-" + id + " .hide-children").on('change', function(){
             if ($(this).get(0).checked)
                 $("#sortablecontainer" + id + " li").filter(':not(.termlevel-0)').css('display', 'none');
             else
                 $("#sortablecontainer" + id + " li").filter(':not(.termlevel-0)').css('display', 'block');
             $(selector).trigger("sortupdate");
         });
-        $("#sortablecontainer" + id + " .arrow-all-left").click(function(){
+        $("#sortablecontainer" + id + " .arrow-all-left").on('click', function(){
             $("#sortable_conn" + id + " li")
                 .detach().appendTo("#sortable" + id + "");
             $(selector).trigger("sortupdate");
         });
-        $("#sortablecontainer" + id + " .arrow-all-right").click(function(){
+        $("#sortablecontainer" + id + " .arrow-all-right").on('click', function(){
             $("#sortable" + id + " li:not(.hiddend)")
                 .detach().appendTo("#sortable_conn" + id);
             $(selector).trigger("sortupdate");
@@ -1457,7 +1457,7 @@ jQuery(function($){
             }, 500);
         });
 
-        $(".wd_df_display_mode, .wd_df_invalid_input_text, .wd_df_required", parent).change(function(){
+        $(".wd_df_display_mode, .wd_df_invalid_input_text, .wd_df_required", parent).on('change', function(){
             tt_s_update( parent );
             list_update();
         });
@@ -1518,7 +1518,6 @@ jQuery(function($){
                 if ($("input[type='checkbox']", $(this)).length > 0 && !$("input[type='checkbox']", $(this)).get(0).checked)
                     un_checked.push($(this).attr('term_id'));
             });
-            actualData.separate_filter_boxes = $("input.separate-filter-boxes", parent).is(':checked');
             actualData.terms = terms;
             actualData.op_type = $(".tts_operation", parent).val();
             actualData.un_checked = un_checked;
@@ -1607,7 +1606,7 @@ jQuery(function($){
             else
                $(".wd_tts_selectall_tax", $(this).parent().parent()).css("display", "");
         });
-        $("#sortable_conn" + id + " li[term_id='-2'] input.wd_tts_for_all").change();
+        $("#sortable_conn" + id + " li[term_id='-2'] input.wd_tts_for_all").trigger('change');
 
         $("#sortable_conn" + id).on("change keyup", "li[term_id='-2'] input", function(){
             tt_s_update( parent );
@@ -1617,13 +1616,13 @@ jQuery(function($){
             tt_s_update( parent );
         });
 
-        $("#tax_ajax_selector_" + id).change(function () {
+        $("#tax_ajax_selector_" + id).on('change', function() {
             var tax = $(this).val();
             if ( typeof (tax_cache[tax]) != "undefined" ) {
                 $("#sortable" + id).html(tax_cache[tax]);
                 $("#sortable" + id + " li").draggable(drag_opts).disableSelection();
                 list_update();
-                $(".hide-children", parent).change();
+                $(".hide-children", parent).trigger('change');
             } else {
                 $('.dragLoader', parent).removeClass("hiddend");
                 var data = {
@@ -1639,7 +1638,7 @@ jQuery(function($){
                         $("#sortable" + id + " li").draggable(drag_opts).disableSelection();
                         list_update();
                         $('.dragLoader', parent).addClass("hiddend");
-                        $(".hide-children", parent).change();
+                        $(".hide-children", parent).trigger('change');
                     }
                 }, "text");
             }
@@ -1654,7 +1653,7 @@ jQuery(function($){
         var $input = $(".wd_tts_ex_container input", parent);
         var $res = $(".sortablecontainer .wd_tts_res", parent);
         var $ex_term_container = $(".wd_tts_excluded_t", parent);
-        $input.keyup(function(){
+        $input.on('keyup', function(){
             clearTimeout(t);
             var $this = $(this);
             $close.addClass("hiddend");
@@ -1678,7 +1677,7 @@ jQuery(function($){
             }, 500);
         });
 
-        $close.click(function(){
+        $close.on('click', function(){
             clearTimeout(t);
             if (p != null) p.abort();
             $input.val("");
@@ -1689,7 +1688,7 @@ jQuery(function($){
             tt_s_update( parent );
             list_update();
         });
-        $("#sortable_conn" + id +" li input").change(function(){
+        $("#sortable_conn" + id +" li input").on('change', function(){
             tt_s_update( parent );
             list_update();
         });
@@ -1812,6 +1811,8 @@ jQuery(function($){
         }
 
         function display_mode_update() {
+            var taxonomies = [];
+
             // Visual changes
             $("fieldset", $dispPopup).each(function() {
                 if ( $(".tts_display_as", $(this)).val() == "multisearch") {
@@ -1859,13 +1860,15 @@ jQuery(function($){
                     $("input.wd_tts_required_text", $(this)).attr('disabled', 'disabled');
                 }
             });
-            if ( $("input.separate-filter-boxes", parent).is(':checked') ) {
-                $("fieldset", $dispPopup).removeClass("hiddend");
-                $("fieldset[taxonomy='all']", $dispPopup).addClass("hiddend");
-            } else {
-                $("fieldset", $dispPopup).addClass("hiddend");
-                $("fieldset[taxonomy='all']", $dispPopup).removeClass("hiddend");
-            }
+
+            $(parent).find("div.sortablecontainer li").each(function(){
+                taxonomies.push($(this).attr('taxonomy'));
+            });
+            taxonomies = taxonomies.filter((x, i, a) => a.indexOf(x) == i);
+            $("fieldset", $dispPopup).addClass("hiddend");
+            taxonomies.forEach((tax) => {
+                $("fieldset[taxonomy=" + tax + "]", $dispPopup).removeClass("hiddend");
+            });
         }
 
         function display_mode_parse() {
@@ -1899,7 +1902,7 @@ jQuery(function($){
 
         var st = null;
         var sp = null;
-        $dispSearch.keyup(function(){
+        $dispSearch.on('keyup', function(){
             clearTimeout(st);
             var $this = $(this);
             $(".wd_ts_close", $this.parent()).addClass("hiddend");
@@ -1934,13 +1937,13 @@ jQuery(function($){
             tt_s_update( parent );
         });
 
-        $("input.separate-filter-boxes", parent).change(function(){
+        $("input.separate-filter-boxes", parent).on('change', function(){
             display_mode_update();
             display_mode_parse();
             tt_s_update(parent);
         });
 
-        $(".wd_ts_close", $dispPopup).click(function(){
+        $(".wd_ts_close", $dispPopup).on('click', function(){
             clearTimeout(st);
             if (p != null) sp.abort();
             $(".wd_tts_search", $(this).parent()).val("");
@@ -1948,7 +1951,7 @@ jQuery(function($){
             $(".wd_tts_res", $(this).parent()).html("");
         });
 
-        $(".tts_display_as, .tts_d_checkboxes, .wd_tts_required, .tts_d_dropdown, .wd_tts_select_all", $dispPopup).change(function(){
+        $(".tts_display_as, .tts_d_checkboxes, .wd_tts_required, .tts_d_dropdown, .wd_tts_select_all", $dispPopup).on('change', function(){
             display_mode_update();
             tt_s_update( parent );
         });
@@ -1963,7 +1966,7 @@ jQuery(function($){
         });
 
         display_mode_init();
-        $dispMButton.click(function(e){
+        $dispMButton.on('click', function(e){
             e.preventDefault();
             e.stopImmediatePropagation();
             $dispPopup.removeClass("hiddend");
@@ -1988,14 +1991,14 @@ jQuery(function($){
             e.stopImmediatePropagation();
         });
 
-        $(".hide-children", parent).change(function(){
+        $(".hide-children", parent).on('change', function(){
             if ($(this).get(0).checked)
                 $("#sortablecontainer" + id + " li").filter(':not(.termlevel-0)').css('display', 'none');
             else
                 $("#sortablecontainer" + id + " li").filter(':not(.termlevel-0)').css('display', 'block');
             list_update();
         });
-        $(".tts_operation", parent).change(function(){
+        $(".tts_operation", parent).on('change', function(){
             tt_s_update( parent );
             list_update();
             $(".tts_type", parent).html($(this).val());
@@ -2012,7 +2015,7 @@ jQuery(function($){
         var id = $(this).attr('id').match(/^wd_cf_search-(.*)/)[1];
         var $res = $('.wd_cf_search_res', parent);
 
-        $("input.wd_cf_search", parent).keyup(function () {
+        $("input.wd_cf_search", parent).on('keyup', function() {
             var $this = $(this);
             clearTimeout(timeout);
             if ( $this.val() == '' ) {
@@ -2076,14 +2079,14 @@ jQuery(function($){
                 }, "text");
             }, 350);
         });
-        $('.wd_ts_close', parent).click(function(){
+        $('.wd_ts_close', parent).on('click', function(){
             $("input.wd_cf_search", parent).val('');
             $(this).addClass("hiddend");
             $res.css({
                 display: 'none'
             });
         });
-        $("input.wd_cf_search", parent).click(function () {
+        $("input.wd_cf_search", parent).on('click', function() {
             $res.css({
                 display: 'block'
             });
@@ -2094,7 +2097,7 @@ jQuery(function($){
         $(parent).click("click", function (e) {
             e.stopImmediatePropagation();
         });
-        $(document).click(function(){
+        $(document).on('click', function(){
             $('.wd_ts_close', parent).addClass("hiddend");
             $res.css({display: 'none'});
         });
@@ -2113,7 +2116,7 @@ jQuery(function($){
         var $res = $('.wd_cpt_search_res', parent);
         var $param = $('input[isparam]', parent);
 
-        $("input.wd_cpt_search", parent).keyup(function () {
+        $("input.wd_cpt_search", parent).on('keyup', function() {
             var $this = $(this);
             clearTimeout(timeout);
             if ( $this.val() == '' ) {
@@ -2182,14 +2185,14 @@ jQuery(function($){
                 }, "text");
             }, 350);
         });
-        $('.wd_ts_close', parent).click(function(){
+        $('.wd_ts_close', parent).on('click', function(){
             $("input.wd_cpt_search", parent).val('');
             $(this).addClass("hiddend");
             $res.css({
                 display: 'none'
             });
         });
-        $("input.wd_cpt_search", parent).click(function () {
+        $("input.wd_cpt_search", parent).on('click', function() {
             $res.css({
                 display: 'block'
             });
@@ -2210,7 +2213,7 @@ jQuery(function($){
             $(".wp_cpt_search_selected", parent).addClass('hiddend');
             $("input.wd_cpt_search", parent).removeClass('hiddend');
         }
-        $(document).click(function(){
+        $(document).on('click', function(){
             $('.wd_ts_close', parent).addClass("hiddend");
             $res.css({display: 'none'});
         });
@@ -2228,11 +2231,11 @@ jQuery(function($){
         var parent = this;
         var id = $(this).attr('id').match(/^wd_taxterm_search-(.*)/)[1];
         var $res = $('.wd_taxterm_search_res', parent);
-        $("select.wd_taxterm_tax", parent).change(function(){
+        $("select.wd_taxterm_tax", parent).on('change', function(){
             $("input.wd_taxterm_search", parent).trigger('keyup');
         });
         var $this = $("input.wd_taxterm_search", parent);
-        $this.keyup(function () {
+        $this.on('keyup', function() {
             clearTimeout(timeout);
             if ( $this.val() == '' ) {
                 $('.wd_ts_close', parent).addClass("hiddend");
@@ -2294,14 +2297,14 @@ jQuery(function($){
                 }, "text");
             }, 350);
         });
-        $('.wd_ts_close', parent).click(function(){
+        $('.wd_ts_close', parent).on('click', function(){
             $("input.wd_taxterm_search", parent).val('');
             $(this).addClass("hiddend");
             $res.css({
                 display: 'none'
             });
         });
-        $("input.wd_taxterm_search", parent).click(function () {
+        $("input.wd_taxterm_search", parent).on('click', function() {
             $res.css({
                 display: 'block'
             });
@@ -2313,7 +2316,7 @@ jQuery(function($){
         $(parent).click("click", function (e) {
             e.stopImmediatePropagation();
         });
-        $(document).click(function(){
+        $(document).on('click', function(){
             $('.wd_ts_close', parent).addClass("hiddend");
             $res.css({display: 'none'});
         });
@@ -2393,7 +2396,7 @@ jQuery(function($){
         }).disableSelection();
 
         var timeout = null;
-        $(".wd_user_search", parent).keyup(function(){
+        $(".wd_user_search", parent).on('keyup', function(){
             var $this = $(this);
             clearTimeout(timeout);
             timeout = setTimeout(function(){
@@ -2411,7 +2414,7 @@ jQuery(function($){
                         $("#sortable" + id + " li").draggable(drag_opts).disableSelection();
                         list_update();
                         $('.dragLoader', parent).addClass("hiddend");
-                        $(".hide-children", parent).change();
+                        $(".hide-children", parent).trigger('change');
                     }
                 }, "text");
             }, 350);
@@ -2421,7 +2424,7 @@ jQuery(function($){
             tt_s_update( parent );
             list_update();
         });
-        $("#sortable_conn" + id +" li input").change(function(){
+        $("#sortable_conn" + id +" li input").on('change', function(){
             tt_s_update( parent );
             list_update();
         });
@@ -2432,7 +2435,7 @@ jQuery(function($){
             list_update();
         });
 
-        $(".tts_operation", parent).change(function(){
+        $(".tts_operation", parent).on('change', function(){
             tt_s_update( parent );
             list_update();
             $(".tts_type", parent).html($(this).val());
@@ -2509,7 +2512,7 @@ jQuery(function($){
         }).disableSelection();
 
         var timeout = null;
-        $(".wd_cpt_search", parent).keyup(function(){
+        $(".wd_cpt_search", parent).on('keyup', function(){
             var $this = $(this);
             clearTimeout(timeout);
             timeout = setTimeout(function(){
@@ -2527,7 +2530,7 @@ jQuery(function($){
                         $("#sortable" + id + " li").draggable(drag_opts).disableSelection();
                         list_update();
                         $('.dragLoader', parent).addClass("hiddend");
-                        $(".hide-children", parent).change();
+                        $(".hide-children", parent).trigger('change');
                     }
                 }, "text");
             }, 350);
@@ -2548,7 +2551,7 @@ jQuery(function($){
             list_update();
         });
 
-        $(".tts_operation", parent).change(function(){
+        $(".tts_operation", parent).on('change', function(){
             tt_s_update( parent );
             list_update();
             $(".tts_type", parent).html($(this).val());
@@ -2612,9 +2615,9 @@ jQuery(function($){
             }
             $(".wpdreamsThemeChooser div[name=Imported]").html(raw);
             $(".wpdreamsThemeChooser select[name=themes]").val("Imported");
-            $('#wpd_import_modal .wpd-modal-close').click();
+            $('#wpd_import_modal .wpd-modal-close').trigger('click');
             setTimeout(function(){
-                $(".wpdreamsThemeChooser select[name=themes]").change();
+                $(".wpdreamsThemeChooser select[name=themes]").trigger('change');
             }, 500);
         } catch (e) {
             $(".errorMsg", $this.parent()).removeClass("hiddend");
@@ -2746,8 +2749,8 @@ jQuery(function($){
                             t = setTimeout(function () {
 
                                 $("#wpd_body_loader").css("display", "none");
-                                $("#asp_preview_window .refresh").click();
-                                $("select[name='resultstype']").change();
+                                $("#asp_preview_window .refresh").trigger('click');
+                                $("select[name='resultstype']").trigger('change');
 
                             }, (800));
 
@@ -2759,7 +2762,7 @@ jQuery(function($){
                     t = setTimeout(function () {
 
                         $("#wpd_body_loader").css("display", "none");
-                        $("#asp_preview_window .refresh").click();
+                        $("#asp_preview_window .refresh").trigger('click');
 
                     }, (100));
                 }
@@ -2768,21 +2771,21 @@ jQuery(function($){
                 t = setTimeout(function () {
 
                     $("#wpd_body_loader").css("display", "none");
-                    $("#asp_preview_window .refresh").click();
+                    $("#asp_preview_window .refresh").trigger('click');
 
                 }, (100));
             }
         }, 1000);
 
     });
-    $('.wpdreamsThemeChooser select').click(function(){
+    $('.wpdreamsThemeChooser select').on('click', function(){
         lastSel = $(".wpdreamsThemeChooser select option:selected");
     });
 
     /**
      * Animation selector
      */
-    $('.wpdreamsAnimations .wpdreamsanimationselect').change(function () {
+    $('.wpdreamsAnimations .wpdreamsanimationselect').on('change', function() {
         var parent = $(this).parent();
         $('span', parent).removeClass();
         $('span', parent).addClass("asp_an_" + $(this).val());
@@ -2796,7 +2799,7 @@ jQuery(function($){
     /**
      * Numeric unit related
      */
-    $('.wpdreamsNumericUnit select, .wpdreamsNumericUnit input[name=numeric]').change(function () {
+    $('.wpdreamsNumericUnit select, .wpdreamsNumericUnit input[name=numeric]').on('change', function() {
         var value = "";
         var parent = $(this).parent();
         while (parent.hasClass('wpdreamsNumericUnit') != true) {
@@ -2821,47 +2824,47 @@ jQuery(function($){
     /**
      * Image chooser (radio image)
      */
-    $('.wpdreamsImageRadio img.radioimage').click(function () {
+    $('.wpdreamsImageRadio img.radioimage').on('click', function() {
         var $parent = $(this).parent();
         var $hidden = $("input[class=realvalue]", $parent);
         $('img.selected', $parent).removeClass('selected');
         $(this).addClass('selected');
         var value = $(this).attr('sel').substring(1);
         $hidden.val(value);
-        $hidden.change();
+        $hidden.trigger('change');
     });
     $('.wpdreamsImageRadio .triggerer').bind('click', function () {
         var $parent = $(this).parent();
         var $hidden = $("input[class=realvalue]", $parent);
         $('img.selected', $parent).removeClass('selected');
         $('img[src*="' + $hidden.val() + '"]', $parent).addClass('selected');
-        $hidden.change();
+        $hidden.trigger('change');
     });
 
     /**
      * Image chooser (radio image new)
      */
-    $('.wd_imageRadio img.image_radio').click(function () {
+    $('.wd_imageRadio img.image_radio').on('click', function() {
         var $parent = $(this).parent();
         var $hidden = $("input[class=realvalue]", $parent);
         $('img.selected', $parent).removeClass('selected');
         $(this).addClass('selected');
         var value = $(this).attr('sel');
         $hidden.val(value);
-        $hidden.change();
+        $hidden.trigger('change');
     });
     $('.wd_imageRadio .triggerer').bind('click', function () {
         var $parent = $(this).parent();
         var $hidden = $("input[class=realvalue]", $parent);
         $('img.selected', $parent).removeClass('selected');
         $('img[sel="' + $hidden.val() + '"]', $parent).addClass('selected');
-        $hidden.change();
+        $hidden.trigger('change');
     });
 
     /**
      * Loader chooser
      */
-    $('.wpdreamsLoaderSelect .asp-select-loader, .wpdreamsLoaderSelect .asp-select-loader-selected').click(function () {
+    $('.wpdreamsLoaderSelect .asp-select-loader, .wpdreamsLoaderSelect .asp-select-loader-selected').on('click', function() {
         var $parent = $(this).parent();
         var $hidden = $("input[class=realvalue]", $parent);
         $('div.asp-select-loader-selected', $parent)
@@ -2871,7 +2874,7 @@ jQuery(function($){
         $(this).addClass('asp-select-loader-selected').removeClass('asp-select-loader');
         var value = $(this).attr('sel');
         $hidden.val(value);
-        $hidden.change();
+        $hidden.trigger('change');
     });
     $('.wpdreamsLoaderSelect .triggerer').bind('click', function () {
         var $parent = $(this).parent();
@@ -2884,7 +2887,7 @@ jQuery(function($){
             .addClass('asp-select-loader-selected')
             .removeClass('asp-select-loader');
 
-        $hidden.change();
+        $hidden.trigger('change');
     });
 
     /**
@@ -3016,7 +3019,7 @@ jQuery(function($){
         }
     });
 
-    $(".wpdreamsGradient>.triggerer").click(function () {
+    $(".wpdreamsGradient>.triggerer").on('click', function() {
         var $parent = $(this).closest('.wpdreamsGradient');
         var $hidden = $('input.gradient', $parent);
         var $colors = $('input.color', $parent);
@@ -3076,7 +3079,7 @@ jQuery(function($){
         var inset = $.trim( parent.find('select._xx_inset_xx_').val() ) + ";";
         var boxshadow = "box-shadow:" + hlength + vlength + blurradius + spread + color + inset;
 
-        $('input[type=hidden]', parent).val(boxshadow).change();
+        $('input[type=hidden]', parent).val(boxshadow).trigger('change');
     });
     $('.wpdreamsBoxShadow>.triggerer').bind('click', function () {
         var parent = $(this).closest('.wpdreamsBoxShadow');
@@ -3172,7 +3175,7 @@ jQuery(function($){
 
 
     // ----------------------- ETC.. ---------------------
-    $('img.delete').click(function () {
+    $('img.delete').on('click', function() {
         var del = confirm("Do yo really want to delete this item?");
         if (del) {
             $(this).next().submit();

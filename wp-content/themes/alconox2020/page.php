@@ -15,13 +15,13 @@
 <div class="single-page-content mt-5 mb-5">
     <div class="container">
         <div class="row">
-        <div class="col-md-3 dt">
+        <div class="col-md-4 dt">
             <div class="single-page-sidebar dl-sidebar">
                 <h2>Downloads</h2>
                 <?php wp_nav_menu( array( 'theme_location' => 'dl-sidebar' ) ); ?>
             </div>
         </div>
-            <div class="col-md-9">
+            <div class="col-md-8">
             <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
                 <?php the_content(); ?>
                     <?php endwhile; else : ?>
@@ -148,7 +148,7 @@
             </div>
             <?php } ?>	
             </div>
-            <div class="col-md-3 mb">
+            <div class="col-md-4 mb">
             <div class="single-page-sidebar dl-sidebar">
                 <h2>Downloads</h2>
                 <?php wp_nav_menu( array( 'theme_location' => 'dl-sidebar' ) ); ?>

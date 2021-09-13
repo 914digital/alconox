@@ -246,6 +246,7 @@ class Validation
                 'product_adjustments.apply_as_cart_rule',
                 'bulk_adjustments.apply_as_cart_rule',
                 'set_adjustments.apply_as_cart_rule',
+                'set_adjustments.ranges.*.recursive',
                 'buyx_getx_adjustments.ranges.*.recursive',
                 'buyx_gety_adjustments.ranges.*.recursive',
                 'discount_badge.display')
@@ -364,6 +365,7 @@ class Validation
         $settings_fields_validator->rule('basicTags',
             array(
                 'on_sale_badge_html',
+                'on_sale_badge_percentage_html',
                 'applied_rule_message',
             )
         );
@@ -384,8 +386,10 @@ class Validation
                 'apply_discount_subsequently',
                 'refresh_order_review',
                 'suppress_other_discount_plugins',
+                'compress_css_and_js',
                 'customize_on_sale_badge',
                 'force_override_on_sale_badge',
+                'display_percentage_on_sale_badge',
                 'show_bulk_table',
                 'table_column_header',
                 'table_title_column',
@@ -401,6 +405,9 @@ class Validation
                 'show_promo_text_con',
                 'show_applied_rules_message_on_cart',
                 'show_cross_sell_on_cart',
+                'wdr_override_custom_price',
+                'disable_recalculate_total',
+                'disable_recalculate_total_when_coupon_apply'
             )
         );
         //validate slug may contains a-zA-Z0-9_-
@@ -460,6 +467,28 @@ class Validation
         $v = new Validator(array('licence_key' => $post_values));
         $v->rules($rules);
         return $v->validate();
+    }
+
+    /**
+     * Validate advanced option section
+     * @param $post_values
+     * @return bool
+     */
+    static function validateAdvancedOptionKey($post_values)
+    {
+        $advanced_option_validator = new Validator($post_values);
+        $advanced_option_validator->rule('integer',
+            array(
+                'wdr_override_custom_price',
+                'wdr_recalculate_total_before_cart',
+                'wdr_recalculate_total_when_coupon_apply',
+            )
+        );
+        if ($advanced_option_validator->validate()) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**

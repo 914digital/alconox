@@ -337,11 +337,19 @@ button:active,
 	width: 60%;
 }
 
+.button-width {
+	width:285px;
+}
+
 .hp-slider .pls-btn {
 	color:#fff;
 	border:2px solid;
 	border-radius:0;
 	transition: all .3s ease-out;
+}
+
+.merch-btn {
+	width:100%;
 }
 
 @media(max-width:768px) {
@@ -358,6 +366,7 @@ button:active,
 	.hp-slider .carousel-text p {
 		width:80%;
 	}
+
 }
 
 .hp-icons {
@@ -1338,7 +1347,6 @@ a.title.pbc_title {
 .wp-img {
 	float: left;
     padding: 0 15px 22px;
-    width: 95px;
 }
 
 .wp-box {
@@ -1509,6 +1517,22 @@ a.merch-strip:hover {
     margin-bottom: 20px;
 }
 
+.woocommerce div.product form.cart .woocommerce-variation-description p {
+    margin-bottom: 1em;
+    color: #fff;
+    background-color: #f51b1b;
+    padding: 5px;
+}
+
+.woocommerce-variation-availability p {
+	color:#fff;
+}
+
+.woocommerce-variation-availability p a {
+	color:#eee;
+	text-decoration:underline;
+}
+
 /* ------ Footer ------ */
 
 footer {
@@ -1631,15 +1655,10 @@ footer {
 
 @media(max-width:1200px) {
 	.iso-footer a {
-		width:88%;
+		width:64%;
 	}
 }
 
-@media(max-width:768px) {
-	.iso-footer a {
-		width:44%;
-	}
-}
 
 .iso-footer a:hover,
 .iso-footer a:focus {
@@ -1814,6 +1833,92 @@ footer .credit .site-by {
 }
 
 .addr-sec .p-time {
+	display:none;
+}
+
+/* ---- Alconox Contest ---- */
+
+
+.alc-contest-wrapper {
+	position:relative;
+}
+
+.alc-contest {
+	position:fixed;
+	right:0;
+	left:50%;
+	top:165px;
+	z-index: 9999999999;
+	display:none;
+	width: 200px;
+}
+
+@media(max-width:600px) {
+	.alc-contest {
+		left:25%;
+	}
+}
+
+.alc-contest a {
+	color:#fff;
+}
+
+.alc-contest a:hover {
+	opacity:1;
+}
+
+.alc-contest img {
+	width:200px;
+	border:5px solid #000;
+}
+
+.alc-contest #close-contest{
+	float:right;
+	position:relative;
+	background-color:#ccc;
+	border-radius:50%;
+	padding:5px;
+	width:40px;
+	height:40px;
+	text-align:center;
+	font-size:20px;
+	top:10px;
+	right:-10px;
+	z-index:99999999999;
+	cursor:pointer;
+}
+
+.cont-blurb {
+	position: absolute;
+    font-size: 12px;
+    background-color: #6ca2c7;
+    color: #fff;
+    border-radius: 15px;
+    left: -105px;
+    padding: 10px;
+    width: 150px;
+    top: 20px;
+    border: 3px solid;
+}
+
+.cont-blurb::after {
+	content: '';
+    display: block;
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-left: 10px solid #6ca2c7;
+    position: absolute;
+    right: -10px;
+    top: 23px;
+}
+
+.alert-show {
+	display:block;
+}
+
+.alert-hide {
 	display:none;
 }
 

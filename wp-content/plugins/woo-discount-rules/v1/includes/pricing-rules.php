@@ -1884,19 +1884,20 @@ if (!class_exists('FlycartWooDiscountRulesPricingRules')) {
                     $quantity++;
                 }
             }
-            if(is_array($woocommerce->cart->cart_contents) && count($woocommerce->cart->cart_contents)){
-                foreach ($woocommerce->cart->cart_contents as $cartItem) {
-                    if(empty($cartItem['data'])){
-                        continue;
+            if(!empty($woocommerce->cart->cart_contents)){
+                if(is_array($woocommerce->cart->cart_contents) && count($woocommerce->cart->cart_contents)){
+                    foreach ($woocommerce->cart->cart_contents as $cartItem) {
+                        if(empty($cartItem['data'])){
+                            continue;
+                        }
+                        $product_id = $cartItem['product_id'];
+                        if(isset($cartItem['variation_id']) && $cartItem['variation_id']){
+                            $product_id = $cartItem['variation_id'];
+                        }
+                        if(in_array($product_id, $specific_products)){
+                            $quantity = $quantity + $cartItem['quantity'];
+                        }
                     }
-                    $product_id = $cartItem['product_id'];
-                    if(isset($cartItem['variation_id']) && $cartItem['variation_id']){
-                        $product_id = $cartItem['variation_id'];
-                    }
-                    if(in_array($product_id, $specific_products)){
-                        $quantity = $quantity + $cartItem['quantity'];
-                    }
-
                 }
             }
             return $quantity;

@@ -1,5 +1,5 @@
 jQuery(function($){
-    $('#asp_export_textarea').click(function(){
+    $('#asp_export_textarea').on('click', function(){
         var $this = $(this);
         $this.select();
 
@@ -11,7 +11,7 @@ jQuery(function($){
         });
     });
 
-    $('#asp_export_button').click(function(){
+    $('#asp_export_button').on('click', function(){
         if ($('#asp_export :selected').length < 1) return false;
         $(this).next().removeClass('hiddend');
         $(this).prop('disabled', true);
@@ -28,7 +28,7 @@ jQuery(function($){
         }, 1000);
     });
 
-    $('#asp_export_button_sett').click(function(){
+    $('#asp_export_button_sett').on('click', function(){
         if ($('#asp_export_sett :selected').length < 1) return false;
         $(this).next().removeClass('hiddend');
         $(this).prop('disabled', true);
@@ -40,11 +40,11 @@ jQuery(function($){
         }, 1000);
     });
 
-    $('#asp_import_button_sett').click(function(e){
+    $('#asp_import_button_sett').on('click', function(e){
         return confirm(msg('suc_msg'));
     });
 
-    $('.tabs a[tabid=1]').click();
+    $('.tabs a[tabid=1]').trigger('click');
 
     // ------------------------------------------- ETC -----------------------------------------------------------------
     function msg(k) {

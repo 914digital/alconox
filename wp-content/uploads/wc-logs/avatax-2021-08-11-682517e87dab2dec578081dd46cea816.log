@@ -1,0 +1,682 @@
+08-11-2021 @ 08:56:51 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/taxrates/byaddress?line1=&line2=&city=Ringoes&region=NJ&country=US&postalCode=08551
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.7.2)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.35568s
+
+08-11-2021 @ 08:56:51 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Wed, 11 Aug 2021 12:56:51 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 87
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0193164
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"totalRate":0.066250,"rates":[{"rate":0.066250,"name":"NJ STATE TAX","type":"State"}]}
+
+08-11-2021 @ 08:56:53 - Request
+Request
+method: POST
+uri: https://rest.avatax.com/api/v2/transactions/create
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.7.2)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body: {"code":"","companyCode":"ALC","customerCode":"mhartzell@reagentchemical.com","currencyCode":"USD","date":"2021-08-11","lines":[{"number":"50e8dfd203a05429b143e51c7adef624","itemCode":"1801-1","taxCode":"P0000000","description":"Citranox","quantity":2,"amount":148.80000000000001},{"number":"shipping_0","itemCode":"use-my-shipping-account","taxCode":"FR","description":"Use My Shipping Account","quantity":1}],"addresses":{"shipFrom":{"line1":"30 GLENN ST","line2":"","city":"WHITE PLAINS","region":"NY","country":"US","postalCode":"10603-3254"},"shipTo":{"line1":"1115 Route 202","line2":"","city":"Ringoes","region":"NJ","country":"US","postalCode":"08551"}},"type":"SalesOrder","commit":false}
+duration: 0.33662s
+
+08-11-2021 @ 08:56:53 - Response
+Response
+code: 201
+message: Created
+headers: Array
+(
+    [date] => Wed, 11 Aug 2021 12:56:53 GMT
+    [content-type] => application/json; charset=utf-8
+    [server] => Kestrel
+    [content-encoding] => br
+    [location] => /api/v2/companies/207925/transactions/0
+    [vary] => Accept-Encoding
+    [serverduration] => 00:00:00.0411022
+)
+body: {"id":0,"code":"6173eb1e-3eac-4aaa-a4ed-0fe1312ce946","companyId":207925,"date":"2021-08-11","paymentDate":"2021-08-11","status":"Temporary","type":"SalesOrder","batchCode":"","currencyCode":"USD","exchangeRateCurrencyCode":"USD","customerUsageType":"","entityUseCode":"","customerVendorCode":"mhartzell@reagentchemical.com","customerCode":"mhartzell@reagentchemical.com","exemptNo":"","reconciled":false,"locationCode":"","reportingLocationCode":"","purchaseOrderNo":"","referenceCode":"","salespersonCode":"","totalAmount":148.8,"totalExempt":0.0,"totalDiscount":0.0,"totalTax":9.86,"totalTaxable":148.8,"totalTaxCalculated":9.86,"adjustmentReason":"NotAdjusted","locked":false,"version":1,"exchangeRateEffectiveDate":"2021-08-11","exchangeRate":1.0,"modifiedDate":"2021-08-11T12:56:53.1097002Z","modifiedUserId":231879,"taxDate":"2021-08-11","lines":[{"id":0,"transactionId":0,"lineNumber":"50e8dfd203a05429b143e51c7adef624","customerUsageType":"","entityUseCode":"","description":"Citranox","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"itemCode":"1801-1","lineAmount":148.80000000000001,"quantity":2.0,"ref1":"","ref2":"","reportingDate":"2021-08-11","tax":9.86,"taxableAmount":148.8,"taxCalculated":9.86,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-08-11","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NJ","exemptAmount":0.0,"jurisCode":"34","jurisName":"NEW JERSEY","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.066250,"tax":9.86,"taxableAmount":148.8,"taxType":"Sales","taxSubTypeId":"S","taxName":"NJ STATE TAX","taxAuthorityTypeId":45,"taxCalculated":9.86,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":148.8,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":9.86,"reportingTaxCalculated":9.86,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":0,"transactionId":0,"lineNumber":"shipping_0","customerUsageType":"","entityUseCode":"","description":"Use My Shipping Account","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":false,"itemCode":"use-my-shipping-account","lineAmount":0.0,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-08-11","tax":0.0,"taxableAmount":0.0,"taxCalculated":0.0,"taxCode":"FR","taxCodeId":7119,"taxDate":"2021-08-11","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NJ","exemptAmount":0.0,"jurisCode":"34","jurisName":"NEW JERSEY","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.066250,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NJ STATE TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0}],"addresses":[{"id":0,"transactionId":0,"boundaryLevel":"Zip5","line1":"1115 Route 202","line2":"","line3":"","city":"Ringoes","region":"NJ","postalCode":"08551","country":"US","taxRegionId":4005745,"latitude":"40.447489","longitude":"-74.851026"},{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"30 GLENN ST","line2":"","line3":"","city":"WHITE PLAINS","region":"NY","postalCode":"10603-3254","country":"US","taxRegionId":2090237,"latitude":"41.050608","longitude":"-73.771383"}],"summary":[{"country":"US","region":"NJ","jurisType":"State","jurisCode":"34","jurisName":"NEW JERSEY","taxAuthorityType":45,"stateAssignedNo":"","taxType":"Sales","taxSubType":"S","taxName":"NJ STATE TAX","rateType":"General","taxable":148.8,"rate":0.066250,"tax":9.86,"taxCalculated":9.86,"nonTaxable":0.0,"exemption":0.0}]}
+
+08-11-2021 @ 09:19:20 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/taxrates/byaddress?line1=&line2=&city=Rochester&region=NY&country=US&postalCode=14616
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.7.2)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.35804s
+
+08-11-2021 @ 09:19:20 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Wed, 11 Aug 2021 13:19:20 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 144
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0184060
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"totalRate":0.080000,"rates":[{"rate":0.040000,"name":"NY STATE TAX","type":"State"},{"rate":0.040000,"name":"NY COUNTY TAX","type":"County"}]}
+
+08-11-2021 @ 09:19:22 - Request
+Request
+method: POST
+uri: https://rest.avatax.com/api/v2/transactions/create
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.7.2)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body: {"code":"","companyCode":"ALC","customerCode":"eileens@piecal.com","currencyCode":"USD","date":"2021-08-11","lines":[{"number":"2ba399f928d3a7a608a2ad8af4dcb1e9","itemCode":"1701-1","taxCode":"P0000000","description":"Detergent 8","quantity":1,"amount":138.59999999999999},{"number":"shipping_1","itemCode":"use-my-shipping-account","taxCode":"FR","description":"Use My Shipping Account","quantity":1}],"addresses":{"shipFrom":{"line1":"30 GLENN ST","line2":"","city":"WHITE PLAINS","region":"NY","country":"US","postalCode":"10603-3254"},"shipTo":{"line1":"104 Forgham Rd","line2":"","city":"Rochester","region":"NY","country":"US","postalCode":"14616"}},"type":"SalesOrder","commit":false}
+duration: 0.33879s
+
+08-11-2021 @ 09:19:22 - Response
+Response
+code: 201
+message: Created
+headers: Array
+(
+    [date] => Wed, 11 Aug 2021 13:19:22 GMT
+    [content-type] => application/json; charset=utf-8
+    [server] => Kestrel
+    [content-encoding] => br
+    [location] => /api/v2/companies/207925/transactions/0
+    [vary] => Accept-Encoding
+    [serverduration] => 00:00:00.0396370
+)
+body: {"id":0,"code":"50509e11-f082-4b0c-9b15-e90b08b4a6f7","companyId":207925,"date":"2021-08-11","paymentDate":"2021-08-11","status":"Temporary","type":"SalesOrder","batchCode":"","currencyCode":"USD","exchangeRateCurrencyCode":"USD","customerUsageType":"","entityUseCode":"","customerVendorCode":"eileens@piecal.com","customerCode":"eileens@piecal.com","exemptNo":"","reconciled":false,"locationCode":"","reportingLocationCode":"","purchaseOrderNo":"","referenceCode":"","salespersonCode":"","totalAmount":138.6,"totalExempt":0.0,"totalDiscount":0.0,"totalTax":11.08,"totalTaxable":138.6,"totalTaxCalculated":11.08,"adjustmentReason":"NotAdjusted","locked":false,"version":1,"exchangeRateEffectiveDate":"2021-08-11","exchangeRate":1.0,"modifiedDate":"2021-08-11T13:19:21.9998826Z","modifiedUserId":231879,"taxDate":"2021-08-11","lines":[{"id":0,"transactionId":0,"lineNumber":"2ba399f928d3a7a608a2ad8af4dcb1e9","customerUsageType":"","entityUseCode":"","description":"Detergent 8","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"itemCode":"1701-1","lineAmount":138.59999999999999,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-08-11","tax":11.08,"taxableAmount":138.6,"taxCalculated":11.08,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-08-11","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"36","jurisName":"NEW YORK","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.040000,"tax":5.54,"taxableAmount":138.6,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxCalculated":5.54,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":138.6,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":5.54,"reportingTaxCalculated":5.54,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"055","jurisName":"MONROE","stateAssignedNo":"MO 2611","jurisType":"CTY","jurisdictionType":"County","nonTaxableAmount":0.0,"rate":0.040000,"tax":5.54,"taxableAmount":138.6,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY COUNTY TAX","taxAuthorityTypeId":45,"taxCalculated":5.54,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":138.6,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":5.54,"reportingTaxCalculated":5.54,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":0,"transactionId":0,"lineNumber":"shipping_1","customerUsageType":"","entityUseCode":"","description":"Use My Shipping Account","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":false,"itemCode":"use-my-shipping-account","lineAmount":0.0,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-08-11","tax":0.0,"taxableAmount":0.0,"taxCalculated":0.0,"taxCode":"FR","taxCodeId":7119,"taxDate":"2021-08-11","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"36","jurisName":"NEW YORK","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.040000,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"055","jurisName":"MONROE","stateAssignedNo":"MO 2611","jurisType":"CTY","jurisdictionType":"County","nonTaxableAmount":0.0,"rate":0.040000,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY COUNTY TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0}],"addresses":[{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"104 Forgham Rd","line2":"","line3":"","city":"Rochester","region":"NY","postalCode":"14616","country":"US","taxRegionId":4001736,"latitude":"43.233074","longitude":"-77.633504"},{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"30 GLENN ST","line2":"","line3":"","city":"WHITE PLAINS","region":"NY","postalCode":"10603-3254","country":"US","taxRegionId":2090237,"latitude":"41.050608","longitude":"-73.771383"}],"summary":[{"country":"US","region":"NY","jurisType":"State","jurisCode":"36","jurisName":"NEW YORK","taxAuthorityType":45,"stateAssignedNo":"","taxType":"Sales","taxSubType":"S","taxName":"NY STATE TAX","rateType":"General","taxable":138.6,"rate":0.040000,"tax":5.54,"taxCalculated":5.54,"nonTaxable":0.0,"exemption":0.0},{"country":"US","region":"NY","jurisType":"County","jurisCode":"055","jurisName":"MONROE","taxAuthorityType":45,"stateAssignedNo":"MO 2611","taxType":"Sales","taxSubType":"S","taxName":"NY COUNTY TAX","rateType":"General","taxable":138.6,"rate":0.040000,"tax":5.54,"taxCalculated":5.54,"nonTaxable":0.0,"exemption":0.0}]}
+
+08-11-2021 @ 09:19:53 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/taxrates/byaddress?line1=&line2=&city=Rochester&region=NY&country=US&postalCode=14616
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.7.2)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.33657s
+
+08-11-2021 @ 09:19:53 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Wed, 11 Aug 2021 13:19:53 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 144
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0009501
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"totalRate":0.080000,"rates":[{"rate":0.040000,"name":"NY STATE TAX","type":"State"},{"rate":0.040000,"name":"NY COUNTY TAX","type":"County"}]}
+
+08-11-2021 @ 09:19:54 - Request
+Request
+method: POST
+uri: https://rest.avatax.com/api/v2/transactions/create
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.7.2)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body: {"code":"","companyCode":"ALC","customerCode":"eileens@piecal.com","currencyCode":"USD","date":"2021-08-11","lines":[{"number":"2ba399f928d3a7a608a2ad8af4dcb1e9","itemCode":"1701-1","taxCode":"P0000000","description":"Detergent 8","quantity":1,"amount":138.59999999999999},{"number":"shipping_1","itemCode":"use-my-shipping-account","taxCode":"FR","description":"Use My Shipping Account","quantity":1}],"addresses":{"shipFrom":{"line1":"30 GLENN ST","line2":"","city":"WHITE PLAINS","region":"NY","country":"US","postalCode":"10603-3254"},"shipTo":{"line1":"104 Forgham Rd","line2":"Suite 3.14","city":"Rochester","region":"NY","country":"US","postalCode":"14616"}},"type":"SalesOrder","commit":false}
+duration: 0.34823s
+
+08-11-2021 @ 09:19:54 - Response
+Response
+code: 201
+message: Created
+headers: Array
+(
+    [date] => Wed, 11 Aug 2021 13:19:54 GMT
+    [content-type] => application/json; charset=utf-8
+    [server] => Kestrel
+    [content-encoding] => br
+    [location] => /api/v2/companies/207925/transactions/0
+    [vary] => Accept-Encoding
+    [serverduration] => 00:00:00.0418797
+)
+body: {"id":0,"code":"03dca4e1-3a0a-4b3e-8ce0-a948eda5e837","companyId":207925,"date":"2021-08-11","paymentDate":"2021-08-11","status":"Temporary","type":"SalesOrder","batchCode":"","currencyCode":"USD","exchangeRateCurrencyCode":"USD","customerUsageType":"","entityUseCode":"","customerVendorCode":"eileens@piecal.com","customerCode":"eileens@piecal.com","exemptNo":"","reconciled":false,"locationCode":"","reportingLocationCode":"","purchaseOrderNo":"","referenceCode":"","salespersonCode":"","totalAmount":138.6,"totalExempt":0.0,"totalDiscount":0.0,"totalTax":11.08,"totalTaxable":138.6,"totalTaxCalculated":11.08,"adjustmentReason":"NotAdjusted","locked":false,"version":1,"exchangeRateEffectiveDate":"2021-08-11","exchangeRate":1.0,"modifiedDate":"2021-08-11T13:19:54.1030827Z","modifiedUserId":231879,"taxDate":"2021-08-11","lines":[{"id":0,"transactionId":0,"lineNumber":"2ba399f928d3a7a608a2ad8af4dcb1e9","customerUsageType":"","entityUseCode":"","description":"Detergent 8","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"itemCode":"1701-1","lineAmount":138.59999999999999,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-08-11","tax":11.08,"taxableAmount":138.6,"taxCalculated":11.08,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-08-11","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"36","jurisName":"NEW YORK","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.040000,"tax":5.54,"taxableAmount":138.6,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxCalculated":5.54,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":138.6,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":5.54,"reportingTaxCalculated":5.54,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"055","jurisName":"MONROE","stateAssignedNo":"MO 2611","jurisType":"CTY","jurisdictionType":"County","nonTaxableAmount":0.0,"rate":0.040000,"tax":5.54,"taxableAmount":138.6,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY COUNTY TAX","taxAuthorityTypeId":45,"taxCalculated":5.54,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":138.6,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":5.54,"reportingTaxCalculated":5.54,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":0,"transactionId":0,"lineNumber":"shipping_1","customerUsageType":"","entityUseCode":"","description":"Use My Shipping Account","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":false,"itemCode":"use-my-shipping-account","lineAmount":0.0,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-08-11","tax":0.0,"taxableAmount":0.0,"taxCalculated":0.0,"taxCode":"FR","taxCodeId":7119,"taxDate":"2021-08-11","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"36","jurisName":"NEW YORK","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.040000,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"055","jurisName":"MONROE","stateAssignedNo":"MO 2611","jurisType":"CTY","jurisdictionType":"County","nonTaxableAmount":0.0,"rate":0.040000,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY COUNTY TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0}],"addresses":[{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"104 Forgham Rd","line2":"Suite 3.14","line3":"","city":"Rochester","region":"NY","postalCode":"14616","country":"US","taxRegionId":4001736,"latitude":"43.233074","longitude":"-77.633504"},{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"30 GLENN ST","line2":"","line3":"","city":"WHITE PLAINS","region":"NY","postalCode":"10603-3254","country":"US","taxRegionId":2090237,"latitude":"41.050608","longitude":"-73.771383"}],"summary":[{"country":"US","region":"NY","jurisType":"State","jurisCode":"36","jurisName":"NEW YORK","taxAuthorityType":45,"stateAssignedNo":"","taxType":"Sales","taxSubType":"S","taxName":"NY STATE TAX","rateType":"General","taxable":138.6,"rate":0.040000,"tax":5.54,"taxCalculated":5.54,"nonTaxable":0.0,"exemption":0.0},{"country":"US","region":"NY","jurisType":"County","jurisCode":"055","jurisName":"MONROE","taxAuthorityType":45,"stateAssignedNo":"MO 2611","taxType":"Sales","taxSubType":"S","taxName":"NY COUNTY TAX","rateType":"General","taxable":138.6,"rate":0.040000,"tax":5.54,"taxCalculated":5.54,"nonTaxable":0.0,"exemption":0.0}]}
+
+08-11-2021 @ 09:20:05 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/taxrates/byaddress?line1=&line2=&city=Rochester&region=NY&country=US&postalCode=14616
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.7.2)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.29814s
+
+08-11-2021 @ 09:20:05 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Wed, 11 Aug 2021 13:20:05 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 144
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0011737
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"totalRate":0.080000,"rates":[{"rate":0.040000,"name":"NY STATE TAX","type":"State"},{"rate":0.040000,"name":"NY COUNTY TAX","type":"County"}]}
+
+08-11-2021 @ 09:20:05 - Request
+Request
+method: POST
+uri: https://rest.avatax.com/api/v2/transactions/create
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.7.2)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body: {"code":"","companyCode":"ALC","customerCode":"eileens@piecal.com","currencyCode":"USD","date":"2021-08-11","lines":[{"number":"2ba399f928d3a7a608a2ad8af4dcb1e9","itemCode":"1701-1","taxCode":"P0000000","description":"Detergent 8","quantity":1,"amount":138.59999999999999},{"number":"shipping_1","itemCode":"use-my-shipping-account","taxCode":"FR","description":"Use My Shipping Account","quantity":1}],"addresses":{"shipFrom":{"line1":"30 GLENN ST","line2":"","city":"WHITE PLAINS","region":"NY","country":"US","postalCode":"10603-3254"},"shipTo":{"line1":"34 May St","line2":"Suite 3.14","city":"Rochester","region":"NY","country":"US","postalCode":"14616"}},"type":"SalesOrder","commit":false}
+duration: 0.32714s
+
+08-11-2021 @ 09:20:05 - Response
+Response
+code: 201
+message: Created
+headers: Array
+(
+    [date] => Wed, 11 Aug 2021 13:20:05 GMT
+    [content-type] => application/json; charset=utf-8
+    [server] => Kestrel
+    [content-encoding] => br
+    [location] => /api/v2/companies/207925/transactions/0
+    [vary] => Accept-Encoding
+    [serverduration] => 00:00:00.0434319
+)
+body: {"id":0,"code":"62a27e9c-e05f-4670-95f6-08b790cf3322","companyId":207925,"date":"2021-08-11","paymentDate":"2021-08-11","status":"Temporary","type":"SalesOrder","batchCode":"","currencyCode":"USD","exchangeRateCurrencyCode":"USD","customerUsageType":"","entityUseCode":"","customerVendorCode":"eileens@piecal.com","customerCode":"eileens@piecal.com","exemptNo":"","reconciled":false,"locationCode":"","reportingLocationCode":"","purchaseOrderNo":"","referenceCode":"","salespersonCode":"","totalAmount":138.6,"totalExempt":0.0,"totalDiscount":0.0,"totalTax":11.08,"totalTaxable":138.6,"totalTaxCalculated":11.08,"adjustmentReason":"NotAdjusted","locked":false,"version":1,"exchangeRateEffectiveDate":"2021-08-11","exchangeRate":1.0,"modifiedDate":"2021-08-11T13:20:05.4122833Z","modifiedUserId":231879,"taxDate":"2021-08-11","lines":[{"id":0,"transactionId":0,"lineNumber":"2ba399f928d3a7a608a2ad8af4dcb1e9","customerUsageType":"","entityUseCode":"","description":"Detergent 8","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"itemCode":"1701-1","lineAmount":138.59999999999999,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-08-11","tax":11.08,"taxableAmount":138.6,"taxCalculated":11.08,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-08-11","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"36","jurisName":"NEW YORK","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.040000,"tax":5.54,"taxableAmount":138.6,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxCalculated":5.54,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":138.6,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":5.54,"reportingTaxCalculated":5.54,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"055","jurisName":"MONROE","stateAssignedNo":"MO 2611","jurisType":"CTY","jurisdictionType":"County","nonTaxableAmount":0.0,"rate":0.040000,"tax":5.54,"taxableAmount":138.6,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY COUNTY TAX","taxAuthorityTypeId":45,"taxCalculated":5.54,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":138.6,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":5.54,"reportingTaxCalculated":5.54,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":0,"transactionId":0,"lineNumber":"shipping_1","customerUsageType":"","entityUseCode":"","description":"Use My Shipping Account","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":false,"itemCode":"use-my-shipping-account","lineAmount":0.0,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-08-11","tax":0.0,"taxableAmount":0.0,"taxCalculated":0.0,"taxCode":"FR","taxCodeId":7119,"taxDate":"2021-08-11","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"36","jurisName":"NEW YORK","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.040000,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"055","jurisName":"MONROE","stateAssignedNo":"MO 2611","jurisType":"CTY","jurisdictionType":"County","nonTaxableAmount":0.0,"rate":0.040000,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY COUNTY TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0}],"addresses":[{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"34 May St","line2":"Suite 3.14","line3":"","city":"Rochester","region":"NY","postalCode":"14616","country":"US","taxRegionId":4001884,"latitude":"43.128668","longitude":"-77.614593"},{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"30 GLENN ST","line2":"","line3":"","city":"WHITE PLAINS","region":"NY","postalCode":"10603-3254","country":"US","taxRegionId":2090237,"latitude":"41.050608","longitude":"-73.771383"}],"summary":[{"country":"US","region":"NY","jurisType":"State","jurisCode":"36","jurisName":"NEW YORK","taxAuthorityType":45,"stateAssignedNo":"","taxType":"Sales","taxSubType":"S","taxName":"NY STATE TAX","rateType":"General","taxable":138.6,"rate":0.040000,"tax":5.54,"taxCalculated":5.54,"nonTaxable":0.0,"exemption":0.0},{"country":"US","region":"NY","jurisType":"County","jurisCode":"055","jurisName":"MONROE","taxAuthorityType":45,"stateAssignedNo":"MO 2611","taxType":"Sales","taxSubType":"S","taxName":"NY COUNTY TAX","rateType":"General","taxable":138.6,"rate":0.040000,"tax":5.54,"taxCalculated":5.54,"nonTaxable":0.0,"exemption":0.0}]}
+
+08-11-2021 @ 09:20:07 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/taxrates/byaddress?line1=&line2=&city=Rochester&region=NY&country=US&postalCode=14616
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.7.2)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.30042s
+
+08-11-2021 @ 09:20:07 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Wed, 11 Aug 2021 13:20:07 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 144
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0010946
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"totalRate":0.080000,"rates":[{"rate":0.040000,"name":"NY STATE TAX","type":"State"},{"rate":0.040000,"name":"NY COUNTY TAX","type":"County"}]}
+
+08-11-2021 @ 09:20:07 - Request
+Request
+method: POST
+uri: https://rest.avatax.com/api/v2/transactions/create
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.7.2)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body: {"code":"","companyCode":"ALC","customerCode":"eileens@piecal.com","currencyCode":"USD","date":"2021-08-11","lines":[{"number":"2ba399f928d3a7a608a2ad8af4dcb1e9","itemCode":"1701-1","taxCode":"P0000000","description":"Detergent 8","quantity":1,"amount":138.59999999999999},{"number":"shipping_1","itemCode":"use-my-shipping-account","taxCode":"FR","description":"Use My Shipping Account","quantity":1}],"addresses":{"shipFrom":{"line1":"30 GLENN ST","line2":"","city":"WHITE PLAINS","region":"NY","country":"US","postalCode":"10603-3254"},"shipTo":{"line1":"34 May St","line2":"Suite 3.14","city":"Rochester","region":"NY","country":"US","postalCode":"14616"}},"type":"SalesOrder","commit":false}
+duration: 0.32575s
+
+08-11-2021 @ 09:20:07 - Response
+Response
+code: 201
+message: Created
+headers: Array
+(
+    [date] => Wed, 11 Aug 2021 13:20:07 GMT
+    [content-type] => application/json; charset=utf-8
+    [server] => Kestrel
+    [content-encoding] => br
+    [location] => /api/v2/companies/207925/transactions/0
+    [vary] => Accept-Encoding
+    [serverduration] => 00:00:00.0441636
+)
+body: {"id":0,"code":"3c7e258c-5c6b-4aa2-a39b-c9de959f2a35","companyId":207925,"date":"2021-08-11","paymentDate":"2021-08-11","status":"Temporary","type":"SalesOrder","batchCode":"","currencyCode":"USD","exchangeRateCurrencyCode":"USD","customerUsageType":"","entityUseCode":"","customerVendorCode":"eileens@piecal.com","customerCode":"eileens@piecal.com","exemptNo":"","reconciled":false,"locationCode":"","reportingLocationCode":"","purchaseOrderNo":"","referenceCode":"","salespersonCode":"","totalAmount":138.6,"totalExempt":0.0,"totalDiscount":0.0,"totalTax":11.08,"totalTaxable":138.6,"totalTaxCalculated":11.08,"adjustmentReason":"NotAdjusted","locked":false,"version":1,"exchangeRateEffectiveDate":"2021-08-11","exchangeRate":1.0,"modifiedDate":"2021-08-11T13:20:07.632987Z","modifiedUserId":231879,"taxDate":"2021-08-11","lines":[{"id":0,"transactionId":0,"lineNumber":"2ba399f928d3a7a608a2ad8af4dcb1e9","customerUsageType":"","entityUseCode":"","description":"Detergent 8","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"itemCode":"1701-1","lineAmount":138.59999999999999,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-08-11","tax":11.08,"taxableAmount":138.6,"taxCalculated":11.08,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-08-11","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"36","jurisName":"NEW YORK","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.040000,"tax":5.54,"taxableAmount":138.6,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxCalculated":5.54,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":138.6,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":5.54,"reportingTaxCalculated":5.54,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"055","jurisName":"MONROE","stateAssignedNo":"MO 2611","jurisType":"CTY","jurisdictionType":"County","nonTaxableAmount":0.0,"rate":0.040000,"tax":5.54,"taxableAmount":138.6,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY COUNTY TAX","taxAuthorityTypeId":45,"taxCalculated":5.54,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":138.6,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":5.54,"reportingTaxCalculated":5.54,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":0,"transactionId":0,"lineNumber":"shipping_1","customerUsageType":"","entityUseCode":"","description":"Use My Shipping Account","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":false,"itemCode":"use-my-shipping-account","lineAmount":0.0,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-08-11","tax":0.0,"taxableAmount":0.0,"taxCalculated":0.0,"taxCode":"FR","taxCodeId":7119,"taxDate":"2021-08-11","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"36","jurisName":"NEW YORK","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.040000,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"055","jurisName":"MONROE","stateAssignedNo":"MO 2611","jurisType":"CTY","jurisdictionType":"County","nonTaxableAmount":0.0,"rate":0.040000,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY COUNTY TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0}],"addresses":[{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"34 May St","line2":"Suite 3.14","line3":"","city":"Rochester","region":"NY","postalCode":"14616","country":"US","taxRegionId":4001884,"latitude":"43.128668","longitude":"-77.614593"},{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"30 GLENN ST","line2":"","line3":"","city":"WHITE PLAINS","region":"NY","postalCode":"10603-3254","country":"US","taxRegionId":2090237,"latitude":"41.050608","longitude":"-73.771383"}],"summary":[{"country":"US","region":"NY","jurisType":"State","jurisCode":"36","jurisName":"NEW YORK","taxAuthorityType":45,"stateAssignedNo":"","taxType":"Sales","taxSubType":"S","taxName":"NY STATE TAX","rateType":"General","taxable":138.6,"rate":0.040000,"tax":5.54,"taxCalculated":5.54,"nonTaxable":0.0,"exemption":0.0},{"country":"US","region":"NY","jurisType":"County","jurisCode":"055","jurisName":"MONROE","taxAuthorityType":45,"stateAssignedNo":"MO 2611","taxType":"Sales","taxSubType":"S","taxName":"NY COUNTY TAX","rateType":"General","taxable":138.6,"rate":0.040000,"tax":5.54,"taxCalculated":5.54,"nonTaxable":0.0,"exemption":0.0}]}
+
+08-11-2021 @ 09:20:13 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/taxrates/byaddress?line1=&line2=&city=Webster&region=NY&country=US&postalCode=14616
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.7.2)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.35454s
+
+08-11-2021 @ 09:20:13 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Wed, 11 Aug 2021 13:20:13 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 144
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0168000
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"totalRate":0.080000,"rates":[{"rate":0.040000,"name":"NY STATE TAX","type":"State"},{"rate":0.040000,"name":"NY COUNTY TAX","type":"County"}]}
+
+08-11-2021 @ 09:20:14 - Request
+Request
+method: POST
+uri: https://rest.avatax.com/api/v2/transactions/create
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.7.2)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body: {"code":"","companyCode":"ALC","customerCode":"eileens@piecal.com","currencyCode":"USD","date":"2021-08-11","lines":[{"number":"2ba399f928d3a7a608a2ad8af4dcb1e9","itemCode":"1701-1","taxCode":"P0000000","description":"Detergent 8","quantity":1,"amount":138.59999999999999},{"number":"shipping_1","itemCode":"use-my-shipping-account","taxCode":"FR","description":"Use My Shipping Account","quantity":1}],"addresses":{"shipFrom":{"line1":"30 GLENN ST","line2":"","city":"WHITE PLAINS","region":"NY","country":"US","postalCode":"10603-3254"},"shipTo":{"line1":"34 May St","line2":"Suite 3.14","city":"Webster","region":"NY","country":"US","postalCode":"14616"}},"type":"SalesOrder","commit":false}
+duration: 0.3551s
+
+08-11-2021 @ 09:20:14 - Response
+Response
+code: 201
+message: Created
+headers: Array
+(
+    [date] => Wed, 11 Aug 2021 13:20:14 GMT
+    [content-type] => application/json; charset=utf-8
+    [server] => Kestrel
+    [content-encoding] => br
+    [location] => /api/v2/companies/207925/transactions/0
+    [vary] => Accept-Encoding
+    [serverduration] => 00:00:00.0417197
+)
+body: {"id":0,"code":"aaebc3da-ad90-4581-8efc-348a7f66e8d9","companyId":207925,"date":"2021-08-11","paymentDate":"2021-08-11","status":"Temporary","type":"SalesOrder","batchCode":"","currencyCode":"USD","exchangeRateCurrencyCode":"USD","customerUsageType":"","entityUseCode":"","customerVendorCode":"eileens@piecal.com","customerCode":"eileens@piecal.com","exemptNo":"","reconciled":false,"locationCode":"","reportingLocationCode":"","purchaseOrderNo":"","referenceCode":"","salespersonCode":"","totalAmount":138.6,"totalExempt":0.0,"totalDiscount":0.0,"totalTax":11.08,"totalTaxable":138.6,"totalTaxCalculated":11.08,"adjustmentReason":"NotAdjusted","locked":false,"version":1,"exchangeRateEffectiveDate":"2021-08-11","exchangeRate":1.0,"modifiedDate":"2021-08-11T13:20:14.0420616Z","modifiedUserId":231879,"taxDate":"2021-08-11","lines":[{"id":0,"transactionId":0,"lineNumber":"2ba399f928d3a7a608a2ad8af4dcb1e9","customerUsageType":"","entityUseCode":"","description":"Detergent 8","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"itemCode":"1701-1","lineAmount":138.59999999999999,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-08-11","tax":11.08,"taxableAmount":138.6,"taxCalculated":11.08,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-08-11","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"36","jurisName":"NEW YORK","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.040000,"tax":5.54,"taxableAmount":138.6,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxCalculated":5.54,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":138.6,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":5.54,"reportingTaxCalculated":5.54,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"055","jurisName":"MONROE","stateAssignedNo":"MO 2611","jurisType":"CTY","jurisdictionType":"County","nonTaxableAmount":0.0,"rate":0.040000,"tax":5.54,"taxableAmount":138.6,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY COUNTY TAX","taxAuthorityTypeId":45,"taxCalculated":5.54,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":138.6,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":5.54,"reportingTaxCalculated":5.54,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":0,"transactionId":0,"lineNumber":"shipping_1","customerUsageType":"","entityUseCode":"","description":"Use My Shipping Account","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":false,"itemCode":"use-my-shipping-account","lineAmount":0.0,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-08-11","tax":0.0,"taxableAmount":0.0,"taxCalculated":0.0,"taxCode":"FR","taxCodeId":7119,"taxDate":"2021-08-11","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"36","jurisName":"NEW YORK","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.040000,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"055","jurisName":"MONROE","stateAssignedNo":"MO 2611","jurisType":"CTY","jurisdictionType":"County","nonTaxableAmount":0.0,"rate":0.040000,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY COUNTY TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0}],"addresses":[{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"34 May St","line2":"Suite 3.14","line3":"","city":"Webster","region":"NY","postalCode":"14616","country":"US","taxRegionId":4004947,"latitude":"43.216518","longitude":"-77.42839"},{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"30 GLENN ST","line2":"","line3":"","city":"WHITE PLAINS","region":"NY","postalCode":"10603-3254","country":"US","taxRegionId":2090237,"latitude":"41.050608","longitude":"-73.771383"}],"summary":[{"country":"US","region":"NY","jurisType":"State","jurisCode":"36","jurisName":"NEW YORK","taxAuthorityType":45,"stateAssignedNo":"","taxType":"Sales","taxSubType":"S","taxName":"NY STATE TAX","rateType":"General","taxable":138.6,"rate":0.040000,"tax":5.54,"taxCalculated":5.54,"nonTaxable":0.0,"exemption":0.0},{"country":"US","region":"NY","jurisType":"County","jurisCode":"055","jurisName":"MONROE","taxAuthorityType":45,"stateAssignedNo":"MO 2611","taxType":"Sales","taxSubType":"S","taxName":"NY COUNTY TAX","rateType":"General","taxable":138.6,"rate":0.040000,"tax":5.54,"taxCalculated":5.54,"nonTaxable":0.0,"exemption":0.0}]}
+
+08-11-2021 @ 09:20:14 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/taxrates/byaddress?line1=&line2=&city=Webster&region=NY&country=US&postalCode=14616
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.7.2)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.28395s
+
+08-11-2021 @ 09:20:14 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Wed, 11 Aug 2021 13:20:14 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 144
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0014216
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"totalRate":0.080000,"rates":[{"rate":0.040000,"name":"NY STATE TAX","type":"State"},{"rate":0.040000,"name":"NY COUNTY TAX","type":"County"}]}
+
+08-11-2021 @ 09:20:15 - Request
+Request
+method: POST
+uri: https://rest.avatax.com/api/v2/transactions/create
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.7.2)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body: {"code":"","companyCode":"ALC","customerCode":"eileens@piecal.com","currencyCode":"USD","date":"2021-08-11","lines":[{"number":"2ba399f928d3a7a608a2ad8af4dcb1e9","itemCode":"1701-1","taxCode":"P0000000","description":"Detergent 8","quantity":1,"amount":138.59999999999999},{"number":"shipping_1","itemCode":"use-my-shipping-account","taxCode":"FR","description":"Use My Shipping Account","quantity":1}],"addresses":{"shipFrom":{"line1":"30 GLENN ST","line2":"","city":"WHITE PLAINS","region":"NY","country":"US","postalCode":"10603-3254"},"shipTo":{"line1":"34 May St","line2":"Suite 3.14","city":"Webster","region":"NY","country":"US","postalCode":"14616"}},"type":"SalesOrder","commit":false}
+duration: 0.32312s
+
+08-11-2021 @ 09:20:15 - Response
+Response
+code: 201
+message: Created
+headers: Array
+(
+    [date] => Wed, 11 Aug 2021 13:20:15 GMT
+    [content-type] => application/json; charset=utf-8
+    [server] => Kestrel
+    [content-encoding] => br
+    [location] => /api/v2/companies/207925/transactions/0
+    [vary] => Accept-Encoding
+    [serverduration] => 00:00:00.0332798
+)
+body: {"id":0,"code":"f8be71ac-b7d4-4c1a-bccb-f671966e6b44","companyId":207925,"date":"2021-08-11","paymentDate":"2021-08-11","status":"Temporary","type":"SalesOrder","batchCode":"","currencyCode":"USD","exchangeRateCurrencyCode":"USD","customerUsageType":"","entityUseCode":"","customerVendorCode":"eileens@piecal.com","customerCode":"eileens@piecal.com","exemptNo":"","reconciled":false,"locationCode":"","reportingLocationCode":"","purchaseOrderNo":"","referenceCode":"","salespersonCode":"","totalAmount":138.6,"totalExempt":0.0,"totalDiscount":0.0,"totalTax":11.08,"totalTaxable":138.6,"totalTaxCalculated":11.08,"adjustmentReason":"NotAdjusted","locked":false,"version":1,"exchangeRateEffectiveDate":"2021-08-11","exchangeRate":1.0,"modifiedDate":"2021-08-11T13:20:15.2193023Z","modifiedUserId":231879,"taxDate":"2021-08-11","lines":[{"id":0,"transactionId":0,"lineNumber":"2ba399f928d3a7a608a2ad8af4dcb1e9","customerUsageType":"","entityUseCode":"","description":"Detergent 8","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"itemCode":"1701-1","lineAmount":138.59999999999999,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-08-11","tax":11.08,"taxableAmount":138.6,"taxCalculated":11.08,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-08-11","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"36","jurisName":"NEW YORK","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.040000,"tax":5.54,"taxableAmount":138.6,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxCalculated":5.54,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":138.6,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":5.54,"reportingTaxCalculated":5.54,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"055","jurisName":"MONROE","stateAssignedNo":"MO 2611","jurisType":"CTY","jurisdictionType":"County","nonTaxableAmount":0.0,"rate":0.040000,"tax":5.54,"taxableAmount":138.6,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY COUNTY TAX","taxAuthorityTypeId":45,"taxCalculated":5.54,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":138.6,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":5.54,"reportingTaxCalculated":5.54,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":0,"transactionId":0,"lineNumber":"shipping_1","customerUsageType":"","entityUseCode":"","description":"Use My Shipping Account","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":false,"itemCode":"use-my-shipping-account","lineAmount":0.0,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-08-11","tax":0.0,"taxableAmount":0.0,"taxCalculated":0.0,"taxCode":"FR","taxCodeId":7119,"taxDate":"2021-08-11","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"36","jurisName":"NEW YORK","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.040000,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"055","jurisName":"MONROE","stateAssignedNo":"MO 2611","jurisType":"CTY","jurisdictionType":"County","nonTaxableAmount":0.0,"rate":0.040000,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY COUNTY TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0}],"addresses":[{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"34 May St","line2":"Suite 3.14","line3":"","city":"Webster","region":"NY","postalCode":"14616","country":"US","taxRegionId":4004947,"latitude":"43.216518","longitude":"-77.42839"},{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"30 GLENN ST","line2":"","line3":"","city":"WHITE PLAINS","region":"NY","postalCode":"10603-3254","country":"US","taxRegionId":2090237,"latitude":"41.050608","longitude":"-73.771383"}],"summary":[{"country":"US","region":"NY","jurisType":"State","jurisCode":"36","jurisName":"NEW YORK","taxAuthorityType":45,"stateAssignedNo":"","taxType":"Sales","taxSubType":"S","taxName":"NY STATE TAX","rateType":"General","taxable":138.6,"rate":0.040000,"tax":5.54,"taxCalculated":5.54,"nonTaxable":0.0,"exemption":0.0},{"country":"US","region":"NY","jurisType":"County","jurisCode":"055","jurisName":"MONROE","taxAuthorityType":45,"stateAssignedNo":"MO 2611","taxType":"Sales","taxSubType":"S","taxName":"NY COUNTY TAX","rateType":"General","taxable":138.6,"rate":0.040000,"tax":5.54,"taxCalculated":5.54,"nonTaxable":0.0,"exemption":0.0}]}
+
+08-11-2021 @ 09:20:18 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/taxrates/byaddress?line1=&line2=&city=Webster&region=NY&country=US&postalCode=14580
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.7.2)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.29116s
+
+08-11-2021 @ 09:20:18 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Wed, 11 Aug 2021 13:20:18 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 144
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0118087
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"totalRate":0.080000,"rates":[{"rate":0.040000,"name":"NY STATE TAX","type":"State"},{"rate":0.040000,"name":"NY COUNTY TAX","type":"County"}]}
+
+08-11-2021 @ 09:20:18 - Request
+Request
+method: POST
+uri: https://rest.avatax.com/api/v2/transactions/create
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.7.2)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body: {"code":"","companyCode":"ALC","customerCode":"eileens@piecal.com","currencyCode":"USD","date":"2021-08-11","lines":[{"number":"2ba399f928d3a7a608a2ad8af4dcb1e9","itemCode":"1701-1","taxCode":"P0000000","description":"Detergent 8","quantity":1,"amount":138.59999999999999},{"number":"shipping_1","itemCode":"use-my-shipping-account","taxCode":"FR","description":"Use My Shipping Account","quantity":1}],"addresses":{"shipFrom":{"line1":"30 GLENN ST","line2":"","city":"WHITE PLAINS","region":"NY","country":"US","postalCode":"10603-3254"},"shipTo":{"line1":"34 May St","line2":"Suite 3.14","city":"Webster","region":"NY","country":"US","postalCode":"14580"}},"type":"SalesOrder","commit":false}
+duration: 0.34317s
+
+08-11-2021 @ 09:20:18 - Response
+Response
+code: 201
+message: Created
+headers: Array
+(
+    [date] => Wed, 11 Aug 2021 13:20:18 GMT
+    [content-type] => application/json; charset=utf-8
+    [server] => Kestrel
+    [content-encoding] => br
+    [location] => /api/v2/companies/207925/transactions/0
+    [vary] => Accept-Encoding
+    [serverduration] => 00:00:00.0447069
+)
+body: {"id":0,"code":"762f5f60-4583-48ee-98d4-1836a5a17c78","companyId":207925,"date":"2021-08-11","paymentDate":"2021-08-11","status":"Temporary","type":"SalesOrder","batchCode":"","currencyCode":"USD","exchangeRateCurrencyCode":"USD","customerUsageType":"","entityUseCode":"","customerVendorCode":"eileens@piecal.com","customerCode":"eileens@piecal.com","exemptNo":"","reconciled":false,"locationCode":"","reportingLocationCode":"","purchaseOrderNo":"","referenceCode":"","salespersonCode":"","totalAmount":138.6,"totalExempt":0.0,"totalDiscount":0.0,"totalTax":11.08,"totalTaxable":138.6,"totalTaxCalculated":11.08,"adjustmentReason":"NotAdjusted","locked":false,"version":1,"exchangeRateEffectiveDate":"2021-08-11","exchangeRate":1.0,"modifiedDate":"2021-08-11T13:20:18.9485212Z","modifiedUserId":231879,"taxDate":"2021-08-11","lines":[{"id":0,"transactionId":0,"lineNumber":"2ba399f928d3a7a608a2ad8af4dcb1e9","customerUsageType":"","entityUseCode":"","description":"Detergent 8","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"itemCode":"1701-1","lineAmount":138.59999999999999,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-08-11","tax":11.08,"taxableAmount":138.6,"taxCalculated":11.08,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-08-11","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"36","jurisName":"NEW YORK","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.040000,"tax":5.54,"taxableAmount":138.6,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxCalculated":5.54,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":138.6,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":5.54,"reportingTaxCalculated":5.54,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"055","jurisName":"MONROE","stateAssignedNo":"MO 2611","jurisType":"CTY","jurisdictionType":"County","nonTaxableAmount":0.0,"rate":0.040000,"tax":5.54,"taxableAmount":138.6,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY COUNTY TAX","taxAuthorityTypeId":45,"taxCalculated":5.54,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":138.6,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":5.54,"reportingTaxCalculated":5.54,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":0,"transactionId":0,"lineNumber":"shipping_1","customerUsageType":"","entityUseCode":"","description":"Use My Shipping Account","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":false,"itemCode":"use-my-shipping-account","lineAmount":0.0,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-08-11","tax":0.0,"taxableAmount":0.0,"taxCalculated":0.0,"taxCode":"FR","taxCodeId":7119,"taxDate":"2021-08-11","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"36","jurisName":"NEW YORK","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.040000,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"055","jurisName":"MONROE","stateAssignedNo":"MO 2611","jurisType":"CTY","jurisdictionType":"County","nonTaxableAmount":0.0,"rate":0.040000,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY COUNTY TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0}],"addresses":[{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"34 May St","line2":"Suite 3.14","line3":"","city":"Webster","region":"NY","postalCode":"14580","country":"US","taxRegionId":4004947,"latitude":"43.216518","longitude":"-77.42839"},{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"30 GLENN ST","line2":"","line3":"","city":"WHITE PLAINS","region":"NY","postalCode":"10603-3254","country":"US","taxRegionId":2090237,"latitude":"41.050608","longitude":"-73.771383"}],"summary":[{"country":"US","region":"NY","jurisType":"State","jurisCode":"36","jurisName":"NEW YORK","taxAuthorityType":45,"stateAssignedNo":"","taxType":"Sales","taxSubType":"S","taxName":"NY STATE TAX","rateType":"General","taxable":138.6,"rate":0.040000,"tax":5.54,"taxCalculated":5.54,"nonTaxable":0.0,"exemption":0.0},{"country":"US","region":"NY","jurisType":"County","jurisCode":"055","jurisName":"MONROE","taxAuthorityType":45,"stateAssignedNo":"MO 2611","taxType":"Sales","taxSubType":"S","taxName":"NY COUNTY TAX","rateType":"General","taxable":138.6,"rate":0.040000,"tax":5.54,"taxCalculated":5.54,"nonTaxable":0.0,"exemption":0.0}]}
+
+08-11-2021 @ 09:20:54 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/taxrates/byaddress?line1=&line2=&city=Webster&region=NY&country=US&postalCode=14580
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.7.2)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.33527s
+
+08-11-2021 @ 09:20:54 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Wed, 11 Aug 2021 13:20:54 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 144
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0010911
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"totalRate":0.080000,"rates":[{"rate":0.040000,"name":"NY STATE TAX","type":"State"},{"rate":0.040000,"name":"NY COUNTY TAX","type":"County"}]}
+
+08-11-2021 @ 09:20:54 - Request
+Request
+method: POST
+uri: https://rest.avatax.com/api/v2/transactions/create
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.7.2)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body: {"code":"","companyCode":"ALC","customerCode":"eileens@piecal.com","currencyCode":"USD","date":"2021-08-11","lines":[{"number":"2ba399f928d3a7a608a2ad8af4dcb1e9","itemCode":"1701-1","taxCode":"P0000000","description":"Detergent 8","quantity":1,"amount":138.59999999999999},{"number":"shipping_1","itemCode":"use-my-shipping-account","taxCode":"FR","description":"Use My Shipping Account","quantity":1}],"addresses":{"shipFrom":{"line1":"30 GLENN ST","line2":"","city":"WHITE PLAINS","region":"NY","country":"US","postalCode":"10603-3254"},"shipTo":{"line1":"34 May St","line2":"Suite 3.14","city":"Webster","region":"NY","country":"US","postalCode":"14580"}},"type":"SalesOrder","commit":false}
+duration: 0.35038s
+
+08-11-2021 @ 09:20:54 - Response
+Response
+code: 201
+message: Created
+headers: Array
+(
+    [date] => Wed, 11 Aug 2021 13:20:54 GMT
+    [content-type] => application/json; charset=utf-8
+    [server] => Kestrel
+    [content-encoding] => br
+    [location] => /api/v2/companies/207925/transactions/0
+    [vary] => Accept-Encoding
+    [serverduration] => 00:00:00.0336250
+)
+body: {"id":0,"code":"ced19b46-64c0-431b-b2b9-08cb7b3e76a2","companyId":207925,"date":"2021-08-11","paymentDate":"2021-08-11","status":"Temporary","type":"SalesOrder","batchCode":"","currencyCode":"USD","exchangeRateCurrencyCode":"USD","customerUsageType":"","entityUseCode":"","customerVendorCode":"eileens@piecal.com","customerCode":"eileens@piecal.com","exemptNo":"","reconciled":false,"locationCode":"","reportingLocationCode":"","purchaseOrderNo":"","referenceCode":"","salespersonCode":"","totalAmount":138.6,"totalExempt":0.0,"totalDiscount":0.0,"totalTax":11.08,"totalTaxable":138.6,"totalTaxCalculated":11.08,"adjustmentReason":"NotAdjusted","locked":false,"version":1,"exchangeRateEffectiveDate":"2021-08-11","exchangeRate":1.0,"modifiedDate":"2021-08-11T13:20:54.5025428Z","modifiedUserId":231879,"taxDate":"2021-08-11","lines":[{"id":0,"transactionId":0,"lineNumber":"2ba399f928d3a7a608a2ad8af4dcb1e9","customerUsageType":"","entityUseCode":"","description":"Detergent 8","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"itemCode":"1701-1","lineAmount":138.59999999999999,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-08-11","tax":11.08,"taxableAmount":138.6,"taxCalculated":11.08,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-08-11","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"36","jurisName":"NEW YORK","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.040000,"tax":5.54,"taxableAmount":138.6,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxCalculated":5.54,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":138.6,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":5.54,"reportingTaxCalculated":5.54,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"055","jurisName":"MONROE","stateAssignedNo":"MO 2611","jurisType":"CTY","jurisdictionType":"County","nonTaxableAmount":0.0,"rate":0.040000,"tax":5.54,"taxableAmount":138.6,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY COUNTY TAX","taxAuthorityTypeId":45,"taxCalculated":5.54,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":138.6,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":5.54,"reportingTaxCalculated":5.54,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":0,"transactionId":0,"lineNumber":"shipping_1","customerUsageType":"","entityUseCode":"","description":"Use My Shipping Account","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":false,"itemCode":"use-my-shipping-account","lineAmount":0.0,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-08-11","tax":0.0,"taxableAmount":0.0,"taxCalculated":0.0,"taxCode":"FR","taxCodeId":7119,"taxDate":"2021-08-11","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"36","jurisName":"NEW YORK","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.040000,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"055","jurisName":"MONROE","stateAssignedNo":"MO 2611","jurisType":"CTY","jurisdictionType":"County","nonTaxableAmount":0.0,"rate":0.040000,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY COUNTY TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0}],"addresses":[{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"34 May St","line2":"Suite 3.14","line3":"","city":"Webster","region":"NY","postalCode":"14580","country":"US","taxRegionId":4004947,"latitude":"43.216518","longitude":"-77.42839"},{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"30 GLENN ST","line2":"","line3":"","city":"WHITE PLAINS","region":"NY","postalCode":"10603-3254","country":"US","taxRegionId":2090237,"latitude":"41.050608","longitude":"-73.771383"}],"summary":[{"country":"US","region":"NY","jurisType":"State","jurisCode":"36","jurisName":"NEW YORK","taxAuthorityType":45,"stateAssignedNo":"","taxType":"Sales","taxSubType":"S","taxName":"NY STATE TAX","rateType":"General","taxable":138.6,"rate":0.040000,"tax":5.54,"taxCalculated":5.54,"nonTaxable":0.0,"exemption":0.0},{"country":"US","region":"NY","jurisType":"County","jurisCode":"055","jurisName":"MONROE","taxAuthorityType":45,"stateAssignedNo":"MO 2611","taxType":"Sales","taxSubType":"S","taxName":"NY COUNTY TAX","rateType":"General","taxable":138.6,"rate":0.040000,"tax":5.54,"taxCalculated":5.54,"nonTaxable":0.0,"exemption":0.0}]}
+
+08-11-2021 @ 09:22:00 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/taxrates/byaddress?line1=&line2=&city=Webster&region=NY&country=US&postalCode=14580
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.7.2)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.33219s
+
+08-11-2021 @ 09:22:00 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Wed, 11 Aug 2021 13:22:00 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 144
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0009928
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"totalRate":0.080000,"rates":[{"rate":0.040000,"name":"NY STATE TAX","type":"State"},{"rate":0.040000,"name":"NY COUNTY TAX","type":"County"}]}
+
+08-11-2021 @ 09:22:00 - Request
+Request
+method: POST
+uri: https://rest.avatax.com/api/v2/transactions/create
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.7.2)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body: {"code":"","companyCode":"ALC","customerCode":"eileens@piecal.com","currencyCode":"USD","date":"2021-08-11","lines":[{"number":"2ba399f928d3a7a608a2ad8af4dcb1e9","itemCode":"1701-1","taxCode":"P0000000","description":"Detergent 8","quantity":1,"amount":138.59999999999999},{"number":"shipping_1","itemCode":"use-my-shipping-account","taxCode":"FR","description":"Use My Shipping Account","quantity":1}],"addresses":{"shipFrom":{"line1":"30 GLENN ST","line2":"","city":"WHITE PLAINS","region":"NY","country":"US","postalCode":"10603-3254"},"shipTo":{"line1":"34 May St","line2":"Suite 3.14","city":"Webster","region":"NY","country":"US","postalCode":"14580"}},"type":"SalesOrder","commit":false}
+duration: 0.33732s
+
+08-11-2021 @ 09:22:00 - Response
+Response
+code: 201
+message: Created
+headers: Array
+(
+    [date] => Wed, 11 Aug 2021 13:22:00 GMT
+    [content-type] => application/json; charset=utf-8
+    [server] => Kestrel
+    [content-encoding] => br
+    [location] => /api/v2/companies/207925/transactions/0
+    [vary] => Accept-Encoding
+    [serverduration] => 00:00:00.0328259
+)
+body: {"id":0,"code":"5feb1e9f-7444-40b2-9a89-7116d5ba617d","companyId":207925,"date":"2021-08-11","paymentDate":"2021-08-11","status":"Temporary","type":"SalesOrder","batchCode":"","currencyCode":"USD","exchangeRateCurrencyCode":"USD","customerUsageType":"","entityUseCode":"","customerVendorCode":"eileens@piecal.com","customerCode":"eileens@piecal.com","exemptNo":"","reconciled":false,"locationCode":"","reportingLocationCode":"","purchaseOrderNo":"","referenceCode":"","salespersonCode":"","totalAmount":138.6,"totalExempt":0.0,"totalDiscount":0.0,"totalTax":11.08,"totalTaxable":138.6,"totalTaxCalculated":11.08,"adjustmentReason":"NotAdjusted","locked":false,"version":1,"exchangeRateEffectiveDate":"2021-08-11","exchangeRate":1.0,"modifiedDate":"2021-08-11T13:22:00.9627021Z","modifiedUserId":231879,"taxDate":"2021-08-11","lines":[{"id":0,"transactionId":0,"lineNumber":"2ba399f928d3a7a608a2ad8af4dcb1e9","customerUsageType":"","entityUseCode":"","description":"Detergent 8","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"itemCode":"1701-1","lineAmount":138.59999999999999,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-08-11","tax":11.08,"taxableAmount":138.6,"taxCalculated":11.08,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-08-11","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"36","jurisName":"NEW YORK","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.040000,"tax":5.54,"taxableAmount":138.6,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxCalculated":5.54,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":138.6,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":5.54,"reportingTaxCalculated":5.54,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"055","jurisName":"MONROE","stateAssignedNo":"MO 2611","jurisType":"CTY","jurisdictionType":"County","nonTaxableAmount":0.0,"rate":0.040000,"tax":5.54,"taxableAmount":138.6,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY COUNTY TAX","taxAuthorityTypeId":45,"taxCalculated":5.54,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":138.6,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":5.54,"reportingTaxCalculated":5.54,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":0,"transactionId":0,"lineNumber":"shipping_1","customerUsageType":"","entityUseCode":"","description":"Use My Shipping Account","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":false,"itemCode":"use-my-shipping-account","lineAmount":0.0,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-08-11","tax":0.0,"taxableAmount":0.0,"taxCalculated":0.0,"taxCode":"FR","taxCodeId":7119,"taxDate":"2021-08-11","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"36","jurisName":"NEW YORK","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.040000,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"055","jurisName":"MONROE","stateAssignedNo":"MO 2611","jurisType":"CTY","jurisdictionType":"County","nonTaxableAmount":0.0,"rate":0.040000,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY COUNTY TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0}],"addresses":[{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"34 May St","line2":"Suite 3.14","line3":"","city":"Webster","region":"NY","postalCode":"14580","country":"US","taxRegionId":4004947,"latitude":"43.216518","longitude":"-77.42839"},{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"30 GLENN ST","line2":"","line3":"","city":"WHITE PLAINS","region":"NY","postalCode":"10603-3254","country":"US","taxRegionId":2090237,"latitude":"41.050608","longitude":"-73.771383"}],"summary":[{"country":"US","region":"NY","jurisType":"State","jurisCode":"36","jurisName":"NEW YORK","taxAuthorityType":45,"stateAssignedNo":"","taxType":"Sales","taxSubType":"S","taxName":"NY STATE TAX","rateType":"General","taxable":138.6,"rate":0.040000,"tax":5.54,"taxCalculated":5.54,"nonTaxable":0.0,"exemption":0.0},{"country":"US","region":"NY","jurisType":"County","jurisCode":"055","jurisName":"MONROE","taxAuthorityType":45,"stateAssignedNo":"MO 2611","taxType":"Sales","taxSubType":"S","taxName":"NY COUNTY TAX","rateType":"General","taxable":138.6,"rate":0.040000,"tax":5.54,"taxCalculated":5.54,"nonTaxable":0.0,"exemption":0.0}]}
+
+08-11-2021 @ 09:22:07 - Request
+Request
+method: POST
+uri: https://rest.avatax.com/api/v2/transactions/create
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.7.2)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body: {"code":"wc_order_it8VnjOAfU2bR","companyCode":"ALC","customerCode":"eileens@piecal.com","currencyCode":"USD","date":"2021-08-11","lines":[{"number":24481,"itemCode":"1701-1","taxCode":"P0000000","description":"Detergent 8","quantity":1,"amount":138.59999999999999},{"number":"shipping_24482","itemCode":"use-my-shipping-account","taxCode":"FR","description":"Use My Shipping Account","quantity":1}],"addresses":{"shipFrom":{"line1":"30 GLENN ST","line2":"","city":"WHITE PLAINS","region":"NY","country":"US","postalCode":"10603-3254"},"shipTo":{"line1":"34 May St","line2":"Suite 3.14","city":"Webster","region":"NY","country":"US","postalCode":"14580"}},"type":"SalesInvoice","purchaseOrderNo":"22094","commit":true}
+duration: 0.38908s
+
+08-11-2021 @ 09:22:07 - Response
+Response
+code: 201
+message: Created
+headers: Array
+(
+    [date] => Wed, 11 Aug 2021 13:22:07 GMT
+    [content-type] => application/json; charset=utf-8
+    [server] => Kestrel
+    [content-encoding] => br
+    [location] => /api/v2/companies/207925/transactions/2001805760519
+    [vary] => Accept-Encoding
+    [serverduration] => 00:00:00.0743283
+)
+body: {"id":2001805760519,"code":"wc_order_it8VnjOAfU2bR","companyId":207925,"date":"2021-08-11","status":"Committed","type":"SalesInvoice","batchCode":"","currencyCode":"USD","exchangeRateCurrencyCode":"USD","customerUsageType":"","entityUseCode":"","customerVendorCode":"eileens@piecal.com","customerCode":"eileens@piecal.com","exemptNo":"","reconciled":false,"locationCode":"","reportingLocationCode":"","purchaseOrderNo":"22094","referenceCode":"","salespersonCode":"","taxOverrideType":"None","taxOverrideAmount":0.0,"taxOverrideReason":"","totalAmount":138.6,"totalExempt":0.0,"totalDiscount":0.0,"totalTax":11.08,"totalTaxable":138.6,"totalTaxCalculated":11.08,"adjustmentReason":"NotAdjusted","adjustmentDescription":"","locked":false,"region":"NY","country":"US","version":1,"softwareVersion":"21.7.2.0","originAddressId":1003318682461,"destinationAddressId":6002820780444,"exchangeRateEffectiveDate":"2021-08-11","exchangeRate":1.0,"description":"","email":"","businessIdentificationNo":"","modifiedDate":"2021-08-11T13:22:07.0262738Z","modifiedUserId":231879,"taxDate":"2021-08-11","lines":[{"id":1005591828790,"transactionId":2001805760519,"lineNumber":"24481","boundaryOverrideId":0,"customerUsageType":"","entityUseCode":"","description":"Detergent 8","destinationAddressId":6002820780444,"originAddressId":1003318682461,"discountAmount":0.0,"discountTypeId":0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"isSSTP":false,"itemCode":"1701-1","lineAmount":138.6,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-08-11","revAccount":"","sourcing":"Destination","tax":11.0800,"taxableAmount":138.6,"taxCalculated":11.0800,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-08-11","taxEngine":"","taxOverrideType":"None","businessIdentificationNo":"","taxOverrideAmount":0.0,"taxOverrideReason":"","taxIncluded":false,"details":[{"id":11004449232197,"transactionLineId":1005591828790,"transactionId":2001805760519,"addressId":6002820780444,"country":"US","region":"NY","countyFIPS":"","stateFIPS":"","exemptAmount":0.0000,"exemptReasonId":4,"inState":true,"jurisCode":"36","jurisName":"NEW YORK","jurisdictionId":42,"signatureCode":"BFEQ","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0000,"nonTaxableRuleId":0,"nonTaxableType":"RateRule","rate":0.040000,"rateRuleId":1438748,"rateSourceId":3,"serCode":"","sourcing":"Destination","tax":5.5400,"taxableAmount":138.6000,"taxType":"Sales","taxSubTypeId":"S","taxTypeGroupId":"SalesAndUse","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxRegionId":4004947,"taxCalculated":5.5400,"taxOverride":0.0000,"rateType":"General","rateTypeCode":"G","taxableUnits":138.6000,"nonTaxableUnits":0.0000,"exemptUnits":0.0000,"unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":138.6,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":5.54,"reportingTaxCalculated":5.54,"liabilityType":"Seller"},{"id":12004449232197,"transactionLineId":1005591828790,"transactionId":2001805760519,"addressId":6002820780444,"country":"US","region":"NY","countyFIPS":"","stateFIPS":"","exemptAmount":0.0000,"exemptReasonId":4,"inState":true,"jurisCode":"055","jurisName":"MONROE","jurisdictionId":1873,"signatureCode":"BGFG","stateAssignedNo":"MO 2611","jurisType":"CTY","jurisdictionType":"County","nonTaxableAmount":0.0000,"nonTaxableRuleId":0,"nonTaxableType":"RateRule","rate":0.040000,"rateRuleId":1438734,"rateSourceId":3,"serCode":"","sourcing":"Destination","tax":5.5400,"taxableAmount":138.6000,"taxType":"Sales","taxSubTypeId":"S","taxTypeGroupId":"SalesAndUse","taxName":"NY COUNTY TAX","taxAuthorityTypeId":45,"taxRegionId":4004947,"taxCalculated":5.5400,"taxOverride":0.0000,"rateType":"General","rateTypeCode":"G","taxableUnits":138.6000,"nonTaxableUnits":0.0000,"exemptUnits":0.0000,"unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":138.6,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":5.54,"reportingTaxCalculated":5.54,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"lineLocationTypes":[{"documentLineLocationTypeId":6005229741230,"documentLineId":1005591828790,"documentAddressId":1003318682461,"locationTypeCode":"ShipFrom"},{"documentLineLocationTypeId":8004251044607,"documentLineId":1005591828790,"documentAddressId":6002820780444,"locationTypeCode":"ShipTo"}],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":3005591828791,"transactionId":2001805760519,"lineNumber":"shipping_24482","boundaryOverrideId":0,"customerUsageType":"","entityUseCode":"","description":"Use My Shipping Account","destinationAddressId":6002820780444,"originAddressId":1003318682461,"discountAmount":0.0,"discountTypeId":0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":false,"isSSTP":false,"itemCode":"use-my-shipping-account","lineAmount":0.0,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-08-11","revAccount":"","sourcing":"Destination","tax":0.0000,"taxableAmount":0.0,"taxCalculated":0.0000,"taxCode":"FR","taxCodeId":7119,"taxDate":"2021-08-11","taxEngine":"","taxOverrideType":"None","businessIdentificationNo":"","taxOverrideAmount":0.0,"taxOverrideReason":"","taxIncluded":false,"details":[{"id":6005526467570,"transactionLineId":3005591828791,"transactionId":2001805760519,"addressId":6002820780444,"country":"US","region":"NY","countyFIPS":"","stateFIPS":"","exemptAmount":0.0000,"exemptReasonId":4,"inState":true,"jurisCode":"36","jurisName":"NEW YORK","jurisdictionId":42,"signatureCode":"BFEQ","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0000,"nonTaxableRuleId":0,"nonTaxableType":"RateRule","rate":0.040000,"rateRuleId":1438748,"rateSourceId":3,"serCode":"","sourcing":"Destination","tax":0.0000,"taxableAmount":0.0000,"taxType":"Sales","taxSubTypeId":"S","taxTypeGroupId":"SalesAndUse","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxRegionId":4004947,"taxCalculated":0.0000,"taxOverride":0.0000,"rateType":"General","rateTypeCode":"G","taxableUnits":0.0000,"nonTaxableUnits":0.0000,"exemptUnits":0.0000,"unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"},{"id":8004449232197,"transactionLineId":3005591828791,"transactionId":2001805760519,"addressId":6002820780444,"country":"US","region":"NY","countyFIPS":"","stateFIPS":"","exemptAmount":0.0000,"exemptReasonId":4,"inState":true,"jurisCode":"055","jurisName":"MONROE","jurisdictionId":1873,"signatureCode":"BGFG","stateAssignedNo":"MO 2611","jurisType":"CTY","jurisdictionType":"County","nonTaxableAmount":0.0000,"nonTaxableRuleId":0,"nonTaxableType":"RateRule","rate":0.040000,"rateRuleId":1438734,"rateSourceId":3,"serCode":"","sourcing":"Destination","tax":0.0000,"taxableAmount":0.0000,"taxType":"Sales","taxSubTypeId":"S","taxTypeGroupId":"SalesAndUse","taxName":"NY COUNTY TAX","taxAuthorityTypeId":45,"taxRegionId":4004947,"taxCalculated":0.0000,"taxOverride":0.0000,"rateType":"General","rateTypeCode":"G","taxableUnits":0.0000,"nonTaxableUnits":0.0000,"exemptUnits":0.0000,"unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"lineLocationTypes":[{"documentLineLocationTypeId":1006949812872,"documentLineId":3005591828791,"documentAddressId":1003318682461,"locationTypeCode":"ShipFrom"},{"documentLineLocationTypeId":2006949812867,"documentLineId":3005591828791,"documentAddressId":6002820780444,"locationTypeCode":"ShipTo"}],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0}],"addresses":[{"id":6002820780444,"transactionId":2001805760519,"boundaryLevel":"Address","line1":"34 MAY ST STE 314","line2":"","line3":"","city":"WEBSTER","region":"NY","postalCode":"14580-3055","country":"US","taxRegionId":4004947,"latitude":"43.216518","longitude":"-77.42839"},{"id":1003318682461,"transactionId":2001805760519,"boundaryLevel":"Address","line1":"30 GLENN ST","line2":"","line3":"","city":"WHITE PLAINS","region":"NY","postalCode":"10603-3254","country":"US","taxRegionId":2090237,"latitude":"41.050608","longitude":"-73.771383"}],"locationTypes":[{"documentLocationTypeId":9000205101373,"documentId":2001805760519,"documentAddressId":1003318682461,"locationTypeCode":"ShipFrom"},{"documentLocationTypeId":11000205101373,"documentId":2001805760519,"documentAddressId":6002820780444,"locationTypeCode":"ShipTo"}],"summary":[{"country":"US","region":"NY","jurisType":"State","jurisCode":"36","jurisName":"NEW YORK","taxAuthorityType":45,"stateAssignedNo":"","taxType":"Sales","taxSubType":"S","taxName":"NY STATE TAX","rateType":"General","taxable":138.60,"rate":0.040000,"tax":5.54,"taxCalculated":5.54,"nonTaxable":0.00,"exemption":0.00},{"country":"US","region":"NY","jurisType":"County","jurisCode":"055","jurisName":"MONROE","taxAuthorityType":45,"stateAssignedNo":"MO 2611","taxType":"Sales","taxSubType":"S","taxName":"NY COUNTY TAX","rateType":"General","taxable":138.60,"rate":0.040000,"tax":5.54,"taxCalculated":5.54,"nonTaxable":0.00,"exemption":0.00}]}
+

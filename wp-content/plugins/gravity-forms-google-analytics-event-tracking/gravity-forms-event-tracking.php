@@ -2,8 +2,8 @@
 /**
  * Plugin Name:       Gravity Forms Event Tracking
  * Plugin URI:        https://wordpress.org/plugins/gravity-forms-google-analytics-event-tracking/
- * Description:       Add event tracking to your Gravity Forms with ease using Google Analytics, Tag Manager, or Matomo (formerly Piwik).
- * Version:           2.3.12
+ * Description:       Add event tracking to your Gravity Forms with ease using Google Analytics, Tag Manager, or Matomo
+ * Version:           2.4.10
  * Author:            Ronald Huereca
  * Author URI:        https://mediaron.com
  * Text Domain:       gravity-forms-google-analytics-event-tracking
@@ -17,6 +17,10 @@
 if ( ! defined( 'WPINC' ) ) {
 	die;
 }
+
+define( 'GFGAET_MIN_GFORMS_VERSION', '2.2.0' );
+define( 'GFGAET_VERSION', '2.4.10' );
+define( 'GFGAET_FILE', __FILE__ );
 
 class GFGAET {
 
@@ -61,7 +65,7 @@ class GFGAET {
 	 * @return bool true if meets minimum version, false if not
 	 */
 	public static function check_php_version() {
-		if( ! version_compare( '5.3', PHP_VERSION, '<=' ) ) {
+		if( ! version_compare( '5.6', PHP_VERSION, '<=' ) ) {
 			return false;
 		}
 		return true;
@@ -75,7 +79,7 @@ class GFGAET {
 	public static function check_plugin() {
 		if( ! GFGAET::check_php_version() ) {
 			deactivate_plugins( GFGAET::get_plugin_basename() );
-			exit( sprintf( esc_html__( 'Gravity Forms Event Tracking requires PHP version 5.3 and up. You are currently running PHP version %s.', 'gravity-forms-google-analytics-event-tracking' ), esc_html( PHP_VERSION ) ) );
+			exit( sprintf( esc_html__( 'Gravity Forms Event Tracking requires PHP version 5.6 and up. You are currently running PHP version %s.', 'gravity-forms-google-analytics-event-tracking' ), esc_html( PHP_VERSION ) ) );
 		}
 	}
 
@@ -101,6 +105,18 @@ class GFGAET {
 	 */
 	public static function get_plugin_dir( $path = '' ) {
 		$dir = rtrim( plugin_dir_path(__FILE__), '/' );
+		if ( !empty( $path ) && is_string( $path) )
+			$dir .= '/' . ltrim( $path, '/' );
+		return $dir;
+	}
+
+	/**
+	 * Return the URL path to an asset.
+	 *
+	 * @param string $path Path to the asset.
+	 */
+	public static function get_plugin_url( $path = '' ) {
+		$dir = rtrim( plugin_dir_url(__FILE__), '/' );
 		if ( !empty( $path ) && is_string( $path) )
 			$dir .= '/' . ltrim( $path, '/' );
 		return $dir;
@@ -275,6 +291,9 @@ class GFGAET {
 	 * @param array $form_args The form arguments
 	 */
 	public function maybe_ajax_only( $form_args ) {
+		if ( class_exists( 'GFCommon' ) && GFCommon::is_preview() ) {
+			return $form_args;
+		}
 		$gravity_forms_add_on_settings = get_option( 'gravityformsaddon_GFGAET_UA_settings', array() );
 
 		if ( isset( $gravity_forms_add_on_settings[ 'ajax_only' ] ) && 'on' == $gravity_forms_add_on_settings[ 'ajax_only' ] ) {

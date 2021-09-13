@@ -4,9 +4,9 @@ jQuery(function ($) {
     var hash = location.hash.replace('#','');
     if (hash != '') {
         hash = parseInt(hash);
-        $('.tabs a[tabid=' + hash + ']').click();
+        $('.tabs a[tabid=' + hash + ']').trigger('click');
     } else {
-        $('.tabs a[tabid=1]').click();
+        $('.tabs a[tabid=1]').trigger('click');
     }
 
     $('.tabs a').on('click', function(){
@@ -358,7 +358,7 @@ jQuery(function ($) {
 
         $('.asp-notice-ri').css("display", "none");
 
-        $('.wd_progress_stop').click();
+        $('.wd_progress_stop').trigger('click');
 
         var blogids_input_val = $('input[name=it_blog_ids]').val().replace('xxx1', '');
 
@@ -536,7 +536,7 @@ jQuery(function ($) {
            $('.it_pool_size.item').removeClass('disabled');
        }
     });
-    $("input[name=it_pool_size_auto]").change();
+    $("input[name=it_pool_size_auto]").trigger('change');
 
     // ------------------------------------------- ETC -----------------------------------------------------------------
     function msg(k) {

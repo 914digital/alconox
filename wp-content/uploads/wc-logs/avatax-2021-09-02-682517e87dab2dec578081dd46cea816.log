@@ -1,0 +1,618 @@
+09-01-2021 @ 20:20:49 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/taxrates/byaddress?line1=&line2=&city=Elmer&region=NJ&country=US&postalCode=08318
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.8)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.30903s
+
+09-01-2021 @ 20:20:49 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Thu, 02 Sep 2021 00:20:49 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 87
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0183813
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"totalRate":0.066250,"rates":[{"rate":0.066250,"name":"NJ STATE TAX","type":"State"}]}
+
+09-01-2021 @ 20:20:50 - Request
+Request
+method: POST
+uri: https://rest.avatax.com/api/v2/transactions/create
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.8)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body: {"code":"","companyCode":"ALC","customerCode":"Guest","currencyCode":"USD","date":"2021-09-01","lines":[{"number":"1d4e57d912f16d891796dc4178591cd5","itemCode":"90116","taxCode":"P0000000","description":"Ledizolv","quantity":1,"amount":21.800000000000001},{"number":"shipping_0","itemCode":"use-my-shipping-account","taxCode":"FR","description":"Use My Shipping Account","quantity":1}],"addresses":{"shipFrom":{"line1":"30 GLENN ST","line2":"","city":"WHITE PLAINS","region":"NY","country":"US","postalCode":"10603-3254"},"shipTo":{"line1":"207 Oak St","line2":"","city":"Elmer","region":"NJ","country":"US","postalCode":"08318"}},"type":"SalesOrder","commit":false}
+duration: 0.33474s
+
+09-01-2021 @ 20:20:50 - Response
+Response
+code: 201
+message: Created
+headers: Array
+(
+    [date] => Thu, 02 Sep 2021 00:20:50 GMT
+    [content-type] => application/json; charset=utf-8
+    [server] => Kestrel
+    [content-encoding] => br
+    [location] => /api/v2/companies/207925/transactions/0
+    [vary] => Accept-Encoding
+    [serverduration] => 00:00:00.0441599
+)
+body: {"id":0,"code":"591c97c6-73d5-4e5d-8038-bb7817489b2f","companyId":207925,"date":"2021-09-01","paymentDate":"2021-09-01","status":"Temporary","type":"SalesOrder","batchCode":"","currencyCode":"USD","exchangeRateCurrencyCode":"USD","customerUsageType":"","entityUseCode":"","customerVendorCode":"Guest","customerCode":"Guest","exemptNo":"","reconciled":false,"locationCode":"","reportingLocationCode":"","purchaseOrderNo":"","referenceCode":"","salespersonCode":"","totalAmount":21.8,"totalExempt":0.0,"totalDiscount":0.0,"totalTax":1.44,"totalTaxable":21.8,"totalTaxCalculated":1.44,"adjustmentReason":"NotAdjusted","locked":false,"version":1,"exchangeRateEffectiveDate":"2021-09-01","exchangeRate":1.0,"modifiedDate":"2021-09-02T00:20:50.1246891Z","modifiedUserId":231879,"taxDate":"2021-09-01","lines":[{"id":0,"transactionId":0,"lineNumber":"1d4e57d912f16d891796dc4178591cd5","customerUsageType":"","entityUseCode":"","description":"Ledizolv","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"itemCode":"90116","lineAmount":21.800000000000001,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-09-01","tax":1.44,"taxableAmount":21.8,"taxCalculated":1.44,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-09-01","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NJ","exemptAmount":0.0,"jurisCode":"34","jurisName":"NEW JERSEY","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.066250,"tax":1.44,"taxableAmount":21.8,"taxType":"Sales","taxSubTypeId":"S","taxName":"NJ STATE TAX","taxAuthorityTypeId":45,"taxCalculated":1.44,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":21.8,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":1.44,"reportingTaxCalculated":1.44,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":0,"transactionId":0,"lineNumber":"shipping_0","customerUsageType":"","entityUseCode":"","description":"Use My Shipping Account","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":false,"itemCode":"use-my-shipping-account","lineAmount":0.0,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-09-01","tax":0.0,"taxableAmount":0.0,"taxCalculated":0.0,"taxCode":"FR","taxCodeId":7119,"taxDate":"2021-09-01","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NJ","exemptAmount":0.0,"jurisCode":"34","jurisName":"NEW JERSEY","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.066250,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NJ STATE TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0}],"addresses":[{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"207 Oak St","line2":"","line3":"","city":"Elmer","region":"NJ","postalCode":"08318","country":"US","taxRegionId":4005936,"latitude":"39.597282","longitude":"-75.174816"},{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"30 GLENN ST","line2":"","line3":"","city":"WHITE PLAINS","region":"NY","postalCode":"10603-3254","country":"US","taxRegionId":2090237,"latitude":"41.050608","longitude":"-73.771383"}],"summary":[{"country":"US","region":"NJ","jurisType":"State","jurisCode":"34","jurisName":"NEW JERSEY","taxAuthorityType":45,"stateAssignedNo":"","taxType":"Sales","taxSubType":"S","taxName":"NJ STATE TAX","rateType":"General","taxable":21.8,"rate":0.066250,"tax":1.44,"taxCalculated":1.44,"nonTaxable":0.0,"exemption":0.0}]}
+
+09-01-2021 @ 20:21:44 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/taxrates/byaddress?line1=&line2=&city=Elmer&region=NJ&country=US&postalCode=08318
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.8)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.33824s
+
+09-01-2021 @ 20:21:44 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Thu, 02 Sep 2021 00:21:44 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 87
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0015023
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"totalRate":0.066250,"rates":[{"rate":0.066250,"name":"NJ STATE TAX","type":"State"}]}
+
+09-01-2021 @ 20:21:44 - Request
+Request
+method: POST
+uri: https://rest.avatax.com/api/v2/transactions/create
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.8)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body: {"code":"","companyCode":"ALC","customerCode":"bernadette@wjmproductions.com","currencyCode":"USD","date":"2021-09-01","lines":[{"number":"1d4e57d912f16d891796dc4178591cd5","itemCode":"90116","taxCode":"P0000000","description":"Ledizolv","quantity":1,"amount":21.800000000000001},{"number":"shipping_0","itemCode":"use-my-shipping-account","taxCode":"FR","description":"Use My Shipping Account","quantity":1}],"addresses":{"shipFrom":{"line1":"30 GLENN ST","line2":"","city":"WHITE PLAINS","region":"NY","country":"US","postalCode":"10603-3254"},"shipTo":{"line1":"207 Oak St","line2":"","city":"Elmer","region":"NJ","country":"US","postalCode":"08318"}},"type":"SalesOrder","commit":false}
+duration: 0.32232s
+
+09-01-2021 @ 20:21:44 - Response
+Response
+code: 201
+message: Created
+headers: Array
+(
+    [date] => Thu, 02 Sep 2021 00:21:44 GMT
+    [content-type] => application/json; charset=utf-8
+    [server] => Kestrel
+    [content-encoding] => br
+    [location] => /api/v2/companies/207925/transactions/0
+    [vary] => Accept-Encoding
+    [serverduration] => 00:00:00.0334619
+)
+body: {"id":0,"code":"2166a704-ec53-4f9b-a231-f303bd178641","companyId":207925,"date":"2021-09-01","paymentDate":"2021-09-01","status":"Temporary","type":"SalesOrder","batchCode":"","currencyCode":"USD","exchangeRateCurrencyCode":"USD","customerUsageType":"","entityUseCode":"","customerVendorCode":"bernadette@wjmproductions.com","customerCode":"bernadette@wjmproductions.com","exemptNo":"","reconciled":false,"locationCode":"","reportingLocationCode":"","purchaseOrderNo":"","referenceCode":"","salespersonCode":"","totalAmount":21.8,"totalExempt":0.0,"totalDiscount":0.0,"totalTax":1.44,"totalTaxable":21.8,"totalTaxCalculated":1.44,"adjustmentReason":"NotAdjusted","locked":false,"version":1,"exchangeRateEffectiveDate":"2021-09-01","exchangeRate":1.0,"modifiedDate":"2021-09-02T00:21:44.8759301Z","modifiedUserId":231879,"taxDate":"2021-09-01","lines":[{"id":0,"transactionId":0,"lineNumber":"1d4e57d912f16d891796dc4178591cd5","customerUsageType":"","entityUseCode":"","description":"Ledizolv","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"itemCode":"90116","lineAmount":21.800000000000001,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-09-01","tax":1.44,"taxableAmount":21.8,"taxCalculated":1.44,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-09-01","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NJ","exemptAmount":0.0,"jurisCode":"34","jurisName":"NEW JERSEY","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.066250,"tax":1.44,"taxableAmount":21.8,"taxType":"Sales","taxSubTypeId":"S","taxName":"NJ STATE TAX","taxAuthorityTypeId":45,"taxCalculated":1.44,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":21.8,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":1.44,"reportingTaxCalculated":1.44,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":0,"transactionId":0,"lineNumber":"shipping_0","customerUsageType":"","entityUseCode":"","description":"Use My Shipping Account","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":false,"itemCode":"use-my-shipping-account","lineAmount":0.0,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-09-01","tax":0.0,"taxableAmount":0.0,"taxCalculated":0.0,"taxCode":"FR","taxCodeId":7119,"taxDate":"2021-09-01","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NJ","exemptAmount":0.0,"jurisCode":"34","jurisName":"NEW JERSEY","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.066250,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NJ STATE TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0}],"addresses":[{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"207 Oak St","line2":"","line3":"","city":"Elmer","region":"NJ","postalCode":"08318","country":"US","taxRegionId":4005936,"latitude":"39.597282","longitude":"-75.174816"},{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"30 GLENN ST","line2":"","line3":"","city":"WHITE PLAINS","region":"NY","postalCode":"10603-3254","country":"US","taxRegionId":2090237,"latitude":"41.050608","longitude":"-73.771383"}],"summary":[{"country":"US","region":"NJ","jurisType":"State","jurisCode":"34","jurisName":"NEW JERSEY","taxAuthorityType":45,"stateAssignedNo":"","taxType":"Sales","taxSubType":"S","taxName":"NJ STATE TAX","rateType":"General","taxable":21.8,"rate":0.066250,"tax":1.44,"taxCalculated":1.44,"nonTaxable":0.0,"exemption":0.0}]}
+
+09-01-2021 @ 20:21:50 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/taxrates/byaddress?line1=&line2=&city=Elmer&region=NJ&country=US&postalCode=08318
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.8)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.32472s
+
+09-01-2021 @ 20:21:50 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Thu, 02 Sep 2021 00:21:50 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 87
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0010498
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"totalRate":0.066250,"rates":[{"rate":0.066250,"name":"NJ STATE TAX","type":"State"}]}
+
+09-01-2021 @ 20:21:51 - Request
+Request
+method: POST
+uri: https://rest.avatax.com/api/v2/transactions/create
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.8)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body: {"code":"","companyCode":"ALC","customerCode":"bernadette@wjmproductions.com","currencyCode":"USD","date":"2021-09-01","lines":[{"number":"1d4e57d912f16d891796dc4178591cd5","itemCode":"90116","taxCode":"P0000000","description":"Ledizolv","quantity":1,"amount":21.800000000000001},{"number":"shipping_0","itemCode":"pt-ups-merger:6:03","taxCode":"FR","description":"Ground (UPS)","quantity":1,"amount":21.039999999999999}],"addresses":{"shipFrom":{"line1":"30 GLENN ST","line2":"","city":"WHITE PLAINS","region":"NY","country":"US","postalCode":"10603-3254"},"shipTo":{"line1":"207 Oak St","line2":"","city":"Elmer","region":"NJ","country":"US","postalCode":"08318"}},"type":"SalesOrder","commit":false}
+duration: 0.34935s
+
+09-01-2021 @ 20:21:51 - Response
+Response
+code: 201
+message: Created
+headers: Array
+(
+    [date] => Thu, 02 Sep 2021 00:21:51 GMT
+    [content-type] => application/json; charset=utf-8
+    [server] => Kestrel
+    [content-encoding] => br
+    [location] => /api/v2/companies/207925/transactions/0
+    [vary] => Accept-Encoding
+    [serverduration] => 00:00:00.0425719
+)
+body: {"id":0,"code":"97a0e12a-2e47-48ba-80a8-ff0d64d99ad7","companyId":207925,"date":"2021-09-01","paymentDate":"2021-09-01","status":"Temporary","type":"SalesOrder","batchCode":"","currencyCode":"USD","exchangeRateCurrencyCode":"USD","customerUsageType":"","entityUseCode":"","customerVendorCode":"bernadette@wjmproductions.com","customerCode":"bernadette@wjmproductions.com","exemptNo":"","reconciled":false,"locationCode":"","reportingLocationCode":"","purchaseOrderNo":"","referenceCode":"","salespersonCode":"","totalAmount":42.84,"totalExempt":21.04,"totalDiscount":0.0,"totalTax":1.44,"totalTaxable":21.8,"totalTaxCalculated":1.44,"adjustmentReason":"NotAdjusted","locked":false,"version":1,"exchangeRateEffectiveDate":"2021-09-01","exchangeRate":1.0,"modifiedDate":"2021-09-02T00:21:51.0851295Z","modifiedUserId":231879,"taxDate":"2021-09-01","lines":[{"id":0,"transactionId":0,"lineNumber":"1d4e57d912f16d891796dc4178591cd5","customerUsageType":"","entityUseCode":"","description":"Ledizolv","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"itemCode":"90116","lineAmount":21.800000000000001,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-09-01","tax":1.44,"taxableAmount":21.8,"taxCalculated":1.44,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-09-01","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NJ","exemptAmount":0.0,"jurisCode":"34","jurisName":"NEW JERSEY","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.066250,"tax":1.44,"taxableAmount":21.8,"taxType":"Sales","taxSubTypeId":"S","taxName":"NJ STATE TAX","taxAuthorityTypeId":45,"taxCalculated":1.44,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":21.8,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":1.44,"reportingTaxCalculated":1.44,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":0,"transactionId":0,"lineNumber":"shipping_0","customerUsageType":"","entityUseCode":"","description":"Ground (UPS)","discountAmount":0.0,"exemptAmount":21.04,"exemptCertId":0,"exemptNo":"","isItemTaxable":false,"itemCode":"pt-ups-merger:6:03","lineAmount":21.039999999999999,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-09-01","tax":0.0,"taxableAmount":0.0,"taxCalculated":0.0,"taxCode":"FR","taxCodeId":7119,"taxDate":"2021-09-01","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NJ","exemptAmount":0.0,"jurisCode":"34","jurisName":"NEW JERSEY","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":21.04,"rate":0.066250,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NJ STATE TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":21.04,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0}],"addresses":[{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"207 Oak St","line2":"","line3":"","city":"Elmer","region":"NJ","postalCode":"08318","country":"US","taxRegionId":4005936,"latitude":"39.597282","longitude":"-75.174816"},{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"30 GLENN ST","line2":"","line3":"","city":"WHITE PLAINS","region":"NY","postalCode":"10603-3254","country":"US","taxRegionId":2090237,"latitude":"41.050608","longitude":"-73.771383"}],"summary":[{"country":"US","region":"NJ","jurisType":"State","jurisCode":"34","jurisName":"NEW JERSEY","taxAuthorityType":45,"stateAssignedNo":"","taxType":"Sales","taxSubType":"S","taxName":"NJ STATE TAX","rateType":"General","taxable":21.8,"rate":0.066250,"tax":1.44,"taxCalculated":1.44,"nonTaxable":21.04,"exemption":0.0}]}
+
+09-01-2021 @ 20:26:39 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/taxrates/byaddress?line1=&line2=&city=Elmer&region=NJ&country=US&postalCode=08318
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.8)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.32616s
+
+09-01-2021 @ 20:26:39 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Thu, 02 Sep 2021 00:26:39 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 87
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0014360
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"totalRate":0.066250,"rates":[{"rate":0.066250,"name":"NJ STATE TAX","type":"State"}]}
+
+09-01-2021 @ 20:26:39 - Request
+Request
+method: POST
+uri: https://rest.avatax.com/api/v2/transactions/create
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.8)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body: {"code":"","companyCode":"ALC","customerCode":"Guest","currencyCode":"USD","date":"2021-09-01","lines":[{"number":"1d4e57d912f16d891796dc4178591cd5","itemCode":"90116","taxCode":"P0000000","description":"Ledizolv","quantity":1,"amount":21.800000000000001},{"number":"shipping_0","itemCode":"pt-ups-merger:6:03","taxCode":"FR","description":"Ground (UPS)","quantity":1,"amount":21.039999999999999}],"addresses":{"shipFrom":{"line1":"30 GLENN ST","line2":"","city":"WHITE PLAINS","region":"NY","country":"US","postalCode":"10603-3254"},"shipTo":{"line1":"207 Oak St","line2":"","city":"Elmer","region":"NJ","country":"US","postalCode":"08318"}},"type":"SalesOrder","commit":false}
+duration: 0.35139s
+
+09-01-2021 @ 20:26:39 - Response
+Response
+code: 201
+message: Created
+headers: Array
+(
+    [date] => Thu, 02 Sep 2021 00:26:39 GMT
+    [content-type] => application/json; charset=utf-8
+    [server] => Kestrel
+    [content-encoding] => br
+    [location] => /api/v2/companies/207925/transactions/0
+    [vary] => Accept-Encoding
+    [serverduration] => 00:00:00.0414420
+)
+body: {"id":0,"code":"d4d50142-0906-42ae-8cea-e70b617194c0","companyId":207925,"date":"2021-09-01","paymentDate":"2021-09-01","status":"Temporary","type":"SalesOrder","batchCode":"","currencyCode":"USD","exchangeRateCurrencyCode":"USD","customerUsageType":"","entityUseCode":"","customerVendorCode":"Guest","customerCode":"Guest","exemptNo":"","reconciled":false,"locationCode":"","reportingLocationCode":"","purchaseOrderNo":"","referenceCode":"","salespersonCode":"","totalAmount":42.84,"totalExempt":21.04,"totalDiscount":0.0,"totalTax":1.44,"totalTaxable":21.8,"totalTaxCalculated":1.44,"adjustmentReason":"NotAdjusted","locked":false,"version":1,"exchangeRateEffectiveDate":"2021-09-01","exchangeRate":1.0,"modifiedDate":"2021-09-02T00:26:39.5675134Z","modifiedUserId":231879,"taxDate":"2021-09-01","lines":[{"id":0,"transactionId":0,"lineNumber":"1d4e57d912f16d891796dc4178591cd5","customerUsageType":"","entityUseCode":"","description":"Ledizolv","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"itemCode":"90116","lineAmount":21.800000000000001,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-09-01","tax":1.44,"taxableAmount":21.8,"taxCalculated":1.44,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-09-01","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NJ","exemptAmount":0.0,"jurisCode":"34","jurisName":"NEW JERSEY","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.066250,"tax":1.44,"taxableAmount":21.8,"taxType":"Sales","taxSubTypeId":"S","taxName":"NJ STATE TAX","taxAuthorityTypeId":45,"taxCalculated":1.44,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":21.8,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":1.44,"reportingTaxCalculated":1.44,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":0,"transactionId":0,"lineNumber":"shipping_0","customerUsageType":"","entityUseCode":"","description":"Ground (UPS)","discountAmount":0.0,"exemptAmount":21.04,"exemptCertId":0,"exemptNo":"","isItemTaxable":false,"itemCode":"pt-ups-merger:6:03","lineAmount":21.039999999999999,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-09-01","tax":0.0,"taxableAmount":0.0,"taxCalculated":0.0,"taxCode":"FR","taxCodeId":7119,"taxDate":"2021-09-01","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NJ","exemptAmount":0.0,"jurisCode":"34","jurisName":"NEW JERSEY","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":21.04,"rate":0.066250,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NJ STATE TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":21.04,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0}],"addresses":[{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"207 Oak St","line2":"","line3":"","city":"Elmer","region":"NJ","postalCode":"08318","country":"US","taxRegionId":4005936,"latitude":"39.597282","longitude":"-75.174816"},{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"30 GLENN ST","line2":"","line3":"","city":"WHITE PLAINS","region":"NY","postalCode":"10603-3254","country":"US","taxRegionId":2090237,"latitude":"41.050608","longitude":"-73.771383"}],"summary":[{"country":"US","region":"NJ","jurisType":"State","jurisCode":"34","jurisName":"NEW JERSEY","taxAuthorityType":45,"stateAssignedNo":"","taxType":"Sales","taxSubType":"S","taxName":"NJ STATE TAX","rateType":"General","taxable":21.8,"rate":0.066250,"tax":1.44,"taxCalculated":1.44,"nonTaxable":21.04,"exemption":0.0}]}
+
+09-01-2021 @ 20:26:42 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/taxrates/byaddress?line1=&line2=&city=Elmer&region=NJ&country=US&postalCode=08318
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.8)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.28474s
+
+09-01-2021 @ 20:26:42 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Thu, 02 Sep 2021 00:26:42 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 87
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0012749
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"totalRate":0.066250,"rates":[{"rate":0.066250,"name":"NJ STATE TAX","type":"State"}]}
+
+09-01-2021 @ 20:26:42 - Request
+Request
+method: POST
+uri: https://rest.avatax.com/api/v2/transactions/create
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.8)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body: {"code":"","companyCode":"ALC","customerCode":"Guest","currencyCode":"USD","date":"2021-09-01","lines":[{"number":"1d4e57d912f16d891796dc4178591cd5","itemCode":"90116","taxCode":"P0000000","description":"Ledizolv","quantity":1,"amount":21.800000000000001},{"number":"shipping_0","itemCode":"pt-ups-merger:6:03","taxCode":"FR","description":"Ground (UPS)","quantity":1,"amount":21.039999999999999}],"addresses":{"shipFrom":{"line1":"30 GLENN ST","line2":"","city":"WHITE PLAINS","region":"NY","country":"US","postalCode":"10603-3254"},"shipTo":{"line1":"207 Oak St","line2":"","city":"Elmer","region":"NJ","country":"US","postalCode":"08318"}},"type":"SalesOrder","commit":false}
+duration: 0.31437s
+
+09-01-2021 @ 20:26:42 - Response
+Response
+code: 201
+message: Created
+headers: Array
+(
+    [date] => Thu, 02 Sep 2021 00:26:42 GMT
+    [content-type] => application/json; charset=utf-8
+    [server] => Kestrel
+    [content-encoding] => br
+    [location] => /api/v2/companies/207925/transactions/0
+    [vary] => Accept-Encoding
+    [serverduration] => 00:00:00.0414710
+)
+body: {"id":0,"code":"6b1cd28d-6e8b-492b-bc42-dd51b3354db6","companyId":207925,"date":"2021-09-01","paymentDate":"2021-09-01","status":"Temporary","type":"SalesOrder","batchCode":"","currencyCode":"USD","exchangeRateCurrencyCode":"USD","customerUsageType":"","entityUseCode":"","customerVendorCode":"Guest","customerCode":"Guest","exemptNo":"","reconciled":false,"locationCode":"","reportingLocationCode":"","purchaseOrderNo":"","referenceCode":"","salespersonCode":"","totalAmount":42.84,"totalExempt":21.04,"totalDiscount":0.0,"totalTax":1.44,"totalTaxable":21.8,"totalTaxCalculated":1.44,"adjustmentReason":"NotAdjusted","locked":false,"version":1,"exchangeRateEffectiveDate":"2021-09-01","exchangeRate":1.0,"modifiedDate":"2021-09-02T00:26:42.4410356Z","modifiedUserId":231879,"taxDate":"2021-09-01","lines":[{"id":0,"transactionId":0,"lineNumber":"1d4e57d912f16d891796dc4178591cd5","customerUsageType":"","entityUseCode":"","description":"Ledizolv","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"itemCode":"90116","lineAmount":21.800000000000001,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-09-01","tax":1.44,"taxableAmount":21.8,"taxCalculated":1.44,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-09-01","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NJ","exemptAmount":0.0,"jurisCode":"34","jurisName":"NEW JERSEY","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.066250,"tax":1.44,"taxableAmount":21.8,"taxType":"Sales","taxSubTypeId":"S","taxName":"NJ STATE TAX","taxAuthorityTypeId":45,"taxCalculated":1.44,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":21.8,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":1.44,"reportingTaxCalculated":1.44,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":0,"transactionId":0,"lineNumber":"shipping_0","customerUsageType":"","entityUseCode":"","description":"Ground (UPS)","discountAmount":0.0,"exemptAmount":21.04,"exemptCertId":0,"exemptNo":"","isItemTaxable":false,"itemCode":"pt-ups-merger:6:03","lineAmount":21.039999999999999,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-09-01","tax":0.0,"taxableAmount":0.0,"taxCalculated":0.0,"taxCode":"FR","taxCodeId":7119,"taxDate":"2021-09-01","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NJ","exemptAmount":0.0,"jurisCode":"34","jurisName":"NEW JERSEY","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":21.04,"rate":0.066250,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NJ STATE TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":21.04,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0}],"addresses":[{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"207 Oak St","line2":"","line3":"","city":"Elmer","region":"NJ","postalCode":"08318","country":"US","taxRegionId":4005936,"latitude":"39.597282","longitude":"-75.174816"},{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"30 GLENN ST","line2":"","line3":"","city":"WHITE PLAINS","region":"NY","postalCode":"10603-3254","country":"US","taxRegionId":2090237,"latitude":"41.050608","longitude":"-73.771383"}],"summary":[{"country":"US","region":"NJ","jurisType":"State","jurisCode":"34","jurisName":"NEW JERSEY","taxAuthorityType":45,"stateAssignedNo":"","taxType":"Sales","taxSubType":"S","taxName":"NJ STATE TAX","rateType":"General","taxable":21.8,"rate":0.066250,"tax":1.44,"taxCalculated":1.44,"nonTaxable":21.04,"exemption":0.0}]}
+
+09-02-2021 @ 14:51:37 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/taxrates/byaddress?line1=&line2=&city=Mountain+Lakes&region=NJ&country=US&postalCode=07046-1011
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.8)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.3215s
+
+09-02-2021 @ 14:51:37 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Thu, 02 Sep 2021 18:51:37 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 87
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0204558
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"totalRate":0.066250,"rates":[{"rate":0.066250,"name":"NJ STATE TAX","type":"State"}]}
+
+09-02-2021 @ 14:51:38 - Request
+Request
+method: POST
+uri: https://rest.avatax.com/api/v2/transactions/create
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.8)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body: {"code":"","companyCode":"ALC","customerCode":"garypedersen@vitrocom.com","currencyCode":"USD","date":"2021-09-02","lines":[{"number":"2e969d52de7679efab2533da1badafd2","itemCode":"2533","taxCode":"P0000000","description":"3 Vent Caps & 3 Silver Gloves","quantity":1,"amount":176},{"number":"shipping_0","itemCode":"use-my-shipping-account","taxCode":"FR","description":"Use My Shipping Account","quantity":1}],"addresses":{"shipFrom":{"line1":"30 GLENN ST","line2":"","city":"WHITE PLAINS","region":"NY","country":"US","postalCode":"10603-3254"},"shipTo":{"line1":"VitroCom.","line2":"8 Morris Ave.","city":"Mountain Lakes","region":"NJ","country":"US","postalCode":"07046-1011"}},"type":"SalesOrder","commit":false}
+duration: 0.58888s
+
+09-02-2021 @ 14:51:38 - Response
+Response
+code: 201
+message: Created
+headers: Array
+(
+    [date] => Thu, 02 Sep 2021 18:51:38 GMT
+    [content-type] => application/json; charset=utf-8
+    [server] => Kestrel
+    [content-encoding] => br
+    [location] => /api/v2/companies/207925/transactions/0
+    [vary] => Accept-Encoding
+    [serverduration] => 00:00:00.0406399
+)
+body: {"id":0,"code":"6e773e62-41ba-4f61-987f-12f607f5b2e1","companyId":207925,"date":"2021-09-02","paymentDate":"2021-09-02","status":"Temporary","type":"SalesOrder","batchCode":"","currencyCode":"USD","exchangeRateCurrencyCode":"USD","customerUsageType":"","entityUseCode":"","customerVendorCode":"garypedersen@vitrocom.com","customerCode":"garypedersen@vitrocom.com","exemptNo":"","reconciled":false,"locationCode":"","reportingLocationCode":"","purchaseOrderNo":"","referenceCode":"","salespersonCode":"","totalAmount":176.0,"totalExempt":0.0,"totalDiscount":0.0,"totalTax":11.66,"totalTaxable":176.0,"totalTaxCalculated":11.66,"adjustmentReason":"NotAdjusted","locked":false,"version":1,"exchangeRateEffectiveDate":"2021-09-02","exchangeRate":1.0,"modifiedDate":"2021-09-02T18:51:38.2782362Z","modifiedUserId":231879,"taxDate":"2021-09-02","lines":[{"id":0,"transactionId":0,"lineNumber":"2e969d52de7679efab2533da1badafd2","customerUsageType":"","entityUseCode":"","description":"3 Vent Caps & 3 Silver Gloves","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"itemCode":"2533","lineAmount":176.0,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-09-02","tax":11.66,"taxableAmount":176.0,"taxCalculated":11.66,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-09-02","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NJ","exemptAmount":0.0,"jurisCode":"34","jurisName":"NEW JERSEY","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.066250,"tax":11.66,"taxableAmount":176.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NJ STATE TAX","taxAuthorityTypeId":45,"taxCalculated":11.66,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":176.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":11.66,"reportingTaxCalculated":11.66,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":0,"transactionId":0,"lineNumber":"shipping_0","customerUsageType":"","entityUseCode":"","description":"Use My Shipping Account","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":false,"itemCode":"use-my-shipping-account","lineAmount":0.0,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-09-02","tax":0.0,"taxableAmount":0.0,"taxCalculated":0.0,"taxCode":"FR","taxCodeId":7119,"taxDate":"2021-09-02","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NJ","exemptAmount":0.0,"jurisCode":"34","jurisName":"NEW JERSEY","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.066250,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NJ STATE TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0}],"addresses":[{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"VitroCom.","line2":"8 Morris Ave.","line3":"","city":"Mountain Lakes","region":"NJ","postalCode":"07046-1011","country":"US","taxRegionId":4005214,"latitude":"40.896776","longitude":"-74.418914"},{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"30 GLENN ST","line2":"","line3":"","city":"WHITE PLAINS","region":"NY","postalCode":"10603-3254","country":"US","taxRegionId":2090237,"latitude":"41.050608","longitude":"-73.771383"}],"summary":[{"country":"US","region":"NJ","jurisType":"State","jurisCode":"34","jurisName":"NEW JERSEY","taxAuthorityType":45,"stateAssignedNo":"","taxType":"Sales","taxSubType":"S","taxName":"NJ STATE TAX","rateType":"General","taxable":176.0,"rate":0.066250,"tax":11.66,"taxCalculated":11.66,"nonTaxable":0.0,"exemption":0.0}]}
+
+09-02-2021 @ 14:52:27 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/taxrates/byaddress?line1=&line2=&city=Mountain+Lakes&region=NJ&country=US&postalCode=07046-1011
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.8)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.30799s
+
+09-02-2021 @ 14:52:27 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Thu, 02 Sep 2021 18:52:27 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 87
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0014906
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"totalRate":0.066250,"rates":[{"rate":0.066250,"name":"NJ STATE TAX","type":"State"}]}
+
+09-02-2021 @ 14:52:28 - Request
+Request
+method: POST
+uri: https://rest.avatax.com/api/v2/transactions/create
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.8)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body: {"code":"","companyCode":"ALC","customerCode":"garypedersen@vitrocom.com","currencyCode":"USD","date":"2021-09-02","lines":[{"number":"2e969d52de7679efab2533da1badafd2","itemCode":"2533","taxCode":"P0000000","description":"3 Vent Caps & 3 Silver Gloves","quantity":1,"amount":176},{"number":"shipping_0","itemCode":"use-my-shipping-account","taxCode":"FR","description":"Use My Shipping Account","quantity":1}],"addresses":{"shipFrom":{"line1":"30 GLENN ST","line2":"","city":"WHITE PLAINS","region":"NY","country":"US","postalCode":"10603-3254"},"shipTo":{"line1":"VitroCom","line2":"8 Morris Ave.","city":"Mountain Lakes","region":"NJ","country":"US","postalCode":"07046-1011"}},"type":"SalesOrder","commit":false}
+duration: 0.35805s
+
+09-02-2021 @ 14:52:28 - Response
+Response
+code: 201
+message: Created
+headers: Array
+(
+    [date] => Thu, 02 Sep 2021 18:52:28 GMT
+    [content-type] => application/json; charset=utf-8
+    [server] => Kestrel
+    [content-encoding] => br
+    [location] => /api/v2/companies/207925/transactions/0
+    [vary] => Accept-Encoding
+    [serverduration] => 00:00:00.0351162
+)
+body: {"id":0,"code":"cced1104-4fd7-4b0c-aeec-a077c0fbb67d","companyId":207925,"date":"2021-09-02","paymentDate":"2021-09-02","status":"Temporary","type":"SalesOrder","batchCode":"","currencyCode":"USD","exchangeRateCurrencyCode":"USD","customerUsageType":"","entityUseCode":"","customerVendorCode":"garypedersen@vitrocom.com","customerCode":"garypedersen@vitrocom.com","exemptNo":"","reconciled":false,"locationCode":"","reportingLocationCode":"","purchaseOrderNo":"","referenceCode":"","salespersonCode":"","totalAmount":176.0,"totalExempt":0.0,"totalDiscount":0.0,"totalTax":11.66,"totalTaxable":176.0,"totalTaxCalculated":11.66,"adjustmentReason":"NotAdjusted","locked":false,"version":1,"exchangeRateEffectiveDate":"2021-09-02","exchangeRate":1.0,"modifiedDate":"2021-09-02T18:52:28.0719454Z","modifiedUserId":231879,"taxDate":"2021-09-02","lines":[{"id":0,"transactionId":0,"lineNumber":"2e969d52de7679efab2533da1badafd2","customerUsageType":"","entityUseCode":"","description":"3 Vent Caps & 3 Silver Gloves","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"itemCode":"2533","lineAmount":176.0,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-09-02","tax":11.66,"taxableAmount":176.0,"taxCalculated":11.66,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-09-02","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NJ","exemptAmount":0.0,"jurisCode":"34","jurisName":"NEW JERSEY","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.066250,"tax":11.66,"taxableAmount":176.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NJ STATE TAX","taxAuthorityTypeId":45,"taxCalculated":11.66,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":176.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":11.66,"reportingTaxCalculated":11.66,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":0,"transactionId":0,"lineNumber":"shipping_0","customerUsageType":"","entityUseCode":"","description":"Use My Shipping Account","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":false,"itemCode":"use-my-shipping-account","lineAmount":0.0,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-09-02","tax":0.0,"taxableAmount":0.0,"taxCalculated":0.0,"taxCode":"FR","taxCodeId":7119,"taxDate":"2021-09-02","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NJ","exemptAmount":0.0,"jurisCode":"34","jurisName":"NEW JERSEY","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.066250,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NJ STATE TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0}],"addresses":[{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"VitroCom","line2":"8 Morris Ave.","line3":"","city":"Mountain Lakes","region":"NJ","postalCode":"07046-1011","country":"US","taxRegionId":4005214,"latitude":"40.896776","longitude":"-74.418914"},{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"30 GLENN ST","line2":"","line3":"","city":"WHITE PLAINS","region":"NY","postalCode":"10603-3254","country":"US","taxRegionId":2090237,"latitude":"41.050608","longitude":"-73.771383"}],"summary":[{"country":"US","region":"NJ","jurisType":"State","jurisCode":"34","jurisName":"NEW JERSEY","taxAuthorityType":45,"stateAssignedNo":"","taxType":"Sales","taxSubType":"S","taxName":"NJ STATE TAX","rateType":"General","taxable":176.0,"rate":0.066250,"tax":11.66,"taxCalculated":11.66,"nonTaxable":0.0,"exemption":0.0}]}
+
+09-02-2021 @ 14:52:57 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/taxrates/byaddress?line1=&line2=&city=Mountain+Lakes&region=NJ&country=US&postalCode=07046-1011
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.8)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.39109s
+
+09-02-2021 @ 14:52:57 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Thu, 02 Sep 2021 18:52:57 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 87
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0015455
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"totalRate":0.066250,"rates":[{"rate":0.066250,"name":"NJ STATE TAX","type":"State"}]}
+
+09-02-2021 @ 14:52:58 - Request
+Request
+method: POST
+uri: https://rest.avatax.com/api/v2/transactions/create
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.8)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body: {"code":"","companyCode":"ALC","customerCode":"garypedersen@vitrocom.com","currencyCode":"USD","date":"2021-09-02","lines":[{"number":"2e969d52de7679efab2533da1badafd2","itemCode":"2533","taxCode":"P0000000","description":"3 Vent Caps & 3 Silver Gloves","quantity":1,"amount":176},{"number":"shipping_0","itemCode":"use-my-shipping-account","taxCode":"FR","description":"Use My Shipping Account","quantity":1}],"addresses":{"shipFrom":{"line1":"30 GLENN ST","line2":"","city":"WHITE PLAINS","region":"NY","country":"US","postalCode":"10603-3254"},"shipTo":{"line1":"8 Morris Ave","line2":"8 Morris Ave.","city":"Mountain Lakes","region":"NJ","country":"US","postalCode":"07046-1011"}},"type":"SalesOrder","commit":false}
+duration: 0.34059s
+
+09-02-2021 @ 14:52:58 - Response
+Response
+code: 201
+message: Created
+headers: Array
+(
+    [date] => Thu, 02 Sep 2021 18:52:58 GMT
+    [content-type] => application/json; charset=utf-8
+    [server] => Kestrel
+    [content-encoding] => br
+    [location] => /api/v2/companies/207925/transactions/0
+    [vary] => Accept-Encoding
+    [serverduration] => 00:00:00.0412016
+)
+body: {"id":0,"code":"3f5d04ee-8bbe-4c4b-a7f4-98c4aa272196","companyId":207925,"date":"2021-09-02","paymentDate":"2021-09-02","status":"Temporary","type":"SalesOrder","batchCode":"","currencyCode":"USD","exchangeRateCurrencyCode":"USD","customerUsageType":"","entityUseCode":"","customerVendorCode":"garypedersen@vitrocom.com","customerCode":"garypedersen@vitrocom.com","exemptNo":"","reconciled":false,"locationCode":"","reportingLocationCode":"","purchaseOrderNo":"","referenceCode":"","salespersonCode":"","totalAmount":176.0,"totalExempt":0.0,"totalDiscount":0.0,"totalTax":11.66,"totalTaxable":176.0,"totalTaxCalculated":11.66,"adjustmentReason":"NotAdjusted","locked":false,"version":1,"exchangeRateEffectiveDate":"2021-09-02","exchangeRate":1.0,"modifiedDate":"2021-09-02T18:52:58.0224738Z","modifiedUserId":231879,"taxDate":"2021-09-02","lines":[{"id":0,"transactionId":0,"lineNumber":"2e969d52de7679efab2533da1badafd2","customerUsageType":"","entityUseCode":"","description":"3 Vent Caps & 3 Silver Gloves","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"itemCode":"2533","lineAmount":176.0,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-09-02","tax":11.66,"taxableAmount":176.0,"taxCalculated":11.66,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-09-02","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NJ","exemptAmount":0.0,"jurisCode":"34","jurisName":"NEW JERSEY","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.066250,"tax":11.66,"taxableAmount":176.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NJ STATE TAX","taxAuthorityTypeId":45,"taxCalculated":11.66,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":176.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":11.66,"reportingTaxCalculated":11.66,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":0,"transactionId":0,"lineNumber":"shipping_0","customerUsageType":"","entityUseCode":"","description":"Use My Shipping Account","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":false,"itemCode":"use-my-shipping-account","lineAmount":0.0,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-09-02","tax":0.0,"taxableAmount":0.0,"taxCalculated":0.0,"taxCode":"FR","taxCodeId":7119,"taxDate":"2021-09-02","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NJ","exemptAmount":0.0,"jurisCode":"34","jurisName":"NEW JERSEY","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.066250,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NJ STATE TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0}],"addresses":[{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"8 Morris Ave","line2":"8 Morris Ave.","line3":"","city":"Mountain Lakes","region":"NJ","postalCode":"07046-1011","country":"US","taxRegionId":4005214,"latitude":"40.896776","longitude":"-74.418914"},{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"30 GLENN ST","line2":"","line3":"","city":"WHITE PLAINS","region":"NY","postalCode":"10603-3254","country":"US","taxRegionId":2090237,"latitude":"41.050608","longitude":"-73.771383"}],"summary":[{"country":"US","region":"NJ","jurisType":"State","jurisCode":"34","jurisName":"NEW JERSEY","taxAuthorityType":45,"stateAssignedNo":"","taxType":"Sales","taxSubType":"S","taxName":"NJ STATE TAX","rateType":"General","taxable":176.0,"rate":0.066250,"tax":11.66,"taxCalculated":11.66,"nonTaxable":0.0,"exemption":0.0}]}
+
+09-02-2021 @ 14:53:05 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/taxrates/byaddress?line1=&line2=&city=Mountain+Lakes&region=NJ&country=US&postalCode=07046-1011
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.8)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.30309s
+
+09-02-2021 @ 14:53:05 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Thu, 02 Sep 2021 18:53:05 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 87
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0010548
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"totalRate":0.066250,"rates":[{"rate":0.066250,"name":"NJ STATE TAX","type":"State"}]}
+
+09-02-2021 @ 14:53:06 - Request
+Request
+method: POST
+uri: https://rest.avatax.com/api/v2/transactions/create
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.8)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body: {"code":"","companyCode":"ALC","customerCode":"garypedersen@vitrocom.com","currencyCode":"USD","date":"2021-09-02","lines":[{"number":"2e969d52de7679efab2533da1badafd2","itemCode":"2533","taxCode":"P0000000","description":"3 Vent Caps & 3 Silver Gloves","quantity":1,"amount":176},{"number":"shipping_0","itemCode":"use-my-shipping-account","taxCode":"FR","description":"Use My Shipping Account","quantity":1}],"addresses":{"shipFrom":{"line1":"30 GLENN ST","line2":"","city":"WHITE PLAINS","region":"NY","country":"US","postalCode":"10603-3254"},"shipTo":{"line1":"8 Morris Ave","line2":"","city":"Mountain Lakes","region":"NJ","country":"US","postalCode":"07046-1011"}},"type":"SalesOrder","commit":false}
+duration: 0.34715s
+
+09-02-2021 @ 14:53:06 - Response
+Response
+code: 201
+message: Created
+headers: Array
+(
+    [date] => Thu, 02 Sep 2021 18:53:06 GMT
+    [content-type] => application/json; charset=utf-8
+    [server] => Kestrel
+    [content-encoding] => br
+    [location] => /api/v2/companies/207925/transactions/0
+    [vary] => Accept-Encoding
+    [serverduration] => 00:00:00.0367810
+)
+body: {"id":0,"code":"e9dd4550-8dc7-4dfa-9a1c-21011a8ddc9b","companyId":207925,"date":"2021-09-02","paymentDate":"2021-09-02","status":"Temporary","type":"SalesOrder","batchCode":"","currencyCode":"USD","exchangeRateCurrencyCode":"USD","customerUsageType":"","entityUseCode":"","customerVendorCode":"garypedersen@vitrocom.com","customerCode":"garypedersen@vitrocom.com","exemptNo":"","reconciled":false,"locationCode":"","reportingLocationCode":"","purchaseOrderNo":"","referenceCode":"","salespersonCode":"","totalAmount":176.0,"totalExempt":0.0,"totalDiscount":0.0,"totalTax":11.66,"totalTaxable":176.0,"totalTaxCalculated":11.66,"adjustmentReason":"NotAdjusted","locked":false,"version":1,"exchangeRateEffectiveDate":"2021-09-02","exchangeRate":1.0,"modifiedDate":"2021-09-02T18:53:06.0622523Z","modifiedUserId":231879,"taxDate":"2021-09-02","lines":[{"id":0,"transactionId":0,"lineNumber":"2e969d52de7679efab2533da1badafd2","customerUsageType":"","entityUseCode":"","description":"3 Vent Caps & 3 Silver Gloves","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"itemCode":"2533","lineAmount":176.0,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-09-02","tax":11.66,"taxableAmount":176.0,"taxCalculated":11.66,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-09-02","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NJ","exemptAmount":0.0,"jurisCode":"34","jurisName":"NEW JERSEY","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.066250,"tax":11.66,"taxableAmount":176.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NJ STATE TAX","taxAuthorityTypeId":45,"taxCalculated":11.66,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":176.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":11.66,"reportingTaxCalculated":11.66,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":0,"transactionId":0,"lineNumber":"shipping_0","customerUsageType":"","entityUseCode":"","description":"Use My Shipping Account","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":false,"itemCode":"use-my-shipping-account","lineAmount":0.0,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-09-02","tax":0.0,"taxableAmount":0.0,"taxCalculated":0.0,"taxCode":"FR","taxCodeId":7119,"taxDate":"2021-09-02","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NJ","exemptAmount":0.0,"jurisCode":"34","jurisName":"NEW JERSEY","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.066250,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NJ STATE TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0}],"addresses":[{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"8 Morris Ave","line2":"","line3":"","city":"Mountain Lakes","region":"NJ","postalCode":"07046-1011","country":"US","taxRegionId":4005214,"latitude":"40.896776","longitude":"-74.418914"},{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"30 GLENN ST","line2":"","line3":"","city":"WHITE PLAINS","region":"NY","postalCode":"10603-3254","country":"US","taxRegionId":2090237,"latitude":"41.050608","longitude":"-73.771383"}],"summary":[{"country":"US","region":"NJ","jurisType":"State","jurisCode":"34","jurisName":"NEW JERSEY","taxAuthorityType":45,"stateAssignedNo":"","taxType":"Sales","taxSubType":"S","taxName":"NJ STATE TAX","rateType":"General","taxable":176.0,"rate":0.066250,"tax":11.66,"taxCalculated":11.66,"nonTaxable":0.0,"exemption":0.0}]}
+
+09-02-2021 @ 16:19:26 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/definitions/entityusecodes
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.8)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.32172s
+
+09-02-2021 @ 16:19:26 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Thu, 02 Sep 2021 20:19:26 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 1454
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0001585
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"@recordsetCount":18,"value":[{"code":"A","name":"FEDERAL GOV","description":"","validCountries":["US"]},{"code":"B","name":"STATE GOV","description":"","validCountries":["US"]},{"code":"C","name":"TRIBAL GOVERNMENT","description":"","validCountries":["*"]},{"code":"D","name":"FOREIGN DIPLOMAT","description":"","validCountries":["*"]},{"code":"E","name":"CHARITABLE/EXEMPT ORG","description":"","validCountries":["*"]},{"code":"F","name":"RELIGIOUS ORG","description":"","validCountries":["*"]},{"code":"G","name":"RESALE","description":"","validCountries":["*"]},{"code":"H","name":"AGRICULTURE","description":"","validCountries":["*"]},{"code":"I","name":"INDUSTRIAL PROD/MANUFACTURERS","description":"","validCountries":["*"]},{"code":"J","name":"DIRECT PAY","description":"","validCountries":["*"]},{"code":"K","name":"DIRECT MAIL","description":"","validCountries":["*"]},{"code":"L","name":"OTHER/CUSTOM","description":"","validCountries":["*"]},{"code":"M","name":"EDUCATIONAL ORG","description":"","validCountries":["*"]},{"code":"N","name":"LOCAL GOVERNMENT","description":"","validCountries":["US"]},{"code":"P","name":"COMMERCIAL AQUACULTURE","description":"","validCountries":["CA"]},{"code":"Q","name":"COMMERCIAL FISHERY","description":"","validCountries":["CA"]},{"code":"R","name":"NON-RESIDENT","description":"","validCountries":["CA"]},{"code":"TAXABLE","name":"NON-EXEMPT TAXABLE CUSTOMER","description":"","validCountries":["*"]}]}
+

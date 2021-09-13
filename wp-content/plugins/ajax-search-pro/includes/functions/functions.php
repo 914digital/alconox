@@ -2220,13 +2220,11 @@ if ( !function_exists('asp_parse_tax_term_filters') ) {
                 );
 
                 if ( count($o['show_terms']['display_mode']) > 0) {
-                    if ( $o['show_terms']['separate_filter_boxes'] != 1 ) {
-                        $display_mode = array_merge($display_mode, $o['show_terms']['display_mode']['all']);
-                    } else if (isset($o['show_terms']['display_mode'][$taxonomy])) {
+                    if (isset($o['show_terms']['display_mode'][$taxonomy])) {
                         $display_mode = array_merge($display_mode, $o['show_terms']['display_mode'][$taxonomy]);
                     }
                 }
-                $display_mode["taxonomy"] = $o['show_terms']['separate_filter_boxes'] == 0 ? 'terms' : $taxonomy;
+                $display_mode["taxonomy"] = $taxonomy;
 
                 if (w_isset_def($o['frontend_term_hierarchy'], 1) == 1) {
                     wd_sort_terms_hierarchicaly( $_needed_terms_full, $_needed_terms_sorted );
@@ -2238,9 +2236,7 @@ if ( !function_exists('asp_parse_tax_term_filters') ) {
                 $display_mode['is_api'] = false;
                 $display_mode['placeholder'] = $display_mode['box_placeholder_text'];
 
-                if ( $o['show_terms']['separate_filter_boxes'] == 1 || !isset($current_filter) ) {
-                    $current_filter = wd_asp()->front_filters->create('taxonomy', $display_mode['box_header_text'], $display_mode['type'], $display_mode);
-                }
+                $current_filter = wd_asp()->front_filters->create('taxonomy', $display_mode['box_header_text'], $display_mode['type'], $display_mode);
 
                 if ( $display_mode['type'] == "checkboxes" ) {
 
@@ -2306,8 +2302,8 @@ if ( !function_exists('asp_parse_tax_term_filters') ) {
                     $len = count($needed_terms_flat);
                     $i = 0;
                     $selected = false;
-                    if ($o['show_terms']['separate_filter_boxes'] == 1)
-                        $have_selected = false;
+                    $have_selected = false;
+
                     foreach ($needed_terms_flat as $k => $term) {
                         $filter = array(
                             'label' => $term->name,
@@ -2370,8 +2366,8 @@ if ( !function_exists('asp_parse_tax_term_filters') ) {
                     $len = count($needed_terms_flat);
                     $i = 0;
                     $selected = false;
-                    if ($o['show_terms']['separate_filter_boxes'] == 1)
-                        $have_selected = false;
+                    $have_selected = false;
+
                     foreach ($needed_terms_flat as $k => $term) {
                         $filter = array(
                             'label' => $term->name,
@@ -2409,16 +2405,10 @@ if ( !function_exists('asp_parse_tax_term_filters') ) {
                     }
                 }
 
-                if ( $o['show_terms']['separate_filter_boxes'] == 1 )
-                    //$filters[] = $current_filter;
-                    wd_asp()->front_filters->add($current_filter);
+                wd_asp()->front_filters->add($current_filter);
             }
             //--- TAX LOOP
         }
-        if ( $o['show_terms']['separate_filter_boxes'] == 0 && isset($current_filter) )
-            //$filters[] = $current_filter;
-            wd_asp()->front_filters->add($current_filter);
-
         //return apply_filters('asp_taxonomy_filters', $filters, $o);
     }
 }
@@ -2736,37 +2726,18 @@ if ( !function_exists('asp_parse_post_type_filters') ) {
 if ( !function_exists('asp_parse_date_filters') ) {
     function asp_parse_date_filters( $o ) {
         /* Options not set or deactivated, return - if one is set, other is definitely set too */
-        if ( empty($o["selected-date_filter_from"]) ) return;
+        if ( empty($o["selected-date_filter_from"]) ) {
+			return;
+		}
 
         $_dff = &$o["selected-date_filter_from"];
         $_dft = &$o["selected-date_filter_to"];
-        $id = $o['_id'];
 
-        if ( $_dff['state'] == "disabled" && $_dft['state'] == "disabled" ) return;
-        $_dfrom_t = w_isset_def($o['date_filter_from_t'], "Content from");
-        $_dto_t = w_isset_def($o['date_filter_to_t'], "Content to");
+        if ( $_dff['state'] == "disabled" && $_dft['state'] == "disabled" ) {
+			return;
+		}
 
-        if ( $_dff['state'] == "rel_date" ) {
-            $_def_dff_v = "-" . $_dff["rel_date"][0] . "y -".$_dff["rel_date"][1]."m -".$_dff["rel_date"][2] . "d";
-        } else {
-            $_def_dff_v = $_dff['date'];
-        }
-        if ( $_dft['state'] == "rel_date" ) {
-            $_def_dft_v = "-" . $_dft["rel_date"][0] . "y -".$_dft["rel_date"][1]."m -".$_dft["rel_date"][2] . "d";
-        } else {
-            $_def_dft_v = $_dft['date'];
-        }
-        if ( isset($o['_fo']) && isset($o['_fo']['post_date_from']) ) {
-            $_dff_v = sanitize_text_field($o['_fo']['post_date_from']);
-        } else {
-            $_dff_v = $_def_dff_v;
-        }
-        if ( isset($o['_fo']) && isset($o['_fo']['post_date_to']) ) {
-            $_dft_v = sanitize_text_field($o['_fo']['post_date_to']);
-        } else {
-            $_dft_v = $_def_dft_v;
-        }
-
+		$id = $o['_id'];
         $filter = wd_asp()->front_filters->create(
             'date',
             "Post type date filters",
@@ -2779,21 +2750,65 @@ if ( !function_exists('asp_parse_date_filters') ) {
         $filter->is_api = false;
 
         if ( $_dff['state'] != 'disabled' ) {
+			switch ($_dff['state']) {
+				case "rel_date":
+					$_def_dff_v = "-" . $_dff["rel_date"][0] . "y -" . $_dff["rel_date"][1] . "m -" . $_dff["rel_date"][2] . "d";
+					break;
+				case "earliest_date":
+					$_def_dff_v = ASP_Helpers::getEarliestPostDate(array(
+						'post_type' => $o['customtypes']
+					));
+					break;
+				case "latest_date":
+					$_def_dff_v = ASP_Helpers::getLatestPostDate(array(
+						'post_type' => $o['customtypes']
+					));
+					break;
+				case "date":
+				default:
+					$_def_dff_v = $_dff['date'];
+					break;
+			}
+
+			$_dff_v = isset($o['_fo']) && isset($o['_fo']['post_date_from']) ? sanitize_text_field($o['_fo']['post_date_from']) : $_def_dff_v;
+
             $filter->add(array(
                 "value" => $_dff_v,
                 "default" => $_def_dff_v,
                 "name"  => "post_date_from",
-                "label" => asp_icl_t( 'Post date filter: Content from (' .$id. ')', $_dfrom_t ),
+                "label" => asp_icl_t( 'Post date filter: Content from (' .$id. ')', $o['date_filter_from_t'] ),
                 "format" => $o["date_filter_from_format"],
                 "placeholder" => asp_icl_t( "Post date filter placeholder (from)", $o["date_filter_from_placeholder"] )
             ));
         }
         if ( $_dft['state'] != 'disabled' ) {
+			switch ($_dft['state']) {
+				case "rel_date":
+					$_def_dft_v = "-" . $_dft["rel_date"][0] . "y -" . $_dft["rel_date"][1] . "m -" . $_dft["rel_date"][2] . "d";
+					break;
+				case "earliest_date":
+					$_def_dft_v = ASP_Helpers::getEarliestPostDate(array(
+						'post_type' => $o['customtypes']
+					));
+					break;
+				case "latest_date":
+					$_def_dft_v = ASP_Helpers::getLatestPostDate(array(
+						'post_type' => $o['customtypes']
+					));
+					break;
+				case "date":
+				default:
+					$_def_dft_v = $_dft['date'];
+					break;
+			}
+
+			$_dft_v = isset($o['_fo']) && isset($o['_fo']['post_date_to']) ? sanitize_text_field($o['_fo']['post_date_to']) : $_def_dft_v;
+
             $filter->add(array(
                 "value" => $_dft_v,
                 "default" => $_def_dft_v,
                 "name"  => "post_date_to",
-                "label" => asp_icl_t( 'Post date filter: Content to (' .$id. ')', $_dto_t ),
+                "label" => asp_icl_t( 'Post date filter: Content to (' .$id. ')', $o['date_filter_to_t'] ),
                 "format" => $o["date_filter_to_format"],
                 "placeholder" => asp_icl_t( 'Post date filter placeholder (to) (' .$id. ')', $o["date_filter_to_placeholder"] )
             ));
@@ -2854,7 +2869,8 @@ if ( !function_exists("asp_is_asset_required") ) {
 if ( !function_exists("asp_get_unused_assets") ) {
     function asp_get_unused_assets( $return_stored = false ) {
         $dependencies = array(
-            'vertical', 'horizontal', 'isotopic', 'polaroid', 'noui', 'datepicker', 'autocomplete'
+            'vertical', 'horizontal', 'isotopic', 'polaroid', 'noui', 'datepicker', 'autocomplete',
+			'settings', 'compact', 'autopopulate', 'ga'
         );
         $external_dependencies = array(
             'select2', 'isotope', 'simplebar'
@@ -2867,6 +2883,11 @@ if ( !function_exists("asp_get_unused_assets") ) {
             ));
         }
 
+		// --- Auto populate
+		if ( wd_asp()->o['asp_analytics']['analytics'] != 0 ) {
+			$dependencies = array_diff($dependencies, array('ga'));
+		}
+
         $search = wd_asp()->instances->get();
         if (is_array($search) && count($search)>0) {
             foreach ($search as $s) {
@@ -2877,8 +2898,34 @@ if ( !function_exists("asp_get_unused_assets") ) {
                 // Calculate flags for the generated basic CSS
                 // --- Results type
                 $dependencies = array_diff($dependencies, array($s['data']['resultstype']));
+
+                // --- Compact box
+				if ( $s['data']['box_compact_layout'] ) {
+					$dependencies = array_diff($dependencies, array('compact'));
+				}
+
+				// --- Auto populate
+				if ( $s['data']['auto_populate'] != 'disabled' ) {
+					$dependencies = array_diff($dependencies, array('autopopulate'));
+				}
+
+				// --- Autocomplete
+				if ( $s['data']['autocomplete'] ) {
+					$dependencies = array_diff($dependencies, array('autocomplete'));
+				}
+
                 // --- NOUI
                 asp_parse_filters($id, $style, true, true);
+
+				// --- Settings visibility
+				/**
+				 * DO NOT check the switch or if the settings are visible, because the user
+				 * can still use the settings shortcode, and that is not possible to check
+				 */
+                if ( count(wd_asp()->front_filters->get()) > 0 ) {
+					$dependencies = array_diff($dependencies, array('settings'));
+				}
+
                 foreach (wd_asp()->front_filters->get() as $filter) {
                     if ($filter->display_mode == 'slider' || $filter->display_mode == 'range') {
                         $dependencies = array_diff($dependencies, array('noui'));

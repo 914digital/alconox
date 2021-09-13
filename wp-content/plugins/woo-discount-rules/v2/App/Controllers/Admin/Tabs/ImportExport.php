@@ -7,7 +7,7 @@ if (!defined('ABSPATH')) exit;
 
 class ImportExport extends Base
 {
-    public $priority = 40;
+    public $priority = 50;
     protected $tab = 'importexport';
 
     /**

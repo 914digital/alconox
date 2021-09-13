@@ -2,8 +2,7 @@
 /* Prevent direct access */
 defined('ABSPATH') or die("You can't access this file directly.");
 ?>
-<div class='asp_hidden_data' id="asp_hidden_data_<?php echo $id; ?>" style="display:none;">
-
+<div class='asp_hidden_data' style="display:none !important;">
     <div class='asp_item_overlay'>
         <div class='asp_item_inner'>
             <?php
@@ -18,5 +17,4 @@ defined('ABSPATH') or die("You can't access this file directly.");
             <?php do_action('asp_layout_in_loading', $id); ?>
         </div>
     </div>
-
 </div>

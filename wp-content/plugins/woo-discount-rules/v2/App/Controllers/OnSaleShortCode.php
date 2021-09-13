@@ -265,11 +265,32 @@ class OnSaleShortCode extends ManageDiscount
                 unset($query_args['post__not_in']);
             }
             if(!empty($query_args)){
+                $post_ids = array();
+                $total_page = $total_post_count = 0;
                 $query_args['post_type'] = 'product';
                 $query_args['post_status'] = 'publish';
-                $query_args['posts_per_page'] = -1;
+                $query_args['posts_per_page'] = 1000;
+                $query_args['paged'] = 1;
+                $query_args['offset'] = 0;
                 $products = new \WP_Query($query_args);
-                $post_ids = wp_list_pluck( $products->posts, 'ID' );
+                $total_page = isset($products->max_num_pages) ? $products->max_num_pages : $total_page;
+                $total_post_count = isset( $products->found_posts) ? $products->found_posts : $total_post_count ;
+                if($total_page > 1 && $total_post_count > 1000){
+                    $process_of_post_ids = wp_list_pluck( $products->posts, 'ID' );
+                    $post_ids = !empty($process_of_post_ids) ? array_merge($post_ids,$process_of_post_ids) : $post_ids;
+                    for($i=2; $i <= $total_page; $i++ ){
+                        $query_args['post_type'] = 'product';
+                        $query_args['post_status'] = 'publish';
+                        $query_args['posts_per_page'] = 1000;
+                        $query_args['paged'] = $i;
+                        $query_args['offset'] = $i * 1000;
+                        $large_products = new \WP_Query($query_args);
+                        $process_of_post_ids = wp_list_pluck( $large_products->posts, 'ID' );
+                        $post_ids = !empty($process_of_post_ids) ? array_merge($post_ids,$process_of_post_ids) : $post_ids;
+                    }
+                }else{
+                    $post_ids = wp_list_pluck( $products->posts, 'ID' );
+                }
             } else {
                 $post_ids = array();
             }

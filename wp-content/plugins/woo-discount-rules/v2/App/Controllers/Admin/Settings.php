@@ -133,7 +133,7 @@ class Settings extends Base
             'compatible' => new Compatible(),
             'importexport' => new ImportExport(),
             'help' => new Help(),
-            'recipe' => new Recipe(),
+            'recipe' => new Recipe()
         );
         uasort($tabs, function ($tab1, $tab2) {
             $priority1 = (int)isset($tab1->priority) ? $tab1->priority : 1000;
@@ -175,21 +175,27 @@ class Settings extends Base
         if ( !isset($_GET['page']) || $_GET['page'] != WDR_SLUG) {
             return;
         }
+        $conig =  new Configuration();
+
+        $minified_text = '';
+        $compress_css_and_js = $conig->getConfig('compress_css_and_js', 0);
+        if($compress_css_and_js) $minified_text = '.min';
+
         /**
          *Enqueue css
          */
         wp_enqueue_style(WDR_SLUG . '-datetimepickercss', WDR_PLUGIN_URL . 'Assets/Css/jquery.datetimepicker.min.css', array(), WDR_VERSION);
-        wp_enqueue_style(WDR_SLUG . '-admin', WDR_PLUGIN_URL . 'Assets/Css/admin_style.css', array(), WDR_VERSION);
+        wp_enqueue_style(WDR_SLUG . '-admin', WDR_PLUGIN_URL . 'Assets/Css/admin_style'.$minified_text.'.css', array(), WDR_VERSION);
         wp_enqueue_style(WDR_SLUG . '-jquery-ui-css', WDR_PLUGIN_URL . 'Assets/Js/Jquery-ui/jquery-ui.min.css', array(), WDR_VERSION);
-        wp_enqueue_style(WDR_SLUG . '-dragable-ui-css', WDR_PLUGIN_URL . 'Assets/Css/dragtable.css', array(), WDR_VERSION);
+        wp_enqueue_style(WDR_SLUG . '-dragable-ui-css', WDR_PLUGIN_URL . 'Assets/Css/dragtable'.$minified_text.'.css', array(), WDR_VERSION);
         /**
          * Enqueue js
          */
         if(apply_filters('advanced_woo_discount_rules_load_select_js', true)){
             wp_enqueue_script('wdr-select2-js', self::$woocommerce_helper->getWooPluginUrl() . '/assets/js/select2/select2.full.min.js', array('jquery'), WDR_VERSION);
-            wp_enqueue_script(WDR_SLUG . '-rulebuilder', WDR_PLUGIN_URL . 'Assets/Js/rulebuilder.js', array('jquery', 'wdr-select2-js', WDR_SLUG . '-datetimepickerjs'), WDR_VERSION);
+            wp_enqueue_script(WDR_SLUG . '-rulebuilder', WDR_PLUGIN_URL . 'Assets/Js/rulebuilder'.$minified_text.'.js', array('jquery', 'wdr-select2-js', WDR_SLUG . '-datetimepickerjs'), WDR_VERSION);
         } else {
-            wp_enqueue_script(WDR_SLUG . '-rulebuilder', WDR_PLUGIN_URL . 'Assets/Js/rulebuilder.js', array('jquery', WDR_SLUG . '-datetimepickerjs'), WDR_VERSION);
+            wp_enqueue_script(WDR_SLUG . '-rulebuilder', WDR_PLUGIN_URL . 'Assets/Js/rulebuilder'.$minified_text.'.js', array('jquery', WDR_SLUG . '-datetimepickerjs'), WDR_VERSION);
         }
         if(version_compare(getAWDRWooVersion(), '3.2.0', '<')){
             wp_enqueue_script('selectWoo', WDR_PLUGIN_URL . 'Assets/Js/selectWoo.full.min.js', array('jquery'), WDR_VERSION);
@@ -203,17 +209,17 @@ class Settings extends Base
         wp_enqueue_script(WDR_SLUG . '-jquery-ui', WDR_PLUGIN_URL . 'Assets/Js/Jquery-ui/jquery-ui.min.js', array('jquery'), WDR_VERSION);
         wp_enqueue_script(WDR_SLUG . '-datetimepickerjs', WDR_PLUGIN_URL . 'Assets/Js/jquery.datetimepicker.full.min.js', array('jquery'), WDR_VERSION);
         wp_enqueue_script(WDR_SLUG . '-moment', WDR_PLUGIN_URL . 'Assets/Js/moment.min.js', array('jquery'), WDR_VERSION);
-        wp_register_script(WDR_SLUG . '-admin', WDR_PLUGIN_URL . 'Assets/Js/admin_script.js', array(), WDR_VERSION);
-        wp_register_script(WDR_SLUG . '-recipe', WDR_PLUGIN_URL . 'Assets/Js/awdr_recipe.js', array(), WDR_VERSION);
+        wp_register_script(WDR_SLUG . '-admin', WDR_PLUGIN_URL . 'Assets/Js/admin_script'.$minified_text.'.js', array(), WDR_VERSION);
+        wp_register_script(WDR_SLUG . '-recipe', WDR_PLUGIN_URL . 'Assets/Js/awdr_recipe'.$minified_text.'.js', array(), WDR_VERSION);
         wp_enqueue_script(WDR_SLUG . '-admin');
         wp_enqueue_script(WDR_SLUG . '-recipe');
-        wp_enqueue_script(WDR_SLUG . '-dragndraop-js', WDR_PLUGIN_URL . 'Assets/Js/jquery.dragtable.js', array(), WDR_VERSION);
+        wp_enqueue_script(WDR_SLUG . '-dragndraop-js', WDR_PLUGIN_URL . 'Assets/Js/jquery.dragtable'.$minified_text.'.js', array(), WDR_VERSION);
 
         if ( isset( $_REQUEST['tab'] ) AND $_REQUEST['tab'] == 'statistics' ) {
             wp_enqueue_script( 'google-charts-loader', 'https://www.gstatic.com/charts/loader.js', array(), WDR_VERSION );
 
             wp_enqueue_script( WDR_SLUG.'-statistics',
-                WDR_PLUGIN_URL . 'Assets/Js/admin-statistics.js', array( 'jquery' ), WDR_VERSION );
+                WDR_PLUGIN_URL . 'Assets/Js/admin-statistics'.$minified_text.'.js', array( 'jquery' ), WDR_VERSION );
         }
         $preloaded_lists = array(
             'payment_methods' => $this->getPaymentMethod(),
@@ -226,7 +232,7 @@ class Settings extends Base
             'banner_position' => $this->getBannerPosition(),
         );
         $localization_data = $this->getLocalizationData();
-       $conig =  new Configuration();
+
         $wdr_data = array(
             'labels' => array(
                 'select2_no_results' => __('no results', 'woo-discount-rules'),
@@ -243,10 +249,13 @@ class Settings extends Base
         wp_localize_script(WDR_SLUG . '-admin', 'wdr_data', $wdr_data);
 
         //Remove UI Date picker which making conflict in some websites
-        wp_dequeue_script( 'jquery-ui-datepicker' );
-        wp_deregister_script( 'jquery-ui-datepicker' );
-        wp_dequeue_script( 'jquery-datetimepicker' );
-        wp_deregister_script( 'jquery-datetimepicker' );
+       if(apply_filters('advanced_woo_discount_rules_dequeue_jquery_ui_datepicker_script', true)){
+           wp_dequeue_script( 'jquery-ui-datepicker' );
+           wp_deregister_script( 'jquery-ui-datepicker' );
+           wp_dequeue_script( 'jquery-datetimepicker' );
+           wp_deregister_script( 'jquery-datetimepicker' );
+       }
+
     }
 
     /**

@@ -73,6 +73,10 @@ if (!class_exists("WD_ASP_SearchOverride_Filter")) {
                 }
             }
 
+			if ( !wd_asp()->instances->exists($_p_id) ) {
+				return $posts;
+			}
+
             $instance = wd_asp()->instances->get($_p_id);
             $sd = $instance['data'];
             // First check the asp_ls, as s might be set already
@@ -243,7 +247,6 @@ if (!class_exists("WD_ASP_SearchOverride_Filter")) {
             if ( !$this->isSearch($wp_query) ) {
                 return false;
             }
-
             // If get method is used, then the cookies are not present or not used
             if ( isset($_GET['p_asp_data']) ) {
                 if ( $check_only )
@@ -256,8 +259,10 @@ if (!class_exists("WD_ASP_SearchOverride_Filter")) {
                     parse_str(base64_decode($_GET['p_asp_data']), $s_data);
                 }
             } else if (
-                isset($_GET['s'], $_COOKIE['asp_data'], $_COOKIE['asp_phrase']) &&
-                $_COOKIE['asp_phrase'] == $_GET['s']
+                isset($_GET['s'], $_COOKIE['asp_data']) && (
+					( $_GET['s'] != '' && isset($_COOKIE['asp_phrase']) && $_COOKIE['asp_phrase'] == $_GET['s'] ) ||
+					( $_GET['s'] == '' )
+				)
             ) {
                 if ( $check_only )
                     return true;

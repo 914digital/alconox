@@ -338,6 +338,14 @@ $_comp = wpdreamsCompatibility::Instance();
                         <?php echo __('When turned OFF, the posts will still be indexed only upon updating, or when the cron-job runs (if enabled) or when the index table is extended manually.', 'ajax-search-pro'); ?>
                     </p>
                 </div>
+				<div class="item">
+                    <?php $o = new wpdreamsYesNo("it_index_on_update_post_meta", "Refresh the index, whenever post meta (custom fields) are added or updated?",
+                        $it_options['it_index_on_update_post_meta']
+                    ); ?>
+                    <p class="descMsg">
+                        <?php echo __('(Default: OFF) May help when posts are imported and if you notice missing results for metadata keywords.', 'ajax-search-pro'); ?>
+                    </p>
+                </div>
                 <div class="item">
                     <?php $o = new wpdreamsYesNo("it_cron_enable", "Use wp_cron() to extend the index table automatically?",
                         $it_options['it_cron_enable']
@@ -424,6 +432,7 @@ $_comp = wpdreamsCompatibility::Instance();
                     'it_extract_shortcodes' => $_POST['it_extract_shortcodes'],
                     'it_exclude_shortcodes' => $_POST['it_exclude_shortcodes'],
                     'it_index_on_save' => $_POST['it_index_on_save'],
+                    'it_index_on_update_post_meta' => $_POST['it_index_on_update_post_meta'],
                     'it_cron_enable' => $_POST['it_cron_enable'],
                     'it_cron_period' => $_POST['it_cron_period'],
                     'it_pool_size_auto' => $_POST['it_pool_size_auto'],

@@ -1,0 +1,14 @@
+2021-08-27T16:27:38+00:00 CRITICAL Uncaught Error: Call to undefined function acf_did() in /www/wp-content/plugins/advanced-custom-fields-pro/acf.php:214
+Stack trace:
+#0 /wordpress/wp-includes/class-wp-hook.php(303): ACF->init('')
+#1 /wordpress/wp-includes/class-wp-hook.php(327): WP_Hook->apply_filters(NULL, Array)
+#2 /wordpress/wp-includes/plugin.php(470): WP_Hook->do_action(Array)
+#3 /wordpress/wp-settings.php(581): do_action('init')
+#4 /www/wp-config.php(110): require_once('/wordpress/wp-s...')
+#5 /wordpress/wp-config.php(5): require('/www/wp-config....')
+#6 /wordpress/wp-load.php(50): require_once('/wordpress/wp-c...')
+#7 /wordpress/wp-blog-header.php(13): require_once('/wordpress/wp-l...')
+#8 /www/index.php(17): require('/wordpress/wp-b...')
+#9 {main}
+  thrown in /www/wp-content/plugins/advanced-custom-fields-pro/acf.php on line 214
+

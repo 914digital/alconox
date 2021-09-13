@@ -1081,16 +1081,17 @@ class Migration
     /**
      * Alter query
      * */
-    public function filter_where( $where = '', $object ) {
-        global $wpdb;
-        $query_array = $object->query;
-        if(isset($query_array['awdr_last_upgrade_id'])){
-            if($query_array['awdr_last_upgrade_id'] > 0){
-                $last_id = intval($query_array['awdr_last_upgrade_id']);
-                $where .= " AND ".$wpdb->posts.".ID > ".$last_id." ";
+    public function filter_where( $where = '', $object = '' ) {
+        if(is_object($object) && !empty($object)){
+            global $wpdb;
+            $query_array = $object->query;
+            if(isset($query_array['awdr_last_upgrade_id'])){
+                if($query_array['awdr_last_upgrade_id'] > 0){
+                    $last_id = intval($query_array['awdr_last_upgrade_id']);
+                    $where .= " AND ".$wpdb->posts.".ID > ".$last_id." ";
+                }
             }
         }
-
         return $where;
     }
 

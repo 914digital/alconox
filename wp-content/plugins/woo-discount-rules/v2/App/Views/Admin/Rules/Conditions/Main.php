@@ -149,7 +149,7 @@ $is_pro = \Wdr\App\Helpers\Helper::hasPro();
                     <span class="awdr-rule-limit-timestamp"><?php
                         if(!empty($current_time)) echo sprintf(esc_html__('Current date and time: %s', 'woo-discount-rules'), '<b>' . date('Y-m-d H:i', $current_time) . '</b>'); ?>
                     </span>
-                    <span class="awdr-rule-limit-timestamp usage-limits-display" style="<?php echo ($usage_limits == 0) ? 'display:none;' : ''; ?>"> <?php
+                    <span class="awdr-rule-limit-timestamp "> <?php
                         _e('Rule Used: ', 'woo-discount-rules');
                         echo "<b class='awdr-used-limit-total'>".$used_limits."</b>"; ?>
                     </span>
@@ -159,15 +159,10 @@ $is_pro = \Wdr\App\Helpers\Helper::hasPro();
             <div class="awdr-general-settings-section">
                 <div class="wdr-rule-setting">
                     <div class="wdr-apply-to" style="float:left;">
-                        <select class="wdr-title" id="select_usage_limits" name="usage_limits">
-                            <option value="0" <?php echo ($usage_limits == 0) ? 'selected' : ''; ?>><?php _e('Unlimited', 'woo-discount-rules'); ?></option><?php
-                            for ($limit = 1; $limit <= 20; $limit++) {
-                                ?>
-                                <option
-                                value="<?php echo $limit; ?>" <?php echo ($usage_limits == $limit) ? 'selected' : ''; ?>><?php _e($limit, 'woo-discount-rules'); ?></option><?php
-                            } ?>
-                        </select><span
-                                class="wdr_desc_text"><?php _e('Maximum usage limit', 'woo-discount-rules'); ?></span>
+
+                        <input type="number" name="usage_limits" value="<?php echo (!empty($usage_limits)) ? $usage_limits : '';?>" min="1" class="wdr-title number_only_field" id="select_usage_limits" placeholder="Unlimited">
+
+                        <span class="wdr_desc_text"><?php _e('Maximum usage limit', 'woo-discount-rules'); ?></span>
                     </div>
                     <div class="wdr-rule-date-valid">
                         <div class="wdr-dateandtime-value">

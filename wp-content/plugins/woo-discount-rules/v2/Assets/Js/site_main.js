@@ -179,6 +179,11 @@
                 });
                 $( ".single_variation_wrap" ).on( "show_variation", function ( event, variation, purchasable ) {
                     let variation_id = variation.variation_id;
+                    if(variation.is_bundled != undefined){
+                        if(variation.is_bundled == true){
+                            return;
+                        }
+                    }
                     awdr_load_variation_table(variation_id);
                 });
             }

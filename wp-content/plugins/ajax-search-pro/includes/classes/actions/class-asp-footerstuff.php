@@ -22,6 +22,11 @@ if (!class_exists("WD_ASP_FooterStuff_Action")) {
         protected static $_instance;
 
         public function handle() {
+			$exit1 = apply_filters('asp_load_css_js', false);
+			$exit2 = apply_filters('asp_load_css', false);
+			if ($exit1 || $exit2)
+				return false;
+
             // Blur for isotopic
             ?>
             <div class='asp_hidden_data' id="asp_hidden_data" style="display: none !important;">

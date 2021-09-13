@@ -4,7 +4,7 @@ defined('ABSPATH') or die("You can't access this file directly.");
 
 $_pagination_arrow = file_get_contents(WP_PLUGIN_DIR . '/' . $style['i_pagination_arrow']);
 ?>
-<div id='ajaxsearchprores<?php echo $id; ?>' class='asp_w asp_r asp_r_<?php echo $real_id; ?> asp_r_<?php echo $id; ?> <?php echo $style['resultstype']; ?> ajaxsearchpro wpdreams_asp_sc wpdreams_asp_sc-<?php echo $real_id; ?>'
+<div id='__original__ajaxsearchprores<?php echo $id; ?>' class='asp_w asp_r asp_r_<?php echo $real_id; ?> asp_r_<?php echo $id; ?> <?php echo $style['resultstype']; ?> ajaxsearchpro wpdreams_asp_sc wpdreams_asp_sc-<?php echo $real_id; ?>'
      data-id="<?php echo $real_id; ?>"
      data-instance="<?php echo self::$perInstanceCount[$real_id]; ?>">
 

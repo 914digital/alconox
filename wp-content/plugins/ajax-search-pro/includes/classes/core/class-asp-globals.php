@@ -84,6 +84,20 @@ class WD_ASP_Globals {
      */
     public $instant;
 
+	/**
+	 * Instance of the scripts manager
+	 *
+	 * @var WD_ASP_Scripts
+	 */
+	public $scripts;
+
+	/**
+	 * Instance of the legacy scripts manager
+	 *
+	 * @var WD_ASP_Scripts_Legacy
+	 */
+	public $scripts_legacy;
+
     /**
      * Array of ASP tables
      *

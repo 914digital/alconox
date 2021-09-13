@@ -19,7 +19,7 @@ $isPro = $flycartWooDiscountRulesPurchase->isPro();
                 <div class="col-md-12" align="right">
                     <br/>
                     <input type="submit" id="save_taxonomy_config" value="<?php esc_html_e('Save', 'woo-discount-rules'); ?>" class="btn btn-success"/>
-                    <?php echo FlycartWooDiscountRulesGeneralHelper::docsURLHTML('introduction/discount-price-rules-settings', 'settings', 'btn btn-info'); ?>
+                    <?php /* Removed from v2.3.6 echo FlycartWooDiscountRulesGeneralHelper::docsURLHTML('introduction/discount-price-rules-settings', 'settings', 'btn btn-info');*/ ?>
                 </div>
                 <div class="row">
                     <div class="">

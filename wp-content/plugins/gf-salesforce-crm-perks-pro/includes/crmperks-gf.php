@@ -40,7 +40,7 @@ public function add_meta_box($form,$lead){
     $lead_id=isset($lead['id']) ? $lead['id'] : ""; 
 ?>
 <div class="postbox">
-<h3><?php _e('Marketing Data','gravity-forms-freshdesk-crm') ?></h3>
+<h3><?php esc_html_e('Marketing Data','gravity-forms-freshdesk-crm') ?></h3>
 <hr>
 <div style="padding: 0px 8px 10px 8px;">
 <?php
@@ -49,7 +49,7 @@ public function add_meta_box($form,$lead){
      $plugin_url=$this->plugin_url.'?vx_product='.$this->get_pro_domain();  
  ?>
 <div class="vx_panel" style="text-align: center; font-size: 16px; color: #888; font-weight: bold;">
-<p><?php _e('Need Marketing Insight? ,','gravity-forms-freshdesk-crm')?> <a href="<?php echo $plugin_url ?>&section=vxc_premium"><?php _e('Go Pro!','gravity-forms-freshdesk-crm')?></a></p>
+<p><?php esc_html_e('Need Marketing Insight? ,','gravity-forms-freshdesk-crm')?> <a href="<?php echo $plugin_url ?>&section=vxc_premium"><?php esc_html_e('Go Pro!','gravity-forms-freshdesk-crm')?></a></p>
 </div>
  <?php
  return;
@@ -58,7 +58,7 @@ public function add_meta_box($form,$lead){
 
 if(!$html_added){
    ?> 
-   <h3 style="text-align: center;"><?php _e('No Information Available','gravity-forms-freshdesk-crm')?></h3>
+   <h3 style="text-align: center;"><?php esc_html_e('No Information Available','gravity-forms-freshdesk-crm')?></h3>
    <?php
 }
 ?>

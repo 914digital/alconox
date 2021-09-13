@@ -18,6 +18,7 @@ defined('ABSPATH') or die("You can't access this file directly.");
     height: auto;
     z-index: 3;
     padding: 4px 6px;
+	transition: all 0.2s;
 }
 
 <?php if ($use_compatibility == true): ?>

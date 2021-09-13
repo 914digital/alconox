@@ -202,8 +202,8 @@ margin-left: 2px;
 .tablenav .tablenav-pages a,.tablenav-pages-navspan{display:inline-block;min-width:17px;border:1px solid #ccc;padding:3px 5px 7px;background:#e5e5e5;font-size:16px;line-height:1;font-weight:400;text-align:center}
   </style>
   <div class="vx_wrap"> 
-  <div><img alt="<?php _e("Salesforce Feeds", 'gravity-forms-salesforce-crm') ?>" title="<?php _e("Salesforce Feeds", 'gravity-forms-salesforce-crm') ?>" src="<?php echo $this->get_base_url()?>images/salesforce-crm-logo.png?ver=1" style="float:left; margin:0 7px 10px 0;" height="46" />
-  <h2 style="margin-bottom: 12px"><?php _e("Salesforce Log", 'gravity-forms-salesforce-crm'); ?></h2>
+  <div><img alt="<?php esc_html_e("Salesforce Feeds", 'gravity-forms-salesforce-crm') ?>" title="<?php esc_html_e("Salesforce Feeds", 'gravity-forms-salesforce-crm') ?>" src="<?php echo $this->get_base_url()?>images/salesforce-crm-logo.png?ver=1" style="float:left; margin:0 7px 10px 0;" height="46" />
+  <h2 style="margin-bottom: 12px"><?php esc_html_e("Salesforce Log", 'gravity-forms-salesforce-crm'); ?></h2>
   <div class="clear"></div>
 </div>
 
@@ -219,7 +219,7 @@ margin-left: 2px;
           echo " | ";   
         }
        ?>
-       <a href="<?php echo $link['link'] ?>" title="<?php echo $link['title']?>" <?php if($link['current']){echo 'class="current"';} ?>><?php echo $link['title']?></a> 
+       <a href="<?php echo esc_url($link['link']) ?>" title="<?php echo esc_attr($link['title'])?>" <?php if($link['current']){echo 'class="current"';} ?>><?php echo esc_html($link['title'])?></a> 
        </li>     
           <?php
       }
@@ -229,63 +229,63 @@ margin-left: 2px;
      <div style="float: right;">
 <form id="vx_form" class="crm_form" method="get"><div>
 
-    <input type="hidden" name="page" value="<?php echo $this->post('page') ?>" />
-  <input type="hidden" name="view" value="<?php echo $this->post('view') ?>" />
-  <input type="hidden" name="subview" value="<?php echo $this->post('subview') ?>" />
-  <input type="hidden" name="id" value="<?php echo $this->post('id') ?>" />
-  <input type="hidden" name="tab" value="<?php echo $this->post('tab') ?>" />
-  <input type="text" placeholder="<?php _e('Search','gravity-forms-salesforce-crm') ?>" value="<?php echo $this->post('search') ?>" name="search" class="crm_input_inline">
+    <input type="hidden" name="page" value="<?php echo esc_attr($this->post('page')) ?>" />
+  <input type="hidden" name="view" value="<?php echo esc_attr($this->post('view')) ?>" />
+  <input type="hidden" name="subview" value="<?php echo esc_attr($this->post('subview')) ?>" />
+  <input type="hidden" name="id" value="<?php echo esc_attr($this->post('id')) ?>" />
+  <input type="hidden" name="tab" value="<?php echo esc_attr($this->post('tab')) ?>" />
+  <input type="text" placeholder="<?php esc_html_e('Search','gravity-forms-salesforce-crm') ?>" value="<?php echo esc_attr($this->post('search')) ?>" name="search" class="crm_input_inline">
   <?php
        if($this->post('entry_id') !=""){
    ?> 
-    <input type="hidden" name="entry_id" value="<?php echo $this->post('entry_id') ?>" />
+    <input type="hidden" name="entry_id" value="<?php echo esc_attr($this->post('entry_id')) ?>" />
 <?php
        }
 ?>
-    <input type="hidden" name="order" value="<?php echo $this->post('order') ?>" />
-  <input type="hidden" name="orderby" value="<?php echo $this->post('orderby') ?>" />
+    <input type="hidden" name="order" value="<?php echo esc_attr($this->post('order')) ?>" />
+  <input type="hidden" name="orderby" value="<?php echo esc_attr($this->post('orderby')) ?>" />
   <input type="hidden" name="vx_tab_action_<?php echo $this->id ?>" id="vx_export_log" value="" autocomplete="off" />
    <input type="hidden" id="vx_nonce_field" value="<?php echo wp_create_nonce('vx_nonce'); ?>">
   <select name="object" class="crm_input_inline" style="max-width: 100px;">
-  <option value=""><?php _e('All Objects','gravity-forms-salesforce-crm') ?></option>
+  <option value=""><?php esc_html_e('All Objects','gravity-forms-salesforce-crm') ?></option>
   <?php    
   foreach($objects as $f_key=>$f_val){
   $sel="";
   if(isset($_REQUEST['object']) && $_REQUEST['object'] == $f_key)
   $sel="selected='selected'";
-  echo "<option value='".$f_key."' $sel>".$f_val."</option>";       
+  echo "<option value='".esc_attr($f_key)."' $sel>".esc_attr($f_val)."</option>";       
   }
   ?>
   </select>
   <select name="status" class="crm_input_inline">
-  <option value=""><?php _e('All Status','gravity-forms-salesforce-crm') ?></option>
+  <option value=""><?php esc_html_e('All Status','gravity-forms-salesforce-crm') ?></option>
   <?php
    
   foreach($statuses as $f_key=>$f_val){
   $sel="";
   if(isset($_REQUEST['status']) && $_REQUEST['status'] == $f_key)
   $sel="selected='selected'";
-  echo "<option value='".$f_key."' $sel>".$f_val."</option>";       
+  echo "<option value='".esc_attr($f_key)."' $sel>".esc_attr($f_val)."</option>";      
   }
   ?>
   </select>
   <select name="time" class="crm_time_select crm_input_inline" style="max-width: 100px;">
-  <option value=""><?php _e('All Times','gravity-forms-salesforce-crm') ?></option>
+  <option value=""><?php esc_html_e('All Times','gravity-forms-salesforce-crm') ?></option>
   <?php
   foreach($times as $f_key=>$f_val){
   $sel="";
   if(isset($_REQUEST['time']) && $_REQUEST['time'] == $f_key)
   $sel="selected='selected'";
-  echo "<option value='".$f_key."' $sel>".$f_val."</option>";       
+  echo "<option value='".esc_attr($f_key)."' $sel>".esc_attr($f_val)."</option>";      
   }
   ?>
   </select>
   <span style="<?php if(self::post('time') != "custom"){echo "display:none";} ?>" class="crm_custom_range"> 
-  <input type="text" name="start_date" placeholder="<?php _e('From Date','gravity-forms-salesforce-crm') ?>" value="<?php if(isset($_REQUEST['start_date'])){echo $this->post('start_date');}?>" class="vxc_date crm_input_inline" style="width: 100px">
-  <input type="text" class="vxc_date crm_input_inline" value="<?php if(isset($_REQUEST['end_date'])){echo $this->post('end_date');}?>" placeholder="<?php _e('To Date','gravity-forms-salesforce-crm') ?>" name="end_date"  style="width: 100px">
+  <input type="text" name="start_date" placeholder="<?php esc_html_e('From Date','gravity-forms-salesforce-crm') ?>" value="<?php if(isset($_REQUEST['start_date'])){echo esc_attr($this->post('start_date'));}?>" class="vxc_date crm_input_inline" style="width: 100px">
+  <input type="text" class="vxc_date crm_input_inline" value="<?php if(isset($_REQUEST['end_date'])){echo esc_attr($this->post('end_date'));}?>" placeholder="<?php esc_html_e('To Date','gravity-forms-salesforce-crm') ?>" name="end_date"  style="width: 100px">
   </span>
  
-  <button type="submit" title="<?php _e('Search','gravity-forms-salesforce-crm') ?>" name="search" class="button-secondary button crm_input_inline"><i class="fa fa-search"></i> <?php _e('Search','gravity-forms-salesforce-crm') ?></button> 
+  <button type="submit" title="<?php esc_html_e('Search','gravity-forms-salesforce-crm') ?>" name="search" class="button-secondary button crm_input_inline"><i class="fa fa-search"></i> <?php esc_html_e('Search','gravity-forms-salesforce-crm') ?></button> 
      
   </div>   </form> 
      <div style="clear: both;"></div> 
@@ -297,29 +297,29 @@ margin-left: 2px;
   <select name="bulk_action" id="vx_bulk_action" class="crm_input_inline" style="min-width: 100px; max-width: 250px;">
   <?php
    foreach($bulk_actions as $k=>$v){
-   echo '<option value="'.$k.'">'.$v.'</option>';    
+   echo '<option value="'.esc_attr($k).'">'.esc_html($v).'</option>';    
    }   
   ?>
   </select>
     <input type="hidden" name="vx_nonce" value="<?php echo wp_create_nonce('vx_nonce'); ?>">   
-  <button type="submit" class="button-secondary button crm_input_inline" title="<?php _e('Apply','gravity-forms-salesforce-crm') ?>" id="vx_apply_bulk"><i class="fa fa-check"></i> <?php _e('Apply','gravity-forms-salesforce-crm') ?></button>
+  <button type="submit" class="button-secondary button crm_input_inline" title="<?php esc_html_e('Apply','gravity-forms-salesforce-crm') ?>" id="vx_apply_bulk"><i class="fa fa-check"></i> <?php esc_html_e('Apply','gravity-forms-salesforce-crm') ?></button>
 
   <?php   
   $log_link=$this->get_log_link();
          if($items>0){
         
   ?>
-  <button type="button" name="tab_action" title="<?php _e('Export as CSV','gravity-forms-salesforce-crm') ?>" id="vx_export" class="button-secondary button crm_input_inline vx_left_10"><i class="fa fa-download"></i> <?php _e('Export as CSV','gravity-forms-salesforce-crm') ?></button> 
+  <button type="button" name="tab_action" title="<?php esc_html_e('Export as CSV','gravity-forms-salesforce-crm') ?>" id="vx_export" class="button-secondary button crm_input_inline vx_left_10"><i class="fa fa-download"></i> <?php esc_html_e('Export as CSV','gravity-forms-salesforce-crm') ?></button> 
   <?php
   }
         if($this->post('log_id') !="" ){
   if(isset($data['feeds'][0]['entry_id']) && $data['feeds'][0]['entry_id']!=""){
      $entry_id=$data['feeds'][0]['entry_id'];
       ?>
-  <a href="<?php echo   $log_link.'&entry_id='.$entry_id;?>" title="<?php echo sprintf(__('View Entry# %s Logs','gravity-forms-salesforce-crm'),$entry_id); ?>" class="button vx_left_10"><i class="fa fa-hand-o-right"></i> <?php echo sprintf(__('View Entry# %s Logs','gravity-forms-salesforce-crm'),$entry_id); ?></a><?php
+  <a href="<?php echo esc_url($log_link.'&entry_id='.$entry_id);?>" title="<?php echo sprintf(__('View Entry# %s Logs','gravity-forms-salesforce-crm'),$entry_id); ?>" class="button vx_left_10"><i class="fa fa-hand-o-right"></i> <?php echo sprintf(__('View Entry# %s Logs','gravity-forms-salesforce-crm'),$entry_id); ?></a><?php
   }}
  if($this->post('entry_id') !="" || $this->post('log_id') !=""){
-          ?><a href="<?php echo $log_link;?>" title="<?php _e('View All Logs','gravity-forms-salesforce-crm') ?>" class="button vx_left_10"><i class="fa fa-external-link"></i> <?php _e('View All Logs','gravity-forms-salesforce-crm') ?></a>        
+          ?><a href="<?php echo esc_url($log_link);?>" title="<?php esc_html_e('View All Logs','gravity-forms-salesforce-crm') ?>" class="button vx_left_10"><i class="fa fa-external-link"></i> <?php esc_html_e('View All Logs','gravity-forms-salesforce-crm') ?></a>        
           <?php
       }
   
@@ -328,7 +328,7 @@ margin-left: 2px;
   <?php
 if($items>0){
   ?>
-  <div class="tablenav-pages"> <span id="paging_header" class="displaying-num"><?php _e('Displaying','gravity-forms-salesforce-crm') ?> <span id="paging_range_min_header"><?php echo $data['min'] ?></span> - <span id="paging_range_max_header"><?php echo $data['max'] ?></span> of <span id="paging_total_header"><?php echo $data['items'] ?></span></span><?php echo $data['links'] ?></div>
+  <div class="tablenav-pages"> <span id="paging_header" class="displaying-num"><?php esc_html_e('Displaying','gravity-forms-salesforce-crm') ?> <span id="paging_range_min_header"><?php echo esc_html($data['min']) ?></span> - <span id="paging_range_max_header"><?php echo esc_html($data['max']) ?></span> of <span id="paging_total_header"><?php echo esc_html($data['items']) ?></span></span><?php echo wp_kses_post($data['links']); ?></div>
  <?php
 }
         ?>       
@@ -340,18 +340,18 @@ if($items>0){
   <tr>
   <th scope="col" id="active" class="manage-column vx_col"><input type="checkbox" class="crm_head_check"> </th>
   <th scope="col" class="manage-column vx_col"> </th>
-  <th scope="col" class="manage-column vx_sort"  data-name="crm_id"><?php _e("Salesforce ID", 'gravity-forms-salesforce-crm') ?>
+  <th scope="col" class="manage-column vx_sort"  data-name="crm_id"><?php esc_html_e("Salesforce ID", 'gravity-forms-salesforce-crm') ?>
   <i class="fa fa-caret-<?php echo $crm_order ?> vx_sort_icon <?php echo $crm_class ?>"></i>                          
   </th>
-  <th scope="col" class="manage-column vx_sort"  data-name="entry_id"><?php _e("Entry ID", 'gravity-forms-salesforce-crm') ?>
+  <th scope="col" class="manage-column vx_sort"  data-name="entry_id"><?php esc_html_e("Entry ID", 'gravity-forms-salesforce-crm') ?>
   <i class="fa fa-caret-<?php echo $entry_order ?> vx_sort_icon <?php echo $entry_class ?>"></i>                      
   </th>
-  <th scope="col" class="manage-column"  data-name="object"><?php _e("Description", 'gravity-forms-salesforce-crm') ?>
+  <th scope="col" class="manage-column"  data-name="object"><?php esc_html_e("Description", 'gravity-forms-salesforce-crm') ?>
   </th>
-  <th scope="col" class="manage-column vx_sort"  data-name="time"><?php _e("Time", 'gravity-forms-salesforce-crm') ?>
+  <th scope="col" class="manage-column vx_sort"  data-name="time"><?php esc_html_e("Time", 'gravity-forms-salesforce-crm') ?>
   <i class="fa fa-caret-<?php echo $time_order ?> vx_sort_icon <?php echo $time_class ?>"></i>
   </th>
-  <th style="width: 40px"><?php _e('Detail','gravity-forms-salesforce-crm') ?></th>
+  <th style="width: 40px"><?php esc_html_e('Detail','gravity-forms-salesforce-crm') ?></th>
   </tr>
   </thead>
   
@@ -359,18 +359,18 @@ if($items>0){
   <tr>
   <th scope="col" id="active" class="manage-column vx_col"><input type="checkbox" class="crm_head_check"> </th>
   <th scope="col" class="manage-column vx_col"> </th>
-  <th scope="col" class="manage-column vx_sort"  data-name="crm_id"><?php _e("Salesforce ID", 'gravity-forms-salesforce-crm') ?>
+  <th scope="col" class="manage-column vx_sort"  data-name="crm_id"><?php esc_html_e("Salesforce ID", 'gravity-forms-salesforce-crm') ?>
   <i class="fa fa-caret-<?php echo $crm_order ?> vx_sort_icon <?php echo $crm_class ?>"></i>                          
   </th>
-  <th scope="col" class="manage-column vx_sort"  data-name="entry_id"><?php _e("Entry ID", 'gravity-forms-salesforce-crm') ?>
+  <th scope="col" class="manage-column vx_sort"  data-name="entry_id"><?php esc_html_e("Entry ID", 'gravity-forms-salesforce-crm') ?>
   <i class="fa fa-caret-<?php echo $entry_order ?> vx_sort_icon <?php echo $entry_class ?>"></i>                      
   </th>
-  <th scope="col" class="manage-column"  data-name="object"><?php _e("Description", 'gravity-forms-salesforce-crm') ?>
+  <th scope="col" class="manage-column"  data-name="object"><?php esc_html_e("Description", 'gravity-forms-salesforce-crm') ?>
   </th>
-  <th scope="col" class="manage-column vx_sort"  data-name="time"><?php _e("Time", 'gravity-forms-salesforce-crm') ?>
+  <th scope="col" class="manage-column vx_sort"  data-name="time"><?php esc_html_e("Time", 'gravity-forms-salesforce-crm') ?>
   <i class="fa fa-caret-<?php echo $time_order ?> vx_sort_icon <?php echo $time_class ?>"></i>
   </th>
-  <th><?php _e('Detail','gravity-forms-salesforce-crm') ?></th>  
+  <th><?php esc_html_e('Detail','gravity-forms-salesforce-crm') ?></th>  
   </tr>
   
   </tfoot>
@@ -385,10 +385,10 @@ if($items>0){
     $e_id=(int)$row['entry_id'];
   $p_id=(int)$row['parent_id'];
   ?>
-  <tr class='author-self status-inherit <?php if(in_array($row['id'],$log_ids)){echo 'vx_yellow ';} echo $sno%2 == 0 ? 'alternate' :'' ?>' id="tr_<?php echo $row['id'] ?>" data-id="<?php echo $row['id'] ?>" >
-  <td class="vx_check_col"><input type="checkbox" name="log_id[]" value="<?php echo $row['id'] ?>" class="crm_input_check"></td>
-    <td class="vx_icon_col"><img src="<?php echo $base_url ?>images/<?php echo $row["status_img"] ?>.png" alt="<?php echo $row["status"] ? __("Active", 'gravity-forms-salesforce-crm') : __("Inactive", 'gravity-forms-salesforce-crm');?>" title="<?php echo $row['title'];?>" class="crm_status_img" /></td>
-  <td class="column-name" style="width:40%"><p><?php echo $row['a_link'] ?></p></td>
+  <tr class='author-self status-inherit <?php if(in_array($row['id'],$log_ids)){echo 'vx_yellow ';} echo $sno%2 == 0 ? 'alternate' :'' ?>' id="tr_<?php echo esc_attr($row['id']) ?>" data-id="<?php echo esc_attr($row['id']) ?>" >
+  <td class="vx_check_col"><input type="checkbox" name="log_id[]" value="<?php echo esc_attr($row['id']) ?>" class="crm_input_check"></td>
+    <td class="vx_icon_col"><img src="<?php echo $base_url ?>images/<?php echo esc_attr($row["status_img"]) ?>.png" alt="<?php echo $row["status"] ? esc_html__("Active", 'gravity-forms-salesforce-crm') : esc_html__("Inactive", 'gravity-forms-salesforce-crm');?>" title="<?php echo esc_attr($row['title'])?>" class="crm_status_img" /></td>
+  <td class="column-name" style="width:40%"><p><?php echo wp_kses_post($row['a_link']) ?></p></td>
       <td class="column-title">
       <?php
               $entry_link='';
@@ -402,17 +402,17 @@ if($items>0){
              }
       if(!empty($entry_link)){
       ?>
-        <a href="<?php echo $entry_link ?>" title="<?php echo $row["entry_id"]; ?>" target="_blank" ><?php echo $e_id; ?></a>
+        <a href="<?php echo esc_url($entry_link) ?>" title="<?php echo esc_attr($row["entry_id"]); ?>" target="_blank" ><?php echo esc_html($e_id); ?></a>
         <?php
       }else{
-          echo $e_id;
+          echo esc_html($e_id);
       }
         ?>
     </td>
     
-               <td scope="col" class="manage-column"><?php echo $row['desc']; ?></td>
+               <td scope="col" class="manage-column"><?php echo esc_html($row['desc']); ?></td>
     <td scope="col" class="manage-column"><?php echo  date('M-d-Y H:i:s', strtotime($row['time'])+$offset); ?></td>
-    <td><i class="vx_icons vx_detail fa fa-th-list" title="<?php _e('Expand Details','gravity-forms-salesforce-crm') ?>"></i></td>  
+    <td><i class="vx_icons vx_detail fa fa-th-list" title="<?php esc_html_e('Expand Details','gravity-forms-salesforce-crm') ?>"></i></td>  
   </tr>
   <tr style="display: none;"><td colspan="7" class="entry_detail"></td></tr>
   <?php
@@ -422,7 +422,7 @@ if($items>0){
   ?>
   <tr>
     <td colspan="4" style="padding:20px;">
-        <?php _e("No Record(s) Found", 'gravity-forms-salesforce-crm'); ?>
+        <?php esc_html_e("No Record(s) Found", 'gravity-forms-salesforce-crm'); ?>
     </td>
   </tr>
   <?php
@@ -435,8 +435,8 @@ if($items>0){
   if($items>0){
   ?>
     <div class="crm_actions tablenav">
-   <a id="vx_clear_logs" class="button" title="<?php _e('Clear Salesforce Log','gravity-forms-salesforce-crm') ?>" href="<?php echo wp_nonce_url(admin_url('admin.php?page='.$this->post('page')."&view=log&vx_tab_action_".$this->id."=clear_logs"),'vx_nonce','vx_nonce'); ?>"><?php _e('Clear Salesforce Log','gravity-forms-salesforce-crm') ?></a>
-  <div class="tablenav-pages"> <span id="paging_header" class="displaying-num"><?php _e('Displaying','gravity-forms-salesforce-crm') ?> <span id="paging_range_min_header"><?php echo $data['min'] ?></span> - <span id="paging_range_max_header"><?php echo $data['max'] ?></span> of <span id="paging_total_header"><?php echo $data['items'] ?></span></span><?php echo $data['links'] ?></div>
+   <a id="vx_clear_logs" class="button" title="<?php esc_html_e('Clear Salesforce Log','gravity-forms-salesforce-crm') ?>" href="<?php echo wp_nonce_url(admin_url('admin.php?page='.$this->post('page')."&view=log&vx_tab_action_".$this->id."=clear_logs"),'vx_nonce','vx_nonce'); ?>"><?php esc_html_e('Clear Salesforce Log','gravity-forms-salesforce-crm') ?></a>
+  <div class="tablenav-pages"> <span id="paging_header" class="displaying-num"><?php esc_html_e('Displaying','gravity-forms-salesforce-crm') ?> <span id="paging_range_min_header"><?php echo esc_html($data['min']) ?></span> - <span id="paging_range_max_header"><?php echo esc_html($data['max']) ?></span> of <span id="paging_total_header"><?php echo esc_html($data['items']) ?></span></span><?php echo wp_kses_post($data['links']); ?></div>
     </div>
   <?php
   }
@@ -502,22 +502,22 @@ $(".crm_head_check").removeAttr('checked');
     $("#vx_apply_bulk").click(function(e){
         var sel=$("#vx_bulk_action");
 if(sel.val() == ""){
-    alert('<?php _e('Please Select Action','gravity-forms-salesforce-crm') ?>');
+    alert('<?php esc_html_e('Please Select Action','gravity-forms-salesforce-crm') ?>');
       return false;
 }
 if($(".crm_input_check:checked").length == 0){ 
-    alert('<?php _e('Please select at least one entry','gravity-forms-salesforce-crm') ?>');
+    alert('<?php esc_html_e('Please select at least one entry','gravity-forms-salesforce-crm') ?>');
     return false;
 }
 var action=sel.val();
 if( $.inArray(action,["send_to_crm_bulk_force","send_to_crm_bulk"]) !=-1 && $(".crm_input_check:checked").length>4){
- if(!confirm('<?php _e('Exporting more than 4 entries may take too long.\\n Are you sure you want to continue?','gravity-forms-salesforce-crm') ?>')){
+ if(!confirm('<?php esc_html_e('Exporting more than 4 entries may take too long.\\n Are you sure you want to continue?','gravity-forms-salesforce-crm') ?>')){
   e.preventDefault();    
  }   
 }
   })
    $("#vx_clear_logs").click(function(e){
-      if(!confirm('<?php _e('Salesforce Logs will be deleted permanently. Do you want to continue?','gravity-forms-salesforce-crm') ?>')){
+      if(!confirm('<?php esc_html_e('Salesforce Logs will be deleted permanently. Do you want to continue?','gravity-forms-salesforce-crm') ?>')){
           e.preventDefault();
       }  
   })    
@@ -575,14 +575,14 @@ if( $.inArray(action,["send_to_crm_bulk_force","send_to_crm_bulk"]) !=-1 && $(".
         next_tr.hide();     
         })
        if(is_main){
-    icon.attr('title','<?php _e('Expand Detail','gravity-forms-salesforce-crm'); ?>');    
+    icon.attr('title','<?php esc_html_e('Expand Detail','gravity-forms-salesforce-crm'); ?>');    
     }        
      return;   
     }else{
     next_tr.show('fast'); 
     next_tr.find('.vxa_entry').slideDown('fast'); 
     if(is_main){
-    icon.attr('title','<?php _e('Collapse Detail','gravity-forms-salesforce-crm'); ?>');    
+    icon.attr('title','<?php esc_html_e('Collapse Detail','gravity-forms-salesforce-crm'); ?>');    
     }    
     }
     if(!td.find("div").length){

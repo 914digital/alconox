@@ -134,7 +134,7 @@ jQuery(function($){
                 this.initModuleEditor(_n);
 
                 // Coditional rules via attributes
-                controller.conditionals.init();
+                WD_Helpers.Conditionals.init(_n.module);
             },
 
             initColumns: function(_n) {
@@ -190,7 +190,6 @@ jQuery(function($){
                     controller.currentModule = controller.modules[type];
                     controller.currentModule.load();
                     var node = controller.visual.openModuleEditor(type);
-                    controller.conditionals.load(node);
                     controller.events.moduleDataBeforeOpen = "";
                 });
             },
@@ -207,7 +206,6 @@ jQuery(function($){
                         controller.currentModule.load(controller.filters[index]);
                         controller.events.moduleDataBeforeOpen = JSON.stringify(controller.currentModule.getData());
                         var node = controller.visual.openModuleEditor(controller.filters[index].type);
-                        controller.conditionals.load(node);
                     }
                 });
 
@@ -261,7 +259,7 @@ jQuery(function($){
             }
         },
 
-        conditionals: {
+        __delete__conditionals: {
             /**
              * Allows custom syntax on nodes to show/hide/enable/disable on specific conditions
              * Ex.:

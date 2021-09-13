@@ -304,12 +304,25 @@ if ( ! class_exists( 'ASP_Search_CPT' ) ) {
                     } else {
                         $poly_field = "$wpdb->posts.ID";
                     }
-                    $polylang_query = " AND (
-                    $poly_field IN ( SELECT DISTINCT(tr.object_id)
-                        FROM $wpdb->term_relationships AS tr
-                        LEFT JOIN $wpdb->term_taxonomy as tt ON (tr.term_taxonomy_id = tt.term_taxonomy_id AND tt.taxonomy = 'language')
-                        WHERE tt.term_id = $languages[0]
-			         ) )";
+					$polylang_empty_query = '';
+					if ( $args['_polylang_lang'] == pll_default_language() ) {
+						$polylang_empty_query = "
+							NOT EXISTS (
+								SELECT *
+								FROM $wpdb->term_relationships as xt
+								INNER JOIN $wpdb->term_taxonomy as tt ON ( xt.term_taxonomy_id = tt.term_taxonomy_id AND tt.taxonomy = 'language')
+								WHERE
+									xt.object_id = $languages[0]
+							) OR ";
+					}
+					$polylang_query = " AND (
+						$polylang_empty_query
+						$poly_field IN ( SELECT DISTINCT(tr.object_id)
+							FROM $wpdb->term_relationships AS tr
+							LEFT JOIN $wpdb->term_taxonomy as tt ON (tr.term_taxonomy_id = tt.term_taxonomy_id AND tt.taxonomy = 'language')
+							WHERE tt.term_id = $languages[0]
+						 ) 
+					 )";
                 }
             }
             /*---------------------------------------------------------------*/
@@ -991,7 +1004,6 @@ if ( ! class_exists( 'ASP_Search_CPT' ) ) {
             $parts = array();
 
             $allow_cf_null = $args['_post_meta_allow_null'];
-
             foreach ( $args['post_meta_filter'] as $data ) {
 
                 $operator = $data['operator'];
@@ -1955,7 +1967,11 @@ if ( ! class_exists( 'ASP_Search_CPT' ) ) {
         protected function adv_field( $f_args, $use_acf = false, $empty_on_missing = false ) {
             $args = &$this->args;
 
-            $specials = array('__id', '__title', '__content', '__link', '__url', '__image', '__date', '__author');
+            $specials = array(
+            	'__id', '__title', '__content',
+				'__link', '__url', '__image', '__date', '__author',
+				'__post_type'
+			);
 
             $f_args = wp_parse_args($f_args, array(
                 'main_field_slug' => 'titlefield',  // The 'slug', aka the original field name
@@ -2017,6 +2033,12 @@ if ( ! class_exists( 'ASP_Search_CPT' ) ) {
                                 case '__content':
                                     $val = isset($r->content) ? $r->content : '';
                                     break;
+                                case '__post_type':
+                                	if ( isset($r->post_type) ) {
+										$post_type_obj = get_post_type_object( $r->post_type );
+										$val = $post_type_obj->labels->singular_name;
+									}
+                                	break;
                                 case '__link':
                                 case '__url':
                                     $val = isset($r->link) ? $r->link : '';

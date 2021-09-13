@@ -30,6 +30,7 @@ include('class/customfields.class.php');
 include('class/draggable.class.php');
 include('class/dateinterval.class.php');
 include('class/datefilter.class.php');
+include('class/datefilter-post.class.php');
 include('class/font-complete.class.php');
 include('class/four.class.php');
 include('class/gradient.class.php');
@@ -94,10 +95,10 @@ if (!function_exists("admin_scriptsV05")) {
         wp_enqueue_script('thickbox', false, array('jquery'));
 
         // Helper script
-        wp_register_script('wpdreams-misc', ASP_URL_NP . 'backend/settings/assets/misc.js', array(
+        wp_register_script('wd-helpers', ASP_URL_NP . 'backend/settings/assets/wd_core/js/helpers.js', array(
             'jquery'
         ), $media_query, true);
-        wp_enqueue_script('wpdreams-misc');
+        wp_enqueue_script('wd-helpers');
 
         wp_enqueue_script('jquery');
         wp_enqueue_script('jquery-ui-core', false, array('jquery'), false, true);
@@ -106,15 +107,15 @@ if (!function_exists("admin_scriptsV05")) {
         wp_enqueue_script('jquery-ui-sortable', false, array('jquery-ui-core'), false, true);
         wp_enqueue_script('jquery-ui-draggable', false, array('jquery-ui-core'), false, true);
         wp_enqueue_script('jquery-ui-datepicker', false, array('jquery-ui-core'), false, true);
+
+		wp_register_script('wd-conditionals', ASP_URL_NP . 'backend/settings/assets/wd_core/js/conditionals.js', array('jquery'), $media_query, true);
+		wp_enqueue_script('wd-conditionals');
+
         wp_register_script('wpdreams-types', ASP_URL_NP . 'backend/settings/assets/types.js',
-            array('jquery', 'jquery-ui-sortable', 'farbtastic', 'jquery-ui-datepicker'), $media_query, true
+            array('jquery', 'jquery-ui-sortable', 'farbtastic', 'jquery-ui-datepicker', 'wd-conditionals'), $media_query, true
         );
         wp_enqueue_script('wpdreams-types');
 
-        wp_register_script('wpdreams-ui-datetimepicker', ASP_URL_NP . 'backend/settings/assets/js/ui/jquery.ui.datetimepicker.js', array(
-            'jquery-ui-datepicker'
-        ), $media_query, true);
-        wp_enqueue_script('wpdreams-ui-datetimepicker');
         wp_register_script('wpdreams-tabs', ASP_URL_NP . 'backend/settings/assets/tabs.js', array(
             'jquery'
         ), $media_query, true);

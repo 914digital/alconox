@@ -1,3 +1,10 @@
+### 4.8 | 2021-04-28
+- Fixed an issue with untranslated strings on the activation page.
+- Fixed an issue where the values of BuddyPress fields that are mapped to form fields are not saved on user activation.
+- Fixed a fatal error which can occur during user activation.
+- Fixed an issue where the add-on icon is missing on the form settings pages in Gravity Forms 2.5.
+
+
 ### 4.7 | 2021-01-28
 - Fixed user permissions so users with the promote_users capability can now view the Pending Activations screen.
 - Fixed an issue where script tags were being output above document head element.

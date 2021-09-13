@@ -90,10 +90,14 @@ if (!class_exists("wpdreamsCustomPostTypes")) {
 			$this->types = get_post_types('', "objects");
 
             foreach ($this->types as $k => &$v) {
-                if (count($this->args['exclude']) > 0 && in_array($k, $this->args['exclude'])) {
+                if ( count($this->args['exclude']) > 0 && in_array($k, $this->args['exclude']) ) {
                     unset($this->types[$k]);
                     continue;
                 }
+				if ( in_array($k, self::NON_DISPLAYABLE_POST_TYPES) ) {
+					unset($this->types[$k]);
+					continue;
+				}
                 if ( $k == 'attachment' ) {
                     $v->labels->name = 'Attachment - Media';
                 }

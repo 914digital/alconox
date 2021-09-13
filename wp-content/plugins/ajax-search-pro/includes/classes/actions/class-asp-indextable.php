@@ -23,6 +23,13 @@ if (!class_exists("WD_ASP_IndexTable_Action")) {
 
         public function handle() {}
 
+		public function update_post_meta($mid, $object_id, $meta_key, $_meta_value) {
+			$it_options = wd_asp()->o['asp_it_options'];
+			if ( $it_options['it_index_on_update_post_meta'] == 1 ) {
+				self::update($object_id, null, true);
+			}
+		}
+
         public function update( $post_id=null, $_post=null, $update=false ) {
             /**
              * Argument default values are set to NULL, as some developers like to call

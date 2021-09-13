@@ -5,6 +5,7 @@
     $params[$o->getName()] = $o->getData();
     ?>
 </div>
+<div wd-disable-on="user_search:0">
 <div class="item">
     <?php
     $o = new wpdreamsYesNo("user_login_search", __('Search in user login names?', 'ajax-search-pro'),
@@ -48,7 +49,7 @@
     ?>
 </div>
 <div class="item wd-primary-order item-flex-nogrow item-flex-wrap"><?php
-    $o = new wpdreamsCustomSelect("user_orderby_primary", __('Primary user result ordering', 'ajax-search-pro'),
+    $o = new wpdreamsCustomSelect("user_orderby_primary", __('Primary ordering', 'ajax-search-pro'),
         array(
             'selects' => array(
                 array('option' => __('Relevance', 'ajax-search-pro'), 'value' => 'relevance DESC'),
@@ -63,10 +64,15 @@
             'value' => $sd['user_orderby_primary']
         ));
     $params[$o->getName()] = $o->getData();
-
+	?>
+	<div wd-show-on="user_orderby_primary:customfp DESC,customfp ASC">
+	<?php
     $o = new wpdreamsText("user_orderby_primary_cf", __('custom field', 'ajax-search-pro'), $sd['orderby_primary_cf']);
     $params[$o->getName()] = $o->getData();
-
+	?>
+	</div>
+	<div wd-show-on="user_orderby_primary:customfp DESC,customfp ASC">
+	<?php
     $o = new wpdreamsCustomSelect("user_orderby_primary_cf_type", __('type', 'ajax-search-pro'),
         array(
             'selects' => array(
@@ -77,6 +83,7 @@
         ));
     $params[$o->getName()] = $o->getData();
     ?>
+	</div>
 </div>
     <div class="item wd-secondary-order item-flex-nogrow item-flex-wrap"><?php
         $o = new wpdreamsCustomSelect("user_orderby_secondary", __('Secondary result ordering', 'ajax-search-pro'),
@@ -94,10 +101,15 @@
                 'value' => $sd['user_orderby_secondary']
             ));
         $params[$o->getName()] = $o->getData();
-
+		?>
+		<div wd-show-on="user_orderby_secondary:customfs DESC,customfs ASC">
+		<?php
         $o = new wpdreamsText("user_orderby_secondary_cf", __('custom field', 'ajax-search-pro'), $sd['orderby_secondary_cf']);
         $params[$o->getName()] = $o->getData();
-
+		?>
+		</div>
+		<div wd-show-on="user_orderby_secondary:customfs DESC,customfs ASC">
+		<?php
         $o = new wpdreamsCustomSelect("user_orderby_secondary_cf_type", __('type', 'ajax-search-pro'),
             array(
                 'selects' => array(
@@ -108,6 +120,7 @@
             ));
         $params[$o->getName()] = $o->getData();
         ?>
+		</div>
         <div class="descMsg item-flex-grow item-flex-100">
             <?php echo __('If two elements match the primary ordering criteria, the <b>Secondary ordering</b> is used.', 'ajax-search-pro'); ?>
         </div>
@@ -133,26 +146,6 @@
 </div>
 <div class="item">
     <?php
-    $o = new wpdreamsYesNo("user_search_display_images", __('Display user images?', 'ajax-search-pro'),
-        $sd['user_search_display_images']);
-    $params[$o->getName()] = $o->getData();
-    ?>
-</div>
-<div class="item">
-    <?php
-    $o = new wpdreamsCustomSelect("user_search_image_source", __('Image source', 'ajax-search-pro'),
-        array(
-            'selects' => array(
-                array('option' => 'Default', 'value' => 'default'),
-                array('option' => 'BuddyPress avatar', 'value' => 'buddypress')
-            ),
-            'value' => $sd['user_search_image_source']
-        ));
-    $params[$o->getName()] = $o->getData();
-    ?>
-</div>
-<div class="item">
-    <?php
     $o = new wd_UserMeta("user_search_meta_fields", __('Search in following user meta fields', 'ajax-search-pro'), array(
         "value"=>$sd['user_search_meta_fields'],
         'args'=> array()
@@ -169,4 +162,5 @@
 </div>
 <div class="item">
     <p>To change the user result URL or Title, Content fields, please go to <a class="asp_to_tab" href="#701" tabid="701">Advanced Options -> Content</a> panel.</p>
+</div>
 </div>

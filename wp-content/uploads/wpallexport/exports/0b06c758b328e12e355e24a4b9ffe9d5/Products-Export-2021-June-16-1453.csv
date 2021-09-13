@@ -1,0 +1,119 @@
+id,Title,SKU,"Product Type","Parent Product ID","Product Size","Product T-Shirt Sizes","Product Attributes",Date,"Post Modified Date"
+17336,Liquinox,,variable,0,"1 Gallon (3.8L)|1 Quart (0.95L)|15 Gallon drum (57L)|5 Gallon Jerrycan (19L)|55 Gallon drum (208L)|Case of 12×1 Quart (12×0.95L)|Case of 4 X 1 Gallon (4×3.8L)",,"a:1:{s:7:""pa_size"";a:6:{s:4:""name"";s:7:""pa_size"";s:5:""value"";s:0:"""";s:8:""position"";i:0;s:10:""is_visible"";i:1;s:12:""is_variation"";i:1;s:11:""is_taxonomy"";i:1;}}",2020-01-25,2021-06-10
+17439,Alconox,,variable,0,"100 lb drum (45Kg)|25 lb box (11Kg)|300 lb drum (136Kg)|4 lb box (1.8Kg)|50 lb box (22.5Kg)|Case of 12 Dispenser Boxes (50x1/2oz packets (12x50x15g))|Case of 9×4 lb box (9X1.8Kg)|Dispenser Box of 50×1/2 oz packs (50x15g)",,"a:1:{s:7:""pa_size"";a:6:{s:4:""name"";s:7:""pa_size"";s:5:""value"";s:0:"""";s:8:""position"";i:0;s:10:""is_visible"";i:1;s:12:""is_variation"";i:1;s:11:""is_taxonomy"";i:1;}}",2020-01-28,2021-06-10
+17441,Detonox,,variable,0,"1 Gallon (3.8L)|5 Gallon Jerrycan (19L)|55 Gallon drum (208L)|Case of 4 X 1 Gallon (4×3.8L)",,"a:1:{s:7:""pa_size"";a:6:{s:4:""name"";s:7:""pa_size"";s:5:""value"";s:0:"""";s:8:""position"";i:0;s:10:""is_visible"";i:1;s:12:""is_variation"";i:1;s:11:""is_taxonomy"";i:1;}}",2020-01-28,2021-06-10
+17443,Solujet,,variable,0,"1 Gallon (3.8L)|15 Gallon drum (57L)|30 Gallon drum (114L)|5 Gallon Jerrycan (19L) Air OK|55 Gallon drum (208L)|Case of 4 X 1 Gallon (4×3.8L)",,"a:1:{s:7:""pa_size"";a:6:{s:4:""name"";s:7:""pa_size"";s:5:""value"";s:0:"""";s:8:""position"";i:0;s:10:""is_visible"";i:1;s:12:""is_variation"";i:1;s:11:""is_taxonomy"";i:1;}}",2020-01-28,2021-06-10
+17444,Keylajet,,variable,0,"15 Gallon drum (57L)|265 gallon tote (1003 L)|5 Gallon Jerrycan (19L) Air OK|55 Gallon drum (208L)",,"a:1:{s:7:""pa_size"";a:6:{s:4:""name"";s:7:""pa_size"";s:5:""value"";s:0:"""";s:8:""position"";i:1;s:10:""is_visible"";i:1;s:12:""is_variation"";i:1;s:11:""is_taxonomy"";i:1;}}",2020-01-28,2021-06-10
+17449,Citrajet,,variable,0,"1 Gallon (3.8L)|15 Gallon drum (57L)|30 Gallon drum (114L)|5 Gallon Jerrycan (19L)|55 Gallon drum (208L)|Case of 4 X 1 Gallon (4×3.8L)",,"a:1:{s:7:""pa_size"";a:6:{s:4:""name"";s:7:""pa_size"";s:5:""value"";s:0:"""";s:8:""position"";i:0;s:10:""is_visible"";i:1;s:12:""is_variation"";i:1;s:11:""is_taxonomy"";i:1;}}",2020-01-28,2021-06-10
+17453,Tergazyme,,variable,0,"100 lb drum (45Kg)|25 lb box (11Kg)|300 lb drum (136Kg)|4 lb box (1.8Kg)|50 lb box (22.5Kg)|Case of 9×4 lb box (9X1.8Kg)",,"a:1:{s:7:""pa_size"";a:6:{s:4:""name"";s:7:""pa_size"";s:5:""value"";s:0:"""";s:8:""position"";i:0;s:10:""is_visible"";i:1;s:12:""is_variation"";i:1;s:11:""is_taxonomy"";i:1;}}",2020-01-28,2021-05-20
+17456,Alcojet,,variable,0,"100 lb drum (45Kg)|25 lb box (11Kg)|300 lb drum (136Kg)|4 lb box (1.8Kg)|50 lb box (22.5Kg)|Case of 9×4 lb box (9X1.8Kg)",,"a:1:{s:7:""pa_size"";a:6:{s:4:""name"";s:7:""pa_size"";s:5:""value"";s:0:"""";s:8:""position"";i:1;s:10:""is_visible"";i:1;s:12:""is_variation"";i:1;s:11:""is_taxonomy"";i:1;}}",2020-01-28,2021-05-20
+17459,Luminox,,variable,0,"1 Gallon (3.8L)|15 Gallon drum (57L)|5 Gallon Jerrycan (19L)|55 Gallon drum (208L)|Case of 4 X 1 Gallon (4×3.8L)",,"a:1:{s:7:""pa_size"";a:6:{s:4:""name"";s:7:""pa_size"";s:5:""value"";s:0:"""";s:8:""position"";i:0;s:10:""is_visible"";i:1;s:12:""is_variation"";i:1;s:11:""is_taxonomy"";i:1;}}",2020-01-28,2021-06-10
+17460,Alcotabs,,variable,0,"1 Bottle (100 Tablets)|Case of 6X100 Tablet Bottles",,"a:1:{s:7:""pa_size"";a:6:{s:4:""name"";s:7:""pa_size"";s:5:""value"";s:0:"""";s:8:""position"";i:0;s:10:""is_visible"";i:1;s:12:""is_variation"";i:1;s:11:""is_taxonomy"";i:1;}}",2020-01-28,2021-02-19
+17462,Detojet,,variable,0,"1 Gallon (3.8L)|1 Quart (0.95L)|15 Gallon drum (57L)|30 Gallon drum (114L)|5 Gallon Jerrycan (19L) Air OK|55 Gallon drum (208L)|Case of 12×1 Quart (12×0.95L)|Case of 4 X 1 Gallon (4×3.8L)",,"a:1:{s:7:""pa_size"";a:6:{s:4:""name"";s:7:""pa_size"";s:5:""value"";s:0:"""";s:8:""position"";i:0;s:10:""is_visible"";i:1;s:12:""is_variation"";i:1;s:11:""is_taxonomy"";i:1;}}",2020-01-28,2021-05-20
+17464,"Detergent 8",,variable,0,"1 Gallon (3.8L)|15 Gallon drum (57L)|5 Gallon Jerrycan (19L) Air OK|55 Gallon drum (208L)|Case of 4 X 1 Gallon (4×3.8L)",,"a:1:{s:7:""pa_size"";a:6:{s:4:""name"";s:7:""pa_size"";s:5:""value"";s:0:"""";s:8:""position"";i:0;s:10:""is_visible"";i:1;s:12:""is_variation"";i:1;s:11:""is_taxonomy"";i:1;}}",2020-01-28,2021-06-10
+17610,"Alconox - 4 lb box (1.8Kg)",1104-1,variable,17439,"4 lb box (1.8Kg)",,,2020-02-14,2021-05-20
+17612,"Alconox - Case of 9×4 lb box (9X1.8Kg)",1104,variable,17439,"Case of 9×4 lb box (9X1.8Kg)",,,2020-02-14,2021-05-20
+17613,"Alconox - 25 lb box (11Kg)",1125,variable,17439,"25 lb box (11Kg)",,,2020-02-14,2021-05-20
+17672,"Alconox - 50 lb box (22.5Kg)",1150,variable,17439,"50 lb box (22.5Kg)",,,2020-02-20,2021-05-20
+17673,"Alconox - 100 lb drum (45Kg)",1101,variable,17439,"100 lb drum (45Kg)",,,2020-02-20,2021-05-20
+17674,"Alconox - 300 lb drum (136Kg)",1103,variable,17439,"300 lb drum (136Kg)",,,2020-02-20,2021-05-20
+17675,"Alconox - Dispenser Box of 50×1/2 oz packs (50x15g)",1112-1,variable,17439,"Dispenser Box of 50×1/2 oz packs (50x15g)",,,2020-02-20,2021-05-20
+17676,"Alconox - Case of 12 Dispenser Boxes (50x1/2oz packets (12x50x15g))",1112,variable,17439,"Case of 12 Dispenser Boxes (50x1/2oz packets (12x50x15g))",,,2020-02-20,2021-05-20
+17682,"Alcojet - 100 lb drum (45Kg)",1401,variable,17456,"100 lb drum (45Kg)",,,2020-02-21,2021-05-20
+17683,"Alcojet - 25 lb box (11Kg)",1425,variable,17456,"25 lb box (11Kg)",,,2020-02-21,2021-05-20
+17684,"Alcojet - 300 lb drum (136Kg)",1403,variable,17456,"300 lb drum (136Kg)",,,2020-02-21,2021-05-20
+17685,"Alcojet - 4 lb box (1.8Kg)",1404-1,variable,17456,"4 lb box (1.8Kg)",,,2020-02-21,2021-05-20
+17686,"Alcojet - 50 lb box (22.5Kg)",1450,variable,17456,"50 lb box (22.5Kg)",,,2020-02-21,2021-05-20
+17692,"Alcotabs - 1 Bottle (100 Tablets)",1500-1,variable,17460,"1 Bottle (100 Tablets)",,,2020-02-21,2020-08-28
+17693,"Alcotabs - Case of 6X100 Tablet Bottles",1500,variable,17460,"Case of 6X100 Tablet Bottles",,,2020-02-21,2020-08-21
+17699,"Citrajet - 1 Gallon (3.8L)",2001-1,variable,17449,"1 Gallon (3.8L)",,,2020-02-21,2021-06-10
+17702,"Citrajet - 5 Gallon Jerrycan (19L)",2005,variable,17449,"5 Gallon Jerrycan (19L)",,,2020-02-21,2021-06-10
+17703,"Citrajet - 15 Gallon drum (57L)",2015,variable,17449,"15 Gallon drum (57L)",,,2020-02-21,2021-06-10
+17704,"Citrajet - Case of 4 X 1 Gallon (4×3.8L)",2001,variable,17449,"Case of 4 X 1 Gallon (4×3.8L)",,,2020-02-21,2021-06-10
+17705,"Citrajet - 30 Gallon drum (114L)",2030,variable,17449,"30 Gallon drum (114L)",,,2020-02-21,2021-06-10
+17706,"Citrajet - 55 Gallon drum (208L)",2055,variable,17449,"55 Gallon drum (208L)",,,2020-02-21,2021-06-10
+17711,"Detergent 8 - 1 Gallon (3.8L)",1701-1,variable,17464,"1 Gallon (3.8L)",,,2020-02-21,2021-06-10
+17712,"Detergent 8 - 15 Gallon drum (57L)",1715,variable,17464,"15 Gallon drum (57L)",,,2020-02-21,2021-06-10
+17713,"Detergent 8 - 5 Gallon Jerrycan (19L) Air OK",1705,variable,17464,"5 Gallon Jerrycan (19L) Air OK",,,2020-02-21,2021-06-10
+17714,"Detergent 8 - Case of 4 X 1 Gallon (4×3.8L)",1701,variable,17464,"Case of 4 X 1 Gallon (4×3.8L)",,,2020-02-21,2021-06-10
+17715,"Detergent 8 - 55 Gallon drum (208L)",1755,variable,17464,"55 Gallon drum (208L)",,,2020-02-21,2021-06-10
+17721,"Detojet - 1 Gallon (3.8L)",1601-1,variable,17462,"1 Gallon (3.8L)",,,2020-02-21,2021-05-20
+17722,"Detojet - 1 Quart (0.95L)",1632-1,variable,17462,"1 Quart (0.95L)",,,2020-02-21,2021-05-20
+17723,"Detojet - Case of 12×1 Quart (12×0.95L)",1632,variable,17462,"Case of 12×1 Quart (12×0.95L)",,,2020-02-21,2021-05-20
+17724,"Detojet - Case of 4 X 1 Gallon (4×3.8L)",1601,variable,17462,"Case of 4 X 1 Gallon (4×3.8L)",,,2020-02-21,2021-05-20
+17725,"Detojet - 55 Gallon drum (208L)",1655,variable,17462,"55 Gallon drum (208L)",,,2020-02-21,2021-05-20
+17726,"Detojet - 15 Gallon drum (57L)",1615,variable,17462,"15 Gallon drum (57L)",,,2020-02-21,2021-05-20
+17727,"Detojet - 30 Gallon drum (114L)",1630,variable,17462,"30 Gallon drum (114L)",,,2020-02-21,2021-05-20
+17728,"Detojet - 5 Gallon Jerrycan (19L) Air OK",1605,variable,17462,"5 Gallon Jerrycan (19L) Air OK",,,2020-02-21,2021-05-20
+17733,"Detonox - 1 Gallon (3.8L)",2301-1,variable,17441,"1 Gallon (3.8L)",,,2020-02-21,2021-06-10
+17734,"Detonox - 5 Gallon Jerrycan (19L)",2305,variable,17441,"5 Gallon Jerrycan (19L)",,,2020-02-21,2021-06-10
+17735,"Detonox - Case of 4 X 1 Gallon (4×3.8L)",2301,variable,17441,"Case of 4 X 1 Gallon (4×3.8L)",,,2020-02-21,2021-06-10
+17736,"Detonox - 55 Gallon drum (208L)",2355,variable,17441,"55 Gallon drum (208L)",,,2020-02-21,2021-06-10
+17740,"Keylajet - 265 gallon tote (1003 L)",24265,variable,17444,"265 gallon tote (1003 L)",,,2020-02-21,2021-06-10
+17741,"Keylajet - 55 Gallon drum (208L)",2455,variable,17444,"55 Gallon drum (208L)",,,2020-02-21,2021-06-10
+17742,"Keylajet - 15 Gallon drum (57L)",2415,variable,17444,"15 Gallon drum (57L)",,,2020-02-21,2021-06-10
+17743,"Keylajet - 5 Gallon Jerrycan (19L) Air OK",2405,variable,17444,"5 Gallon Jerrycan (19L) Air OK",,,2020-02-21,2021-06-10
+17748,"Liquinox - Case of 4 X 1 Gallon (4×3.8L)",1201,variable,17336,"Case of 4 X 1 Gallon (4×3.8L)",,,2020-02-21,2021-06-10
+17749,"Liquinox - Case of 12×1 Quart (12×0.95L)",1232,variable,17336,"Case of 12×1 Quart (12×0.95L)",,,2020-02-21,2021-06-10
+17750,"Liquinox - 55 Gallon drum (208L)",1255,variable,17336,"55 Gallon drum (208L)",,,2020-02-21,2021-06-10
+17751,"Liquinox - 5 Gallon Jerrycan (19L)",1205,variable,17336,"5 Gallon Jerrycan (19L)",,,2020-02-21,2021-06-10
+17752,"Liquinox - 15 Gallon drum (57L)",1215,variable,17336,"15 Gallon drum (57L)",,,2020-02-21,2021-06-10
+17753,"Liquinox - 1 Quart (0.95L)",1232-1,variable,17336,"1 Quart (0.95L)",,,2020-02-21,2021-06-10
+17754,"Liquinox - 1 Gallon (3.8L)",1201-1,variable,17336,"1 Gallon (3.8L)",,,2020-02-21,2021-06-10
+17760,Tergajet,,variable,0,"100 lb drum (45Kg)|25 lb box (11Kg)|300 lb drum (136Kg)|4 lb box (1.8Kg)|50 lb box (22.5Kg)|Case of 9×4 lb box (9X1.8Kg)",,"a:1:{s:7:""pa_size"";a:6:{s:4:""name"";s:7:""pa_size"";s:5:""value"";s:0:"""";s:8:""position"";i:0;s:10:""is_visible"";i:1;s:12:""is_variation"";i:1;s:11:""is_taxonomy"";i:1;}}",2020-02-21,2021-05-20
+17767,"Luminox - 5 Gallon Jerrycan (19L)",1905,variable,17459,"5 Gallon Jerrycan (19L)",,,2020-02-21,2021-06-10
+17769,"Luminox - 1 Gallon (3.8L)",1901-1,variable,17459,"1 Gallon (3.8L)",,,2020-02-21,2021-06-10
+17773,"Solujet - 55 Gallon drum (208L)",2155,variable,17443,"55 Gallon drum (208L)",,,2020-02-21,2021-06-10
+17774,"Solujet - 30 Gallon drum (114L)",2130,variable,17443,"30 Gallon drum (114L)",,,2020-02-21,2021-06-10
+17775,"Solujet - 15 Gallon drum (57L)",2115,variable,17443,"15 Gallon drum (57L)",,,2020-02-21,2021-06-10
+17776,"Solujet - 5 Gallon Jerrycan (19L) Air OK",2105,variable,17443,"5 Gallon Jerrycan (19L) Air OK",,,2020-02-21,2021-06-10
+17777,"Solujet - Case of 4 X 1 Gallon (4×3.8L)",2101,variable,17443,"Case of 4 X 1 Gallon (4×3.8L)",,,2020-02-21,2021-06-10
+17778,"Solujet - 1 Gallon (3.8L)",2101-1,variable,17443,"1 Gallon (3.8L)",,,2020-02-21,2021-06-10
+17782,"Tergajet - 300 lb drum (136Kg)",2203,variable,17760,"300 lb drum (136Kg)",,,2020-02-22,2021-05-20
+17783,"Tergajet - 100 lb drum (45Kg)",2201,variable,17760,"100 lb drum (45Kg)",,,2020-02-22,2021-05-20
+17784,"Tergajet - 50 lb box (22.5Kg)",2250,variable,17760,"50 lb box (22.5Kg)",,,2020-02-22,2021-05-20
+17785,"Tergajet - 25 lb box (11Kg)",2225,variable,17760,"25 lb box (11Kg)",,,2020-02-22,2021-05-20
+17786,"Tergajet - Case of 9×4 lb box (9X1.8Kg)",2204,variable,17760,"Case of 9×4 lb box (9X1.8Kg)",,,2020-02-22,2021-05-20
+17787,"Tergajet - 4 lb box (1.8Kg)",2204-1,variable,17760,"4 lb box (1.8Kg)",,,2020-02-22,2021-05-20
+17789,"Tergazyme - 300 lb drum (136Kg)",1303,variable,17453,"300 lb drum (136Kg)",,,2020-02-22,2020-12-29
+17790,"Tergazyme - 100 lb drum (45Kg)",1301,variable,17453,"100 lb drum (45Kg)",,,2020-02-22,2020-12-29
+17791,"Tergazyme - 50 lb box (22.5Kg)",1350,variable,17453,"50 lb box (22.5Kg)",,,2020-02-22,2020-12-29
+17792,"Tergazyme - 25 lb box (11Kg)",1325,variable,17453,"25 lb box (11Kg)",,,2020-02-22,2020-12-29
+17793,"Tergazyme - Case of 9×4 lb box (9X1.8Kg)",1304,variable,17453,"Case of 9×4 lb box (9X1.8Kg)",,,2020-02-22,2020-12-29
+17794,"Tergazyme - 4 lb box (1.8Kg)",1304-1,variable,17453,"4 lb box (1.8Kg)",,,2020-02-22,2020-12-29
+17893,Citranox,,variable,0,"1 Gallon (3.8L)|1 Quart (0.95L)|15 Gallon drum (57L)|5 Gallon Jerrycan (19L)|55 Gallon drum (208L)|Case of 12×1 Quart (12×0.95L)|Case of 4 X 1 Gallon (4×3.8L)",,"a:1:{s:7:""pa_size"";a:6:{s:4:""name"";s:7:""pa_size"";s:5:""value"";s:0:"""";s:8:""position"";i:0;s:10:""is_visible"";i:1;s:12:""is_variation"";i:1;s:11:""is_taxonomy"";i:1;}}",2020-03-12,2021-06-10
+17900,"Citranox - 1 Gallon (3.8L)",1801-1,variable,17893,"1 Gallon (3.8L)",,,2020-03-12,2021-06-10
+17901,"Citranox - 1 Quart (0.95L)",1832-1,variable,17893,"1 Quart (0.95L)",,,2020-03-12,2021-06-10
+17902,"Citranox - 15 Gallon drum (57L)",1815,variable,17893,"15 Gallon drum (57L)",,,2020-03-12,2021-06-10
+17903,"Citranox - 55 Gallon drum (208L)",1855,variable,17893,"55 Gallon drum (208L)",,,2020-03-12,2021-06-10
+17904,"Citranox - Case of 12×1 Quart (12×0.95L)",1832,variable,17893,"Case of 12×1 Quart (12×0.95L)",,,2020-03-12,2021-06-10
+17905,"Citranox - Case of 4 X 1 Gallon (4×3.8L)",1801,variable,17893,"Case of 4 X 1 Gallon (4×3.8L)",,,2020-03-12,2021-06-10
+17906,"Citranox - 5 Gallon Jerrycan (19L)",1805,variable,17893,"5 Gallon Jerrycan (19L)",,,2020-03-12,2021-06-10
+18037,"Alcojet - Case of 9×4 lb box (9X1.8Kg)",1404,variable,17456,"Case of 9×4 lb box (9X1.8Kg)",,,2020-03-30,2021-05-20
+19804,Alnochromix,,variable,0,"1 Pair Silver Gloves|10 Pack|3 Safety Vent Caps|3 Safety Vent Caps + 3 Pairs Silver Gloves|Case of 12 X 10 Pack|Case of 4 x 10 Pack",,"a:1:{s:7:""pa_size"";a:6:{s:4:""name"";s:7:""pa_size"";s:5:""value"";s:0:"""";s:8:""position"";i:0;s:10:""is_visible"";i:1;s:12:""is_variation"";i:1;s:11:""is_taxonomy"";i:1;}}",2020-07-23,2021-03-01
+19808,"Alnochromix - 10 Pack",2510,variable,19804,"10 Pack",,,2020-07-23,2021-03-01
+19809,"Alnochromix - Case of 4 x 10 Pack",2540,variable,19804,"Case of 4 x 10 Pack",,,2020-07-23,2021-03-01
+19810,"Alnochromix - Case of 12 X 10 Pack",2512,variable,19804,"Case of 12 X 10 Pack",,,2020-07-23,2021-03-01
+19941,"Luminox - Case of 4 X 1 Gallon (4×3.8L)",1901,variable,17459,"Case of 4 X 1 Gallon (4×3.8L)",,,2020-08-21,2021-06-10
+19942,"Luminox - 55 Gallon drum (208L)",1955,variable,17459,"55 Gallon drum (208L)",,,2020-08-21,2021-06-10
+19943,"Luminox - 15 Gallon drum (57L)",1915,variable,17459,"15 Gallon drum (57L)",,,2020-08-21,2021-06-10
+20380,"Related Parts",,simple,0,,,,1970-01-01,2021-02-19
+20801,Ledizolv,,variable,0,"1 Gallon (3.8L)|15 Gallon drum (57L)|16 oz (0.47L)|25x16oz (25x0.47L)|5 Gallon Jerrycan (19L)|55 Gallon drum (208L)|Case of 4 X 1 Gallon (4×3.8L)",,"a:1:{s:7:""pa_size"";a:6:{s:4:""name"";s:7:""pa_size"";s:5:""value"";s:0:"""";s:8:""position"";i:0;s:10:""is_visible"";i:1;s:12:""is_variation"";i:1;s:11:""is_taxonomy"";i:1;}}",2020-12-07,2021-06-03
+20802,"Ledizolv - 16 oz (0.47L)",90116,variable,20801,"16 oz (0.47L)",,,2020-12-07,2021-06-03
+20803,"Ledizolv - 25x16oz (25x0.47L)",90216,variable,20801,"25x16oz (25x0.47L)",,,2020-12-07,2021-06-03
+20806,"Ledizolv - 5 Gallon Jerrycan (19L)",90501,variable,20801,"5 Gallon Jerrycan (19L)",,,2020-12-07,2021-06-03
+20807,"Ledizolv - 15 Gallon drum (57L)",91501,variable,20801,"15 Gallon drum (57L)",,,2020-12-07,2021-06-03
+20808,"Ledizolv - 55 Gallon drum (208L)",95501,variable,20801,"55 Gallon drum (208L)",,,2020-12-07,2021-06-03
+20818,"Ledizolv - Case of 4 X 1 Gallon (4×3.8L)",90104,variable,20801,"Case of 4 X 1 Gallon (4×3.8L)",,,2020-12-08,2021-06-03
+20819,"Ledizolv - 1 Gallon (3.8L)",90101,variable,20801,"1 Gallon (3.8L)",,,2020-12-08,2021-06-03
+21108,"Silver Gloves",2521,simple,0,,,,2021-02-17,2021-04-20
+21110,"3 Vent Caps",2513,simple,0,,,,2021-02-17,2021-04-20
+21112,"3 Vent Caps & 3 Silver Gloves",2533,simple,0,,,,2021-02-17,2021-04-20
+21324,"Metered 1oz Pump Dispenser",8001,simple,0,,,,2021-04-01,2021-04-21
+21329,"3 Scoops (39cc each)",8002,simple,0,,,,2021-04-01,2021-04-21
+21342,"75th Anniversary Notebook & Pen",8003,simple,0,,,,2021-04-05,2021-05-26
+21344,"75th Anniversary T-Shirt",,variable,0,,Large|Medium|Small,"a:1:{s:16:""pa_t-shirt-sizes"";a:6:{s:4:""name"";s:16:""pa_t-shirt-sizes"";s:5:""value"";s:0:"""";s:8:""position"";i:0;s:10:""is_visible"";i:1;s:12:""is_variation"";i:1;s:11:""is_taxonomy"";i:1;}}",2021-04-05,2021-05-26
+21352,"75th Anniversary T-Shirt - Large",8004-L,variable,21344,,Large,,2021-04-06,2021-05-26
+21353,"75th Anniversary T-Shirt - Medium",8004-M,variable,21344,,Medium,,2021-04-06,2021-05-26
+21359,"75th Anniversary T-Shirt - Small",8004-S,variable,21344,,Small,,2021-04-07,2021-05-26
+21667,"75th Anniversary Face Mask",8005,simple,0,,,,2021-05-20,2021-05-24

@@ -7,7 +7,7 @@ if (!defined('ABSPATH')) exit; // Exit if accessed directly
 
 class Compatible extends Base
 {
-    public $priority = 40;
+    public $priority = 30;
     protected $tab = 'compatible';
     protected $option_key = 'awdr_compatibility';
     protected $options = null;

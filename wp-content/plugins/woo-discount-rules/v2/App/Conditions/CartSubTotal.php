@@ -38,7 +38,8 @@ class CartSubTotal extends Base
             }
             $sub_total_recalculate = true;
         }
-        if(!empty($cart) && $cart_sub_total == 0 && $sub_total_recalculate){
+        if((!empty($cart) && $cart_sub_total == 0 && $sub_total_recalculate) || apply_filters('advanced_woo_discount_rules_recalculate_cart_subtotal_manually', false)){
+            $cart_sub_total = 0;
             foreach ($cart as $cart_product){
                 $cart_sub_total += self::$woocommerce_helper->getCartLineItemSubtotal($cart_product);
             }

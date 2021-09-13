@@ -7,8 +7,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 <div>
 <div class="crm_panel crm_panel_50">
 <div class="crm_panel_head">
-<div class="crm_head_div"><span class="crm_head_text"><?php _e('Data Sent','gravity-forms-salesforce-crm') ?></span></div>
-<div class="crm_btn_div" title="<?php _e('Expand / Collapse','gravity-forms-salesforce-crm'); ?>"><i class="fa crm_toggle_btn fa-minus"></i></div>
+<div class="crm_head_div"><span class="crm_head_text"><?php esc_html_e('Data Sent','gravity-forms-salesforce-crm') ?></span></div>
+<div class="crm_btn_div" title="<?php esc_html_e('Expand / Collapse','gravity-forms-salesforce-crm'); ?>"><i class="fa crm_toggle_btn fa-minus"></i></div>
 <div class="crm_clear"></div>
 </div>
 <div class="crm_panel_content crm-block-content">
@@ -26,15 +26,15 @@ if ( ! defined( 'ABSPATH' ) ) {
      
 ?>
 <div class="entry_row">
-<div class="entry_col1 vx_label"><span title="<?php echo $k ?>"><?php echo $label ?></span></div>
-<div class="entry_col2"><?php echo is_array($value) ? json_encode($value) : $value ?></div>
+<div class="entry_col1 vx_label"><span title="<?php echo esc_attr($k) ?>"><?php echo esc_html($label) ?></span></div>
+<div class="entry_col2"><?php echo is_array($value) ? esc_html(json_encode($value)) : esc_html($value) ?></div>
 <div class="crm_clear"></div>
 </div>
 <?php
     }
   }else{
       ?>
-  <div class="vx_error"><i class="fa fa-warning"></i> <?php _e('Nothing Posted to Salesforce','gravity-forms-salesforce-crm');?></div>      
+  <div class="vx_error"><i class="fa fa-warning"></i> <?php esc_html_e('Nothing Posted to Salesforce','gravity-forms-salesforce-crm');?></div>      
       <?php
   }
 ?>
@@ -45,8 +45,8 @@ if ( ! defined( 'ABSPATH' ) ) {
       ?>
         <div class="crm_panel crm_panel_50">
 <div class="crm_panel_head">
-<div class="crm_head_div"><span class="crm_head_text"><?php _e('Salesforce Response','gravity-forms-salesforce-crm') ?></span></div>
-<div class="crm_btn_div" title="<?php _e('Expand / Collapse','gravity-forms-salesforce-crm'); ?>"><i class="fa crm_toggle_btn fa-minus"></i></div>
+<div class="crm_head_div"><span class="crm_head_text"><?php esc_html_e('Salesforce Response','gravity-forms-salesforce-crm') ?></span></div>
+<div class="crm_btn_div" title="<?php esc_html_e('Expand / Collapse','gravity-forms-salesforce-crm'); ?>"><i class="fa crm_toggle_btn fa-minus"></i></div>
 <div class="crm_clear"></div>
 </div>
 <div class="crm_panel_content crm-block-content">
@@ -54,8 +54,8 @@ if ( ! defined( 'ABSPATH' ) ) {
     foreach($response as $k=>$v){
 ?>
 <div class="entry_row">
-<div class="entry_col1 vx_label"><?php echo $k ?></div>
-<div class="entry_col2"><?php echo is_array($v) ? json_encode($v) : $v ?></div>
+<div class="entry_col1 vx_label"><?php echo esc_html($k) ?></div>
+<div class="entry_col2"><?php echo is_array($v) ? esc_html(json_encode($v)) : esc_html($v) ?></div>
 <div class="crm_clear"></div>
 </div>
 <?php
@@ -70,8 +70,8 @@ if ( ! defined( 'ABSPATH' ) ) {
       ?>
         <div class="crm_panel <?php echo $detail_class ?>">
 <div class="crm_panel_head">
-<div class="crm_head_div"><span class="crm_head_text"><?php _e('More Detail','gravity-forms-salesforce-crm') ?></span></div>
-<div class="crm_btn_div" title="<?php _e('Expand / Collapse','gravity-forms-salesforce-crm'); ?>"><i class="fa crm_toggle_btn fa-minus"></i></div>
+<div class="crm_head_div"><span class="crm_head_text"><?php esc_html_e('More Detail','gravity-forms-salesforce-crm') ?></span></div>
+<div class="crm_btn_div" title="<?php esc_html_e('Expand / Collapse','gravity-forms-salesforce-crm'); ?>"><i class="fa crm_toggle_btn fa-minus"></i></div>
 <div class="crm_clear"></div>
 </div>
 <div class="crm_panel_content crm-block-content">
@@ -97,14 +97,14 @@ if($k == "filter"){
             }
             $op=isset($vx_ops[$con['op']]) ? $vx_ops[$con['op']] : $con['op'];
               if($and_count>0){ echo "<div class='vx_or'>AND</div>";}
-            echo "<i class='fa fa-".$icon."  vx_left_2'></i> ".$con['field']." ( <span class='vx_val'>".$con['input']."</span> ) <code>".$op."</code> <span class='vx_val'>".$con['field_val']."</span>";
+            echo "<i class='fa fa-".$icon."  vx_left_2'></i> ".esc_html($con['field'])." ( <span class='vx_val'>".esc_html($con['input'])."</span> ) <code>".esc_html($op)."</code> <span class='vx_val'>".esc_html($con['field_val'])."</span>";
              $and_count++;
              }
          }
      }
  }   
 }else{
- echo is_array($v) ? json_encode($v) : $v;
+ echo is_array($v) ? esc_html(json_encode($v)) : esc_html($v);
 } ?></div>
 <div class="crm_clear"></div>
 </div>
@@ -116,7 +116,7 @@ if($k == "filter"){
   }
  if($error){
   ?>
-<div class="vx_error"><i class="fa fa-warning"></i> <?php _e('Detail Not Found','gravity-forms-salesforce-crm');?></div>  
+<div class="vx_error"><i class="fa fa-warning"></i> <?php esc_html_e('Detail Not Found','gravity-forms-salesforce-crm');?></div>  
   <?php   
  } ?>
  <div style="clear: both"></div>
@@ -127,12 +127,12 @@ $log_link=$this->get_log_link($log['id'],$log['form_id']);
     if($log['feed_id']!=""){
         $feed_link=$this->get_feed_link($log['feed_id'],$log['form_id']);
 ?>
-<a href="<?php echo $feed_link ?>" title="<?php _e('Edit Feed','gravity-forms-salesforce-crm') ?>" class="button"><i class="fa fa-edit"></i> <?php _e('Edit Feed','gravity-forms-salesforce-crm') ?></a>
+<a href="<?php echo esc_url($feed_link) ?>" title="<?php esc_html_e('Edit Feed','gravity-forms-salesforce-crm') ?>" class="button"><i class="fa fa-edit"></i> <?php esc_html_e('Edit Feed','gravity-forms-salesforce-crm') ?></a>
 <?php
     }
 ?>
-<a href="<?php echo $log_link ?>" title="<?php _e('Open in New Window','gravity-forms-salesforce-crm') ?>" target="_blank" class="button"><i class="fa fa-external-link"></i> <?php _e('Open in New Window','gravity-forms-salesforce-crm') ?></a>
-<a href="#" class="button vx_close_detail" title="<?php _e('Close','gravity-forms-salesforce-crm') ?>"><i class="fa fa-times"></i> <?php _e('Close','gravity-forms-salesforce-crm') ?></a>
+<a href="<?php echo esc_url($log_link) ?>" title="<?php esc_html_e('Open in New Window','gravity-forms-salesforce-crm') ?>" target="_blank" class="button"><i class="fa fa-external-link"></i> <?php esc_html_e('Open in New Window','gravity-forms-salesforce-crm') ?></a>
+<a href="#" class="button vx_close_detail" title="<?php esc_html_e('Close','gravity-forms-salesforce-crm') ?>"><i class="fa fa-times"></i> <?php esc_html_e('Close','gravity-forms-salesforce-crm') ?></a>
 
 </div> 
 </div>

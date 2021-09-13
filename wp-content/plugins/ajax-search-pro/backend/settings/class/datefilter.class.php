@@ -12,7 +12,7 @@ if (!class_exists("wd_DateFilter")) {
      * @copyright Copyright (c) 2016, Ernest Marcinko
      */
     class wd_DateFilter extends wpdreamsType {
-        private $raw, $selected;
+        protected $raw, $selected;
 
         function getType() {
             parent::getType();

@@ -9,29 +9,29 @@ if(isset($fields['OwnerId']) && vxg_salesforce::$is_pr){
      <div class="vx_div vx_refresh_panel ">    
       <div class="vx_head ">
 <div class="crm_head_div"> <?php echo sprintf(__('%s. Object Owner',  'gravity-forms-salesforce-crm' ),$panel_count); ?></div>
-<div class="crm_btn_div"><i class="fa crm_toggle_btn fa-minus" title="<?php _e('Expand / Collapse','gravity-forms-salesforce-crm') ?>"></i></div>
+<div class="crm_btn_div"><i class="fa crm_toggle_btn fa-minus" title="<?php esc_html_e('Expand / Collapse','gravity-forms-salesforce-crm') ?>"></i></div>
 <div class="crm_clear"></div> 
   </div>                 
     <div class="vx_group ">
    <div class="vx_row"> 
    <div class="vx_col1"> 
-  <label for="crm_owner"><?php _e("Assign Owner ", 'gravity-forms-salesforce-crm'); gform_tooltip('vx_owner_check');?></label>
+  <label for="crm_owner"><?php esc_html_e("Assign Owner ", 'gravity-forms-salesforce-crm'); gform_tooltip('vx_owner_check');?></label>
   </div>
   <div class="vx_col2">
   <input type="checkbox" style="margin-top: 0px;" id="crm_owner" class="crm_toggle_check <?php if(empty($users)){echo 'vx_refresh_btn';} ?>" name="meta[owner]" value="1" <?php echo !empty($meta["owner"]) ? "checked='checked'" : ""?> autocomplete="off"/>
-    <label for="owner"><?php _e("Yes and Do not trigger salesforce assignment rules", 'gravity-forms-salesforce-crm'); ?></label>
+    <label for="owner"><?php esc_html_e("Yes and Do not trigger salesforce assignment rules", 'gravity-forms-salesforce-crm'); ?></label>
   </div>
 <div class="clear"></div>
 </div>
     <div id="crm_owner_div" style="<?php echo empty($meta["owner"]) ? "display:none" : ""?>">
   <div class="vx_row">
   <div class="vx_col1">
-  <label for="crm_sel_camp"><?php _e('Users List ','gravity-forms-salesforce-crm'); gform_tooltip('vx_owners'); ?></label>
+  <label for="crm_sel_camp"><?php esc_html_e('Users List ','gravity-forms-salesforce-crm'); gform_tooltip('vx_owners'); ?></label>
   </div>
   <div class="vx_col2">
   <button class="button vx_refresh_data" data-id="refresh_users" type="button" autocomplete="off" style="vertical-align: baseline;">
-  <span class="reg_ok"><i class="fa fa-refresh"></i> <?php _e('Refresh Data','gravity-forms-salesforce-crm') ?></span>
-  <span class="reg_proc"><i class="fa fa-refresh fa-spin"></i> <?php _e('Refreshing...','gravity-forms-salesforce-crm') ?></span>
+  <span class="reg_ok"><i class="fa fa-refresh"></i> <?php esc_html_e('Refresh Data','gravity-forms-salesforce-crm') ?></span>
+  <span class="reg_proc"><i class="fa fa-refresh fa-spin"></i> <?php esc_html_e('Refreshing...','gravity-forms-salesforce-crm') ?></span>
   </button>
   </div> 
    <div class="clear"></div>
@@ -39,7 +39,7 @@ if(isset($fields['OwnerId']) && vxg_salesforce::$is_pr){
 
   <div class="vx_row">
    <div class="vx_col1">
-  <label for="crm_sel_user"><?php _e('Select User ','gravity-forms-salesforce-crm');   gform_tooltip('vx_sel_owner'); ?></label>
+  <label for="crm_sel_user"><?php esc_html_e('Select User ','gravity-forms-salesforce-crm');   gform_tooltip('vx_sel_owner'); ?></label>
 </div> 
 <div class="vx_col2">
 
@@ -72,25 +72,25 @@ $account_feeds=$this->get_object_feeds($form_id,$this->account,'Account');
 <div class="crm_head_div"> <?php echo sprintf(__('%s. Assign Account',  'gravity-forms-salesforce-crm' ),$panel_count); 
 echo  in_array($module, array("Order","Contract")) ? $req_span2 : "";
 ?></div>
-<div class="crm_btn_div"><i class="fa crm_toggle_btn fa-minus" title="<?php _e('Expand / Collapse','gravity-forms-salesforce-crm') ?>"></i></div>
+<div class="crm_btn_div"><i class="fa crm_toggle_btn fa-minus" title="<?php esc_html_e('Expand / Collapse','gravity-forms-salesforce-crm') ?>"></i></div>
 <div class="crm_clear"></div> 
   </div>                 
     <div class="vx_group ">
 
         <div class="vx_row"> 
    <div class="vx_col1"> 
-  <label for="account_check"><?php _e("Assign Account ", 'gravity-forms-salesforce-crm'); gform_tooltip('vx_assign_account');?></label>
+  <label for="account_check"><?php esc_html_e("Assign Account ", 'gravity-forms-salesforce-crm'); gform_tooltip('vx_assign_account');?></label>
   </div>
   <div class="vx_col2">
   <input type="checkbox" style="margin-top: 0px;" id="account_check" class="crm_toggle_check" name="meta[account_check]" value="1" <?php echo !empty($meta["account_check"]) ? "checked='checked'" : ""?> autocomplete="off"/>
-    <label for="contact_check"><?php _e("Enable", 'gravity-forms-salesforce-crm'); ?></label>
+    <label for="contact_check"><?php esc_html_e("Enable", 'gravity-forms-salesforce-crm'); ?></label>
   </div>
 <div class="clear"></div>
 </div>
     <div id="account_check_div" style="<?php echo empty($meta["account_check"]) ? "display:none" : ""?>">
          <div class="vx_row">
    <div class="vx_col1">
-  <label for="object_account"><?php _e('Select Account Feed ','gravity-forms-salesforce-crm'); gform_tooltip('vx_sel_account'); ?></label>
+  <label for="object_account"><?php esc_html_e('Select Account Feed ','gravity-forms-salesforce-crm'); gform_tooltip('vx_sel_account'); ?></label>
 </div> 
 <div class="vx_col2">
 
@@ -116,25 +116,25 @@ if(isset($fields['ContractId']) ){
     <div class="vx_div vx_refresh_panel ">    
       <div class="vx_head ">
 <div class="crm_head_div"> <?php  echo sprintf(__('%s. Assign Contract',  'gravity-forms-salesforce-crm' ),$panel_count); ?></div>
-<div class="crm_btn_div"><i class="fa crm_toggle_btn fa-minus" title="<?php _e('Expand / Collapse','gravity-forms-salesforce-crm') ?>"></i></div>
+<div class="crm_btn_div"><i class="fa crm_toggle_btn fa-minus" title="<?php esc_html_e('Expand / Collapse','gravity-forms-salesforce-crm') ?>"></i></div>
 <div class="crm_clear"></div> 
   </div>                 
     <div class="vx_group ">
 
         <div class="vx_row"> 
    <div class="vx_col1"> 
-  <label for="contract_check"><?php _e("Assign Contract ", 'gravity-forms-salesforce-crm'); gform_tooltip('vx_assign_contract');?></label>
+  <label for="contract_check"><?php esc_html_e("Assign Contract ", 'gravity-forms-salesforce-crm'); gform_tooltip('vx_assign_contract');?></label>
   </div>
   <div class="vx_col2">
   <input type="checkbox" style="margin-top: 0px;" id="contract_check" class="crm_toggle_check" name="meta[contract_check]" value="1" <?php echo !empty($meta["contract_check"]) ? "checked='checked'" : ""?> autocomplete="off"/>
-    <label for="contract_check"><?php _e("Enable", 'gravity-forms-salesforce-crm'); ?></label>
+    <label for="contract_check"><?php esc_html_e("Enable", 'gravity-forms-salesforce-crm'); ?></label>
   </div>
 <div class="clear"></div>
 </div>
     <div id="contract_check_div" style="<?php echo empty($meta["contract_check"]) ? "display:none" : ""?>">
          <div class="vx_row">
    <div class="vx_col1">
-  <label for="crm_sel_contract"><?php _e('Select Contract Feed ','gravity-forms-salesforce-crm'); gform_tooltip('vx_sel_contract'); ?></label>
+  <label for="crm_sel_contract"><?php esc_html_e('Select Contract Feed ','gravity-forms-salesforce-crm'); gform_tooltip('vx_sel_contract'); ?></label>
 </div> 
 <div class="vx_col2">
 
@@ -160,25 +160,25 @@ if($has_contact ){
     <div class="vx_div vx_refresh_panel ">    
       <div class="vx_head ">
 <div class="crm_head_div"> <?php  echo sprintf(__('%s. Assign Contact',  'gravity-forms-salesforce-crm' ),$panel_count); ?></div>
-<div class="crm_btn_div"><i class="fa crm_toggle_btn fa-minus" title="<?php _e('Expand / Collapse','gravity-forms-salesforce-crm') ?>"></i></div>
+<div class="crm_btn_div"><i class="fa crm_toggle_btn fa-minus" title="<?php esc_html_e('Expand / Collapse','gravity-forms-salesforce-crm') ?>"></i></div>
 <div class="crm_clear"></div> 
   </div>                 
     <div class="vx_group ">
 
         <div class="vx_row"> 
    <div class="vx_col1"> 
-  <label for="contact_check"><?php _e("Assign Contact ", 'gravity-forms-salesforce-crm'); gform_tooltip('vx_assign_contact');?></label>
+  <label for="contact_check"><?php esc_html_e("Assign Contact ", 'gravity-forms-salesforce-crm'); gform_tooltip('vx_assign_contact');?></label>
   </div>
   <div class="vx_col2">
   <input type="checkbox" style="margin-top: 0px;" id="contact_check" class="crm_toggle_check" name="meta[contact_check]" value="1" <?php echo !empty($meta["contact_check"]) ? "checked='checked'" : ""?> autocomplete="off"/>
-    <label for="contact_check"><?php _e("Enable", 'gravity-forms-salesforce-crm'); ?></label>
+    <label for="contact_check"><?php esc_html_e("Enable", 'gravity-forms-salesforce-crm'); ?></label>
   </div>
 <div class="clear"></div>
 </div>
     <div id="contact_check_div" style="<?php echo empty($meta["contact_check"]) ? "display:none" : ""?>">
          <div class="vx_row">
    <div class="vx_col1">
-  <label for="crm_sel_contact"><?php _e('Select Contact Feed ','gravity-forms-salesforce-crm'); gform_tooltip('vx_sel_contact'); ?></label>
+  <label for="crm_sel_contact"><?php esc_html_e('Select Contact Feed ','gravity-forms-salesforce-crm'); gform_tooltip('vx_sel_contact'); ?></label>
 </div> 
 <div class="vx_col2">
 
@@ -205,17 +205,17 @@ if(in_array($module,$camp_support) && vxg_salesforce::$is_pr){
     <div class="vx_div vx_refresh_panel ">    
       <div class="vx_head ">
 <div class="crm_head_div"> <?php  echo sprintf(__('%s. Add as Campaign Member',  'gravity-forms-salesforce-crm' ),$panel_count); ?></div>
-<div class="crm_btn_div"><i class="fa crm_toggle_btn fa-minus" title="<?php _e('Expand / Collapse','gravity-forms-salesforce-crm') ?>"></i></div>
+<div class="crm_btn_div"><i class="fa crm_toggle_btn fa-minus" title="<?php esc_html_e('Expand / Collapse','gravity-forms-salesforce-crm') ?>"></i></div>
 <div class="crm_clear"></div> 
   </div>                 
     <div class="vx_group ">
    <div class="vx_row"> 
    <div class="vx_col1"> 
-  <label for="crm_camp"><?php _e("Add to Campaign ", 'gravity-forms-salesforce-crm'); gform_tooltip('vx_camp_check');?></label>
+  <label for="crm_camp"><?php esc_html_e("Add to Campaign ", 'gravity-forms-salesforce-crm'); gform_tooltip('vx_camp_check');?></label>
   </div>
   <div class="vx_col2">
   <input type="checkbox" style="margin-top: 0px;" id="crm_camp" class="crm_toggle_check <?php if(empty($member_status_arr) && empty($campaigns)){echo 'vx_refresh_btn';} ?>" name="meta[add_to_camp]" value="1" <?php echo !empty($meta["add_to_camp"]) ? "checked='checked'" : ""?> autocomplete="off"/>
-    <label for="crm_camp"><?php _e("Enable", 'gravity-forms-salesforce-crm'); ?></label>
+    <label for="crm_camp"><?php esc_html_e("Enable", 'gravity-forms-salesforce-crm'); ?></label>
   </div>
 <div class="clear"></div>
 </div>
@@ -223,12 +223,12 @@ if(in_array($module,$camp_support) && vxg_salesforce::$is_pr){
    <?php  if($api_type != "web"){  ?> 
   <div class="vx_row">
   <div class="vx_col1">
-  <label><?php _e('Campaign & Status Lists ','gravity-forms-salesforce-crm'); gform_tooltip('vx_camps'); ?></label>
+  <label><?php esc_html_e('Campaign & Status Lists ','gravity-forms-salesforce-crm'); gform_tooltip('vx_camps'); ?></label>
   </div>
   <div class="vx_col2">
   <button class="button vx_refresh_data" data-id="refresh_campaigns" type="button" autocomplete="off" style="vertical-align: baseline;">
-  <span class="reg_ok"><i class="fa fa-refresh"></i> <?php _e('Refresh Data','gravity-forms-salesforce-crm') ?></span>
-  <span class="reg_proc"><i class="fa fa-refresh fa-spin"></i> <?php _e('Refreshing...','gravity-forms-salesforce-crm') ?></span>
+  <span class="reg_ok"><i class="fa fa-refresh"></i> <?php esc_html_e('Refresh Data','gravity-forms-salesforce-crm') ?></span>
+  <span class="reg_proc"><i class="fa fa-refresh fa-spin"></i> <?php esc_html_e('Refreshing...','gravity-forms-salesforce-crm') ?></span>
   </button>
   </div> 
    <div class="clear"></div>
@@ -236,7 +236,7 @@ if(in_array($module,$camp_support) && vxg_salesforce::$is_pr){
   <?php } ?>
   <div class="vx_row">
    <div class="vx_col1">
-  <label for="crm_sel_camp"><?php _e('Select Campaign ','gravity-forms-salesforce-crm'); gform_tooltip('vx_sel_camp'); ?></label>
+  <label for="crm_sel_camp"><?php esc_html_e('Select Campaign ','gravity-forms-salesforce-crm'); gform_tooltip('vx_sel_camp'); ?></label>
 </div> <div class="vx_col2">
 <?php   if($api_type != "web"){   ?>
 <div style="width: 100%; display: table;">
@@ -244,26 +244,26 @@ if(in_array($module,$camp_support) && vxg_salesforce::$is_pr){
   <select id="crm_sel_camp" class="vx_input_100" name="meta[campaign]" style="width: 100%; <?php if($this->post('camp_type',$meta) != ""){echo 'display: none';} ?>" autocomplete="off">
   <?php echo $this->gen_select($campaigns,$meta['campaign'],__('Select Campaign','gravity-forms-salesforce-crm')); ?>
   </select>
-  <input type="text" name="meta[campaign_id]" id="crm_camp_id" value="<?php echo $this->post('campaign_id',$meta); ?>" style="vertical-align: middle; width: 100%; <?php if($this->post('camp_type',$meta) == ""){echo 'display: none';} ?>" placeholder="<?php _e('Enter Campaign ID','gravity-forms-salesforce-crm') ?>" autocomplete="off">
+  <input type="text" name="meta[campaign_id]" id="crm_camp_id" value="<?php echo $this->post('campaign_id',$meta); ?>" style="vertical-align: middle; width: 100%; <?php if($this->post('camp_type',$meta) == ""){echo 'display: none';} ?>" placeholder="<?php esc_html_e('Enter Campaign ID','gravity-forms-salesforce-crm') ?>" autocomplete="off">
    </div>
    
   <div style="display: table-cell; padding-left: 10px;">
   <input type="hidden" name="meta[camp_type]" id="crm_camp_type" value="<?php echo $this->post('camp_type',$meta);  ?>" autocomplete="off">
     <button class="button" id="toggle_camp" type="button" style="vertical-align: middle; width: 140px">
-  <span class="reg_ok" style="<?php if($this->post('camp_type',$meta) != ""){echo 'display: none';} ?>"><?php _e('Enter Campaign ID','gravity-forms-salesforce-crm') ?></span>
-  <span class="reg_proc" style="<?php if($this->post('camp_type',$meta) == ""){echo 'display: none';}else{echo 'display:block;';} ?>"><?php _e('Select Campaign','gravity-forms-salesforce-crm') ?></span>
+  <span class="reg_ok" style="<?php if($this->post('camp_type',$meta) != ""){echo 'display: none';} ?>"><?php esc_html_e('Enter Campaign ID','gravity-forms-salesforce-crm') ?></span>
+  <span class="reg_proc" style="<?php if($this->post('camp_type',$meta) == ""){echo 'display: none';}else{echo 'display:block;';} ?>"><?php esc_html_e('Select Campaign','gravity-forms-salesforce-crm') ?></span>
   </button>
   </div>
   </div>
   <?php }else{ ?>
-  <input type="text" id="crm_sel_camp" class="vx_input_100" name="meta[web_camp_id]" placeholder="<?php _e('Enter Campaign Id','gravity-forms-salesforce-crm'); ?>" value="<?php echo $this->post('web_camp_id',$meta); ?>">
+  <input type="text" id="crm_sel_camp" class="vx_input_100" name="meta[web_camp_id]" placeholder="<?php esc_html_e('Enter Campaign Id','gravity-forms-salesforce-crm'); ?>" value="<?php echo $this->post('web_camp_id',$meta); ?>">
   <?php } ?>
   </div>
    <div class="clear"></div>
    </div>
   <div class="vx_row">
    <div class="vx_col1">
-  <label for="crm_sel_status"><?php _e('Member Status ','gravity-forms-salesforce-crm'); gform_tooltip('vx_sel_status'); ?></label>
+  <label for="crm_sel_status"><?php esc_html_e('Member Status ','gravity-forms-salesforce-crm'); gform_tooltip('vx_sel_status'); ?></label>
   </div> 
   <div class="vx_col2">
   <?php   if($api_type != "web"){   ?>
@@ -271,7 +271,7 @@ if(in_array($module,$camp_support) && vxg_salesforce::$is_pr){
   <?php echo $this->gen_select($member_status_arr,$meta['member_status'],__('Select Status','gravity-forms-salesforce-crm')); ?>
   </select> 
    <?php }else{ ?>
-  <input type="text" id="crm_sel_status" class="vx_input_100" name="meta[web_mem_status]" placeholder="<?php _e('Enter Member Status','gravity-forms-salesforce-crm'); ?>" value="<?php echo $this->post('web_mem_status',$meta); ?>">
+  <input type="text" id="crm_sel_status" class="vx_input_100" name="meta[web_mem_status]" placeholder="<?php esc_html_e('Enter Member Status','gravity-forms-salesforce-crm'); ?>" value="<?php echo $this->post('web_mem_status',$meta); ?>">
   <?php } ?> 
   </div>
    <div class="clear"></div>

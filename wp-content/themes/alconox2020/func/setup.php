@@ -92,10 +92,13 @@ add_action( 'login_enqueue_scripts', 'my_login_logo' );
         echo basename($template);
     }
 
+    
+    
     add_filter('woocommerce_get_availability', 'availability_filter_func');
     function availability_filter_func($availability)
     {
-    $availability['availability'] = str_ireplace('Out of stock', 'To purchase, please contact <a href="mailto:po@alconox.com">po@alconox.com</a> for details.', $availability['availability']);
+        $value = get_field('availability_message');
+    $availability['availability'] = str_ireplace('Out of stock', $value, $availability['availability']);
     return $availability;
     }
 

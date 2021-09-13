@@ -3,12 +3,12 @@ Contributors: flycart
 Donate link: https://flycart.org/
 Tags: woocommerce, coupons, discounts, dynamic pricing, Buy One Get One Free, pricing deals, bulk discount, discount
 Requires at least: 4.4.1
-Tested up to: 5.7
-Stable tag: 2.3.5
+Tested up to: 5.8
+Stable tag: 2.3.8
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
-Create simple to complex discount rules, dynamic pricing and discounts. A flexible and powerful WooCommerce discount plugin.
+Create simple to complex discount rules, dynamic pricing and discounts. A flexible and powerful WooCommerce discount & WooCommerce coupon plugin.
 
 == Description ==
 
@@ -20,7 +20,7 @@ Discounts will be visible in product page, product details page, cart, checkout 
 
 Display the pricing discount table beautifully on the product page. Start selling more and retain customers by running promotions with the best dynamic pricing and discount plugin for WooCommerce.
 
-[View Demo](http://demo.flycart.org/woo-discount-rules) | [Documentation with real examples](https://docs.flycart.org/en/collections/2195266-discount-rules-2-0) | [Ask Questions](https://www.flycart.org/support) | [PRO version](https://www.flycart.org/products/wordpress/woocommerce-discount-rules) | [Examples](https://www.flycart.org/woocommerce-discount-rules-examples)
+[View Demo](https://demo.flycart.net/woo-discount-rules) | [Documentation with real examples](https://docs.flycart.org/en/collections/806883-woocommerce-discount-rules) | [Ask Questions](https://www.flycart.org/support) | [PRO version](https://www.flycart.org/products/wordpress/woocommerce-discount-rules) | [Examples](https://www.flycart.org/woocommerce-discount-rules-examples)
 
 == DISCOUNT TYPES AND FEATURES ==
 
@@ -224,7 +224,7 @@ We are happy to help you and guide you with the set up.
 
 = Documentation =
 
-[https://docs.flycart.org/en/collections/2195266-discount-rules-2-0](https://docs.flycart.org/en/collections/2195266-discount-rules-2-0)
+[https://docs.flycart.org/en/collections/806883-woocommerce-discount-rules](https://docs.flycart.org/en/collections/806883-woocommerce-discount-rules)
 
 = Got questions? =
 
@@ -335,6 +335,45 @@ Note : Enable recursive checkbox if the discounts should be applied in sequentia
 * Dutch Translation - [@mvdburg1971](https://profiles.wordpress.org/mvdburg1971) - Michael van der Burg
 
 == Changelog ==
+
+= 2.3.8 - 22/07/21 =
+* Feature - Option to display percentage in sale badge.
+* Improvement - Optimize the term query to improve performance.
+* Improvement - Option to load minified CSS and JS.
+* Improvement - Taxonomy slug support for different language.
+* Improvement - Event advanced_woo_discount_rules_dequeue_jquery_ui_datepicker_script.
+* Improvement - Event advanced_woo_discount_rules_calculate_current_discount_amount.
+* Improvement - Event advanced_woo_discount_rules_is_rule_passed_with_out_discount_for_exclusive_rule.
+* Improvement - WPML compatibility for searching filters.
+* Improvement - Validation fails for few cases.
+* Improvement - Default value for option Apply cart discount as is changed to Coupon.
+* Fix - Discount table for bundle product is not showing.
+* Fix - Coupon discount values doesn't splits based on filters in backend.
+* Fix - Exclude exclusive rule for free products.
+* Fix - Same strikeout issue.
+* Fix - You save price is displayed wrong while having tax in few cases.
+* Fix - Unable to edit rule in mobile.
+* Fix - The discount bar is not showing if variant is selected in filter.
+* Fix - No coupon label for cart fixed discount.
+
+= 2.3.7 - 30/04/21 =
+* Improvement - Moved advance option tab to settings.
+
+= 2.3.6 - 29/04/21 =
+* Feature - Recursive option for set discounts.
+* Improvement - Reset migration improvement.
+* Improvement - Changed rule limit option select box to number field.
+* Improvement - Additional param on Event: advanced_woo_discount_rules_get_product_categories
+* Improvement - Compatible with PHP 8.
+* Improvement - Event: advanced_woo_discount_rules_dynamic_price_html_update
+* Improvement - Event: advanced_woo_discount_rules_csv_import_export_separator
+* Improvement - Event: advanced_woo_discount_rules_csv_length_for_import.
+* Improvement - Event: advanced_woo_discount_rules_discounts_check_bogo_return_values.
+* Improvement - Advance option to handle conflict with other plugins.
+* Fix - Build onsale list not working while having huge volume of products.
+* Fix - Blocking paypal return requests.
+* Fix - Subsequent discount with cart rule.
+* Fix - Dynamic strikeout shows incorrect value while having multiple rules.
 
 = 2.3.5 - 23/03/21 =
 * Feature - Cross sell feature for BXGY cheapest product option.

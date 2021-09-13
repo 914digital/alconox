@@ -54,6 +54,7 @@ function asp_do_init_options() {
         'it_extract_shortcodes' => 1,
         'it_exclude_shortcodes' => 'wpdreams_rpl, wpdreams_rpp',
         'it_index_on_save' => 1,
+        'it_index_on_update_post_meta' => 0,
         'it_cron_enable' => 0,
         'it_cron_period' => "asp_cr_five_minutes",
         // performance
@@ -125,7 +126,7 @@ function asp_do_init_options() {
         'caching' => 0,
         'caching_method' => 'file', // file or db
         'image_cropping' => 0,
-        'cachinginterval' => 1440
+        'cachinginterval' => 43200
     );
 
 
@@ -134,29 +135,29 @@ function asp_do_init_options() {
 // CSS and JS
     $options['asp_compatibility_def'] = array(
         'jsminified' => 1,
-        'js_source' => "min",
+        'js_source' => "jqueryless-min",
         'js_source_def' => array(
-            array('option' => 'Non minified', 'value' => 'nomin'),
-            array('option' => 'Minified', 'value' => 'min'),
-            array('option' => 'Non-minified scoped', 'value' => 'nomin-scoped'),
-            array('option' => 'Minified scoped', 'value' => 'min-scoped'),
+            array('option' => 'Non minified', 'value' => 'jqueryless-nomin'),
+            array('option' => 'Minified (default)', 'value' => 'jqueryless-min'),
+            array('option' => 'Legacy Non minified', 'value' => 'nomin'),
+            array('option' => 'Legacy Minified', 'value' => 'min'),
+            array('option' => 'Legacy Non-minified scoped', 'value' => 'nomin-scoped'),
+            array('option' => 'Legacy Minified scoped', 'value' => 'min-scoped')
         ),
-        'js_init' => "dynamic",
         'load_in_footer' => 1,
         'detect_ajax' => 0,
         'js_prevent_body_scroll' => 0,
         'js_retain_popstate' => 0,
-        'js_fix_duplicates' => 1,
         'css_compatibility_level' => "medium",
         'forceinlinestyles' => 0,
         'css_async_load' => 0,
         'css_minify' => 1,
         'usetimbthumb' => 1,
         'usecustomajaxhandler' => 0,
-        'old_browser_compatibility' => 1,
 
         // JS and CSS load
         'load_google_fonts' => 1,
+        'script_loading_method' => 'classic',
         'load_mcustom_js' => 'yes',
         'load_lazy_js' => 0,
         'selective_enabled' => 0,
@@ -291,7 +292,7 @@ function asp_do_init_options() {
 // base64: image/jpeg, image/gif, image/png, image/tiff, image/x-icon
         'attachment_mime_types' => 'aW1hZ2UvanBlZywgaW1hZ2UvZ2lmLCBpbWFnZS9wbmcsIGltYWdlL3RpZmYsIGltYWdlL3gtaWNvbg==',
         'attachment_use_image' => 1,
-        'attachment_link_to' => 'page',
+        'attachment_link_to' => 'file',
         'attachment_link_to_secondary' => 'page',
         'attachment_exclude' => "",
 
@@ -521,7 +522,6 @@ function asp_do_init_options() {
 
         "show_terms" => array(
             "op_type" => "include",
-            "separate_filter_boxes" => 1,
             "display_mode" => array(),
             "terms" => array(),
             "un_checked" => array() // store unchecked instead of checked, less overhead
@@ -696,14 +696,12 @@ function asp_do_init_options() {
         //'excludeterms' => '',
         'exclude_by_terms' => array(
             "op_type" => "exclude",
-            "separate_filter_boxes" => 0,
             "display_mode" => array(),
             "terms" => array(),
             "un_checked" => array()
         ),
         'include_by_terms' => array(
             "op_type" => "include",
-            "separate_filter_boxes" => 0,
             "display_mode" => array(),
             "terms" => array(),
             "un_checked" => array()

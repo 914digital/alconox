@@ -23,7 +23,7 @@ if ( ! class_exists( 'TVC_Admin_Auto_Product_sync_Helper' ) ) {
       add_action('admin_init',array($this,'add_schedule_event'));
       add_action( 'ee_auto_product_sync_check', array($this, 'call_auto_sync_product' ), 10, 1 );
 
-      //add_action('admin_init',array($this,'call_auto_sync_product_tttt'));
+      //add_action('admin_init',array($this,'call_auto_sync_product_ttt'));
     }
 
     public function includes() {
@@ -40,6 +40,7 @@ if ( ! class_exists( 'TVC_Admin_Auto_Product_sync_Helper' ) ) {
     public function add_table_in_db(){       
       //add_filter( 'cron_schedules', array($this,'tvc_add_cron_interval') ); 
       global $wpdb;
+      /* cteate table for save sync product settings */
       $tablename = $wpdb->prefix ."ee_product_sync_data";
       $query = $wpdb->prepare( 'SHOW TABLES LIKE %s', $wpdb->esc_like( $tablename ) );   
       if ( $wpdb->get_var( $query ) === $tablename ) {
@@ -50,10 +51,38 @@ if ( ! class_exists( 'TVC_Admin_Auto_Product_sync_Helper' ) ) {
           $this->import_last_sync_in_db();
         }
       }
-
+      /* cteate table for save auto sync product call */
       $tablename = $wpdb->prefix ."ee_product_sync_call"; 
-      $sql_create = "CREATE TABLE ".$tablename." ( `id` BIGINT(20) NOT NULL AUTO_INCREMENT, `sync_product_ids` LONGTEXT NULL, `w_total_product` INT(10) NOT NULL , `total_sync_product` INT(10) NOT NULL ,last_sync  DATETIME NOT NULL, create_sync DATETIME NOT NULL, next_sync DATETIME NOT NULL, `last_sync_product_id` BIGINT(20) NOT NULL, `action_scheduler_id` INT(10) NOT NULL, `status` INT(1) NOT NULL COMMENT '0 failed, 1 completed', PRIMARY KEY (`id`) );";    
-      if(!maybe_create_table( $tablename, $sql_create )){ }   
+      $query = $wpdb->prepare( 'SHOW TABLES LIKE %s', $wpdb->esc_like( $tablename ) );   
+      if ( $wpdb->get_var( $query ) === $tablename ) {          
+      }else{
+        $sql_create = "CREATE TABLE ".$tablename." ( `id` BIGINT(20) NOT NULL AUTO_INCREMENT, `sync_product_ids` LONGTEXT NULL, `w_total_product` INT(10) NOT NULL , `total_sync_product` INT(10) NOT NULL ,last_sync  DATETIME NOT NULL, create_sync DATETIME NOT NULL, next_sync DATETIME NOT NULL, `last_sync_product_id` BIGINT(20) NOT NULL, `action_scheduler_id` INT(10) NOT NULL, `status` INT(1) NOT NULL COMMENT '0 failed, 1 completed', PRIMARY KEY (`id`) );";    
+        if(!maybe_create_table( $tablename, $sql_create )){ }
+      }
+
+      /* cteate table for save GMC sync product list */
+      $tablename = $wpdb->prefix ."ee_products_sync_list";
+      $query = $wpdb->prepare( 'SHOW TABLES LIKE %s', $wpdb->esc_like( $tablename ) );   
+      if ( $wpdb->get_var( $query ) === $tablename ) {          
+      }else{     
+        $sql_create = "CREATE TABLE ".$tablename." ( `id` BIGINT(20) NOT NULL AUTO_INCREMENT , `gmc_id` VARCHAR(200) NOT NULL , `name` VARCHAR(200) NOT NULL , `product_id` VARCHAR(100) NOT NULL , `google_status` VARCHAR(50) NOT NULL , `image_link` VARCHAR(200) NOT NULL, `issues` LONGTEXT NOT NULL, PRIMARY KEY (`id`) );";         
+        if(maybe_create_table( $tablename, $sql_create )){
+          $this->TVC_Admin_Helper->import_gmc_products_sync_in_db();
+
+          $product_status = $this->TVC_Admin_DB_Helper->tvc_get_counts_groupby('ee_products_sync_list','google_status');
+          $syncProductStat = array("approved" => 0, "disapproved" => 0, "pending" => 0 );
+          foreach ($product_status as $key => $value) {
+            if(isset($value['google_status']) ){
+              $syncProductStat[$value['google_status']] = (isset($value['count']) && $value['count'] >0)?$value['count']:0;
+            }
+          }
+          $syncProductStat["total"] = $this->TVC_Admin_DB_Helper->tvc_row_count('ee_products_sync_list');
+          $google_detail = $this->TVC_Admin_Helper->get_ee_options_data();
+          $google_detail['prod_sync_status'] = (object)$syncProductStat;
+          $this->TVC_Admin_Helper->set_ee_options_data($google_detail);
+        }
+      }
+
     }
 
     public function import_last_sync_in_db(){
@@ -142,18 +171,6 @@ if ( ! class_exists( 'TVC_Admin_Auto_Product_sync_Helper' ) ) {
         }          
       }    
     }
-
-    public function tvc_get_post_meta($post_id){
-      $where ="post_id = ".$post_id;
-      $rows = $this->TVC_Admin_DB_Helper->tvc_get_results_in_array('postmeta', $where, array('meta_key','meta_value'));
-      $metas = array();
-      if(!empty($rows)){
-        foreach($rows as $val){
-          $metas[$val['meta_key']] = $val['meta_value'];
-        }
-      }
-      return $metas;
-    }
     
     public function tvc_get_map_product_attribute($products, $tvc_currency, $merchantId){
       if(!empty($products)){
@@ -164,7 +181,7 @@ if ( ! class_exists( 'TVC_Admin_Auto_Product_sync_Helper' ) ) {
         foreach ($products as $postkey => $postvalue) {
           $product_ids[] = $postvalue->w_product_id;
           $postmeta = [];
-          $postmeta = $this->tvc_get_post_meta($postvalue->w_product_id);
+          $postmeta = $this->TVC_Admin_Helper->tvc_get_post_meta($postvalue->w_product_id);
           $prd = wc_get_product($postvalue->w_product_id);
           $postObj = (object) array_merge((array) get_post($postvalue->w_product_id), (array) $postmeta);
           
@@ -195,8 +212,7 @@ if ( ! class_exists( 'TVC_Admin_Auto_Product_sync_Helper' ) ) {
           }
 
           $product = array_merge($temp_product,$product);
-
-          if($prd->get_type() == "variable"){             
+          if( !empty($prd) && $prd->get_type() == "variable" ){             
             $variation_attributes = $prd->get_variation_attributes();
             $can_add_item_group_id = false;
             $is_color_size = false;
@@ -223,7 +239,7 @@ if ( ! class_exists( 'TVC_Admin_Auto_Product_sync_Helper' ) ) {
               $p_variations = $prd->get_available_variations();                
               if(!empty($p_variations)){                  
                 foreach ($p_variations as $v_key => $v_value) {
-                  $postmeta_var = (object)$this->tvc_get_post_meta($v_value['variation_id']);
+                  $postmeta_var = (object)$this->TVC_Admin_Helper->tvc_get_post_meta($v_value['variation_id']);
                   $formArray_val = $formArray['title'];
                   $product['title'] = (isset($postObj->$formArray_val))?$postObj->$formArray_val:get_the_title($postvalue->w_product_id);
                   $tvc_temp_desc_key = $formArray['description'];
@@ -297,7 +313,7 @@ if ( ! class_exists( 'TVC_Admin_Auto_Product_sync_Helper' ) ) {
             }else{
               goto simpleproduct;
             }
-          }else{
+          }else if( !empty($prd) ){
             simpleproduct: 
             $image_id = $prd->get_image_id();
             $product['image_link'] = wp_get_attachment_image_url($image_id, 'full');     

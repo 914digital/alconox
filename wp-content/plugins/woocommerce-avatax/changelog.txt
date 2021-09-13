@@ -1,5 +1,16 @@
 *** WooCommerce AvaTax Changelog ***
 
+2021.08.11 - version 1.13.2
+ * Fix - Fix incorrect tax display during order processing when address includes duplicate tax rate codes
+
+2021.07.28 - version 1.13.1
+ * Tweak - Add description to the Company Code field to note this field is required to post voids and refunds to Avalara
+ * Fix - When the response from Avalara for a void order request is empty, add error handling and a related order note
+
+2021.07.12 - version 1.13.0
+ * Feature - Cross Border sync integration with Avalara to automatically store classification codes
+ * Fix - Fix tax rate calculation for manual orders on WooCommerce 5.3.0 and newer
+
 2021.04.19 - version 1.12.0
  * Tweak - Tax rates that show up as Special Sales Tax will show up separate if they belong to different jurisdictions
  * Fix - Improve handling of tax rates with duplicate names

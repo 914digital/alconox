@@ -23,6 +23,8 @@
 
 defined( 'ABSPATH' ) or exit;
 
+use SkyVerge\WooCommerce\AvaTax\Api\WC_AvaTax_HS_API;
+use SkyVerge\WooCommerce\AvaTax\Landed_Cost_Sync_Handler;
 use SkyVerge\WooCommerce\PluginFramework\v5_5_0 as Framework;
 
 /**
@@ -34,7 +36,7 @@ class WC_AvaTax extends Framework\SV_WC_Plugin {
 
 
 	/** plugin version number */
-	const VERSION = '1.12.0';
+	const VERSION = '1.13.2';
 
 	/** plugin id */
 	const PLUGIN_ID = 'avatax';
@@ -44,6 +46,9 @@ class WC_AvaTax extends Framework\SV_WC_Plugin {
 
 	/** @var WC_AvaTax_API the api class */
 	protected $api;
+
+	/** @var WC_AvaTax_HS_API the HS Classification API class */
+	protected $hs_api;
 
 	/** @var \WC_AvaTax_REST_API instance */
 	protected $rest_api;
@@ -78,6 +83,9 @@ class WC_AvaTax extends Framework\SV_WC_Plugin {
 	/** @var bool $logging_enabled Whether debug logging is enabled */
 	private $logging_enabled;
 
+	/** @var Landed_Cost_Sync_Handler instance, The handler for the synchronization process */
+	protected $landed_cost_sync_handler;
+
 
 	/**
 	 * Plugin constructor.
@@ -104,7 +112,7 @@ class WC_AvaTax extends Framework\SV_WC_Plugin {
 	 */
 	protected function init_lifecycle_handler() {
 
-		require_once( $this->get_plugin_path() . '/includes/Lifecycle.php' );
+		require_once( $this->get_plugin_path() . '/src/Lifecycle.php' );
 
 		$this->lifecycle_handler = new \SkyVerge\WooCommerce\AvaTax\Lifecycle( $this );
 	}
@@ -120,39 +128,41 @@ class WC_AvaTax extends Framework\SV_WC_Plugin {
 		parent::init_plugin();
 
 		// Set up the base tax handler
-		$this->tax_handler = $this->load_class( '/includes/class-wc-avatax-tax-handler.php', 'WC_AvaTax_Tax_Handler' );
+		$this->tax_handler = $this->load_class( '/src/class-wc-avatax-tax-handler.php', 'WC_AvaTax_Tax_Handler' );
 
 		// set up the order handler
-		$this->order_handler = $this->load_class( '/includes/class-wc-avatax-order-handler.php', 'WC_AvaTax_Order_Handler' );
+		$this->order_handler = $this->load_class( '/src/class-wc-avatax-order-handler.php', 'WC_AvaTax_Order_Handler' );
 
 		// set up the checkout handler
-		$this->checkout_handler = $this->load_class( '/includes/class-wc-avatax-checkout-handler.php', 'WC_AvaTax_Checkout_Handler' );
+		$this->checkout_handler = $this->load_class( '/src/class-wc-avatax-checkout-handler.php', 'WC_AvaTax_Checkout_Handler' );
 
 		// set up the integrations handler
-		$this->integrations = $this->load_class( '/includes/integrations/class-wc-avatax-integrations.php', 'WC_AvaTax_Integrations' );
+		$this->integrations = $this->load_class( '/src/integrations/class-wc-avatax-integrations.php', 'WC_AvaTax_Integrations' );
 
 		// Frontend includes
 		if ( ! is_admin() ) {
-			$this->frontend = $this->load_class( '/includes/frontend/class-wc-avatax-frontend.php', 'WC_AvaTax_Frontend' );
+			$this->frontend = $this->load_class( '/src/frontend/class-wc-avatax-frontend.php', 'WC_AvaTax_Frontend' );
 		}
 
 		// Admin includes
 		if ( is_admin() && ! is_ajax() ) {
-			$this->admin = $this->load_class( '/includes/admin/class-wc-avatax-admin.php', 'WC_AvaTax_Admin' );
+			$this->admin = $this->load_class( '/src/admin/class-wc-avatax-admin.php', 'WC_AvaTax_Admin' );
 		}
 
 		// Import / Export handler needs to be available in admin over ajax
 		if ( is_admin() ) {
-			$this->import_export_handler = $this->load_class( '/includes/integrations/class-wc-avatax-import-export-handler.php', 'WC_AvaTax_Import_Export_Handler' );
+			$this->import_export_handler = $this->load_class( '/src/integrations/class-wc-avatax-import-export-handler.php', 'WC_AvaTax_Import_Export_Handler' );
 		}
 
 		// AJAX includes
 		if ( is_ajax() ) {
-			$this->ajax = $this->load_class( '/includes/class-wc-avatax-ajax.php', 'WC_AvaTax_AJAX' );
+			$this->ajax = $this->load_class( '/src/class-wc-avatax-ajax.php', 'WC_AvaTax_AJAX' );
 		}
 
 		// REST API handler
 		$this->rest_api = $this->get_rest_api_instance();
+
+		$this->landed_cost_sync_handler = $this->get_landed_cost_sync_handler();
 	}
 
 
@@ -271,7 +281,7 @@ class WC_AvaTax extends Framework\SV_WC_Plugin {
 
 		if ( ! $this->landed_cost_handler instanceof WC_AvaTax_Landed_Cost_Handler ) {
 
-			$this->landed_cost_handler = $this->load_class( '/includes/class-wc-avatax-landed-cost-handler.php', 'WC_AvaTax_Landed_Cost_Handler' );
+			$this->landed_cost_handler = $this->load_class( '/src/class-wc-avatax-landed-cost-handler.php', 'WC_AvaTax_Landed_Cost_Handler' );
 
 			$this->landed_cost_handler->add_hooks();
 		}
@@ -291,7 +301,7 @@ class WC_AvaTax extends Framework\SV_WC_Plugin {
 
 		if ( null === $this->rest_api ) {
 
-			require_once( $this->get_plugin_path() . '/includes/api/class-wc-avatax-rest-api.php' );
+			require_once( $this->get_plugin_path() . '/src/api/class-wc-avatax-rest-api.php' );
 
 			$this->rest_api = new WC_AvaTax_REST_API( $this );
 		}
@@ -431,6 +441,9 @@ class WC_AvaTax extends Framework\SV_WC_Plugin {
 
 			delete_option( 'wc_avatax_legacy_deactivated' );
 		}
+
+		$this->maybe_add_product_sync_error_notice();
+		$this->maybe_add_sync_weight_hint_notice();
 	}
 
 
@@ -451,6 +464,60 @@ class WC_AvaTax extends Framework\SV_WC_Plugin {
 				'notice_class'            => 'error',
 			) );
 		}
+	}
+
+
+	/**
+	 * May add an admin notice if the sync process had error responses.
+	 *
+	 * @since 1.13.0
+	 */
+	private function maybe_add_product_sync_error_notice() {
+
+		if ( empty( get_option( 'wc_avatax_landed_cost_products_with_sync_errors' ) ) &&
+		     empty( get_option( 'wc_avatax_landed_cost_products_with_sync_resolutions' ) ) ) {
+			return;
+		}
+
+		$resync_link = wp_nonce_url( admin_url( 'admin-ajax.php?action=wc_avatax_resync_error_products' ), 'wc_avatax_resync_error_products', 'nonce' );
+
+		$this->get_admin_notice_handler()->add_admin_notice(
+			sprintf(
+				/* translators: Placeholders: %1$s - <strong> tag, %2$s - </strong> tag, %3$s - <a> tag, %4$s - </a> tag, %5$s - <a> tag, %6$s - </a> tag */
+				__( '<p>%1$sHeads up!%2$s Cross-border product sync encountered an error while syncing your products to AvaTax. Please try again or contact support if you\'re continuing to encounter this message.</p>%3$sResync products%4$s %5$sContact support%6$s', 'woocommerce-avatax' ),
+				'<strong>', '</strong>',
+				'<a href="' . esc_url( $resync_link ) . '" class="button button-primary">', '</a>',
+				'<a href="https://woocommerce.com/my-account/create-a-ticket/" target="_blank" class="button">', '</a>'
+			),
+			'wc-avatax-sync-error-notice',
+			[
+				'notice_class'            => 'error',
+				'always_show_on_settings' => false,
+				'dismissible'             => true,
+			] );
+	}
+
+
+	/**
+	 * May add a hint admin notice about adding weights to products.
+	 *
+	 * @since 1.13.0
+	 */
+	private function maybe_add_sync_weight_hint_notice() {
+
+		if ( ! $this->get_landed_cost_sync_handler()->is_syncing_active() ) {
+			return;
+		}
+
+		$this->get_admin_notice_handler()->add_admin_notice( sprintf(
+			/* translators: Placeholders: %1$s - <a> tag, %2$s - </a> tag */
+			__( 'For best results in calculating cross-border duties, ensure weight is entered for your products in Product data > Shipping. %1$sLearn more%2$s.', 'woocommerce-avatax' ),
+			'<a href="https://help.avalara.com/Avalara_Item_Classification_and_Cross-border/Understand_customs_duty_calculations_in_AvaTax" target="_blank">', '</a>'
+		), 'wc-avatax-sync-weight-hint',
+		[
+			'always_show_on_settings' => false,
+			'dismissible'             => true,
+		] );
 	}
 
 
@@ -612,25 +679,7 @@ class WC_AvaTax extends Framework\SV_WC_Plugin {
 			return $this->api;
 		}
 
-		// Load the API classes
-		require_once( $this->get_plugin_path() . '/includes/api/class-wc-avatax-api.php' );
-		require_once( $this->get_plugin_path() . '/includes/api/class-wc-avatax-api-tax-rate.php' );
-		require_once( $this->get_plugin_path() . '/includes/api/requests/class-wc-avatax-api-request.php' );
-		require_once( $this->get_plugin_path() . '/includes/api/requests/class-wc-avatax-api-utility-request.php' );
-		require_once( $this->get_plugin_path() . '/includes/api/requests/class-wc-avatax-api-subscriptions-request.php' );
-		require_once( $this->get_plugin_path() . '/includes/api/requests/class-wc-avatax-api-entity-use-code-request.php' );
-		require_once( $this->get_plugin_path() . '/includes/api/requests/class-wc-avatax-api-rate-request.php' );
-		require_once( $this->get_plugin_path() . '/includes/api/requests/class-wc-avatax-api-company-request.php' );
-		require_once( $this->get_plugin_path() . '/includes/api/requests/class-wc-avatax-api-tax-request.php' );
-		require_once( $this->get_plugin_path() . '/includes/api/requests/class-wc-avatax-api-void-request.php' );
-		require_once( $this->get_plugin_path() . '/includes/api/requests/class-wc-avatax-api-address-request.php' );
-		require_once( $this->get_plugin_path() . '/includes/api/responses/class-wc-avatax-api-response.php' );
-		require_once( $this->get_plugin_path() . '/includes/api/responses/class-wc-avatax-api-utility-response.php' );
-		require_once( $this->get_plugin_path() . '/includes/api/responses/class-wc-avatax-api-subscriptions-response.php' );
-		require_once( $this->get_plugin_path() . '/includes/api/responses/class-wc-avatax-api-entity-use-code-response.php' );
-		require_once( $this->get_plugin_path() . '/includes/api/responses/class-wc-avatax-api-rate-response.php' );
-		require_once( $this->get_plugin_path() . '/includes/api/responses/class-wc-avatax-api-tax-response.php' );
-		require_once( $this->get_plugin_path() . '/includes/api/responses/class-wc-avatax-api-address-response.php' );
+		$this->load_api_classes();
 
 		// Get the API token & secret
 		$account_number = get_option( 'wc_avatax_api_account_number' );
@@ -644,6 +693,29 @@ class WC_AvaTax extends Framework\SV_WC_Plugin {
 
 
 	/**
+	 * Returns the HS Classification API class instance.
+	 *
+	 * @since 1.13.0
+	 *
+	 * @return WC_AvaTax_HS_API
+	 */
+	public function get_hs_api() {
+
+		if ( is_object( $this->hs_api ) ) {
+			return $this->hs_api;
+		}
+
+		$this->load_api_classes();
+
+		$username    = get_option( 'wc_avatax_hs_api_username' );
+		$password    = get_option( 'wc_avatax_hs_api_password' );
+		$environment = get_option( 'wc_avatax_api_environment' );
+
+		return $this->hs_api = new WC_AvaTax_HS_API( $username, $password, $environment );
+	}
+
+
+	/**
 	 * Determines if API credentials exist and are valid.
 	 *
 	 * @since 1.0.0
@@ -651,14 +723,15 @@ class WC_AvaTax extends Framework\SV_WC_Plugin {
 	 * @param bool $check_cache Whether to check the cached result first.
 	 * @return bool Whether the API credentials exist and are valid.
 	 */
-	public function check_api( $check_cache = true ) {
+	public function check_api( $check_cache = true ) : bool {
 
-		// Check for the cached result first
 		if ( $check_cache && ( $cache = get_transient( 'wc_avatax_connection_status' ) ) ) {
 
-			if ( 'connected' == $cache ) {
+			if ( 'connected' === $cache ) {
 				return true;
-			} else if ( 'not-connected' == $cache ) {
+			}
+
+			if ( 'not-connected' === $cache ) {
 				return false;
 			}
 		}
@@ -671,7 +744,6 @@ class WC_AvaTax extends Framework\SV_WC_Plugin {
 		 */
 		$cache_expiration = apply_filters( 'wc_avatax_connection_status_cache_expiration', MINUTE_IN_SECONDS * 5 );
 
-		// No cache exists, so test the API
 		try {
 
 			$response = $this->get_api()->test();
@@ -735,6 +807,136 @@ class WC_AvaTax extends Framework\SV_WC_Plugin {
 		}
 
 		return $subscriptions;
+	}
+
+
+	/**
+	 * Gets the AvaTax company ID.
+	 *
+	 * @since 1.13.0
+	 *
+	 * @return string
+	 */
+	public function get_company_id() : string {
+
+		if ( $company_id = get_transient( 'wc_avatax_company_id' ) ) {
+			return (string) $company_id;
+		}
+
+		try {
+
+			if ( $this->has_api_credentials_set() && $api = $this->get_api() ) {
+
+				$company_id = $api->get_companies()->get_company_id();
+
+				set_transient( 'wc_avatax_company_id', $company_id, DAY_IN_SECONDS );
+
+				return $company_id;
+			}
+
+		} catch ( \Exception $e ) {
+
+			if ( $this->logging_enabled() ) {
+				$this->log( sprintf( '%1$s: %2$s', $e->getCode() ?? 'Error', $e->getMessage() ) );
+			}
+		}
+
+		return '';
+	}
+
+
+	/**
+	 * Gets the landed cost sync handler.
+	 *
+	 * @since 1.13.0
+	 *
+	 * @return Landed_Cost_Sync_Handler
+	 */
+	public function get_landed_cost_sync_handler() : Landed_Cost_Sync_Handler {
+
+		if ( ! $this->landed_cost_sync_handler instanceof Landed_Cost_Sync_Handler ) {
+
+			require_once( $this->get_plugin_path() . '/src/api/Models/HS_Classification_Model.php' );
+			require_once( $this->get_plugin_path() . '/src/api/Models/HS_Item_Model.php' );
+			require_once( $this->get_plugin_path() . '/src/Landed_Cost_Sync_Enqueued_Product.php' );
+
+			$this->landed_cost_sync_handler = $this->load_class( '/src/Landed_Cost_Sync_Handler.php', Landed_Cost_Sync_Handler::class );
+		}
+
+		return $this->landed_cost_sync_handler;
+	}
+
+
+	/**
+	 * Determines whether the account number and license key are set.
+	 *
+	 * @since 1.13.0
+	 *
+	 * @return bool
+	 */
+	public function has_api_credentials_set() : bool {
+
+		return ! empty ( get_option( 'wc_avatax_api_account_number' ) ) && ! empty ( get_option( 'wc_avatax_api_license_key' ) );
+	}
+
+
+    /**
+     * Determines whether the HS API login and password are set.
+     *
+     * @since 1.13.0
+     *
+     * @return bool
+     */
+	public function has_hs_api_credentials_set() : bool {
+
+		return ! empty ( get_option( 'wc_avatax_hs_api_username' ) ) && ! empty ( get_option( 'wc_avatax_hs_api_password' ) );
+	}
+
+
+	/**
+	 * Loads all the API classes.
+	 *
+	 * @since 1.13.0
+	 */
+	private function load_api_classes() {
+
+		// loads the abstract API class
+		require_once( $this->get_plugin_path() . '/src/api/WC_AvaTax_Abstract_API.php' );
+
+		// loads the main API classes
+		require_once( $this->get_plugin_path() . '/src/api/class-wc-avatax-api.php' );
+		require_once( $this->get_plugin_path() . '/src/api/class-wc-avatax-api-tax-rate.php' );
+		require_once( $this->get_plugin_path() . '/src/api/requests/class-wc-avatax-api-request.php' );
+		require_once( $this->get_plugin_path() . '/src/api/requests/class-wc-avatax-api-utility-request.php' );
+		require_once( $this->get_plugin_path() . '/src/api/requests/class-wc-avatax-api-subscriptions-request.php' );
+		require_once( $this->get_plugin_path() . '/src/api/requests/class-wc-avatax-api-entity-use-code-request.php' );
+		require_once( $this->get_plugin_path() . '/src/api/requests/class-wc-avatax-api-rate-request.php' );
+		require_once( $this->get_plugin_path() . '/src/api/requests/class-wc-avatax-api-company-request.php' );
+		require_once( $this->get_plugin_path() . '/src/api/requests/class-wc-avatax-api-tax-request.php' );
+		require_once( $this->get_plugin_path() . '/src/api/requests/class-wc-avatax-api-void-request.php' );
+		require_once( $this->get_plugin_path() . '/src/api/requests/class-wc-avatax-api-address-request.php' );
+		require_once( $this->get_plugin_path() . '/src/api/requests/Companies_Request.php' );
+		require_once( $this->get_plugin_path() . '/src/api/requests/Nexus_List_Request.php' );
+		require_once( $this->get_plugin_path() . '/src/api/responses/class-wc-avatax-api-response.php' );
+		require_once( $this->get_plugin_path() . '/src/api/responses/class-wc-avatax-api-utility-response.php' );
+		require_once( $this->get_plugin_path() . '/src/api/responses/class-wc-avatax-api-subscriptions-response.php' );
+		require_once( $this->get_plugin_path() . '/src/api/responses/class-wc-avatax-api-entity-use-code-response.php' );
+		require_once( $this->get_plugin_path() . '/src/api/responses/class-wc-avatax-api-rate-response.php' );
+		require_once( $this->get_plugin_path() . '/src/api/responses/class-wc-avatax-api-tax-response.php' );
+		require_once( $this->get_plugin_path() . '/src/api/responses/class-wc-avatax-api-address-response.php' );
+		require_once( $this->get_plugin_path() . '/src/api/responses/Companies_Response.php' );
+		require_once( $this->get_plugin_path() . '/src/api/responses/Nexus_List_Response.php' );
+
+		// loads the HS Classification API classes
+		require_once( $this->get_plugin_path() . '/src/api/WC_AvaTax_HS_API.php' );
+		require_once( $this->get_plugin_path() . '/src/api/requests/Abstract_HS_Classification_Request.php' );
+		require_once( $this->get_plugin_path() . '/src/api/requests/HS_Classification_Create_Request.php' );
+		require_once( $this->get_plugin_path() . '/src/api/requests/HS_Classification_Update_Request.php' );
+		require_once( $this->get_plugin_path() . '/src/api/requests/HS_Classification_Get_Request.php' );
+		require_once( $this->get_plugin_path() . '/src/api/responses/Abstract_HS_Classification_Response.php' );
+		require_once( $this->get_plugin_path() . '/src/api/responses/HS_Classification_Create_Response.php' );
+		require_once( $this->get_plugin_path() . '/src/api/responses/HS_Classification_Update_Response.php' );
+		require_once( $this->get_plugin_path() . '/src/api/responses/HS_Classification_Get_Response.php' );
 	}
 
 

@@ -63,7 +63,7 @@ if (ASP_DEMO) $_POST = null;
             </p>
 		</div>
 		<div class="item">
-			<?php $o = new wpdreamsText( "cachinginterval", __('Caching interval (in minutes, default 1440, aka. 1 day)', 'ajax-search-pro'),
+			<?php $o = new wpdreamsText( "cachinginterval", __('Caching interval (in minutes, default 43200, aka. 30 days)', 'ajax-search-pro'),
                 $cache_options["cachinginterval"] ); ?>
 		</div>
 		<div class="item">

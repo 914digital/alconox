@@ -11,6 +11,7 @@ class Configuration
      * @var string
      */
     const DEFAULT_OPTION = 'woo-discount-config-v2';
+    const ADVANCED_OPTION = 'awdr_advanced_option_config_v2';
 
     public static $instance;
 
@@ -18,7 +19,7 @@ class Configuration
      * Contains all the configuration details
      * @var array
      */
-    private static $config = array(), $default_config = array(
+    private static $config = array(), $advanced_section_config=array(), $default_config = array(
         'modify_price_at_product_page' => 1,//0,1
         'modify_price_at_category_page' => 1,//0,1
         'modify_price_at_shop_page' => 1,//0,1
@@ -29,7 +30,7 @@ class Configuration
         'show_strikeout_on_cart' => 1,//1,0
         'show_applied_rules_message_on_cart' => 0,//1,0
         'free_shipping_title' => 'free shipping',
-        'apply_cart_discount_as' => 'fee',//coupon,fee
+        'apply_cart_discount_as' => 'coupon',//coupon,fee
         'combine_all_cart_discounts' => 0,//0,1
         'discount_label_for_combined_discounts' => 'Cart Discount',//show when "combine_all_cart_discounts" is 1
         'applied_rule_message' => 'Discount <strong>{{title}}</strong> has been applied to your cart.',
@@ -42,6 +43,7 @@ class Configuration
         'table_range_column' => 1,//0,1
         'refresh_order_review' => 0,//1,0
         'suppress_other_discount_plugins' => 0,//1,0
+        'compress_css_and_js' => 0,//1,0
         'show_sale_badge_only_on_condition_passed' => 0,//1,0
         'position_to_show_bulk_table' => 'woocommerce_before_add_to_cart_form',//woocommerce_product_meta_end,woocommerce_product_meta_start,woocommerce_after_add_to_cart_form,woocommerce_before_add_to_cart_form,woocommerce_after_single_product,woocommerce_before_single_product,woocommerce_after_single_product_summary,woocommerce_before_single_product_summary
         'position_to_show_discount_bar' => 'woocommerce_before_add_to_cart_form',//woocommerce_product_meta_end,woocommerce_product_meta_start,woocommerce_after_add_to_cart_form,woocommerce_before_add_to_cart_form,woocommerce_after_single_product,woocommerce_before_single_product,woocommerce_after_single_product_summary,woocommerce_before_single_product_summary
@@ -60,11 +62,21 @@ class Configuration
         'disable_coupon_when_rule_applied' => 'run_both', //run_both, disable_coupon, disable_rules
         'customize_on_sale_badge' => '',
         'force_override_on_sale_badge' => '',
+        'display_percentage_on_sale_badge' => '',
         'on_sale_badge_html' => '<span class="onsale">Sale!</span>',
+        'on_sale_badge_percentage_html' => '<span class="onsale">{{percentage}}%</span>',
         'licence_key' => '',
         'show_subtotal_promotion' => 0,
         'show_cart_quantity_promotion' => 0,
         'show_promo_text' => '',
+        'wdr_override_custom_price' => 0, // 0,1
+        'disable_recalculate_total' => 0, // 0,1
+        'disable_recalculate_total_when_coupon_apply' => 0, // 0,1
+    );
+    private static $default_advanced_section_config = array(
+        'wdr_override_custom_price' => 0, // 0,1
+        'wdr_disable_recalculate_total' => 0, // 0,1
+        'wdr_recalculate_total_when_coupon_apply' => 0, // 0,1
     );
 
     /**
@@ -83,11 +95,12 @@ class Configuration
     /**
      * Save the configuration
      * @param $data
+     * @param $key
      * @return bool
      */
-    static function saveConfig($data)
+    static function saveConfig($key = self::DEFAULT_OPTION, $data = array())
     {
-        return update_option(self::DEFAULT_OPTION, $data);
+        return update_option($key, $data);
     }
 
     /**
@@ -97,13 +110,14 @@ class Configuration
      */
     function getConfig($key, $default = '')
     {
-
-        if (empty(self::$config)) {
+        if (empty(self::$config) || empty(self::$advanced_section_config)) {
             $this->setConfig();
         }
         if (isset(self::$config[$key])) {
             return self::$config[$key];
-        } elseif (isset(self::$default_config[$key])) {
+        } elseif (isset(self::$advanced_section_config[$key])){
+            return self::$advanced_section_config[$key];
+        }elseif (isset(self::$default_config[$key])) {
             //Check config found in default config
             return self::$default_config[$key];
         } else {
@@ -117,5 +131,6 @@ class Configuration
     function setConfig()
     {
         self::$config = get_option(self::DEFAULT_OPTION);
+        self::$advanced_section_config = get_option(self::ADVANCED_OPTION);
     }
 }

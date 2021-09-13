@@ -473,8 +473,11 @@ if (!class_exists('ASP_Query')) {
                 $args['search_type'] = array($args['search_type']);
             if ( $args['limit'] > 0 && count($args['search_type']) > 0 )
                 $args['_limit'] = floor($args['limit']/count($args['search_type']));
-            if ( $args['posts_per_page'] == 0 )
-                $args['posts_per_page'] = get_option('posts_per_page');
+			if ( $args['posts_per_page'] == 0 ) {
+				$args['posts_per_page'] = get_option('posts_per_page');
+			} else if ( $args['posts_per_page'] < 0 ) {
+				$args['posts_per_page'] = 999999;
+			}
 
             $args['keyword_logic'] = strtolower($args['keyword_logic']);
 
@@ -717,7 +720,7 @@ if (!class_exists('ASP_Query')) {
 
                     $args['_switch_on_preprocess'] = 1;
                     $search_index = new ASP_Search_INDEX($args);
-                    $ra['pageposts'] = $search_index ->search();
+                    $ra['pageposts'] = $search_index ->search($s);
                     $this->found_posts += $search_index->results_count;
 
                     do_action('asp_after_pagepost_results', $s, $ra['pageposts']);
@@ -1370,36 +1373,36 @@ if (!class_exists('ASP_Query')) {
             return $b['group_priority'] - $a['group_priority'];
         }
 
-        private function applyExceptions( $s ) {
-            if ( !isset($this->args['_sd']) )
-                return $s;
+		private function applyExceptions( $s ) {
+			if ( !isset($this->args['_sd']) )
+				return $s;
 
-            $sd = &$this->args['_sd'];
+			$sd = &$this->args['_sd'];
 
-            if ($sd["kw_exceptions"] == "" && $sd["kw_exceptions_e"] == "") return $s;
+			if ($sd["kw_exceptions"] == "" && $sd["kw_exceptions_e"] == "") return $s;
 
-            if ($sd["kw_exceptions"] != "") {
-                $exceptions = stripslashes( str_replace(array(" ,", ", ", " , "), ",", $sd["kw_exceptions"]) );
-                if ( $exceptions != '' ) {
-                    $s = trim(str_replace(explode(",", $exceptions), "", $s));
-                    $s = preg_replace('/\s+/', ' ', $s);
-                }
-            }
+			if ($sd["kw_exceptions"] != "") {
+				$exceptions = stripslashes( str_replace(array(" ,", ", ", " , "), ",", $sd["kw_exceptions"]) );
+				if ( $exceptions != '' ) {
+					$s = trim(str_ireplace(explode(",", $exceptions), "", $s));
+					$s = preg_replace('/\s+/', ' ', $s);
+				}
+			}
 
-            if ($sd["kw_exceptions_e"] != "") {
-                $exceptions = stripslashes( str_replace(array(" ,", ", ", " , "), ",", $sd["kw_exceptions_e"]) );
-                $exceptions = explode(',', $exceptions);
-                foreach ($exceptions as $k => &$v)
-                    $v = '/\b' . $v . '\b/u';
-                unset($v);
-                if ( count($exceptions) > 0 ) {
-                    $s = trim(preg_replace($exceptions, '', $s));
-                    $s = preg_replace('/\s+/', ' ', $s);
-                }
-            }
+			if ($sd["kw_exceptions_e"] != "") {
+				$exceptions = stripslashes( str_replace(array(" ,", ", ", " , "), ",", $sd["kw_exceptions_e"]) );
+				$exceptions = explode(',', $exceptions);
+				foreach ($exceptions as $k => &$v)
+					$v = '/\b' . $v . '\b/ui';
+				unset($v);
+				if ( count($exceptions) > 0 ) {
+					$s = trim(preg_replace($exceptions, '', $s));
+					$s = preg_replace('/\s+/', ' ', $s);
+				}
+			}
 
-            return $s;
-        }
+			return $s;
+		}
 
         private function getResIdsArr( $r ) {
             $ret = array();

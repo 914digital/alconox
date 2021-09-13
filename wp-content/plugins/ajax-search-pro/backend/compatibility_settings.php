@@ -69,19 +69,17 @@ $_comp_errors = $_comp->get_errors();
             $values = array(
                 // CSS and JS
                 "js_source" => $_POST['js_source'],
-                "js_init" => $_POST['js_init'],
                 "load_in_footer" => $_POST['load_in_footer'],
                 "detect_ajax" => $_POST['detect_ajax'],
                 'js_retain_popstate' => $_POST['js_retain_popstate'],
-                'js_fix_duplicates' => $_POST['js_fix_duplicates'],
                 "css_compatibility_level" => $_POST['css_compatibility_level'],
                 'css_minify' => $_POST['css_minify'],
                 "forceinlinestyles" => $_POST['forceinlinestyles'],
                 "load_google_fonts" => $_POST['load_google_fonts'],
                 "css_async_load" => $_POST['css_async_load'],
                 "usecustomajaxhandler" => $_POST['usecustomajaxhandler'],
-                'old_browser_compatibility' => $_POST['old_browser_compatibility'],
                 // Loading
+                "script_loading_method" => $_POST['script_loading_method'],
                 "load_lazy_js" => $_POST['load_lazy_js'],
                 "load_mcustom_js" => $_POST['load_mcustom_js'],
                 'selective_enabled' => $_POST['selective_enabled'],

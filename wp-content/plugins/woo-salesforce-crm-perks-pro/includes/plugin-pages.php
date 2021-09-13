@@ -551,6 +551,7 @@ if(!empty($v['placeholder'])){ $label=$v['placeholder']; }
   '_order_shipping_total_tax'=>array('label'=>'Order Shipping Total + Shipping Tax'),
   '_order_shipping_tax'=>array('label'=>'Order Shipping Tax'),
   '_order_total'=>array('label'=>'Order Total'),
+  '_order_total_refunded'=>array('label'=>'Order Total - Total Refunded'),  
   '_order_fees_total'=>array('label'=>'Order Fees Total'),
   '_order_fees_total_tax'=>array('label'=>'Order Fees Total + Fees Tax'),
   '_order_subtotal'=>array('label'=>'Order SubTotal'),

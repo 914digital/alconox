@@ -68,7 +68,7 @@ add_filter("admin_menu", array($this, 'setup'), 10);
       $log_url=admin_url( 'admin.php?page=gf_edit_forms&view=settings&subview='.$this->id.'&tab=log&id='.$_GET['id'].'&entry_id='.$entry_id);  
 
    $data=$this->get_data_object();
-$log=$data->get_log_by_lead($entry_id); 
+$log=$data->get_log_by_lead($entry_id);  
 require_once(self::$path . 'templates/crm-entry-box.php'); 
  }
    /**
@@ -80,13 +80,13 @@ require_once(self::$path . 'templates/crm-entry-box.php');
 
   $debug = !empty(self::$debug_html) && current_user_can($this->id.'_edit_settings');
   if($debug){ 
-  echo "<div class='error'><p>".self::$debug_html."</p></div>"; 
+  echo "<div class='error'><p>".wp_kses_post(self::$debug_html)."</p></div>"; 
   self::$debug_html='';
   }
   if(!empty($_GET['vx_debug'])){ 
      $html=get_option($this->id."_debug"); 
      if(!empty($html)){
-  echo "<div class='error'><p>".$html."</p></div>"; 
+  echo "<div class='error'><p>".wp_kses_post($html)."</p></div>"; 
   update_option($this->id."_debug",'');
   }  }
   if(isset($_GET[$this->id."_logs"]) && current_user_can($this->id.'_read_settings')){
@@ -136,7 +136,7 @@ public function update_entry($form,$lead_id){
    $slug=$this->get_slug();
       if ( $file == $slug ) {
           $settings_link=$this->link_to_settings();
-            array_unshift( $links, '<a href="' .$settings_link. '">' . __('Settings', 'gravity-forms-salesforce-crm') . '</a>' );
+            array_unshift( $links, '<a href="' .$settings_link. '">' . esc_html__('Settings', 'gravity-forms-salesforce-crm') . '</a>' );
         }
         return $links;
    }
@@ -183,7 +183,7 @@ public function update_entry($form,$lead_id){
      */
     public function add_form_settings_menu( $tabs, $form_id ) {
 
-        $tabs[] = array( 'name' => $this->id, 'label' => __("Salesforce", 'gravity-forms-salesforce-crm') , 'query' => array( 'fid' => null) );
+        $tabs[] = array( 'name' => $this->id, 'label' => esc_html__("Salesforce", 'gravity-forms-salesforce-crm') , 'query' => array( 'fid' => null) );
 
         return $tabs;
     }
@@ -239,7 +239,7 @@ $this->push($entry,$form,'add_note');
   */
   public  function create_menu($menus){
   // Adding submenu if user has access
-  $menus[] = array("name" => $this->id, "label" => __('Salesforce','gravity-forms-salesforce-crm'), "callback" =>  array($this, "mapping_page"), "permission" => $this->id.'_read_feeds');
+  $menus[] = array("name" => $this->id, "label" => esc_html__('Salesforce','gravity-forms-salesforce-crm'), "callback" =>  array($this, "mapping_page"), "permission" => $this->id.'_read_feeds');
   
   return $menus;
   }
@@ -250,7 +250,7 @@ $this->push($entry,$form,'add_note');
   */
   public  function setup(){
 
-      RGForms::add_settings_page(array('name' => $this->id,'tab_label' => __('Salesforce','gravity-forms-salesforce-crm'),"handler"=>array($this, "settings_page")),array($this, "settings_page"));
+      RGForms::add_settings_page(array('name' => $this->id,'tab_label' => esc_html__('Salesforce','gravity-forms-salesforce-crm'),"handler"=>array($this, "settings_page")),array($this, "settings_page"));
  
            global $wpdb; 
   if($this->post('vx_tab_action_'.$this->id)=="export_log"){
@@ -350,7 +350,7 @@ $this->push($entry,$form,'add_note');
   */
   private  function list_page(){ 
   if(!current_user_can($this->id.'_read_feeds')){
-  _e('You do not have permissions to access this page','gravity-forms-salesforce-crm');    
+  esc_html_e('You do not have permissions to access this page','gravity-forms-salesforce-crm');    
   return;
   }
   $is_section=apply_filters('add_page_html_'.$this->id,false);
@@ -409,7 +409,7 @@ include_once(self::$path . "templates/feeds.php");
   public  function log_page(){
   
   if(!current_user_can($this->id.'_read_logs')){
-  _e('You do not have permissions to access this page','gravity-forms-salesforce-crm');    
+  esc_html_e('You do not have permissions to access this page','gravity-forms-salesforce-crm');    
   return;
   }
   $is_section=apply_filters('add_page_html_'.$this->id,false);
@@ -700,7 +700,7 @@ include_once(self::$path . "templates/fields-mapping.php");
   }
   public function set_logging_supported($plugins) {
       $slug=$this->plugin_dir_name(); 
-        $plugins[$slug] = __('Salesforce','gravity-forms-salesforce-crm');
+        $plugins[$slug] = esc_html__('Salesforce','gravity-forms-salesforce-crm');
         return $plugins;
     }
   /**
@@ -724,7 +724,7 @@ include_once(self::$path . "templates/fields-mapping.php");
   if($msg !=""){
   ?>
   <div class="error below-h2" style="background: #f3f3f3">
-  <p><?php echo $msg; ?></p>
+  <p><?php echo wp_kses_post($msg); ?></p>
   </div>
   <?php
   die();
@@ -761,7 +761,7 @@ include_once(self::$path . "templates/fields-mapping.php");
   if($msg !=""){
   ?>
   <div class="error below-h2" style="background: #f3f3f3">
-  <p><?php echo $msg; ?></p>
+  <p><?php echo wp_kses_post($msg); ?></p>
   </div>
   <?php
   die();
@@ -817,7 +817,7 @@ $this->field_map_object($account,$feed,$info);
     if(is_array($fields)){
         foreach($fields as $k=>$v){
   $sel=$selected == $k ? 'selected="selected"' : "";
-  $field_options.="<option value='".$k."' ".$sel.">".$v."</option>";      
+  $field_options.='<option value="'.esc_attr($k).'" '.$sel.'>'.esc_html($v).'</option>';       
         }
     }
   return $field_options;    
@@ -914,7 +914,7 @@ $state.='&code='.$_REQUEST['code'];
 if(isset($_REQUEST['error'])){
 $state.='&error='.$_REQUEST['error'];   
 }
-//$link.'&'.$this->id."_tab_action=get_token&vx_action=redirect&id=".$id."&vx_nonce=".$nonce
+//esc_url($link).'&'.$this->id."_tab_action=get_token&vx_action=redirect&id=".$id."&vx_nonce=".$nonce
 wp_redirect($state);
 die();
 }
@@ -979,7 +979,7 @@ $log_id=$this->post('id');
 $log=$this->data->get_log_by_id($log_id); 
   $data=json_decode($log['data'],true); 
   $response=json_decode($log['response'],true);
-    $triggers=array('manual'=>'Submitted Manually','submit'=>'Form Submission','update'=>'Entry Update'
+    $triggers=array('manual'=>'Submitted Manually','submit'=>'Form Submission','paid'=>'Payment Completed','update'=>'Entry Update'
   ,'delete'=>'Entry Deletion','add_note'=>'Entry Note Created','delete_note'=>'Entry Note Deleted','restore'=>'Entry Restored');
   $event= empty($log['event']) ? 'manual' : $log['event'];
   $extra=array('Object'=>$log['object']);
@@ -1018,7 +1018,7 @@ $field_options="<option>".__("Select Object",'gravity-forms-salesforce-crm')."</
       if($k == $object){
           $sel='selected="selected"';
       }
-  $field_options.="<option value='".$k."' ".$sel.">".$v."</option>";      
+  $field_options.='<option value="'.esc_attr($k).'" '.$sel.'>'.esc_html($v).'</option>';       
   }  
 }
 echo   $field_options;
@@ -1098,7 +1098,6 @@ $this->screen_msg($uninstall_msg);
  $data['custom_app']=$this->post('custom_app',$crm_post);
 
 
- 
   $this->update_info(array('data'=> $data),$id);
   $force_check=true;
   ////////////////////
@@ -1199,7 +1198,7 @@ include_once(self::$path . "templates/settings.php");
   */
   private  function edit_page($fid=""){
   if(!current_user_can($this->id.'_read_feeds')){
-  _e('You do not have permissions to access this page','gravity-forms-salesforce-crm');    
+  esc_html_e('You do not have permissions to access this page','gravity-forms-salesforce-crm');    
   return;
   }
 $base_url=$this->get_base_url();
@@ -1221,7 +1220,7 @@ $sel2_css=$base_url. 'css/select2.min.css';
 
   check_admin_referer("vx_nonce");
   if(!current_user_can($this->id.'_edit_feeds')){
-  _e('You do not have permissions to edit/save feed','gravity-forms-salesforce-crm'); 
+  esc_html_e('You do not have permissions to edit/save feed','gravity-forms-salesforce-crm'); 
   return;
   }
   //
@@ -1369,11 +1368,11 @@ include_once(self::$path . "templates/feed-account.php");
   $form = RGFormsModel::get_form_meta($form_id);
   $fields = array();
   //Adding default fields
-  array_push($form['fields'],array("id" => "date_created" , "label" => __("Entry Date", 'gravity-forms-salesforce-crm')));
-  array_push($form['fields'],array("id" => "ip" , "label" => __("User IP", 'gravity-forms-salesforce-crm')));
-  array_push($form['fields'],array("id" => "source_url" , "label" => __("Source Url", 'gravity-forms-salesforce-crm')));
-  array_push($form['fields'],array("id" => "form_title" , "label" => __("Form Title", 'gravity-forms-salesforce-crm')));
-  array_push($form['fields'],array("id" => "status" , "label" => __('Entry Status', 'gravity-forms-infusionsoft-crm')));
+  array_push($form['fields'],array("id" => "date_created" , "label" => esc_html__("Entry Date", 'gravity-forms-salesforce-crm')));
+  array_push($form['fields'],array("id" => "ip" , "label" => esc_html__("User IP", 'gravity-forms-salesforce-crm')));
+  array_push($form['fields'],array("id" => "source_url" , "label" => esc_html__("Source Url", 'gravity-forms-salesforce-crm')));
+  array_push($form['fields'],array("id" => "form_title" , "label" => esc_html__("Form Title", 'gravity-forms-salesforce-crm')));
+  array_push($form['fields'],array("id" => "status" , "label" => esc_html__('Entry Status', 'gravity-forms-infusionsoft-crm')));
 
   $skip_inputs=array('checkbox','select','time','date','radio'); 
   if(is_array($form['fields'])){
@@ -1472,7 +1471,7 @@ $sel_val=array($sel_val);
   if(is_array($fields)){
   foreach($fields as $key=>$fields_arr){
 if(is_array($fields_arr['fields'])){
-    $sel.="<optgroup label='".$fields_arr['title']."'>";
+    $sel.='<optgroup label="'.esc_html($fields_arr['title']).'">';
       foreach($fields_arr['fields'] as $k=>$v){
           $option_k=$k;
           $option_name=$v;
@@ -1485,7 +1484,7 @@ if(is_array($fields_arr['fields'])){
            if( in_array($option_k,$sel_val)){
   $select='selected="selected"';
   }
-  $sel.='<option value="'.$option_k.'" '.$select.'>'.$option_name.'</option>';    
+  $sel.='<option value="'.esc_attr($option_k).'" '.$select.'>'.esc_html($option_name).'</option>';    
   }    }
   }}  
   return $sel;    

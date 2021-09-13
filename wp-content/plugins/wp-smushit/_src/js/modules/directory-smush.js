@@ -17,6 +17,7 @@ import Scanner from '../smush/directory-scanner';
 		selected: [],
 		tree: [],
 		wp_smush_msgs: [],
+		triggered: false,
 
 		init() {
 			const self = this,
@@ -45,7 +46,7 @@ import Scanner from '../smush/directory-scanner';
 			/**
 			 * Open the "Select Smush directory" modal.
 			 */
-			$('button.wp-smush-browse, a.wp-smush-dir-link').on(
+			$('button.wp-smush-browse, a#smush-directory-open-modal').on(
 				'click',
 				function (e) {
 					e.preventDefault();
@@ -94,9 +95,8 @@ import Scanner from '../smush/directory-scanner';
 				// Disable button
 				button.prop( 'disabled', true );
 
-				const spinner = button.parent().find( '.add-dir-loader' );
-				// Display the spinner
-				spinner.addClass( 'sui-icon-loader sui-loading' );
+				// Display the spinner.
+				button.addClass('sui-button-onload');
 
 				const selectedFolders = self.tree.getSelectedNodes();
 
@@ -136,14 +136,11 @@ import Scanner from '../smush/directory-scanner';
 			 */
 			progressDialog.on(
 				'click',
-				'#cancel-directory-smush, .sui-dialog-close, .wp-smush-cancel-dir',
-				function( e ) {
+				'#cancel-directory-smush, #dialog-close-div, .wp-smush-cancel-dir',
+				function (e) {
 					e.preventDefault();
 					// Display the spinner
-					$( this )
-						.parent()
-						.find( '.add-dir-loader' )
-						.addClass( 'sui-icon-loader sui-loading' );
+					$('.wp-smush-cancel-dir').addClass('sui-button-onload');
 					self.scanner
 						.cancel()
 						.done(
@@ -165,6 +162,19 @@ import Scanner from '../smush/directory-scanner';
 					self.scanner.resume();
 				}
 			);
+
+			/**
+			 * Check to see if we should open the directory module.
+			 * Used to redirect from dashboard page.
+			 *
+			 * @since 3.8.6
+			 */
+			const queryString = window.location.search;
+			const urlParams = new URLSearchParams(queryString);
+			if (urlParams.has('start') && !this.triggered) {
+				this.triggered = true;
+				$('button.wp-smush-browse').trigger('click');
+			}
 		},
 
 		/**
@@ -205,11 +215,6 @@ import Scanner from '../smush/directory-scanner';
 							.done( ( response ) => resolve( response ) )
 							.fail( reject );
 					} );
-
-					// Update the button text.
-					data.result.then(
-						smushButton.html( self.wp_smush_msgs.add_dir )
-					);
 				},
 				loadChildren: ( event, data ) =>
 					data.node.fixSelection3AfterClick(), // Apply parent's state to new child nodes:

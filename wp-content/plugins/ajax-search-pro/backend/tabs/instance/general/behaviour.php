@@ -8,6 +8,7 @@
         </span>
     </legend>
     <div class="item item-flex-nogrow item-flex-wrap">
+		<div wd-disable-on="exactonly:1">
         <?php
         $o = new wpdreamsCustomSelect("keyword_logic", __('Primary keyword logic', 'ajax-search-pro'),
             array(
@@ -20,7 +21,10 @@
                 'value' => $sd['keyword_logic']
             ));
         $params[$o->getName()] = $o->getData();
-
+		?>
+		</div>
+		<div>
+		<?php
         $o = new wpdreamsCustomSelect('secondary_kw_logic', __('Secondary logic', 'ajax-search-pro'),
             array(
                 'selects' => array(
@@ -34,6 +38,7 @@
             ));
         $params[$o->getName()] = $o->getData();
         ?>
+		</div>
         <div class="descMsg item-flex-grow item-flex-100">
             <?php echo sprintf( __('<strong>Secodary logic</strong> is used when the results count does not reach the limit. More <a href="%s" target="_blank">information about logics here</a>.', 'ajax-search-pro'), 'https://documentation.ajaxsearchpro.com/search-logic/search-logics-explained' ); ?>
         </div>
@@ -43,7 +48,9 @@
         $o = new wpdreamsYesNo("exactonly", __('Show exact matches only?', 'ajax-search-pro'),
             $sd['exactonly']);
         $params[$o->getName()] = $o->getData();
-
+		?>
+		<div wd-disable-on="exactonly:0">
+		<?php
         $o = new wpdreamsCustomSelect('exact_match_location', __('..and match fields against the search phrase', 'ajax-search-pro'),
             array(
                 'selects' => array(
@@ -56,7 +63,8 @@
             ));
         $params[$o->getName()] = $o->getData();
         ?>
-        <div class="descMsg" style="margin-top:4px;min-width: 100%;flex-wrap: wrap;flex-basis: auto;flex-grow: 1;box-sizing: border-box;">
+		</div>
+        <div class="descMsg" wd-enable-on="exactonly:1;secondary_kw_logic:or,orex,and,andex" style="margin-top:4px;min-width: 100%;flex-wrap: wrap;flex-basis: auto;flex-grow: 1;box-sizing: border-box;">
         <?php
         $o = new wpdreamsYesNo("exact_m_secondary", __(' ..allow Secondary logic when exact matching?', 'ajax-search-pro'),
             $sd['exact_m_secondary']);
@@ -117,6 +125,9 @@
                 'value' => $sd['click_action']
             ));
         $params[$o->getName()] = $o->getData();
+		?>
+		<div wd-hide-on="click_action:ajax_search,nothing,same">
+		<?php
         $o = new wpdreamsCustomSelect("click_action_location", __(' location: ', 'ajax-search-pro'),
             array(
                 'selects' => array(
@@ -127,6 +138,7 @@
             ));
         $params[$o->getName()] = $o->getData();
         ?>
+		</div>
     </div>
     <div class="item item-flex-nogrow item-flex-wrap">
         <?php
@@ -136,6 +148,9 @@
                 'value' => $sd['return_action']
             ));
         $params[$o->getName()] = $o->getData();
+        ?>
+		<div wd-hide-on="return_action:ajax_search,nothing,same">
+		<?php
         $o = new wpdreamsCustomSelect("return_action_location", __(' location: ', 'ajax-search-pro'),
             array(
                 'selects' => array(
@@ -146,8 +161,9 @@
             ));
         $params[$o->getName()] = $o->getData();
         ?>
+		</div>
     </div>
-    <div class="item">
+    <div class="item" wd-show-on="click_action:elementor_page;return_action:elementor_page">
         <?php
         $o = new wd_CPTSearchCallBack('redirect_elementor', __('Select a page with an Elementor Pro posts widget', 'ajax-search-pro'), array(
                 'value'=>$sd['redirect_elementor'],
@@ -159,7 +175,7 @@
         $params[$o->getName()] = $o->getData();
         ?>
     </div>
-    <div class="item">
+    <div class="item" wd-show-on="click_action:custom_url;return_action:custom_url">
         <?php
         $o = new wpdreamsText("redirect_url", __('Custom redirect URL', 'ajax-search-pro'),
             $sd['redirect_url']);

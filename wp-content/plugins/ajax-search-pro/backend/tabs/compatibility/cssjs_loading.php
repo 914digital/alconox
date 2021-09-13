@@ -1,5 +1,42 @@
 <fieldset>
     <legend>Global loading options</legend>
+	<div class="item">
+		<?php
+		$o = new wpdreamsCustomSelect("js_source", __('Javascript source', 'ajax-search-pro'), array(
+				'selects'   => wd_asp()->o['asp_compatibility_def']['js_source_def'],
+				'value'     => $com_options['js_source']
+			)
+		);
+		$params[$o->getName()] = $o->getData();
+		?>
+		<p class="descMsg">
+			<strong>Legacy</strong> scripts use <strong>jQuery</strong> and will be removed on the first 2022 release.
+			<?php echo sprintf( __('<a target="_blank" href="%s">Read More</a>'),
+				'https://documentation.ajaxsearchpro.com/compatibility-settings/javascript-compatibility' ); ?>
+		</p>
+	</div>
+	<div class="item">
+		<?php
+		$o = new wpdreamsCustomSelect("script_loading_method", __('Script loading method', 'ajax-search-pro'), array(
+				'selects'=>array(
+					array('option'=>'Classic', 'value'=>'classic'),
+					array('option'=>'Optimized (recommended)', 'value'=>'optimized'),
+					array('option'=>'Optimized asynchronous', 'value'=>'optimized_async')
+				),
+				'value'=>$com_options['script_loading_method']
+			)
+		);
+		$params[$o->getName()] = $o->getData();
+		?>
+		<p class="descMsg">
+		<ul style="float:right;text-align:left;width:70%;">
+			<li><?php echo __('<b>Classic</b> - All scripts are loaded as blocking at the same time', 'ajax-search-pro'); ?></li>
+			<li><?php echo __('<b>Optimized</b> - Scripts are loaded separately, but only the required ones', 'ajax-search-pro'); ?></li>
+			<li><?php echo __('<b>Optimized asnynchronous</b> - Same as the Optimized, but the scripts load in the background', 'ajax-search-pro'); ?></li>
+		</ul>
+		<div class="clear"></div>
+		</p>
+	</div>
     <div class="item">
         <?php
         $o = new wpdreamsCustomSelect("load_mcustom_js", __('Load the scrollbar script?', 'ajax-search-pro'), array(

@@ -19,6 +19,7 @@ class Woocommerce
      * @param $type - product types
      * @return bool
      */
+    static $product_taxonomy_terms = array();
     static $custom_taxonomies;
     static $checkout_post = null;
 
@@ -231,16 +232,16 @@ class Woocommerce
      */
     static function getProductCategories($product)
     {
-        $categories = array();
+        $categories = $variant = array();
         if (method_exists($product, 'get_category_ids')) {
             if (self::productTypeIs($product, 'variation')) {
+                $variant = $product;
                 $parent_id = self::getProductParentId($product);
                 $product = self::getProduct($parent_id);
             }
             $categories = $product->get_category_ids();
         }
-        return apply_filters('advanced_woo_discount_rules_get_product_categories', $categories, $product);
-
+        return apply_filters('advanced_woo_discount_rules_get_product_categories', $categories, $product, $variant);
     }
 
     /**
@@ -470,8 +471,10 @@ class Woocommerce
         }
         $cart = array();
         if (function_exists('WC')) {
-            if (method_exists(WC()->cart, 'get_cart')) {
-                $cart = WC()->cart->get_cart();
+            if(isset(WC()->cart) && WC()->cart != null){
+                if (method_exists(WC()->cart, 'get_cart')) {
+                    $cart = WC()->cart->get_cart();
+                }
             }
         }
         return apply_filters('advanced_woo_discount_rules_get_cart', $cart);
@@ -484,8 +487,10 @@ class Woocommerce
     static function calculateCartTotals()
     {
         if (function_exists('WC')) {
-            if (method_exists(WC()->cart, 'calculate_totals')) {
-                WC()->cart->calculate_totals();
+            if(isset(WC()->cart) && WC()->cart != null){
+                if (method_exists(WC()->cart, 'calculate_totals')) {
+                    WC()->cart->calculate_totals();
+                }
             }
         }
     }
@@ -503,8 +508,10 @@ class Woocommerce
     static function get_shipping_packages()
     {
         if (function_exists('WC')) {
-            if (method_exists(WC()->cart, 'get_shipping_packages')) {
-                return WC()->cart->get_shipping_packages();
+            if(isset(WC()->cart) && WC()->cart != null) {
+                if (method_exists(WC()->cart, 'get_shipping_packages')) {
+                    return WC()->cart->get_shipping_packages();
+                }
             }
         }
         return null;
@@ -532,8 +539,10 @@ class Woocommerce
     public static function add_to_cart($product_id = 0, $quantity = 1, $variation_id = 0, $variation = array(), $cart_item_data = array())
     {
         if (function_exists('WC')) {
-            if (method_exists(WC()->cart, 'add_to_cart')) {
-                return WC()->cart->add_to_cart( $product_id, $quantity, $variation_id, $variation, $cart_item_data);
+            if(isset(WC()->cart) && WC()->cart != null) {
+                if (method_exists(WC()->cart, 'add_to_cart')) {
+                    return WC()->cart->add_to_cart($product_id, $quantity, $variation_id, $variation, $cart_item_data);
+                }
             }
         }
 
@@ -551,8 +560,10 @@ class Woocommerce
      */
     public static function set_quantity( $cart_item_key, $quantity = 1, $refresh_totals = true ){
         if (function_exists('WC')) {
-            if (method_exists(WC()->cart, 'set_quantity')) {
-                return WC()->cart->set_quantity($cart_item_key, $quantity, $refresh_totals);
+            if(isset(WC()->cart) && WC()->cart != null) {
+                if (method_exists(WC()->cart, 'set_quantity')) {
+                    return WC()->cart->set_quantity($cart_item_key, $quantity, $refresh_totals);
+                }
             }
         }
 
@@ -568,8 +579,10 @@ class Woocommerce
     public static function remove_cart_item($_cart_item_key)
     {
         if (function_exists('WC')) {
-            if (method_exists(WC()->cart, 'remove_cart_item')) {
-                return WC()->cart->remove_cart_item( $_cart_item_key );
+            if(isset(WC()->cart) && WC()->cart != null) {
+                if (method_exists(WC()->cart, 'remove_cart_item')) {
+                    return WC()->cart->remove_cart_item($_cart_item_key);
+                }
             }
         }
 
@@ -586,8 +599,10 @@ class Woocommerce
     public static function remove_coupon($code)
     {
         if (function_exists('WC')) {
-            if (method_exists(WC()->cart, 'remove_coupon')) {
-                return WC()->cart->remove_coupon( $code );
+            if(isset(WC()->cart) && WC()->cart != null) {
+                if (method_exists(WC()->cart, 'remove_coupon')) {
+                    return WC()->cart->remove_coupon($code);
+                }
             }
         }
 
@@ -679,10 +694,12 @@ class Woocommerce
     {
         if (function_exists('WC')) {
             $subtotal = 0;
-            if (method_exists(WC()->cart, 'get_subtotal')) {
-                $subtotal = WC()->cart->get_subtotal();
-            } elseif (isset(WC()->cart->subtotal)) {
-                $subtotal = WC()->cart->subtotal;
+            if(isset(WC()->cart) && WC()->cart != null) {
+                if (method_exists(WC()->cart, 'get_subtotal')) {
+                    $subtotal = WC()->cart->get_subtotal();
+                } elseif (isset(WC()->cart->subtotal)) {
+                    $subtotal = WC()->cart->subtotal;
+                }
             }
             return apply_filters('advanced_woo_discount_rules_get_cart_subtotal', $subtotal);
         }
@@ -774,8 +791,10 @@ class Woocommerce
     static function getAppliedCoupons()
     {
         if (function_exists('WC')) {
-            if (method_exists(WC()->cart, 'get_applied_coupons')) {
-                return WC()->cart->get_applied_coupons();
+            if(isset(WC()->cart) && WC()->cart != null) {
+                if (method_exists(WC()->cart, 'get_applied_coupons')) {
+                    return WC()->cart->get_applied_coupons();
+                }
             }
         }
         return NULL;
@@ -1643,5 +1662,15 @@ class Woocommerce
            $available_variations = $product->get_available_variations();
        }
        return $available_variations;
+   }
+
+   /**
+    * WC format price
+    * */
+   public static function wc_format_decimal($price, $dp = false, $trim_zeros = false ){
+       if (function_exists('wc_format_decimal')) {
+           $price = wc_format_decimal($price, $dp, $trim_zeros);
+       }
+       return $price;
    }
 }

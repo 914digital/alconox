@@ -174,7 +174,7 @@ jQuery(function($){
 
 // -------------------------------------- GROUP EDITOR INTERACTIONS ----------------------------------------------------
     // Phrase logic change
-    $('#pg_phrase_logic').change(function(){
+    $('#pg_phrase_logic').on('change', function(){
         if ( $(this).val() == 'disabled' ) {
             $('#pg_phrase').attr('disabled', 'disabled');
             $('label[for=pg_phrase]').attr('disabled', 'disabled');
@@ -183,7 +183,7 @@ jQuery(function($){
             $('label[for=pg_phrase]').removeAttr('disabled');
         }
     });
-    $('#pg_phrase_logic').change();
+    $('#pg_phrase_logic').trigger('change');
 
     // Chose rule type
     $('#wpd_modal_inner').on('change', 'select[name=rule_field]', function(){

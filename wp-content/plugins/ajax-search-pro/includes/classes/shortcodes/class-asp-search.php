@@ -93,15 +93,6 @@ if (!class_exists("WD_ASP_Search_Shortcode")) {
                 $style = $search['data'];
             }
 
-            // Fallback on IE<=8
-            if(isset($_SERVER['HTTP_USER_AGENT']) && preg_match('/(?i)msie [6-8]/',$_SERVER['HTTP_USER_AGENT']) ) {
-                $comp_options = wd_asp()->o['asp_compatibility'];
-                if ( $comp_options['old_browser_compatibility'] == 1 ) {
-                    get_search_form(true);
-                    return;
-                }
-            }
-
             // If disabled on mobile from the back-end
             if ( $style['mob_display_search'] == 0 && $mdetectObj->isMobile() ) return;
             if ( $style['desktop_display_search'] == 0 && !$mdetectObj->isMobile() ) return;
@@ -206,8 +197,6 @@ if (!class_exists("WD_ASP_Search_Shortcode")) {
                 include(ASP_PATH . "/css/style.css.php");
                 $out = ob_get_contents();
                 ob_end_clean();
-                //file_put_contents($file, $out, FILE_TEXT);
-                $this->fonts( $style );
                 ?>
                 <div style='display: none;' id="asp_preview_options"><?php echo base64_encode(serialize($style)); ?></div>
                 <style>
@@ -248,52 +237,6 @@ if (!class_exists("WD_ASP_Search_Shortcode")) {
             do_action('asp_layout_after_shortcode', $id);
 
             return apply_filters('asp_shortcode_output', $out, $id);
-        }
-
-        /**
-         * Importing fonts does not work correctly it appears.
-         * Instead adding the links directly to the header is the best way to go.
-         */
-        public function fonts( $style = "" ) {
-            // If custom font loading is disabled, exit
-            $comp_options = wd_asp()->o['asp_compatibility'];
-            if ( $comp_options['load_google_fonts'] != 1 )
-                return false;
-
-            $imports = array();
-            $font_sources = array("inputfont", "descfont", "titlefont", 'fe_sb_font',
-                "authorfont", "datefont", "showmorefont", "groupfont",
-                "exsearchincategoriestextfont", "groupbytextfont", "settingsdropfont",
-                "prestitlefont", "presdescfont", "pressubtitlefont", "search_text_font");
-
-
-            if ($style != "") {
-                foreach($font_sources as $fs) {
-                    if (isset($style["import-".$fs]) && !in_array(trim($style["import-".$fs]), $imports))
-                        $imports[] = trim($style["import-".$fs]);
-                }
-            } else {
-                foreach (wd_asp()->instances->get() as $instance) {
-                    foreach($font_sources as $fs) {
-                        if (isset($instance['data']["import-".$fs]) && !in_array(trim($instance['data']["import-".$fs]), $imports))
-                            $imports[] = trim($instance['data']["import-".$fs]);
-                    }
-                }
-            }
-
-            foreach ( $imports as $ik => $im )
-                if ( $im == '' )
-                    unset($imports[$ik]);
-
-            $imports = apply_filters('asp_custom_fonts', $imports);
-            foreach ($imports as $import) {
-                $import = trim(str_replace(array("@import url(", ");", "https:", "http:"), "", $import));
-                if ( $import == '' )
-                    continue;
-                ?>
-                <link href='<?php echo $import; ?>' rel='stylesheet' type='text/css'>
-                <?php
-            }
         }
 
         public static function instanceCount() {

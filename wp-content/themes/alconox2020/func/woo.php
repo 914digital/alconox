@@ -99,4 +99,6 @@ function silva_product_reviews_shortcode( $atts ) {
    return $html;
 }
 
+add_filter('woocommerce_show_variation_price', function() { return TRUE;});
+
 ?>

@@ -1,0 +1,357 @@
+08-05-2021 @ 14:03:09 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/taxrates/byaddress?line1=&line2=&city=Binghamton&region=NY&country=US&postalCode=13904
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.7.2)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.33945s
+
+08-05-2021 @ 14:03:09 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Thu, 05 Aug 2021 18:03:09 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 144
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0215499
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"totalRate":0.080000,"rates":[{"rate":0.040000,"name":"NY STATE TAX","type":"State"},{"rate":0.040000,"name":"NY COUNTY TAX","type":"County"}]}
+
+08-05-2021 @ 14:03:10 - Request
+Request
+method: POST
+uri: https://rest.avatax.com/api/v2/transactions/create
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.7.2)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body: {"code":"","companyCode":"ALC","customerCode":"Guest","currencyCode":"USD","date":"2021-08-05","lines":[{"number":"ca67023068969c7df100d80920400183","itemCode":"1104-1","taxCode":"P0000000","description":"Alconox","quantity":1,"amount":47.200000000000003},{"number":"shipping_0","itemCode":"use-my-shipping-account","taxCode":"FR","description":"Use My Shipping Account","quantity":1}],"addresses":{"shipFrom":{"line1":"30 GLENN ST","line2":"","city":"WHITE PLAINS","region":"NY","country":"US","postalCode":"10603-3254"},"shipTo":{"line1":"10 Spud Lane","line2":"","city":"Binghamton","region":"NY","country":"US","postalCode":"13904"}},"type":"SalesOrder","commit":false}
+duration: 0.32858s
+
+08-05-2021 @ 14:03:10 - Response
+Response
+code: 201
+message: Created
+headers: Array
+(
+    [date] => Thu, 05 Aug 2021 18:03:10 GMT
+    [content-type] => application/json; charset=utf-8
+    [server] => Kestrel
+    [content-encoding] => br
+    [location] => /api/v2/companies/207925/transactions/0
+    [vary] => Accept-Encoding
+    [serverduration] => 00:00:00.0327851
+)
+body: {"id":0,"code":"ade14e3f-e887-46e5-a9a1-aead46e692e6","companyId":207925,"date":"2021-08-05","paymentDate":"2021-08-05","status":"Temporary","type":"SalesOrder","batchCode":"","currencyCode":"USD","exchangeRateCurrencyCode":"USD","customerUsageType":"","entityUseCode":"","customerVendorCode":"Guest","customerCode":"Guest","exemptNo":"","reconciled":false,"locationCode":"","reportingLocationCode":"","purchaseOrderNo":"","referenceCode":"","salespersonCode":"","totalAmount":47.2,"totalExempt":0.0,"totalDiscount":0.0,"totalTax":3.78,"totalTaxable":47.2,"totalTaxCalculated":3.78,"adjustmentReason":"NotAdjusted","locked":false,"version":1,"exchangeRateEffectiveDate":"2021-08-05","exchangeRate":1.0,"modifiedDate":"2021-08-05T18:03:10.498938Z","modifiedUserId":231879,"taxDate":"2021-08-05","lines":[{"id":0,"transactionId":0,"lineNumber":"ca67023068969c7df100d80920400183","customerUsageType":"","entityUseCode":"","description":"Alconox","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"itemCode":"1104-1","lineAmount":47.200000000000003,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-08-05","tax":3.78,"taxableAmount":47.2,"taxCalculated":3.78,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-08-05","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"36","jurisName":"NEW YORK","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.040000,"tax":1.89,"taxableAmount":47.2,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxCalculated":1.89,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":47.2,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":1.89,"reportingTaxCalculated":1.89,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"007","jurisName":"BROOME","stateAssignedNo":"BR 0321","jurisType":"CTY","jurisdictionType":"County","nonTaxableAmount":0.0,"rate":0.040000,"tax":1.89,"taxableAmount":47.2,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY COUNTY TAX","taxAuthorityTypeId":45,"taxCalculated":1.89,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":47.2,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":1.89,"reportingTaxCalculated":1.89,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":0,"transactionId":0,"lineNumber":"shipping_0","customerUsageType":"","entityUseCode":"","description":"Use My Shipping Account","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":false,"itemCode":"use-my-shipping-account","lineAmount":0.0,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-08-05","tax":0.0,"taxableAmount":0.0,"taxCalculated":0.0,"taxCode":"FR","taxCodeId":7119,"taxDate":"2021-08-05","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"36","jurisName":"NEW YORK","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.040000,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"007","jurisName":"BROOME","stateAssignedNo":"BR 0321","jurisType":"CTY","jurisdictionType":"County","nonTaxableAmount":0.0,"rate":0.040000,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY COUNTY TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0}],"addresses":[{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"10 Spud Lane","line2":"","line3":"","city":"Binghamton","region":"NY","postalCode":"13904","country":"US","taxRegionId":4013616,"latitude":"42.096947","longitude":"-75.837136"},{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"30 GLENN ST","line2":"","line3":"","city":"WHITE PLAINS","region":"NY","postalCode":"10603-3254","country":"US","taxRegionId":2090237,"latitude":"41.050608","longitude":"-73.771383"}],"summary":[{"country":"US","region":"NY","jurisType":"State","jurisCode":"36","jurisName":"NEW YORK","taxAuthorityType":45,"stateAssignedNo":"","taxType":"Sales","taxSubType":"S","taxName":"NY STATE TAX","rateType":"General","taxable":47.2,"rate":0.040000,"tax":1.89,"taxCalculated":1.89,"nonTaxable":0.0,"exemption":0.0},{"country":"US","region":"NY","jurisType":"County","jurisCode":"007","jurisName":"BROOME","taxAuthorityType":45,"stateAssignedNo":"BR 0321","taxType":"Sales","taxSubType":"S","taxName":"NY COUNTY TAX","rateType":"General","taxable":47.2,"rate":0.040000,"tax":1.89,"taxCalculated":1.89,"nonTaxable":0.0,"exemption":0.0}]}
+
+08-05-2021 @ 14:03:30 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/taxrates/byaddress?line1=&line2=&city=Binghamton&region=NY&country=US&postalCode=13904
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.7.2)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.86039s
+
+08-05-2021 @ 14:03:30 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Thu, 05 Aug 2021 18:03:30 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 144
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0023219
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"totalRate":0.080000,"rates":[{"rate":0.040000,"name":"NY STATE TAX","type":"State"},{"rate":0.040000,"name":"NY COUNTY TAX","type":"County"}]}
+
+08-05-2021 @ 14:03:30 - Request
+Request
+method: POST
+uri: https://rest.avatax.com/api/v2/transactions/create
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.7.2)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body: {"code":"","companyCode":"ALC","customerCode":"rhonda.spencer@pepsico.com","currencyCode":"USD","date":"2021-08-05","lines":[{"number":"ca67023068969c7df100d80920400183","itemCode":"1104-1","taxCode":"P0000000","description":"Alconox","quantity":1,"amount":47.200000000000003},{"number":"shipping_0","itemCode":"use-my-shipping-account","taxCode":"FR","description":"Use My Shipping Account","quantity":1}],"addresses":{"shipFrom":{"line1":"30 GLENN ST","line2":"","city":"WHITE PLAINS","region":"NY","country":"US","postalCode":"10603-3254"},"shipTo":{"line1":"10 Spud Lane","line2":"","city":"Binghamton","region":"NY","country":"US","postalCode":"13904"}},"type":"SalesOrder","commit":false}
+duration: 0.33565s
+
+08-05-2021 @ 14:03:30 - Response
+Response
+code: 201
+message: Created
+headers: Array
+(
+    [date] => Thu, 05 Aug 2021 18:03:30 GMT
+    [content-type] => application/json; charset=utf-8
+    [server] => Kestrel
+    [content-encoding] => br
+    [location] => /api/v2/companies/207925/transactions/0
+    [vary] => Accept-Encoding
+    [serverduration] => 00:00:00.0417823
+)
+body: {"id":0,"code":"8bbf1c6c-a045-4cf3-bb69-874f2749e745","companyId":207925,"date":"2021-08-05","paymentDate":"2021-08-05","status":"Temporary","type":"SalesOrder","batchCode":"","currencyCode":"USD","exchangeRateCurrencyCode":"USD","customerUsageType":"","entityUseCode":"","customerVendorCode":"rhonda.spencer@pepsico.com","customerCode":"rhonda.spencer@pepsico.com","exemptNo":"","reconciled":false,"locationCode":"","reportingLocationCode":"","purchaseOrderNo":"","referenceCode":"","salespersonCode":"","totalAmount":47.2,"totalExempt":0.0,"totalDiscount":0.0,"totalTax":3.78,"totalTaxable":47.2,"totalTaxCalculated":3.78,"adjustmentReason":"NotAdjusted","locked":false,"version":1,"exchangeRateEffectiveDate":"2021-08-05","exchangeRate":1.0,"modifiedDate":"2021-08-05T18:03:30.4575547Z","modifiedUserId":231879,"taxDate":"2021-08-05","lines":[{"id":0,"transactionId":0,"lineNumber":"ca67023068969c7df100d80920400183","customerUsageType":"","entityUseCode":"","description":"Alconox","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"itemCode":"1104-1","lineAmount":47.200000000000003,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-08-05","tax":3.78,"taxableAmount":47.2,"taxCalculated":3.78,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-08-05","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"36","jurisName":"NEW YORK","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.040000,"tax":1.89,"taxableAmount":47.2,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxCalculated":1.89,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":47.2,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":1.89,"reportingTaxCalculated":1.89,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"007","jurisName":"BROOME","stateAssignedNo":"BR 0321","jurisType":"CTY","jurisdictionType":"County","nonTaxableAmount":0.0,"rate":0.040000,"tax":1.89,"taxableAmount":47.2,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY COUNTY TAX","taxAuthorityTypeId":45,"taxCalculated":1.89,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":47.2,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":1.89,"reportingTaxCalculated":1.89,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":0,"transactionId":0,"lineNumber":"shipping_0","customerUsageType":"","entityUseCode":"","description":"Use My Shipping Account","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":false,"itemCode":"use-my-shipping-account","lineAmount":0.0,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-08-05","tax":0.0,"taxableAmount":0.0,"taxCalculated":0.0,"taxCode":"FR","taxCodeId":7119,"taxDate":"2021-08-05","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"36","jurisName":"NEW YORK","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.040000,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"007","jurisName":"BROOME","stateAssignedNo":"BR 0321","jurisType":"CTY","jurisdictionType":"County","nonTaxableAmount":0.0,"rate":0.040000,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY COUNTY TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0}],"addresses":[{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"10 Spud Lane","line2":"","line3":"","city":"Binghamton","region":"NY","postalCode":"13904","country":"US","taxRegionId":4013616,"latitude":"42.096947","longitude":"-75.837136"},{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"30 GLENN ST","line2":"","line3":"","city":"WHITE PLAINS","region":"NY","postalCode":"10603-3254","country":"US","taxRegionId":2090237,"latitude":"41.050608","longitude":"-73.771383"}],"summary":[{"country":"US","region":"NY","jurisType":"State","jurisCode":"36","jurisName":"NEW YORK","taxAuthorityType":45,"stateAssignedNo":"","taxType":"Sales","taxSubType":"S","taxName":"NY STATE TAX","rateType":"General","taxable":47.2,"rate":0.040000,"tax":1.89,"taxCalculated":1.89,"nonTaxable":0.0,"exemption":0.0},{"country":"US","region":"NY","jurisType":"County","jurisCode":"007","jurisName":"BROOME","taxAuthorityType":45,"stateAssignedNo":"BR 0321","taxType":"Sales","taxSubType":"S","taxName":"NY COUNTY TAX","rateType":"General","taxable":47.2,"rate":0.040000,"tax":1.89,"taxCalculated":1.89,"nonTaxable":0.0,"exemption":0.0}]}
+
+08-05-2021 @ 14:04:29 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/taxrates/byaddress?line1=&line2=&city=Binghamton&region=NY&country=US&postalCode=13904
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.7.2)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.32035s
+
+08-05-2021 @ 14:04:29 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Thu, 05 Aug 2021 18:04:29 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 144
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0015259
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"totalRate":0.080000,"rates":[{"rate":0.040000,"name":"NY STATE TAX","type":"State"},{"rate":0.040000,"name":"NY COUNTY TAX","type":"County"}]}
+
+08-05-2021 @ 14:04:30 - Request
+Request
+method: POST
+uri: https://rest.avatax.com/api/v2/transactions/create
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.7.2)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body: {"code":"","companyCode":"ALC","customerCode":"rhonda.spencer@pepsico.com","currencyCode":"USD","date":"2021-08-05","lines":[{"number":"ca67023068969c7df100d80920400183","itemCode":"1104-1","taxCode":"P0000000","description":"Alconox","quantity":1,"amount":47.200000000000003},{"number":"shipping_0","itemCode":"use-my-shipping-account","taxCode":"FR","description":"Use My Shipping Account","quantity":1}],"addresses":{"shipFrom":{"line1":"30 GLENN ST","line2":"","city":"WHITE PLAINS","region":"NY","country":"US","postalCode":"10603-3254"},"shipTo":{"line1":"10 Spud Lane","line2":"","city":"Binghamton","region":"NY","country":"US","postalCode":"13904"}},"type":"SalesOrder","commit":false}
+duration: 0.33181s
+
+08-05-2021 @ 14:04:30 - Response
+Response
+code: 201
+message: Created
+headers: Array
+(
+    [date] => Thu, 05 Aug 2021 18:04:30 GMT
+    [content-type] => application/json; charset=utf-8
+    [server] => Kestrel
+    [content-encoding] => br
+    [location] => /api/v2/companies/207925/transactions/0
+    [vary] => Accept-Encoding
+    [serverduration] => 00:00:00.0418787
+)
+body: {"id":0,"code":"bfa5b88e-46d8-42da-9ff4-80962b0841c1","companyId":207925,"date":"2021-08-05","paymentDate":"2021-08-05","status":"Temporary","type":"SalesOrder","batchCode":"","currencyCode":"USD","exchangeRateCurrencyCode":"USD","customerUsageType":"","entityUseCode":"","customerVendorCode":"rhonda.spencer@pepsico.com","customerCode":"rhonda.spencer@pepsico.com","exemptNo":"","reconciled":false,"locationCode":"","reportingLocationCode":"","purchaseOrderNo":"","referenceCode":"","salespersonCode":"","totalAmount":47.2,"totalExempt":0.0,"totalDiscount":0.0,"totalTax":3.78,"totalTaxable":47.2,"totalTaxCalculated":3.78,"adjustmentReason":"NotAdjusted","locked":false,"version":1,"exchangeRateEffectiveDate":"2021-08-05","exchangeRate":1.0,"modifiedDate":"2021-08-05T18:04:30.1315209Z","modifiedUserId":231879,"taxDate":"2021-08-05","lines":[{"id":0,"transactionId":0,"lineNumber":"ca67023068969c7df100d80920400183","customerUsageType":"","entityUseCode":"","description":"Alconox","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"itemCode":"1104-1","lineAmount":47.200000000000003,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-08-05","tax":3.78,"taxableAmount":47.2,"taxCalculated":3.78,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-08-05","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"36","jurisName":"NEW YORK","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.040000,"tax":1.89,"taxableAmount":47.2,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxCalculated":1.89,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":47.2,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":1.89,"reportingTaxCalculated":1.89,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"007","jurisName":"BROOME","stateAssignedNo":"BR 0321","jurisType":"CTY","jurisdictionType":"County","nonTaxableAmount":0.0,"rate":0.040000,"tax":1.89,"taxableAmount":47.2,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY COUNTY TAX","taxAuthorityTypeId":45,"taxCalculated":1.89,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":47.2,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":1.89,"reportingTaxCalculated":1.89,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":0,"transactionId":0,"lineNumber":"shipping_0","customerUsageType":"","entityUseCode":"","description":"Use My Shipping Account","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":false,"itemCode":"use-my-shipping-account","lineAmount":0.0,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-08-05","tax":0.0,"taxableAmount":0.0,"taxCalculated":0.0,"taxCode":"FR","taxCodeId":7119,"taxDate":"2021-08-05","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"36","jurisName":"NEW YORK","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.040000,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"007","jurisName":"BROOME","stateAssignedNo":"BR 0321","jurisType":"CTY","jurisdictionType":"County","nonTaxableAmount":0.0,"rate":0.040000,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY COUNTY TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0}],"addresses":[{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"10 Spud Lane","line2":"","line3":"","city":"Binghamton","region":"NY","postalCode":"13904","country":"US","taxRegionId":4013616,"latitude":"42.096947","longitude":"-75.837136"},{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"30 GLENN ST","line2":"","line3":"","city":"WHITE PLAINS","region":"NY","postalCode":"10603-3254","country":"US","taxRegionId":2090237,"latitude":"41.050608","longitude":"-73.771383"}],"summary":[{"country":"US","region":"NY","jurisType":"State","jurisCode":"36","jurisName":"NEW YORK","taxAuthorityType":45,"stateAssignedNo":"","taxType":"Sales","taxSubType":"S","taxName":"NY STATE TAX","rateType":"General","taxable":47.2,"rate":0.040000,"tax":1.89,"taxCalculated":1.89,"nonTaxable":0.0,"exemption":0.0},{"country":"US","region":"NY","jurisType":"County","jurisCode":"007","jurisName":"BROOME","taxAuthorityType":45,"stateAssignedNo":"BR 0321","taxType":"Sales","taxSubType":"S","taxName":"NY COUNTY TAX","rateType":"General","taxable":47.2,"rate":0.040000,"tax":1.89,"taxCalculated":1.89,"nonTaxable":0.0,"exemption":0.0}]}
+
+08-05-2021 @ 14:04:30 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/taxrates/byaddress?line1=&line2=&city=Binghamton&region=NY&country=US&postalCode=13904
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.7.2)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.28823s
+
+08-05-2021 @ 14:04:30 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Thu, 05 Aug 2021 18:04:30 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 144
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0014134
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"totalRate":0.080000,"rates":[{"rate":0.040000,"name":"NY STATE TAX","type":"State"},{"rate":0.040000,"name":"NY COUNTY TAX","type":"County"}]}
+
+08-05-2021 @ 14:04:31 - Request
+Request
+method: POST
+uri: https://rest.avatax.com/api/v2/transactions/create
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.7.2)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body: {"code":"","companyCode":"ALC","customerCode":"rhonda.spencer@pepsico.com","currencyCode":"USD","date":"2021-08-05","lines":[{"number":"ca67023068969c7df100d80920400183","itemCode":"1104-1","taxCode":"P0000000","description":"Alconox","quantity":1,"amount":47.200000000000003},{"number":"shipping_0","itemCode":"use-my-shipping-account","taxCode":"FR","description":"Use My Shipping Account","quantity":1}],"addresses":{"shipFrom":{"line1":"30 GLENN ST","line2":"","city":"WHITE PLAINS","region":"NY","country":"US","postalCode":"10603-3254"},"shipTo":{"line1":"10 Spud Lane","line2":"","city":"Binghamton","region":"NY","country":"US","postalCode":"13904"}},"type":"SalesOrder","commit":false}
+duration: 0.33796s
+
+08-05-2021 @ 14:04:31 - Response
+Response
+code: 201
+message: Created
+headers: Array
+(
+    [date] => Thu, 05 Aug 2021 18:04:31 GMT
+    [content-type] => application/json; charset=utf-8
+    [server] => Kestrel
+    [content-encoding] => br
+    [location] => /api/v2/companies/207925/transactions/0
+    [vary] => Accept-Encoding
+    [serverduration] => 00:00:00.0325123
+)
+body: {"id":0,"code":"b33883a0-89a8-445f-97e4-83a92cdab45c","companyId":207925,"date":"2021-08-05","paymentDate":"2021-08-05","status":"Temporary","type":"SalesOrder","batchCode":"","currencyCode":"USD","exchangeRateCurrencyCode":"USD","customerUsageType":"","entityUseCode":"","customerVendorCode":"rhonda.spencer@pepsico.com","customerCode":"rhonda.spencer@pepsico.com","exemptNo":"","reconciled":false,"locationCode":"","reportingLocationCode":"","purchaseOrderNo":"","referenceCode":"","salespersonCode":"","totalAmount":47.2,"totalExempt":0.0,"totalDiscount":0.0,"totalTax":3.78,"totalTaxable":47.2,"totalTaxCalculated":3.78,"adjustmentReason":"NotAdjusted","locked":false,"version":1,"exchangeRateEffectiveDate":"2021-08-05","exchangeRate":1.0,"modifiedDate":"2021-08-05T18:04:31.3229415Z","modifiedUserId":231879,"taxDate":"2021-08-05","lines":[{"id":0,"transactionId":0,"lineNumber":"ca67023068969c7df100d80920400183","customerUsageType":"","entityUseCode":"","description":"Alconox","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"itemCode":"1104-1","lineAmount":47.200000000000003,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-08-05","tax":3.78,"taxableAmount":47.2,"taxCalculated":3.78,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-08-05","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"36","jurisName":"NEW YORK","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.040000,"tax":1.89,"taxableAmount":47.2,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxCalculated":1.89,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":47.2,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":1.89,"reportingTaxCalculated":1.89,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"007","jurisName":"BROOME","stateAssignedNo":"BR 0321","jurisType":"CTY","jurisdictionType":"County","nonTaxableAmount":0.0,"rate":0.040000,"tax":1.89,"taxableAmount":47.2,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY COUNTY TAX","taxAuthorityTypeId":45,"taxCalculated":1.89,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":47.2,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":1.89,"reportingTaxCalculated":1.89,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":0,"transactionId":0,"lineNumber":"shipping_0","customerUsageType":"","entityUseCode":"","description":"Use My Shipping Account","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":false,"itemCode":"use-my-shipping-account","lineAmount":0.0,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-08-05","tax":0.0,"taxableAmount":0.0,"taxCalculated":0.0,"taxCode":"FR","taxCodeId":7119,"taxDate":"2021-08-05","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"36","jurisName":"NEW YORK","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.040000,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"007","jurisName":"BROOME","stateAssignedNo":"BR 0321","jurisType":"CTY","jurisdictionType":"County","nonTaxableAmount":0.0,"rate":0.040000,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY COUNTY TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0}],"addresses":[{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"10 Spud Lane","line2":"","line3":"","city":"Binghamton","region":"NY","postalCode":"13904","country":"US","taxRegionId":4013616,"latitude":"42.096947","longitude":"-75.837136"},{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"30 GLENN ST","line2":"","line3":"","city":"WHITE PLAINS","region":"NY","postalCode":"10603-3254","country":"US","taxRegionId":2090237,"latitude":"41.050608","longitude":"-73.771383"}],"summary":[{"country":"US","region":"NY","jurisType":"State","jurisCode":"36","jurisName":"NEW YORK","taxAuthorityType":45,"stateAssignedNo":"","taxType":"Sales","taxSubType":"S","taxName":"NY STATE TAX","rateType":"General","taxable":47.2,"rate":0.040000,"tax":1.89,"taxCalculated":1.89,"nonTaxable":0.0,"exemption":0.0},{"country":"US","region":"NY","jurisType":"County","jurisCode":"007","jurisName":"BROOME","taxAuthorityType":45,"stateAssignedNo":"BR 0321","taxType":"Sales","taxSubType":"S","taxName":"NY COUNTY TAX","rateType":"General","taxable":47.2,"rate":0.040000,"tax":1.89,"taxCalculated":1.89,"nonTaxable":0.0,"exemption":0.0}]}
+
+08-05-2021 @ 14:05:42 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/taxrates/byaddress?line1=&line2=&city=Binghamton&region=NY&country=US&postalCode=13904
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.7.2)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.30145s
+
+08-05-2021 @ 14:05:42 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Thu, 05 Aug 2021 18:05:42 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 144
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0002230
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"totalRate":0.080000,"rates":[{"rate":0.040000,"name":"NY STATE TAX","type":"State"},{"rate":0.040000,"name":"NY COUNTY TAX","type":"County"}]}
+
+08-05-2021 @ 14:05:42 - Request
+Request
+method: POST
+uri: https://rest.avatax.com/api/v2/transactions/create
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.7.2)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body: {"code":"","companyCode":"ALC","customerCode":"rhonda.spencer@pepsico.com","currencyCode":"USD","date":"2021-08-05","lines":[{"number":"ca67023068969c7df100d80920400183","itemCode":"1104-1","taxCode":"P0000000","description":"Alconox","quantity":1,"amount":47.200000000000003},{"number":"shipping_0","itemCode":"use-my-shipping-account","taxCode":"FR","description":"Use My Shipping Account","quantity":1}],"addresses":{"shipFrom":{"line1":"30 GLENN ST","line2":"","city":"WHITE PLAINS","region":"NY","country":"US","postalCode":"10603-3254"},"shipTo":{"line1":"10 Spud Lane","line2":"","city":"Binghamton","region":"NY","country":"US","postalCode":"13904"}},"type":"SalesOrder","commit":false}
+duration: 0.34513s
+
+08-05-2021 @ 14:05:42 - Response
+Response
+code: 201
+message: Created
+headers: Array
+(
+    [date] => Thu, 05 Aug 2021 18:05:42 GMT
+    [content-type] => application/json; charset=utf-8
+    [server] => Kestrel
+    [content-encoding] => br
+    [location] => /api/v2/companies/207925/transactions/0
+    [vary] => Accept-Encoding
+    [serverduration] => 00:00:00.0372130
+)
+body: {"id":0,"code":"95dd4ad7-1c0f-466e-8180-8706cb2590d4","companyId":207925,"date":"2021-08-05","paymentDate":"2021-08-05","status":"Temporary","type":"SalesOrder","batchCode":"","currencyCode":"USD","exchangeRateCurrencyCode":"USD","customerUsageType":"","entityUseCode":"","customerVendorCode":"rhonda.spencer@pepsico.com","customerCode":"rhonda.spencer@pepsico.com","exemptNo":"","reconciled":false,"locationCode":"","reportingLocationCode":"","purchaseOrderNo":"","referenceCode":"","salespersonCode":"","totalAmount":47.2,"totalExempt":0.0,"totalDiscount":0.0,"totalTax":3.78,"totalTaxable":47.2,"totalTaxCalculated":3.78,"adjustmentReason":"NotAdjusted","locked":false,"version":1,"exchangeRateEffectiveDate":"2021-08-05","exchangeRate":1.0,"modifiedDate":"2021-08-05T18:05:42.8651047Z","modifiedUserId":231879,"taxDate":"2021-08-05","lines":[{"id":0,"transactionId":0,"lineNumber":"ca67023068969c7df100d80920400183","customerUsageType":"","entityUseCode":"","description":"Alconox","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"itemCode":"1104-1","lineAmount":47.200000000000003,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-08-05","tax":3.78,"taxableAmount":47.2,"taxCalculated":3.78,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-08-05","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"36","jurisName":"NEW YORK","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.040000,"tax":1.89,"taxableAmount":47.2,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxCalculated":1.89,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":47.2,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":1.89,"reportingTaxCalculated":1.89,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"007","jurisName":"BROOME","stateAssignedNo":"BR 0321","jurisType":"CTY","jurisdictionType":"County","nonTaxableAmount":0.0,"rate":0.040000,"tax":1.89,"taxableAmount":47.2,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY COUNTY TAX","taxAuthorityTypeId":45,"taxCalculated":1.89,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":47.2,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":1.89,"reportingTaxCalculated":1.89,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":0,"transactionId":0,"lineNumber":"shipping_0","customerUsageType":"","entityUseCode":"","description":"Use My Shipping Account","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":false,"itemCode":"use-my-shipping-account","lineAmount":0.0,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-08-05","tax":0.0,"taxableAmount":0.0,"taxCalculated":0.0,"taxCode":"FR","taxCodeId":7119,"taxDate":"2021-08-05","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"36","jurisName":"NEW YORK","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.040000,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"007","jurisName":"BROOME","stateAssignedNo":"BR 0321","jurisType":"CTY","jurisdictionType":"County","nonTaxableAmount":0.0,"rate":0.040000,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY COUNTY TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0}],"addresses":[{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"10 Spud Lane","line2":"","line3":"","city":"Binghamton","region":"NY","postalCode":"13904","country":"US","taxRegionId":4013616,"latitude":"42.096947","longitude":"-75.837136"},{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"30 GLENN ST","line2":"","line3":"","city":"WHITE PLAINS","region":"NY","postalCode":"10603-3254","country":"US","taxRegionId":2090237,"latitude":"41.050608","longitude":"-73.771383"}],"summary":[{"country":"US","region":"NY","jurisType":"State","jurisCode":"36","jurisName":"NEW YORK","taxAuthorityType":45,"stateAssignedNo":"","taxType":"Sales","taxSubType":"S","taxName":"NY STATE TAX","rateType":"General","taxable":47.2,"rate":0.040000,"tax":1.89,"taxCalculated":1.89,"nonTaxable":0.0,"exemption":0.0},{"country":"US","region":"NY","jurisType":"County","jurisCode":"007","jurisName":"BROOME","taxAuthorityType":45,"stateAssignedNo":"BR 0321","taxType":"Sales","taxSubType":"S","taxName":"NY COUNTY TAX","rateType":"General","taxable":47.2,"rate":0.040000,"tax":1.89,"taxCalculated":1.89,"nonTaxable":0.0,"exemption":0.0}]}
+
+08-05-2021 @ 14:05:50 - Request
+Request
+method: POST
+uri: https://rest.avatax.com/api/v2/transactions/create
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.7.2)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body: {"code":"wc_order_NWzoVhp92DxbZ","companyCode":"ALC","customerCode":"rhonda.spencer@pepsico.com","currencyCode":"USD","date":"2021-08-05","lines":[{"number":24437,"itemCode":"1104-1","taxCode":"P0000000","description":"Alconox","quantity":1,"amount":47.200000000000003},{"number":"shipping_24438","itemCode":"use-my-shipping-account","taxCode":"FR","description":"Use My Shipping Account","quantity":1}],"addresses":{"shipFrom":{"line1":"30 GLENN ST","line2":"","city":"WHITE PLAINS","region":"NY","country":"US","postalCode":"10603-3254"},"shipTo":{"line1":"10 Spud Lane","line2":"","city":"Binghamton","region":"NY","country":"US","postalCode":"13904"}},"type":"SalesInvoice","purchaseOrderNo":"22075","commit":true}
+duration: 0.38367s
+
+08-05-2021 @ 14:05:50 - Response
+Response
+code: 201
+message: Created
+headers: Array
+(
+    [date] => Thu, 05 Aug 2021 18:05:50 GMT
+    [content-type] => application/json; charset=utf-8
+    [server] => Kestrel
+    [content-encoding] => br
+    [location] => /api/v2/companies/207925/transactions/1001791249331
+    [vary] => Accept-Encoding
+    [serverduration] => 00:00:00.0806668
+)
+body: {"id":1001791249331,"code":"wc_order_NWzoVhp92DxbZ","companyId":207925,"date":"2021-08-05","status":"Committed","type":"SalesInvoice","batchCode":"","currencyCode":"USD","exchangeRateCurrencyCode":"USD","customerUsageType":"","entityUseCode":"","customerVendorCode":"rhonda.spencer@pepsico.com","customerCode":"rhonda.spencer@pepsico.com","exemptNo":"","reconciled":false,"locationCode":"","reportingLocationCode":"","purchaseOrderNo":"22075","referenceCode":"","salespersonCode":"","taxOverrideType":"None","taxOverrideAmount":0.0,"taxOverrideReason":"","totalAmount":47.2,"totalExempt":0.0,"totalDiscount":0.0,"totalTax":3.78,"totalTaxable":47.2,"totalTaxCalculated":3.78,"adjustmentReason":"NotAdjusted","adjustmentDescription":"","locked":false,"region":"NY","country":"US","version":1,"softwareVersion":"21.7.2.0","originAddressId":5002792753577,"destinationAddressId":4003290655593,"exchangeRateEffectiveDate":"2021-08-05","exchangeRate":1.0,"description":"","email":"","businessIdentificationNo":"","modifiedDate":"2021-08-05T18:05:50.8032323Z","modifiedUserId":231879,"taxDate":"2021-08-05","lines":[{"id":5003523715187,"transactionId":1001791249331,"lineNumber":"24437","boundaryOverrideId":0,"customerUsageType":"","entityUseCode":"","description":"Alconox","destinationAddressId":4003290655593,"originAddressId":5002792753577,"discountAmount":0.0,"discountTypeId":0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"isSSTP":false,"itemCode":"1104-1","lineAmount":47.2,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-08-05","revAccount":"","sourcing":"Destination","tax":3.7800,"taxableAmount":47.2,"taxCalculated":3.7800,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-08-05","taxEngine":"","taxOverrideType":"None","businessIdentificationNo":"","taxOverrideAmount":0.0,"taxOverrideReason":"","taxIncluded":false,"details":[{"id":4005474200163,"transactionLineId":5003523715187,"transactionId":1001791249331,"addressId":4003290655593,"country":"US","region":"NY","countyFIPS":"","stateFIPS":"","exemptAmount":0.0000,"exemptReasonId":4,"inState":true,"jurisCode":"36","jurisName":"NEW YORK","jurisdictionId":42,"signatureCode":"BFEQ","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0000,"nonTaxableRuleId":0,"nonTaxableType":"RateRule","rate":0.040000,"rateRuleId":1437779,"rateSourceId":3,"serCode":"","sourcing":"Destination","tax":1.8900,"taxableAmount":47.2000,"taxType":"Sales","taxSubTypeId":"S","taxTypeGroupId":"SalesAndUse","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxRegionId":4013616,"taxCalculated":1.8900,"taxOverride":0.0000,"rateType":"General","rateTypeCode":"G","taxableUnits":47.2000,"nonTaxableUnits":0.0000,"exemptUnits":0.0000,"unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":47.2,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":1.89,"reportingTaxCalculated":1.89,"liabilityType":"Seller"},{"id":6005474200161,"transactionLineId":5003523715187,"transactionId":1001791249331,"addressId":4003290655593,"country":"US","region":"NY","countyFIPS":"","stateFIPS":"","exemptAmount":0.0000,"exemptReasonId":4,"inState":true,"jurisCode":"007","jurisName":"BROOME","jurisdictionId":1849,"signatureCode":"BFHG","stateAssignedNo":"BR 0321","jurisType":"CTY","jurisdictionType":"County","nonTaxableAmount":0.0000,"nonTaxableRuleId":0,"nonTaxableType":"RateRule","rate":0.040000,"rateRuleId":1437783,"rateSourceId":3,"serCode":"","sourcing":"Destination","tax":1.8900,"taxableAmount":47.2000,"taxType":"Sales","taxSubTypeId":"S","taxTypeGroupId":"SalesAndUse","taxName":"NY COUNTY TAX","taxAuthorityTypeId":45,"taxRegionId":4013616,"taxCalculated":1.8900,"taxOverride":0.0000,"rateType":"General","rateTypeCode":"G","taxableUnits":47.2000,"nonTaxableUnits":0.0000,"exemptUnits":0.0000,"unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":47.2,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":1.89,"reportingTaxCalculated":1.89,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"lineLocationTypes":[{"documentLineLocationTypeId":1006899896905,"documentLineId":5003523715187,"documentAddressId":5002792753577,"locationTypeCode":"ShipFrom"},{"documentLineLocationTypeId":2006899896900,"documentLineId":5003523715187,"documentAddressId":4003290655593,"locationTypeCode":"ShipTo"}],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":1005546614349,"transactionId":1001791249331,"lineNumber":"shipping_24438","boundaryOverrideId":0,"customerUsageType":"","entityUseCode":"","description":"Use My Shipping Account","destinationAddressId":4003290655593,"originAddressId":5002792753577,"discountAmount":0.0,"discountTypeId":0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":false,"isSSTP":false,"itemCode":"use-my-shipping-account","lineAmount":0.0,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-08-05","revAccount":"","sourcing":"Destination","tax":0.0000,"taxableAmount":0.0,"taxCalculated":0.0000,"taxCode":"FR","taxCodeId":7119,"taxDate":"2021-08-05","taxEngine":"","taxOverrideType":"None","businessIdentificationNo":"","taxOverrideAmount":0.0,"taxOverrideReason":"","taxIncluded":false,"details":[{"id":10004396964789,"transactionLineId":1005546614349,"transactionId":1001791249331,"addressId":4003290655593,"country":"US","region":"NY","countyFIPS":"","stateFIPS":"","exemptAmount":0.0000,"exemptReasonId":4,"inState":true,"jurisCode":"36","jurisName":"NEW YORK","jurisdictionId":42,"signatureCode":"BFEQ","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0000,"nonTaxableRuleId":0,"nonTaxableType":"RateRule","rate":0.040000,"rateRuleId":1437779,"rateSourceId":3,"serCode":"","sourcing":"Destination","tax":0.0000,"taxableAmount":0.0000,"taxType":"Sales","taxSubTypeId":"S","taxTypeGroupId":"SalesAndUse","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxRegionId":4013616,"taxCalculated":0.0000,"taxOverride":0.0000,"rateType":"General","rateTypeCode":"G","taxableUnits":0.0000,"nonTaxableUnits":0.0000,"exemptUnits":0.0000,"unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"},{"id":1005474200165,"transactionLineId":1005546614349,"transactionId":1001791249331,"addressId":4003290655593,"country":"US","region":"NY","countyFIPS":"","stateFIPS":"","exemptAmount":0.0000,"exemptReasonId":4,"inState":true,"jurisCode":"007","jurisName":"BROOME","jurisdictionId":1849,"signatureCode":"BFHG","stateAssignedNo":"BR 0321","jurisType":"CTY","jurisdictionType":"County","nonTaxableAmount":0.0000,"nonTaxableRuleId":0,"nonTaxableType":"RateRule","rate":0.040000,"rateRuleId":1437783,"rateSourceId":3,"serCode":"","sourcing":"Destination","tax":0.0000,"taxableAmount":0.0000,"taxType":"Sales","taxSubTypeId":"S","taxTypeGroupId":"SalesAndUse","taxName":"NY COUNTY TAX","taxAuthorityTypeId":45,"taxRegionId":4013616,"taxCalculated":0.0000,"taxOverride":0.0000,"rateType":"General","rateTypeCode":"G","taxableUnits":0.0000,"nonTaxableUnits":0.0000,"exemptUnits":0.0000,"unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"lineLocationTypes":[{"documentLineLocationTypeId":7004201128640,"documentLineId":1005546614349,"documentAddressId":5002792753577,"locationTypeCode":"ShipFrom"},{"documentLineLocationTypeId":9004201128640,"documentLineId":1005546614349,"documentAddressId":4003290655593,"locationTypeCode":"ShipTo"}],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0}],"addresses":[{"id":4003290655593,"transactionId":1001791249331,"boundaryLevel":"Address","line1":"10 SPUD LN","line2":"","line3":"","city":"BINGHAMTON","region":"NY","postalCode":"13904-3221","country":"US","taxRegionId":4013616,"latitude":"42.096947","longitude":"-75.837136"},{"id":5002792753577,"transactionId":1001791249331,"boundaryLevel":"Address","line1":"30 GLENN ST","line2":"","line3":"","city":"WHITE PLAINS","region":"NY","postalCode":"10603-3254","country":"US","taxRegionId":2090237,"latitude":"41.050608","longitude":"-73.771383"}],"locationTypes":[{"documentLocationTypeId":12000191797047,"documentId":1001791249331,"documentAddressId":5002792753577,"locationTypeCode":"ShipFrom"},{"documentLocationTypeId":1002752232547,"documentId":1001791249331,"documentAddressId":4003290655593,"locationTypeCode":"ShipTo"}],"summary":[{"country":"US","region":"NY","jurisType":"State","jurisCode":"36","jurisName":"NEW YORK","taxAuthorityType":45,"stateAssignedNo":"","taxType":"Sales","taxSubType":"S","taxName":"NY STATE TAX","rateType":"General","taxable":47.20,"rate":0.040000,"tax":1.89,"taxCalculated":1.89,"nonTaxable":0.00,"exemption":0.00},{"country":"US","region":"NY","jurisType":"County","jurisCode":"007","jurisName":"BROOME","taxAuthorityType":45,"stateAssignedNo":"BR 0321","taxType":"Sales","taxSubType":"S","taxName":"NY COUNTY TAX","rateType":"General","taxable":47.20,"rate":0.040000,"tax":1.89,"taxCalculated":1.89,"nonTaxable":0.00,"exemption":0.00}]}
+

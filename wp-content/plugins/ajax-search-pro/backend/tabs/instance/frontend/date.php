@@ -5,7 +5,7 @@
 </span>
 <div class="item">
     <?php
-    $o = new wd_DateFilter("date_filter_from", __('Display \'Posts from date\' filter as', 'ajax-search-pro'), $sd['date_filter_from']);
+    $o = new wd_DateFilterPost("date_filter_from", __('Display \'Posts from date\' filter as', 'ajax-search-pro'), $sd['date_filter_from']);
     $params[$o->getName()] = $o->getData();
     ?>
 </div>
@@ -29,7 +29,7 @@
 </div>
 <div class="item">
     <?php
-    $o = new wd_DateFilter("date_filter_to", __('Display \'Posts to date\' filter', 'ajax-search-pro'), $sd['date_filter_to']);
+    $o = new wd_DateFilterPost("date_filter_to", __('Display \'Posts to date\' filter', 'ajax-search-pro'), $sd['date_filter_to']);
     $params[$o->getName()] = $o->getData();
     ?>
 </div>

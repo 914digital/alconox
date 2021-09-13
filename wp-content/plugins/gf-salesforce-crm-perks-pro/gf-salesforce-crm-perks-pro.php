@@ -1,10 +1,10 @@
 <?php
 /**
-* Plugin Name: Gravity Forms Salesforce
+* Plugin Name: Gravity Forms Salesforce Pro
 * Description: Integrates Gravity Forms with Salesforce allowing form submissions to be automatically sent to your Salesforce account 
-* Version: 1.2.0
+* Version: 1.2.7
 * Requires at least: 4.7
-* Tested up to: 5.6
+* Tested up to: 5.8
 * Author URI: https://www.crmperks.com
 * Plugin URI: https://www.crmperks.com/plugins/gravity-forms-plugins/gravity-forms-salesforce-plugin/
 * Author: CRM Perks.
@@ -25,7 +25,7 @@ class vxg_salesforce {
   public  $crm_name = 'salesforce';
   public  $id = 'vxg_salesforce';
   public  $domain = 'vxg-sales';
-  public  $version = "1.2.0";
+  public  $version = "1.2.7";
   public  $update_id = '30001';
   public  $min_gravityforms_version = '1.3.9';
   public $type = 'vxg_salesforce_pro';
@@ -109,7 +109,9 @@ require_once(self::$path . "includes/plugin-pages.php");
   add_action("gform_entry_created", array($this, 'gf_entry_created'), 40, 2);
   //added via GF API
   add_action("gform_post_add_entry", array($this, 'gf_entry_created'), 40, 2);
-  add_action("gform_post_payment_status", array($this, 'gf_entry_paid'), 10, 2);
+//  add_action("gform_post_payment_status", array($this, 'gf_entry_paid'), 10, 2); //$feed,$entry
+  add_action("gform_post_payment_completed", array($this, 'gf_entry_paid'), 10, 2); //$entry,$pay_info
+
   
     add_filter("gform_confirmation", array($this, 'confirmation_error'));
 
@@ -188,12 +190,12 @@ self::$plugin->instance();
   if($type == "admin"){
      if($ver<4.2){
   ?>
-    <div class="error vx_notice notice" data-id="<?php echo $id ?>"><p style="display: table"><span style="display: table-cell; width: 98%"><span class="dashicons dashicons-megaphone"></span> <b><?php _e('Gravity Forms Salesforce Plugin','gravity-forms-salesforce-crm') ?>. </b><?php echo wp_kses_post($message);?> </span>
-<span style="display: table-cell; padding-left: 10px; vertical-align: middle;"><a href="#" class="notice-dismiss" title="<?php _e('Dismiss Notice','gravity-forms-salesforce-crm') ?>">dismiss</a></span> </p></div>
+    <div class="error vx_notice notice" data-id="<?php echo esc_html($id) ?>"><p style="display: table"><span style="display: table-cell; width: 98%"><span class="dashicons dashicons-megaphone"></span> <b><?php esc_html_e('Gravity Forms Salesforce Plugin','gravity-forms-salesforce-crm') ?>. </b><?php echo wp_kses_post($message);?> </span>
+<span style="display: table-cell; padding-left: 10px; vertical-align: middle;"><a href="#" class="notice-dismiss" title="<?php esc_html_e('Dismiss Notice','gravity-forms-salesforce-crm') ?>">dismiss</a></span> </p></div>
   <?php
      }else{
   ?>
-  <div class="error vx_notice notice is-dismissible" data-id="<?php echo $id ?>"><p><span class="dashicons dashicons-megaphone"></span> <b><?php _e('Gravity Forms Salesforce Plugin','gravity-forms-salesforce-crm') ?>. </b> <?php echo wp_kses_post($message);?> </p>
+  <div class="error vx_notice notice is-dismissible" data-id="<?php echo esc_html($id) ?>"><p><span class="dashicons dashicons-megaphone"></span> <b><?php esc_html_e('Gravity Forms Salesforce Plugin','gravity-forms-salesforce-crm') ?>. </b> <?php echo wp_kses_post($message);?> </p>
   </div>    
   <?php
      }
@@ -214,7 +216,7 @@ self::$plugin->instance();
   */
   public  function screen_msg( $message, $level = 'updated') {
   echo '<div class="'. esc_attr( $level ) .' notice is-dismissible"><p>';
-  echo $message ;
+  echo wp_kses_post($message);
   echo '</p></div>';
   } 
 public function add_tags( $merge_tags, $form_id, $fields, $element_id ) {
@@ -228,20 +230,20 @@ public function add_tags( $merge_tags, $form_id, $fields, $element_id ) {
 }
 public function replace_tags( $text, $form, $entry, $url_encode, $esc_html, $nl2br, $format ) {
  
-   
+            
     if(!empty($form['id']) && strpos( $text, '{salesforce' ) !== false ){    
       $data_db=$this->get_data_object(); 
   $feeds=$data_db->get_feed_by_form($form['id'],true);
 $tags=array();
   foreach($feeds as $v){
-      $id=$v['id'];
-      if( !empty(self::$feeds_res[$id]) ){
+      $id=$v['id'];          
+      if( !empty(self::$feeds_res[$id]) ){       
  $link= !empty(self::$feeds_res[$id]['link']) ? self::$feeds_res[$id]['link'] : '#'.self::$feeds_res[$id]['id'];         
    $tags['{salesforcelink_'.$v['id'].'}']=$link;   
    $tags['{salesforceid_'.$v['id'].'}']=self::$feeds_res[$id]['id'];   
       }
   }
- 
+         
  $text = str_replace( array_keys($tags), array_values($tags), $text );
     }   
      return $text;
@@ -286,7 +288,8 @@ $tags=array();
   * @param mixed $ajax
   */
   public  function confirmation_error($confirmation, $form = '', $lead = '', $ajax ='' ) {
-  if(current_user_can('administrator') && !empty($_REQUEST['VXGSalesforceError'])) { /// 
+  if(current_user_can('administrator') && !empty($_REQUEST['VXGSalesforceError'])) { 
+  if(is_array($_REQUEST['VXGSalesforceError'])){ $_REQUEST['VXGSalesforceError']=json_encode($_REQUEST['VXGSalesforceError']); }
   $confirmation .= sprintf(__('%sThe entry was not added to Salesforce because: %s. %sYou are only being shown this because you are an administrator. Other users will not see this message.%s', 'gravity-forms-salesforce-crm'), '<div class="error" style="text-align:center; color:#790000; font-size:14px; line-height:1.5em; margin-bottom:16px;background-color:#FFDFDF; margin-bottom:6px!important; padding:6px 6px 4px 6px!important; border:1px dotted #C89797">','<strong>'.esc_html($_REQUEST['VXGSalesforceError']). '</strong>', '<br /><em>', '</em></div>');
   }
   return $confirmation;
@@ -429,7 +432,12 @@ $data=$this->get_data_object();
   $info_arr=$data=array();  $meta=array(); 
 if(is_array($info)){
 if(!empty($info['data'])){ 
-  $info_arr=json_decode($this->de_crypt($info['data']),true);   
+
+    $info['data']=trim($info['data']);  
+    if(strpos($info['data'],'{') !== 0){
+        $info['data']=$this->de_crypt($info['data']);
+    }
+  $info_arr=json_decode($info['data'],true);
 if(!is_array($info_arr)){
   $info_arr=array();
 }
@@ -492,8 +500,8 @@ if(empty($id)){
       $sql['name']="Account #".$this->post('id');  
   }
   
-    $str=json_encode($data['data']);
-  $enc_str=$this->en_crypt($str);
+    $enc_str=json_encode($data['data']);
+ // $enc_str=$this->en_crypt($enc_str);
   $sql['data']=$enc_str;
   }
   } 
@@ -540,7 +548,7 @@ return $result;
   if( (isset($field->storageType) && $field->storageType == 'json') || $field->type == 'fileupload' ){
    $value_temp=json_decode($value,1);   if(!empty($value_temp)){ $value=$value_temp; } 
   }
-    if($field->type == 'survey' && !empty($field->choices)){
+    if(in_array($field->type, array('survey','quiz')) && !empty($field->choices)){
       $val_temp=explode(':',$value);
       if(count($val_temp) > 1){ $value=$val_temp[1]; }
     foreach($field->choices  as $v){
@@ -747,7 +755,7 @@ return $result;
    if(!current_user_can($this->id."_send_to_crm")){return; }
   
   if( apply_filters( $this->id.'_show_manual_export_button', true ) ) {
-  printf('<input type="checkbox" name="'.$this->id.'_update" id="'.$this->id.'_update" value="1" /><label for="'.$this->id.'_update" title="%s">%s</label><br /><br />', __('Create or update this entry in Salesforce. The fields will be mapped according to the form feed settings.', 'gravity-forms-salesforce-crm'), __('Send to Salesforce', 'gravity-forms-salesforce-crm'));
+  printf('<input type="checkbox" name="'.$this->id.'_update" id="'.$this->id.'_update" value="1" /><label for="'.$this->id.'_update" title="%s">%s</label><br /><br />', esc_html__('Create or update this entry in Salesforce. The fields will be mapped according to the form feed settings.', 'gravity-forms-salesforce-crm'), esc_html__('Send to Salesforce', 'gravity-forms-salesforce-crm'));
   } else {
   echo '<input type="hidden" name="'.$this->id.'_update" id="'.$this->id.'_update" value="1" />';
   }
@@ -814,7 +822,7 @@ if(!current_user_can($this->id."_send_to_crm")){return; }
   */
   private function add_note($id, $note) {
   
-  RGFormsModel::add_note($id, 0, __('Gravity Forms Salesforce Plugin','gravity-forms-salesforce-crm'), $note);
+  RGFormsModel::add_note($id, 0, esc_html__('Gravity Forms Salesforce Plugin','gravity-forms-salesforce-crm'), $note);
   }
   
   /**
@@ -914,60 +922,60 @@ do_action('plugin_status_'.$this->type,'activate');
   */
   public  function tooltips($tooltips){
   $crm_tooltips = array(
-    'vx_feed_name' => '<h6>' . __('Feed Name', 'gravity-forms-salesforce-crm') . '</h6>' . __('Enter feed name of your choice.', 'gravity-forms-salesforce-crm'),
-  'vx_sel_object' => '<h6>' .__('Salesforce Object', 'gravity-forms-salesforce-crm') . '</h6>' . __('Select the Object to Create when a Form is Submitted.', 'gravity-forms-salesforce-crm'),
-   'vx_sel_account' => '<h6>' .__('Salesforce Account', 'gravity-forms-salesforce-crm') . '</h6>' . __('Select the Salesforce account you would like to export entries to.', 'gravity-forms-salesforce-crm'),
-  'vx_sel_form' => '<h6>' . __('Gravity Form', 'gravity-forms-salesforce-crm') . '</h6>' . __('Select the Gravity Form you would like to integrate with Salesforce. Contacts generated by this form will be automatically added to your Salesforce account.', 'gravity-forms-salesforce-crm'),
+    'vx_feed_name' => '<h6>' . esc_html__('Feed Name', 'gravity-forms-salesforce-crm') . '</h6>' . esc_html__('Enter feed name of your choice.', 'gravity-forms-salesforce-crm'),
+  'vx_sel_object' => '<h6>' .__('Salesforce Object', 'gravity-forms-salesforce-crm') . '</h6>' . esc_html__('Select the Object to Create when a Form is Submitted.', 'gravity-forms-salesforce-crm'),
+   'vx_sel_account' => '<h6>' .__('Salesforce Account', 'gravity-forms-salesforce-crm') . '</h6>' . esc_html__('Select the Salesforce account you would like to export entries to.', 'gravity-forms-salesforce-crm'),
+  'vx_sel_form' => '<h6>' . esc_html__('Gravity Form', 'gravity-forms-salesforce-crm') . '</h6>' . esc_html__('Select the Gravity Form you would like to integrate with Salesforce. Contacts generated by this form will be automatically added to your Salesforce account.', 'gravity-forms-salesforce-crm'),
   
-  'vx_map_fields' => '<h6>' . __('Map Standard Fields', 'gravity-forms-salesforce-crm') . '</h6>' . __('Associate your Salesforce fields to the appropriate Gravity Form fields.', 'gravity-forms-salesforce-crm'),
+  'vx_map_fields' => '<h6>' . esc_html__('Map Standard Fields', 'gravity-forms-salesforce-crm') . '</h6>' . esc_html__('Associate your Salesforce fields to the appropriate Gravity Form fields.', 'gravity-forms-salesforce-crm'),
   
-  'vx_optin_condition' => '<h6>' . __('Opt-In Condition', 'gravity-forms-salesforce-crm') . '</h6>' . __('When the opt-in condition is enabled, form submissions will only be exported to Salesforce when the condition is met. When disabled all form submissions will be exported.', 'gravity-forms-salesforce-crm'),
+  'vx_optin_condition' => '<h6>' . esc_html__('Opt-In Condition', 'gravity-forms-salesforce-crm') . '</h6>' . esc_html__('When the opt-in condition is enabled, form submissions will only be exported to Salesforce when the condition is met. When disabled all form submissions will be exported.', 'gravity-forms-salesforce-crm'),
   
-  'vx_manual_export' => '<h6>' . __('Manual Export', 'gravity-forms-salesforce-crm') . '</h6>' . __('If you do not want all entries sent to Salesforce, but only specific, approved entries, check this box. To manually send an entry to Salesforce, go to Entries, choose the entry you would like to send to Salesforce, and then click the "Send to Salesforce" button.', 'gravity-forms-salesforce-crm'),
+  'vx_manual_export' => '<h6>' . esc_html__('Manual Export', 'gravity-forms-salesforce-crm') . '</h6>' . esc_html__('If you do not want all entries sent to Salesforce, but only specific, approved entries, check this box. To manually send an entry to Salesforce, go to Entries, choose the entry you would like to send to Salesforce, and then click the "Send to Salesforce" button.', 'gravity-forms-salesforce-crm'),
   
-    'vx_entry_notes' => '<h6>' . __('Entry Notes', 'gravity-forms-salesforce-crm') . '</h6>' . __('Enable this option if you want to synchronize Gravity Forms entry notes to Salesforce Object notes. For example , when you add a note to a Gravity Forms entry, it will be added to the Salesforce Object selected in the feed.', 'gravity-forms-salesforce-crm'),
+    'vx_entry_notes' => '<h6>' . esc_html__('Entry Notes', 'gravity-forms-salesforce-crm') . '</h6>' . esc_html__('Enable this option if you want to synchronize Gravity Forms entry notes to Salesforce Object notes. For example , when you add a note to a Gravity Forms entry, it will be added to the Salesforce Object selected in the feed.', 'gravity-forms-salesforce-crm'),
     
-      'vx_primary_key' => '<h6>' . __('Primary Key', 'gravity-forms-salesforce-crm') . '</h6>' . __('Which field should be used to update existing objects?', 'gravity-forms-salesforce-crm'),
+      'vx_primary_key' => '<h6>' . esc_html__('Primary Key', 'gravity-forms-salesforce-crm') . '</h6>' . esc_html__('Which field should be used to update existing objects?', 'gravity-forms-salesforce-crm'),
       
     
-      'vx_web' => '<h6>' . __('Web to Lead', 'gravity-forms-salesforce-crm') . '</h6>' . sprintf(__('Web-to-Lead is available for all Salesforce Editions. If you are not sure if your Salesforce Edition supports the API, you should use Web-to-Lead. Editions that do not support the Salesforce API: %s 1: Personal Edition %s 2: Group Edition %s 3: Professional Edition %s Note: You can purchase API access for a Professional Edition', 'gravity-forms-salesforce-crm'),'<br/>','<br/>','<br/>','<br/>'),
+      'vx_web' => '<h6>' . esc_html__('Web to Lead', 'gravity-forms-salesforce-crm') . '</h6>' . sprintf(__('Web-to-Lead is available for all Salesforce Editions. If you are not sure if your Salesforce Edition supports the API, you should use Web-to-Lead. Editions that do not support the Salesforce API: %s 1: Personal Edition %s 2: Group Edition %s 3: Professional Edition %s Note: You can purchase API access for a Professional Edition', 'gravity-forms-salesforce-crm'),'<br/>','<br/>','<br/>','<br/>'),
       
-  'vx_api' => '<h6>' . __('Salesforce API', 'gravity-forms-salesforce-crm') . '</h6>' .sprintf(__('The API features are more powerful than Web-to-Lead. You can create different object types, as well as other advanced features. If you have any of the following Salesforce Editions, you can use the included API Add-on: %s 1: Enterprise Edition %s 2: Unlimited Edition %s 3: Developer Edition %s 4: Professional Edition - Requires API Upgrade', 'gravity-forms-salesforce-crm'),'<br/>','<br/>','<br/>','<br/>','<br/>'),
+  'vx_api' => '<h6>' . esc_html__('Salesforce API', 'gravity-forms-salesforce-crm') . '</h6>' .sprintf(__('The API features are more powerful than Web-to-Lead. You can create different object types, as well as other advanced features. If you have any of the following Salesforce Editions, you can use the included API Add-on: %s 1: Enterprise Edition %s 2: Unlimited Edition %s 3: Developer Edition %s 4: Professional Edition - Requires API Upgrade', 'gravity-forms-salesforce-crm'),'<br/>','<br/>','<br/>','<br/>','<br/>'),
   
 
-  'vx_custom_app'=>'<h6>' . __('Custom App', 'gravity-forms-salesforce-crm') . '</h6>' .__('This option is for advanced users who want to override default Salesforce App.','gravity-forms-salesforce-crm'),
+  'vx_custom_app'=>'<h6>' . esc_html__('Custom App', 'gravity-forms-salesforce-crm') . '</h6>' .__('This option is for advanced users who want to override default Salesforce App.','gravity-forms-salesforce-crm'),
   
   
-  'vx_camps'=>'<h6>' . __('Salesforce Campaigns', 'gravity-forms-salesforce-crm') . '</h6>' .__('Get Campaigns and Status list from salesforce.','gravity-forms-salesforce-crm'),
+  'vx_camps'=>'<h6>' . esc_html__('Salesforce Campaigns', 'gravity-forms-salesforce-crm') . '</h6>' .__('Get Campaigns and Status list from salesforce.','gravity-forms-salesforce-crm'),
   
   'vx_sel_price_book'=>__('Which Pricebook should be searched for product','gravity-forms-salesforce-crm'),
   
-  'vx_sel_camp'=>'<h6>' . __('Select Campaign', 'gravity-forms-salesforce-crm') . '</h6>' .__('Which Campaign should be assigned to this object.','gravity-forms-salesforce-crm'),
+  'vx_sel_camp'=>'<h6>' . esc_html__('Select Campaign', 'gravity-forms-salesforce-crm') . '</h6>' .__('Which Campaign should be assigned to this object.','gravity-forms-salesforce-crm'),
   
-  'vx_sel_status'=>'<h6>' . __('Campaign Status', 'gravity-forms-salesforce-crm') . '</h6>' .__('What should be Member Status.','gravity-forms-salesforce-crm'),
+  'vx_sel_status'=>'<h6>' . esc_html__('Campaign Status', 'gravity-forms-salesforce-crm') . '</h6>' .__('What should be Member Status.','gravity-forms-salesforce-crm'),
   
-  'vx_pro_desc'=>'<h6>' . __('Price Book', 'gravity-forms-salesforce-crm') . '</h6>' .__('A new product will be created in selected Pricebook. You can add a description for new products created by this plugin.','gravity-forms-salesforce-crm'),
+  'vx_pro_desc'=>'<h6>' . esc_html__('Price Book', 'gravity-forms-salesforce-crm') . '</h6>' .__('A new product will be created in selected Pricebook. You can add a description for new products created by this plugin.','gravity-forms-salesforce-crm'),
   
-   'vx_assign_account'=>'<h6>' . __('Salesforce Account', 'gravity-forms-salesforce-crm') . '</h6>' .__('Enable this option if you want to assign an account this object.','gravity-forms-salesforce-crm'),
+   'vx_assign_account'=>'<h6>' . esc_html__('Salesforce Account', 'gravity-forms-salesforce-crm') . '</h6>' .__('Enable this option if you want to assign an account this object.','gravity-forms-salesforce-crm'),
    
-   'vx_sel_account'=>'<h6>' . __('Select Account', 'gravity-forms-salesforce-crm') . '</h6>' .__('Object created by this feed will be assigned to the selected Account.','gravity-forms-salesforce-crm'),
+   'vx_sel_account'=>'<h6>' . esc_html__('Select Account', 'gravity-forms-salesforce-crm') . '</h6>' .__('Object created by this feed will be assigned to the selected Account.','gravity-forms-salesforce-crm'),
    
-      'vx_assign_contract'=>'<h6>' . __('Assign Contract', 'gravity-forms-salesforce-crm') . '</h6>' .__('Enable this option , if you want to assign a Contract to this object','gravity-forms-salesforce-crm'),
+      'vx_assign_contract'=>'<h6>' . esc_html__('Assign Contract', 'gravity-forms-salesforce-crm') . '</h6>' .__('Enable this option , if you want to assign a Contract to this object','gravity-forms-salesforce-crm'),
       
-   'vx_sel_contract'=>'<h6>' . __('Select Contact', 'gravity-forms-salesforce-crm') . '</h6>' .__('Select Contract feed. Contract created by this feed will be assigned to this object','gravity-forms-salesforce-crm'),
+   'vx_sel_contract'=>'<h6>' . esc_html__('Select Contact', 'gravity-forms-salesforce-crm') . '</h6>' .__('Select Contract feed. Contract created by this feed will be assigned to this object','gravity-forms-salesforce-crm'),
    
-   'vx_camp_check'=>'<h6>' . __('Add to Campaign', 'gravity-forms-salesforce-crm') . '</h6>' .__('If enabled, Lead/Contact will be added to selected Campaign','gravity-forms-salesforce-crm'),
-   'vx_owner_check'=>'<h6>' . __('Assign Owner', 'gravity-forms-salesforce-crm') . '</h6>' .__('Enable this option if you want to assign another object owner.','gravity-forms-salesforce-crm'),
+   'vx_camp_check'=>'<h6>' . esc_html__('Add to Campaign', 'gravity-forms-salesforce-crm') . '</h6>' .__('If enabled, Lead/Contact will be added to selected Campaign','gravity-forms-salesforce-crm'),
+   'vx_owner_check'=>'<h6>' . esc_html__('Assign Owner', 'gravity-forms-salesforce-crm') . '</h6>' .__('Enable this option if you want to assign another object owner.','gravity-forms-salesforce-crm'),
    
-   'vx_owners'=>'<h6>' . __('Salesforce Users', 'gravity-forms-salesforce-crm') . '</h6>' .__('Get Users list from Salesforce','gravity-forms-salesforce-crm'),
+   'vx_owners'=>'<h6>' . esc_html__('Salesforce Users', 'gravity-forms-salesforce-crm') . '</h6>' .__('Get Users list from Salesforce','gravity-forms-salesforce-crm'),
    
-   'vx_order_notes'=>'<h6>' . __('Entry Notes', 'gravity-forms-salesforce-crm') . '</h6>' .__('Enable this option if you want to synchronize Entry notes to Salesforce Object notes. For example, when you add a note to a Entry, it will be added to the Salesforce Object selected in the feed.','gravity-forms-salesforce-crm'),
+   'vx_order_notes'=>'<h6>' . esc_html__('Entry Notes', 'gravity-forms-salesforce-crm') . '</h6>' .__('Enable this option if you want to synchronize Entry notes to Salesforce Object notes. For example, when you add a note to a Entry, it will be added to the Salesforce Object selected in the feed.','gravity-forms-salesforce-crm'),
   
-   'vx_sel_owner'=>'<h6>' . __('Select Owner', 'gravity-forms-salesforce-crm') . '</h6>' .__('Select a user as a owner of this object','gravity-forms-salesforce-crm'),
+   'vx_sel_owner'=>'<h6>' . esc_html__('Select Owner', 'gravity-forms-salesforce-crm') . '</h6>' .__('Select a user as a owner of this object','gravity-forms-salesforce-crm'),
    
-      'vx_entry_note'=>'<h6>' . __('Entry Note', 'gravity-forms-salesforce-crm') . '</h6>' .__('Check this option if you want to send more data as CRM entry note.', 'gravity-forms-salesforce-crm'),
-   'vx_note_fields'=>'<h6>' . __('Note Fields', 'gravity-forms-salesforce-crm') . '</h6>' .__('Select fields which you want to send as a note', 'gravity-forms-salesforce-crm'),
-   'vx_disable_note'=>'<h6>' . __('Note Fields', 'gravity-forms-salesforce-crm') . '</h6>' .__('Enable this option if you want to add note only for new CRM entry', 'gravity-forms-salesforce-crm')
+      'vx_entry_note'=>'<h6>' . esc_html__('Entry Note', 'gravity-forms-salesforce-crm') . '</h6>' .__('Check this option if you want to send more data as CRM entry note.', 'gravity-forms-salesforce-crm'),
+   'vx_note_fields'=>'<h6>' . esc_html__('Note Fields', 'gravity-forms-salesforce-crm') . '</h6>' .__('Select fields which you want to send as a note', 'gravity-forms-salesforce-crm'),
+   'vx_disable_note'=>'<h6>' . esc_html__('Note Fields', 'gravity-forms-salesforce-crm') . '</h6>' .__('Enable this option if you want to add note only for new CRM entry', 'gravity-forms-salesforce-crm')
     
     );
   return  array_merge($tooltips,$crm_tooltips);
@@ -1082,7 +1090,7 @@ return  $var;
   $status=2;
   } 
   return $status;
-  }
+  } 
     /**
   * Get time Offset 
   * 
@@ -1145,7 +1153,7 @@ $enc_str.=":".base64_encode($iv);
   */
   public function post2($key,$key2, $arr="") {
   if(is_array($arr) && isset($arr[$key]) && is_array($arr[$key])){
-  return isset($arr[$key][$key2])  ? $arr[$key][$key2] : "";
+  return isset($arr[$key][$key2])  ? $this->clean($arr[$key][$key2]) : "";
   }
   return isset($_REQUEST[$key][$key2]) && is_array($_REQUEST[$key]) ? $this->clean($_REQUEST[$key][$key2]) : "";
   }
@@ -1192,7 +1200,7 @@ $enc_str.=":".base64_encode($iv);
   }
 public function do_actions(){
      if(!is_object(self::$plugin) ){ $this->plugin_api(); }
-      if(method_exists(self::$plugin,'valid_addons')){
+      if(is_object(self::$plugin) && method_exists(self::$plugin,'valid_addons')){
        return self::$plugin->valid_addons();  
       }
     
@@ -1268,6 +1276,7 @@ public function do_actions(){
   public function gf_entry_created($entry, $form){
       
       if(isset($entry['status']) && $entry['status'] == 'active' && empty($entry['partial_entry_percent'])){
+      
         $entry_id=$this->post('id',$entry);
         if($this->do_actions()){
      do_action('vx_addons_save_entry',$entry_id,$entry,'gf',$form);   
@@ -1275,13 +1284,11 @@ public function do_actions(){
       $this->push($entry,$form,'submit',false);     
       }
   }
-   public function gf_entry_paid($feed,$entry){
+   public function gf_entry_paid($entry,$pay_info){
     // if($entry['payment_status'] == 'Paid'){
         $entry_id=$this->post('id',$entry);
-        $form=array('id'=>$feed['form_id'],'title'=>'form id '.$feed['form_id']);
-        if(!empty($feed['meta']['feedName'])){
-            $form['title']=$feed['meta']['feedName'];
-        }
+        $form=array('id'=>$entry['form_id'],'title'=>'form id '.$entry['form_id']);
+   
         if($this->do_actions()){
      do_action('vx_addons_save_entry',$entry_id,$entry,'gf',$form);   
         }
@@ -1463,13 +1470,15 @@ $object_link=$feed_log['crm_id'];
  } 
 // var_dump(self::$note,$object,$feed['note_object'],$feed['object'],$feed['crm_id'],$feed['event'],$temp,$force_send); 
  //not submitted by admin
-  if(!$is_admin && $event == 'submit' && $this->post('manual_export',$data) == "1"){ //if manual export is yes
+ if(!$is_admin){
+  if($event == 'submit' && $this->post('manual_export',$data) != ''){ //if manual export is yes
   continue;   
   } 
-    if(!$is_admin && $this->post('manual_export',$data) == '2' && $event != 'paid' ){ // only process paid event, if set in feed
+    if($event == 'paid' && $this->post('manual_export',$data) != '2'){ // only process paid event, if set in feed
   continue;   
   } 
-  
+ }
+
 if(!$force_send && isset($data['map']) && is_array($data['map']) && count($data['map'])>0){
 
          if($api_type =="web"){
@@ -1608,14 +1617,14 @@ $no_filter=true;
     if(isset($_REQUEST['bulk_action']) && $_REQUEST['bulk_action'] =="send_to_crm_bulk_force" && !empty($log_id)){
   $force_send=true;
   }
-  
+ 
 $temp=apply_filters($this->id.'_post_data', $temp ,$entry); 
   if(!$force_send && $this->post('optin_enabled',$data) == "1"){ //apply filters if not sending by force and optin is enabled
   $no_filter=$this->check_filter($data,$entry,$form); 
   $res=array("status"=>"4","extra"=>array("filter"=>$this->filter_condition),"data"=>$temp);  
   }
 
-//var_dump($no_filter); die();
+//var_dump($temp,$entry); die();
  
  $feed_id=$this->post('id',$feed);
   if($no_filter){ //get $res if no filter , other wise use filtered $res
@@ -1634,7 +1643,7 @@ $res = apply_filters($this->id . '_response', $res, $entry, $object);
   } }
   }
 
- 
+    
   self::$feeds_res[$feed_id]=$res;
   $status=$res['status'];  $error=""; 
   $id=$this->post('id',$res);

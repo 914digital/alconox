@@ -5,10 +5,10 @@ jQuery(function($){
 
     if(hash != ''){
         hash = parseInt(hash);
-        $('.tabs a[tabid=' + Math.floor( hash / 100 ) + ']').click();
-        $('.tabs a[tabid=' + hash + ']').click();
+        $('.tabs a[tabid=' + Math.floor( hash / 100 ) + ']').trigger('click');
+        $('.tabs a[tabid=' + hash + ']').trigger('click');
     } else {
-        $('.tabs a[tabid=1]').click();
+        $('.tabs a[tabid=1]').trigger('click');
     }
 
     $('.tabs a').on('click', function(){
@@ -70,7 +70,7 @@ jQuery(function($){
             response = JSON.parse(response);
             $this.prop('disabled', false);
             $('#p_asp_loader').css('display', 'none');
-            $("#p_asp_submit").click();
+            $("#p_asp_submit").trigger('click');
         }, "text");
     });
 

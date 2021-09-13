@@ -5,6 +5,7 @@
 	$params[$o->getName()] = $o->getData();
 	?>
 </div>
+<div wd-disable-on="return_attachments:0">
 <div class="item"><?php
 	$o = new wpdreamsCustomSelect("attachments_use_index", __('Search engine for attachments', 'ajax-search-pro'),
 		array(
@@ -26,44 +27,47 @@
         ); ?>
 	</p>
 </div>
-<div class="item hide_on_att_index">
-	<?php
-	$o = new wpdreamsYesNo("search_attachments_title", __('Search in attachment titles?', 'ajax-search-pro'),
-		$sd['search_attachments_title']);
-	$params[$o->getName()] = $o->getData();
-	?>
-</div>
-<div class="item hide_on_att_index">
-	<?php
-	$o = new wpdreamsYesNo("search_attachments_content", __('Search in attachment description?', 'ajax-search-pro'),
-		$sd['search_attachments_content']);
-	$params[$o->getName()] = $o->getData();
-	?>
-</div>
-<div class="item hide_on_att_index">
-    <?php
-    $o = new wpdreamsYesNo("search_attachments_caption", __('Search in attachment captions?', 'ajax-search-pro'),
-        $sd['search_attachments_caption']);
-    $params[$o->getName()] = $o->getData();
-    ?>
-</div>
-<div class="item hide_on_att_index">
-	<?php
-	$o = new wpdreamsYesNo("search_attachments_ids", __('Search in attachment IDs?', 'ajax-search-pro'),
-			$sd['search_attachments_ids']);
-	$params[$o->getName()] = $o->getData();
-	?>
-</div>
-<div class="item hide_on_att_index">
-    <?php
-    $o = new wpdreamsYesNo("search_attachments_terms", __('Search in attachment terms (tags, etc..)?', 'ajax-search-pro'),
-        $sd['search_attachments_terms']);
-    $params[$o->getName()] = $o->getData();
-    ?>
-    <p class="descMsg"><?php echo __('Will search in terms (categories, tags) related to the attachments.', 'ajax-search-pro'); ?></p>
-    <p class="errorMsg"><?php echo __('WARNING: <strong>Search in terms</strong> can be database heavy operation. Not recommended for big databases.', 'ajax-search-pro'); ?></p>
+<div wd-hide-on="attachments_use_index:index">
+	<div class="item hide_on_att_index">
+		<?php
+		$o = new wpdreamsYesNo("search_attachments_title", __('Search in attachment titles?', 'ajax-search-pro'),
+			$sd['search_attachments_title']);
+		$params[$o->getName()] = $o->getData();
+		?>
+	</div>
+	<div class="item hide_on_att_index">
+		<?php
+		$o = new wpdreamsYesNo("search_attachments_content", __('Search in attachment description?', 'ajax-search-pro'),
+			$sd['search_attachments_content']);
+		$params[$o->getName()] = $o->getData();
+		?>
+	</div>
+	<div class="item hide_on_att_index">
+		<?php
+		$o = new wpdreamsYesNo("search_attachments_caption", __('Search in attachment captions?', 'ajax-search-pro'),
+			$sd['search_attachments_caption']);
+		$params[$o->getName()] = $o->getData();
+		?>
+	</div>
+	<div class="item hide_on_att_index">
+		<?php
+		$o = new wpdreamsYesNo("search_attachments_ids", __('Search in attachment IDs?', 'ajax-search-pro'),
+				$sd['search_attachments_ids']);
+		$params[$o->getName()] = $o->getData();
+		?>
+	</div>
+	<div class="item hide_on_att_index">
+		<?php
+		$o = new wpdreamsYesNo("search_attachments_terms", __('Search in attachment terms (tags, etc..)?', 'ajax-search-pro'),
+			$sd['search_attachments_terms']);
+		$params[$o->getName()] = $o->getData();
+		?>
+		<p class="descMsg"><?php echo __('Will search in terms (categories, tags) related to the attachments.', 'ajax-search-pro'); ?></p>
+		<p class="errorMsg"><?php echo __('WARNING: <strong>Search in terms</strong> can be database heavy operation. Not recommended for big databases.', 'ajax-search-pro'); ?></p>
+	</div>
 </div>
 <div class="item item-flex-nogrow item-conditional" style="flex-wrap: wrap;">
+	<div>
 	<?php
 	$o = new wpdreamsCustomSelect("attachment_link_to", __('Link the results to', 'ajax-search-pro'),
 			array(
@@ -75,6 +79,10 @@
 					'value' => $sd['attachment_link_to']
 			));
 	$params[$o->getName()] = $o->getData();
+	?>
+	</div>
+	<div wd-show-on="attachment_link_to:parent">
+	<?php
 	$o = new wpdreamsCustomSelect("attachment_link_to_secondary", __(' ..and if parent does not exist then ', 'ajax-search-pro'),
 		array(
 			'selects' => array(
@@ -85,6 +93,7 @@
 		));
 	$params[$o->getName()] = $o->getData();
 	?>
+	</div>
 </div>
 <div class="item hide_on_att_index">
 	<?php
@@ -121,4 +130,5 @@
 	$params[$o->getName()] = $o->getData();
 	?>
 	<p class="descMsg"><?php echo __('<strong>Comma separated list</strong> of attachment IDs to exclude.', 'ajax-search-pro'); ?></p>
+</div>
 </div>

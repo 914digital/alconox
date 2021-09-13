@@ -67,7 +67,7 @@ class WD_FrontFilters_Module_PostType extends WD_FrontFilters_Module_Abstract {
             $post_types = array();
 
             foreach ($types as $k => $v) {
-                if ( !in_array($k, wd_frontFilters::NON_DISPLAYABLE_POST_TYPES) ) {
+                if ( !in_array($k, wpdreamsType::NON_DISPLAYABLE_POST_TYPES) ) {
                     $post_types[$k] = $v->label;
                 }
             }

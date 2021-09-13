@@ -237,13 +237,18 @@ $sales_response=$this->post_sales_arr('/services/data/'.$this->api_version.'/sob
          $line_object=$object.'LineItem';
           if($object == 'Order'){ $line_object='OrderItem';  }
        $item_res=$this->post_sales_arr('/services/data/'.$this->api_version.'/sobjects/'.$line_object."/describe","get",""); 
-       if(!empty($item_res['fields'])){
+
+       if(!empty($item_res['fields'])){ 
            foreach($item_res['fields'] as $v){
-               if(isset($v['name']) && !in_array($v['name'],array('OrderId','PricebookEntryId','Id'))){ //,'Quantity','UnitPrice'
+               if(isset($v['name']) && !in_array($v['name'],array('OrderId','PricebookEntryId','Id','Quantity','UnitPrice'))){ //
                  $v['is_item']='1';
-                 if(isset($v['createable'])){
-                   $v['createable']='';  
+                 if(isset($v['defaultedOnCreate'])){
+                   $v['defaultedOnCreate']='1';  
                  }
+                 if(isset($v['custom'])){
+                   $v['custom']=false;  
+                 }
+                 $v['name']='vxline_'.$v['name'];
                  $v['label']='Line Item - '.$v['label'];
                    $sales_response['fields'][]=$v;  
                }
@@ -268,8 +273,9 @@ $sales_response=$this->post_sales_arr('/services/data/'.$this->api_version.'/sob
   $field_arr['req']=$required;
   $field_arr["maxlength"]=$field['length'];
   $field_arr["custom"]=$field['custom']; 
+  $field_name=$field['name'];
   if(isset($field['is_item'])){   
-  $field_arr["is_item"]='1';    
+  $field_arr["is_item"]='1';  
   }
          if(isset($field['picklistValues']) && is_array($field['picklistValues']) && count($field['picklistValues'])>0){
          $field_arr['options']=$field['picklistValues'];
@@ -279,13 +285,15 @@ $sales_response=$this->post_sales_arr('/services/data/'.$this->api_version.'/sob
          }
             $field_arr['eg']=implode(', ',array_slice($egs,0,30));
           }
+    
+          
       if($is_options ){
           if(!empty($field_arr['options'])){
-       $field_info[$field['name']]=$field_arr;
+       $field_info[$field_name]=$field_arr;
           } 
       }else{
   
-  $field_info[$field['name']]=$field_arr;  
+  $field_info[$field_name]=$field_arr;  
   } }
       
   } 
@@ -615,11 +623,12 @@ if($i>1){ $field_n.=$i; }
 if(!empty($fields_info)){
     foreach($fields_info as $k=>$v){
         if(!empty($v['is_item']) && isset($meta['map'][$k])){
-        $meta['item_fields'][$k]=$meta['map'][$k];
+        $meta['item_fields'][substr($k,7)]=$meta['map'][$k];
         if(isset($fields[$k])){ unset($fields[$k]); }    
         }
     } 
 }
+
 
 $fields=$this->clean_sf_fields($fields,$fields_info);
 
@@ -649,7 +658,7 @@ unset($fields['vx_camp_id']);
     
   //if primary key option is not empty and primary key field value is not empty , then check search object
   $search_response=$sales_response=$this->search_in_sf($object,$search,$search2); 
- //var_dump($search_response); die();
+ //var_dump($search_response,$search,$search2); die();
   if($debug){
   ?>
   <pre>
@@ -695,6 +704,7 @@ unset($fields['vx_camp_id']);
   if(!empty($meta['crm_id'])){
    $id=$meta['crm_id'];   
   } 
+
      if(in_array($event,array('delete_note','add_note'))){    
   if(isset($meta['related_object'])){
     $extra['Note Object']= $meta['related_object'];
@@ -728,6 +738,7 @@ if(!empty($items['extra'])){
     $extra=array_merge($items['extra'],$extra);
 }        
 }
+
   $post_data=json_encode($fields);
   //if($error ==""){
   if($id == ""){
@@ -776,7 +787,10 @@ $entry_exists=true;
        unset($fields['Product2Id']);
        unset($fields['Pricebook2Id']);
          }
+      //   $fields['Custom_time_type__c']='12:00+00';
+        
   $sales_response=$this->post_sales_arr('/services/data/'.$this->api_version.'/sobjects/'.$object."/".$id,"PATCH",$fields);
+ 
    if(empty($sales_response)){ $status="2";  $sent=true; } 
  }else{
    $status="2";  
@@ -796,7 +810,7 @@ if($status == '1' && !empty($line_items)){
     }
     
 }
-if($sent && !empty($id)){
+if(!empty($id)){
     if(is_array($files) ){
         foreach($files as $k=>$file){ $k++;
          $file_name=substr($file,strrpos($file,'/')+1);   
@@ -923,7 +937,7 @@ public function get_search_val($field,$fields,$fields_info){
       if(isset($fields_info[$field]['type'])){
           $type=$fields_info[$field]['type'];
           if( $type == 'phone'){
-         $val=preg_replace( '/[^0-9]/', '', $val );
+        // $val=preg_replace( '/[^0-9]/', '', $val );
           }else if( in_array($type,array('date','datetime'))){
               $val=array('val'=>$val,'type'=>$type);
           }
@@ -1158,7 +1172,7 @@ if(method_exists($item,'get_product')){
             try{
         $product=new WC_Product($p_id);
             }catch(Exception $e){
-                echo $e->getMessage();
+               // echo $e->getMessage();
             }
         }else{
          $product=$products[$p_id];   
@@ -1209,7 +1223,7 @@ if(method_exists($item,'get_product')){
   */
 public function clean_sf_fields($fixed,$fields_info){ 
   $sf_fields=array();
-  if(is_array($fixed)){ 
+  if(is_array($fixed)){  
 foreach($fixed as $field_key=>$field_val){ 
   //convert date to salesforce compatible format
   if(isset($fields_info[$field_key])){
@@ -1222,6 +1236,7 @@ foreach($fixed as $field_key=>$field_val){
      $date_val=strtotime(str_replace(array("/"),"-",$field_val));
    
      if( $type == "date"  ){
+         if(strpos($field_val,'+') === false){$date_val=$date_val.'+00';}
   $field_val=date('Y-m-d',$date_val); 
   }else{ 
     $offset=get_option('gmt_offset');
@@ -1238,6 +1253,11 @@ foreach($fixed as $field_key=>$field_val){
   }else if($fields_info[$field_key]['type'] == "multipicklist"){
       if(is_array($field_val)){
        $field_val=html_entity_decode(implode(';',$field_val));   
+      }
+  }else if($type == 'string' && !empty($fields_info[$field_key]['maxlength'])){
+      $field_len=$fields_info[$field_key]['maxlength'];
+      if(strlen($field_val)> $field_len){
+        $field_val=substr($field_val,0,$field_len-1);  
       }
   } 
   if(is_array($field_val)){ 

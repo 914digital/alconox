@@ -684,6 +684,8 @@ LEVEL 3. SETTINGS
 .awdr-container .modal,
 .awdr-container .modal-box {
     z-index: 9999;
+    visibility: unset;
+    opacity: 1;
 }
 
 .awdr-container .modal-sandbox {
@@ -1438,7 +1440,7 @@ div.wdr {
 .awdr_recipe_container{
     background-color: #ffffff;
     display: flex;
-    padding: 10px;
+    padding: 0 10px;
 }
 .awdr_recipe_left {
     float: left;
@@ -1499,3 +1501,41 @@ div.awdr_recipe_main_card{
     margin-left: 10px;
 }
 
+.awdr-three-column-document-head {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    background-color: #f0f0f1;
+    padding: 5px;
+}
+.awdr-three-column-inner{
+    padding: 15px;
+    font-size: large;
+}
+.awdr-first-column{
+    /*background-color: #f0f8ff ;*/
+    background-color: #ffffff ;
+    border: 3px solid #f0f0f1;
+}
+.awdr-second-column{
+   /* background-color: #fff5ee;*/
+    background-color: #ffffff ;
+    border: 3px solid #f0f0f1;
+}
+.awdr-third-column{
+    /*background-color: #faebd7;*/
+    background-color: #ffffff ;
+    border: 3px solid #f0f0f1;
+}
+.wdr_read_documentation{
+    text-decoration: none;
+}
+.wdr_read_documentation_con{
+    padding: 10px 0px 10px 0px;
+}
+.awdr-hr-line{
+    padding: 10px;
+}
+.awdr-header_text_recipe{
+    padding: 0 20px;
+    font-weight: bold;
+}

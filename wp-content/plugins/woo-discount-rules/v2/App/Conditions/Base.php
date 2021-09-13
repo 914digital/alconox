@@ -346,6 +346,7 @@ abstract class Base
                     $product_variation = Woocommerce::getProduct(Woocommerce::getProductParentId($product));
                     foreach ($attrs as $taxonomy => $value) {
                         if ($value) {
+                            $taxonomy = apply_filters('advanced_woo_discount_rules_attribute_slug', urldecode($taxonomy), $taxonomy, $value);
                             $term_obj = get_term_by('slug', $value, $taxonomy);
                             if (!is_wp_error($term_obj) && $term_obj && $term_obj->name) {
                                 $attr_ids = array_merge($attr_ids, (array)($term_obj->term_id));
@@ -406,7 +407,11 @@ abstract class Base
                     if(in_array($type, array_keys(Woocommerce::getCustomProductTaxonomies()))){
                         $product_parent = Woocommerce::getProductParentId($product_id);
                         $product_id = !empty($product_parent) ? $product_parent : $product_id;
-                        $term_ids = wp_get_post_terms($product_id, $type, array("fields" => "ids"));
+                        if(isset(Woocommerce::$product_taxonomy_terms[$product_id])){
+                            $term_ids = Woocommerce::$product_taxonomy_terms[$product_id];
+                        } else {
+                            $term_ids = Woocommerce::$product_taxonomy_terms[$product_id] = wp_get_post_terms($product_id, $type, array("fields" => "ids"));
+                        }
                         $not_in_list_product = count(array_intersect($term_ids, $comparision_value)) > 0;
                     }
                 }

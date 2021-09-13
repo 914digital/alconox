@@ -194,12 +194,12 @@ class DBTable
          * Need for Admin
          */
         if (is_admin()) {
-            if($wpdb->get_var("show tables like '$rules_table_name'") != $rules_table_name){
-                return false;
-            }
             if (!is_null($rule_id) && is_null($rule_name) && is_null($export)) {
                 if(isset(self::$rules['admin_based_on_rule_id']) && $cache === true){
                     return self::$rules['admin_based_on_rule_id'];
+                }
+                if($wpdb->get_var("show tables like '$rules_table_name'") != $rules_table_name){
+                    return false;
                 }
                 if(is_array($rule_id)){
                     $rule_id = array_map('absint', $rule_id);
@@ -213,11 +213,17 @@ class DBTable
                 if(isset(self::$rules['admin_based_on_rule_name']) && $cache === true){
                     return self::$rules['admin_based_on_rule_name'];
                 }
+                if($wpdb->get_var("show tables like '$rules_table_name'") != $rules_table_name){
+                    return false;
+                }
                 $rule_name = esc_sql($rule_name);
                 return self::$rules['admin_based_on_rule_name'] = $wpdb->get_results("SELECT * FROM {$rules_table_name} WHERE deleted = 0 AND title LIKE '%{$rule_name}%'");
             } else {
                 if(isset(self::$rules['admin_all']) && $cache === true){
                     return self::$rules['admin_all'];
+                }
+                if($wpdb->get_var("show tables like '$rules_table_name'") != $rules_table_name){
+                    return false;
                 }
                 return self::$rules['admin_all'] = $wpdb->get_results("SELECT * FROM {$rules_table_name} WHERE deleted = 0 ORDER BY priority ASC");
             }

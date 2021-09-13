@@ -87,6 +87,20 @@ class WC_Shipping_UPS extends WC_Shipping_Method {
 	);
 
 	/**
+	 * Services available with UPS Simple Rate
+	 *
+	 * @see https://www.ups.com/assets/resources/media/en_US/daily_rates.pdf#page=76
+	 *
+	 * @var array
+	 */
+	private $simple_rate_services = array(
+		'02',
+		'03',
+		'12',
+		'13'
+	);
+
+	/**
 	 * Packaging not offered at this time: 00 = UNKNOWN, 30 = Pallet, 04 = Pak
 	 * Code 21 = Express box is valid code, but doesn't have dimensions.
 	 *
@@ -150,6 +164,46 @@ class WC_Shipping_UPS extends WC_Shipping_Method {
 	);
 
 	/**
+	 * Simple Rate Package requirements
+	 *
+	 * @see https://www.ups.com/assets/resources/media/en_US/daily_rates.pdf#page=76
+	 *
+	 * @var array
+	 */
+	private $simple_rate_packaging = array(
+		'XS' => array(
+			'name'             => 'Extra Small Simple Rate Box',
+			'cubic_inches_min' => '1',
+			'cubic_inches_max' => '100',
+			'weight'           => '50',
+		),
+		'S'  => array(
+			'name'             => 'Small Simple Rate Box',
+			'cubic_inches_min' => '101',
+			'cubic_inches_max' => '250',
+			'weight'           => '50',
+		),
+		'M'  => array(
+			'name'             => 'Medium Simple Rate Box',
+			'cubic_inches_min' => '251',
+			'cubic_inches_max' => '650',
+			'weight'           => '50',
+		),
+		'L'  => array(
+			'name'             => 'Large Simple Rate Box',
+			'cubic_inches_min' => '651',
+			'cubic_inches_max' => '1050',
+			'weight'           => '50',
+		),
+		'XL' => array(
+			'name'             => 'Extra Large Simple Rate Box',
+			'cubic_inches_min' => '1051',
+			'cubic_inches_max' => '1728',
+			'weight'           => '50',
+		)
+	);
+
+	/**
 	 * Packaging for select options.
 	 *
 	 * @var array
@@ -190,7 +244,7 @@ class WC_Shipping_UPS extends WC_Shipping_Method {
 	 * @return bool True if shipping method is available.
 	 */
 	public function is_available( $package ) {
-		if ( empty( $package['destination']['country'] ) ) {
+		if ( empty( $package['destination']['country'] ) || ! WC_Validation::is_postcode( $package['destination']['postcode'], $package['destination']['country'] ) ) {
 			return false;
 		}
 
@@ -228,6 +282,7 @@ class WC_Shipping_UPS extends WC_Shipping_Method {
 		$this->access_key           = $this->get_option( 'access_key' );
 		$this->shipper_number       = $this->get_option( 'shipper_number' );
 		$this->classification_code  = $this->get_option( 'customer_classification_code' );
+		$this->simple_rate          = $this->get_option( 'simple_rate' ) === 'yes';
 		$this->negotiated           = $this->get_option( 'negotiated' ) === 'yes';
 		$this->origin_addressline   = $this->get_option( 'origin_addressline' );
 		$this->origin_city          = $this->get_option( 'origin_city' );
@@ -712,6 +767,17 @@ class WC_Shipping_UPS extends WC_Shipping_Method {
 				    'cheapest' => __( 'Offer the customer the cheapest rate only', 'woocommerce-shipping-ups' ),
 				),
 			),
+			'simple_rate' => array(
+				'title'       => __( 'UPS Simple Rate', 'woocommerce-shipping-ups' ),
+				'label'       => __( 'Enable UPS Simple Rate', 'woocommerce-shipping-ups' ),
+				'type'        => 'checkbox',
+				'default'     => 'no',
+				'description' => sprintf(
+					__( 'Enable this if you want to use %1$sUPS Simple Rate%2$s. %3$sCompatible with UPS Next Day Air Saver®, UPS 2nd Day Air®, UPS 3 Day Select® and UPS® Ground.', 'woocommerce-shipping-ups' ),
+					'<a href="https://www.ups.com/us/en/services/shipping/simple-rate.page" target="_blank">', '</a>',
+					'<br>'
+				),
+			),
 			'negotiated' => array(
 				'title'       => __( 'Negotiated Rates', 'woocommerce-shipping-ups' ),
 				'label'       => __( 'Enable negotiated rates', 'woocommerce-shipping-ups' ),
@@ -802,7 +868,7 @@ class WC_Shipping_UPS extends WC_Shipping_Method {
 				'options'     => array(
 					'imperial' => __( 'LB / IN', 'woocommerce-shipping-ups' ),
 					'metric'   => __( 'KG / CM', 'woocommerce-shipping-ups' ),
-					'auto'     => __( 'Automatic (based on customer address)', 'woocommerce-shipping-ups' ),
+					'auto'     => __( 'Automatic (based on shipping zone origin)', 'woocommerce-shipping-ups' ),
 				),
 			),
 		) );
@@ -928,7 +994,7 @@ class WC_Shipping_UPS extends WC_Shipping_Method {
 		if ( 'auto' === $this->units ) {
 			$lbs_countries = apply_filters( 'woocommerce_shipping_ups_lbs_countries', array( 'US' ) );
 			$in_countries  = apply_filters( 'woocommerce_shipping_ups_in_countries', array( 'US' ) );
-			$country       = WC()->customer->get_shipping_country();
+			$country       = $this->origin_country;
 
 			$this->weight_unit = in_array( $country, $lbs_countries ) ? 'LBS' : 'KGS';
 			$this->dim_unit    = in_array( $country, $in_countries ) ? 'IN' : 'CM';
@@ -941,6 +1007,9 @@ class WC_Shipping_UPS extends WC_Shipping_Method {
 			if ( ! $rate_requests ) {
 				$this->debug( __( 'UPS: No Services are enabled in admin panel.', 'woocommerce-shipping-ups' ) );
 			}
+
+			// Add package request dimensions and weight to the rate meta data if available
+			$meta_data = $this->maybe_get_packed_box_details( $package_requests );
 
 			// Get live or cached result for each rate.
 			foreach ( $rate_requests as $code => $request ) {
@@ -1046,10 +1115,11 @@ class WC_Shipping_UPS extends WC_Shipping_Method {
 					// as well, so that 3rd parties can fetch any additional information
 					// they might require
 					$rates[ $rate_id ] = apply_filters( 'woocommerce_shipping_ups_rate', array(
-						'id'    => $rate_id,
-						'label' => $rate_name,
-						'cost'  => $rate_cost,
-						'sort'  => $sort,
+						'id'        => $rate_id,
+						'label'     => $rate_name,
+						'cost'      => $rate_cost,
+						'sort'      => $sort,
+						'meta_data' => $meta_data
 					), $currency, $xml, $this );
 
 				} else {
@@ -1084,8 +1154,6 @@ class WC_Shipping_UPS extends WC_Shipping_Method {
 						$cheapest_rate = $rate;
 					}
 				}
-
-				$cheapest_rate['label'] = $this->title;
 
 				$this->add_rate( $cheapest_rate );
 
@@ -1300,6 +1368,24 @@ class WC_Shipping_UPS extends WC_Shipping_Method {
 			$cart_item_qty = $values['quantity'];
 
 			$request  = '<Package>' . "\n";
+
+			// UPS Simple Rate is only available for domestic US shipments
+			if ( $this->simple_rate && $this->simple_rate_services_enabled() && $this->is_domestic_us_shipping() && 1 === $cart_item_qty ) {
+
+				$code = $this->maybe_get_simple_rate_code(
+					round( wc_get_dimension( $values['data']->get_length(), 'in' ) ),
+					round( wc_get_dimension( $values['data']->get_width(), 'in' ) ),
+					round( wc_get_dimension( $values['data']->get_height(), 'in' ) ),
+					wc_get_weight( $values['data']->get_weight(), 'lbs' ) );
+
+				if ( $code ) {
+					$request .= '	<SimpleRate>' . "\n";
+					$request .= '		<Code>' . $code . '</Code>' . "\n";
+					$request .= '		<Description>UPS Simple Rate</Description>' . "\n";
+					$request .= '	</SimpleRate>' . "\n";
+				}
+			}
+
 			$request .= '	<PackagingType>' . "\n";
 			// Always use code 02 with per-item shipping cause UPS API can't handle two 01 UPS Letter packages sent in the same request
 			$request .= '		<Code>02</Code>' . "\n";
@@ -1623,11 +1709,44 @@ class WC_Shipping_UPS extends WC_Shipping_Method {
 
 			$this->debug( 'PACKAGE ' . $ctr . ' (' . $key . ")\n<pre>" . print_r( $box_package,true ) . '</pre>' );
 
+			$dimensions = array(
+				'length' => $box_package->length,
+				'width'  => $box_package->width,
+				'height' => $box_package->height,
+			);
+
+			$weight = $box_package->weight;
+
 			$request  = '<Package>' . "\n";
+
+			$use_simple_rate = false;
+
+			// UPS Simple Rate is only available for domestic US shipments and for a single package request
+			if ( $this->simple_rate && $this->simple_rate_services_enabled() && $this->is_domestic_us_shipping() && 1 === count( $box_packages ) ) {
+
+				$code = $this->maybe_get_simple_rate_code(
+					round( wc_get_dimension( $dimensions['length'], 'in' ) ),
+					round( wc_get_dimension( $dimensions['width'], 'in' ) ),
+					round( wc_get_dimension( $dimensions['height'], 'in' ) ),
+					wc_get_weight( $weight, 'lbs' ) );
+
+				if ( $code ) {
+					$request .= '	<SimpleRate>' . "\n";
+					$request .= '		<Code>' . $code . '</Code>' . "\n";
+					$request .= '		<Description>UPS Simple Rate</Description>' . "\n";
+					$request .= '	</SimpleRate>' . "\n";
+
+					$use_simple_rate = true;
+				}
+			}
+
 			$request .= '	<PackagingType>' . "\n";
 
-			//change package code to 01 UPS Letter if the items fit into the UPS Letter envelope to get lower rates
-			if( 'UPS Letter' === $box_package->id ) {
+			/**
+			 * Change package code to 01 UPS Letter to get lower rates if the items fit into the
+			 * UPS Letter envelope and if Simple Rate isn't being used
+			 */
+			if ( 'UPS Letter' === $box_package->id && ! $use_simple_rate ) {
 				$request .= '		<Code>01</Code>' . "\n";
 				$request .= '		<Description>UPS Letter</Description>' . "\n";
 			} else {
@@ -1636,22 +1755,23 @@ class WC_Shipping_UPS extends WC_Shipping_Method {
 			}
 
 			$request .= '	</PackagingType>' . "\n";
+
 			$request .= '	<Description>Rate</Description>' . "\n";
 
 			$request .= '	<Dimensions>' . "\n";
 			$request .= '		<UnitOfMeasurement>' . "\n";
 			$request .= '			<Code>' . $this->dim_unit . '</Code>' . "\n";
 			$request .= '		</UnitOfMeasurement>' . "\n";
-			$request .= '		<Length>' . round( $this->get_packaging_dimension( $box_package->length, get_option( 'woocommerce_dimension_unit' ), strtolower( $this->dim_unit ) ) ) . '</Length>' . "\n";
-			$request .= '		<Width>' . round( $this->get_packaging_dimension( $box_package->width, get_option( 'woocommerce_dimension_unit' ), strtolower( $this->dim_unit ) ) ) . '</Width>' . "\n";
-			$request .= '		<Height>' . round( $this->get_packaging_dimension( $box_package->height, get_option( 'woocommerce_dimension_unit' ), strtolower( $this->dim_unit ) ) ) . '</Height>' . "\n";
+			$request .= '		<Length>' . round( $this->get_packaging_dimension( $dimensions['length'], get_option( 'woocommerce_dimension_unit' ), strtolower( $this->dim_unit ) ) ) . '</Length>' . "\n";
+			$request .= '		<Width>' . round( $this->get_packaging_dimension( $dimensions['width'], get_option( 'woocommerce_dimension_unit' ), strtolower( $this->dim_unit ) ) ) . '</Width>' . "\n";
+			$request .= '		<Height>' . round( $this->get_packaging_dimension( $dimensions['height'], get_option( 'woocommerce_dimension_unit' ), strtolower( $this->dim_unit ) ) ) . '</Height>' . "\n";
 			$request .= '	</Dimensions>' . "\n";
 
 			$request .= '	<PackageWeight>' . "\n";
 			$request .= '		<UnitOfMeasurement>' . "\n";
 			$request .= '			<Code>' . $this->weight_unit . '</Code>' . "\n";
 			$request .= '		</UnitOfMeasurement>' . "\n";
-			$request .= '		<Weight>' . $box_package->weight . '</Weight>' . "\n";
+			$request .= '		<Weight>' . $weight . '</Weight>' . "\n";
 			$request .= '	</PackageWeight>' . "\n";
 
 			if ( $this->has_package_service_options( $package['destination']['country'] ) ) {
@@ -1693,5 +1813,114 @@ class WC_Shipping_UPS extends WC_Shipping_Method {
 			'06' => __( 'General list rates', 'woocommerce-shipping-ups' ),
 			'53' => __( 'Standard list rates', 'woocommerce-shipping-ups' ),
 		);
+	}
+
+	/**
+	 * Returns the corresponding simple rate code if the package qualifies, otherwise returns false.
+	 *
+	 * @param int $length Package length in inches
+	 * @param int $width Package width in inches
+	 * @param int $height Package height in inches
+	 * @param float $weight Package weight in pounds
+	 *
+	 * @return false|string The simple rate code or false
+	 */
+	private function maybe_get_simple_rate_code( int $length, int $width, int $height, float $weight ) {
+		// The max weight for Simple Rate is 50 pounds and the minimum for length, width, and height is 1 inch
+		if ( $weight > floatval( $this->simple_rate_packaging['XL']['weight'] ) || $length < 1 || $width < 1 || $height < 1 ) {
+			return false;
+		}
+
+		$cubic_inches = $length * $width * $height;
+
+		foreach ( $this->simple_rate_packaging as $code => $data ) {
+			if ( $cubic_inches >= $data['cubic_inches_min'] && $cubic_inches <= $data['cubic_inches_max'] ) {
+				return $code;
+			}
+		}
+
+		return false;
+	}
+
+	/**
+	 * Check if at least one Simple Rate compatible service is enabled in the settings
+	 *
+	 * @return bool
+	 */
+	private function simple_rate_services_enabled() {
+		foreach ( $this->simple_rate_services as $service_code ) {
+			/**
+			 * UPS 3 Day Select and UPS Next Day Air Saver are not available for
+			 * UPS Simple Rate shipments destined to Alaska and Hawaii. So skip
+			 * those services for those destinations.
+			 */
+			if ( in_array( WC()->customer->get_shipping_state(), array( 'HI', 'AK' ), true ) && in_array( $service_code, array( '12', '13' ), true ) ) {
+				continue;
+			}
+
+			if ( true === $this->custom_services[ $service_code ]['enabled'] ) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	/**
+	 * Check if we are shipping within the United States
+	 *
+	 * @return bool
+	 */
+	private function is_domestic_us_shipping() {
+		return ( 'US' === WC()->customer->get_shipping_country() && 'US' === $this->origin_country );
+	}
+
+	/**
+	 * Extract the packed box dimensions and weights if available and return in an array
+	 *
+	 * @param array $package_requests The package requests
+	 *
+	 * @return array|false
+	 */
+	private function maybe_get_packed_box_details( array $package_requests ) {
+		$meta_data = array();
+		foreach ( $package_requests as $index => $request ) {
+			try {
+				$index ++;
+				$request_object = new SimpleXMLElement( $request );
+
+				// Make sure we have length, width, height, weight, and measurement units, or don't add to the meta data
+				if ( empty( $request_object->Dimensions->Length )
+				     || empty( $request_object->Dimensions->Width )
+				     || empty( $request_object->Dimensions->Height )
+				     || empty( $request_object->Dimensions->UnitOfMeasurement->Code )
+				     || empty( $request_object->PackageWeight->Weight )
+				     || empty( $request_object->PackageWeight->UnitOfMeasurement->Code )
+				) {
+					continue;
+				}
+
+				$package_number = sprintf( __( 'Package %1$s', 'woocommerce-shipping-canada-post' ), $index );
+
+				// Combine length, width, height into a string
+				$dimensions = implode( ' x ', array(
+					$request_object->Dimensions->Length,
+					$request_object->Dimensions->Width,
+					$request_object->Dimensions->Height
+				) );
+
+				$meta_data[ $package_number ] = sprintf(
+					__( '%1$s (%2$s) %3$s%4$s', 'woocommerce-shipping-canada-post' ),
+					$dimensions,
+					strtolower( $request_object->Dimensions->UnitOfMeasurement->Code ),
+					$request_object->PackageWeight->Weight,
+					strtolower( $request_object->PackageWeight->UnitOfMeasurement->Code )
+				);
+			} catch ( Exception $e ) {
+				$this->debug( 'Failed generating SimpleXMLElement from package request XML string.', 'error' );
+			}
+		}
+
+		return ! empty( $meta_data ) ? $meta_data : false;
 	}
 }

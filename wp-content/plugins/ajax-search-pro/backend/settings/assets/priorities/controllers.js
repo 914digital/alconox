@@ -241,12 +241,12 @@ var mgController = {
 
         // Load rule values to editor
         var $f = $this.$fields;
-        $f.name.val(rule.name).change();
-        $f.field.val(rule.field).change();
+        $f.name.val(rule.name).trigger('change');
+        $f.field.val(rule.field).trigger('change');
 
         switch(rule.field) {
             case 'tax':
-                $f.termOperator.val(rule.operator).change();
+                $f.termOperator.val(rule.operator).trigger('change');
                 $.each(rule.values, function(tax, ids){
                     $.each(ids, function(kk, id){
                         var $li = $('<li>');
@@ -259,7 +259,7 @@ var mgController = {
                 });
                 break;
             case 'cf':
-                $f.cfOperator.val(rule.operator).change();
+                $f.cfOperator.val(rule.operator).trigger('change');
                 $.each(rule.values, function(k, o){
                     $f.cfField.val(k);
                     if ( typeof o[0] !== 'undefined' )
@@ -311,8 +311,8 @@ var mgController = {
             $this.$group.instance.val($this.openedRuleGroup.instance);
             $this.$group.priority.val($this.openedRuleGroup.priority);
             $this.$group.phrase.val($this.openedRuleGroup.phrase);
-            $this.$group.phraseLogic.val($this.openedRuleGroup.phrase_logic).change();
-            $this.$group.ruleLogic.val($this.openedRuleGroup.logic).change();
+            $this.$group.phraseLogic.val($this.openedRuleGroup.phrase_logic).trigger('change');
+            $this.$group.ruleLogic.val($this.openedRuleGroup.logic).trigger('change');
             // Rule editor stuff
             if ( typeof $this.openedRuleGroup.rules != 'undefined' ) {
                 $this.closeRuleEditor();

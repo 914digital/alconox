@@ -1,5 +1,5 @@
 jQuery(function($){
-    $("dt.changelog_title a").click(function(e){
+    $("dt.changelog_title a").on('click', function(e){
         e.preventDefault();
         var $next = $(this).parent().next();
         if ($next.hasClass('hiddend')) {

@@ -6,6 +6,8 @@ require_once(ASP_CLASSES_PATH . "core/class-asp-ajax.php");
 require_once(ASP_CLASSES_PATH . "core/class-asp-actions.php");
 require_once(ASP_CLASSES_PATH . "core/class-asp-filters.php");
 require_once(ASP_CLASSES_PATH . "core/class-asp-shortcodes.php");
+require_once(ASP_CLASSES_PATH . "core/class-asp-scripts.php");
+require_once(ASP_CLASSES_PATH . "core/class-asp-scripts-legacy.php");
 require_once(ASP_CLASSES_PATH . "core/class-asp-init.php");
 //require_once(ASP_CLASSES_PATH . "core/class-asp-assets-loader.php");
 require_once(ASP_CLASSES_PATH . "core/class-asp-menu.php");

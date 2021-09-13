@@ -88,11 +88,11 @@ class Filter
                         }
                         $processing_result = $this->compareWithProducts($values, $method, $product_id, $product);
                     } elseif ('product_category' === $type) {
-                        $product = Woocommerce::getParentProduct($product);
-                        $processing_result = $this->compareWithCategories($product, $values, $method);
+                        $processed_product = Woocommerce::getParentProduct($product);
+                        $processing_result = $this->compareWithCategories($processed_product, $values, $method);
                     } elseif ('product_tags' === $type) {
-                        $product = Woocommerce::getParentProduct($product);
-                        $processing_result = $this->compareWithTags($product, $values, $method);
+                        $processed_product = Woocommerce::getParentProduct($product);
+                        $processing_result = $this->compareWithTags($processed_product, $values, $method);
                     } elseif ('product_attributes' === $type) {
                         //$product = Woocommerce::getParentProduct($product);
                         if($product_table === true && Woocommerce::productTypeIs($product, array('variable', 'variable-subscription'))){
@@ -142,7 +142,13 @@ class Filter
     {
         $product_parent = Woocommerce::getProductParentId($product_id);
         $product_id = !empty($product_parent) ? $product_parent : $product_id;
-        $term_ids = wp_get_post_terms($product_id, $taxonomy, array("fields" => "ids"));
+
+        if(isset(Woocommerce::$product_taxonomy_terms[$product_id])){
+            $term_ids = Woocommerce::$product_taxonomy_terms[$product_id];
+        } else {
+            $term_ids = Woocommerce::$product_taxonomy_terms[$product_id] = wp_get_post_terms($product_id, $taxonomy, array("fields" => "ids"));
+        }
+
         $is_product_has_term = count(array_intersect($term_ids, $operation_values)) > 0;
         if ('in_list' === $operation_method) {
             return $is_product_has_term;
@@ -163,14 +169,38 @@ class Filter
     protected function compareWithSku($product, $operation_values, $operation_method, $sale_badge=false)
     {
         $result = false;
-        $product_sku = apply_filters('advanced_woo_discount_rules_check_sku_filter', Woocommerce::getProductSku($product), $product, $operation_values, $operation_method, $sale_badge);
-        if ('in_list' === $operation_method) {
-            $result = (in_array($product_sku, $operation_values));
-        } elseif ('not_in_list' === $operation_method) {
-            $result = !(in_array($product_sku, $operation_values));
-        } elseif ('any' === $operation_method) {
-            $result = true;
+        $parent_id = Woocommerce::getProductParentId($product);
+
+        //Fix - Discount bar is not showing if select particular variant in filter
+        if($sale_badge ){
+            $available_variations = Woocommerce::availableProductVariations($product);
+            if(!empty($available_variations)){
+                foreach($available_variations as $variation_values ){
+                    $variation_id = isset($variation_values['variation_id']) ? $variation_values['variation_id'] : 0;
+                    if(!empty($variation_id)){
+                        $product_variation = Woocommerce::getProduct($variation_id);
+                        $product_sku = Woocommerce::getProductSku($product_variation);
+                        $result = $this->checkInList($product_sku, $operation_method, $operation_values);
+                        if($result){
+                            return true;
+                        }
+                    }
+                }
+            }
         }
+
+        //Fix - If select parant sku (variable products)
+        if(!empty($parent_id)){
+            $parent_product = Woocommerce::getProduct($parent_id);
+            $parant_product_sku = Woocommerce::getProductSku($parent_product);
+            $result = $this->checkInList($parant_product_sku, $operation_method, $operation_values);
+            if($result){
+                return $result;
+            }
+        }
+
+        $product_sku = apply_filters('advanced_woo_discount_rules_check_sku_filter', Woocommerce::getProductSku($product), $product, $operation_values, $operation_method, $sale_badge);
+        $result = $this->checkInList($product_sku, $operation_method, $operation_values);
         return $result;
     }
 

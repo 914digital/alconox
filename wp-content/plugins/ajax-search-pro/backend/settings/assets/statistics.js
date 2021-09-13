@@ -6,9 +6,9 @@ jQuery(function ($) {
         }, 500);
     });
 
-    $('a[tabid=1]').click();
+    $('a[tabid=1]').trigger('click');
 
-    $('#wpdreams .deletekeyword').click(function () {
+    $('#wpdreams .deletekeyword').on('click', function() {
         var del = confirm(msg('msg_del'));
         var $this = $(this);
         if (del) {

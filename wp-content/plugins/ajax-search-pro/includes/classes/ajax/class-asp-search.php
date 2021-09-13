@@ -102,7 +102,8 @@ if (!class_exists("WD_ASP_Search_Handler")) {
             $final_output .= "!!ASPSTART_DATA!!";
             $final_output .= json_encode(array(
                 'results_count' => isset($results["keywords"]) ? 0 : count($results),
-                'full_results_count' => $asp_query->found_posts
+                'full_results_count' => $asp_query->found_posts,
+				'results' => $results
             ));
             $final_output .= "!!ASPEND_DATA!!";
 

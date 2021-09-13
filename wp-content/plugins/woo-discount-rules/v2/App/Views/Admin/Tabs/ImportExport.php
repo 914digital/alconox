@@ -49,7 +49,9 @@ $is_pro_activated = isset($is_pro_activated) ? $is_pro_activated : false;
                                 }
                                 $current_user = get_current_user_id();
                                 $i = 1;
-                                while (($column = fgetcsv($file, 100000, ",")) !== FALSE) {
+                                $csv_separator = apply_filters('advanced_woo_discount_rules_csv_import_export_separator', ',');
+                                $csv_length = apply_filters('advanced_woo_discount_rules_csv_length_for_import', 100000);
+                                while (($column = fgetcsv($file, $csv_length, $csv_separator)) !== FALSE) {
                                     if ($i == 1) {
                                         $i++;
                                         continue;

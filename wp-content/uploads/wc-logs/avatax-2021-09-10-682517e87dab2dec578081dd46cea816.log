@@ -1,0 +1,382 @@
+09-10-2021 @ 09:09:21 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/taxrates/byaddress?line1=&line2=&city=Ronkonkoma&region=NY&country=US&postalCode=11779
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.8)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.34874s
+
+09-10-2021 @ 09:09:21 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Fri, 10 Sep 2021 13:09:21 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 203
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0156319
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+    [x-correlation-id] => 5f1e5792-912b-41c7-8370-7b825b99f471
+    [x-avalara-uid] => 5f1e5792-912b-41c7-8370-7b825b99f471
+)
+body: {"totalRate":0.086250,"rates":[{"rate":0.040000,"name":"NY STATE TAX","type":"State"},{"rate":0.042500,"name":"NY COUNTY TAX","type":"County"},{"rate":0.003750,"name":"NY SPECIAL TAX","type":"Special"}]}
+
+09-10-2021 @ 09:09:22 - Request
+Request
+method: POST
+uri: https://rest.avatax.com/api/v2/transactions/create
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.8)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body: {"code":"","companyCode":"ALC","customerCode":"whirsch@bhaircraft.com","currencyCode":"USD","date":"2021-09-10","lines":[{"number":"50e8dfd203a05429b143e51c7adef624","itemCode":"1801-1","taxCode":"P0000000","description":"Citranox","quantity":4,"amount":297.60000000000002},{"number":"shipping_0","itemCode":"use-my-shipping-account","taxCode":"FR","description":"Use My Shipping Account","quantity":1}],"addresses":{"shipFrom":{"line1":"30 GLENN ST","line2":"","city":"WHITE PLAINS","region":"NY","country":"US","postalCode":"10603-3254"},"shipTo":{"line1":"2230 Smithtown Ave","line2":"","city":"Ronkonkoma","region":"NY","country":"US","postalCode":"11779"}},"type":"SalesOrder","commit":false}
+duration: 0.33272s
+
+09-10-2021 @ 09:09:22 - Response
+Response
+code: 201
+message: Created
+headers: Array
+(
+    [date] => Fri, 10 Sep 2021 13:09:21 GMT
+    [content-type] => application/json; charset=utf-8
+    [server] => Kestrel
+    [content-encoding] => br
+    [location] => /api/v2/companies/207925/transactions/0
+    [vary] => Accept-Encoding
+    [serverduration] => 00:00:00.0447482
+    [x-correlation-id] => 4fdf664d-b718-4f42-a333-b5ef91ce4773
+    [x-avalara-uid] => 4fdf664d-b718-4f42-a333-b5ef91ce4773
+)
+body: {"id":0,"code":"4a2aa6e9-65ab-42dd-9932-1b82013f1c77","companyId":207925,"date":"2021-09-10","paymentDate":"2021-09-10","status":"Temporary","type":"SalesOrder","batchCode":"","currencyCode":"USD","exchangeRateCurrencyCode":"USD","customerUsageType":"","entityUseCode":"","customerVendorCode":"whirsch@bhaircraft.com","customerCode":"whirsch@bhaircraft.com","exemptNo":"","reconciled":false,"locationCode":"","reportingLocationCode":"","purchaseOrderNo":"","referenceCode":"","salespersonCode":"","totalAmount":297.6,"totalExempt":0.0,"totalDiscount":0.0,"totalTax":25.67,"totalTaxable":297.6,"totalTaxCalculated":25.67,"adjustmentReason":"NotAdjusted","locked":false,"version":1,"exchangeRateEffectiveDate":"2021-09-10","exchangeRate":1.0,"modifiedDate":"2021-09-10T13:09:21.9897736Z","modifiedUserId":231879,"taxDate":"2021-09-10","lines":[{"id":0,"transactionId":0,"lineNumber":"50e8dfd203a05429b143e51c7adef624","customerUsageType":"","entityUseCode":"","description":"Citranox","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"itemCode":"1801-1","lineAmount":297.60000000000002,"quantity":4.0,"ref1":"","ref2":"","reportingDate":"2021-09-10","tax":25.67,"taxableAmount":297.6,"taxCalculated":25.67,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-09-10","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"36","jurisName":"NEW YORK","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.040000,"tax":11.9,"taxableAmount":297.6,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxCalculated":11.9,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":297.6,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":11.9,"reportingTaxCalculated":11.9,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"103","jurisName":"SUFFOLK","stateAssignedNo":"SU 4711","jurisType":"CTY","jurisdictionType":"County","nonTaxableAmount":0.0,"rate":0.042500,"tax":12.65,"taxableAmount":297.6,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY COUNTY TAX","taxAuthorityTypeId":45,"taxCalculated":12.65,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":297.6,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":12.65,"reportingTaxCalculated":12.65,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"359079","jurisName":"SUFFOLK CO TRANSIT DISTRICT","stateAssignedNo":"SU 4711","jurisType":"STJ","jurisdictionType":"Special","nonTaxableAmount":0.0,"rate":0.003750,"tax":1.12,"taxableAmount":297.6,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY SPECIAL TAX","taxAuthorityTypeId":45,"taxCalculated":1.12,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":297.6,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":1.12,"reportingTaxCalculated":1.12,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":0,"transactionId":0,"lineNumber":"shipping_0","customerUsageType":"","entityUseCode":"","description":"Use My Shipping Account","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":false,"itemCode":"use-my-shipping-account","lineAmount":0.0,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-09-10","tax":0.0,"taxableAmount":0.0,"taxCalculated":0.0,"taxCode":"FR","taxCodeId":7119,"taxDate":"2021-09-10","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"36","jurisName":"NEW YORK","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.040000,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"103","jurisName":"SUFFOLK","stateAssignedNo":"SU 4711","jurisType":"CTY","jurisdictionType":"County","nonTaxableAmount":0.0,"rate":0.042500,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY COUNTY TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"359079","jurisName":"SUFFOLK CO TRANSIT DISTRICT","stateAssignedNo":"SU 4711","jurisType":"STJ","jurisdictionType":"Special","nonTaxableAmount":0.0,"rate":0.003750,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY SPECIAL TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0}],"addresses":[{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"2230 Smithtown Ave","line2":"","line3":"","city":"Ronkonkoma","region":"NY","postalCode":"11779","country":"US","taxRegionId":4002424,"latitude":"40.803639","longitude":"-73.110637"},{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"30 GLENN ST","line2":"","line3":"","city":"WHITE PLAINS","region":"NY","postalCode":"10603-3254","country":"US","taxRegionId":2090237,"latitude":"41.050608","longitude":"-73.771383"}],"summary":[{"country":"US","region":"NY","jurisType":"State","jurisCode":"36","jurisName":"NEW YORK","taxAuthorityType":45,"stateAssignedNo":"","taxType":"Sales","taxSubType":"S","taxName":"NY STATE TAX","rateType":"General","taxable":297.6,"rate":0.040000,"tax":11.9,"taxCalculated":11.9,"nonTaxable":0.0,"exemption":0.0},{"country":"US","region":"NY","jurisType":"County","jurisCode":"103","jurisName":"SUFFOLK","taxAuthorityType":45,"stateAssignedNo":"SU 4711","taxType":"Sales","taxSubType":"S","taxName":"NY COUNTY TAX","rateType":"General","taxable":297.6,"rate":0.042500,"tax":12.65,"taxCalculated":12.65,"nonTaxable":0.0,"exemption":0.0},{"country":"US","region":"NY","jurisType":"Special","jurisCode":"359079","jurisName":"SUFFOLK CO TRANSIT DISTRICT","taxAuthorityType":45,"stateAssignedNo":"SU 4711","taxType":"Sales","taxSubType":"S","taxName":"NY SPECIAL TAX","rateType":"General","taxable":297.6,"rate":0.003750,"tax":1.12,"taxCalculated":1.12,"nonTaxable":0.0,"exemption":0.0}]}
+
+09-10-2021 @ 09:11:11 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/taxrates/byaddress?line1=&line2=&city=Ronkonkoma&region=NY&country=US&postalCode=11779
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.8)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.31479s
+
+09-10-2021 @ 09:11:11 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Fri, 10 Sep 2021 13:11:11 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 203
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0012131
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+    [x-correlation-id] => 0a330208-f148-442c-aad7-ef9662fc6ee7
+    [x-avalara-uid] => 0a330208-f148-442c-aad7-ef9662fc6ee7
+)
+body: {"totalRate":0.086250,"rates":[{"rate":0.040000,"name":"NY STATE TAX","type":"State"},{"rate":0.042500,"name":"NY COUNTY TAX","type":"County"},{"rate":0.003750,"name":"NY SPECIAL TAX","type":"Special"}]}
+
+09-10-2021 @ 09:11:12 - Request
+Request
+method: POST
+uri: https://rest.avatax.com/api/v2/transactions/create
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.8)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body: {"code":"","companyCode":"ALC","customerCode":"whirsch@bhaircraft.com","currencyCode":"USD","date":"2021-09-10","lines":[{"number":"50e8dfd203a05429b143e51c7adef624","itemCode":"1801-1","taxCode":"P0000000","description":"Citranox","quantity":4,"amount":297.60000000000002},{"number":"shipping_0","itemCode":"use-my-shipping-account","taxCode":"FR","description":"Use My Shipping Account","quantity":1}],"addresses":{"shipFrom":{"line1":"30 GLENN ST","line2":"","city":"WHITE PLAINS","region":"NY","country":"US","postalCode":"10603-3254"},"shipTo":{"line1":"2230 Smithtown Ave","line2":"","city":"Ronkonkoma","region":"NY","country":"US","postalCode":"11779"}},"type":"SalesOrder","commit":false}
+duration: 0.30711s
+
+09-10-2021 @ 09:11:12 - Response
+Response
+code: 201
+message: Created
+headers: Array
+(
+    [date] => Fri, 10 Sep 2021 13:11:12 GMT
+    [content-type] => application/json; charset=utf-8
+    [server] => Kestrel
+    [content-encoding] => br
+    [location] => /api/v2/companies/207925/transactions/0
+    [vary] => Accept-Encoding
+    [serverduration] => 00:00:00.0343314
+    [x-correlation-id] => e479bc7c-3ad9-4176-ac4c-e28b6b5d2a03
+    [x-avalara-uid] => e479bc7c-3ad9-4176-ac4c-e28b6b5d2a03
+)
+body: {"id":0,"code":"b0a8df09-e978-485a-a85c-e0d7b81ebe8f","companyId":207925,"date":"2021-09-10","paymentDate":"2021-09-10","status":"Temporary","type":"SalesOrder","batchCode":"","currencyCode":"USD","exchangeRateCurrencyCode":"USD","customerUsageType":"","entityUseCode":"","customerVendorCode":"whirsch@bhaircraft.com","customerCode":"whirsch@bhaircraft.com","exemptNo":"","reconciled":false,"locationCode":"","reportingLocationCode":"","purchaseOrderNo":"","referenceCode":"","salespersonCode":"","totalAmount":297.6,"totalExempt":0.0,"totalDiscount":0.0,"totalTax":25.67,"totalTaxable":297.6,"totalTaxCalculated":25.67,"adjustmentReason":"NotAdjusted","locked":false,"version":1,"exchangeRateEffectiveDate":"2021-09-10","exchangeRate":1.0,"modifiedDate":"2021-09-10T13:11:12.124932Z","modifiedUserId":231879,"taxDate":"2021-09-10","lines":[{"id":0,"transactionId":0,"lineNumber":"50e8dfd203a05429b143e51c7adef624","customerUsageType":"","entityUseCode":"","description":"Citranox","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"itemCode":"1801-1","lineAmount":297.60000000000002,"quantity":4.0,"ref1":"","ref2":"","reportingDate":"2021-09-10","tax":25.67,"taxableAmount":297.6,"taxCalculated":25.67,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-09-10","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"36","jurisName":"NEW YORK","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.040000,"tax":11.9,"taxableAmount":297.6,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxCalculated":11.9,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":297.6,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":11.9,"reportingTaxCalculated":11.9,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"103","jurisName":"SUFFOLK","stateAssignedNo":"SU 4711","jurisType":"CTY","jurisdictionType":"County","nonTaxableAmount":0.0,"rate":0.042500,"tax":12.65,"taxableAmount":297.6,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY COUNTY TAX","taxAuthorityTypeId":45,"taxCalculated":12.65,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":297.6,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":12.65,"reportingTaxCalculated":12.65,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"359079","jurisName":"SUFFOLK CO TRANSIT DISTRICT","stateAssignedNo":"SU 4711","jurisType":"STJ","jurisdictionType":"Special","nonTaxableAmount":0.0,"rate":0.003750,"tax":1.12,"taxableAmount":297.6,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY SPECIAL TAX","taxAuthorityTypeId":45,"taxCalculated":1.12,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":297.6,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":1.12,"reportingTaxCalculated":1.12,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":0,"transactionId":0,"lineNumber":"shipping_0","customerUsageType":"","entityUseCode":"","description":"Use My Shipping Account","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":false,"itemCode":"use-my-shipping-account","lineAmount":0.0,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-09-10","tax":0.0,"taxableAmount":0.0,"taxCalculated":0.0,"taxCode":"FR","taxCodeId":7119,"taxDate":"2021-09-10","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"36","jurisName":"NEW YORK","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.040000,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"103","jurisName":"SUFFOLK","stateAssignedNo":"SU 4711","jurisType":"CTY","jurisdictionType":"County","nonTaxableAmount":0.0,"rate":0.042500,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY COUNTY TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"},{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NY","exemptAmount":0.0,"jurisCode":"359079","jurisName":"SUFFOLK CO TRANSIT DISTRICT","stateAssignedNo":"SU 4711","jurisType":"STJ","jurisdictionType":"Special","nonTaxableAmount":0.0,"rate":0.003750,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NY SPECIAL TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0}],"addresses":[{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"2230 Smithtown Ave","line2":"","line3":"","city":"Ronkonkoma","region":"NY","postalCode":"11779","country":"US","taxRegionId":4002424,"latitude":"40.803639","longitude":"-73.110637"},{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"30 GLENN ST","line2":"","line3":"","city":"WHITE PLAINS","region":"NY","postalCode":"10603-3254","country":"US","taxRegionId":2090237,"latitude":"41.050608","longitude":"-73.771383"}],"summary":[{"country":"US","region":"NY","jurisType":"State","jurisCode":"36","jurisName":"NEW YORK","taxAuthorityType":45,"stateAssignedNo":"","taxType":"Sales","taxSubType":"S","taxName":"NY STATE TAX","rateType":"General","taxable":297.6,"rate":0.040000,"tax":11.9,"taxCalculated":11.9,"nonTaxable":0.0,"exemption":0.0},{"country":"US","region":"NY","jurisType":"County","jurisCode":"103","jurisName":"SUFFOLK","taxAuthorityType":45,"stateAssignedNo":"SU 4711","taxType":"Sales","taxSubType":"S","taxName":"NY COUNTY TAX","rateType":"General","taxable":297.6,"rate":0.042500,"tax":12.65,"taxCalculated":12.65,"nonTaxable":0.0,"exemption":0.0},{"country":"US","region":"NY","jurisType":"Special","jurisCode":"359079","jurisName":"SUFFOLK CO TRANSIT DISTRICT","taxAuthorityType":45,"stateAssignedNo":"SU 4711","taxType":"Sales","taxSubType":"S","taxName":"NY SPECIAL TAX","rateType":"General","taxable":297.6,"rate":0.003750,"tax":1.12,"taxCalculated":1.12,"nonTaxable":0.0,"exemption":0.0}]}
+
+09-10-2021 @ 09:11:17 - Request
+Request
+method: POST
+uri: https://rest.avatax.com/api/v2/transactions/create
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.8)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body: {"code":"wc_order_27Lb887OEgATu","companyCode":"ALC","customerCode":"whirsch@bhaircraft.com","currencyCode":"USD","date":"2021-09-10","lines":[{"number":24662,"itemCode":"1801-1","taxCode":"P0000000","description":"Citranox","quantity":4,"amount":297.60000000000002},{"number":"shipping_24663","itemCode":"use-my-shipping-account","taxCode":"FR","description":"Use My Shipping Account","quantity":1}],"addresses":{"shipFrom":{"line1":"30 GLENN ST","line2":"","city":"WHITE PLAINS","region":"NY","country":"US","postalCode":"10603-3254"},"shipTo":{"line1":"2230 Smithtown Ave","line2":"","city":"Ronkonkoma","region":"NY","country":"US","postalCode":"11779"}},"type":"SalesInvoice","purchaseOrderNo":"22219","commit":true}
+duration: 0.40968s
+
+09-10-2021 @ 09:11:17 - Response
+Response
+code: 201
+message: Created
+headers: Array
+(
+    [date] => Fri, 10 Sep 2021 13:11:17 GMT
+    [content-type] => application/json; charset=utf-8
+    [server] => Kestrel
+    [content-encoding] => br
+    [location] => /api/v2/companies/207925/transactions/1001877406744
+    [vary] => Accept-Encoding
+    [serverduration] => 00:00:00.1158074
+    [x-correlation-id] => 9a76db32-31eb-45c7-8eca-56ec1d7f0b55
+    [x-avalara-uid] => 9a76db32-31eb-45c7-8eca-56ec1d7f0b55
+)
+body: {"id":1001877406744,"code":"wc_order_27Lb887OEgATu","companyId":207925,"date":"2021-09-10","status":"Committed","type":"SalesInvoice","batchCode":"","currencyCode":"USD","exchangeRateCurrencyCode":"USD","customerUsageType":"","entityUseCode":"","customerVendorCode":"whirsch@bhaircraft.com","customerCode":"whirsch@bhaircraft.com","exemptNo":"","reconciled":false,"locationCode":"","reportingLocationCode":"","purchaseOrderNo":"22219","referenceCode":"","salespersonCode":"","taxOverrideType":"None","taxOverrideAmount":0.0,"taxOverrideReason":"","totalAmount":297.6,"totalExempt":0.0,"totalDiscount":0.0,"totalTax":25.67,"totalTaxable":297.6,"totalTaxCalculated":25.67,"adjustmentReason":"NotAdjusted","adjustmentDescription":"","locked":false,"region":"NY","country":"US","version":1,"softwareVersion":"21.8.1.0","originAddressId":1003454486426,"destinationAddressId":6002956584409,"exchangeRateEffectiveDate":"2021-09-10","exchangeRate":1.0,"description":"","email":"","businessIdentificationNo":"","modifiedDate":"2021-09-10T13:11:17.5955363Z","modifiedUserId":231879,"taxDate":"2021-09-10","lines":[{"id":2005825311370,"transactionId":1001877406744,"lineNumber":"24662","boundaryOverrideId":0,"customerUsageType":"","entityUseCode":"","description":"Citranox","destinationAddressId":6002956584409,"originAddressId":1003454486426,"discountAmount":0.0,"discountTypeId":0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"isSSTP":false,"itemCode":"1801-1","lineAmount":297.6,"quantity":4.0,"ref1":"","ref2":"","reportingDate":"2021-09-10","revAccount":"","sourcing":"Destination","tax":25.6700,"taxableAmount":297.6,"taxCalculated":25.6700,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-09-10","taxEngine":"","taxOverrideType":"None","businessIdentificationNo":"","taxOverrideAmount":0.0,"taxOverrideReason":"","taxIncluded":false,"details":[{"id":12004718385501,"transactionLineId":2005825311370,"transactionId":1001877406744,"addressId":6002956584409,"country":"US","region":"NY","countyFIPS":"","stateFIPS":"","exemptAmount":0.0000,"exemptReasonId":4,"inState":true,"jurisCode":"36","jurisName":"NEW YORK","jurisdictionId":42,"signatureCode":"BFEQ","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0000,"nonTaxableRuleId":0,"nonTaxableType":"RateRule","rate":0.040000,"rateRuleId":1444970,"rateSourceId":3,"serCode":"","sourcing":"Destination","tax":11.9000,"taxableAmount":297.6000,"taxType":"Sales","taxSubTypeId":"S","taxTypeGroupId":"SalesAndUse","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxRegionId":4002424,"taxCalculated":11.9000,"taxOverride":0.0000,"rateType":"General","rateTypeCode":"G","taxableUnits":297.6000,"nonTaxableUnits":0.0000,"exemptUnits":0.0000,"unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":297.6,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":11.9,"reportingTaxCalculated":11.9,"liabilityType":"Seller"},{"id":3005795620875,"transactionLineId":2005825311370,"transactionId":1001877406744,"addressId":6002956584409,"country":"US","region":"NY","countyFIPS":"","stateFIPS":"","exemptAmount":0.0000,"exemptReasonId":4,"inState":true,"jurisCode":"103","jurisName":"SUFFOLK","jurisdictionId":1896,"signatureCode":"BHDK","stateAssignedNo":"SU 4711","jurisType":"CTY","jurisdictionType":"County","nonTaxableAmount":0.0000,"nonTaxableRuleId":0,"nonTaxableType":"RateRule","rate":0.042500,"rateRuleId":1444978,"rateSourceId":3,"serCode":"","sourcing":"Destination","tax":12.6500,"taxableAmount":297.6000,"taxType":"Sales","taxSubTypeId":"S","taxTypeGroupId":"SalesAndUse","taxName":"NY COUNTY TAX","taxAuthorityTypeId":45,"taxRegionId":4002424,"taxCalculated":12.6500,"taxOverride":0.0000,"rateType":"General","rateTypeCode":"G","taxableUnits":297.6000,"nonTaxableUnits":0.0000,"exemptUnits":0.0000,"unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":297.6,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":12.65,"reportingTaxCalculated":12.65,"liabilityType":"Seller"},{"id":8004718385501,"transactionLineId":2005825311370,"transactionId":1001877406744,"addressId":6002956584409,"country":"US","region":"NY","countyFIPS":"","stateFIPS":"","exemptAmount":0.0000,"exemptReasonId":4,"inState":true,"jurisCode":"359079","jurisName":"SUFFOLK CO TRANSIT DISTRICT","jurisdictionId":359079,"signatureCode":"BHDL","stateAssignedNo":"SU 4711","jurisType":"STJ","jurisdictionType":"Special","nonTaxableAmount":0.0000,"nonTaxableRuleId":0,"nonTaxableType":"RateRule","rate":0.003750,"rateRuleId":1444968,"rateSourceId":3,"serCode":"","sourcing":"Destination","tax":1.1200,"taxableAmount":297.6000,"taxType":"Sales","taxSubTypeId":"S","taxTypeGroupId":"SalesAndUse","taxName":"NY SPECIAL TAX","taxAuthorityTypeId":45,"taxRegionId":4002424,"taxCalculated":1.1200,"taxOverride":0.0000,"rateType":"General","rateTypeCode":"G","taxableUnits":297.6000,"nonTaxableUnits":0.0000,"exemptUnits":0.0000,"unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":297.6,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":1.12,"reportingTaxCalculated":1.12,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"lineLocationTypes":[{"documentLineLocationTypeId":11004513786648,"documentLineId":2005825311370,"documentAddressId":1003454486426,"locationTypeCode":"ShipFrom"},{"documentLineLocationTypeId":1007212554914,"documentLineId":2005825311370,"documentAddressId":6002956584409,"locationTypeCode":"ShipTo"}],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":3005825311368,"transactionId":1001877406744,"lineNumber":"shipping_24663","boundaryOverrideId":0,"customerUsageType":"","entityUseCode":"","description":"Use My Shipping Account","destinationAddressId":6002956584409,"originAddressId":1003454486426,"discountAmount":0.0,"discountTypeId":0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":false,"isSSTP":false,"itemCode":"use-my-shipping-account","lineAmount":0.0,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-09-10","revAccount":"","sourcing":"Destination","tax":0.0000,"taxableAmount":0.0,"taxCalculated":0.0000,"taxCode":"FR","taxCodeId":7119,"taxDate":"2021-09-10","taxEngine":"","taxOverrideType":"None","businessIdentificationNo":"","taxOverrideAmount":0.0,"taxOverrideReason":"","taxIncluded":false,"details":[{"id":4005795620877,"transactionLineId":3005825311368,"transactionId":1001877406744,"addressId":6002956584409,"country":"US","region":"NY","countyFIPS":"","stateFIPS":"","exemptAmount":0.0000,"exemptReasonId":4,"inState":true,"jurisCode":"36","jurisName":"NEW YORK","jurisdictionId":42,"signatureCode":"BFEQ","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0000,"nonTaxableRuleId":0,"nonTaxableType":"RateRule","rate":0.040000,"rateRuleId":1444970,"rateSourceId":3,"serCode":"","sourcing":"Destination","tax":0.0000,"taxableAmount":0.0000,"taxType":"Sales","taxSubTypeId":"S","taxTypeGroupId":"SalesAndUse","taxName":"NY STATE TAX","taxAuthorityTypeId":45,"taxRegionId":4002424,"taxCalculated":0.0000,"taxOverride":0.0000,"rateType":"General","rateTypeCode":"G","taxableUnits":0.0000,"nonTaxableUnits":0.0000,"exemptUnits":0.0000,"unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"},{"id":5005795620876,"transactionLineId":3005825311368,"transactionId":1001877406744,"addressId":6002956584409,"country":"US","region":"NY","countyFIPS":"","stateFIPS":"","exemptAmount":0.0000,"exemptReasonId":4,"inState":true,"jurisCode":"103","jurisName":"SUFFOLK","jurisdictionId":1896,"signatureCode":"BHDK","stateAssignedNo":"SU 4711","jurisType":"CTY","jurisdictionType":"County","nonTaxableAmount":0.0000,"nonTaxableRuleId":0,"nonTaxableType":"RateRule","rate":0.042500,"rateRuleId":1444978,"rateSourceId":3,"serCode":"","sourcing":"Destination","tax":0.0000,"taxableAmount":0.0000,"taxType":"Sales","taxSubTypeId":"S","taxTypeGroupId":"SalesAndUse","taxName":"NY COUNTY TAX","taxAuthorityTypeId":45,"taxRegionId":4002424,"taxCalculated":0.0000,"taxOverride":0.0000,"rateType":"General","rateTypeCode":"G","taxableUnits":0.0000,"nonTaxableUnits":0.0000,"exemptUnits":0.0000,"unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"},{"id":6005795620875,"transactionLineId":3005825311368,"transactionId":1001877406744,"addressId":6002956584409,"country":"US","region":"NY","countyFIPS":"","stateFIPS":"","exemptAmount":0.0000,"exemptReasonId":4,"inState":true,"jurisCode":"359079","jurisName":"SUFFOLK CO TRANSIT DISTRICT","jurisdictionId":359079,"signatureCode":"BHDL","stateAssignedNo":"SU 4711","jurisType":"STJ","jurisdictionType":"Special","nonTaxableAmount":0.0000,"nonTaxableRuleId":0,"nonTaxableType":"RateRule","rate":0.003750,"rateRuleId":1444968,"rateSourceId":3,"serCode":"","sourcing":"Destination","tax":0.0000,"taxableAmount":0.0000,"taxType":"Sales","taxSubTypeId":"S","taxTypeGroupId":"SalesAndUse","taxName":"NY SPECIAL TAX","taxAuthorityTypeId":45,"taxRegionId":4002424,"taxCalculated":0.0000,"taxOverride":0.0000,"rateType":"General","rateTypeCode":"G","taxableUnits":0.0000,"nonTaxableUnits":0.0000,"exemptUnits":0.0000,"unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"lineLocationTypes":[{"documentLineLocationTypeId":11004513786649,"documentLineId":3005825311368,"documentAddressId":1003454486426,"locationTypeCode":"ShipFrom"},{"documentLineLocationTypeId":12004513786649,"documentLineId":3005825311368,"documentAddressId":6002956584409,"locationTypeCode":"ShipTo"}],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0}],"addresses":[{"id":6002956584409,"transactionId":1001877406744,"boundaryLevel":"Address","line1":"2230 SMITHTOWN AVE","line2":"","line3":"","city":"RONKONKOMA","region":"NY","postalCode":"11779-7329","country":"US","taxRegionId":4002424,"latitude":"40.803639","longitude":"-73.110637"},{"id":1003454486426,"transactionId":1001877406744,"boundaryLevel":"Address","line1":"30 GLENN ST","line2":"","line3":"","city":"WHITE PLAINS","region":"NY","postalCode":"10603-3254","country":"US","taxRegionId":2090237,"latitude":"41.050608","longitude":"-73.771383"}],"locationTypes":[{"documentLocationTypeId":8000274073499,"documentId":1001877406744,"documentAddressId":1003454486426,"locationTypeCode":"ShipFrom"},{"documentLocationTypeId":9000274073499,"documentId":1001877406744,"documentAddressId":6002956584409,"locationTypeCode":"ShipTo"}],"summary":[{"country":"US","region":"NY","jurisType":"State","jurisCode":"36","jurisName":"NEW YORK","taxAuthorityType":45,"stateAssignedNo":"","taxType":"Sales","taxSubType":"S","taxName":"NY STATE TAX","rateType":"General","taxable":297.60,"rate":0.040000,"tax":11.90,"taxCalculated":11.90,"nonTaxable":0.00,"exemption":0.00},{"country":"US","region":"NY","jurisType":"County","jurisCode":"103","jurisName":"SUFFOLK","taxAuthorityType":45,"stateAssignedNo":"SU 4711","taxType":"Sales","taxSubType":"S","taxName":"NY COUNTY TAX","rateType":"General","taxable":297.60,"rate":0.042500,"tax":12.65,"taxCalculated":12.65,"nonTaxable":0.00,"exemption":0.00},{"country":"US","region":"NY","jurisType":"Special","jurisCode":"359079","jurisName":"SUFFOLK CO TRANSIT DISTRICT","taxAuthorityType":45,"stateAssignedNo":"SU 4711","taxType":"Sales","taxSubType":"S","taxName":"NY SPECIAL TAX","rateType":"General","taxable":297.60,"rate":0.003750,"tax":1.12,"taxCalculated":1.12,"nonTaxable":0.00,"exemption":0.00}]}
+
+09-10-2021 @ 10:09:05 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/definitions/entityusecodes
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.8)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.3067s
+
+09-10-2021 @ 10:09:05 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Fri, 10 Sep 2021 14:09:05 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 1454
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0001332
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+    [x-correlation-id] => c930f60a-f6de-4f25-b82d-88ff9cfe4311
+    [x-avalara-uid] => c930f60a-f6de-4f25-b82d-88ff9cfe4311
+)
+body: {"@recordsetCount":18,"value":[{"code":"A","name":"FEDERAL GOV","description":"","validCountries":["US"]},{"code":"B","name":"STATE GOV","description":"","validCountries":["US"]},{"code":"C","name":"TRIBAL GOVERNMENT","description":"","validCountries":["*"]},{"code":"D","name":"FOREIGN DIPLOMAT","description":"","validCountries":["*"]},{"code":"E","name":"CHARITABLE/EXEMPT ORG","description":"","validCountries":["*"]},{"code":"F","name":"RELIGIOUS ORG","description":"","validCountries":["*"]},{"code":"G","name":"RESALE","description":"","validCountries":["*"]},{"code":"H","name":"AGRICULTURE","description":"","validCountries":["*"]},{"code":"I","name":"INDUSTRIAL PROD/MANUFACTURERS","description":"","validCountries":["*"]},{"code":"J","name":"DIRECT PAY","description":"","validCountries":["*"]},{"code":"K","name":"DIRECT MAIL","description":"","validCountries":["*"]},{"code":"L","name":"OTHER/CUSTOM","description":"","validCountries":["*"]},{"code":"M","name":"EDUCATIONAL ORG","description":"","validCountries":["*"]},{"code":"N","name":"LOCAL GOVERNMENT","description":"","validCountries":["US"]},{"code":"P","name":"COMMERCIAL AQUACULTURE","description":"","validCountries":["CA"]},{"code":"Q","name":"COMMERCIAL FISHERY","description":"","validCountries":["CA"]},{"code":"R","name":"NON-RESIDENT","description":"","validCountries":["CA"]},{"code":"TAXABLE","name":"NON-EXEMPT TAXABLE CUSTOMER","description":"","validCountries":["*"]}]}
+
+09-10-2021 @ 10:09:25 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/definitions/entityusecodes
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.8)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.2809s
+
+09-10-2021 @ 10:09:25 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Fri, 10 Sep 2021 14:09:25 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 1454
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0001680
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+    [x-correlation-id] => bd63c204-3fca-449f-8834-b8a1879454d2
+    [x-avalara-uid] => bd63c204-3fca-449f-8834-b8a1879454d2
+)
+body: {"@recordsetCount":18,"value":[{"code":"A","name":"FEDERAL GOV","description":"","validCountries":["US"]},{"code":"B","name":"STATE GOV","description":"","validCountries":["US"]},{"code":"C","name":"TRIBAL GOVERNMENT","description":"","validCountries":["*"]},{"code":"D","name":"FOREIGN DIPLOMAT","description":"","validCountries":["*"]},{"code":"E","name":"CHARITABLE/EXEMPT ORG","description":"","validCountries":["*"]},{"code":"F","name":"RELIGIOUS ORG","description":"","validCountries":["*"]},{"code":"G","name":"RESALE","description":"","validCountries":["*"]},{"code":"H","name":"AGRICULTURE","description":"","validCountries":["*"]},{"code":"I","name":"INDUSTRIAL PROD/MANUFACTURERS","description":"","validCountries":["*"]},{"code":"J","name":"DIRECT PAY","description":"","validCountries":["*"]},{"code":"K","name":"DIRECT MAIL","description":"","validCountries":["*"]},{"code":"L","name":"OTHER/CUSTOM","description":"","validCountries":["*"]},{"code":"M","name":"EDUCATIONAL ORG","description":"","validCountries":["*"]},{"code":"N","name":"LOCAL GOVERNMENT","description":"","validCountries":["US"]},{"code":"P","name":"COMMERCIAL AQUACULTURE","description":"","validCountries":["CA"]},{"code":"Q","name":"COMMERCIAL FISHERY","description":"","validCountries":["CA"]},{"code":"R","name":"NON-RESIDENT","description":"","validCountries":["CA"]},{"code":"TAXABLE","name":"NON-EXEMPT TAXABLE CUSTOMER","description":"","validCountries":["*"]}]}
+
+09-10-2021 @ 10:24:23 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/definitions/entityusecodes
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.8)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.30173s
+
+09-10-2021 @ 10:24:23 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Fri, 10 Sep 2021 14:24:23 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 1454
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0000925
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+    [x-correlation-id] => c78b012d-aab2-4499-b253-63033519f3f4
+    [x-avalara-uid] => c78b012d-aab2-4499-b253-63033519f3f4
+)
+body: {"@recordsetCount":18,"value":[{"code":"A","name":"FEDERAL GOV","description":"","validCountries":["US"]},{"code":"B","name":"STATE GOV","description":"","validCountries":["US"]},{"code":"C","name":"TRIBAL GOVERNMENT","description":"","validCountries":["*"]},{"code":"D","name":"FOREIGN DIPLOMAT","description":"","validCountries":["*"]},{"code":"E","name":"CHARITABLE/EXEMPT ORG","description":"","validCountries":["*"]},{"code":"F","name":"RELIGIOUS ORG","description":"","validCountries":["*"]},{"code":"G","name":"RESALE","description":"","validCountries":["*"]},{"code":"H","name":"AGRICULTURE","description":"","validCountries":["*"]},{"code":"I","name":"INDUSTRIAL PROD/MANUFACTURERS","description":"","validCountries":["*"]},{"code":"J","name":"DIRECT PAY","description":"","validCountries":["*"]},{"code":"K","name":"DIRECT MAIL","description":"","validCountries":["*"]},{"code":"L","name":"OTHER/CUSTOM","description":"","validCountries":["*"]},{"code":"M","name":"EDUCATIONAL ORG","description":"","validCountries":["*"]},{"code":"N","name":"LOCAL GOVERNMENT","description":"","validCountries":["US"]},{"code":"P","name":"COMMERCIAL AQUACULTURE","description":"","validCountries":["CA"]},{"code":"Q","name":"COMMERCIAL FISHERY","description":"","validCountries":["CA"]},{"code":"R","name":"NON-RESIDENT","description":"","validCountries":["CA"]},{"code":"TAXABLE","name":"NON-EXEMPT TAXABLE CUSTOMER","description":"","validCountries":["*"]}]}
+
+09-10-2021 @ 16:53:04 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/definitions/entityusecodes
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.8)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.30459s
+
+09-10-2021 @ 16:53:04 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Fri, 10 Sep 2021 20:53:04 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 1454
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0001694
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+    [x-correlation-id] => 96a0e15b-f2f4-41b1-9fdb-517f52b2650d
+    [x-avalara-uid] => 96a0e15b-f2f4-41b1-9fdb-517f52b2650d
+)
+body: {"@recordsetCount":18,"value":[{"code":"A","name":"FEDERAL GOV","description":"","validCountries":["US"]},{"code":"B","name":"STATE GOV","description":"","validCountries":["US"]},{"code":"C","name":"TRIBAL GOVERNMENT","description":"","validCountries":["*"]},{"code":"D","name":"FOREIGN DIPLOMAT","description":"","validCountries":["*"]},{"code":"E","name":"CHARITABLE/EXEMPT ORG","description":"","validCountries":["*"]},{"code":"F","name":"RELIGIOUS ORG","description":"","validCountries":["*"]},{"code":"G","name":"RESALE","description":"","validCountries":["*"]},{"code":"H","name":"AGRICULTURE","description":"","validCountries":["*"]},{"code":"I","name":"INDUSTRIAL PROD/MANUFACTURERS","description":"","validCountries":["*"]},{"code":"J","name":"DIRECT PAY","description":"","validCountries":["*"]},{"code":"K","name":"DIRECT MAIL","description":"","validCountries":["*"]},{"code":"L","name":"OTHER/CUSTOM","description":"","validCountries":["*"]},{"code":"M","name":"EDUCATIONAL ORG","description":"","validCountries":["*"]},{"code":"N","name":"LOCAL GOVERNMENT","description":"","validCountries":["US"]},{"code":"P","name":"COMMERCIAL AQUACULTURE","description":"","validCountries":["CA"]},{"code":"Q","name":"COMMERCIAL FISHERY","description":"","validCountries":["CA"]},{"code":"R","name":"NON-RESIDENT","description":"","validCountries":["CA"]},{"code":"TAXABLE","name":"NON-EXEMPT TAXABLE CUSTOMER","description":"","validCountries":["*"]}]}
+
+09-10-2021 @ 16:54:08 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/definitions/entityusecodes
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.8)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.33169s
+
+09-10-2021 @ 16:54:08 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Fri, 10 Sep 2021 20:54:08 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 1454
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0001730
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+    [x-correlation-id] => 67c8edba-604a-4467-8baf-0a39358b931f
+    [x-avalara-uid] => 67c8edba-604a-4467-8baf-0a39358b931f
+)
+body: {"@recordsetCount":18,"value":[{"code":"A","name":"FEDERAL GOV","description":"","validCountries":["US"]},{"code":"B","name":"STATE GOV","description":"","validCountries":["US"]},{"code":"C","name":"TRIBAL GOVERNMENT","description":"","validCountries":["*"]},{"code":"D","name":"FOREIGN DIPLOMAT","description":"","validCountries":["*"]},{"code":"E","name":"CHARITABLE/EXEMPT ORG","description":"","validCountries":["*"]},{"code":"F","name":"RELIGIOUS ORG","description":"","validCountries":["*"]},{"code":"G","name":"RESALE","description":"","validCountries":["*"]},{"code":"H","name":"AGRICULTURE","description":"","validCountries":["*"]},{"code":"I","name":"INDUSTRIAL PROD/MANUFACTURERS","description":"","validCountries":["*"]},{"code":"J","name":"DIRECT PAY","description":"","validCountries":["*"]},{"code":"K","name":"DIRECT MAIL","description":"","validCountries":["*"]},{"code":"L","name":"OTHER/CUSTOM","description":"","validCountries":["*"]},{"code":"M","name":"EDUCATIONAL ORG","description":"","validCountries":["*"]},{"code":"N","name":"LOCAL GOVERNMENT","description":"","validCountries":["US"]},{"code":"P","name":"COMMERCIAL AQUACULTURE","description":"","validCountries":["CA"]},{"code":"Q","name":"COMMERCIAL FISHERY","description":"","validCountries":["CA"]},{"code":"R","name":"NON-RESIDENT","description":"","validCountries":["CA"]},{"code":"TAXABLE","name":"NON-EXEMPT TAXABLE CUSTOMER","description":"","validCountries":["*"]}]}
+
+09-10-2021 @ 16:59:53 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/definitions/entityusecodes
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.8)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.31609s
+
+09-10-2021 @ 16:59:53 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Fri, 10 Sep 2021 20:59:53 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 1454
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0001729
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+    [x-correlation-id] => 02bb9d9a-f61f-499d-bc79-bf0011215866
+    [x-avalara-uid] => 02bb9d9a-f61f-499d-bc79-bf0011215866
+)
+body: {"@recordsetCount":18,"value":[{"code":"A","name":"FEDERAL GOV","description":"","validCountries":["US"]},{"code":"B","name":"STATE GOV","description":"","validCountries":["US"]},{"code":"C","name":"TRIBAL GOVERNMENT","description":"","validCountries":["*"]},{"code":"D","name":"FOREIGN DIPLOMAT","description":"","validCountries":["*"]},{"code":"E","name":"CHARITABLE/EXEMPT ORG","description":"","validCountries":["*"]},{"code":"F","name":"RELIGIOUS ORG","description":"","validCountries":["*"]},{"code":"G","name":"RESALE","description":"","validCountries":["*"]},{"code":"H","name":"AGRICULTURE","description":"","validCountries":["*"]},{"code":"I","name":"INDUSTRIAL PROD/MANUFACTURERS","description":"","validCountries":["*"]},{"code":"J","name":"DIRECT PAY","description":"","validCountries":["*"]},{"code":"K","name":"DIRECT MAIL","description":"","validCountries":["*"]},{"code":"L","name":"OTHER/CUSTOM","description":"","validCountries":["*"]},{"code":"M","name":"EDUCATIONAL ORG","description":"","validCountries":["*"]},{"code":"N","name":"LOCAL GOVERNMENT","description":"","validCountries":["US"]},{"code":"P","name":"COMMERCIAL AQUACULTURE","description":"","validCountries":["CA"]},{"code":"Q","name":"COMMERCIAL FISHERY","description":"","validCountries":["CA"]},{"code":"R","name":"NON-RESIDENT","description":"","validCountries":["CA"]},{"code":"TAXABLE","name":"NON-EXEMPT TAXABLE CUSTOMER","description":"","validCountries":["*"]}]}
+

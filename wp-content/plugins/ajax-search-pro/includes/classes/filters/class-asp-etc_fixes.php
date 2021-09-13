@@ -157,24 +157,6 @@ if (!class_exists("WD_ASP_EtcFixes_Filter")) {
 			return $args;
 		}
 
-		/**
-		 * Exclude all plugin frontend scripts from WP Rocket defer cache to prevent scope issues
-		 *
-		 * @param $exclude_defer_js
-		 * @return array
-		 */
-		function wp_rocket_exclude_defer_js($exclude_defer_js ) {
-			if ( is_array($exclude_defer_js) ) {
-				$exclude = array(
-					'/ajax-search-pro/js/',
-					'/ajax-search-pro/js/*'
-				);
-				return array_merge($exclude_defer_js, $exclude);
-			} else {
-				return $exclude_defer_js;
-			}
-		}
-
         // ------------------------------------------------------------
         //   ---------------- SINGLETON SPECIFIC --------------------
         // ------------------------------------------------------------

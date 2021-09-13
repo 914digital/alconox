@@ -3,6 +3,7 @@
 namespace Wdr\App;
 
 use Wdr\App\Controllers\Admin\Settings;
+use Wdr\App\Controllers\Admin\Tabs\AdvancedSection;
 use Wdr\App\Controllers\Admin\WDRAjax;
 use Wdr\App\Controllers\Admin\Tabs;
 use Wdr\App\Controllers\ManageDiscount;
@@ -195,5 +196,9 @@ class Router
 
         //Deprecated the event advanced_woo_discount_rules_additional_fee_value
         add_filter('advanced_woo_discount_rules_additional_fee_amount', array(self::$manage_discount, 'applyTaxInFee'), 10, 2);
+
+        //For loading snippets
+        $advance_option = new AdvancedSection();
+        $advance_option->runAdvancedOption($manage_discount_class::$config);
     }
 }

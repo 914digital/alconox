@@ -53,17 +53,10 @@ if (!class_exists("WD_ASP_StyleSheets_Action")) {
                 if ($exit1 || $exit2)
                     return false;
 
-                add_action('wp_head', array($this, 'inlineCSS'), 10, 0);
+                add_action('wp_head', array($this, 'inlineCSS'), 10);
+                add_action('wp_head', array($this, 'fonts'), 10);
 
-                /*if ( asp_is_asset_required('select2') )
-                    wp_enqueue_style('wpdreams-asp-select2', asp_get_css_url('select2'), array(), $media_query);*/
-
-                if (ASP_DEBUG == 1) {
-                    $css = asp_generate_the_css();
-                    self::$inline_css = $css;
-                    return;
-
-                } else if ($force_inline == 1) {
+                if ($force_inline == 1) {
 
                     $css = asp_generate_the_css(false);
                     // If it's still false, we have a problem
@@ -113,52 +106,69 @@ if (!class_exists("WD_ASP_StyleSheets_Action")) {
 
         /**
          * Echos the inline CSS if available
+		 *
+		 * Because inline CSS is highly discouraged, this only prints user defined custom CSS
+		 * and very basic FOUC prevention one liners when applicable.
          */
         public function inlineCSS() {
-            ?>
-            <style type="text/css">
-                @font-face {
-                    font-family: 'asppsicons2';
-                    src: url('<?php echo str_replace('http:',"",plugins_url()); ?>/ajax-search-pro/css/fonts/icons/icons2.eot');
-                    src: url('<?php echo str_replace('http:',"",plugins_url()); ?>/ajax-search-pro/css/fonts/icons/icons2.eot?#iefix') format('embedded-opentype'),
-                    url('<?php echo str_replace('http:',"",plugins_url()); ?>/ajax-search-pro/css/fonts/icons/icons2.woff2') format('woff2'),
-                    url('<?php echo str_replace('http:',"",plugins_url()); ?>/ajax-search-pro/css/fonts/icons/icons2.woff') format('woff'),
-                    url('<?php echo str_replace('http:',"",plugins_url()); ?>/ajax-search-pro/css/fonts/icons/icons2.ttf') format('truetype'),
-                    url('<?php echo str_replace('http:',"",plugins_url()); ?>/ajax-search-pro/css/fonts/icons/icons2.svg#icons') format('svg');
-                    font-weight: normal;
-                    font-style: normal;
-                }
-                <?php
-                // Highlight on single result page
-                foreach ( wd_asp()->instances->get() as $instance ) {
-                    if ( $instance['data']['single_highlight'] == 1 ) {
-                        echo "body span.asp_single_highlighted_" . $instance['id'] . "{
-                            display: inline !important;
-                            color: ".$instance['data']['single_highlightcolor']." !important;
-                            background-color: ".$instance['data']['single_highlightbgcolor']." !important;
-                        }";
-                    }
-                }
-                ?>
-                <?php echo self::$inline_css != "" ? self::$inline_css : ''; ?>
+        	?>
+			<link rel="preload" href="<?php echo str_replace('http:',"",plugins_url()); ?>/ajax-search-pro/css/fonts/icons/icons2.woff2" as="font" crossorigin="anonymous" />
+            <?php if ( self::$inline_css != '' ): ?>
+			<style>
+                <?php echo self::$inline_css; ?>
             </style>
-            <?php
-
-            /**
-             * Compatibility resolution to ajax page loaders:
-             *
-             * If the _ASP variable is defined at this point, it means that the page was already loaded before,
-             * and this header script is executed once again. However that also means that the ASP variable is
-             * resetted (due to the localization script) and that the page content is changed, so ajax search pro
-             * is not initialized.
-             */
-            ?>
-            <script type="text/javascript">
-                if ( typeof _ASP !== "undefined" && _ASP !== null && typeof _ASP.initialize !== "undefined" )
-                    _ASP.initialize();
-            </script>
+			<?php endif; ?>
             <?php
         }
+
+		public function fonts( $style = "" ) {
+			// If custom font loading is disabled, exit
+			$comp_options = wd_asp()->o['asp_compatibility'];
+			if ( $comp_options['load_google_fonts'] != 1 )
+				return false;
+
+			$imports = array();
+			$font_sources = array("inputfont", "descfont", "titlefont", 'fe_sb_font',
+				"authorfont", "datefont", "showmorefont", "groupfont",
+				"exsearchincategoriestextfont", "groupbytextfont", "settingsdropfont",
+				"prestitlefont", "presdescfont", "pressubtitlefont", "search_text_font");
+
+
+			if ($style != "") {
+				foreach($font_sources as $fs) {
+					if (isset($style["import-".$fs]) && !in_array(trim($style["import-".$fs]), $imports))
+						$imports[] = trim($style["import-".$fs]);
+				}
+			} else {
+				foreach (wd_asp()->instances->get() as $instance) {
+					foreach($font_sources as $fs) {
+						if (isset($instance['data']["import-".$fs]) && !in_array(trim($instance['data']["import-".$fs]), $imports))
+							$imports[] = trim($instance['data']["import-".$fs]);
+					}
+				}
+			}
+
+			foreach ( $imports as $ik => $im )
+				if ( $im == '' )
+					unset($imports[$ik]);
+
+			$imports = apply_filters('asp_custom_fonts', $imports);
+			$fonts = array();
+			foreach ($imports as $import) {
+				$import = trim(str_replace(array("@import url(", ");", "https:", "http:"), "", $import));
+				$import = trim(str_replace("//fonts.googleapis.com/css?family=", "", $import));
+				if ( $import != '' ) {
+					$fonts[] = $import;
+				}
+			}
+			if ( count($fonts) > 0 ) {
+				?>
+				<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+				<link rel="preload" as="style" href="//fonts.googleapis.com/css?family=<?php echo implode('|', $fonts); ?>&display=swap" />
+				<link rel="stylesheet" href="//fonts.googleapis.com/css?family=<?php echo implode('|', $fonts); ?>&display=swap" media="all" />
+				<?php
+			}
+		}
 
         public function shouldLoadAssets() {
             $comp_settings = wd_asp()->o['asp_compatibility'];

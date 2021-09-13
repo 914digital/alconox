@@ -30,7 +30,7 @@ class GF_Field_Username extends GF_Field_Text {
 		if ( ! empty( $new_button ) ) {
 			foreach ( $field_groups as &$group ) {
 				if ( $group['name'] == $new_button['group'] ) {
-					
+
 					// Prepare username button.
 					$username_button = array(
 						'value'      => $new_button['text'],
@@ -42,7 +42,7 @@ class GF_Field_Username extends GF_Field_Text {
 						'data-icon'        => empty( $new_button['icon'] ) ? $this->get_form_editor_field_icon() : $new_button['icon'],
 						'data-description' => empty( $new_button['description'] ) ? $this->get_form_editor_field_description() : $new_button['description'],
 					);
-					
+
 					// Get index of email button.
 					foreach ( $group['fields'] as $i => $field ) {
 						if ( 'email' === $field['data-type'] ) {
@@ -50,27 +50,27 @@ class GF_Field_Username extends GF_Field_Text {
 							$email_index  = $i;
 						}
 					}
-					
+
 					// Insert username button after email button.
 					array_splice( $group['fields'], $email_index+1, 0, array( $username_button ) );
-					
+
 					// Remove email button.
 					unset( $group['fields'][ $email_index ] );
-					
+
 					// Insert email button after password button.
-					array_splice( $group['fields'], $email_index+2, 0, array( $email_button ) );					
-					
+					array_splice( $group['fields'], $email_index+2, 0, array( $email_button ) );
+
 					break;
 				}
 			}
 		}
-		
+
 		return $field_groups;
 	}
 
 	/**
 	 * Return the field title.
-	 * 
+	 *
 	 * @access public
 	 * @return string
 	 */
@@ -99,7 +99,7 @@ class GF_Field_Username extends GF_Field_Text {
 	 * @return string
 	 */
 	public function get_form_editor_field_icon() {
-		return gf_user_registration()->get_base_url() . '/images/menu-icon.svg';
+		return gf_user_registration()->get_menu_icon();
 	}
 
 	/**

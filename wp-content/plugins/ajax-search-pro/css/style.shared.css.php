@@ -498,14 +498,6 @@ p[id*=asp-try-<?php echo $id; ?>] a:last-child:after {
     }
 <?php endif; ?>
 
-<?php if ($use_compatibility == true): ?>
-    <?php echo $asp_div_ids1; ?>.asp_msie .probox .proloading,
-    <?php echo $asp_div_ids2; ?>.asp_msie .probox .proloading,
-<?php endif; ?>
-<?php echo $asp_div_ids; ?>.asp_msie .probox .proloading {
-    background-image: url("<?php echo ASP_URL_NP."/img/loading/newload1.gif"; ?>");
-    float: right;
-}
 
 <?php if ($use_compatibility == true): ?>
     <?php echo $asp_div_ids1; ?> .probox .promagnifier,
@@ -828,7 +820,15 @@ else
   <?php wpdreams_gradient_css($style['settingsdropbackground']); ?>
   <?php echo $style['settingsdropboxshadow']; ?>;
   max-width: <?php echo $_hov_cwidth; ?>;
-  z-index: <?php echo $style['frontend_search_settings_position'] == 'block' ? 2 : intval($style['sett_z_index']); ?>;
+  z-index: 2;
+}
+
+<?php if ($use_compatibility == true): ?>
+<?php echo $asp_set_ids; ?>.searchsettings.asp_s,
+<?php echo $asp_set_ids; ?>.searchsettings.asp_s,
+<?php endif; ?>
+<?php echo $asp_set_ids; ?>.searchsettings.asp_s  {
+	z-index: <?php echo intval($style['sett_z_index']) ?>;
 }
 
 <?php if ($use_compatibility == true): ?>

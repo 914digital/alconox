@@ -75,7 +75,7 @@ ul.vx_notes li.customer-note .note_content:after {
   }
   if(isset($_GET['vx_debug'])){
   ?>
-  <input type="hidden" name="vx_debug" value="<?php echo $this->post('vx_debug') ?>">
+  <input type="hidden" name="vx_debug" value="<?php echo esc_attr($this->post('vx_debug')) ?>">
   <?php
   }
   ?>

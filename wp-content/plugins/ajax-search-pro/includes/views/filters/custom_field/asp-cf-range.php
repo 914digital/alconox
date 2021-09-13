@@ -65,5 +65,5 @@
         ]
     }
     <?php $_asp_noui_out = ob_get_clean(); ?>
-    <div id="noui-slider-json<?php echo $fieldset_id; ?>" class="noui-slider-json<?php echo $id; ?>" data-aspnoui="<?php echo base64_encode($_asp_noui_out); ?>" style="display: none !important;"></div>
+    <div id="noui-slider-json<?php echo $fieldset_id; ?>" class="noui-slider-json noui-slider-json<?php echo $id; ?>" data-aspnoui="<?php echo base64_encode($_asp_noui_out); ?>" style="display: none !important;"></div>
 <?php endforeach; ?>

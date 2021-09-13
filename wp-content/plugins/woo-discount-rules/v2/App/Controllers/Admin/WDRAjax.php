@@ -42,6 +42,19 @@ class WDRAjax extends Base
     }
 
     /**
+     * only used for backend search results
+     * Dont use for front end
+     */
+    private function load_all_wpml_products(){
+        global $sitepress;
+        if(!empty($sitepress)){
+            remove_filter( 'get_terms_args', array( $sitepress, 'get_terms_args_filter' ), 10 );
+            remove_filter( 'get_term', array( $sitepress, 'get_term_adjust_id' ), 1 );
+            remove_filter( 'terms_clauses', array( $sitepress, 'terms_clauses' ), 10 );
+        }
+    }
+
+    /**
      * Ajax Controller
      */
     public function wdr_ajax_requests()
@@ -103,6 +116,10 @@ class WDRAjax extends Base
             if($product){
                 $price = Woocommerce::getProductPrice($product);
                 $custom_price = $this->input->post('custom_price', '');
+                if(function_exists('wc_get_price_thousand_separator')){
+                    $price_thousand_separator = wc_get_price_thousand_separator();
+                    $custom_price = str_replace($price_thousand_separator, "", $custom_price);
+                }
                 $custom_price = floatval($custom_price);
                 $result = apply_filters('advanced_woo_discount_rules_get_product_discount_price_from_custom_price', $price, $product, $quantity, $custom_price, 'all', true);
                 if(!empty($result)){
@@ -122,6 +139,8 @@ class WDRAjax extends Base
     public function wdr_ajax_products()
     {
         Helper::validateRequest('wdr_ajax_select2');
+        //For loading all language Product in select box.
+        $this->load_all_wpml_products();
         $query = $this->input->post('query', '');
         //to disable other search classes
         remove_all_filters('woocommerce_data_stores');
@@ -147,12 +166,7 @@ class WDRAjax extends Base
             $taxonomy = array('product_cat');
         }
         //For loading all language categories in select box.
-        global $sitepress;
-        if(!empty($sitepress)){
-            remove_filter( 'get_terms_args', array( $sitepress, 'get_terms_args_filter' ), 10 );
-            remove_filter( 'get_term', array( $sitepress, 'get_term_adjust_id' ), 1 );
-            remove_filter( 'terms_clauses', array( $sitepress, 'terms_clauses' ), 10 );
-        }
+        $this->load_all_wpml_products();
         $query = $this->input->post('query', '');
         $terms = get_terms(array('taxonomy' => $taxonomy, 'name__like' => $query, 'hide_empty' => false, 'number' => $this->search_result_limit));
 
@@ -189,6 +203,8 @@ class WDRAjax extends Base
     public function wdr_ajax_product_tags()
     {
         Helper::validateRequest('wdr_ajax_select2');
+        //For loading all language tags in select box.
+        $this->load_all_wpml_products();
         $query = $this->input->post('query', '');
         $terms = get_terms(array('taxonomy' => 'product_tag', 'name__like' => $query, 'hide_empty' => false, 'number' => $this->search_result_limit));
         return array_map(function ($term) {
@@ -206,6 +222,8 @@ class WDRAjax extends Base
     public function wdr_ajax_product_taxonomies()
     {
         Helper::validateRequest('wdr_ajax_select2');
+        //For loading all language taxonomies in select box.
+        $this->load_all_wpml_products();
         $query = $this->input->post('query', '');
         $taxonomy_name = $this->input->post('taxonomy', '');
         $terms = get_terms(array('taxonomy' => $taxonomy_name,
@@ -236,6 +254,8 @@ class WDRAjax extends Base
     public function wdr_ajax_product_sku()
     {
         Helper::validateRequest('wdr_ajax_select2');
+        //For loading all language sku in select box.
+        $this->load_all_wpml_products();
         global $wpdb;
         $query = $this->input->post('query', '');
         $query = Helper::filterSelect2SearchQuery($query);
@@ -273,7 +293,8 @@ class WDRAjax extends Base
     public function wdr_ajax_product_attributes()
     {
         Helper::validateRequest('wdr_ajax_select2');
-
+        //For loading all language attributes in select box.
+        $this->load_all_wpml_products();
         global $wc_product_attributes, $wpdb;
         //return $wc_product_attributes;
         $query = $this->input->post('query', '');
@@ -373,11 +394,27 @@ class WDRAjax extends Base
         $save_config['licence_key'] = $this->input->post('licence_key', '');
         $save_config['on_sale_badge_html'] = (isset($_POST['on_sale_badge_html'])) ? stripslashes($_POST['on_sale_badge_html']) : '';
         $save_config['on_sale_badge_html'] = Rule::validateHtmlBeforeSave($_POST['on_sale_badge_html']);
+        $save_config['on_sale_badge_percentage_html'] = (isset($_POST['on_sale_badge_percentage_html'])) ? stripslashes($_POST['on_sale_badge_percentage_html']) : '';
+        $save_config['on_sale_badge_percentage_html'] = Rule::validateHtmlBeforeSave($_POST['on_sale_badge_percentage_html']);
         $save_config['you_saved_text'] = Rule::validateHtmlBeforeSave($this->input->post('you_saved_text'));
         $save_config['applied_rule_message'] = Rule::validateHtmlBeforeSave($this->input->post('applied_rule_message'));
         $save_config['discount_label_for_combined_discounts'] = Rule::validateHtmlBeforeSave($this->input->post('discount_label_for_combined_discounts'));
         $save_config['free_shipping_title'] = Rule::validateHtmlBeforeSave($this->input->post('free_shipping_title'));
-        return array('result' => Configuration::saveConfig($save_config), 'save_popup' => $save_alert, 'security_pass' => 'passed');
+        return array('result' => Configuration::saveConfig(configuration::DEFAULT_OPTION, $save_config), 'save_popup' => $save_alert, 'security_pass' => 'passed');
+    }
+
+    /**
+     * save Advanced option
+     * @return array
+     */
+    public function wdr_ajax_save_advanced_option()
+    {
+        Helper::validateRequest('wdr_ajax_save_advanced_option_config');
+        if(!Validation::validateAdvancedOptionKey($_POST)){
+            return array('result' => false, 'security_pass' => 'fails' );
+        }
+        $advanced_option_config = $this->input->post();
+        return array('result' => Configuration::saveConfig(configuration::ADVANCED_OPTION, $advanced_option_config), 'security_pass' => 'passed');
     }
 
     /**

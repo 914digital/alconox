@@ -25,7 +25,7 @@
  * @since      1.0.0
  * @package    Enhanced_Ecommerce_Google_Analytics
  * @subpackage Enhanced_Ecommerce_Google_Analytics/includes
- * @author     Chiranjiv Pathak <chiranjiv@tatvic.com>
+ * @author     Tatvic
  */
 class Enhanced_Ecommerce_Google_Analytics {
 
@@ -67,8 +67,8 @@ class Enhanced_Ecommerce_Google_Analytics {
      * @since    1.0.0
      */
     public function __construct() {
-        if ( defined( 'PLUGIN_NAME_VERSION' ) ) {
-            $this->version = PLUGIN_NAME_VERSION;
+        if ( defined( 'PLUGIN_TVC_VERSION' ) ) {
+            $this->version = PLUGIN_TVC_VERSION;
         } else {
             $this->version = '2.0';
         }
@@ -99,6 +99,8 @@ class Enhanced_Ecommerce_Google_Analytics {
      */
     private function load_dependencies() {
 
+        
+
         /**
          * The class responsible for orchestrating the actions and filters of the
          * core plugin.
@@ -110,17 +112,10 @@ class Enhanced_Ecommerce_Google_Analytics {
          * of the plugin.
          */
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-enhanced-ecommerce-google-analytics-i18n.php'; 
-        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-tvc-admin-db-helper.php';       
-        // Feed Manager Files
-        require_once plugin_dir_path(dirname(__FILE__)) . 'includes/data/class-tvc-queries.php';
-        require_once plugin_dir_path(dirname(__FILE__)) . 'includes/data/class-tvc-file.php';        
-        require_once plugin_dir_path(dirname(__FILE__)) . 'includes/user-interface/tvc-url-functions.php';
+        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-tvc-admin-db-helper.php';
         
         require_once plugin_dir_path(dirname(__FILE__)) . 'includes/data/class-tvc-ajax-calls.php';
-        require_once plugin_dir_path(dirname(__FILE__)) . 'includes/data/class-tvc-ajax-data.php';
         require_once plugin_dir_path(dirname(__FILE__)) . 'includes/data/class-tvc-ajax-file.php';
-        
-        require_once plugin_dir_path(dirname(__FILE__)) . 'includes/data/class-tvc-feed-crud-handler.php';
         require_once plugin_dir_path(dirname(__FILE__)) . 'includes/data/class-tvc-taxonomies.php';
         
         require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-tvc-register-scripts.php';
@@ -131,7 +126,11 @@ class Enhanced_Ecommerce_Google_Analytics {
 
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-enhanced-ecommerce-google-analytics-settings.php';
 
+        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-conversios-onboarding.php';
+        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/helper/class-onboarding-helper.php';
+
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-tvc-admin-auto-product-sync-helper.php';
+        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-survey.php';
         
 
         /**
@@ -139,7 +138,13 @@ class Enhanced_Ecommerce_Google_Analytics {
          * side of the site.
          */
 
-        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-enhanced-ecommerce-google-analytics-public.php';
+        $TVC_Admin_Helper = new TVC_Admin_Helper();
+        $plan_id = $TVC_Admin_Helper->get_plan_id();
+        if($plan_id == 1){
+            require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-enhanced-ecommerce-google-analytics-public.php';
+        }else{
+            require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-enhanced-ecommerce-google-analytics-public-pro.php';
+        }
         $this->loader = new Enhanced_Ecommerce_Google_Analytics_Loader();
 
     }
@@ -173,6 +178,9 @@ class Enhanced_Ecommerce_Google_Analytics {
         $this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
         $this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
         $this->loader->add_action( 'admin_notices', $plugin_admin, 'tvc_admin_notice' );
+        if ( is_admin() ) {
+            new TVC_Survey( "Enhanced ecommerce google analytics plugin for woocommerce", ENHANCAD_PLUGIN_NAME );
+        }
 
     }
 
@@ -185,6 +193,7 @@ class Enhanced_Ecommerce_Google_Analytics {
      */
     private function define_public_hooks() {
         $plugin_public = new Enhanced_Ecommerce_Google_Analytics_Public( $this->get_plugin_name(), $this->get_version() );
+       /* $this->loader->add_action("wp_head", $plugin_public, "enqueue_scripts");
         $this->loader->add_action("wp_head", $plugin_public, "ee_settings");
         $this->loader->add_action("wp_head", $plugin_public, "add_google_site_verification_tag",1);
 
@@ -205,7 +214,7 @@ class Enhanced_Ecommerce_Google_Analytics {
 
         //Add Dev ID
         $this->loader->add_action("wp_head", $plugin_public, "add_dev_id");
-        $this->loader->add_action("wp_footer",$plugin_public, "tvc_store_meta_data");
+        $this->loader->add_action("wp_footer",$plugin_public, "tvc_store_meta_data");*/
     }
 
     /**
@@ -263,11 +272,15 @@ class Enhanced_Ecommerce_Google_Analytics {
     }
 
     public function tvc_plugin_action_links($links) {
+        $deactivate_link = $links['deactivate'];
+        unset($links['deactivate']);
         $setting_url = 'admin.php?page=enhanced-ecommerce-google-analytics-admin-display&tab=general_settings';
         $links[] = '<a href="' . get_admin_url(null, $setting_url) . '">Settings</a>';
+        
         $links[] = '<a href="https://wordpress.org/plugins/enhanced-e-commerce-for-woocommerce-store/#faq" target="_blank">FAQ</a>';
-        $links[] = '<a href="http://plugins.tatvic.com/help-center/Installation-Manual.pdf" target="_blank">Documentation</a>';
-        $links[] = '<a href="https://1.envato.market/Yvn3R" target="_blank"><b>Upgrade to Premium</b></a>';
+        $links[] = '<a href="https://conversios.io/help-center/Installation-Manual.pdf" target="_blank">Documentation</a>';
+        $links[] = '<a href="https://conversios.io/pricings/?utm_source=EE+Plugin+User+Interface&utm_medium=Plugins+Listing+Page+Upgrade+to+Premium&utm_campaign=Upsell+at+Conversios" target="_blank"><b>Upgrade to Premium</b></a>';
+        $links['deactivate'] = $deactivate_link;
         return $links;
     }
 

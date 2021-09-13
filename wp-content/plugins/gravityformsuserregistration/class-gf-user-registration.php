@@ -262,7 +262,7 @@ class GF_User_Registration extends GFFeedAddOn {
 	 */
 	public function get_menu_icon() {
 
-		return file_get_contents( $this->get_base_path() . '/images/menu-icon.svg' );
+		return $this->is_gravityforms_supported( '2.5-beta-4' ) ? 'gform-icon--how-to-reg' : 'dashicons-admin-generic';
 
 	}
 
@@ -1829,10 +1829,10 @@ class GF_User_Registration extends GFFeedAddOn {
 
 	public function insert_buddypress_data( $bp_data ) {
 		if ( empty( $bp_data ) ) {
-			$this->log( 'aborting; no mapped fields.' );
-
 			return;
 		}
+
+		$this->log( 'Running.' );
 
 		global $wpdb, $bp;
 
@@ -1841,27 +1841,33 @@ class GF_User_Registration extends GFFeedAddOn {
 		}
 
 		foreach ( $bp_data as $item ) {
+			$this->log( 'Setting value for BP field: ' . $item['field_id'] );
 			$success = xprofile_set_field_data( $item['field_id'], $item['user_id'], $item['value'] );
-			xprofile_set_field_visibility_level( $item['field_id'], $item['user_id'], $item['field']->default_visibility );
-			$this->log( sprintf( 'BP field: %s; Result: %s', $item['field_id'], var_export( (bool) $success, 1 ) ) );
+			$this->log( 'Result: ' . var_export( (bool) $success, true ) );
+			$this->log( 'Setting visibility for BP field: ' . $item['field_id'] );
+			$success = xprofile_set_field_visibility_level( $item['field_id'], $item['user_id'], $item['field']->default_visibility );
+			$this->log( 'Result: ' . var_export( (bool) $success, true ) );
 		}
 
 	}
 
 	public function prepare_buddypress_data( $user_id, $feed, $entry ) {
-
+		$this->log( 'Running.' );
 		$bp_data = array();
 		$meta    = $this->get_buddypress_meta( $feed );
 
 		if ( empty( $meta ) ) {
+			$this->log( 'Aborting; no mapped fields.' );
 			return $bp_data;
 		}
 
 		$form = GFFormsModel::get_form_meta( $entry['form_id'] );
 
 		foreach ( $meta as $bp_field_id => $gf_field_id ) {
+			$this->log( sprintf( 'Processing BP field: %s; GF field: %s;', $bp_field_id, $gf_field_id ) );
 
 			if ( empty( $bp_field_id ) || empty( $gf_field_id ) ) {
+				$this->log( 'skipping; invalid mapping');
 				continue;
 			}
 
@@ -1912,7 +1918,7 @@ class GF_User_Registration extends GFFeedAddOn {
 				$meta_value = $this->get_meta_value( $bp_field_id, $meta, $form, $entry );
 			}
 
-			$this->log( sprintf( 'BP field: %s; GF field: %s; value: %s', $bp_field_id, $gf_field_id, print_r( $meta_value, 1 ) ) );
+			$this->log( 'Value: ' . var_export( $meta_value, true ) );
 
 			$item['value']       = $meta_value;
 			$item['last_update'] = date( 'Y-m-d H:i:s' );
@@ -4060,7 +4066,9 @@ class GF_User_Registration extends GFFeedAddOn {
 		}
 
 		foreach ( $dyn_meta as $meta_item ) {
-			list( $meta_key, $meta_value, $custom_meta_key ) = array_pad( array_values( $meta_item ), 3, false );
+			$meta_key        = rgar( $meta_item, 'key' );
+			$meta_value      = rgar( $meta_item, 'value' );
+			$custom_meta_key = rgar( $meta_item, 'custom_key' );
 			$meta_key          = $custom_meta_key ? $custom_meta_key : $meta_key;
 			$meta[ $meta_key ] = $meta_value;
 		}

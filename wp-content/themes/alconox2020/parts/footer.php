@@ -95,6 +95,37 @@
     </div>
 </div>
 
+<div class="alc-contest-wrapper">
+    <div class="alc-contest" style="display:<?php the_field('show_contest'); ?>">
+    <div id="close-contest" data-aos="fade-in" data-aos-duration="500">X</div>
+        <div class="cont-blurb" data-aos="fade-in" data-aos-duration="500" data-aos-delay="2000"> 
+        <a target="_blank" href="/75thanniversarygiveaway">You found me! Click me to win a prize.</a>
+        </div>
+        <a target="_blank" href="/75thanniversarygiveaway"><img src="<?php bloginfo('template_directory') ?>/img/Alconox_Mascot.gif"></a>
+    </div>
+</div>
+
+
+<?php if(is_page('17256')) { ?>
+<div class="sh-alert-modal <?php the_field('alert_modal'); ?>">
+<div class="modal fade" id="alertModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog alert alert-danger">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <?php the_field('alert_modal_text'); ?>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<?php } ?>
+
+
 
 <?php wp_footer(); ?>
 
@@ -161,7 +192,7 @@
 
 <!-- Simple Lightbox Init -->
 <script>
-    new SimpleLightbox({elements: '.prod-gallery a, .ba-img, .ab-gal'});
+    new SimpleLightbox({elements: '.prod-gallery a, .ba-img, .ab-gal, .tl-img'});
 </script>
 
 <script>
@@ -234,6 +265,21 @@ $('.close-policy').click(function(e) {
   $('.cookie-policy').fadeOut(); 
 });
 </script>
+
+<script>
+    $('#close-contest').click(function(e) {
+    $('.alc-contest-wrapper').fadeOut(); 
+    });
+</script>
+
+<script type="text/javascript">
+if($('.sh-alert-modal').hasClass('alert-show')) {
+    $(window).on('load', function() {
+        $('#alertModal').modal('show');
+    });
+};
+</script>
+
 
 </body>
 </html>

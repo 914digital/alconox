@@ -1,0 +1,211 @@
+09-13-2021 @ 10:42:17 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/utilities/ping
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.8)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.48482s
+
+09-13-2021 @ 10:42:17 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Mon, 13 Sep 2021 14:42:17 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 225
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0001562
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+    [x-correlation-id] => ee7f5bac-4b9a-439a-8c11-d01184e03a09
+    [x-avalara-uid] => ee7f5bac-4b9a-439a-8c11-d01184e03a09
+)
+body: {"version":"21.8.0","authenticated":true,"authenticationType":"AccountIdLicenseKey","authenticatedUserName":"anonymous@2000107471","authenticatedUserId":231879,"authenticatedAccountId":2000107471,"crmid":"0010b00002JHRLYAA5"}
+
+09-13-2021 @ 10:48:58 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/utilities/ping
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.8)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.41699s
+
+09-13-2021 @ 10:48:58 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Mon, 13 Sep 2021 14:48:57 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 225
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0002225
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+    [x-correlation-id] => 9da3e002-879a-4508-a657-695120164480
+    [x-avalara-uid] => 9da3e002-879a-4508-a657-695120164480
+)
+body: {"version":"21.8.0","authenticated":true,"authenticationType":"AccountIdLicenseKey","authenticatedUserName":"anonymous@2000107471","authenticatedUserId":231879,"authenticatedAccountId":2000107471,"crmid":"0010b00002JHRLYAA5"}
+
+09-13-2021 @ 10:52:29 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/companies
+user-agent: WooCommerce-AvaTax/1.13.2 (WooCommerce/5.6.0; WordPress/5.8.1)
+headers: Array
+(
+    [Authorization] => ******************************************
+    [content-type] => application/json
+    [accept] => application/json
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.47126s
+
+09-13-2021 @ 10:52:29 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Mon, 13 Sep 2021 14:52:29 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 536
+    [location] => /api/v2/companies/207925
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0062736
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+    [x-correlation-id] => 459586f3-edec-4ede-b92a-7bda494c89a9
+    [x-avalara-uid] => 459586f3-edec-4ede-b92a-7bda494c89a9
+)
+body: {"@recordsetCount":1,"value":[{"id":207925,"accountId":2000107471,"sstPid":"","companyCode":"ALC","name":"Alconox, Inc.","isDefault":true,"isActive":true,"taxpayerIdNumber":"13-5538131","IsFein":false,"hasProfile":true,"isReportingEntity":true,"defaultCountry":"US","baseCurrencyCode":"USD","roundingLevelId":"Line","warningsEnabled":false,"isTest":false,"taxDependencyLevelId":"Document","inProgress":false,"createdDate":"2018-12-21T19:07:11.35","createdUserId":80141,"modifiedDate":"2020-11-13T15:52:52.027","modifiedUserId":250478}]}
+
+09-13-2021 @ 10:54:18 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/utilities/ping
+user-agent: WooCommerce-AvaTax/1.13.2 (WooCommerce/5.6.0; WordPress/5.8.1)
+headers: Array
+(
+    [Authorization] => ******************************************
+    [content-type] => application/json
+    [accept] => application/json
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.41072s
+
+09-13-2021 @ 10:54:18 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Mon, 13 Sep 2021 14:54:18 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 225
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0001588
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+    [x-correlation-id] => 733fdc59-45bc-47f1-af98-4c1b9f188ee5
+    [x-avalara-uid] => 733fdc59-45bc-47f1-af98-4c1b9f188ee5
+)
+body: {"version":"21.8.0","authenticated":true,"authenticationType":"AccountIdLicenseKey","authenticatedUserName":"anonymous@2000107471","authenticatedUserId":231879,"authenticatedAccountId":2000107471,"crmid":"0010b00002JHRLYAA5"}
+
+09-13-2021 @ 11:14:21 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/utilities/ping
+user-agent: WooCommerce-AvaTax/1.13.2 (WooCommerce/5.6.0; WordPress/5.8.1)
+headers: Array
+(
+    [Authorization] => ******************************************
+    [content-type] => application/json
+    [accept] => application/json
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.55476s
+
+09-13-2021 @ 11:14:21 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Mon, 13 Sep 2021 15:14:21 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 225
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0001053
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+    [x-correlation-id] => 31b27d4b-b8d8-4a7c-8522-7fd91fbd1818
+    [x-avalara-uid] => 31b27d4b-b8d8-4a7c-8522-7fd91fbd1818
+)
+body: {"version":"21.8.0","authenticated":true,"authenticationType":"AccountIdLicenseKey","authenticatedUserName":"anonymous@2000107471","authenticatedUserId":231879,"authenticatedAccountId":2000107471,"crmid":"0010b00002JHRLYAA5"}
+
+09-13-2021 @ 11:55:46 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/utilities/ping
+user-agent: WooCommerce-AvaTax/1.13.2 (WooCommerce/5.6.0; WordPress/5.8.1)
+headers: Array
+(
+    [Authorization] => ******************************************
+    [content-type] => application/json
+    [accept] => application/json
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.50302s
+
+09-13-2021 @ 11:55:46 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Mon, 13 Sep 2021 15:55:46 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 225
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0001163
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+    [x-correlation-id] => 4592456e-d374-4536-bfbf-c1b0924e4166
+    [x-avalara-uid] => 4592456e-d374-4536-bfbf-c1b0924e4166
+)
+body: {"version":"21.8.0","authenticated":true,"authenticationType":"AccountIdLicenseKey","authenticatedUserName":"anonymous@2000107471","authenticatedUserId":231879,"authenticatedAccountId":2000107471,"crmid":"0010b00002JHRLYAA5"}
+

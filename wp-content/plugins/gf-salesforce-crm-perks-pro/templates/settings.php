@@ -78,11 +78,11 @@ display: inline;
   e.preventDefault();  
   var key=$(this).parents(".vx_tr").find(".crm_text"); 
   if($(this).hasClass('vx_hidden')){
-  $(this).text('<?php _e('Show Key','gravity-forms-salesforce-crm') ?>');  
+  $(this).text('<?php esc_html_e('Show Key','gravity-forms-salesforce-crm') ?>');  
   $(this).removeClass('vx_hidden');
   key.attr('type','password');  
   }else{
-  $(this).text('<?php _e('Hide Key','gravity-forms-salesforce-crm') ?>');  
+  $(this).text('<?php esc_html_e('Hide Key','gravity-forms-salesforce-crm') ?>');  
   $(this).addClass('vx_hidden');
   key.attr('type','text');  
   }
@@ -90,7 +90,7 @@ display: inline;
   });
   </script> 
  <div class="vx_wrap">
-  <h2  style="margin-bottom: 12px; line-height: 36px">  <img alt="<?php _e("Gravity Forms Salesforce Plugin Settings", 'gravity-forms-salesforce-crm') ?>" title="<?php _e("Gravity Forms Salesforce Plugin Settings", 'gravity-forms-salesforce-crm') ?>" src="<?php echo $this->get_base_url()?>images/salesforce-crm-logo.png?ver=1" style="float:left; margin:0 7px 10px 0;" height="46" /> <?php _e("Gravity Forms Salesforce Plugin Settings", 'gravity-forms-salesforce-crm'); ?>  </h2>
+  <h2  style="margin-bottom: 12px; line-height: 36px">  <img alt="<?php esc_html_e("Gravity Forms Salesforce Plugin Settings", 'gravity-forms-salesforce-crm') ?>" title="<?php esc_html_e("Gravity Forms Salesforce Plugin Settings", 'gravity-forms-salesforce-crm') ?>" src="<?php echo $this->get_base_url()?>images/salesforce-crm-logo.png?ver=1" style="float:left; margin:0 7px 10px 0;" height="46" /> <?php esc_html_e("Gravity Forms Salesforce Plugin Settings", 'gravity-forms-salesforce-crm'); ?>  </h2>
   <div class="clear"></div>
   <?php 
 
@@ -99,7 +99,7 @@ display: inline;
      if(isset($msg['class']) && $msg['class'] !=""){
           ?>
   <div class="fade below-h2 <?php echo $msg['class'] ?> notice is-dismissible">
-  <p><?php echo  $msg['msg']?></p>
+  <p><?php echo wp_kses_post($msg['msg'])?></p>
   </div>
   <?php
       }     }
@@ -109,17 +109,17 @@ display: inline;
   <?php wp_nonce_field("vx_nonce") ?>
   <h2><?php 
   if(empty($id)){
-  _e("Salesforce Account Information", 'gravity-forms-salesforce-crm');
+  esc_html_e("Salesforce Account Information", 'gravity-forms-salesforce-crm');
   }else{
-  _e("Salesforce Account #", 'gravity-forms-salesforce-crm'); echo $id;    
+  esc_html_e("Salesforce Account #", 'gravity-forms-salesforce-crm'); echo esc_html($id);    
   }
   if(empty($id) || $new_account_id != $id){
- ?> <a href="<?php echo $new_account ?>" class="add-new-h2" title="<?php _e('Add New Account','gravity-forms-salesforce-crm'); ?>"><?php _e('Add New Account','gravity-forms-salesforce-crm'); ?></a> 
+ ?> <a href="<?php echo esc_url($new_account) ?>" class="add-new-h2" title="<?php esc_html_e('Add New Account','gravity-forms-salesforce-crm'); ?>"><?php esc_html_e('Add New Account','gravity-forms-salesforce-crm'); ?></a> 
  <?php
 }
 if(!empty($id)){
  ?>
- <a href="<?php echo $page_link ?>" class="add-new-h2" title="<?php _e('Back to Accounts','gravity-forms-salesforce-crm'); ?>"> <?php _e('Back to Accounts','gravity-forms-salesforce-crm'); ?></a>
+ <a href="<?php echo esc_url($page_link) ?>" class="add-new-h2" title="<?php esc_html_e('Back to Accounts','gravity-forms-salesforce-crm'); ?>"> <?php esc_html_e('Back to Accounts','gravity-forms-salesforce-crm'); ?></a>
  <?php
 }
  ?>
@@ -137,48 +137,48 @@ if(!empty($id)){
     ?>
  <div>
   <div class="hr-divider" style="margin: -10px 0 24px 0"></div>
-<h3><?php _e('Optional Settings','gravity-forms-salesforce-crm');  ?></h3>
+<h3><?php esc_html_e('Optional Settings','gravity-forms-salesforce-crm');  ?></h3>
 
 <table class="form-table">
   <tr>
-  <th scope="row"><label for="vx_plugin_data"><?php _e("Plugin Data", 'gravity-forms-salesforce-crm'); ?></label>
+  <th scope="row"><label for="vx_plugin_data"><?php esc_html_e("Plugin Data", 'gravity-forms-salesforce-crm'); ?></label>
   </th>
   <td>
-<label for="vx_plugin_data"><input type="checkbox" name="meta[plugin_data]" value="yes" <?php if($this->post('plugin_data',$meta) == "yes"){echo 'checked="checked"';} ?> id="vx_plugin_data"><?php _e('On deleting this plugin remove all of its data','gravity-forms-salesforce-crm'); ?></label>
+<label for="vx_plugin_data"><input type="checkbox" name="meta[plugin_data]" value="yes" <?php if($this->post('plugin_data',$meta) == "yes"){echo 'checked="checked"';} ?> id="vx_plugin_data"><?php esc_html_e('On deleting this plugin remove all of its data','gravity-forms-salesforce-crm'); ?></label>
   </td>
   </tr>   
 
        <tr>
-  <th scope="row"><label for="vx_plugin_logs"><?php _e('Salesforce Logs', 'gravity-forms-salesforce-crm'); ?></label>
+  <th scope="row"><label for="vx_plugin_logs"><?php esc_html_e('Salesforce Logs', 'gravity-forms-salesforce-crm'); ?></label>
   </th>
   <td>
-<label for="vx_plugin_logs"><input type="checkbox" name="meta[disable_log]" value="yes" <?php if($this->post('disable_log',$meta) == "yes"){echo 'checked="checked"';} ?> id="vx_plugin_logs"><?php _e('Disable Storing Salesforce Logs','gravity-forms-salesforce-crm'); ?></label>
+<label for="vx_plugin_logs"><input type="checkbox" name="meta[disable_log]" value="yes" <?php if($this->post('disable_log',$meta) == "yes"){echo 'checked="checked"';} ?> id="vx_plugin_logs"><?php esc_html_e('Disable Storing Salesforce Logs','gravity-forms-salesforce-crm'); ?></label>
   </td>
   </tr>
   
 <tr>
-<th><label for="update_meta"><?php _e("Update Entry",'gravity-forms-salesforce-crm');  ?></label></th>
-<td><label for="update_meta"><input type="checkbox" id="update_meta" name="meta[update]" value="yes" <?php if($this->post('update',$meta) == "yes"){echo 'checked="checked"';} ?> ><?php _e("Update entry data in Salesforce when updated in Gravity Forms",'gravity-forms-salesforce-crm');  ?></label></td>
+<th><label for="update_meta"><?php esc_html_e("Update Entry",'gravity-forms-salesforce-crm');  ?></label></th>
+<td><label for="update_meta"><input type="checkbox" id="update_meta" name="meta[update]" value="yes" <?php if($this->post('update',$meta) == "yes"){echo 'checked="checked"';} ?> ><?php esc_html_e("Update entry data in Salesforce when updated in Gravity Forms",'gravity-forms-salesforce-crm');  ?></label></td>
 </tr>
 <tr>
-<th><label for="delete_meta"><?php _e("Delete Entry",'gravity-forms-salesforce-crm');  ?></label></th>
-<td><label for="delete_meta"><input type="checkbox" id="delete_meta" name="meta[delete]" value="yes" <?php if($this->post('delete',$meta) == "yes"){echo 'checked="checked"';} ?> ><?php _e("Delete entry data from Salesforce when deleted from Gravity Forms",'gravity-forms-salesforce-crm'); ?></label></td>
-</tr>
-
-<tr>
-<th><label for="restore_meta"><?php _e("Restore Entry",'gravity-forms-salesforce-crm');  ?></label></th>
-<td><label for="restore_meta"><input type="checkbox" id="restore_meta" name="meta[restore]" value="yes" <?php if($this->post('restore',$meta) == "yes"){echo 'checked="checked"';} ?> ><?php _e("Send entry data to Salesforce when restored in Gravity Forms",'gravity-forms-salesforce-crm'); ?></label></td>
+<th><label for="delete_meta"><?php esc_html_e("Delete Entry",'gravity-forms-salesforce-crm');  ?></label></th>
+<td><label for="delete_meta"><input type="checkbox" id="delete_meta" name="meta[delete]" value="yes" <?php if($this->post('delete',$meta) == "yes"){echo 'checked="checked"';} ?> ><?php esc_html_e("Delete entry data from Salesforce when deleted from Gravity Forms",'gravity-forms-salesforce-crm'); ?></label></td>
 </tr>
 
 <tr>
-<th><label for="notes_meta"><?php _e("Entry Notes",'gravity-forms-salesforce-crm');  ?></label></th>
-<td><label for="notes_meta"><input type="checkbox" id="notes_meta" name="meta[notes]" value="yes" <?php if($this->post('notes',$meta) == "yes"){echo 'checked="checked"';} ?> ><?php _e("Add / delete notes to Salesforce when added / deleted in Gravity Forms",'gravity-forms-salesforce-crm'); ?></label></td>
+<th><label for="restore_meta"><?php esc_html_e("Restore Entry",'gravity-forms-salesforce-crm');  ?></label></th>
+<td><label for="restore_meta"><input type="checkbox" id="restore_meta" name="meta[restore]" value="yes" <?php if($this->post('restore',$meta) == "yes"){echo 'checked="checked"';} ?> ><?php esc_html_e("Send entry data to Salesforce when restored in Gravity Forms",'gravity-forms-salesforce-crm'); ?></label></td>
+</tr>
+
+<tr>
+<th><label for="notes_meta"><?php esc_html_e("Entry Notes",'gravity-forms-salesforce-crm');  ?></label></th>
+<td><label for="notes_meta"><input type="checkbox" id="notes_meta" name="meta[notes]" value="yes" <?php if($this->post('notes',$meta) == "yes"){echo 'checked="checked"';} ?> ><?php esc_html_e("Add / delete notes to Salesforce when added / deleted in Gravity Forms",'gravity-forms-salesforce-crm'); ?></label></td>
 </tr>  
 
 
 </table>
  <p class="submit">
-   <button type="submit" value="save" class="button-primary" title="<?php _e('Save Changes','gravity-forms-salesforce-crm'); ?>" name="save"><?php _e('Save Changes','gravity-forms-salesforce-crm'); ?></button>
+   <button type="submit" value="save" class="button-primary" title="<?php esc_html_e('Save Changes','gravity-forms-salesforce-crm'); ?>" name="save"><?php esc_html_e('Save Changes','gravity-forms-salesforce-crm'); ?></button>
   <input type="hidden" name="vx_meta" value="1"> 
  </p>
 </div>
@@ -192,14 +192,14 @@ if(!empty($id)){
   <?php wp_nonce_field("vx_nonce") ?>
   <?php if(current_user_can($this->id."_uninstall")){ ?>
   <div class="hr-divider"  style="margin: -10px 0 24px 0"></div>
-  <h3><?php _e("Uninstall Salesforce Plugin", 'gravity-forms-salesforce-crm') ?></h3>
+  <h3><?php esc_html_e("Uninstall Salesforce Plugin", 'gravity-forms-salesforce-crm') ?></h3>
   <div class="delete-alert alert_red">
   <h3>
-  <?php _e('Warning', 'gravity-forms-salesforce-crm'); ?>
+  <?php esc_html_e('Warning', 'gravity-forms-salesforce-crm'); ?>
   </h3>
-  <p><?php _e("This operation deletes ALL Salesforce Feeds. ", 'gravity-forms-salesforce-crm') ?></p>
+  <p><?php esc_html_e("This operation deletes ALL Salesforce Feeds. ", 'gravity-forms-salesforce-crm') ?></p>
   <?php
-  $uninstall_button = '<input type="submit" name="'.$this->id.'_uninstall" title="'.__('Uninstall','gravity-forms-salesforce-crm').'" value="' . __("Uninstall Salesforce Plugin", 'gravity-forms-salesforce-crm') . '" class="button" onclick="return confirm(\'' .__('Warning! ALL Salesforce Feeds and Logs will be deleted. This cannot be undone. (OK) to delete, (Cancel) to stop', 'gravity-forms-salesforce-crm') . '\');"/>';
+  $uninstall_button = '<input type="submit" name="'.$this->id.'_uninstall" title="'.__('Uninstall','gravity-forms-salesforce-crm').'" value="' . esc_html__("Uninstall Salesforce Plugin", 'gravity-forms-salesforce-crm') . '" class="button" onclick="return confirm(\'' .__('Warning! ALL Salesforce Feeds and Logs will be deleted. This cannot be undone. (OK) to delete, (Cancel) to stop', 'gravity-forms-salesforce-crm') . '\');"/>';
   echo  $uninstall_button;
   ?>
   </div>
@@ -233,7 +233,7 @@ if(!empty($id)){
 
   $(document).on('click','#vx_revoke',function(e){
   
-  if(!confirm('<?php _e('Notification - Remove Connection?','gravity-forms-salesforce-crm'); ?>')){
+  if(!confirm('<?php esc_html_e('Notification - Remove Connection?','gravity-forms-salesforce-crm'); ?>')){
   e.preventDefault();   
   }
   })  

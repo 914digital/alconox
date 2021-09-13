@@ -17,6 +17,7 @@ class vxcf_addons{
 public function __construct(){ 
 global $pagenow;
 add_action("admin_menu",array($this,"admin_menu"),45); 
+add_action("admin_menu",array($this,"main_menu"),70); 
 add_filter('install_plugin_complete_actions', array($this, 'manage_addons_action'), 10, 2);
 add_filter('update_plugin_complete_actions', array($this, 'manage_addons_action'), 10, 2);
 add_filter( 'plugins_api', array( $this, 'plugin_info' ), 11, 3 );
@@ -57,19 +58,28 @@ public function show_addons_link(){
     $action=get_option('vx_addons_actions','');
 if(!empty($action) && !isset($_GET['action'])){
   ?>
-   <div class="updated notice is-dismissible"><p><?php echo sprintf(__('Go to %sCRM Perks%s Page to manage Add-ons','gravity-forms-salesforce-crm'),'<a href="'.$this->get_link('settings').'"><b>','</b></a>');?> </p>
+   <div class="updated notice is-dismissible"><p><?php echo sprintf(__('Go to %sCRM Perks%s Page to manage Add-ons','contact-form-entries'),'<a href="'.$this->get_link('settings').'"><b>','</b></a>');?> </p>
   </div>  
   <?php
   update_option('vx_addons_actions','',false);   
 }
 }
-public function admin_menu(){ 
-           $page_title =__('CRM Perks','gravity-forms-salesforce-crm');
-        $menu_title = __('CRM Perks','gravity-forms-salesforce-crm');
+public function main_menu(){
+               $page_title =__('CRM Perks','contact-form-entries');
+        $menu_title = esc_html__('CRM Perks','contact-form-entries');
         $capability = 'vx_crmperks_view_addons';
         $function   = array( $this, 'vx_addons');
-add_menu_page($page_title, $menu_title, $capability, $this->id,$function,'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxNy4wLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB3aWR0aD0iMjU2cHgiIGhlaWdodD0iMjk0LjUxM3B4IiB2aWV3Qm94PSIwIDAgMjU2IDI5NC41MTMiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDI1NiAyOTQuNTEzIiB4bWw6c3BhY2U9InByZXNlcnZlIj4NCjxwYXRoIGZpbGw9IiNGMkYyRjIiIGQ9Ik0yMzguMzQ1LDIxMS45MTJsLTExMS4xNjUsNjMuMjM0TDE2LjgzNSwyMTAuNDkxbDAuODIxLTEyNy44ODlsMTExLjE2NS02My4yMzRsMTEwLjM0NSw2NC42NTUNCglMMjM4LjM0NSwyMTEuOTEyeiBNMTc4LjYyMSwxODEuNTA3Yy0zLDEuMTQzLTQuOTY5LDIuMTk4LTguMDAxLDMuMTY0Yy0zLjAzMiwwLjk2OC01Ljg1OSwxLjgyNS04Ljk3NywyLjU3MQ0KCWMtMy4xMjEsMC43NDgtNi4xMTYsMS4zMTgtOS4yMzUsMS43MTRjLTMuMTIxLDAuMzk2LTYuMDI0LDAuNTkzLTguODM2LDAuNTkzYy01LjgwMSwwLTExLjA0My0wLjk0My0xNS43ODktMi44MzQNCgljLTQuNzQ2LTEuODg5LTguNzk3LTQuNjE0LTEyLjE3OS04LjE3NGMtMy4zODQtMy41Ni01Ljk5MS03Ljg4OC03LjgzNi0xMi45ODZjLTEuODQ2LTUuMDk2LTIuNzY1LTEwLjg1NC0yLjc2NS0xNy4yNzENCgljMC02LjE1MSwwLjg1OS0xMS43OTksMi41NzMtMTYuOTQxczQuMTk3LTkuNTEzLDcuNDUtMTMuMTE4YzMuMjUtMy42MDMsNy4yNTEtNi40MTUsMTEuOTk4LTguNDM4DQoJYzQuNzQ2LTIuMDIxLDEwLjEwNi0zLjAzMiwxNi4wODQtMy4wMzJjNS43MTIsMCwxMS4wODEsMC43NDgsMTcuNDU1LDIuMjQxYzYuMzcyLDEuNDk2LDExLjA1OSwzLjYwNSwxNy4wNTksNi4zMjhWODQuMDgNCgljLTUtMS40MDUtOS40MTMtMi41NzEtMTUuMzQ1LTMuNDk0cy0xMi45MTMtMS4zODQtMjEuNjE0LTEuMzg0Yy0xMC42MzUsMC0yMC4xMTQsMS42Ny0yOC43Nyw1LjAxDQoJYy04LjY1OCwzLjM0MS0xNS45NzksOC4wODctMjIuMTMsMTQuMjM4Yy02LjE1Myw2LjE1My0xMC44OCwxMy41NzktMTQuMjYyLDIyLjI4Yy0zLjM4NCw4LjcwMS01LjA1NSwxOC40MTQtNS4wNTUsMjkuMTM2DQoJYzAsMTEuMDc0LDEuNTcsMjAuODMsNC42OTEsMjkuMjY4YzMuMTE5LDguNDM4LDcuNjI5LDE1LjUxMywxMy41MTgsMjEuMjI2YzUuODg3LDUuNzE0LDEzLjA1NCwxMC4wMiwyMS40OTIsMTIuOTINCglzMTcuOTc0LDQuMzUxLDI4LjYxLDQuMzUxYzcuMzgzLDAsMTMuOTU1LTAuNjE2LDIwLjcyNC0xLjg0NmM2Ljc2Ny0xLjIzLDEyLjE0Mi0zLjExOSwxOS4xNDItNS42NjlWMTgxLjUwN3oiLz4NCjwvc3ZnPg0K');
-       $menu_title = __('Manage Add-ons','gravity-forms-salesforce-crm');
+     
+add_menu_page($page_title, $menu_title, $capability, $this->id,$function,'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxNy4wLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB3aWR0aD0iMjU2cHgiIGhlaWdodD0iMjk0LjUxM3B4IiB2aWV3Qm94PSIwIDAgMjU2IDI5NC41MTMiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDI1NiAyOTQuNTEzIiB4bWw6c3BhY2U9InByZXNlcnZlIj4NCjxwYXRoIGZpbGw9IiNGMkYyRjIiIGQ9Ik0yMzguMzQ1LDIxMS45MTJsLTExMS4xNjUsNjMuMjM0TDE2LjgzNSwyMTAuNDkxbDAuODIxLTEyNy44ODlsMTExLjE2NS02My4yMzRsMTEwLjM0NSw2NC42NTUNCglMMjM4LjM0NSwyMTEuOTEyeiBNMTc4LjYyMSwxODEuNTA3Yy0zLDEuMTQzLTQuOTY5LDIuMTk4LTguMDAxLDMuMTY0Yy0zLjAzMiwwLjk2OC01Ljg1OSwxLjgyNS04Ljk3NywyLjU3MQ0KCWMtMy4xMjEsMC43NDgtNi4xMTYsMS4zMTgtOS4yMzUsMS43MTRjLTMuMTIxLDAuMzk2LTYuMDI0LDAuNTkzLTguODM2LDAuNTkzYy01LjgwMSwwLTExLjA0My0wLjk0My0xNS43ODktMi44MzQNCgljLTQuNzQ2LTEuODg5LTguNzk3LTQuNjE0LTEyLjE3OS04LjE3NGMtMy4zODQtMy41Ni01Ljk5MS03Ljg4OC03LjgzNi0xMi45ODZjLTEuODQ2LTUuMDk2LTIuNzY1LTEwLjg1NC0yLjc2NS0xNy4yNzENCgljMC02LjE1MSwwLjg1OS0xMS43OTksMi41NzMtMTYuOTQxczQuMTk3LTkuNTEzLDcuNDUtMTMuMTE4YzMuMjUtMy42MDMsNy4yNTEtNi40MTUsMTEuOTk4LTguNDM4DQoJYzQuNzQ2LTIuMDIxLDEwLjEwNi0zLjAzMiwxNi4wODQtMy4wMzJjNS43MTIsMCwxMS4wODEsMC43NDgsMTcuNDU1LDIuMjQxYzYuMzcyLDEuNDk2LDExLjA1OSwzLjYwNSwxNy4wNTksNi4zMjhWODQuMDgNCgljLTUtMS40MDUtOS40MTMtMi41NzEtMTUuMzQ1LTMuNDk0cy0xMi45MTMtMS4zODQtMjEuNjE0LTEuMzg0Yy0xMC42MzUsMC0yMC4xMTQsMS42Ny0yOC43Nyw1LjAxDQoJYy04LjY1OCwzLjM0MS0xNS45NzksOC4wODctMjIuMTMsMTQuMjM4Yy02LjE1Myw2LjE1My0xMC44OCwxMy41NzktMTQuMjYyLDIyLjI4Yy0zLjM4NCw4LjcwMS01LjA1NSwxOC40MTQtNS4wNTUsMjkuMTM2DQoJYzAsMTEuMDc0LDEuNTcsMjAuODMsNC42OTEsMjkuMjY4YzMuMTE5LDguNDM4LDcuNjI5LDE1LjUxMywxMy41MTgsMjEuMjI2YzUuODg3LDUuNzE0LDEzLjA1NCwxMC4wMiwyMS40OTIsMTIuOTINCglzMTcuOTc0LDQuMzUxLDI4LjYxLDQuMzUxYzcuMzgzLDAsMTMuOTU1LTAuNjE2LDIwLjcyNC0xLjg0NmM2Ljc2Ny0xLjIzLDEyLjE0Mi0zLjExOSwxOS4xNDItNS42NjlWMTgxLjUwN3oiLz4NCjwvc3ZnPg0K',999);
+
+} 
+public function admin_menu(){ 
+           $page_title =__('CRM Perks','contact-form-entries');
+        $menu_title = esc_html__('CRM Perks','contact-form-entries');
+        $capability = 'vx_crmperks_view_addons';
+        $function   = array( $this, 'vx_addons');
+//add_menu_page($page_title, $menu_title, $capability, $this->id,$function,'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxNy4wLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB3aWR0aD0iMjU2cHgiIGhlaWdodD0iMjk0LjUxM3B4IiB2aWV3Qm94PSIwIDAgMjU2IDI5NC41MTMiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDI1NiAyOTQuNTEzIiB4bWw6c3BhY2U9InByZXNlcnZlIj4NCjxwYXRoIGZpbGw9IiNGMkYyRjIiIGQ9Ik0yMzguMzQ1LDIxMS45MTJsLTExMS4xNjUsNjMuMjM0TDE2LjgzNSwyMTAuNDkxbDAuODIxLTEyNy44ODlsMTExLjE2NS02My4yMzRsMTEwLjM0NSw2NC42NTUNCglMMjM4LjM0NSwyMTEuOTEyeiBNMTc4LjYyMSwxODEuNTA3Yy0zLDEuMTQzLTQuOTY5LDIuMTk4LTguMDAxLDMuMTY0Yy0zLjAzMiwwLjk2OC01Ljg1OSwxLjgyNS04Ljk3NywyLjU3MQ0KCWMtMy4xMjEsMC43NDgtNi4xMTYsMS4zMTgtOS4yMzUsMS43MTRjLTMuMTIxLDAuMzk2LTYuMDI0LDAuNTkzLTguODM2LDAuNTkzYy01LjgwMSwwLTExLjA0My0wLjk0My0xNS43ODktMi44MzQNCgljLTQuNzQ2LTEuODg5LTguNzk3LTQuNjE0LTEyLjE3OS04LjE3NGMtMy4zODQtMy41Ni01Ljk5MS03Ljg4OC03LjgzNi0xMi45ODZjLTEuODQ2LTUuMDk2LTIuNzY1LTEwLjg1NC0yLjc2NS0xNy4yNzENCgljMC02LjE1MSwwLjg1OS0xMS43OTksMi41NzMtMTYuOTQxczQuMTk3LTkuNTEzLDcuNDUtMTMuMTE4YzMuMjUtMy42MDMsNy4yNTEtNi40MTUsMTEuOTk4LTguNDM4DQoJYzQuNzQ2LTIuMDIxLDEwLjEwNi0zLjAzMiwxNi4wODQtMy4wMzJjNS43MTIsMCwxMS4wODEsMC43NDgsMTcuNDU1LDIuMjQxYzYuMzcyLDEuNDk2LDExLjA1OSwzLjYwNSwxNy4wNTksNi4zMjhWODQuMDgNCgljLTUtMS40MDUtOS40MTMtMi41NzEtMTUuMzQ1LTMuNDk0cy0xMi45MTMtMS4zODQtMjEuNjE0LTEuMzg0Yy0xMC42MzUsMC0yMC4xMTQsMS42Ny0yOC43Nyw1LjAxDQoJYy04LjY1OCwzLjM0MS0xNS45NzksOC4wODctMjIuMTMsMTQuMjM4Yy02LjE1Myw2LjE1My0xMC44OCwxMy41NzktMTQuMjYyLDIyLjI4Yy0zLjM4NCw4LjcwMS01LjA1NSwxOC40MTQtNS4wNTUsMjkuMTM2DQoJYzAsMTEuMDc0LDEuNTcsMjAuODMsNC42OTEsMjkuMjY4YzMuMTE5LDguNDM4LDcuNjI5LDE1LjUxMywxMy41MTgsMjEuMjI2YzUuODg3LDUuNzE0LDEzLjA1NCwxMC4wMiwyMS40OTIsMTIuOTINCglzMTcuOTc0LDQuMzUxLDI4LjYxLDQuMzUxYzcuMzgzLDAsMTMuOTU1LTAuNjE2LDIwLjcyNC0xLjg0NmM2Ljc2Ny0xLjIzLDEyLjE0Mi0zLjExOSwxOS4xNDItNS42NjlWMTgxLjUwN3oiLz4NCjwvc3ZnPg0K');
+       $menu_title = esc_html__('Manage Add-ons','contact-form-entries');
 add_submenu_page($this->id,$menu_title,$menu_title,$capability,$this->id,$function);
 
 }
@@ -106,7 +116,7 @@ $plugin_url=self::$url;
 if(!empty($domain)){
 $plugin_url.='?vx_product='.$domain;  
 }
-$url=self::get_base_url();
+$url=self::get_base_url(); 
 ?>
 <style type="text/css">
     .vx_row{
@@ -528,7 +538,7 @@ $access=self::addons_key();
      var button=$(this);
      var text=button.text();
      button.attr('disabled','disabled');
-     button.text('<?php _e('Wait...','gravity-forms-salesforce-crm') ?>');
+     button.text('<?php esc_html_e('Wait...','contact-form-entries') ?>');
      var box=button.parents(".vx_box");
      var url=button.attr('href');
      $.post(ajaxurl,{action:'vx_manage_addons',vx_nonce:'<?php echo wp_create_nonce('vx_nonce'); ?>',url:url},function(res){
@@ -545,8 +555,8 @@ $access=self::addons_key();
   })
   </script>
   <div class="wrap" data-class="<?php echo $this->id ?>"> 
-     <h2><?php _e('Manage Add-ons','gravity-forms-salesforce-crm'); ?></h2>
-  <p><?php _e('You can activate, deactivate and delete add-ons here.','gravity-forms-salesforce-crm'); ?> </p>
+     <h2><?php esc_html_e('Manage Add-ons','contact-form-entries'); ?></h2>
+  <p><?php esc_html_e('You can activate, deactivate and delete add-ons here.','contact-form-entries'); ?> </p>
   <?php
       if(!empty($addons['cats'])){
   ?>
@@ -576,7 +586,7 @@ $status=$this->plugin_status($plugin['class'],$slug);
 }else{
  $refresh=admin_url( 'admin.php?page='.$this->id."&vx_action=get_addons");   
     ?>
-<div style="text-align: center; padding-top: 50px;">  <form method="post"><button name="vx_action" class="button button-hero" value="get_addons"><?php _e('Refresh Add-ons List','gravity-forms-salesforce-crm') ?></button></form>
+<div style="text-align: center; padding-top: 50px;">  <form method="post"><button name="vx_action" class="button button-hero" value="get_addons"><?php esc_html_e('Refresh Add-ons List','contact-form-entries') ?></button></form>
   
 </div>
     <?php
@@ -616,7 +626,6 @@ public function check_updates($refresh=false){
       
   $update =$this->get_updates();  
   $time=current_time('timestamp',1);   
-
   if(!$refresh){
       
   $last_check=(int)$this->post('time',$update);
@@ -664,12 +673,13 @@ $user_key=self::addons_key();
   $updates['addons']=$addons;
   $this->plugin_update=$addons;
   update_option('cfx_plugin_updates',$updates,false);
-  }    
+  } 
+   
   return  is_array($update) ? $update : array();   
   }
 
 public function addon_box($plugin,$status,$install_addon){
-    $status_msg=array(__('Not Installed','gravity-forms-salesforce-crm'),__('Active','gravity-forms-salesforce-crm'),__('Disabled','gravity-forms-salesforce-crm'));
+    $status_msg=array(__('Not Installed','contact-form-entries'),__('Active','contact-form-entries'),__('Disabled','contact-form-entries'));
     if(!empty($plugin['banners']['low'])){
     ?>
     <img src="<?php echo $plugin['banners']['low']; ?>" class="vx_addon_img" />
@@ -680,19 +690,19 @@ public function addon_box($plugin,$status,$install_addon){
          if(isset($addon['class']) && !class_exists($addon['class'])){
        
   ?>
-  <div class="vx_alert"><?php echo sprintf(__('This Plugin requires %s plugin','gravity-forms-salesforce-crm'),"<i>".$addon['name']."</i>") ?></div>
+  <div class="vx_alert"><?php echo sprintf(__('This Plugin requires %s plugin','contact-form-entries'),"<i>".$addon['name']."</i>") ?></div>
   <?php
       }}
            $new_version=false; $addon_version=self::addon_ver($plugin['class']);
 if($status == 1 && !empty($addon_version) && version_compare($addon_version,$plugin['version'],"<") ){
      $new_version=true;      
   ?>
-  <div class="vx_alert"><?php echo sprintf(__('New Version %s is available.','gravity-forms-salesforce-crm'),"<i>".$plugin['version']."</i>") ?></div>
+  <div class="vx_alert"><?php echo sprintf(__('New Version %s is available.','contact-form-entries'),"<i>".$plugin['version']."</i>") ?></div>
   <?php
  }
   ?>
   <div class="vx_box_head"><?php echo $plugin['name'] ?></div>
-  <div class="vx_box_info"><?php _e('Updated :','gravity-forms-salesforce-crm'); ?> <i><?php echo $plugin['last_updated'] ?></i> &nbsp;&nbsp;&nbsp; <?php _e('Version :','gravity-forms-salesforce-crm'); ?>  <i><?php echo $plugin['version'] ?></i></div>
+  <div class="vx_box_info"><?php esc_html_e('Updated :','contact-form-entries'); ?> <i><?php echo $plugin['last_updated'] ?></i> &nbsp;&nbsp;&nbsp; <?php esc_html_e('Version :','contact-form-entries'); ?>  <i><?php echo $plugin['version'] ?></i></div>
   <div class="vx_box_contents">
   <div class="vx_box_desc"><?php echo $plugin['sections']['Description'] ?></div>
   <div class="vx_box_status vx_color<?php echo $status ?>"><?php echo $status_msg[$status]; ?></div>
@@ -703,20 +713,20 @@ if($status == 1 && !empty($addon_version) && version_compare($addon_version,$plu
       if($status== 0 && $install_addon){
       $install=$this->get_link('install',$plugin['plugin']);    
   ?>
-  <a href="<?php echo $install ?>" class="button button-primary"><?php _e('Install','gravity-forms-salesforce-crm'); ?></a>
+  <a href="<?php echo $install ?>" class="button button-primary"><?php esc_html_e('Install','contact-form-entries'); ?></a>
   <?php
       }else  if($status== 2 && $install_addon ){
       $activate=$this->get_link('activate',$plugin['plugin']);
       $delete=$this->get_link('delete',$plugin['plugin']);         
   ?>
-    <a href="<?php echo $activate ?>" class="button button-primary vx_box_footer_link"><?php _e('Activate','gravity-forms-salesforce-crm'); ?></a>
-     <a href="<?php echo $delete ?>" class="button"><?php _e("Delete",'gravity-forms-salesforce-crm'); ?></a> 
+    <a href="<?php echo $activate ?>" class="button button-primary vx_box_footer_link"><?php esc_html_e('Activate','contact-form-entries'); ?></a>
+     <a href="<?php echo $delete ?>" class="button"><?php esc_html_e("Delete",'contact-form-entries'); ?></a> 
   <?php
       }else if($status== 1 ){ 
 if($install_addon){
  $deactivate=$this->get_link('deactivate',$plugin['plugin']);  
   ?>
-    <a href="<?php echo  $deactivate ?>" class="button button-primary vx_box_footer_link"><?php _e("Deactivate",'gravity-forms-salesforce-crm'); ?></a>
+    <a href="<?php echo  $deactivate ?>" class="button button-primary vx_box_footer_link"><?php esc_html_e("Deactivate",'contact-form-entries'); ?></a>
   <?php
   }
   global ${$plugin['class']};
@@ -728,14 +738,14 @@ if(!is_object($cl) && class_exists($plugin['class'])){
     $page_name=$cl->page;
  $settings_link=admin_url('admin.php?page='.$cl->page);
   ?>
-      <a href="<?php echo  $settings_link ?>" class="button button-secondary"><?php _e("Go to Settings",'gravity-forms-salesforce-crm'); ?></a>   
+      <a href="<?php echo  $settings_link ?>" class="button button-secondary"><?php esc_html_e("Go to Settings",'contact-form-entries'); ?></a>   
      <?php
  }
       }
 if($new_version && $install_addon){
 $install=$this->get_link('upgrade',$plugin['plugin']);    
 ?>
-<a href="<?php echo $install ?>" class="button button-primary"><?php _e('Upgrade','gravity-forms-salesforce-crm'); ?></a>
+<a href="<?php echo $install ?>" class="button button-primary"><?php esc_html_e('Upgrade','contact-form-entries'); ?></a>
     <?php 
    } 
   ?>
@@ -775,8 +785,9 @@ public function add_plugins_info($update){
       foreach($addons as $k=>$v){ 
      if(isset($v['class']) && class_exists($v['class'])){ 
          $installed_version=self::addon_ver($v['class']);
-     if(!isset($update->response[$v['plugin']]))
+     if(is_object($update) && !isset($update->response[$v['plugin']])){
   $update->response[$v['plugin']] = new stdClass();
+     }
   if (version_compare($v['version'], $installed_version, '>') ){ 
 unset($v['sections']);
       $update->response[$v['plugin']] = (object) $v;
@@ -894,7 +905,7 @@ public function manage_addons_action( $actions, $plugin_file ) {
         $action=$this->post('action');
         $plugin=$this->post('plugin');
         if(in_array($action,array('install-plugin','upgrade-plugin')) && $this->is_addon){
-            $actions['plugins_page'] = '<a href="'.$this->get_link('settings').'">' . __('Back to CRM Perks Page', 'gravity-forms-salesforce-crm') . '</a>';      
+            $actions['plugins_page'] = '<a href="'.$this->get_link('settings').'">' . esc_html__('Back to CRM Perks Page', 'contact-form-entries') . '</a>';      
         }
 
         return $actions;
@@ -941,17 +952,17 @@ public function get_link($type, $plugin_file="") {
     
 public function manage_addons_ajax() {
     if(!current_user_can("vx_crmperks_edit_addons")){
-    die(json_encode(array("status"=>"error","msg"=>__('Access Denied', 'gravity-forms-salesforce-crm'))));
+    die(json_encode(array("status"=>"error","msg"=>__('Access Denied', 'contact-form-entries'))));
   }
 check_ajax_referer("vx_nonce","vx_nonce"); 
         $request = parse_url($this->post('url'));
         parse_str($this->post('query',$request), $request);
       $error="";  
   //   if ( ! current_user_can('activate_plugins') )
-  //   $error=__('You do not have sufficient permissions to manage plugins for this site.', 'gravity-forms-salesforce-crm');
+  //   $error=__('You do not have sufficient permissions to manage plugins for this site.', 'contact-form-entries');
         
         if(empty($request)) {
-        $error=__('Add-on name not specified.', 'gravity-forms-salesforce-crm');
+        $error=__('Add-on name not specified.', 'contact-form-entries');
         }
   if(!empty($error)){
         $res=array("status"=>"error","msg"=>$error);
@@ -1002,7 +1013,7 @@ check_ajax_referer("vx_nonce","vx_nonce");
 
                 $result = delete_plugins( array( $plugin ) );
 if(!$result){
-    $error= __('ERROR', 'gravity-forms-salesforce-crm');
+    $error= esc_html__('ERROR', 'contact-form-entries');
 }
                 break;
         }
@@ -1011,7 +1022,7 @@ if(!$result){
     $p_arr=explode("/",$plugin); 
     ///  var_dump($plugins,$plugin); die();
       if(!isset($plugins[$p_arr[0]]['class'])){
-          $error= __('Plugin Not Found', 'gravity-forms-salesforce-crm'); 
+          $error= esc_html__('Plugin Not Found', 'contact-form-entries'); 
       }
  
     if(!empty($error)){

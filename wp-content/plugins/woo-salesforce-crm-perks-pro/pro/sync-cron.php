@@ -199,7 +199,7 @@ $items=$created=$mod=array();
 $query='/services/data/'.$api->api_version.'/query?q='.urlencode($q);
 $sales_response=$api->post_sales_arr($query,"get");
 ///echo $q.'---<hr>'.json_encode($sales_response); //die();
-//echo $q.'<hr>'.json_encode($sales_response['records']); // die();
+//echo $q.'<hr>'.json_encode($sales_response['records']); var_dump($sales_response); // die();
 ///
 if(!empty($sales_response['records'])){
 foreach($sales_response['records'] as $v){
@@ -640,19 +640,30 @@ $time=current_time( 'timestamp' );
 
 if(!empty($_POST['crm'])){
  $meta=$this->post('crm');
-$after=strtotime($meta['after']);
+ 
+$offset= get_option('gmt_offset');
+ $after=strtotime($meta['after']);
  if(!empty($after)){
- $offset= get_option('gmt_offset');
  $meta['after']=$after-($offset*3600);
 }
+
+   $crons=array('60'=>'every_minute','300'=>'5min','900'=>'15min','1800'=>'30min','3600'=>'hourly','43200'=>'twicedaily','86400'=>'daily','604800'=>'weekly','18144000'=>'monthly');
+   wp_clear_scheduled_hook( 'vxc_sales_item_cron' ); 
+   if(!empty($meta['sync_items']) || !empty($meta['sync_stock'])  ){
+     $cronn=$meta['item_cron'];
+      if (! wp_next_scheduled ( 'vxc_sales_item_cron') && !empty($crons[$cronn])) {
+        wp_schedule_event( time(), $crons[$cronn], 'vxc_sales_item_cron' ); 
+    }  
+   }
 //$cron=array();
-$cron=$this->set_item_cron($meta,$cron);
+//$cron=$this->set_item_cron($meta,$cron);
 // $meta=array_merge($meta,$post);
  update_option('vxcf_sales_cron',$meta);
-  update_option('vxcf_sales_cron_status',$cron);
-// $meta=get_option('vxcf_sales_cron',array());
-// $cron=get_option('vxcf_sales_cron_status',array());
+//  update_option('vxcf_zoho_cron_status',$cron);
+// $meta=get_option('vxcf_zoho_cron',array());
+// $cron=get_option('vxcf_zoho_cron_status',array());
 }
+
 
  // var_dump($cron);    
       global $wpdb;
@@ -730,7 +741,7 @@ $(document).on("click",".vx_refresh_data",function(e){
 });
    add_sel2();  
 function add_sel2(){
-jQuery('.vx_item_fields').select2({ placeholder: '<?php _e('Select Item Field','woocommerce-sales-crm') ?>'});
+jQuery('.vx_item_fields').select2({ placeholder: '<?php _e('Select Item Field','woocommerce-sales-crm') ?>',allowClear: true});
 jQuery('#crm_sel_attr').select2({ placeholder: '<?php _e('Select Attributes','woocommerce-sales-crm') ?>'});
 jQuery('#crm_sel_book').select2({ placeholder: '<?php _e('Select Price Book','woocommerce-sales-crm') ?>'});
 jQuery('#crm_sel_cats').select2({ placeholder: '<?php _e('Select categories','woocommerce-sales-crm') ?>'});
@@ -884,7 +895,7 @@ $after=date('d-M-Y H:i:s',$meta['after']+($offset*3600));
 <td>  <select id="vx_item_cron" name="crm[item_cron]" style="width: 100%">
   <?php
   $cron=!empty($meta['item_cron']) ? $meta['item_cron'] : '3600';
-  $cache=array("60"=>"One Minute (for testing only)","300"=>"5 Minutes","600"=>"10 Minutes","1200"=>"20 Minutes","1800"=>"30 Minutes","3600"=>"One Hour","10800"=>"Three Hour","21600"=>"Six Hours","43200"=>"12 Hours","86400"=>"One Day","172800"=>"2 Days","259200"=>"3 Days","432000"=>"5 Days","604800"=>"7 Days","18144000"=>"1 Month");
+  $cache=array("60"=>"One Minute (for testing only)","300"=>"5 Minutes","900"=>"15 Minutes","1800"=>"30 Minutes","3600"=>"One Hour","43200"=>"12 Hours","86400"=>"One Day","604800"=>"7 Days","18144000"=>"1 Month");
 
   foreach($cache as $secs=>$label){
    $sel="";
@@ -975,8 +986,8 @@ $after=date('d-M-Y H:i:s',$meta['after']+($offset*3600));
 <th><label><?php _e('Product Title','woocommerce-sales-crm'); ?></label></th>
 <td>
 <select  name="crm[item_title]" class="vx_item_fields" style="width: 99%">
+<option value=""></option>
   <?php 
-
   foreach($fields as $k=>$v){
    $sel="";
    if(isset($meta['item_title']) && $meta['item_title'] == $k){
@@ -992,6 +1003,7 @@ $after=date('d-M-Y H:i:s',$meta['after']+($offset*3600));
 <th><label><?php _e('Product Description','woocommerce-sales-crm'); ?></label></th>
 <td>
 <select  name="crm[item_desc]" class="vx_item_fields" style="width: 99%">
+<option value=""></option>
   <?php
 
   foreach($fields as $k=>$v){
@@ -1010,6 +1022,7 @@ $after=date('d-M-Y H:i:s',$meta['after']+($offset*3600));
 <th><label><?php _e('Short Description','woocommerce-sales-crm'); ?></label></th>
 <td>
 <select  name="crm[item_short]" class="vx_item_fields" style="width: 99%">
+<option value=""></option>
   <?php
 
   foreach($fields as $k=>$v){
@@ -1027,6 +1040,7 @@ $after=date('d-M-Y H:i:s',$meta['after']+($offset*3600));
 <th><label><?php _e('Product SKU','woocommerce-sales-crm'); ?></label></th>
 <td>
 <select  name="crm[item_sku]" class="vx_item_fields" style="width: 99%">
+<option value=""></option>
   <?php
   foreach($fields as $k=>$v){
    $sel="";
@@ -1043,6 +1057,7 @@ $after=date('d-M-Y H:i:s',$meta['after']+($offset*3600));
 <th><label><?php _e('Product Image','woocommerce-sales-crm'); ?></label></th>
 <td>
 <select  name="crm[item_img]" class="vx_item_fields" style="width: 99%">
+<option value=""></option>
   <?php
   foreach($fields as $k=>$v){
    $sel="";
@@ -1062,6 +1077,7 @@ $after=date('d-M-Y H:i:s',$meta['after']+($offset*3600));
   <div class="vx_tr" >
   <div class="vx_td">
 <select class="vx_sel2" id="crm_sel_book" name="crm[price]"  style="width: 99%">
+<option value=""></option>
 <?php
 if(!empty($meta_info['price_books'])){
   foreach($meta_info['price_books'] as $k=>$v){

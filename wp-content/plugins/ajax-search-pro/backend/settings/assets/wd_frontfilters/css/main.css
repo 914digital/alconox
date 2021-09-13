@@ -186,6 +186,10 @@
     margin-right: 0;
 }
 
+/* Elementor and other garbage messages injected after h1 */
+#wd_frontfilters_new_filter h1 + div:not(.wd_frontfilters_new_filter) {
+    display: none !important;
+}
 
 #wd_frontfilters_new_filter,
 #wd_frontfilters_modules {

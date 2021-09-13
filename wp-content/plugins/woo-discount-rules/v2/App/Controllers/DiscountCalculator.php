@@ -462,42 +462,43 @@ class DiscountCalculator extends Base
                         } else {
                             $product_price = $custom_price;
                         }
-
-                        if ($rule->isFilterPassed($product) || $rule->rule->discount_type == 'wdr_free_shipping') {
-                            if ($rule->hasConditions()) {
-                                if ($rule->isCartConditionsPassed($cart)) {
+                        if(apply_filters('advanced_woo_discount_rules_calculate_discount_for_cart_item', true, $cart_item)){
+                            if ($rule->isFilterPassed($product) || $rule->rule->discount_type == 'wdr_free_shipping') {
+                                if ($rule->hasConditions()) {
+                                    if ($rule->isCartConditionsPassed($cart)) {
+                                        $rule_passed = true;
+                                    }
+                                } else {
                                     $rule_passed = true;
                                 }
-                            } else {
-                                $rule_passed = true;
-                            }
-                            if($rule_passed){
-                                if($rule->rule->discount_type == 'wdr_free_shipping'){
-                                    $has_exclusive_rule = true;
-                                } else {
-                                    if(!in_array($rule->rule->discount_type, array('wdr_buy_x_get_x_discount', 'wdr_set_discount'))){
-                                        if ($discounted_price = $rule->calculateDiscount($product_price, $quantity, $product, $ajax_price, $cart_item, $price_display_condition, $is_cart, $manual_request)) {
-                                            $has_exclusive_rule = true;
+                                if($rule_passed){
+                                    if($rule->rule->discount_type == 'wdr_free_shipping'){
+                                        $has_exclusive_rule = true;
+                                    } else {
+                                        if(!in_array($rule->rule->discount_type, array('wdr_buy_x_get_x_discount', 'wdr_set_discount'))){
+                                            if ($discounted_price = $rule->calculateDiscount($product_price, $quantity, $product, $ajax_price, $cart_item, $price_display_condition, $is_cart, $manual_request)) {
+                                                $has_exclusive_rule = true;
+                                            } else {
+                                                $rule_passed = apply_filters('advanced_woo_discount_rules_is_rule_passed_with_out_discount_for_exclusive_rule', false, $product, $rule, $cart_item);
+                                                if($rule_passed){
+                                                    $has_exclusive_rule = true;
+                                                }
+                                            }
                                         } else {
                                             $rule_passed = apply_filters('advanced_woo_discount_rules_is_rule_passed_with_out_discount_for_exclusive_rule', false, $product, $rule, $cart_item);
                                             if($rule_passed){
                                                 $has_exclusive_rule = true;
                                             }
                                         }
-                                    } else {
-                                        $rule_passed = apply_filters('advanced_woo_discount_rules_is_rule_passed_with_out_discount_for_exclusive_rule', false, $product, $rule, $cart_item);
-                                        if($rule_passed){
-                                            $has_exclusive_rule = true;
-                                        }
                                     }
                                 }
-                            }
-                        } else {
-                            $process_discount = apply_filters('advanced_woo_discount_rules_process_discount_for_product_which_do_not_matched_filters', false, $product, $rule, $cart_item);
-                            if($process_discount){
-                                $discounted_price = $rule->calculateDiscount($product_price, $quantity, $product, $ajax_price, $cart_item, $price_display_condition, $is_cart);
-                                if($discounted_price > 0){
-                                    $has_exclusive_rule = true;
+                            } else {
+                                $process_discount = apply_filters('advanced_woo_discount_rules_process_discount_for_product_which_do_not_matched_filters', false, $product, $rule, $cart_item);
+                                if($process_discount){
+                                    $discounted_price = $rule->calculateDiscount($product_price, $quantity, $product, $ajax_price, $cart_item, $price_display_condition, $is_cart);
+                                    if($discounted_price > 0){
+                                        $has_exclusive_rule = true;
+                                    }
                                 }
                             }
                         }
@@ -547,7 +548,7 @@ class DiscountCalculator extends Base
 
             $original_product_price = apply_filters('advanced_woo_discount_rules_product_original_price_on_before_calculate_discount', $product_price, $product, $quantity, $cart_item, $calculate_discount_from);
             $calculate_from_price = $product_price = apply_filters('advanced_woo_discount_rules_product_price_on_before_calculate_discount', $product_price, $product, $quantity, $cart_item, $calculate_discount_from);
-
+            $product_price =  ( $product_price == '' ) ? 0 : $product_price; //Fix - if product price is empty string
             $exclusive_rules = $discounts = $exclude_products = array();
             $cart = self::$woocommerce_helper->getCart();
             $product_id = self::$woocommerce_helper->getProductId($product);
@@ -587,7 +588,7 @@ class DiscountCalculator extends Base
                         }
                         $rule::$set_discounts = $rule::$simple_discounts = $rule::$bulk_discounts  = array();
                         if ($discounted_price = $rule->calculateDiscount($product_price, $quantity, $product, $ajax_price, $cart_item, $price_display_condition, $is_cart, $manual_request)) {
-                            $cart_discounted_price = 0;
+                            $cart_discounted_price = $cart_discount_for_single_qty_from_array = 0;
                             $discount_label = '';
                             if(!is_array($discounted_price)){
                                 $cart_discounted_price = $discounted_price * $quantity;
@@ -597,6 +598,7 @@ class DiscountCalculator extends Base
                                 $discounted_price = (isset($discounted_price[0]['discount_fee']) && !empty($discounted_price[0]['discount_fee'])) ? $discounted_price[0]['discount_fee'] : 0;
                                 if(isset($discounted_price_array[0]['discount_type'])){
                                     if($discounted_price_array[0]['discount_type'] != "flat_in_subtotal"){
+                                        $cart_discount_for_single_qty_from_array = $discounted_price;
                                         $discounted_price = $discounted_price * $quantity;
                                     }
                                 }
@@ -611,7 +613,11 @@ class DiscountCalculator extends Base
                                 if (isset(self::$total_discounts[$rule_id][$product_id]['product_price']) && !empty(self::$total_discounts[$rule_id][$product_id]['product_price'])) {
                                     $product_price = self::$total_discounts[$rule_id][$product_id]['product_price'];
                                 } else {
-                                    $product_price = $product_price - $discounted_price;
+                                    if(!empty($cart_discount_for_single_qty_from_array)){
+                                        $product_price = $product_price - $cart_discount_for_single_qty_from_array;
+                                    }else{
+                                        $product_price = $product_price - $discounted_price;
+                                    }
                                     self::$total_discounts[$rule_id][$product_id]['product_price'] = $product_price;
                                 }
                             }
@@ -719,7 +725,7 @@ class DiscountCalculator extends Base
                     if($discounted_price > 0){
                         if ($ajax_price) {
                             self::$total_discounts['ajax_product'][$rule_id] = apply_filters('advanced_woo_discount_rules_calculated_discounts_of_each_rule_for_ajax_price', self::$total_discounts['ajax_product'][$rule_id], $product_id, $rule_id, $filter_passed, $cart_item, $is_cart, $rule);
-                            $ajax_discounts[] = $discounted_price;
+                            $ajax_discounts[$rule_id] = $discounted_price;
                         }else{
                             if(!isset(self::$total_discounts[$matched_item_key][$rule_id])){
                                 self::$total_discounts[$matched_item_key][$rule_id] = array();
@@ -732,7 +738,13 @@ class DiscountCalculator extends Base
             }
             $product_price = $original_product_price;
             if (isset($ajax_discounts) && !empty($ajax_discounts)) {
-                $discounted_price  = array_sum($ajax_discounts);
+                //If exclusive rules is not empty then apply only exclusive rule
+                $rules = $this->pickRule($exclusive_rules, $ajax_discounts, $apply_rule_to);
+                $discounted_price = 0;
+                foreach ($rules as $rule_id){
+                    $discounted_price += $ajax_discounts[$rule_id];
+                }
+//                $discounted_price  = array_sum($ajax_discounts);
                 if ($discounted_price < 0) {
                     $discounted_price = 0;
                 }
@@ -799,12 +811,16 @@ class DiscountCalculator extends Base
                 'initial_price' => $product_price,
                 'discounted_price' => $discounted_price,
                 'initial_price_with_tax' => $this->mayHaveTax($product, $product_price),
-                'discounted_price_with_tax' => $this->mayHaveTax($product, $discounted_price),
+                'discounted_price_with_tax' => $this->mayHaveTax($product, $discounted_price , (isset($cart_item['quantity']))? $cart_item['quantity']: 1),
                 'total_discount_details' => self::$total_discounts,
                 'cart_discount_details' => $this->getCartDiscountPrices($cart, true),
                 'apply_as_cart_rule' => $show_stike_out_depends_cart_rule,
                 'discount_lines' => $discount_values['discount_lines'],
             );
+            //From v2.3.8 fix for you save text tax calculation
+            if(isset($cart_item['quantity']) && $cart_item['quantity'] > 1){
+                $discount_prices['discounted_price_with_tax'] = $discount_prices['discounted_price_with_tax']/$cart_item['quantity'];
+            }
             return apply_filters('advanced_woo_discount_rules_discount_prices_of_product', $discount_prices, $product, $quantity, $cart_item);
         }
         return false;
@@ -862,7 +878,14 @@ class DiscountCalculator extends Base
                 $current_product_price = $discount_lines['non_applied']['calculate_discount_from'];
                 $available_qty = $discount_lines['non_applied']['quantity'];
                 $discount_lines['non_applied']['quantity'] = $available_qty - $discount_qty;
-                $current_discount_amount = $rule->calculator($price_discount['discount_type'], $current_product_price, $price_discount['discount_value']);
+                if($price_discount['discount_type'] == 'fixed_set_price'){
+                    $discounted_price = isset($price_discount['discounted_price']) ? $price_discount['discounted_price'] : 0;
+                    $original_price = isset($price_discount['original_price']) ? $price_discount['original_price'] : 0;
+                    $current_discount_amount = $original_price - $discounted_price;
+                } else {
+                    $current_discount_amount = $rule->calculator($price_discount['discount_type'], $current_product_price, $price_discount['discount_value']);
+                }
+                $current_discount_amount = apply_filters('advanced_woo_discount_rules_calculate_current_discount_amount', $current_discount_amount, $price_discount);
                 if($apply_subsequently === true) $current_product_price = $current_product_price - $current_discount_amount;
                 $remaining_qty -= $discount_qty;
                 $applied_qty += $discount_qty;
@@ -888,6 +911,7 @@ class DiscountCalculator extends Base
                             $applied_qty += $available_qty;
                             $discount_lines['non_applied']['quantity'] = $available_qty - $discount_qty;
                             $current_discount_amount = $rule->calculator($price_discount['discount_type'], $current_product_price, $price_discount['discount_value']);
+                            $current_discount_amount = apply_filters('advanced_woo_discount_rules_calculate_current_discount_amount', $current_discount_amount, $price_discount);
                             $discount_lines[$key_f]['discount'] = $discount_lines[$key_f]['discount']+$current_discount_amount;
                             $discount_lines[$key_f]['discounted_price'] = $product_price - $discount_lines[$key_f]['discount'];
                         }
@@ -898,6 +922,7 @@ class DiscountCalculator extends Base
                             $current_product_price = $discount_lines['non_applied']['calculate_discount_from'];
                             $discount_lines['non_applied']['quantity'] = $available_qty - $remaining_qty;
                             $current_discount_amount = $rule->calculator($price_discount['discount_type'], $current_product_price, $price_discount['discount_value']);
+                            $current_discount_amount = apply_filters('advanced_woo_discount_rules_calculate_current_discount_amount', $current_discount_amount, $price_discount);
                             if($apply_subsequently === true) $current_product_price = $current_product_price - $current_discount_amount;
                             $discount_lines[] = array('quantity' => $remaining_qty, 'discount' => $current_discount_amount, 'original_price' => $product_price, 'discounted_price' => ($product_price-$current_discount_amount));
                             $remaining_qty -= $remaining_qty;

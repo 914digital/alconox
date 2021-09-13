@@ -145,11 +145,11 @@ if(isset($objects[$object])){
   */
   private function apply_picklist_to_field($picklistValues, $field) {
   $choices = $inputs = array();
-  $i = 0;
+  $i = 0; 
   foreach ($picklistValues as $key => $value) {
   $i++; 
   $choices[] = array(
-  'text' => $value['value'],
+  'text' => $value['label'],
   'value' => $value['value'],
   'isSelected' => floatval(isset($value['default']) && $value['default']=="1"),
   'price' => '',
@@ -207,6 +207,16 @@ if(isset($objects[$object])){
   column-count: 2;
   column-gap: 10px;
   }
+     .panel-block input[type=checkbox].crm_map_enabled , .panel-block input[type=radio].crm_map_field , .panel-block input[type=radio].crm_map_type{
+        width: auto ;
+        height: auto;
+        position: relative;
+        margin: -2px 3px 0px 0px;
+        vertical-align: middle;
+        -webkit-clip-path: none;
+        clip-path: none;
+        -webkit-appearance: auto;
+    }
   </style>
   <?php
   }
@@ -243,8 +253,8 @@ if(isset($objects[$object])){
        //getting list of all crm merge variables for the selected contact list
   $fields = $this->get_field_options($id,$object,$refresh); //var_dump($fields); die();
   if(!is_array($fields)){
-      $msg= empty($fields) ? __('Fields Not Found','gravity-forms-salesforce-crm') : $fields;
-  $str = '<div class="field_group_'.$this->id.'"><strong>'.__('Error:', 'gravity-forms-salesforce-crm').'</strong> '.$msg.'</div>';
+      $msg= empty($fields) ? esc_html__('Fields Not Found','gravity-forms-salesforce-crm') : $fields;
+  $str = '<div class="field_group_'.$this->id.'"><strong>'.__('Error:', 'gravity-forms-salesforce-crm').'</strong> '.wp_kses_post($msg).'</div>';
   ///   $str = str_replace(array("\n", "\t", "\r"), '', str_replace("'", "\'", $str));    
   }else{
   $str = $this->get_field_mapping($fields);
@@ -316,8 +326,8 @@ if(isset($objects[$object])){
   <table cellpadding='0' cellspacing='0' class='form-table'>
   <thead class='screen-reader-text'>
   <tr>
-  <th scope='col' class='crm_col_heading'>" . __("Pickist Field", 'gravity-forms-salesforce-crm') . "</th>
-  <th scope='col' class='crm_col_heading'>" . __("Form Fields", 'gravity-forms-salesforce-crm') . "</th>
+  <th scope='col' class='crm_col_heading'>" . esc_html__("Pickist Field", 'gravity-forms-salesforce-crm') . "</th>
+  <th scope='col' class='crm_col_heading'>" . esc_html__("Form Fields", 'gravity-forms-salesforce-crm') . "</th>
   </tr>
   </thead>
   <tbody>".$str."
@@ -339,7 +349,7 @@ public function editor_js() {
   ?>
   
   <script type='text/javascript'>
-  
+
   jQuery(document).ready(function($) { 
   // Show the crm settings only on applicable fields
   var enableCrmForFields = ['textarea', 'select', 'checkbox', 'radio', 'multiselect'];
@@ -580,24 +590,24 @@ sel_radio_option();
 
    ?>
   <li class="use_as_entry_link crm_setting field_setting">
-    <input type="hidden" class="crm_form_id" value="<?php echo $form_id ?>">
+    <input type="hidden" class="crm_form_id" value="<?php echo esc_attr($form_id) ?>">
   <label for="vx_check_<?php echo $this->id ?>">
-  <input type="checkbox" autocomplete="off" class="<?php echo $this->id ?>_map_enabled crm_map_enabled" id="vx_check_<?php echo $this->id ?>" name="crm_map_enabled" value="<?php echo $this->id ?>" /> <?php _e("Enable Salesforce Field Mapping?", 'gravity-forms-salesforce-crm'); ?>
+  <input type="checkbox" autocomplete="off" class="<?php echo $this->id ?>_map_enabled crm_map_enabled" id="vx_check_<?php echo $this->id ?>" name="crm_map_enabled" value="<?php echo $this->id ?>" /> <?php esc_html_e("Enable Salesforce Field Mapping?", 'gravity-forms-salesforce-crm'); ?>
   </label>
   
   <div id="<?php echo $this->id ?>_map_ui" style="display: none;">
   
   <label for="<?php echo $this->id ?>_map_type_live">
-  <input type="radio" class="<?php echo $this->id ?>_map_type crm_map_type" id="<?php echo $this->id ?>_map_type_live" name="<?php echo $this->id ?>_map_type" value="live" /> <?php _e("Live Remote Field Mapping ", 'gravity-forms-salesforce-crm'); gform_tooltip("vx_map_live_".$this->id); ?>
-  <span class="howto" style="padding-left:1.25em;"><?php _e("Field Choices will be synced from Salesforce picklist values.", 'gravity-forms-salesforce-crm'); ?></span>
+  <input type="radio" class="<?php echo $this->id ?>_map_type crm_map_type" id="<?php echo $this->id ?>_map_type_live" name="<?php echo $this->id ?>_map_type" value="live" /> <?php esc_html_e("Live Remote Field Mapping ", 'gravity-forms-salesforce-crm'); gform_tooltip("vx_map_live_".$this->id); ?>
+  <span class="howto" style="padding-left:1.25em;"><?php esc_html_e("Field Choices will be synced from Salesforce picklist values.", 'gravity-forms-salesforce-crm'); ?></span>
   </label>
   <label for="<?php echo $this->id ?>_map_type_once">
-  <input type="radio" class="<?php echo $this->id ?>_map_type crm_map_type" id="<?php echo $this->id ?>_map_type_once" name="<?php echo $this->id ?>_map_type" value="once" /> <?php _e("Only Populate Choices ", 'gravity-forms-salesforce-crm'); gform_tooltip("vx_map_once_".$this->id) ?>
-  <span class="howto" style="padding-left:1.25em;"><?php _e("Field Choices will not be updated live and are editable.", 'gravity-forms-salesforce-crm'); ?></span>
+  <input type="radio" class="<?php echo $this->id ?>_map_type crm_map_type" id="<?php echo $this->id ?>_map_type_once" name="<?php echo $this->id ?>_map_type" value="once" /> <?php esc_html_e("Only Populate Choices ", 'gravity-forms-salesforce-crm'); gform_tooltip("vx_map_once_".$this->id) ?>
+  <span class="howto" style="padding-left:1.25em;"><?php esc_html_e("Field Choices will not be updated live and are editable.", 'gravity-forms-salesforce-crm'); ?></span>
   </label>
-    <label for="crm_accounts_list" style="width: 100px;" class="inline"><?php _e("Choose Account", 'gravity-forms-salesforce-crm'); ?></label>
+    <label for="crm_accounts_list" style="width: 100px;" class="inline"><?php esc_html_e("Choose Account", 'gravity-forms-salesforce-crm'); ?></label>
       <select autocomplete="off" id="object_area_<?php echo $this->id ?>" name="<?php echo $this->id ?>_account" class="<?php echo $this->id ?>_account fieldwidth-4 sel_account">
-  <option value=""><?php _e("Select a Salesforce Account", 'gravity-forms-salesforce-crm'); ?></option>
+  <option value=""><?php esc_html_e("Select a Salesforce Account", 'gravity-forms-salesforce-crm'); ?></option>
   <?php
   foreach ($accounts as $k=>$v){
       if($v['status'] == "1"){
@@ -621,14 +631,14 @@ sel_radio_option();
      $info=$this->get_info($id);
      $lists =$this->get_objects($info);
      ?>
-       <label for="crm_object_list" style="width: 100px;" class="inline"><?php _e("Choose Object", 'gravity-forms-salesforce-crm'); ?></label>
+       <label for="crm_object_list" style="width: 100px;" class="inline"><?php esc_html_e("Choose Object", 'gravity-forms-salesforce-crm'); ?></label>
   <?php
   if(!is_array($lists)) {
-  echo __("Could not load Salesforce objects.", 'gravity-forms-salesforce-crm');
+  echo esc_html__("Could not load Salesforce objects.", 'gravity-forms-salesforce-crm');
   } else { ?>
 
   <select autocomplete="off" id="object_picklist_<?php echo $this->id ?>" name="crm_object_type" class="<?php echo $this->id ?>_object fieldwidth-4 sel_object">
-  <option value=""><?php _e("Select a Salesforce Object", 'gravity-forms-salesforce-crm'); ?></option>
+  <option value=""><?php esc_html_e("Select a Salesforce Object", 'gravity-forms-salesforce-crm'); ?></option>
   <?php
   foreach ($lists as $k=>$v){
       $sel='';

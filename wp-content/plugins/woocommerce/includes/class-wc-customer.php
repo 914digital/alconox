@@ -52,6 +52,7 @@ class WC_Customer extends WC_Legacy_Customer {
 			'postcode'   => '',
 			'country'    => '',
 			'state'      => '',
+			'phone'      => '',
 		),
 		'is_paying_customer' => false,
 	);
@@ -240,6 +241,27 @@ class WC_Customer extends WC_Legacy_Customer {
 	 */
 	public function has_calculated_shipping() {
 		return $this->get_calculated_shipping();
+	}
+
+	/**
+	 * Indicates if the customer has a non-empty shipping address.
+	 *
+	 * Note that this does not indicate if the customer's shipping address
+	 * is complete, only that one or more fields are populated.
+	 *
+	 * @since 5.3.0
+	 *
+	 * @return bool
+	 */
+	public function has_shipping_address() {
+		foreach ( $this->get_shipping() as $address_field ) {
+			// Trim guards against a case where a subset of saved shipping address fields contain whitespace.
+			if ( strlen( trim( $address_field ) ) > 0 ) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 	/**
@@ -449,7 +471,19 @@ class WC_Customer extends WC_Legacy_Customer {
 	 * @return array
 	 */
 	public function get_billing( $context = 'view' ) {
-		return $this->get_prop( 'billing', $context );
+		$value = null;
+		$prop  = 'billing';
+
+		if ( array_key_exists( $prop, $this->data ) ) {
+			$changes = array_key_exists( $prop, $this->changes ) ? $this->changes[ $prop ] : array();
+			$value   = array_merge( $this->data[ $prop ], $changes );
+
+			if ( 'view' === $context ) {
+				$value = apply_filters( $this->get_hook_prefix() . $prop, $value, $this );
+			}
+		}
+
+		return $value;
 	}
 
 	/**
@@ -580,7 +614,19 @@ class WC_Customer extends WC_Legacy_Customer {
 	 * @return array
 	 */
 	public function get_shipping( $context = 'view' ) {
-		return $this->get_prop( 'shipping', $context );
+		$value = null;
+		$prop  = 'shipping';
+
+		if ( array_key_exists( $prop, $this->data ) ) {
+			$changes = array_key_exists( $prop, $this->changes ) ? $this->changes[ $prop ] : array();
+			$value   = array_merge( $this->data[ $prop ], $changes );
+
+			if ( 'view' === $context ) {
+				$value = apply_filters( $this->get_hook_prefix() . $prop, $value, $this );
+			}
+		}
+
+		return $value;
 	}
 
 	/**
@@ -681,6 +727,17 @@ class WC_Customer extends WC_Legacy_Customer {
 	 */
 	public function get_shipping_country( $context = 'view' ) {
 		return $this->get_address_prop( 'country', 'shipping', $context );
+	}
+
+	/**
+	 * Get shipping phone.
+	 *
+	 * @since 5.6.0
+	 * @param  string $context What the value is for. Valid values are 'view' and 'edit'.
+	 * @return string
+	 */
+	public function get_shipping_phone( $context = 'view' ) {
+		return $this->get_address_prop( 'phone', 'shipping', $context );
 	}
 
 	/**
@@ -1070,6 +1127,16 @@ class WC_Customer extends WC_Legacy_Customer {
 	 */
 	public function set_shipping_country( $value ) {
 		$this->set_address_prop( 'country', 'shipping', $value );
+	}
+
+	/**
+	 * Set shipping phone.
+	 *
+	 * @since 5.6.0
+	 * @param string $value Shipping phone.
+	 */
+	public function set_shipping_phone( $value ) {
+		$this->set_address_prop( 'phone', 'shipping', $value );
 	}
 
 	/**

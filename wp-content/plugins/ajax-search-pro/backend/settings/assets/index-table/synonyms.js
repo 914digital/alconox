@@ -304,7 +304,7 @@ jQuery(function($){
 
                         $('#syn-import-download').removeClass('hiddend');
                         $('#wpd-search-synonyms').val('');
-                        $('#wpd-syn-search-lang').val('any').change();
+                        $('#wpd-syn-search-lang').val('any').trigger('change');
                     }
                 }
                 $loader.css('display', 'none');
@@ -439,7 +439,7 @@ jQuery(function($){
     }
     function editorSaveCheck() {
         // Trigger the tag input save
-        $('.wpd-type-zone').blur();
+        $('.wpd-type-zone').trigger('blur');
 
         if ( $('#wpd-synonym-input').val().trim() == '' ) {
             editorErrorRaise(msg('edt_er4'));

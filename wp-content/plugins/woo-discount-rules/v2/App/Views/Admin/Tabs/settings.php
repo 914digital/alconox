@@ -33,7 +33,8 @@
                     <tr>
                         <td scope="row">
                             <label for="apply_product_discount_to" class="awdr-left-align"><?php _e('Apply discount', 'woo-discount-rules') ?></label>
-                            <span class="wdr_settings_desc_text awdr-clear-both"><?php esc_attr_e('Highest/Lowest/First/All matched rules', 'woo-discount-rules'); ?></span>
+                            <span class="wdr_settings_desc_text awdr-clear-both"><?php esc_attr_e('Highest/Lowest/First/All matched rules', 'woo-discount-rules'); ?><br />
+                                <?php _e('<p class="wdr_settings_desc_text   text-warning"><strong>Note</strong> : Priority will not work for free shipping rule.</p>', 'woo-discount-rules'); ?></span>
                         </td>
                         <td>
                             <select name="apply_product_discount_to" class="apply_product_and_cart_discount_to" data-subsequent="apply_product_discount_subsequently_row">
@@ -106,6 +107,21 @@
                                     for="do_not_suppress_other_discount_plugins"><?php _e('No', 'woo-discount-rules'); ?></label>
                         </td>
                     </tr>
+                    <tr>
+                        <td scope="row">
+                            <label class="awdr-left-align"><?php _e('Use minified CSS and JS', 'woo-discount-rules') ?></label>
+                            <span class="wdr_settings_desc_text awdr-clear-both"></span>
+                        </td>
+                        <td>
+                            <input type="radio" name="compress_css_and_js" id="compress_css_and_js_0"
+                                   value="1" <?php echo($configuration->getConfig('compress_css_and_js', 0) ? 'checked' : '') ?>><label
+                                    for="compress_css_and_js_0"><?php _e('Yes', 'woo-discount-rules'); ?></label>
+                            <input type="radio" name="compress_css_and_js"
+                                   id="compress_css_and_js_1"
+                                   value="0" <?php echo(!$configuration->getConfig('compress_css_and_js', 0) ? 'checked' : '') ?>><label
+                                    for="compress_css_and_js_1"><?php _e('No', 'woo-discount-rules'); ?></label>
+                        </td>
+                    </tr>
                     <?php
                     do_action('advanced_woo_discount_rules_general_settings_fields', $configuration);
                     ?>
@@ -141,6 +157,7 @@
                             <?php
                             $customize_on_sale_badge = $configuration->getConfig('customize_on_sale_badge', '');
                             $force_override_on_sale_badge = $configuration->getConfig('force_override_on_sale_badge', '');
+                            $display_percentage_on_sale_badge = $configuration->getConfig('display_percentage_on_sale_badge', '');
                             ?>
                             <input type="checkbox" name="customize_on_sale_badge" id="customize_on_sale_badge"
                                    value="1" <?php echo ( $customize_on_sale_badge == 1 ? 'checked' : '') ?>><label
@@ -149,6 +166,12 @@
                             <input type="checkbox" name="force_override_on_sale_badge" id="force_override_on_sale_badge"
                                    value="1" <?php echo ( $force_override_on_sale_badge == 1 ? 'checked' : '') ?>><label
                                     for="force_override_on_sale_badge" class="padding10"><?php _e('Force override the label for sale badge (useful when your theme has override for sale badge).', 'woo-discount-rules'); ?></label>
+                            <br>
+                            <div class="display_percentage_on_sale_badge_con">
+                            <input type="checkbox" name="display_percentage_on_sale_badge" id="display_percentage_on_sale_badge"
+                                   value="1" <?php echo ( $display_percentage_on_sale_badge == 1 ? 'checked' : '') ?>><label
+                                for="display_percentage_on_sale_badge" class="padding10"><?php _e('I would like to display percentage in sale badge (Displays only when rule matches else displays default sale badge content).', 'woo-discount-rules'); ?></label>
+                            </div>
                         </td>
                     </tr>
                     <tr class="sale_badge_customizer" style="<?php echo ($show_on_sale_badge != 'disabled' && $customize_on_sale_badge == 1) ? '':'display:none;'?>">
@@ -161,6 +184,18 @@
                                       placeholder='<span class="onsale"><?php _e('Sale!', 'woo-discount-rules') ?></span>'
                                       rows="5"
                                       cols="30"><?php echo $configuration->getConfig('on_sale_badge_html', '<span class="onsale">Sale!</span>'); ?></textarea>
+                        </td>
+                    </tr>
+                    <tr class="sale_badge_percentage_customizer" style="<?php echo ($show_on_sale_badge != 'disabled' && $display_percentage_on_sale_badge == 1) ? '':'display:none;'?>">
+                        <td scope="row">
+                            <label for="" class="awdr-left-align"><?php _e('Sale badge percentage content', 'woo-discount-rules') ?></label>
+                            <span class="wdr_settings_desc_text awdr-clear-both"><?php _e('You can use HTML inside. <br><b>IMPORTANT NOTE:</b> This customized sale badge will be applicable only for products that are part of the discount rules configured in this plugin <b>Eg:</b><span class="onsale">Sale!</span>', 'woo-discount-rules'); ?></span>
+                        </td>
+                        <td>
+                            <textarea name="on_sale_badge_percentage_html"
+                                      placeholder='<span class="onsale"><?php _e('{{percentage}}%', 'woo-discount-rules') ?></span>'
+                                      rows="5"
+                                      cols="30"><?php echo $configuration->getConfig('on_sale_badge_percentage_html', '<span class="onsale">{{percentage}}%</span>'); ?></textarea>
                         </td>
                     </tr>
                     <tr>
@@ -280,8 +315,8 @@
                         </td>
                         <td>
                             <select name="apply_cart_discount_as">
-                                <option value="fee" <?php echo ($configuration->getConfig('apply_cart_discount_as', 'fee') == 'fee') ? 'selected' : ''; ?> ><?php _e('Fee', 'woo-discount-rules'); ?></option>
-                                <option value="coupon" <?php echo ($configuration->getConfig('apply_cart_discount_as', 'fee') == 'coupon') ? 'selected' : ''; ?>><?php _e('Coupon', 'woo-discount-rules'); ?></option>
+                                <option value="fee" <?php echo ($configuration->getConfig('apply_cart_discount_as', 'coupon') == 'fee') ? 'selected' : ''; ?> ><?php _e('Fee', 'woo-discount-rules'); ?></option>
+                                <option value="coupon" <?php echo ($configuration->getConfig('apply_cart_discount_as', 'coupon') == 'coupon') ? 'selected' : ''; ?>><?php _e('Coupon', 'woo-discount-rules'); ?></option>
                             </select>
                         </td>
                     </tr>
@@ -509,6 +544,64 @@
                         </td>
                     </tr>
                     <?php } ?>
+                    </tbody>
+                </table>
+                <h1><?php _e('Third party plugin conflict fixes & options', 'woo-discount-rules'); ?></h1>
+                <p><?php _e('Use these advanced options ONLY when you use a third party plugin that interacts with product pricing & discounts and only when you DONT see the discounts applying. Otherwise these options should be left as NO.', 'woo-discount-rules'); ?></p>
+                <p style="color:tomato; font-weight: normal;"><?php _e('IMPORTANT: Please consult with our support team by opening a ticket at <a href="https://www.flycart.org/support" target="_blank">https://www.flycart.org/support</a> before you use these options.', 'woo-discount-rules'); ?></p>
+                <table class="wdr-general-setting form-table">
+                    <tbody style="background-color: #fff;">
+                        <tr>
+                            <td scope="row">
+                                <label for="" class="awdr-left-align"><?php _e('Do you have custom prices set using another plugin or custom code? (Example: A wholesale price or a country specific pricing)', 'woo-discount-rules') ?></label>
+                                <span class="wdr_settings_desc_text awdr-clear-both"><?php _e('If you have custom prices for your products like using another plugin and if you do not see the discount NOT applied, enable this option.', 'woo-discount-rules'); ?></span>
+                            </td>
+                            <td>
+                                <input type="radio" name="wdr_override_custom_price" class="settings_option_show_hide"
+                                       id="wdr_override_custom_price_1"
+                                       value="1" <?php echo($configuration->getConfig('wdr_override_custom_price', 0) ? 'checked' : '') ?>><label
+                                        for="wdr_override_custom_price_1"><?php _e('Yes', 'woo-discount-rules'); ?></label>
+
+                                <input type="radio" name="wdr_override_custom_price" class="settings_option_show_hide"
+                                       id="wdr_override_custom_price_0"
+                                       value="0" <?php echo(!$configuration->getConfig('wdr_override_custom_price', 0) ? 'checked' : '') ?>><label
+                                        for="wdr_override_custom_price_0"><?php _e('No', 'woo-discount-rules'); ?></label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td scope="row">
+                                <label for="" class="awdr-left-align"><?php _e('Disable re-calculating the cart total on cart page', 'woo-discount-rules') ?></label>
+                                <span class="wdr_settings_desc_text awdr-clear-both"><?php _e('This will be helpful if you see the discounts not working. It could be because other plugins might be force re-calculating the totals in cart.', 'woo-discount-rules'); ?></span>
+                            </td>
+                            <td>
+                                <input type="radio" name="disable_recalculate_total" class="settings_option_show_hide"
+                                       id="do_disable_recalculate_total_1"
+                                       value="1" <?php echo($configuration->getConfig('disable_recalculate_total', 0) ? 'checked' : '') ?>><label
+                                        for="do_disable_recalculate_total_1"><?php _e('Yes', 'woo-discount-rules'); ?></label>
+
+                                <input type="radio" name="disable_recalculate_total" class="settings_option_show_hide"
+                                       id="do_disable_recalculate_total_0"
+                                       value="0" <?php echo(!$configuration->getConfig('disable_recalculate_total', 0) ? 'checked' : '') ?>><label
+                                        for="do_disable_recalculate_total_0"><?php _e('No', 'woo-discount-rules'); ?></label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td scope="row">
+                                <label for="" class="awdr-left-align"><?php _e('Disable re-calculating the total when applying the coupon.', 'woo-discount-rules') ?></label>
+                                <span class="wdr_settings_desc_text awdr-clear-both"><?php _e('This will be useful, if you see the discounts being removed after the coupon applies... or the discount does not work after applying a coupon.', 'woo-discount-rules'); ?></span>
+                            </td>
+                            <td>
+                                <input type="radio" name="disable_recalculate_total_when_coupon_apply" class="settings_option_show_hide"
+                                       id="disable_recalculate_total_when_coupon_apply_1"
+                                       value="1" <?php echo($configuration->getConfig('disable_recalculate_total_when_coupon_apply', 0) ? 'checked' : '') ?>><label
+                                        for="disable_recalculate_total_when_coupon_apply_1"><?php _e('Yes', 'woo-discount-rules'); ?></label>
+
+                                <input type="radio" name="disable_recalculate_total_when_coupon_apply" class="settings_option_show_hide"
+                                       id="disable_recalculate_total_when_coupon_apply_0"
+                                       value="0" <?php echo(!$configuration->getConfig('disable_recalculate_total_when_coupon_apply', 0) ? 'checked' : '') ?>><label
+                                        for="disable_recalculate_total_when_coupon_apply_0"><?php _e('No', 'woo-discount-rules'); ?></label>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
                 <?php

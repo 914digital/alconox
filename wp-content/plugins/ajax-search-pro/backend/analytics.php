@@ -132,8 +132,11 @@ $ana_options = wd_asp()->o['asp_analytics'];
         </div>
         <div class="asp_al_both hiddend">
             <div class="item">
-                <?php $o = new wpdreamsText("analytics_tracking_id", __('Google analytics Tracking ID (ex.: UA-XXXXXX-X)', 'ajax-search-pro'), $ana_options["analytics_tracking_id"]); ?>
-                <p class='infoMsg'>
+                <?php $o = new wpdreamsText("analytics_tracking_id", __('[optional] Google analytics Tracking ID (ex.: UA-XXXXXX-X)', 'ajax-search-pro'), $ana_options["analytics_tracking_id"]); ?>
+				<p class='descMsg'>
+					<?php echo __('You can leave this empty, the plugin should auto detect the tracking id. If you have multiple tracking IDs, you can specify one in this box.', 'ajax-search-pro'); ?>
+				</p>
+				<p class='infoMsg'>
                     <?php echo __(sprintf(
                             'Please read this <a href="%s">google analytics documentation</a> to get your <a href="%s">tracking ID</a>.',
                     'https://support.google.com/analytics/answer/7372977',

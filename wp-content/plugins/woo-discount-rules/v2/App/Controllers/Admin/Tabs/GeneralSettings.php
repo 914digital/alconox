@@ -58,5 +58,6 @@ class GeneralSettings extends Base
         $data['v1_last_migrated_cart_rule_id'] = 0;
         $data['skipped_migration'] = 0;
         $migration->updateMigrationInfo($data);
+        update_option('advanced_woo_discount_rules_current_version', null);
     }
 }

@@ -45,8 +45,11 @@ class ManageDiscount extends Base
     {
         $bulk_table_on_off = self::$config->getConfig('show_bulk_table', 0);
         $ajax_update_price = self::$config->getConfig('show_strikeout_when', 'show_when_matched');
-        wp_enqueue_style(WDR_SLUG . '-customize-table-ui-css', WDR_PLUGIN_URL . 'Assets/Css/customize-table.css', array(), WDR_VERSION);
-        wp_enqueue_script('awdr-main', WDR_PLUGIN_URL . 'Assets/Js/site_main.js', array('jquery'), WDR_VERSION);
+        $minified_text = '';
+        $compress_css_and_js = self::$config->getConfig('compress_css_and_js', 0);
+        if($compress_css_and_js) $minified_text = '.min';
+        wp_enqueue_style(WDR_SLUG . '-customize-table-ui-css', WDR_PLUGIN_URL . 'Assets/Css/customize-table'.$minified_text.'.css', array(), WDR_VERSION);
+        wp_enqueue_script('awdr-main', WDR_PLUGIN_URL . 'Assets/Js/site_main'.$minified_text.'.js', array('jquery'), WDR_VERSION);
         $awdr_front_end_script = array(
             'ajaxurl' => admin_url('admin-ajax.php'),
             'nonce' => Helper::create_nonce('awdr_ajax_front_end'),
@@ -61,7 +64,7 @@ class ManageDiscount extends Base
             'custom_simple_product_id_selector' => apply_filters('advanced_woo_discount_rules_custom_simple_product_id_selector', ""),
             'custom_variable_product_id_selector' => apply_filters('advanced_woo_discount_rules_custom_variable_product_id_selector', ""),
         );
-        wp_enqueue_script('awdr-dynamic-price', WDR_PLUGIN_URL . 'Assets/Js/awdr-dynamic-price.js', array('jquery'), WDR_VERSION);
+        wp_enqueue_script('awdr-dynamic-price', WDR_PLUGIN_URL . 'Assets/Js/awdr-dynamic-price'.$minified_text.'.js', array('jquery'), WDR_VERSION);
         wp_localize_script('awdr-main', 'awdr_params', $awdr_front_end_script);
     }
 
@@ -129,6 +132,30 @@ class ManageDiscount extends Base
         $use_sale_badge_customize = apply_filters('advanced_woo_discount_rules_use_sale_badge_customization', false, $post, $_product);
         $product_id = Woocommerce::getProductId($_product);
         if(self::isProductOnSale($product_id) || $use_sale_badge_customize){
+            $display_percentage_on_sale_badge = self::$config->getConfig('display_percentage_on_sale_badge', '');
+            if($display_percentage_on_sale_badge == 1){
+                $calculate_discount_from = self::$config->getConfig('calculate_discount_from', 'sale_price');
+                if ($calculate_discount_from == 'regular_price') {
+                    $product_price = Woocommerce::getProductRegularPrice($_product);
+                } else {
+                    $product_price = Woocommerce::getProductPrice($_product);
+                }
+                $discounted_price = apply_filters('advanced_woo_discount_rules_get_product_discount_price_from_custom_price', $product_price, $_product, 1, $product_price, 'discounted_price', true, false);
+                if($discounted_price !== false){
+                    $percentage_value = (( $product_price - $discounted_price ) / $product_price) * 100;
+                    $percentage = apply_filters('advanced_woo_discount_rules_percentage_value_on_sale_badge', round($percentage_value, 2), $percentage_value, $_product);
+                    $discount_value_to_display = Woocommerce::formatPrice(($product_price - $discounted_price));
+                    $on_sale_badge_percentage_html = self::$config->getConfig('on_sale_badge_percentage_html', '<span class="onsale">{{percentage}}%</span>');
+                    $translate = __('<span class="onsale">{{percentage}}%</span>', 'woo-discount-rules');
+                    $on_sale_badge_percentage_html = Helper::getCleanHtml($on_sale_badge_percentage_html);
+                    $html = __($on_sale_badge_percentage_html, 'woo-discount-rules');
+                    $html = str_replace('{{percentage}}', $percentage, $html);
+                    $html = str_replace('{{discount_value}}', $discount_value_to_display, $html);
+                    $html = apply_filters('advanced_woo_discount_rules_on_sale_badge_html', $html, $post, $_product);
+
+                    return $html;
+                }
+            }
             $on_sale_badge_html = self::$config->getConfig('on_sale_badge_html', '<span class="onsale">Sale!</span>');
             $translate = __('<span class="onsale">Sale!</span>', 'woo-discount-rules');
             $on_sale_badge_html = Helper::getCleanHtml($on_sale_badge_html);
@@ -270,7 +297,9 @@ class ManageDiscount extends Base
                         if(empty($initial_price) || empty($discounted_price) || empty($discount_details)){
                             return $price_html;
                         }
-                        return $this->getSetDiscountItemPriceHtml($discount_details, $initial_price, $discounted_price, $product, $price_html = true, $quantity, $ajax_price);
+                        $strikeout_html = $this->getSetDiscountItemPriceHtml($discount_details, $initial_price, $discounted_price, $product, $price_html = true, $quantity, $ajax_price);
+                        return apply_filters('advanced_woo_discount_rules_dynamic_price_html_update', $strikeout_html, $product, $initial_price, $discounted_price, $discount_details, $prices);
+                        //return $this->getSetDiscountItemPriceHtml($discount_details, $initial_price, $discounted_price, $product, $price_html = true, $quantity, $ajax_price);
                     }else{
                         return false;
                     }
@@ -508,6 +537,7 @@ class ManageDiscount extends Base
 
             if($initial_price_html){
                 $initial_price_html = preg_replace('/<del>.*<\/del>/', '', $initial_price_html);
+                $initial_price_html = preg_replace('/<del aria-hidden="true">.*<\/del>/', '', $initial_price_html);
                 $html = '<del>' . $initial_price_html . '</del>' . $separator . '<ins>' . $discounted_price . '</ins>';
             }else{
                 $html = '<del>' . $original_price . '</del>' . $separator . '<ins>' . $discounted_price . '</ins>';
@@ -531,7 +561,7 @@ class ManageDiscount extends Base
      * @param $partially_qualified_set_amount_duplicate
      * @return bool|string
      */
-    function getSetStrikeoutPrice($original_price, $partially_qualified_sets, $total_discount, $other_discounts, $total_quantity = 0, $product_obj, $return_html = true, $current_product_quantity, $discount_operator, $partially_qualified_set_amount_duplicate, $multi_strikeout)
+    function getSetStrikeoutPrice($original_price, $partially_qualified_sets, $total_discount, $other_discounts, $total_quantity = 0, $product_obj='', $return_html = true, $current_product_quantity=0, $discount_operator=0, $partially_qualified_set_amount_duplicate=array())
     {
         $discounted_price = null;
         if (!empty($original_price) && is_array($partially_qualified_sets) && !empty($partially_qualified_sets) && !empty($total_quantity)) {
@@ -652,7 +682,7 @@ class ManageDiscount extends Base
      */
     function applyCartDiscount($cart)
     {
-        $discount_apply_type = self::$config->getConfig('apply_cart_discount_as', 'fee');
+        $discount_apply_type = self::$config->getConfig('apply_cart_discount_as', 'coupon');
         if($discount_apply_type == "fee"){
             $combine_all_discounts = self::$config->getConfig('combine_all_cart_discounts', 0);
             $total_combined_discounts = 0;
@@ -843,7 +873,7 @@ class ManageDiscount extends Base
      * Apply dynamic coupon for cart rules
      * */
     function applyVirtualCouponForCartRules(){
-        $discount_apply_type = self::$config->getConfig('apply_cart_discount_as', 'fee');
+        $discount_apply_type = self::$config->getConfig('apply_cart_discount_as', 'coupon');
         if($discount_apply_type == "coupon"){
             remove_action('woocommerce_after_calculate_totals', array($this, 'applyVirtualCouponForCartRules'), 10);
             $combine_all_discounts = self::$config->getConfig('combine_all_cart_discounts', 0);
@@ -867,6 +897,8 @@ class ManageDiscount extends Base
                             if(!isset($flat_in_subtotal[$rule_id])){
                                 $flat_in_subtotal[$rule_id]['value'] = $detail['discounted_price'];
                                 $flat_in_subtotal[$rule_id]['label'] = $detail['discount_label'];
+                                $flat_in_subtotal[$rule_id]['cart_item_keys'][] = $detail['cart_item_key'];
+                            } else {
                                 $flat_in_subtotal[$rule_id]['cart_item_keys'][] = $detail['cart_item_key'];
                             }
                         }else{
@@ -991,14 +1023,14 @@ class ManageDiscount extends Base
     function validateVirtualCouponForCartRules($response, $coupon_data)
     {
         if($coupon_data !== false && $coupon_data !== 0){
-            $discount_apply_type = self::$config->getConfig('apply_cart_discount_as', 'fee');
+            $discount_apply_type = self::$config->getConfig('apply_cart_discount_as', 'coupon');
             if($discount_apply_type == "coupon"){
                 if(empty(self::$apply_as_coupon_values)){
                     remove_filter('woocommerce_get_shop_coupon_data', array($this, 'validateVirtualCouponForCartRules'), 10);
                     $this->applyVirtualCouponForCartRules();
                     add_filter('woocommerce_get_shop_coupon_data', array($this, 'validateVirtualCouponForCartRules'), 10, 2);
                 }
-
+                $product_ids = array();
                 if(!empty(self::$apply_as_coupon_values)){
                     if(array_key_exists($coupon_data, self::$apply_as_coupon_values)){
                         $coupon_code = $coupon_data;
@@ -1855,7 +1887,13 @@ class ManageDiscount extends Base
      * */
     public static function reCalculateCartTotal()
     {
-        WC()->cart->calculate_totals();
+        if (function_exists('WC')) {
+            if(isset(WC()->cart) && WC()->cart != null){
+                if (method_exists(WC()->cart, 'calculate_totals')) {
+                    WC()->cart->calculate_totals();
+                }
+            }
+        }
     }
 
     /**
@@ -1988,7 +2026,6 @@ class ManageDiscount extends Base
                         } else {
                             $partially_qualified_set[$discounted_price_per_set] = $discounted_price_quantities;
                         }
-                        $multi_strikeout['set_strickout'] = true;
                     }
                     if(!empty($bogo_partial_set)){
                         $int_increment++;
@@ -1997,7 +2034,6 @@ class ManageDiscount extends Base
                         } else {
                             $partially_qualified_set[$bogo_cheapest_discount] = $bogo_cheapest_quantity;
                         }
-                        $multi_strikeout['bogo_strickout'] = true;
                     }
 
                 }
@@ -2038,7 +2074,7 @@ class ManageDiscount extends Base
                     ///return false;
                 }
             } else {
-                $original_item_price_html = $this->getSetStrikeoutPrice($initial_price, $partially_qualified_set, $total_discount_price, $other_discounts, $total_quantity, $product_obj, $price_html, $current_product_quantity, $discount_operator, $partially_qualified_set_amount_duplicate, $multi_strikeout);
+                $original_item_price_html = $this->getSetStrikeoutPrice($initial_price, $partially_qualified_set, $total_discount_price, $other_discounts, $total_quantity, $product_obj, $price_html, $current_product_quantity, $discount_operator, $partially_qualified_set_amount_duplicate);
                 return $original_item_price_html;
             }
         } else {
@@ -2398,7 +2434,9 @@ class ManageDiscount extends Base
      * Display promotional messages
      * */
     public function displayPromotionMessages(){
+        $cart = Woocommerce::getCart();
         $messages = Helper::getPromotionMessages();
+        $messages = empty($cart) ? '' : $messages;
         if(!empty($messages) && is_array($messages)) {
             foreach ($messages as $message) {
                 wc_print_notice($message, "notice");
@@ -2440,10 +2478,11 @@ class ManageDiscount extends Base
                 $file = fopen('php://output', 'w');
                 header('Content-type: application/csv');
                 header('Content-Disposition: attachment; filename=' . $file_name);
-                fputcsv($file, array('id', 'enabled', 'deleted', 'exclusive', 'title', 'priority', 'apply_to', 'filters', 'conditions', 'product_adjustments', 'cart_adjustments', 'buy_x_get_x_adjustments', 'buy_x_get_y_adjustments', 'bulk_adjustments', 'set_adjustments', 'other_discounts', 'date_from', 'date_to', 'usage_limits', 'rule_language', 'used_limits', 'additional', 'max_discount_sum', 'advanced_discount_message', 'discount_type', 'used_coupons', 'created_by', 'created_on', 'modified_by', 'modified_on'));
+                $export_csv_separator = apply_filters('advanced_woo_discount_rules_csv_import_export_separator', ',');
+                fputcsv($file, array('id', 'enabled', 'deleted', 'exclusive', 'title', 'priority', 'apply_to', 'filters', 'conditions', 'product_adjustments', 'cart_adjustments', 'buy_x_get_x_adjustments', 'buy_x_get_y_adjustments', 'bulk_adjustments', 'set_adjustments', 'other_discounts', 'date_from', 'date_to', 'usage_limits', 'rule_language', 'used_limits', 'additional', 'max_discount_sum', 'advanced_discount_message', 'discount_type', 'used_coupons', 'created_by', 'created_on', 'modified_by', 'modified_on'), $export_csv_separator);
                 foreach ($rules as $rule_row) {
                     $row_data = (array)$rule_row;
-                    fputcsv($file, $row_data);
+                    fputcsv($file, $row_data, $export_csv_separator);
                 }
                 exit;
             }

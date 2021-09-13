@@ -64,7 +64,6 @@ class OnboardingTasks {
 		add_action( 'admin_enqueue_scripts', array( $this, 'add_onboarding_homepage_notice_admin_script' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'add_onboarding_tax_notice_admin_script' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'add_onboarding_product_import_notice_admin_script' ) );
-		add_filter( 'woocommerce_paypal_payments_onboarding_redirect_url', array( $this, 'ppcp_ob_after_onboarding_redirect_url' ) );
 	}
 
 	/**
@@ -231,22 +230,6 @@ class OnboardingTasks {
 		return false;
 	}
 
-
-	/**
-	 * Sets the URL users are redirected to after PayPal Payments has received onboarding information from PayPal.
-	 *
-	 * @param string $url the current redirect url.
-	 * @return string redirect url redirecting to WC Admin home screen.
-	 */
-	public static function ppcp_ob_after_onboarding_redirect_url( $url ) {
-		if ( isset( $_GET['ppcpobw'] ) && 1 === absint( $_GET['ppcpobw'] ) ) { // phpcs:ignore csrf ok, sanitization ok.
-			$url = wc_admin_url( '&task=payments&method=paypal&onboarding=complete' );
-		}
-
-		return $url;
-	}
-
-
 	/**
 	 * Hooks into the product page to add a notice to return to the task list if a product was added.
 	 *
@@ -263,7 +246,16 @@ class OnboardingTasks {
 			return;
 		}
 
-		wp_enqueue_script( 'onboarding-product-notice', Loader::get_url( 'wp-admin-scripts/onboarding-product-notice', 'js' ), array( 'wp-i18n', 'wp-data' ), WC_ADMIN_VERSION_NUMBER, true );
+		$script_assets_filename = Loader::get_script_asset_filename( 'wp-admin-scripts', 'onboarding-product-notice' );
+		$script_assets          = require WC_ADMIN_ABSPATH . WC_ADMIN_DIST_JS_FOLDER . 'wp-admin-scripts/' . $script_assets_filename;
+
+		wp_enqueue_script(
+			'onboarding-product-notice',
+			Loader::get_url( 'wp-admin-scripts/onboarding-product-notice', 'js' ),
+			array_merge( array( WC_ADMIN_APP ), $script_assets ['dependencies'] ),
+			WC_ADMIN_VERSION_NUMBER,
+			true
+		);
 	}
 
 	/**
@@ -274,7 +266,16 @@ class OnboardingTasks {
 	public static function add_onboarding_homepage_notice_admin_script( $hook ) {
 		global $post;
 		if ( 'post.php' === $hook && 'page' === $post->post_type && isset( $_GET[ self::ACTIVE_TASK_TRANSIENT ] ) && 'homepage' === $_GET[ self::ACTIVE_TASK_TRANSIENT ] ) { // phpcs:ignore csrf ok.
-			wp_enqueue_script( 'onboarding-homepage-notice', Loader::get_url( 'wp-admin-scripts/onboarding-homepage-notice', 'js' ), array( 'wc-navigation', 'wp-i18n', 'wp-data', 'wc-tracks' ), WC_ADMIN_VERSION_NUMBER, true );
+			$script_assets_filename = Loader::get_script_asset_filename( 'wp-admin-scripts', 'onboarding-homepage-notice' );
+			$script_assets          = require WC_ADMIN_ABSPATH . WC_ADMIN_DIST_JS_FOLDER . 'wp-admin-scripts/' . $script_assets_filename;
+
+			wp_enqueue_script(
+				'onboarding-homepage-notice',
+				Loader::get_url( 'wp-admin-scripts/onboarding-homepage-notice', 'js' ),
+				array_merge( array( WC_ADMIN_APP ), $script_assets ['dependencies'] ),
+				WC_ADMIN_VERSION_NUMBER,
+				true
+			);
 		}
 	}
 
@@ -291,7 +292,16 @@ class OnboardingTasks {
 			'tax' === self::get_active_task() &&
 			! self::is_active_task_complete()
 		) {
-			wp_enqueue_script( 'onboarding-tax-notice', Loader::get_url( 'wp-admin-scripts/onboarding-tax-notice', 'js' ), array( 'wc-navigation', 'wp-i18n', 'wp-data' ), WC_ADMIN_VERSION_NUMBER, true );
+			$script_assets_filename = Loader::get_script_asset_filename( 'wp-admin-scripts', 'onboarding-tax-notice' );
+			$script_assets          = require WC_ADMIN_ABSPATH . WC_ADMIN_DIST_JS_FOLDER . 'wp-admin-scripts/' . $script_assets_filename;
+
+			wp_enqueue_script(
+				'onboarding-tax-notice',
+				Loader::get_url( 'wp-admin-scripts/onboarding-tax-notice', 'js' ),
+				array_merge( array( WC_ADMIN_APP ), $script_assets ['dependencies'] ),
+				WC_ADMIN_VERSION_NUMBER,
+				true
+			);
 		}
 	}
 
@@ -304,7 +314,17 @@ class OnboardingTasks {
 		$step = isset( $_GET['step'] ) ? $_GET['step'] : ''; // phpcs:ignore csrf ok, sanitization ok.
 		if ( 'product_page_product_importer' === $hook && 'done' === $step && 'product-import' === self::get_active_task() ) {
 			delete_transient( self::ACTIVE_TASK_TRANSIENT );
-			wp_enqueue_script( 'onboarding-product-import-notice', Loader::get_url( 'wp-admin-scripts/onboarding-product-import-notice', 'js' ), array( 'wc-navigation', 'wp-i18n', 'wp-data' ), WC_ADMIN_VERSION_NUMBER, true );
+
+			$script_assets_filename = Loader::get_script_asset_filename( 'wp-admin-scripts', 'onboarding-product-import-notice' );
+			$script_assets          = require WC_ADMIN_ABSPATH . WC_ADMIN_DIST_JS_FOLDER . 'wp-admin-scripts/' . $script_assets_filename;
+
+			wp_enqueue_script(
+				'onboarding-product-import-notice',
+				Loader::get_url( 'wp-admin-scripts/onboarding-product-import-notice', 'js' ),
+				array_merge( array( WC_ADMIN_APP ), $script_assets ['dependencies'] ),
+				WC_ADMIN_VERSION_NUMBER,
+				true
+			);
 		}
 	}
 
@@ -328,7 +348,7 @@ class OnboardingTasks {
 	 *
 	 * @return array
 	 */
-	private static function get_stripe_supported_countries() {
+	public static function get_stripe_supported_countries() {
 		// https://stripe.com/global.
 		return array(
 			'AU',
@@ -406,6 +426,7 @@ class OnboardingTasks {
 	 */
 	public static function track_task_completion( $old_value, $new_value ) {
 		$old_value       = is_array( $old_value ) ? $old_value : array();
+		$new_value       = is_array( $new_value ) ? $new_value : array();
 		$untracked_tasks = array_diff( $new_value, $old_value );
 
 		foreach ( $untracked_tasks as $task ) {

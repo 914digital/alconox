@@ -5,7 +5,7 @@ if (!defined('ABSPATH')) exit;
 
 class Help extends Base
 {
-    public $priority = 60;
+    public $priority = 80;
     protected $tab = 'help';
 
     /**
@@ -14,7 +14,7 @@ class Help extends Base
     public function __construct()
     {
         parent::__construct();
-        $this->title = __('Read Documentation', 'woo-discount-rules');
+        $this->title = __('Documentation', 'woo-discount-rules');
     }
 
     /**
@@ -24,6 +24,10 @@ class Help extends Base
      */
     public function render($page = NULL)
     {
-        self::$template_helper->setPath(WDR_PLUGIN_PATH . 'App/Views/Admin/Tabs/help.php')->display();
+        $is_pro_installed = \Wdr\App\Helpers\Helper::hasPro();
+        $params = array(
+            'is_pro' => $is_pro_installed,
+        );
+        self::$template_helper->setPath(WDR_PLUGIN_PATH . 'App/Views/Admin/Tabs/help.php')->setData($params)->display();
     }
 }

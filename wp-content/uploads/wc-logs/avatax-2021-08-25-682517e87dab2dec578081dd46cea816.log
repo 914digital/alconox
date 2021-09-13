@@ -1,0 +1,357 @@
+08-25-2021 @ 14:08:30 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/taxrates/byaddress?line1=&line2=&city=Franklinville&region=NJ&country=US&postalCode=08322
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.8)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.33495s
+
+08-25-2021 @ 14:08:30 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Wed, 25 Aug 2021 18:08:30 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 87
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0201423
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"totalRate":0.066250,"rates":[{"rate":0.066250,"name":"NJ STATE TAX","type":"State"}]}
+
+08-25-2021 @ 14:08:32 - Request
+Request
+method: POST
+uri: https://rest.avatax.com/api/v2/transactions/create
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.8)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body: {"code":"","companyCode":"ALC","customerCode":"marlene@unitechdrilling.com","currencyCode":"USD","date":"2021-08-25","lines":[{"number":"ca67023068969c7df100d80920400183","itemCode":"1104-1","taxCode":"P0000000","description":"Alconox","quantity":2,"amount":94.400000000000006},{"number":"shipping_0","itemCode":"use-my-shipping-account","taxCode":"FR","description":"Use My Shipping Account","quantity":1}],"addresses":{"shipFrom":{"line1":"30 GLENN ST","line2":"","city":"WHITE PLAINS","region":"NY","country":"US","postalCode":"10603-3254"},"shipTo":{"line1":"PO Box 61","line2":"","city":"Franklinville","region":"NJ","country":"US","postalCode":"08322"}},"type":"SalesOrder","commit":false}
+duration: 0.30898s
+
+08-25-2021 @ 14:08:32 - Response
+Response
+code: 201
+message: Created
+headers: Array
+(
+    [date] => Wed, 25 Aug 2021 18:08:32 GMT
+    [content-type] => application/json; charset=utf-8
+    [server] => Kestrel
+    [content-encoding] => br
+    [location] => /api/v2/companies/207925/transactions/0
+    [vary] => Accept-Encoding
+    [serverduration] => 00:00:00.0350067
+)
+body: {"id":0,"code":"052525a3-363f-4b38-bd42-76f8f2d1ec85","companyId":207925,"date":"2021-08-25","paymentDate":"2021-08-25","status":"Temporary","type":"SalesOrder","batchCode":"","currencyCode":"USD","exchangeRateCurrencyCode":"USD","customerUsageType":"","entityUseCode":"","customerVendorCode":"marlene@unitechdrilling.com","customerCode":"marlene@unitechdrilling.com","exemptNo":"","reconciled":false,"locationCode":"","reportingLocationCode":"","purchaseOrderNo":"","referenceCode":"","salespersonCode":"","totalAmount":94.4,"totalExempt":0.0,"totalDiscount":0.0,"totalTax":6.25,"totalTaxable":94.4,"totalTaxCalculated":6.25,"adjustmentReason":"NotAdjusted","locked":false,"version":1,"exchangeRateEffectiveDate":"2021-08-25","exchangeRate":1.0,"modifiedDate":"2021-08-25T18:08:32.5722019Z","modifiedUserId":231879,"taxDate":"2021-08-25","lines":[{"id":0,"transactionId":0,"lineNumber":"ca67023068969c7df100d80920400183","customerUsageType":"","entityUseCode":"","description":"Alconox","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"itemCode":"1104-1","lineAmount":94.400000000000006,"quantity":2.0,"ref1":"","ref2":"","reportingDate":"2021-08-25","tax":6.25,"taxableAmount":94.4,"taxCalculated":6.25,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-08-25","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NJ","exemptAmount":0.0,"jurisCode":"34","jurisName":"NEW JERSEY","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.066250,"tax":6.25,"taxableAmount":94.4,"taxType":"Sales","taxSubTypeId":"S","taxName":"NJ STATE TAX","taxAuthorityTypeId":45,"taxCalculated":6.25,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":94.4,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":6.25,"reportingTaxCalculated":6.25,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":0,"transactionId":0,"lineNumber":"shipping_0","customerUsageType":"","entityUseCode":"","description":"Use My Shipping Account","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":false,"itemCode":"use-my-shipping-account","lineAmount":0.0,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-08-25","tax":0.0,"taxableAmount":0.0,"taxCalculated":0.0,"taxCode":"FR","taxCodeId":7119,"taxDate":"2021-08-25","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NJ","exemptAmount":0.0,"jurisCode":"34","jurisName":"NEW JERSEY","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.066250,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NJ STATE TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0}],"addresses":[{"id":0,"transactionId":0,"boundaryLevel":"Zip5","line1":"PO Box 61","line2":"","line3":"","city":"Franklinville","region":"NJ","postalCode":"08322","country":"US","taxRegionId":4006034,"latitude":"39.618977","longitude":"-75.046905"},{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"30 GLENN ST","line2":"","line3":"","city":"WHITE PLAINS","region":"NY","postalCode":"10603-3254","country":"US","taxRegionId":2090237,"latitude":"41.050608","longitude":"-73.771383"}],"summary":[{"country":"US","region":"NJ","jurisType":"State","jurisCode":"34","jurisName":"NEW JERSEY","taxAuthorityType":45,"stateAssignedNo":"","taxType":"Sales","taxSubType":"S","taxName":"NJ STATE TAX","rateType":"General","taxable":94.4,"rate":0.066250,"tax":6.25,"taxCalculated":6.25,"nonTaxable":0.0,"exemption":0.0}]}
+
+08-25-2021 @ 14:08:40 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/taxrates/byaddress?line1=&line2=&city=Franklinville&region=NJ&country=US&postalCode=08322
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.8)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.32044s
+
+08-25-2021 @ 14:08:40 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Wed, 25 Aug 2021 18:08:40 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 87
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0011035
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"totalRate":0.066250,"rates":[{"rate":0.066250,"name":"NJ STATE TAX","type":"State"}]}
+
+08-25-2021 @ 14:08:41 - Request
+Request
+method: POST
+uri: https://rest.avatax.com/api/v2/transactions/create
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.8)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body: {"code":"","companyCode":"ALC","customerCode":"gina@unitechdrilling.com","currencyCode":"USD","date":"2021-08-25","lines":[{"number":"ca67023068969c7df100d80920400183","itemCode":"1104-1","taxCode":"P0000000","description":"Alconox","quantity":2,"amount":94.400000000000006},{"number":"shipping_0","itemCode":"use-my-shipping-account","taxCode":"FR","description":"Use My Shipping Account","quantity":1}],"addresses":{"shipFrom":{"line1":"30 GLENN ST","line2":"","city":"WHITE PLAINS","region":"NY","country":"US","postalCode":"10603-3254"},"shipTo":{"line1":"PO Box 61","line2":"","city":"Franklinville","region":"NJ","country":"US","postalCode":"08322"}},"type":"SalesOrder","commit":false}
+duration: 1.20798s
+
+08-25-2021 @ 14:08:41 - Response
+Response
+code: 201
+message: Created
+headers: Array
+(
+    [date] => Wed, 25 Aug 2021 18:08:41 GMT
+    [content-type] => application/json; charset=utf-8
+    [server] => Kestrel
+    [content-encoding] => br
+    [location] => /api/v2/companies/207925/transactions/0
+    [vary] => Accept-Encoding
+    [serverduration] => 00:00:00.0373735
+)
+body: {"id":0,"code":"4534102a-ce51-4712-b663-43622db5362b","companyId":207925,"date":"2021-08-25","paymentDate":"2021-08-25","status":"Temporary","type":"SalesOrder","batchCode":"","currencyCode":"USD","exchangeRateCurrencyCode":"USD","customerUsageType":"","entityUseCode":"","customerVendorCode":"gina@unitechdrilling.com","customerCode":"gina@unitechdrilling.com","exemptNo":"","reconciled":false,"locationCode":"","reportingLocationCode":"","purchaseOrderNo":"","referenceCode":"","salespersonCode":"","totalAmount":94.4,"totalExempt":0.0,"totalDiscount":0.0,"totalTax":6.25,"totalTaxable":94.4,"totalTaxCalculated":6.25,"adjustmentReason":"NotAdjusted","locked":false,"version":1,"exchangeRateEffectiveDate":"2021-08-25","exchangeRate":1.0,"modifiedDate":"2021-08-25T18:08:41.4159013Z","modifiedUserId":231879,"taxDate":"2021-08-25","lines":[{"id":0,"transactionId":0,"lineNumber":"ca67023068969c7df100d80920400183","customerUsageType":"","entityUseCode":"","description":"Alconox","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"itemCode":"1104-1","lineAmount":94.400000000000006,"quantity":2.0,"ref1":"","ref2":"","reportingDate":"2021-08-25","tax":6.25,"taxableAmount":94.4,"taxCalculated":6.25,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-08-25","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NJ","exemptAmount":0.0,"jurisCode":"34","jurisName":"NEW JERSEY","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.066250,"tax":6.25,"taxableAmount":94.4,"taxType":"Sales","taxSubTypeId":"S","taxName":"NJ STATE TAX","taxAuthorityTypeId":45,"taxCalculated":6.25,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":94.4,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":6.25,"reportingTaxCalculated":6.25,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":0,"transactionId":0,"lineNumber":"shipping_0","customerUsageType":"","entityUseCode":"","description":"Use My Shipping Account","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":false,"itemCode":"use-my-shipping-account","lineAmount":0.0,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-08-25","tax":0.0,"taxableAmount":0.0,"taxCalculated":0.0,"taxCode":"FR","taxCodeId":7119,"taxDate":"2021-08-25","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NJ","exemptAmount":0.0,"jurisCode":"34","jurisName":"NEW JERSEY","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.066250,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NJ STATE TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0}],"addresses":[{"id":0,"transactionId":0,"boundaryLevel":"Zip5","line1":"PO Box 61","line2":"","line3":"","city":"Franklinville","region":"NJ","postalCode":"08322","country":"US","taxRegionId":4006034,"latitude":"39.618977","longitude":"-75.046905"},{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"30 GLENN ST","line2":"","line3":"","city":"WHITE PLAINS","region":"NY","postalCode":"10603-3254","country":"US","taxRegionId":2090237,"latitude":"41.050608","longitude":"-73.771383"}],"summary":[{"country":"US","region":"NJ","jurisType":"State","jurisCode":"34","jurisName":"NEW JERSEY","taxAuthorityType":45,"stateAssignedNo":"","taxType":"Sales","taxSubType":"S","taxName":"NJ STATE TAX","rateType":"General","taxable":94.4,"rate":0.066250,"tax":6.25,"taxCalculated":6.25,"nonTaxable":0.0,"exemption":0.0}]}
+
+08-25-2021 @ 14:08:50 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/taxrates/byaddress?line1=&line2=&city=Franklinville&region=NJ&country=US&postalCode=08322
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.8)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.29126s
+
+08-25-2021 @ 14:08:50 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Wed, 25 Aug 2021 18:08:50 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 87
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0010121
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"totalRate":0.066250,"rates":[{"rate":0.066250,"name":"NJ STATE TAX","type":"State"}]}
+
+08-25-2021 @ 14:08:50 - Request
+Request
+method: POST
+uri: https://rest.avatax.com/api/v2/transactions/create
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.8)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body: {"code":"","companyCode":"ALC","customerCode":"gina@unitechdrilling.com","currencyCode":"USD","date":"2021-08-25","lines":[{"number":"ca67023068969c7df100d80920400183","itemCode":"1104-1","taxCode":"P0000000","description":"Alconox","quantity":2,"amount":94.400000000000006},{"number":"shipping_0","itemCode":"use-my-shipping-account","taxCode":"FR","description":"Use My Shipping Account","quantity":1}],"addresses":{"shipFrom":{"line1":"30 GLENN ST","line2":"","city":"WHITE PLAINS","region":"NY","country":"US","postalCode":"10603-3254"},"shipTo":{"line1":"61 Grays Ferry Rd","line2":"","city":"Franklinville","region":"NJ","country":"US","postalCode":"08322"}},"type":"SalesOrder","commit":false}
+duration: 0.3857s
+
+08-25-2021 @ 14:08:50 - Response
+Response
+code: 201
+message: Created
+headers: Array
+(
+    [date] => Wed, 25 Aug 2021 18:08:50 GMT
+    [content-type] => application/json; charset=utf-8
+    [server] => Kestrel
+    [content-encoding] => br
+    [location] => /api/v2/companies/207925/transactions/0
+    [vary] => Accept-Encoding
+    [serverduration] => 00:00:00.0355911
+)
+body: {"id":0,"code":"3d73cf99-e677-49af-b587-64744bb49849","companyId":207925,"date":"2021-08-25","paymentDate":"2021-08-25","status":"Temporary","type":"SalesOrder","batchCode":"","currencyCode":"USD","exchangeRateCurrencyCode":"USD","customerUsageType":"","entityUseCode":"","customerVendorCode":"gina@unitechdrilling.com","customerCode":"gina@unitechdrilling.com","exemptNo":"","reconciled":false,"locationCode":"","reportingLocationCode":"","purchaseOrderNo":"","referenceCode":"","salespersonCode":"","totalAmount":94.4,"totalExempt":0.0,"totalDiscount":0.0,"totalTax":6.25,"totalTaxable":94.4,"totalTaxCalculated":6.25,"adjustmentReason":"NotAdjusted","locked":false,"version":1,"exchangeRateEffectiveDate":"2021-08-25","exchangeRate":1.0,"modifiedDate":"2021-08-25T18:08:50.5236587Z","modifiedUserId":231879,"taxDate":"2021-08-25","lines":[{"id":0,"transactionId":0,"lineNumber":"ca67023068969c7df100d80920400183","customerUsageType":"","entityUseCode":"","description":"Alconox","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"itemCode":"1104-1","lineAmount":94.400000000000006,"quantity":2.0,"ref1":"","ref2":"","reportingDate":"2021-08-25","tax":6.25,"taxableAmount":94.4,"taxCalculated":6.25,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-08-25","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NJ","exemptAmount":0.0,"jurisCode":"34","jurisName":"NEW JERSEY","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.066250,"tax":6.25,"taxableAmount":94.4,"taxType":"Sales","taxSubTypeId":"S","taxName":"NJ STATE TAX","taxAuthorityTypeId":45,"taxCalculated":6.25,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":94.4,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":6.25,"reportingTaxCalculated":6.25,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":0,"transactionId":0,"lineNumber":"shipping_0","customerUsageType":"","entityUseCode":"","description":"Use My Shipping Account","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":false,"itemCode":"use-my-shipping-account","lineAmount":0.0,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-08-25","tax":0.0,"taxableAmount":0.0,"taxCalculated":0.0,"taxCode":"FR","taxCodeId":7119,"taxDate":"2021-08-25","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NJ","exemptAmount":0.0,"jurisCode":"34","jurisName":"NEW JERSEY","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.066250,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NJ STATE TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0}],"addresses":[{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"61 Grays Ferry Rd","line2":"","line3":"","city":"Franklinville","region":"NJ","postalCode":"08322","country":"US","taxRegionId":4006034,"latitude":"39.605611","longitude":"-75.073732"},{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"30 GLENN ST","line2":"","line3":"","city":"WHITE PLAINS","region":"NY","postalCode":"10603-3254","country":"US","taxRegionId":2090237,"latitude":"41.050608","longitude":"-73.771383"}],"summary":[{"country":"US","region":"NJ","jurisType":"State","jurisCode":"34","jurisName":"NEW JERSEY","taxAuthorityType":45,"stateAssignedNo":"","taxType":"Sales","taxSubType":"S","taxName":"NJ STATE TAX","rateType":"General","taxable":94.4,"rate":0.066250,"tax":6.25,"taxCalculated":6.25,"nonTaxable":0.0,"exemption":0.0}]}
+
+08-25-2021 @ 14:09:09 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/taxrates/byaddress?line1=&line2=&city=Franklinville&region=NJ&country=US&postalCode=08322
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.8)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.29623s
+
+08-25-2021 @ 14:09:09 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Wed, 25 Aug 2021 18:09:09 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 87
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0011684
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"totalRate":0.066250,"rates":[{"rate":0.066250,"name":"NJ STATE TAX","type":"State"}]}
+
+08-25-2021 @ 14:09:10 - Request
+Request
+method: POST
+uri: https://rest.avatax.com/api/v2/transactions/create
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.8)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body: {"code":"","companyCode":"ALC","customerCode":"gina@unitechdrilling.com","currencyCode":"USD","date":"2021-08-25","lines":[{"number":"ca67023068969c7df100d80920400183","itemCode":"1104-1","taxCode":"P0000000","description":"Alconox","quantity":2,"amount":94.400000000000006},{"number":"shipping_0","itemCode":"pt-ups-merger:6:03","taxCode":"FR","description":"Ground (UPS)","quantity":1,"amount":14.32}],"addresses":{"shipFrom":{"line1":"30 GLENN ST","line2":"","city":"WHITE PLAINS","region":"NY","country":"US","postalCode":"10603-3254"},"shipTo":{"line1":"61 Grays Ferry Rd","line2":"","city":"Franklinville","region":"NJ","country":"US","postalCode":"08322"}},"type":"SalesOrder","commit":false}
+duration: 0.35978s
+
+08-25-2021 @ 14:09:10 - Response
+Response
+code: 201
+message: Created
+headers: Array
+(
+    [date] => Wed, 25 Aug 2021 18:09:10 GMT
+    [content-type] => application/json; charset=utf-8
+    [server] => Kestrel
+    [content-encoding] => br
+    [location] => /api/v2/companies/207925/transactions/0
+    [vary] => Accept-Encoding
+    [serverduration] => 00:00:00.0468977
+)
+body: {"id":0,"code":"0e6ba548-b69a-48d2-89cd-d65a1c17b22e","companyId":207925,"date":"2021-08-25","paymentDate":"2021-08-25","status":"Temporary","type":"SalesOrder","batchCode":"","currencyCode":"USD","exchangeRateCurrencyCode":"USD","customerUsageType":"","entityUseCode":"","customerVendorCode":"gina@unitechdrilling.com","customerCode":"gina@unitechdrilling.com","exemptNo":"","reconciled":false,"locationCode":"","reportingLocationCode":"","purchaseOrderNo":"","referenceCode":"","salespersonCode":"","totalAmount":108.72,"totalExempt":14.32,"totalDiscount":0.0,"totalTax":6.25,"totalTaxable":94.4,"totalTaxCalculated":6.25,"adjustmentReason":"NotAdjusted","locked":false,"version":1,"exchangeRateEffectiveDate":"2021-08-25","exchangeRate":1.0,"modifiedDate":"2021-08-25T18:09:10.0518644Z","modifiedUserId":231879,"taxDate":"2021-08-25","lines":[{"id":0,"transactionId":0,"lineNumber":"ca67023068969c7df100d80920400183","customerUsageType":"","entityUseCode":"","description":"Alconox","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"itemCode":"1104-1","lineAmount":94.400000000000006,"quantity":2.0,"ref1":"","ref2":"","reportingDate":"2021-08-25","tax":6.25,"taxableAmount":94.4,"taxCalculated":6.25,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-08-25","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NJ","exemptAmount":0.0,"jurisCode":"34","jurisName":"NEW JERSEY","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.066250,"tax":6.25,"taxableAmount":94.4,"taxType":"Sales","taxSubTypeId":"S","taxName":"NJ STATE TAX","taxAuthorityTypeId":45,"taxCalculated":6.25,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":94.4,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":6.25,"reportingTaxCalculated":6.25,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":0,"transactionId":0,"lineNumber":"shipping_0","customerUsageType":"","entityUseCode":"","description":"Ground (UPS)","discountAmount":0.0,"exemptAmount":14.32,"exemptCertId":0,"exemptNo":"","isItemTaxable":false,"itemCode":"pt-ups-merger:6:03","lineAmount":14.32,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-08-25","tax":0.0,"taxableAmount":0.0,"taxCalculated":0.0,"taxCode":"FR","taxCodeId":7119,"taxDate":"2021-08-25","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NJ","exemptAmount":0.0,"jurisCode":"34","jurisName":"NEW JERSEY","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":14.32,"rate":0.066250,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NJ STATE TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":14.32,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0}],"addresses":[{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"61 Grays Ferry Rd","line2":"","line3":"","city":"Franklinville","region":"NJ","postalCode":"08322","country":"US","taxRegionId":4006034,"latitude":"39.605611","longitude":"-75.073732"},{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"30 GLENN ST","line2":"","line3":"","city":"WHITE PLAINS","region":"NY","postalCode":"10603-3254","country":"US","taxRegionId":2090237,"latitude":"41.050608","longitude":"-73.771383"}],"summary":[{"country":"US","region":"NJ","jurisType":"State","jurisCode":"34","jurisName":"NEW JERSEY","taxAuthorityType":45,"stateAssignedNo":"","taxType":"Sales","taxSubType":"S","taxName":"NJ STATE TAX","rateType":"General","taxable":94.4,"rate":0.066250,"tax":6.25,"taxCalculated":6.25,"nonTaxable":14.32,"exemption":0.0}]}
+
+08-25-2021 @ 14:10:15 - Request
+Request
+method: GET
+uri: https://rest.avatax.com/api/v2/taxrates/byaddress?line1=&line2=&city=Franklinville&region=NJ&country=US&postalCode=08322
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.8)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body:
+duration: 0.34214s
+
+08-25-2021 @ 14:10:15 - Response
+Response
+code: 200
+message: OK
+headers: Array
+(
+    [date] => Wed, 25 Aug 2021 18:10:15 GMT
+    [content-type] => application/json; charset=utf-8
+    [content-length] => 87
+    [x-content-type-options] => nosniff
+    [serverduration] => 00:00:00.0012676
+    [databasecalls] => 0
+    [databaseduration] => 00:00:00
+    [serviceduration] => 00:00:00
+)
+body: {"totalRate":0.066250,"rates":[{"rate":0.066250,"name":"NJ STATE TAX","type":"State"}]}
+
+08-25-2021 @ 14:10:16 - Request
+Request
+method: POST
+uri: https://rest.avatax.com/api/v2/transactions/create
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.8)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body: {"code":"","companyCode":"ALC","customerCode":"gina@unitechdrilling.com","currencyCode":"USD","date":"2021-08-25","lines":[{"number":"ca67023068969c7df100d80920400183","itemCode":"1104-1","taxCode":"P0000000","description":"Alconox","quantity":2,"amount":94.400000000000006},{"number":"shipping_0","itemCode":"pt-ups-merger:6:03","taxCode":"FR","description":"Ground (UPS)","quantity":1,"amount":14.32}],"addresses":{"shipFrom":{"line1":"30 GLENN ST","line2":"","city":"WHITE PLAINS","region":"NY","country":"US","postalCode":"10603-3254"},"shipTo":{"line1":"61 Grays Ferry Rd","line2":"","city":"Franklinville","region":"NJ","country":"US","postalCode":"08322"}},"type":"SalesOrder","commit":false}
+duration: 0.35001s
+
+08-25-2021 @ 14:10:16 - Response
+Response
+code: 201
+message: Created
+headers: Array
+(
+    [date] => Wed, 25 Aug 2021 18:10:16 GMT
+    [content-type] => application/json; charset=utf-8
+    [server] => Kestrel
+    [content-encoding] => br
+    [location] => /api/v2/companies/207925/transactions/0
+    [vary] => Accept-Encoding
+    [serverduration] => 00:00:00.0467890
+)
+body: {"id":0,"code":"eb8cf68f-97e9-4659-9c21-a6001b14593c","companyId":207925,"date":"2021-08-25","paymentDate":"2021-08-25","status":"Temporary","type":"SalesOrder","batchCode":"","currencyCode":"USD","exchangeRateCurrencyCode":"USD","customerUsageType":"","entityUseCode":"","customerVendorCode":"gina@unitechdrilling.com","customerCode":"gina@unitechdrilling.com","exemptNo":"","reconciled":false,"locationCode":"","reportingLocationCode":"","purchaseOrderNo":"","referenceCode":"","salespersonCode":"","totalAmount":108.72,"totalExempt":14.32,"totalDiscount":0.0,"totalTax":6.25,"totalTaxable":94.4,"totalTaxCalculated":6.25,"adjustmentReason":"NotAdjusted","locked":false,"version":1,"exchangeRateEffectiveDate":"2021-08-25","exchangeRate":1.0,"modifiedDate":"2021-08-25T18:10:16.0300078Z","modifiedUserId":231879,"taxDate":"2021-08-25","lines":[{"id":0,"transactionId":0,"lineNumber":"ca67023068969c7df100d80920400183","customerUsageType":"","entityUseCode":"","description":"Alconox","discountAmount":0.0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"itemCode":"1104-1","lineAmount":94.400000000000006,"quantity":2.0,"ref1":"","ref2":"","reportingDate":"2021-08-25","tax":6.25,"taxableAmount":94.4,"taxCalculated":6.25,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-08-25","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NJ","exemptAmount":0.0,"jurisCode":"34","jurisName":"NEW JERSEY","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0,"rate":0.066250,"tax":6.25,"taxableAmount":94.4,"taxType":"Sales","taxSubTypeId":"S","taxName":"NJ STATE TAX","taxAuthorityTypeId":45,"taxCalculated":6.25,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":94.4,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":6.25,"reportingTaxCalculated":6.25,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":0,"transactionId":0,"lineNumber":"shipping_0","customerUsageType":"","entityUseCode":"","description":"Ground (UPS)","discountAmount":0.0,"exemptAmount":14.32,"exemptCertId":0,"exemptNo":"","isItemTaxable":false,"itemCode":"pt-ups-merger:6:03","lineAmount":14.32,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-08-25","tax":0.0,"taxableAmount":0.0,"taxCalculated":0.0,"taxCode":"FR","taxCodeId":7119,"taxDate":"2021-08-25","taxIncluded":false,"details":[{"id":0,"transactionLineId":0,"transactionId":0,"country":"US","region":"NJ","exemptAmount":0.0,"jurisCode":"34","jurisName":"NEW JERSEY","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":14.32,"rate":0.066250,"tax":0.0,"taxableAmount":0.0,"taxType":"Sales","taxSubTypeId":"S","taxName":"NJ STATE TAX","taxAuthorityTypeId":45,"taxCalculated":0.0,"rateType":"General","rateTypeCode":"G","unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":14.32,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0}],"addresses":[{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"61 Grays Ferry Rd","line2":"","line3":"","city":"Franklinville","region":"NJ","postalCode":"08322","country":"US","taxRegionId":4006034,"latitude":"39.605611","longitude":"-75.073732"},{"id":0,"transactionId":0,"boundaryLevel":"Address","line1":"30 GLENN ST","line2":"","line3":"","city":"WHITE PLAINS","region":"NY","postalCode":"10603-3254","country":"US","taxRegionId":2090237,"latitude":"41.050608","longitude":"-73.771383"}],"summary":[{"country":"US","region":"NJ","jurisType":"State","jurisCode":"34","jurisName":"NEW JERSEY","taxAuthorityType":45,"stateAssignedNo":"","taxType":"Sales","taxSubType":"S","taxName":"NJ STATE TAX","rateType":"General","taxable":94.4,"rate":0.066250,"tax":6.25,"taxCalculated":6.25,"nonTaxable":14.32,"exemption":0.0}]}
+
+08-25-2021 @ 14:10:21 - Request
+Request
+method: POST
+uri: https://rest.avatax.com/api/v2/transactions/create
+user-agent: WooCommerce-AvaTax/1.12.0 (WooCommerce/5.4.2; WordPress/5.8)
+headers: Array
+(
+    [content-type] => application/json
+    [accept] => application/json
+    [Authorization] => ******************************************
+    [X-Avalara-Client] => WCSkyVerge RESTv2;REST;REST;v2;AlconoxInc
+    [X-Avalara-UID] => a0o33000004goTr
+)
+body: {"code":"wc_order_D1VM3dGbq9P1M","companyCode":"ALC","customerCode":"gina@unitechdrilling.com","currencyCode":"USD","date":"2021-08-25","lines":[{"number":24577,"itemCode":"1104-1","taxCode":"P0000000","description":"Alconox","quantity":2,"amount":94.400000000000006},{"number":"shipping_24578","itemCode":"pt-ups-merger","taxCode":"FR","description":"Ground (UPS)","quantity":1,"amount":14.32}],"addresses":{"shipFrom":{"line1":"30 GLENN ST","line2":"","city":"WHITE PLAINS","region":"NY","country":"US","postalCode":"10603-3254"},"shipTo":{"line1":"61 Grays Ferry Rd","line2":"","city":"Franklinville","region":"NJ","country":"US","postalCode":"08322"}},"type":"SalesInvoice","purchaseOrderNo":"22167","commit":true}
+duration: 0.35765s
+
+08-25-2021 @ 14:10:21 - Response
+Response
+code: 201
+message: Created
+headers: Array
+(
+    [date] => Wed, 25 Aug 2021 18:10:21 GMT
+    [content-type] => application/json; charset=utf-8
+    [server] => Kestrel
+    [content-encoding] => br
+    [location] => /api/v2/companies/207925/transactions/2001837713885
+    [vary] => Accept-Encoding
+    [serverduration] => 00:00:00.0795895
+)
+body: {"id":2001837713885,"code":"wc_order_D1VM3dGbq9P1M","companyId":207925,"date":"2021-08-25","status":"Committed","type":"SalesInvoice","batchCode":"","currencyCode":"USD","exchangeRateCurrencyCode":"USD","customerUsageType":"","entityUseCode":"","customerVendorCode":"gina@unitechdrilling.com","customerCode":"gina@unitechdrilling.com","exemptNo":"","reconciled":false,"locationCode":"","reportingLocationCode":"","purchaseOrderNo":"22167","referenceCode":"","salespersonCode":"","taxOverrideType":"None","taxOverrideAmount":0.0,"taxOverrideReason":"","totalAmount":108.72,"totalExempt":14.32,"totalDiscount":0.0,"totalTax":6.25,"totalTaxable":94.4,"totalTaxCalculated":6.25,"adjustmentReason":"NotAdjusted","adjustmentDescription":"","locked":false,"region":"NJ","country":"US","version":1,"softwareVersion":"21.8.1.0","originAddressId":4003379037527,"destinationAddressId":3003379037527,"exchangeRateEffectiveDate":"2021-08-25","exchangeRate":1.0,"description":"","email":"","businessIdentificationNo":"","modifiedDate":"2021-08-25T18:10:21.6306792Z","modifiedUserId":231879,"taxDate":"2021-08-25","lines":[{"id":4005698143104,"transactionId":2001837713885,"lineNumber":"24577","boundaryOverrideId":0,"customerUsageType":"","entityUseCode":"","description":"Alconox","destinationAddressId":3003379037527,"originAddressId":4003379037527,"discountAmount":0.0,"discountTypeId":0,"exemptAmount":0.0,"exemptCertId":0,"exemptNo":"","isItemTaxable":true,"isSSTP":false,"itemCode":"1104-1","lineAmount":94.4,"quantity":2.0,"ref1":"","ref2":"","reportingDate":"2021-08-25","revAccount":"","sourcing":"Destination","tax":6.2500,"taxableAmount":94.4,"taxCalculated":6.2500,"taxCode":"P0000000","taxCodeId":4316,"taxDate":"2021-08-25","taxEngine":"","taxOverrideType":"None","businessIdentificationNo":"","taxOverrideAmount":0.0,"taxOverrideReason":"","taxIncluded":false,"details":[{"id":8004571645193,"transactionLineId":4005698143104,"transactionId":2001837713885,"addressId":3003379037527,"country":"US","region":"NJ","countyFIPS":"","stateFIPS":"","exemptAmount":0.0000,"exemptReasonId":4,"inState":false,"jurisCode":"34","jurisName":"NEW JERSEY","jurisdictionId":34,"signatureCode":"BEJY","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":0.0000,"nonTaxableRuleId":0,"nonTaxableType":"RateRule","rate":0.066250,"rateRuleId":1457453,"rateSourceId":3,"serCode":"","sourcing":"Destination","tax":6.2500,"taxableAmount":94.4000,"taxType":"Sales","taxSubTypeId":"S","taxTypeGroupId":"SalesAndUse","taxName":"NJ STATE TAX","taxAuthorityTypeId":45,"taxRegionId":4006034,"taxCalculated":6.2500,"taxOverride":0.0000,"rateType":"General","rateTypeCode":"G","taxableUnits":94.4000,"nonTaxableUnits":0.0000,"exemptUnits":0.0000,"unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":94.4,"reportingNonTaxableUnits":0.0,"reportingExemptUnits":0.0,"reportingTax":6.25,"reportingTaxCalculated":6.25,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"lineLocationTypes":[{"documentLineLocationTypeId":8004370477296,"documentLineId":4005698143104,"documentAddressId":4003379037527,"locationTypeCode":"ShipFrom"},{"documentLineLocationTypeId":9004370477295,"documentLineId":4005698143104,"documentAddressId":3003379037527,"locationTypeCode":"ShipTo"}],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0},{"id":5003675243939,"transactionId":2001837713885,"lineNumber":"shipping_24578","boundaryOverrideId":0,"customerUsageType":"","entityUseCode":"","description":"Ground (UPS)","destinationAddressId":3003379037527,"originAddressId":4003379037527,"discountAmount":0.0,"discountTypeId":0,"exemptAmount":14.32,"exemptCertId":0,"exemptNo":"","isItemTaxable":false,"isSSTP":false,"itemCode":"pt-ups-merger","lineAmount":14.32,"quantity":1.0,"ref1":"","ref2":"","reportingDate":"2021-08-25","revAccount":"","sourcing":"Destination","tax":0.0000,"taxableAmount":0.0,"taxCalculated":0.0000,"taxCode":"FR","taxCodeId":7119,"taxDate":"2021-08-25","taxEngine":"","taxOverrideType":"None","businessIdentificationNo":"","taxOverrideAmount":0.0,"taxOverrideReason":"","taxIncluded":false,"details":[{"id":10004571645194,"transactionLineId":5003675243939,"transactionId":2001837713885,"addressId":3003379037527,"country":"US","region":"NJ","countyFIPS":"","stateFIPS":"","exemptAmount":0.0000,"exemptReasonId":5,"inState":false,"jurisCode":"34","jurisName":"NEW JERSEY","jurisdictionId":34,"signatureCode":"BEJY","stateAssignedNo":"","jurisType":"STA","jurisdictionType":"State","nonTaxableAmount":14.3200,"nonTaxableRuleId":5594535,"nonTaxableType":"ProductTaxabilityRule","rate":0.066250,"rateRuleId":1457453,"rateSourceId":3,"serCode":"","sourcing":"Destination","tax":0.0000,"taxableAmount":0.0000,"taxType":"Sales","taxSubTypeId":"S","taxTypeGroupId":"SalesAndUse","taxName":"NJ STATE TAX","taxAuthorityTypeId":45,"taxRegionId":4006034,"taxCalculated":0.0000,"taxOverride":0.0000,"rateType":"General","rateTypeCode":"G","taxableUnits":0.0000,"nonTaxableUnits":14.3200,"exemptUnits":0.0000,"unitOfBasis":"PerCurrencyUnit","isNonPassThru":false,"isFee":false,"reportingTaxableUnits":0.0,"reportingNonTaxableUnits":14.32,"reportingExemptUnits":0.0,"reportingTax":0.0,"reportingTaxCalculated":0.0,"liabilityType":"Seller"}],"nonPassthroughDetails":[],"lineLocationTypes":[{"documentLineLocationTypeId":10004370477295,"documentLineId":5003675243939,"documentAddressId":4003379037527,"locationTypeCode":"ShipFrom"},{"documentLineLocationTypeId":11004370477295,"documentLineId":5003675243939,"documentAddressId":3003379037527,"locationTypeCode":"ShipTo"}],"hsCode":"","costInsuranceFreight":0.0,"vatCode":"","vatNumberTypeId":0}],"addresses":[{"id":3003379037527,"transactionId":2001837713885,"boundaryLevel":"Address","line1":"61 GRAYS FERRY RD","line2":"","line3":"","city":"FRANKLINVILLE","region":"NJ","postalCode":"08322-3692","country":"US","taxRegionId":4006034,"latitude":"39.605611","longitude":"-75.073732"},{"id":4003379037527,"transactionId":2001837713885,"boundaryLevel":"Address","line1":"30 GLENN ST","line2":"","line3":"","city":"WHITE PLAINS","region":"NY","postalCode":"10603-3254","country":"US","taxRegionId":2090237,"latitude":"41.050608","longitude":"-73.771383"}],"locationTypes":[{"documentLocationTypeId":5002388716809,"documentId":2001837713885,"documentAddressId":4003379037527,"locationTypeCode":"ShipFrom"},{"documentLocationTypeId":6002388716809,"documentId":2001837713885,"documentAddressId":3003379037527,"locationTypeCode":"ShipTo"}],"summary":[{"country":"US","region":"NJ","jurisType":"State","jurisCode":"34","jurisName":"NEW JERSEY","taxAuthorityType":45,"stateAssignedNo":"","taxType":"Sales","taxSubType":"S","taxName":"NJ STATE TAX","rateType":"General","taxable":94.40,"rate":0.066250,"tax":6.25,"taxCalculated":6.25,"nonTaxable":14.32,"exemption":0.00}]}
+

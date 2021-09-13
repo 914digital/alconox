@@ -127,8 +127,8 @@
 
     $("#asp-os-results").on("click", "a.asp-os-res", function(){
         var tabid = $(this).attr("tabid");
-        $('.tabs a[tabid=' + Math.floor( tabid / 100 ) + ']').click();
-        $('.tabs a[tabid=' + tabid + ']').click();
+        $('.tabs a[tabid=' + Math.floor( tabid / 100 ) + ']').trigger('click');
+        $('.tabs a[tabid=' + tabid + ']').trigger('click');
         $('.asp-os-highlighted').removeClass("asp-os-highlighted");
         $(matches[$(this).attr("xnode")]).addClass("asp-os-highlighted");
     });

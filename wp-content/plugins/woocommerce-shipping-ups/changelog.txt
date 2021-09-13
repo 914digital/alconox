@@ -1,5 +1,18 @@
 *** UPS Shipping ***
 
+2021-09-10 - version 3.2.35
+* Add   - Package dimensions to order shipping details.
+* Tweak - Show the specific rate label when only offering customers the cheapest rate.
+
+2021-07-27 - version 3.2.34
+* Add - UPS Simple Rate
+
+2021-07-13 - version 3.2.33
+* Fix - Base "Weight/Dimension Units - Automatic" on zone origin instead of destination.
+
+2021-06-22 - version 3.2.32
+* Fix - Validate postcode before sending to UPS API.
+
 2021-02-09 - version 3.2.31
 * Fix - Error when libxml_disable_entity_loader() is disabled by host
 

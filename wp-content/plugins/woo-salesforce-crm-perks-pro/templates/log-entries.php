@@ -202,17 +202,17 @@ color: #E31230;
   </div>
    <div style="float: right; ">
 <form id="vx_form" class="crm_form" method="get"><div>
-<input type="hidden" name="page" value="<?php echo $this->post('page') ?>" />
-<input type="text" placeholder="<?php _e('Search','woocommerce-salesforce-crm') ?>" value="<?php echo $this->post('search'); ?>" name="search" class="crm_input_inline">
+<input type="hidden" name="page" value="<?php echo esc_attr($this->post('page')) ?>" />
+<input type="text" placeholder="<?php _e('Search','woocommerce-salesforce-crm') ?>" value="<?php echo esc_attr($this->post('search')); ?>" name="search" class="crm_input_inline">
   <?php
        if($this->post('order_id') !=""){
    ?> 
-    <input type="hidden" name="order_id" value="<?php echo $this->post('order_id') ?>" />
+    <input type="hidden" name="order_id" value="<?php echo esc_attr($this->post('order_id')) ?>" />
 <?php
        }
 ?>
-    <input type="hidden" name="order" value="<?php echo $this->post('order') ?>" />
-  <input type="hidden" name="orderby" value="<?php echo $this->post('orderby') ?>" />
+    <input type="hidden" name="order" value="<?php echo esc_attr($this->post('order')) ?>" />
+  <input type="hidden" name="orderby" value="<?php echo esc_attr($this->post('orderby')) ?>" />
   <input type="hidden" name="vx_tab_action_<?php echo $this->id ?>" id="vx_export_log" value="" autocomplete="off" />
    <input type="hidden" id="vx_nonce_field" value="<?php echo wp_create_nonce('vx_nonce'); ?>">
   <select name="object" class="crm_input_inline" style="max-width: 100px;">
@@ -250,8 +250,8 @@ color: #E31230;
   ?>
   </select>
   <span style="<?php if($this->post('time') != "custom"){echo "display:none";} ?>" class="crm_custom_range"> 
-  <input type="text" name="start_date" placeholder="<?php _e('From Date','woocommerce-salesforce-crm') ?>" value="<?php echo $this->post('start_date');?>" class="vxc_date crm_input_inline" style="width: 100px">
-  <input type="text" class="vxc_date crm_input_inline" value="<?php echo $this->post('end_date');?>" placeholder="<?php _e('To Date','woocommerce-salesforce-crm') ?>" name="end_date"  style="width: 100px">
+  <input type="text" name="start_date" placeholder="<?php _e('From Date','woocommerce-salesforce-crm') ?>" value="<?php echo esc_attr($this->post('start_date'));?>" class="vxc_date crm_input_inline" style="width: 100px">
+  <input type="text" class="vxc_date crm_input_inline" value="<?php echo esc_attr($this->post('end_date'));?>" placeholder="<?php _e('To Date','woocommerce-salesforce-crm') ?>" name="end_date"  style="width: 100px">
   </span>
  
   <button type="submit" class="button-secondary button crm_input_inline" title="<?php _e('Search','woocommerce-salesforce-crm') ?>"><i class="fa fa-search"></i> <?php _e('Search','woocommerce-salesforce-crm') ?></button> 

@@ -257,17 +257,17 @@ margin-left: 2px;
     display: none;
 }
   </style>
-  <div class="vx_wrap"> <img alt="<?php _e("Salesforce Feeds", 'gravity-forms-salesforce-crm') ?>" title="<?php _e("Salesforce Feeds", 'gravity-forms-salesforce-crm') ?>" src="<?php echo $this->get_base_url()?>images/<?php echo $this->crm_name ?>-crm-logo.png?ver=1" style="float:left; margin:0px 7px 10px 0;" height="46" />
-  <h2 style="margin-bottom: 12px"><?php _e("Salesforce Feeds", 'gravity-forms-salesforce-crm'); ?>
+  <div class="vx_wrap"> <img alt="<?php esc_html_e("Salesforce Feeds", 'gravity-forms-salesforce-crm') ?>" title="<?php esc_html_e("Salesforce Feeds", 'gravity-forms-salesforce-crm') ?>" src="<?php echo $this->get_base_url()?>images/<?php echo $this->crm_name ?>-crm-logo.png?ver=1" style="float:left; margin:0px 7px 10px 0;" height="46" />
+  <h2 style="margin-bottom: 12px"><?php esc_html_e("Salesforce Feeds", 'gravity-forms-salesforce-crm'); ?>
   <?php
       if($fid != $config['id']){
   ?>
-  <a class="add-new-h2" href="<?php echo $new_feed_link?>"><?php _e("Add New", 'gravity-forms-salesforce-crm') ?></a>
+  <a class="add-new-h2" href="<?php echo esc_url($new_feed_link)?>"><?php esc_html_e("Add New", 'gravity-forms-salesforce-crm') ?></a>
   <?php
       }
       if(!empty($fid)){
   ?>
-  <a class="add-new-h2" href="<?php echo $feeds_link?>"><?php _e("Back to Feeds", 'gravity-forms-salesforce-crm') ?></a>
+  <a class="add-new-h2" href="<?php echo esc_url($feeds_link)?>"><?php esc_html_e("Back to Feeds", 'gravity-forms-salesforce-crm') ?></a>
   <?php
       }
   ?>
@@ -283,7 +283,7 @@ margin-left: 2px;
           echo " | ";   
         }
        ?>
-       <a href="<?php echo $link['link'] ?>" title="<?php echo $link['title']?>" <?php if($link['current']){echo 'class="current"';} ?>><?php echo $link['title']?></a> 
+        <a href="<?php echo esc_url($link['link']) ?>" title="<?php echo esc_attr($link['title'])?>" <?php if($link['current']){echo 'class="current"';} ?>><?php echo esc_html($link['title'])?></a> 
        </li>     
           <?php
       }
@@ -309,23 +309,23 @@ if(empty($feed_name)){
   <div class="vx_contents">
 
   <form method="post" action="">
-  <input type="hidden" name="id" id="vx_id" value="<?php echo $fid ?>"/>
+  <input type="hidden" name="id" id="vx_id" value="<?php echo esc_attr($fid) ?>"/>
   <?php wp_nonce_field("vx_nonce") ?>
     <div class="vx_div">
       <div class="vx_head">
-<div class="crm_head_div"> <?php _e('1. Enter Feed name',  'gravity-forms-salesforce-crm' ); ?></div>
-<div class="crm_btn_div" title="<?php _e('Expand / Collapse','gravity-forms-salesforce-crm') ?>"><i class="fa crm_toggle_btn vx_action_btn fa-minus"></i></div>
+<div class="crm_head_div"> <?php esc_html_e('1. Enter Feed name',  'gravity-forms-salesforce-crm' ); ?></div>
+<div class="crm_btn_div" title="<?php esc_html_e('Expand / Collapse','gravity-forms-salesforce-crm') ?>"><i class="fa crm_toggle_btn vx_action_btn fa-minus"></i></div>
 <div class="crm_clear"></div> 
   </div>
   <div class="vx_group">
   <div class="vx_row">
   <div class="vx_col1">
-  <label for="vx_name" class="left_header"><?php _e("Feed Name", 'gravity-forms-salesforce-crm'); ?>
+  <label for="vx_name" class="left_header"><?php esc_html_e("Feed Name", 'gravity-forms-salesforce-crm'); ?>
   <?php gform_tooltip("vx_feed_name") ?>
  </label>
   </div>
   <div class="vx_col2">
-  <input type="text" id="vx_name" class="vx_input_100" name="name" autocomplete="off" value="<?php echo $feed_name;  ?>" >
+  <input type="text" id="vx_name" class="vx_input_100" name="name" autocomplete="off" value="<?php echo esc_html($feed_name);  ?>" >
   </div>
   <div class="clear"></div>
   </div>
@@ -333,21 +333,21 @@ if(empty($feed_name)){
   </div>
   <div class="vx_div">
         <div class="vx_head">
-<div class="crm_head_div"> <?php _e('2. Select Salesforce Account.', 'gravity-forms-salesforce-crm'); ?></div>
-<div class="crm_btn_div" title="<?php _e('Expand / Collapse','gravity-forms-salesforce-crm') ?>"><i class="fa crm_toggle_btn vx_action_btn fa-minus"></i></div>
+<div class="crm_head_div"> <?php esc_html_e('2. Select Salesforce Account.', 'gravity-forms-salesforce-crm'); ?></div>
+<div class="crm_btn_div" title="<?php esc_html_e('Expand / Collapse','gravity-forms-salesforce-crm') ?>"><i class="fa crm_toggle_btn vx_action_btn fa-minus"></i></div>
 <div class="crm_clear"></div> 
   </div>
 
   <div class="vx_group">
     <div class="vx_row">
   <div class="vx_col1">
-  <label for="vx_account" class="left_header"><?php _e("Salesforce Account", 'gravity-forms-salesforce-crm'); ?>
+  <label for="vx_account" class="left_header"><?php esc_html_e("Salesforce Account", 'gravity-forms-salesforce-crm'); ?>
   <?php gform_tooltip("vx_sel_account") ?>
  </label>
   </div>
   <div class="vx_col2">
   <select id="vx_account" class="load_object crm_sel" name="account" autocomplete="off">
-  <option value=""><?php _e("Select a Salesforce Account", 'gravity-forms-salesforce-crm'); ?></option>
+  <option value=""><?php esc_html_e("Select a Salesforce Account", 'gravity-forms-salesforce-crm'); ?></option>
   <?php
   $this->account=$account=$this->post('account',$feed); 
   $account_found=false;
@@ -358,7 +358,7 @@ if(empty($feed_name)){
   $account_found=true;
   }   
   ?>
-  <option value="<?php echo $v['id'] ?>" <?php echo $sel; ?>><?php echo $v['name'] ?></option>
+  <option value="<?php echo esc_attr($v['id']) ?>" <?php echo $sel; ?>><?php echo esc_html($v['name']) ?></option>
   <?php
   }
   ?>
@@ -370,7 +370,7 @@ if(empty($feed_name)){
   </div>
   </div>
 
-    <div id="crm_ajax_div_object" style="display:none; text-align: center; line-height: 100px;"><i> <?php _e('Loading, Please Wait...','gravity-forms-salesforce-crm'); ?></i></div>
+    <div id="crm_ajax_div_object" style="display:none; text-align: center; line-height: 100px;"><i> <?php esc_html_e('Loading, Please Wait...','gravity-forms-salesforce-crm'); ?></i></div>
 
   <div id="crm_object_div" style="<?php if(empty($account)) {echo 'display:none';} ?>">
   
@@ -391,7 +391,7 @@ if(empty($feed_name)){
   
   <script type="text/javascript">
     var vx_crm_ajax='<?php echo wp_create_nonce("vx_crm_ajax") ?>';
-    var vx_form_id='<?php echo $form_id; ?>';
+    var vx_form_id='<?php echo esc_html($form_id); ?>';
         var vx_ajax=false;
   jQuery(document).ready(function($) {
       
@@ -499,7 +499,7 @@ $(document).on("dblclick",".vx_head,.crm_panel_head2",function(e){
           if(field_div.is(":hidden")){
        panel.find(".crm_toggle_btn").trigger('click');
      }
-    attach_error.append('<div class="entry_row vx_entry_error"><div class="vx_error"><i class="fa fa-warning"></i> <?php _e('This is a required field','gravity-forms-salesforce-crm') ?></div></div>');
+    attach_error.append('<div class="entry_row vx_entry_error"><div class="vx_error"><i class="fa fa-warning"></i> <?php esc_html_e('This is a required field','gravity-forms-salesforce-crm') ?></div></div>');
     return false;
     }  
    })  
@@ -547,7 +547,7 @@ $(document).on("dblclick",".vx_head,.crm_panel_head2",function(e){
  
   $(document).on("click",".vx_remove_btn",function(e){ 
   e.preventDefault(); 
-    if(!confirm('<?php _e('Are you sure to remove ?','gravity-forms-salesforce-crm') ?>')){
+    if(!confirm('<?php esc_html_e('Are you sure to remove ?','gravity-forms-salesforce-crm') ?>')){
      return;   
     }
   var temp=$(this).parents(".crm_panel");
@@ -658,7 +658,7 @@ if(type){ row.find('.vxc_field_option').hide(); }
   if(field_name_select.length){
     var field_name=id=field_name_select.val();
     if(field_name == '' || crm_fields[field_name] == ''){
-     alert('<?php _e('Please Select Field Name','gravity-forms-salesforce-crm') ?>');
+     alert('<?php esc_html_e('Please Select Field Name','gravity-forms-salesforce-crm') ?>');
      return;   
     }  
  var field=crm_fields[field_name];
@@ -780,7 +780,7 @@ var text= div.find('.vxc_filter_text');
 }
  }
   function add_note_sel(){
-    jQuery('#crm_note_fields').select2({ placeholder: '<?php _e('Select Field','gravity-forms-salesforce-crm') ?>'});
+    jQuery('#crm_note_fields').select2({ placeholder: '<?php esc_html_e('Select Field','gravity-forms-salesforce-crm') ?>'});
 } 
   function mark_del(obj){
   obj.css({'opacity':'.5'});
@@ -882,7 +882,7 @@ vx_select();
   }
   vx_select();
   function vx_select(){
-      $('#vx_add_fields_select').select2({ placeholder: '<?php _e('Select Field','gravity-forms-salesforce-crm') ?>'});
+      $('#vx_add_fields_select').select2({ placeholder: '<?php esc_html_e('Select Field','gravity-forms-salesforce-crm') ?>'});
       
       add_note_sel();
   }

@@ -11,10 +11,10 @@
             );
             $target = '';
             $link = admin_url('admin.php?' . http_build_query($params));
-            if ($tab_key === 'help') {
-                $link = 'https://docs.flycart.org/en/collections/2195266-discount-rules-2-0?utm_source=woo-discount-rules-v2&utm_campaign=doc&utm_medium=text-click&utm_content=documentation';
-                $target = 'target="_blank"';
-            }
+           // if ($tab_key === 'help') {
+                //$link = 'https://docs.flycart.org/en/collections/2195266-discount-rules-2-0?utm_source=woo-discount-rules-v2&utm_campaign=doc&utm_medium=text-click&utm_content=documentation';
+               //  $target = 'target="_blank"';
+          //  }
             ?>
             <a class="nav-tab <?php echo($tab_key === $current_tab ? 'nav-tab-active' : ''); ?>"
                style="<?php echo ($tab_key === 'help') ? 'background: cornflowerblue;color: white;' : ''; ?>"

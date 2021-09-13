@@ -423,24 +423,24 @@ if ( !class_exists('ASP_Search_INDEX') ) {
 
 			if ( $kw_logic == "orex" ) {
 				$rmod = 1;
-				$like_query = "asp_index.term = '" . implode("' OR asp_index.term = '", $words) . "'";
+				$like_query = "(asp_index.term = '" . implode("' OR asp_index.term = '", $words) . "') AND asp_index.term_reverse <> ''";
 				$queries[] = str_replace(array('{like_query}', '{rmod}', '{limit}'), array($like_query, $rmod, $this->get_pool_size()), $this->query);
 			} else if ( $kw_logic == "andex" ) {
 				foreach ($words as $wk => $word) {
 					$rmod = 10 - ($wk * 8) < 1 ? 1 : 10 - ($wk * 8);
 
-					$like_query = "asp_index.term = '$word'";
+					$like_query = "asp_index.term = '$word' AND asp_index.term_reverse <> ''";
 					$queries[] = str_replace(array('{like_query}', '{rmod}', '{limit}'), array($like_query, $rmod, $this->get_pool_size($word)), $this->query);
 				}
 			} else {
 				foreach ($words as $wk => $word) {
 					$rmod = 10 - ($wk * 8) < 1 ? 1 : 10 - ($wk * 8);
 
-					$like_query = "asp_index.term LIKE '" . $word . "%'";
+					$like_query = "asp_index.term LIKE '" . $word . "%' AND asp_index.term_reverse <> ''";
 					$queries[] = str_replace(array('{like_query}', '{rmod}', '{limit}'), array($like_query, $rmod, $this->get_pool_size($word)), $this->query);
 
-					$like_query = "asp_index.term_reverse LIKE '" . (isset($_sr[$wk]) ? $_sr[$wk] : $sr) . "%'";
-					$queries[] = str_replace(array('{like_query}', '{rmod}', '{limit}'), array($like_query, $rmod, $this->get_pool_size($word)), $this->query);
+					$like_query = "asp_index.term_reverse LIKE '" . (isset($_sr[$wk]) ? $_sr[$wk] : $sr) . "%' AND asp_index.term_reverse <> ''";
+					$queries[] = str_replace(array('{like_query}', '{rmod}', '{limit}'), array($like_query, intval($rmod / 2), $this->get_pool_size($word)), $this->query);
 				}
 			}
 
@@ -469,8 +469,8 @@ if ( !class_exists('ASP_Search_INDEX') ) {
 				// Exact title query
 				$single_delimiter = count($_s) == 0 ? '___' : '';
 				$title_query = str_replace(
-					array('{like_query}', '{rmod}', '{limit}'),
-					array("(asp_index.term_reverse = '' AND asp_index.term LIKE '" . $s . $single_delimiter . "')", $rmod * 2, $limit),
+					array('{like_query}', '{rmod}', '{limit}', 'asp_index.doc as id'),
+					array("(asp_index.term_reverse = '' AND asp_index.term LIKE '" . $s . $single_delimiter . "')", $rmod * 2, $limit, 'DISTINCT asp_index.doc as id'),
 					$this->query);
 				$results_arr[99998] = $wpdb->get_results($title_query);
 
@@ -481,13 +481,13 @@ if ( !class_exists('ASP_Search_INDEX') ) {
 					// partial query on OR and AND
 					if ( $kw_logic == "or" || $kw_logic == "and" ) {
 						$title_query = str_replace(
-							array('{like_query}', '{rmod}', '{limit}'),
-							array("(asp_index.term_reverse = '' AND asp_index.term LIKE '$s%')", $rmod, $limit),
+							array('{like_query}', '{rmod}', '{limit}', 'asp_index.doc as id'),
+							array("(asp_index.term_reverse = '' AND asp_index.term LIKE '$s%')", $rmod, $limit, 'DISTINCT asp_index.doc as id'),
 							$this->query);
 					} else { // partial query (starting with) until the first keyword for OREX and ANDEX
 						$title_query = str_replace(
-							array('{like_query}', '{rmod}', '{limit}'),
-							array("(asp_index.term_reverse = '' AND asp_index.term LIKE '$s %')", $rmod, $limit),
+							array('{like_query}', '{rmod}', '{limit}', 'asp_index.doc as id'),
+							array("(asp_index.term_reverse = '' AND asp_index.term LIKE '$s %')", $rmod, $limit, 'DISTINCT asp_index.doc as id'),
 							$this->query);
 					}
 

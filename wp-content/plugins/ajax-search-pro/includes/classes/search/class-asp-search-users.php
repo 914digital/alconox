@@ -383,16 +383,6 @@ if (!class_exists('ASP_Search_USERS')) {
             )
                 $orderby_secondary = str_replace('customfs', 'CAST(customfs as SIGNED)', $orderby_secondary);
 
-            /*if ( strpos($args['post_primary_order'], 'customfp') !== false )
-                $orderby_primary = 'relevance DESC';
-            else
-                $orderby_primary = str_replace( "post_", "",  $args['post_primary_order'] );
-
-            if ( strpos($args['post_secondary_order'], 'customfs') !== false )
-                $orderby_secondary = 'date DESC';
-            else
-                $orderby_secondary = str_replace( "post_", "",  $args['post_secondary_order'] );*/
-
             $this->query = "
             SELECT
                 $add_select

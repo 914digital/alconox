@@ -186,7 +186,7 @@ if(!empty($dev_key)){
   { $body=http_build_query($body);
   }
   if($method != "get"){
-  $header['content-length']= strlen($body);
+$header['content-length']= !empty($body) ? strlen($body) : 0;
   }   
   $response = wp_remote_post( $path, array(
   'method' => strtoupper($method),
@@ -229,15 +229,39 @@ if(!empty($dev_key)){
   public function get_crm_fields($object,$is_options=false){ 
 
 $sales_response=$this->post_sales_arr('/services/data/'.$this->api_version.'/sobjects/'.ucfirst($object)."/describe","get",""); 
+//var_dump($sales_response);
   ///seprating fields
   if(isset($sales_response['fields']) && is_array($sales_response['fields'])){
+      
+      if(isset($this->id) && $this->id == 'vxc_sales' && in_array($object,array("Order",'Opportunity','Quote'))){
+         $line_object=$object.'LineItem';
+          if($object == 'Order'){ $line_object='OrderItem';  }
+       $item_res=$this->post_sales_arr('/services/data/'.$this->api_version.'/sobjects/'.$line_object."/describe","get",""); 
+
+       if(!empty($item_res['fields'])){ 
+           foreach($item_res['fields'] as $v){
+               if(isset($v['name']) && !in_array($v['name'],array('OrderId','PricebookEntryId','Id','Quantity','UnitPrice'))){ //
+                 $v['is_item']='1';
+                 if(isset($v['defaultedOnCreate'])){
+                   $v['defaultedOnCreate']='1';  
+                 }
+                 if(isset($v['custom'])){
+                   $v['custom']=false;  
+                 }
+                 $v['name']='vxline_'.$v['name'];
+                 $v['label']='Line Item - '.$v['label'];
+                   $sales_response['fields'][]=$v;  
+               }
+           }
+       }   
+      }
   $field_info=array();
   foreach($sales_response['fields'] as $k=>$field){ 
   
         if( (isset($field['createable']) && $field['createable'] ==true) || $field['name'] == 'Id' || (isset($field['custom']) && $field['custom'] ==true) ){
         
           $required=""; 
-  if( !empty($field['nameField']) || (!empty($field['createable']) && empty($field['nillable']) && empty($field['defaultedOnCreate']))  ){
+  if( !empty($field['nameField']) || (!empty($field['createable']) && empty($field['nillable']) && empty($field['defaultedOnCreate']) )  ){ // && !in_array($field['name'],array('Quantity','UnitPrice'))
   $required="true";   
   } 
   $type=$field['type'];
@@ -248,8 +272,11 @@ $sales_response=$this->post_sales_arr('/services/data/'.$this->api_version.'/sob
   $field_arr['label']=$field['label']; 
   $field_arr['req']=$required;
   $field_arr["maxlength"]=$field['length'];
-  $field_arr["custom"]=$field['custom'];    
-            
+  $field_arr["custom"]=$field['custom']; 
+  $field_name=$field['name'];
+  if(isset($field['is_item'])){   
+  $field_arr["is_item"]='1';  
+  }
          if(isset($field['picklistValues']) && is_array($field['picklistValues']) && count($field['picklistValues'])>0){
          $field_arr['options']=$field['picklistValues'];
              $egs=array();
@@ -258,13 +285,15 @@ $sales_response=$this->post_sales_arr('/services/data/'.$this->api_version.'/sob
          }
             $field_arr['eg']=implode(', ',array_slice($egs,0,30));
           }
+    
+          
       if($is_options ){
           if(!empty($field_arr['options'])){
-       $field_info[$field['name']]=$field_arr;
+       $field_info[$field_name]=$field_arr;
           } 
       }else{
   
-  $field_info[$field['name']]=$field_arr;  
+  $field_info[$field_name]=$field_arr;  
   } }
       
   } 
@@ -542,7 +571,7 @@ public function push_object($object,$temp_fields,$meta){
 
 //$res=$this->get_entry('Lead','00Q0H00001sbljWUAQ');
 //$res=$this->post_sales_arr('/services/data/v39.0/sobjects/RecordType/describe','get','');
-//var_dump($res); die();
+//var_dump($temp_fields,$meta); die();
   $fields_info=array(); $fields=array(); $extra=array();
   $id=""; $error=""; $action=""; $link=""; $search=$search_response=$status=""; 
   $files=array();
@@ -591,7 +620,17 @@ if($i>1){ $field_n.=$i; }
     unset($fields[$field_n]);  
   }
 }
-  $fields=$this->clean_sf_fields($fields,$fields_info);
+if(!empty($fields_info)){
+    foreach($fields_info as $k=>$v){
+        if(!empty($v['is_item']) && isset($meta['map'][$k])){
+        $meta['item_fields'][substr($k,7)]=$meta['map'][$k];
+        if(isset($fields[$k])){ unset($fields[$k]); }    
+        }
+    } 
+}
+
+
+$fields=$this->clean_sf_fields($fields,$fields_info);
 
 
 if(!empty($meta['owner'])){
@@ -619,7 +658,7 @@ unset($fields['vx_camp_id']);
     
   //if primary key option is not empty and primary key field value is not empty , then check search object
   $search_response=$sales_response=$this->search_in_sf($object,$search,$search2); 
- //var_dump($search_response); die();
+ //var_dump($search_response,$search,$search2); die();
   if($debug){
   ?>
   <pre>
@@ -665,6 +704,7 @@ unset($fields['vx_camp_id']);
   if(!empty($meta['crm_id'])){
    $id=$meta['crm_id'];   
   } 
+
      if(in_array($event,array('delete_note','add_note'))){    
   if(isset($meta['related_object'])){
     $extra['Note Object']= $meta['related_object'];
@@ -698,6 +738,7 @@ if(!empty($items['extra'])){
     $extra=array_merge($items['extra'],$extra);
 }        
 }
+
   $post_data=json_encode($fields);
   //if($error ==""){
   if($id == ""){
@@ -742,8 +783,14 @@ $entry_exists=true;
          if($object == 'CampaignMember'){
        unset($fields['ContactId']);
        unset($fields['CampaignId']);
+         } if($object == 'PricebookEntry'){
+       unset($fields['Product2Id']);
+       unset($fields['Pricebook2Id']);
          }
+      //   $fields['Custom_time_type__c']='12:00+00';
+        
   $sales_response=$this->post_sales_arr('/services/data/'.$this->api_version.'/sobjects/'.$object."/".$id,"PATCH",$fields);
+ 
    if(empty($sales_response)){ $status="2";  $sent=true; } 
  }else{
    $status="2";  
@@ -763,7 +810,7 @@ if($status == '1' && !empty($line_items)){
     }
     
 }
-if($sent && !empty($id)){
+if(!empty($id)){
     if(is_array($files) ){
         foreach($files as $k=>$file){ $k++;
          $file_name=substr($file,strrpos($file,'/')+1);   
@@ -877,12 +924,20 @@ public function get_search_val($field,$fields,$fields_info){
       if(strpos($field,'+Email') !== false ){
          $search['Email']= $fields['Email']; 
       }   
+  }else if(strpos($field,'Product2Id+') !== false ){
+      if(!empty($fields['Product2Id'])){
+          $search['Product2Id']=  $fields['Product2Id'];
+      }
+      if(!empty($fields['Pricebook2Id'])){
+          $search['Pricebook2Id']= $fields['Pricebook2Id'];
+      }
+     
   }else if(isset($fields[$field]) && $fields[$field] !=''){
       $val=$fields[$field];
       if(isset($fields_info[$field]['type'])){
           $type=$fields_info[$field]['type'];
           if( $type == 'phone'){
-         $val=preg_replace( '/[^0-9]/', '', $val );
+        // $val=preg_replace( '/[^0-9]/', '', $val );
           }else if( in_array($type,array('date','datetime'))){
               $val=array('val'=>$val,'type'=>$type);
           }
@@ -944,11 +999,14 @@ public function add_order($post, $meta){
      $order_items=!empty($items['items']) ? $items['items'] : array();
 
     $sales_response=array();  $extra=array();
-if(is_array($order_items) && count($order_items)>0 && !empty($items['price_book'])){
 
+    
 if(!empty($items['extra'])){
     $extra=$items['extra'];
 }
+
+    if(is_array($order_items) && count($order_items)>0 && !empty($items['price_book'])){
+
 
      $post['Pricebook2Id']=$items['price_book'];
      $order_items=array_map(function($v){$v['attributes']=array('type'=>'OrderItem'); unset($v['Product2Id']); return $v;},$order_items);
@@ -997,11 +1055,12 @@ public function get_items($meta){
     if(!empty($meta['price_book'])){
         $price_book=$meta['price_book'];
     $q.="and Pricebook2Id='".$meta['price_book']."'";
+    }  if(!empty($meta['map']['CurrencyIsoCode']['value'])){
+    $q.=" and CurrencyIsoCode='".$meta['map']['CurrencyIsoCode']['value']."'";
     }
     $q.="  order by Id DESC Limit 1"; 
   $path.='?q='.urlencode($q);
     $sales_response=$this->post_sales_arr($path,'GET');   
-
         $extra['Search Product '.$k]=array('ProductCode'=>$sku,'Pricebook2Id'=>$price_book);
         $extra['Search Result '.$k]=$sales_response;
      if(isset($sales_response['records']) && is_array($sales_response['records']) && isset($sales_response['records'][0])){
@@ -1044,6 +1103,12 @@ public function get_items($meta){
         if(!empty($price_book_id)){
          //add as order item
        $order_item=array('quantity'=>$item['qty'],'PricebookEntryId'=>$price_book_id,'UnitPrice'=>$item['cost_woo']); //,'Product2Id'=>$product_id
+    if(!empty($item['fields']) && is_array($meta['fields'])){
+        $item['fields']=$this->clean_sf_fields($item['fields'],$meta['fields']);
+        foreach($item['fields'] as $k=>$v){
+            $order_item[$k]=$v;
+        }
+    }
        $order_items[]=$order_item; 
         } 
               
@@ -1107,9 +1172,8 @@ if(method_exists($item,'get_product')){
             try{
         $product=new WC_Product($p_id);
             }catch(Exception $e){
-                echo $e->getMessage();
+               // echo $e->getMessage();
             }
-            die();
         }else{
          $product=$products[$p_id];   
         }
@@ -1129,7 +1193,18 @@ if(method_exists($item,'get_product')){
         $p_id=$item['product_id'];
         $name=$item['name'];
  }
-  $temp=array('sku'=>$sku,'unit_price'=>$unit_price,'title'=>$title,'qty'=>$qty,'tax'=>$tax,'total'=>$total,'desc'=>$desc,'p_id'=>$p_id,'var_id'=>$var_id,'name'=>$name,'cost'=>$cost,'cost_woo'=>$cost_woo);
+  $temp=array('sku'=>$sku,'unit_price'=>$unit_price,'title'=>$title,'qty'=>$qty,'tax'=>$tax,'total'=>$total,'desc'=>$desc,'p_id'=>$p_id,'var_id'=>$var_id,'name'=>$name,'cost'=>$cost,'cost_woo'=>$cost_woo,'fields'=>array());
+  
+     if(!empty($meta['item_fields'])){
+        foreach($meta['item_fields'] as $k=>$v){
+        if(isset($v['type'])){
+            if($v['type'] == 'value'){
+                $temp['fields'][$k]=$this->process_tags($v['value'],$item);
+        }else{
+         $temp['fields'][$k]=$this->get_field_val($v,$item);   
+        }    }
+        }   
+       }
           if(method_exists($product,'get_stock_quantity')){
    $temp['stock']=$product->get_stock_quantity();
 } 
@@ -1148,7 +1223,7 @@ if(method_exists($item,'get_product')){
   */
 public function clean_sf_fields($fixed,$fields_info){ 
   $sf_fields=array();
-  if(is_array($fixed)){ 
+  if(is_array($fixed)){  
 foreach($fixed as $field_key=>$field_val){ 
   //convert date to salesforce compatible format
   if(isset($fields_info[$field_key])){
@@ -1161,6 +1236,7 @@ foreach($fixed as $field_key=>$field_val){
      $date_val=strtotime(str_replace(array("/"),"-",$field_val));
    
      if( $type == "date"  ){
+         if(strpos($field_val,'+') === false){$date_val=$date_val.'+00';}
   $field_val=date('Y-m-d',$date_val); 
   }else{ 
     $offset=get_option('gmt_offset');
@@ -1177,6 +1253,11 @@ foreach($fixed as $field_key=>$field_val){
   }else if($fields_info[$field_key]['type'] == "multipicklist"){
       if(is_array($field_val)){
        $field_val=html_entity_decode(implode(';',$field_val));   
+      }
+  }else if($type == 'string' && !empty($fields_info[$field_key]['maxlength'])){
+      $field_len=$fields_info[$field_key]['maxlength'];
+      if(strlen($field_val)> $field_len){
+        $field_val=substr($field_val,0,$field_len-1);  
       }
   } 
   if(is_array($field_val)){ 

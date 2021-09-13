@@ -20,8 +20,10 @@ $isPro = $purchase->isPro();
         ?>
         <a class="nav-tab <?php if ($active == 'taxonomy') { echo 'nav-tab-active'; } ?>" href="?page=woo_discount_rules&amp;tab=taxonomy">
             <?php esc_html_e('Taxonomy Settings', 'woo-discount-rules'); ?> </a>
-        <a class="nav-tab <?php if ($active == 'documentation') { echo 'nav-tab-active'; } ?> btn-success" href="?page=woo_discount_rules&amp;tab=documentation">
+        <?php if(0) { /* Removed from v2.3.6 */ ?>
+            <a class="nav-tab <?php if ($active == 'documentation') { echo 'nav-tab-active'; } ?> btn-success" href = "?page=woo_discount_rules&amp;tab=documentation" >
             &nbsp;<?php esc_html_e('Read documentation', 'woo-discount-rules'); ?> </a>
-        <?php
+            <?php
+        }
     } ?>
 </h3>

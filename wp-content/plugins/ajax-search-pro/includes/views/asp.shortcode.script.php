@@ -176,14 +176,9 @@ defined('ABSPATH') or die("You can't access this file directly.");
     "statistics": <?php echo get_option('asp_stat', 0) == 0 ? 0 : 1; ?>
 }
 <?php $_asp_script_out = ob_get_clean(); ?>
-<?php if (wd_asp()->o['asp_compatibility']['js_init'] == "blocking"): ?>
-<script type="text/javascript">
-/* <![CDATA[ */
-if ( typeof ASP_INSTANCES == "undefined" )
-    var ASP_INSTANCES = {};
-ASP_INSTANCES['<?php echo $id; ?>'] = <?php echo $_asp_script_out; ?>;
-/* ]]> */
-</script>
-<?php else: ?>
-<div class="asp_init_data" style="display:none !important;" id="asp_init_id_<?php echo $id; ?>" data-aspdata="<?php echo base64_encode($_asp_script_out); ?>"></div>
-<?php endif; ?>
+<div class="asp_init_data"
+	 style="display:none !important;"
+	 id="asp_init_id_<?php echo $id; ?>"
+	 data-asp-id="<?php echo $real_id; ?>"
+	 data-asp-instance="<?php echo self::$perInstanceCount[$real_id]; ?>"
+	 data-aspdata="<?php echo base64_encode($_asp_script_out); ?>"></div>

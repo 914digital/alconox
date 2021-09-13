@@ -57,6 +57,9 @@ if ( ! class_exists( 'asp_indexTable' ) ) {
          */
         private static $_instance;
 
+		public static $additional_keywords_pattern = array('"', "'", "`", '’', '‘', '”', '“', '«', '»', "+", '.', ',', '-', '_', "=", "%", '(', ')', '{', '}', '*', '[', ']', '|');
+		public static $apostrophes = array('"', "'", "`", '’', '‘', '”', '“');
+
 		// ------------------------------------------- PUBLIC METHODS --------------------------------------------------
 
 		function __construct( $args = array() ) {
@@ -621,6 +624,10 @@ if ( ! class_exists( 'asp_indexTable' ) ) {
 		 */
 		private function tokenizeTitle( $the_post, &$tokens ) {
 			$filtered_title = apply_filters( 'asp_post_title_before_tokenize', $the_post->post_title, $the_post );
+			// the_title filter causes issues with empty strings, so check
+			if ( trim($filtered_title) == '' ) {
+				return 0;
+			}
 
 			$title          = apply_filters( 'the_title', $filtered_title, $the_post->ID );
 			$title_keywords = $this->tokenize( $title );
@@ -644,7 +651,7 @@ if ( ! class_exists( 'asp_indexTable' ) ) {
 
                 $this->insertToken($tokens, $single_title, 1, 'title', true);
 
-                $single_title_al = str_replace(array('"', "'", "`", '’', '‘', '”', '“'), '', $single_title);
+                $single_title_al = str_replace(self::$apostrophes, '', $single_title);
                 if ($single_title_al !== $single_title) {
                     $this->insertToken($tokens, $single_title_al, 1, 'title', true);
                 }
@@ -740,14 +747,14 @@ if ( ! class_exists( 'asp_indexTable' ) ) {
 			$args = $this->args;
 			$bio  = "";
 
-			$display_name = $wpdb->get_var(
-				$wpdb->prepare( "SELECT display_name FROM $wpdb->users WHERE ID=%d", $the_post->post_author )
-			);
+			$user = get_userdata($the_post->post_author);
+			$name = $user->display_name . ' ' . $user->first_name . ' ' . $user->last_name . ' ' . $user->nickname;
+
 			if ( $args['index_author_bio'] ) {
 				$bio = get_user_meta( $the_post->post_author, 'description', true );
 			}
 
-			$author_keywords = $this->tokenize( $display_name . " " . $bio );
+			$author_keywords = $this->tokenize( $name . " " . $bio );
 			foreach ( $author_keywords as $keyword ) {
 				$this->insertToken( $tokens, $keyword[0], $keyword[1], 'author' );
 			}
@@ -911,7 +918,7 @@ if ( ! class_exists( 'asp_indexTable' ) ) {
 		 * @param string $field the field
          * @param bool $no_reverse if the reverse keyword should be stored
 		 */
-		private function insertToken( &$tokens, $keyword, $count = 1, $field = 'content', $no_reverse = false ) {
+		private function insertToken(&$tokens, $keyword, $count = 1, $field = 'content', $no_reverse = false) {
 		    // Take care of accidental empty keyowrds
 		    if ( trim($keyword) == '' )
 		        return;
@@ -1154,16 +1161,15 @@ if ( ! class_exists( 'asp_indexTable' ) ) {
 
             // Get additional words if available
 			$additional_words = array();
-            $pattern = array('"', "'", "`", '’', '‘', '”', '“', '«', '»', "+", '.', ',', '-', '_', "=", "%", '(', ')', '{', '}', '*', '[', ']', '|');
 			foreach ($words as $wk => $ww) {
 
                 // ex.: 123-45-678 to 123, 45, 678
-				$ww1 = str_replace($pattern, ' ', $ww);
+				$ww1 = str_replace(self::$additional_keywords_pattern, ' ', $ww);
 				$wa = explode(" ", $ww1);
 				if (count($wa) > 1) {
 				    foreach ( $wa as $wak => $wav ) {
                         $wav = trim(preg_replace( '/[[:space:]]+/', ' ', $wav ));
-                        if ( $wav != '' ) {
+                        if ( $wav != '' && !in_array($wav, $words) ) {
                             $wa[$wak] = $wav;
                         } else {
                             unset($wa[$wak]);
@@ -1172,8 +1178,8 @@ if ( ! class_exists( 'asp_indexTable' ) ) {
                     $additional_words = array_merge($additional_words, $wa);
                 }
                 // ex.: 123-45-678 to 12345678
-                $ww2 = str_replace($pattern, '', $ww);
-                if ( $ww2 != '' && $ww2 != $ww ) {
+                $ww2 = str_replace(self::$additional_keywords_pattern, '', $ww);
+                if ( $ww2 != '' && $ww2 != $ww && !in_array($ww2, $words) && !in_array($ww2, $additional_words) ) {
                     $additional_words[] = $ww2;
                 }
 			}
@@ -1186,50 +1192,51 @@ if ( ! class_exists( 'asp_indexTable' ) ) {
             if ( $syn_inst->exists() ) {
                 if ( $this->args['synonyms_as_keywords'] == 1 )
                     $syn_inst->synonymsAsKeywords();
-                $additional_words = array();
+                $additional_words_by_synonyms = array();
                 foreach ($words as $wk => $ww) {
                     if ( trim($ww) == '' )
                         continue;
                     // For the set language
                     $synonyms = $syn_inst->get($ww, $this->lang);
                     if ($synonyms !== false) {
-                        $additional_words = array_merge($additional_words, $synonyms);
+						$additional_words_by_synonyms = array_merge($additional_words_by_synonyms, $synonyms);
                     }
                     // For default language as well
                     if ( $this->lang != '' ) {
                         $synonyms = $syn_inst->get($ww, '');
                         if ($synonyms !== false) {
-                            $additional_words = array_merge($additional_words, $synonyms);
+							$additional_words_by_synonyms = array_merge($additional_words_by_synonyms, $synonyms);
                         }
                     }
                 }
-                if ( count($additional_words) > 0 )
-                    $words = array_merge($words, $additional_words);
+                if ( count($additional_words_by_synonyms) > 0 )
+                    $words = array_merge($words, $additional_words_by_synonyms);
             }
 
             $stopWords = $this->getStopWords();
 			$keywords = array();
 
-			while ( ( $c_word = array_shift( $words ) ) !== null ) {
-                $c_word = trim($c_word);
+			while (($c_word = array_shift($words)) !== null) {
+				$c_word = trim($c_word);
 
-				if ( $c_word == '' || $fn_strlen( $c_word ) < $args['min_word_length'] ) {
+				if ( $c_word == '' || $fn_strlen($c_word) < $args['min_word_length'] ) {
 					continue;
 				}
-				if ( !empty($stopWords) && in_array( $c_word, $stopWords ) ) {
+				if ( !empty($stopWords) && in_array($c_word, $stopWords) ) {
 					continue;
 				}
 				// Numerics wont work otherwise, need to trim that later
-				if ( is_numeric( $c_word ) ) {
+				if ( is_numeric($c_word) ) {
 					$c_word = " " . $c_word;
 				}
 
-				if ( array_key_exists( $c_word, $keywords ) ) {
-					$keywords[ $c_word ][1] ++;
+				if ( array_key_exists($c_word, $keywords) ) {
+					$keywords[$c_word][1]++;
 				} else {
-					$keywords[ $c_word ] = array( $c_word, 1 );
+					$keywords[$c_word] = array($c_word, 1);
 				}
 			}
+			unset($c_word);
 
 			$keywords = apply_filters( 'asp_indexing_keywords', $keywords );
 

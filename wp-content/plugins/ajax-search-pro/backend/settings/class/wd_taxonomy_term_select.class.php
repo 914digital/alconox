@@ -16,7 +16,6 @@ if (!class_exists("wd_TaxonomyTermSelect")) {
             "show_type" => 0,
             "show_checkboxes" => 0,            // Checkboxes for default states
             "show_display_mode" => 0,          // Display mode option
-            "show_separate_filter_boxes" => 0, // Separate filter boxes option
             "show_more_options" => 0,          // More options for exclusions, default states
             'show_taxonomy_all' => 1,          // Display the 'Use all from taxonomy' when searching
             "built_in" => true,  // display only built in taxonomy terms
@@ -35,7 +34,6 @@ if (!class_exists("wd_TaxonomyTermSelect")) {
              */
             "terms" => array(),
             "un_checked" => array(),        // ids of unchecked terms
-            "separate_filter_boxes" => 1,   // to indicate separate filter boxes per taxonomy
             /**
              * "taxonomy_name" => array(
              *      "type"    => "checkbox",
@@ -62,14 +60,6 @@ if (!class_exists("wd_TaxonomyTermSelect")) {
             $this->processData();
             $this->types = $this->getAllTaxonomies();
             $types_copy = $this->types;
-
-            // Make a fake taxonomy for "All" option
-            // .. faster than copying all the code ..
-            $fake_tax = new stdClass();
-            $fake_tax->name = "all";
-            $fake_tax->labels = new stdClass();
-            $fake_tax->labels->name = "All taxonomies";
-            array_unshift($types_copy, $fake_tax);
 
             if (!isset($this->e_data['display_mode']))
                 $this->e_data['display_mode'] = array();
@@ -108,9 +98,6 @@ if (!class_exists("wd_TaxonomyTermSelect")) {
                             <input type="button" class="wd_tts_display_mode" value="<?php echo __('Change display mode', 'ajax-search-pro'); ?>"><br>
                             <div class="wd_tts_disp_m_popup hiddend">
                                 <div class="wd_tts_m_popup_content">
-                                    <label<?php echo ($this->args["show_separate_filter_boxes"] == 1) ? '' :  ' class="hiddend"'; ?>>
-                                        <?php echo __('Separate filter boxes per taxonomy', 'ajax-search-pro'); ?> <input class='separate-filter-boxes' type='checkbox' <?php echo $this->e_data['separate_filter_boxes'] == 1 ? ' checked="checked"' : ''; ?>>
-                                    </label>
                                 <?php foreach ($types_copy as $tax): ?>
                                     <?php
                                     $custom_post_type = "";

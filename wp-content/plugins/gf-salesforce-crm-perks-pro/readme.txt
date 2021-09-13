@@ -2,9 +2,9 @@
 Contributors: crmperks, sbazzi, asif876
 Tags: salesforce, gravity forms salesforce, gravity forms salesforce add on, gravity forms salesforce crm, gravity forms salesforce integration, salesforce wordpress gravity forms
 Requires at least: 4.7
-Tested up to: 5.6
-Stable tag: 1.2.0
-Version: 1.2.0
+Tested up to: 5.8
+Stable tag: 1.2.7
+Version: 1.2.7
 Requires PHP: 5.3
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -178,6 +178,24 @@ Following features are not available in free version.
 Yes, as you connect your normal salesforce account similarly, you can connect your sandbox account. fields mapping is same for both normal and sandbox accounts.
 
 == Changelog ==
+
+= 1.2.7 =
+* fixed "empty note fields" issue.
+
+= 1.2.6 =
+* added "auto trim lengtly fields" feature.
+
+= 1.2.5 =
+* fixed "date escaping" issue.
+
+= 1.2.4 =
+* fixed "connection lost" issue.
+
+= 1.2.3 =
+* fixed "missing Order fields" issue.
+
+= 1.2.2 =
+* fixed "updating product price" issue.
 
 = 1.2.1 =
 * fixed "optin filter" issue with feed ID.

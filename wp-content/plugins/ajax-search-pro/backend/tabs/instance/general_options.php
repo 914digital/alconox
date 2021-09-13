@@ -13,7 +13,7 @@ if ( !class_exists("WooCommerce") ) unset($_red_opts[3]);
 <ul id="subtabs"  class='tabs'>
     <li><a tabid="101" class='subtheme current'><?php echo __('Sources', 'ajax-search-pro'); ?></a></li>
     <li><a tabid="105" class='subtheme'><?php echo __('Sources 2', 'ajax-search-pro'); ?></a></li>
-	<li><a tabid="109" class='subtheme'><?php echo __('Attachments', 'ajax-search-pro'); ?></a></li>
+	<li><a tabid="109" class='subtheme'><?php echo __('Media Files Search', 'ajax-search-pro'); ?></a></li>
 	<li><a tabid="108" class='subtheme'><?php echo __('User Search', 'ajax-search-pro'); ?></a></li>
     <li><a tabid="102" class='subtheme'><?php echo __('Logic & Behavior', 'ajax-search-pro'); ?></a></li>
     <li><a tabid="110" class='subtheme'><?php echo __('Mobile Behavior', 'ajax-search-pro'); ?></a></li>
@@ -118,10 +118,10 @@ if ( !class_exists("WooCommerce") ) unset($_red_opts[3]);
 	<div tabid="109">
 		<fieldset>
 			<legend>
-                <?php echo __('Attachment Search', 'ajax-search-pro'); ?>
+                <?php echo __('Media File Search', 'ajax-search-pro'); ?>
                 <span class="asp_legend_docs">
                     <a target="_blank" href="https://documentation.ajaxsearchpro.com/general-settings/search-in-attachments"><span class="fa fa-book"></span>
-                        <?php echo __('Search in attachments', 'ajax-search-pro'); ?>
+                        <?php echo __('Search in Media Files', 'ajax-search-pro'); ?>
                     </a>
                 </span>
             </legend>

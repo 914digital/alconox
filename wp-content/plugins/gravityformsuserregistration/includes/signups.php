@@ -207,7 +207,7 @@ class GFUserSignups {
 
 		// unbind site creation from gform_user_registered hook, run it manually below
 		if ( is_multisite() ) {
-			remove_action( 'gform_user_registered', array( 'GFUser', 'create_new_multisite' ) );
+			remove_action( 'gform_user_registered', array( gf_user_registration(), 'create_site' ) );
 		}
 
 		gf_user_registration()->log( "Activating signup for username: {$signup->user_login} - entry: {$signup->lead['id']}" );
@@ -226,11 +226,8 @@ class GFUserSignups {
 
 		do_action( 'gform_activate_user', $user_id, $user_data, $signup->meta );
 
-		if ( is_multisite() ) {
-			$ms_options = rgars( $signup->config, 'meta/multisite_options' );
-			if ( rgar( $ms_options, 'create_site' ) ) {
-				$blog_id = gf_user_registration()->create_new_multisite( $user_id, $signup->config, $signup->lead, $user_data['password'] );
-			}
+		if ( is_multisite() && rgars( $signup->config, 'meta/createSite' ) ) {
+			$blog_id = gf_user_registration()->create_site( $user_id, $signup->config, $signup->lead, $user_data['password'] );
 		}
 
 		return array( 'user_id' => $user_id, 'password' => $user_data['password'], 'password_hash' => $user_data['password_hash'], 'blog_id' => $blog_id );

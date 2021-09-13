@@ -17,7 +17,6 @@
             "show_type" => 0,
             "show_checkboxes" => 1,
             "show_display_mode" => 1,
-            "show_separate_filter_boxes" => 1,
             "show_more_options" => 1,
             "built_in" => true,
             "exclude_taxonomies" => array("post_tag", __('nav_menu', 'ajax-search-pro'), "link_category")

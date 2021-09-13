@@ -1,0 +1,4 @@
+2021-09-03T19:10:26+00:00 CRITICAL require(): Failed opening required '/Users/danmartino/Local Sites/alconox/app/public/wp-includes/block-patterns/text-two-columns.php' (include_path='.:/usr/share/php:/www/wp-content/pear') in /Users/danmartino/Local Sites/alconox/app/public/wp-includes/block-patterns.php on line 37
+
+2021-09-03T19:10:26+00:00 CRITICAL require(): Failed opening required '/Users/danmartino/Local Sites/alconox/app/public/wp-includes/block-patterns/text-two-columns.php' (include_path='.:/usr/share/php:/www/wp-content/pear') in /Users/danmartino/Local Sites/alconox/app/public/wp-includes/block-patterns.php on line 37
+

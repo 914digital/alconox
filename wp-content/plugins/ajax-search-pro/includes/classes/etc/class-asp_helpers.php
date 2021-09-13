@@ -131,18 +131,35 @@ if (!class_exists("ASP_Helpers")) {
             }
         }
 
-        public static function addInlineScript($handle, $object_name, $data, $position = 'before') {
-            // Taken from WP_Srcripts -> localize
-            foreach ( (array) $data as $key => $value ) {
-                if ( ! is_scalar( $value ) ) {
-                    continue;
-                }
-                $data[ $key ] = html_entity_decode( (string) $value, ENT_QUOTES, 'UTF-8' );
-            }
-            $script = "var $object_name = " . wp_json_encode( $data ) . ';';
+		public static function addInlineScript($handle, $object_name, $data, $position = 'before', $safe_mode = false) {
+			// Taken from WP_Srcripts -> localize
+			foreach ( (array) $data as $key => $value ) {
+				if ( is_string($value) ) {
+					$data[$key] = html_entity_decode((string)$value, ENT_QUOTES, 'UTF-8');
+				}
+			}
+			if ( $safe_mode ) {
+				// If the inline script was merged or moved by a minify, the object may already exist, so keep the properties
+				$script = "window.$object_name = typeof window.$object_name !== 'undefined' ? window.$object_name : {};";
+				foreach ( (array) $data as $key => $value ) {
+					if ( is_numeric($value) ) {
+						$script .= " window.$object_name.$key = $value;";
+					} else if ( is_bool($value) ) {
+						if ( $value ) {
+							$script .= " window.$object_name.$key = true;";
+						} else {
+							$script .= " window.$object_name.$key = false;";
+						}
+					} else {
+						$script .= " window.$object_name.$key = " . wp_json_encode($value) . ";";
+					}
+				}
+			} else {
+				$script = "var $object_name = " . wp_json_encode( $data ) . ';';
+			}
 
-            wp_add_inline_script($handle, $script, $position);
-        }
+			wp_add_inline_script($handle, $script, $position);
+		}
 
         /**
          * Prepares the headers for the ajax request
@@ -659,6 +676,32 @@ if (!class_exists("ASP_Helpers")) {
             return $price;
         }
 
+		public static function getEarliestPostDate( $args = array( 'post_type' => 'post' ) ) {
+			$args = wp_parse_args($args, array(
+				'orderby'          => 'date',
+				'order'            => 'ASC'
+			));
+			$posts = get_posts($args);
+			if ( !is_wp_error($posts) && isset($posts[0], $posts[0]->post_date) ) {
+				return $posts[0]->post_date;
+			} else {
+				return "4y 0m 0d";
+			}
+		}
+
+		public static function getLatestPostDate( $args = array( 'post_type' => 'post' ) ) {
+			$args = wp_parse_args($args, array(
+				'orderby'          => 'date',
+				'order'            => 'DESC'
+			));
+			$posts = get_posts($args);
+			if ( !is_wp_error($posts) && isset($posts[0], $posts[0]->post_date) ) {
+				return $posts[0]->post_date;
+			} else {
+				return "4y 0m 0d";
+			}
+		}
+
         /**
          * Gets the PODs field value
          *
@@ -906,7 +949,6 @@ if (!class_exists("ASP_Helpers")) {
             ) {
                 parse_str($_COOKIE['asp_data'], $options);
             }
-
             return $options;
         }
 
@@ -1002,11 +1044,48 @@ if (!class_exists("ASP_Helpers")) {
                 'attachments_limit_override' => $sd['attachments_limit_override']
             ));
             $args["_qtranslate_lang"] = isset($o['qtranslate_lang'])?$o['qtranslate_lang']:"";
-			if ( !$args["_ajax_search"] && function_exists("pll_current_language") ) {
-				$args["_polylang_lang"] = pll_current_language();
-			} else {
-				$args["_polylang_lang"] = $sd['polylang_compatibility'] == 1 && isset($o['polylang_lang']) ? $o['polylang_lang'] : "";
+
+			if ( $sd['polylang_compatibility'] == 1 ) {
+				$args["_polylang_lang"] = isset($o['polylang_lang']) ? $o['polylang_lang'] :
+					(function_exists('pll_current_language') ?  pll_current_language() : '');
 			}
+
+			// Exclusions via the options (auto populate)
+			if ( isset($o['not_in']) ) {
+				if ( isset($o['not_in']['pagepost']) && is_array($o['not_in']['pagepost']) ) {
+					$args['post_not_in'] = array_unique(
+						array_merge(
+							$args['post_not_in'],
+							array_map('intval', $o['not_in']['pagepost'])
+						)
+					);
+				}
+				if ( isset($o['not_in']['attachment']) && is_array($o['not_in']['attachment']) ) {
+					$args['attachment_exclude'] = array_unique(
+						array_merge(
+							$args['attachment_exclude'],
+							array_map('intval', $o['not_in']['attachment'])
+						)
+					);
+				}
+				if ( isset($o['not_in']['term']) && is_array($o['not_in']['term']) ) {
+					$args['taxonomy_terms_exclude2'] = array_unique(
+						array_merge(
+							$args['taxonomy_terms_exclude2'],
+							array_map('intval', $o['not_in']['term'])
+						)
+					);
+				}
+				if ( isset($o['not_in']['user']) && is_array($o['not_in']['user']) ) {
+					$args['user_search_exclude_ids'] = array_unique(
+						array_merge(
+							$args['user_search_exclude_ids'],
+							array_map('intval', $o['not_in']['user'])
+						)
+					);
+				}
+			}
+
             $args["_exact_matches"] = isset($o['asp_gen']) && is_array($o['asp_gen']) && in_array('exact', $o['asp_gen']) ? 1 : 0;
             $args["_exact_match_location"] = $sd['exact_match_location'];
 
@@ -1544,15 +1623,7 @@ if (!class_exists("ASP_Helpers")) {
                     $is_checkboxes = true;
                     // If not the checkboxes are used, and there is no forced inclusion, temporary force the OR logic
                     if ( count($sd['show_terms']['display_mode']) > 0 ) {
-                        if ( $sd['show_terms']['separate_filter_boxes'] != 1 ) {
-                            if ( isset($sd['show_terms']['display_mode']['all']) &&
-                                $sd['show_terms']['display_mode']['all']['type'] != "checkboxes"
-                            ) {
-                                //$term_logic = "or";
-								$display_mode = $sd['show_terms']['display_mode']['all']['type'];
-                                $is_checkboxes = false;
-                            }
-                        } else if (isset($sd['show_terms']['display_mode'][$taxonomy])) {
+                        if (isset($sd['show_terms']['display_mode'][$taxonomy])) {
                             if ( $sd['show_terms']['display_mode'][$taxonomy]['type'] != "checkboxes" ) {
                                 //$term_logic = "or";
 								$display_mode = $sd['show_terms']['display_mode'][$taxonomy]['type'];
@@ -1828,7 +1899,12 @@ if (!class_exists("ASP_Helpers")) {
 
 					// Manage the posted values first, in case these are multiple values
                     if ( is_array($posted) ) {
-                        $posted = array_values($posted);
+                    	// The order is important for the range slider
+						if ( isset($posted['lower'], $posted['upper']) ) {
+							$posted = array($posted['lower'], $posted['upper']);
+						} else {
+							$posted = array_values($posted);
+						}
                         $add_posted = array();
                         foreach ( $posted as $pk => $pv ) {
                             // Multiple values passed separated by :: -> convert them to array
@@ -1931,11 +2007,13 @@ if (!class_exists("ASP_Helpers")) {
                         $posted   = self::force_numeric( $posted );
                     }
 
-                    if ( $filter->display_mode == 'range' )
-                        $operator = "BETWEEN";
+                    if ( $filter->display_mode == 'range' ) {
+						$operator = "BETWEEN";
+					}
 
-                    if ( $filter->display_mode == 'range' || $filter->display_mode == 'slider')
-                        $posted   = self::force_numeric( $posted );
+                    if ( $filter->display_mode == 'range' || $filter->display_mode == 'slider') {
+						$posted = self::force_numeric($posted);
+					}
 
                     if ( $filter->display_mode == "datepicker" ) {
 
@@ -1945,26 +2023,20 @@ if (!class_exists("ASP_Helpers")) {
                                  * Format YY MM DD is accepted by strtotime as ISO8601 Notation
                                  * http://php.net/manual/en/datetime.formats.date.php
                                  */
-                                $posted   = self::force_numeric( $posted );
-                                if ( strlen($posted) == 8 ) {
-                                    $posted = strtotime($posted, time());
-                                    $posted = date("Y-m-d", $posted);
-                                    $operator = "datetime ".$operator;
-                                }
+								$posted = strtotime($posted, time());
+								$posted = date("Y-m-d", $posted);
+								$operator = "datetime ".$operator;
                                 break;
                             case 'timestamp':
-                                $posted   = self::force_numeric( $posted );
-                                if ( strlen($posted) == 8 ) {
-                                    $posted   = strtotime($posted, time());
-                                    $operator = "timestamp ".$operator;
-                                }
+                            	$posted   = strtotime($posted, time());
+                            	$operator = "timestamp ".$operator;
                                 break;
                             default:
                                 /**
                                  * This is ACF aka. yymmdd aka. 20170101
                                  * ..so the operators need to be adjusted in cases of < and > to <= and >=
                                  **/
-                                $posted   = self::force_numeric( $posted );
+								$posted = preg_replace("/[^0-9]/",'',$posted);
                                 break;
                         }
                     }

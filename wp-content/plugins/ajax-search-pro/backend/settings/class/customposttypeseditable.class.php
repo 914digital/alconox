@@ -17,23 +17,6 @@ if (!class_exists("wpdreamsCustomPostTypesEditable")) {
         function getType() {
             parent::getType();
             $this->processData();
-            $this->types = get_post_types(array(
-                "public" => true,
-                "_builtin" => false
-            ), "objects", "OR");
-            $exclude = array("revision", "nav_menu_item", "attachment", 'peepso-post', 'peepso-comment', "acf",
-                "oembed_cache", "user_request", "wp_block", "shop_coupon", "avada_page_options",
-                "_pods_template", "_pods_pod", "_pods_field", "bp-email",
-                "lbmn_archive", "lbmn_footer", "mc4wp-form",
-                "elementor-front", "elementor-icon",
-                "fusion_template", "fusion_element", "wc_product_tab", "customize_changeset",
-                "wpcf7_contact_form", "dslc_templates", "acf-field", "acf-group", "acf-groups", "acf-field-group", "custom_css");
-            foreach ($this->types as $k => $v) {
-                if (in_array($k, $exclude)) {
-                    unset($this->types[$k]);
-                    continue;
-                }
-            }
             echo "
       <div class='wpdreamsCustomPostTypesEditable' id='wpdreamsCustomPostTypesEditable-" . self::$_instancenumber . "'>
         <fieldset>
@@ -81,6 +64,16 @@ if (!class_exists("wpdreamsCustomPostTypesEditable")) {
             } else {
                 $this->selected = null;
             }
+
+			$this->types = get_post_types(array(
+				"public" => true,
+				"_builtin" => false
+			), "objects", "OR");
+			foreach ($this->types as $k => $v) {
+				if ( in_array($k, self::NON_DISPLAYABLE_POST_TYPES) ) {
+					unset($this->types[$k]);
+				}
+			}
         }
 
         final function getData() {
